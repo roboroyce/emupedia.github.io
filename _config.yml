@@ -15,6 +15,7 @@ exclude:
   - CNAME
   - beta/hooks
   - beta/node_modules
+  - beta/package.json
 whitelist:
   - jekyll-watch
   - jekyll-textile-converter
