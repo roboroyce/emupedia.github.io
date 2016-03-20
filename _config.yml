@@ -13,6 +13,8 @@ markdown: kramdown
 exclude:
   - .gitignore
   - CNAME
+  - beta/hooks
+  - beta/node_modules
 whitelist:
   - jekyll-watch
   - jekyll-textile-converter

@@ -1,0 +1,21 @@
+{
+	"name": "Emupedia",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Emupedia",
+	"dependencies": {
+		"alameda": "^1.0.0",
+		"babel-core": "^5.8.35",
+		"fs-extra": "^0.26.7",
+		"jquery": "^3.0.0-beta1",
+		"mithril": "^0.2.3",
+		"requirejs-babel": "0.0.8",
+		"es5-shim": "^4.5.7",
+		"es6-shim": "^0.35.0",
+		"es7-shim": "^5.0.0",
+		"json3": "^3.3.2"
+	},
+	"scripts": {
+	"postinstall": "node ./hooks/postinstall.js"
+	}
+}
