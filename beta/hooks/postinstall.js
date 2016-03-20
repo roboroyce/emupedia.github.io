@@ -1,11 +1,21 @@
 var fs = require('fs-extra');
 var replace = require('replace-in-file');
 var packages = require('../package.json');
+var dependencies = Object.keys(packages.dependencies);
 
 function install(dependency, version) {
 	switch (dependency) {
 		case 'json3':
 			fs.copy('./node_modules/' + dependency +  '/lib/' + dependency + '.min.js', './js/library/' + dependency + '-' + version + '.min.js', function (error) {
+				if (error) {
+					console.error('Error occurred:', error);
+				} else {
+					console.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'js-polyfills':
+			fs.copy('./node_modules/' + dependency +  '/polyfill.min.js', './js/library/polyfill-' + version + '.min.js', function (error) {
 				if (error) {
 					console.error('Error occurred:', error);
 				} else {
@@ -284,8 +294,6 @@ function install(dependency, version) {
 			break;
 	}
 }
-
-var dependencies = Object.keys(packages.dependencies);
 
 for (var i = 0; i < dependencies.length; i++) {
 	install(dependencies[i], require('../node_modules/' + dependencies[i] + '/package.json').version);
