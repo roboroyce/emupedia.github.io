@@ -3,9 +3,10 @@
  * Released under license https://emupedia.net/LICENSE
  */
 
-import m from 'mithril';
+import Mithril from 'mithril';
+import Component from 'es6!component';
 
-import Component from './component';
+var m = Mithril;
 
 class Widget extends Component {
 	init(ctrl) {
