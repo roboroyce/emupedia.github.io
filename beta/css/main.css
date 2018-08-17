@@ -25,29 +25,180 @@ body {
 	overflow: hidden;
 }
 
-table {
-	border: 2px solid #ccc;
+div.vm-container {
+	width: 100%;
+	height: 100%;
+	background-color: #14171a;
+}
+
+div.main-container {
+	box-sizing: border-box;
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* region Tabs */
+
+ul.tab-bar {
+	width: 100%;
+	height: 28px;
+	background-color: #252c33;
+	border-top: 1px solid #45484c;
+	border-bottom: 1px solid #000000;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+li.tab {
+	width: 200px;
+	height: 28px;
+	text-align: center;
+	border-right: 1px solid #42484f;
+	float: left;
+}
+
+li.tab a, li.tab a:focus {
+	display: block;
+	width: 100%;
+	height: 26px;
+	line-height: 26px;
+	background-color: #252c33;
+	border-bottom: 2px solid #21282e;
+	text-decoration: none;
+	color: #a9bacb;
+	outline: none;
+}
+
+li.tab a:hover {
+	background-color: #1f252c;
+	border-bottom: 2px solid #1b2228;
+	color: #c4c7cb;
+}
+
+li.tab a:active {
+	background-color: #1a4666;
+	height: 24px;
+	line-height: 22px;
+	border-top: 2px solid #d7f1ff;
+	border-bottom: 2px solid #1b2228;
+	color: #eef0f2;
+}
+
+/* endregion */
+
+/* region Screen */
+
+div.screen {
+	position: absolute;
+	text-align: left;
+	margin: auto;
+	padding: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #181d20;
+	border: 2px solid #42484f;
+}
+
+div.screen div.text-mode {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	white-space: pre;
+	font-size: 16px;
+	line-height: 16px;
+}
+
+div.screen canvas {
+	width: 100%;
+	height: 100%;
+}
+
+div.screen.text-720x350-res-80x25-textres-9x14-charsize-2-colors {
+	width: 720px;
+	height: 350px;
+}
+
+div.screen.text-320x200-res-40x25-textres-8x8-charsize-16-colors {
+	width: 320px;
+	height: 200px;
+}
+
+div.screen.text-640x200-res-80x25-textres-8x8-charsize-16-colors {
+	width: 640px;
+	height: 200px;
+}
+
+div.screen.text-640x350-res-80x25-textres-8x14-charsize-16-colors {
+	width: 640px;
+	height: 350px;
+}
+
+div.screen.text-640x350-res-80x43-textres-8x8-charsize-16-colors {
+	width: 640px;
+	height: 350px;
+}
+
+div.screen.text-720x400-res-80x25-textres-9x16-charsize-16-colors {
+	width: 720px;
+	height: 400px;
+}
+
+div.screen.text-720x400-res-80x50-textres-9x8-charsize-16-colors {
+	width: 720px;
+	height: 400px;
+}
+
+/* VESA */
+div.screen.text-80x60-res-16-colors {}
+div.screen.text-132x25-res-16-colors {}
+div.screen.text-132x43-res-16-colors {}
+div.screen.text-132x50-res-16-colors {}
+div.screen.text-132x60-res-16-colors {}
+
+/* endregion */
+
+/* region Debugger */
+
+div.debugger {
+	/*position: absolute;*/
+	/*top: 28px;*/
+	/*right: 10px;*/
+	float: right;
+}
+
+div.debugger table {
+	background-color: #181d20;
+	border: 2px solid #42484f;
 	margin-bottom: 20px;
 	border-spacing: 0;
 	border-collapse: collapse;
+	color: #a9bacb;
+	float: right;
 }
 
-th {
+div.debugger table:nth-child(1) {
+	margin-top: 20px;
+}
+
+div.debugger th {
 	text-align: center;
-	border-top: 2px solid #ccc;
-	border-bottom: 2px solid #ccc;
+	border-top: 2px solid #42484f;
+	border-bottom: 2px solid #42484f;
 	padding: 0;
 	margin: 0;
 	font-weight: normal;
 }
 
-th:not(:nth-child(1)) {
+div.debugger th:not(:nth-child(1)) {
 	border-top: none;
 }
 
-td {
-	padding-left: 5px;
-	padding-right: 5px;
+div.debugger td {
+	padding: 0 5px;
 }
 
 .state .STATE,
@@ -87,57 +238,42 @@ td {
 	text-transform: uppercase;
 }
 
-canvas {
-	display: block;
+/* endregion */
+
+/* region Keyboard */
+
+div.keyboard {
+	width: 1920px;
+	height: 290px;
+}
+
+div.keyboard table {
+	width: 100%;
+	height: 100%;
+}
+
+div.keyboard td.key {
+	border: 2px solid #000;
+	border-radius: 4px;
+	line-height: 40px;
+	width: 40px;
+	height: 40px;
+}
+
+/* endregion */
+
+input.console {
+	box-sizing: border-box;
 	position: absolute;
-	background-color: #333;
-	padding: 0;
-	margin: auto;
-	top: 0;
 	bottom: 0;
-	left: 0;
-	right: 0;
-	border: 2px solid #ccc;
+	width: 100%;
+	height: 26px;
+	line-height: 26px;
+	background-color: #252c33;
+	border: 1px solid #42484f;
+	margin: 0;
+	padding: 0 5px;
+	color: #a9bacb;
+	font-family: 'dos', monospace;
+	font-size: 16px;
 }
-
-canvas.text-720x350-res-80x25-textres-9x14-charsize-2-colors {
-	width: 720px;
-	height: 350px;
-}
-
-canvas.text-320x200-res-40x25-textres-8x8-charsize-16-colors {
-	width: 320px;
-	height: 200px;
-}
-
-canvas.text-640x200-res-80x25-textres-8x8-charsize-16-colors {
-	width: 640px;
-	height: 200px;
-}
-
-canvas.text-640x350-res-80x25-textres-8x14-charsize-16-colors {
-	width: 640px;
-	height: 350px;
-}
-
-canvas.text-640x350-res-80x43-textres-8x8-charsize-16-colors {
-	width: 640px;
-	height: 350px;
-}
-
-canvas.text-720x400-res-80x25-textres-9x16-charsize-16-colors {
-	width: 720px;
-	height: 400px;
-}
-
-canvas.text-720x400-res-80x50-textres-9x8-charsize-16-colors {
-	width: 720px;
-	height: 400px;
-}
-
-/* VESA */
-canvas.text-80x60-res-16-colors {}
-canvas.text-132x25-res-16-colors {}
-canvas.text-132x43-res-16-colors {}
-canvas.text-132x50-res-16-colors {}
-canvas.text-132x60-res-16-colors {}
