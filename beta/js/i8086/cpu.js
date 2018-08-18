@@ -62,6 +62,8 @@ OF Overflow flag
 
 */
 
+'use strict';
+
 class CPU {
 	constructor() {
 		console.log('CPU i8086 initialised!');
