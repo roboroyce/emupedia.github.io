@@ -4,7 +4,7 @@
 
 	self.importScripts('i8086/cpu.js');
 
-	let cpu = new CPU();
+	var cpu = new CPU();
 
 	cpu.R.AX = 0x1111;
 	cpu.R.BX = 0x2222;
@@ -25,11 +25,15 @@
 
 	cpu.R.F = 0xEEEE;
 
+	// cpu.R.AX = 0x1234;
+	// cpu.U16[cpu.INDEX16.AX] = 0x1234;
+	cpu.R16.AX = 0x1234;
+
 	cpu.dumpState();
 
 	self.onmessage = function(e) {
 		console.log('browser => cpu');
-		console.log(e);
+		// console.log(JSON.parse(JSON.stringify(e)));
 		console.log(e.data);
 
 		switch (e.data) {
