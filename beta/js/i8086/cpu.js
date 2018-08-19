@@ -62,477 +62,485 @@ OF Overflow flag
 
 */
 
-'use strict';
+// noinspection ThisExpressionReferencesGlobalObjectJS
+(function(global) {
+	'use strict';
 
-function CPU() {
-	console.log('CPU i8086 initialised!');
+	function CPU() {
+		console.log('CPU i8086 initialised!');
 
-	var self = this;
+		var self = this;
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.B = new ArrayBuffer(28);
+		// noinspection JSUndefinedPropertyAssignment
+		self.B = new ArrayBuffer(28);
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.S = new DataView(self.B);
+		// noinspection JSUndefinedPropertyAssignment
+		self.S = new DataView(self.B);
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.U8 = new Uint8Array(self.B);
+		// noinspection JSUndefinedPropertyAssignment
+		self.U8 = new Uint8Array(self.B);
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.U16 = new Uint16Array(self.B);
+		// noinspection JSUndefinedPropertyAssignment
+		self.U16 = new Uint16Array(self.B);
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.INDEX8 = {
-		AL: 0x00,
-		AH: 0x01,
-		BL: 0x02,
-		BH: 0x03,
-		CL: 0x04,
-		CH: 0x05,
-		DL: 0x06,
-		DH: 0x07
+		// noinspection JSUndefinedPropertyAssignment
+		self.INDEX8 = {
+			AL: 0x00,
+			AH: 0x01,
+			BL: 0x02,
+			BH: 0x03,
+			CL: 0x04,
+			CH: 0x05,
+			DL: 0x06,
+			DH: 0x07
+		};
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.INDEX16 = {
+			AX: 0x00,
+			BX: 0x01,
+			CX: 0x02,
+			DX: 0x03,
+			AF: 0x04,
+			CS: 0x05,
+			DS: 0x06,
+			ES: 0x07,
+			SS: 0x08,
+			SI: 0x09,
+			DI: 0x0A,
+			BP: 0x0B,
+			SP: 0x0C,
+			IP: 0x0D,
+			F:	0x0E
+		};
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.R = {
+			get AL() {
+				return self.S.getUint8(0);
+			},
+			set AL(val) {
+				self.S.setUint8(0, val);
+			},
+			get AH() {
+				return self.S.getUint8(1);
+			},
+			set AH(val) {
+				self.S.setUint8(1, val);
+			},
+			get AX() {
+				return self.S.getUint16(0, true);
+			},
+			set AX(val) {
+				self.S.setUint16(0, val, true);
+			},
+			get BL() {
+				return self.S.getUint8(2);
+			},
+			set BL(val) {
+				self.S.setUint8(2, val);
+			},
+			get BH() {
+				return self.S.getUint8(3);
+			},
+			set BH(val) {
+				self.S.setUint8(3, val);
+			},
+			get BX() {
+				return self.S.getUint16(2, true);
+			},
+			set BX(val) {
+				self.S.setUint16(2, val, true);
+			},
+			get CL() {
+				return self.S.getUint8(4);
+			},
+			set CL(val) {
+				self.S.setUint8(4, val);
+			},
+			get CH() {
+				return self.S.getUint8(5);
+			},
+			set CH(val) {
+				self.S.setUint8(5, val);
+			},
+			get CX() {
+				return self.S.getUint16(4, true);
+			},
+			set CX(val) {
+				self.S.setUint16(4, val, true);
+			},
+			get DL() {
+				return self.S.getUint8(6);
+			},
+			set DL(val) {
+				self.S.setUint8(6, val);
+			},
+			get DH() {
+				return self.S.getUint8(7);
+			},
+			set DH(val) {
+				self.S.setUint8(7, val);
+			},
+			get DX() {
+				return self.S.getUint16(6, true);
+			},
+			set DX(val) {
+				self.S.setUint16(6, val, true);
+			},
+			get CS() {
+				return self.S.getUint16(8, true);
+			},
+			set CS(val) {
+				self.S.setUint16(8, val, true);
+			},
+			get DS() {
+				return self.S.getUint16(10, true);
+			},
+			set DS(val) {
+				self.S.setUint16(10, val, true);
+			},
+			get ES() {
+				return self.S.getUint16(12, true);
+			},
+			set ES(val) {
+				self.S.setUint16(12, val, true);
+			},
+			get SS() {
+				return self.S.getUint16(14, true);
+			},
+			set SS(val) {
+				self.S.setUint16(14, val, true);
+			},
+			get SI() {
+				return self.S.getUint16(16, true);
+			},
+			set SI(val) {
+				self.S.setUint16(16, val, true);
+			},
+			get DI() {
+				return self.S.getUint16(18, true);
+			},
+			set DI(val) {
+				self.S.setUint16(18, val, true);
+			},
+			get BP() {
+				return self.S.getUint16(20, true);
+			},
+			set BP(val) {
+				self.S.setUint16(20, val, true);
+			},
+			get SP() {
+				return self.S.getUint16(22, true);
+			},
+			set SP(val) {
+				self.S.setUint16(22, val, true);
+			},
+			get IP() {
+				return self.S.getUint16(24, true);
+			},
+			set IP(val) {
+				self.S.setUint16(24, val, true);
+			},
+			get F() {
+				return self.S.getUint16(26, true);
+			},
+			set F(val) {
+				self.S.setUint16(26, val, true);
+			}
+		};
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.R8 = {
+			get AL() {
+				return self.U8[0];
+			},
+			set AL(val) {
+				self.U8[0] = val;
+			},
+			get AH() {
+				return self.U8[1];
+			},
+			set AH(val) {
+				self.U8[1] = val;
+			},
+			get BL() {
+				return self.U8[2];
+			},
+			set BL(val) {
+				self.U8[2] = val;
+			},
+			get BH() {
+				return self.U8[3];
+			},
+			set BH(val) {
+				self.U8[3] = val;
+			},
+			get CL() {
+				return self.U8[4];
+			},
+			set CL(val) {
+				self.U8[4] = val;
+			},
+			get CH() {
+				return self.U8[5];
+			},
+			set CH(val) {
+				self.U8[5] = val;
+			},
+			get DL() {
+				return self.U8[6];
+			},
+			set DL(val) {
+				self.U8[6] = val;
+			},
+			get DH() {
+				return self.U8[7];
+			},
+			set DH(val) {
+				self.U8[7] = val;
+			}
+		};
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.R16 = {
+			get AX() {
+				return self.U16[0];
+			},
+			set AX(val) {
+				self.U16[0] = val;
+			},
+			get BX() {
+				return self.U16[1];
+			},
+			set BX(val) {
+				self.U16[1] = val;
+			},
+			get CX() {
+				return self.U16[2];
+			},
+			set CX(val) {
+				self.U16[2] = val;
+			},
+			get DX() {
+				return self.U16[3];
+			},
+			set DX(val) {
+				self.U16[3] = val;
+			},
+			get CS() {
+				return self.U16[4];
+			},
+			set CS(val) {
+				self.U16[4] = val;
+			},
+			get DS() {
+				return self.U16[5];
+			},
+			set DS(val) {
+				self.U16[5] = val;
+			},
+			get ES() {
+				return self.U16[6];
+			},
+			set ES(val) {
+				self.U16[6] = val;
+			},
+			get SS() {
+				return self.U16[7];
+			},
+			set SS(val) {
+				self.U16[7] = val;
+			},
+			get SI() {
+				return self.U16[8];
+			},
+			set SI(val) {
+				self.U16[8] = val;
+			},
+			get DI() {
+				return self.U16[9];
+			},
+			set DI(val) {
+				self.U16[9] = val;
+			},
+			get BP() {
+				return self.U16[10];
+			},
+			set BP(val) {
+				self.U16[10] = val;
+			},
+			get SP() {
+				return self.U16[11];
+			},
+			set SP(val) {
+				self.U16[11] = val;
+			},
+			get IP() {
+				return self.U16[12];
+			},
+			set IP(val) {
+				self.U16[12] = val;
+			},
+			get F() {
+				return self.U16[13];
+			},
+			set F(val) {
+				self.U16[13] = val;
+			}
+		};
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.F = {
+			INDEX: {
+				CF:		0x00, // bit 0: Carry Flag
+				BIT1:	0x01, // bit 1: reserved, always set
+				PF:		0x02, // bit 2: Parity Flag
+				BIT3:	0x03, // bit 3: reserved, always clear
+				AF:		0x04, // bit 4: Auxiliary Carry Flag (aka Arithmetic flag)
+				BIT5:	0x05, // bit 5: reserved, always clear
+				ZF:		0x06, // bit 6: Zero Flag
+				SF:		0x07, // bit 7: Sign Flag
+				TF:		0x08, // bit 8: Trap Flag
+				IF:		0x09, // bit 9: Interrupt Flag
+				DF:		0x0A, // bit 10: Direction Flag
+				OF:		0x0B, // bit 11: Overflow Flag
+				BIT12:	0x0C, // bit 12: reserved, always set
+				BIT13:	0x0D, // bit 13: reserved, always set
+				BIT14:	0x0E, // bit 14: reserved, always set
+				BIT15:	0x0F  // bit 15: reserved, always set
+			},
+			MASK: {
+				CF:		0x0001, // bit 0: Carry Flag
+				BIT1:	0x0002, // bit 1: reserved, always set
+				PF:		0x0004, // bit 2: Parity Flag
+				BIT3:	0x0008, // bit 3: reserved, always clear
+				AF:		0x0010, // bit 4: Auxiliary Carry Flag (aka Arithmetic flag)
+				BIT5:	0x0020, // bit 5: reserved, always clear
+				ZF:		0x0040, // bit 6: Zero Flag
+				SF:		0x0080, // bit 7: Sign Flag
+				TF:		0x0100, // bit 8: Trap Flag
+				IF:		0x0200, // bit 9: Interrupt Flag
+				DF:		0x0400, // bit 10: Direction Flag
+				OF:		0x0800, // bit 11: Overflow Flag
+				BIT12:	0x1000, // bit 12: reserved, always set
+				BIT13:	0x2000, // bit 13: reserved, always set
+				BIT14:	0x4000, // bit 14: reserved, always set
+				BIT15:	0x8000  // bit 15: reserved, always set
+			},
+			get F() {
+				return self.S.getUint16(26, true)
+			},
+			set F(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get CF() {
+				return self.S.getUint16(26, true) & this.MASK.CF;
+			},
+			set CF(val) {
+				self.S.setUint16(26, this.F & val & this.MASK.CF, true);
+			},
+			get PF() {
+				return self.S.getUint16(26, true) & this.MASK.PF;
+			},
+			set PF(val) {
+				console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
+				self.S.setUint16(26, val & this.MASK.PF, true);
+				console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
+			},
+			get AF() {
+				return self.S.getUint16(26, true) & this.MASK.AF;
+			},
+			set AF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get ZF() {
+				return self.S.getUint16(26, true) & this.MASK.ZF;
+			},
+			set ZF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get SF() {
+				return self.S.getUint16(26, true) & this.MASK.SF;
+			},
+			set SF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get TF() {
+				return self.S.getUint16(26, true) & this.MASK.TF;
+			},
+			set TF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get IF() {
+				return self.S.getUint16(26, true) & this.MASK.IF;
+			},
+			set IF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get DF() {
+				return self.S.getUint16(26, true) & this.MASK.DF;
+			},
+			set DF(val) {
+				self.S.setUint16(26, val, true);
+			},
+			get OF() {
+				return self.S.getUint16(26, true) & this.MASK.OF;
+			},
+			set OF(val) {
+				self.S.setUint16(26, val, true);
+			}
+		};
+	}
+
+	CPU.prototype.dumpState = function() {
+		console.table([{
+			Register: 'AX',
+			Value: this.R.AX.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'BX',
+			Value: this.R.BX.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'CX',
+			Value: this.R.CX.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'DX',
+			Value: this.R.DX.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'CS',
+			Value: this.R.CS.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'DS',
+			Value: this.R.DS.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'ES',
+			Value: this.R.ES.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'SS',
+			Value: this.R.SS.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'SI',
+			Value: this.R.SI.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'DI',
+			Value: this.R.DI.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'BP',
+			Value: this.R.BP.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'SP',
+			Value: this.R.SP.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'IP',
+			Value: this.R.IP.toString(16).padStart(4, '0').toUpperCase()
+		} , {
+			Register: 'Flags',
+			Value: this.R.F.toString(16).padStart(4, '0').toUpperCase()
+		}]);
 	};
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.INDEX16 = {
-		AX: 0x00,
-		BX: 0x01,
-		CX: 0x02,
-		DX: 0x03,
-		AF: 0x04,
-		CS: 0x05,
-		DS: 0x06,
-		ES: 0x07,
-		SS: 0x08,
-		SI: 0x09,
-		DI: 0x0A,
-		BP: 0x0B,
-		SP: 0x0C,
-		IP: 0x0D,
-		F:	0x0E
-	};
+	if (typeof global.CPU === 'undefined') {
+		global.CPU = CPU;
+	}
 
-	// noinspection JSUndefinedPropertyAssignment
-	self.R = {
-		get AL() {
-			return self.S.getUint8(0);
-		},
-		set AL(val) {
-			self.S.setUint8(0, val);
-		},
-		get AH() {
-			return self.S.getUint8(1);
-		},
-		set AH(val) {
-			self.S.setUint8(1, val);
-		},
-		get AX() {
-			return self.S.getUint16(0, true);
-		},
-		set AX(val) {
-			self.S.setUint16(0, val, true);
-		},
-		get BL() {
-			return self.S.getUint8(2);
-		},
-		set BL(val) {
-			self.S.setUint8(2, val);
-		},
-		get BH() {
-			return self.S.getUint8(3);
-		},
-		set BH(val) {
-			self.S.setUint8(3, val);
-		},
-		get BX() {
-			return self.S.getUint16(2, true);
-		},
-		set BX(val) {
-			self.S.setUint16(2, val, true);
-		},
-		get CL() {
-			return self.S.getUint8(4);
-		},
-		set CL(val) {
-			self.S.setUint8(4, val);
-		},
-		get CH() {
-			return self.S.getUint8(5);
-		},
-		set CH(val) {
-			self.S.setUint8(5, val);
-		},
-		get CX() {
-			return self.S.getUint16(4, true);
-		},
-		set CX(val) {
-			self.S.setUint16(4, val, true);
-		},
-		get DL() {
-			return self.S.getUint8(6);
-		},
-		set DL(val) {
-			self.S.setUint8(6, val);
-		},
-		get DH() {
-			return self.S.getUint8(7);
-		},
-		set DH(val) {
-			self.S.setUint8(7, val);
-		},
-		get DX() {
-			return self.S.getUint16(6, true);
-		},
-		set DX(val) {
-			self.S.setUint16(6, val, true);
-		},
-		get CS() {
-			return self.S.getUint16(8, true);
-		},
-		set CS(val) {
-			self.S.setUint16(8, val, true);
-		},
-		get DS() {
-			return self.S.getUint16(10, true);
-		},
-		set DS(val) {
-			self.S.setUint16(10, val, true);
-		},
-		get ES() {
-			return self.S.getUint16(12, true);
-		},
-		set ES(val) {
-			self.S.setUint16(12, val, true);
-		},
-		get SS() {
-			return self.S.getUint16(14, true);
-		},
-		set SS(val) {
-			self.S.setUint16(14, val, true);
-		},
-		get SI() {
-			return self.S.getUint16(16, true);
-		},
-		set SI(val) {
-			self.S.setUint16(16, val, true);
-		},
-		get DI() {
-			return self.S.getUint16(18, true);
-		},
-		set DI(val) {
-			self.S.setUint16(18, val, true);
-		},
-		get BP() {
-			return self.S.getUint16(20, true);
-		},
-		set BP(val) {
-			self.S.setUint16(20, val, true);
-		},
-		get SP() {
-			return self.S.getUint16(22, true);
-		},
-		set SP(val) {
-			self.S.setUint16(22, val, true);
-		},
-		get IP() {
-			return self.S.getUint16(24, true);
-		},
-		set IP(val) {
-			self.S.setUint16(24, val, true);
-		},
-		get F() {
-			return self.S.getUint16(26, true);
-		},
-		set F(val) {
-			self.S.setUint16(26, val, true);
-		}
-	};
-
-	// noinspection JSUndefinedPropertyAssignment
-	self.R8 = {
-		get AL() {
-			return self.U8[0];
-		},
-		set AL(val) {
-			self.U8[0] = val;
-		},
-		get AH() {
-			return self.U8[1];
-		},
-		set AH(val) {
-			self.U8[1] = val;
-		},
-		get BL() {
-			return self.U8[2];
-		},
-		set BL(val) {
-			self.U8[2] = val;
-		},
-		get BH() {
-			return self.U8[3];
-		},
-		set BH(val) {
-			self.U8[3] = val;
-		},
-		get CL() {
-			return self.U8[4];
-		},
-		set CL(val) {
-			self.U8[4] = val;
-		},
-		get CH() {
-			return self.U8[5];
-		},
-		set CH(val) {
-			self.U8[5] = val;
-		},
-		get DL() {
-			return self.U8[6];
-		},
-		set DL(val) {
-			self.U8[6] = val;
-		},
-		get DH() {
-			return self.U8[7];
-		},
-		set DH(val) {
-			self.U8[7] = val;
-		}
-	};
-
-	// noinspection JSUndefinedPropertyAssignment
-	self.R16 = {
-		get AX() {
-			return self.U16[0];
-		},
-		set AX(val) {
-			self.U16[0] = val;
-		},
-		get BX() {
-			return self.U16[1];
-		},
-		set BX(val) {
-			self.U16[1] = val;
-		},
-		get CX() {
-			return self.U16[2];
-		},
-		set CX(val) {
-			self.U16[2] = val;
-		},
-		get DX() {
-			return self.U16[3];
-		},
-		set DX(val) {
-			self.U16[3] = val;
-		},
-		get CS() {
-			return self.U16[4];
-		},
-		set CS(val) {
-			self.U16[4] = val;
-		},
-		get DS() {
-			return self.U16[5];
-		},
-		set DS(val) {
-			self.U16[5] = val;
-		},
-		get ES() {
-			return self.U16[6];
-		},
-		set ES(val) {
-			self.U16[6] = val;
-		},
-		get SS() {
-			return self.U16[7];
-		},
-		set SS(val) {
-			self.U16[7] = val;
-		},
-		get SI() {
-			return self.U16[8];
-		},
-		set SI(val) {
-			self.U16[8] = val;
-		},
-		get DI() {
-			return self.U16[9];
-		},
-		set DI(val) {
-			self.U16[9] = val;
-		},
-		get BP() {
-			return self.U16[10];
-		},
-		set BP(val) {
-			self.U16[10] = val;
-		},
-		get SP() {
-			return self.U16[11];
-		},
-		set SP(val) {
-			self.U16[11] = val;
-		},
-		get IP() {
-			return self.U16[12];
-		},
-		set IP(val) {
-			self.U16[12] = val;
-		},
-		get F() {
-			return self.U16[13];
-		},
-		set F(val) {
-			self.U16[13] = val;
-		}
-	};
-
-	// noinspection JSUndefinedPropertyAssignment
-	self.F = {
-		INDEX: {
-			CF:		0x00, // bit 0: Carry Flag
-			BIT1:	0x01, // bit 1: reserved, always set
-			PF:		0x02, // bit 2: Parity Flag
-			BIT3:	0x03, // bit 3: reserved, always clear
-			AF:		0x04, // bit 4: Auxiliary Carry Flag (aka Arithmetic flag)
-			BIT5:	0x05, // bit 5: reserved, always clear
-			ZF:		0x06, // bit 6: Zero Flag
-			SF:		0x07, // bit 7: Sign Flag
-			TF:		0x08, // bit 8: Trap Flag
-			IF:		0x09, // bit 9: Interrupt Flag
-			DF:		0x0A, // bit 10: Direction Flag
-			OF:		0x0B, // bit 11: Overflow Flag
-			BIT12:	0x0C, // bit 12: reserved, always set
-			BIT13:	0x0D, // bit 13: reserved, always set
-			BIT14:	0x0E, // bit 14: reserved, always set
-			BIT15:	0x0F  // bit 15: reserved, always set
-		},
-		MASK: {
-			CF:		0x0001, // bit 0: Carry Flag
-			BIT1:	0x0002, // bit 1: reserved, always set
-			PF:		0x0004, // bit 2: Parity Flag
-			BIT3:	0x0008, // bit 3: reserved, always clear
-			AF:		0x0010, // bit 4: Auxiliary Carry Flag (aka Arithmetic flag)
-			BIT5:	0x0020, // bit 5: reserved, always clear
-			ZF:		0x0040, // bit 6: Zero Flag
-			SF:		0x0080, // bit 7: Sign Flag
-			TF:		0x0100, // bit 8: Trap Flag
-			IF:		0x0200, // bit 9: Interrupt Flag
-			DF:		0x0400, // bit 10: Direction Flag
-			OF:		0x0800, // bit 11: Overflow Flag
-			BIT12:	0x1000, // bit 12: reserved, always set
-			BIT13:	0x2000, // bit 13: reserved, always set
-			BIT14:	0x4000, // bit 14: reserved, always set
-			BIT15:	0x8000  // bit 15: reserved, always set
-		},
-		get F() {
-			return self.S.getUint16(26, true)
-		},
-		set F(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get CF() {
-			return self.S.getUint16(26, true) & this.MASK.CF;
-		},
-		set CF(val) {
-			self.S.setUint16(26, this.F & val & this.MASK.CF, true);
-		},
-		get PF() {
-			return self.S.getUint16(26, true) & this.MASK.PF;
-		},
-		set PF(val) {
-			console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
-			self.S.setUint16(26, val & this.MASK.PF, true);
-			console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
-		},
-		get AF() {
-			return self.S.getUint16(26, true) & this.MASK.AF;
-		},
-		set AF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get ZF() {
-			return self.S.getUint16(26, true) & this.MASK.ZF;
-		},
-		set ZF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get SF() {
-			return self.S.getUint16(26, true) & this.MASK.SF;
-		},
-		set SF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get TF() {
-			return self.S.getUint16(26, true) & this.MASK.TF;
-		},
-		set TF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get IF() {
-			return self.S.getUint16(26, true) & this.MASK.IF;
-		},
-		set IF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get DF() {
-			return self.S.getUint16(26, true) & this.MASK.DF;
-		},
-		set DF(val) {
-			self.S.setUint16(26, val, true);
-		},
-		get OF() {
-			return self.S.getUint16(26, true) & this.MASK.OF;
-		},
-		set OF(val) {
-			self.S.setUint16(26, val, true);
-		}
-	};
-}
-
-CPU.prototype.dumpState = function() {
-	console.table([{
-		Register: 'AX',
-		Value: this.R.AX.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'BX',
-		Value: this.R.BX.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'CX',
-		Value: this.R.CX.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'DX',
-		Value: this.R.DX.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'CS',
-		Value: this.R.CS.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'DS',
-		Value: this.R.DS.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'ES',
-		Value: this.R.ES.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'SS',
-		Value: this.R.SS.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'SI',
-		Value: this.R.SI.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'DI',
-		Value: this.R.DI.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'BP',
-		Value: this.R.BP.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'SP',
-		Value: this.R.SP.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'IP',
-		Value: this.R.IP.toString(16).padStart(4, '0').toUpperCase()
-	} , {
-		Register: 'Flags',
-		Value: this.R.F.toString(16).padStart(4, '0').toUpperCase()
-	}]);
-};
+})(this);

@@ -1,10 +1,21 @@
-(function() {
+// noinspection ThisExpressionReferencesGlobalObjectJS
+(function(global) {
 
 	// region Functions
 
-	if (!window.importScripts) {
+	if (!global.importScripts) {
 		// Poor's man requirejs :)
-		window.importScripts = function (url, callback) {
+		global.importScripts = function (url, callback) {
+			// noinspection JSUnresolvedFunction
+			if (!url.startsWith('js/')) {
+				url = 'js/' + url;
+			}
+
+			// noinspection JSUnresolvedFunction
+			if (!url.endsWith('.js')) {
+				url += '.js';
+			}
+
 			var script = document.createElement('script');
 			script.src = url;
 			script.onload = typeof callback === 'function' ? callback : function() {};
@@ -12,9 +23,9 @@
 		}
 	}
 
-	if (!window.$) {
+	if (!global.$) {
 		// Poor's man jQuery :)
-		window.$ = function (selector) {
+		global.$ = function (selector) {
 			if (document.querySelector) {
 				return document.querySelector(selector);
 			} else {
@@ -154,28 +165,28 @@
 	var canvasWEBGL2						= document.createElement('canvas');
 	var contextWEBGL2						= typeof canvasWEBGL2.getContext === 'function' ? (canvasWEBGL2.getContext('webgl2') || canvasWEBGL2.getContext('experimental-webgl2')) : false;
 
-	window.SYSTEM_FEATURE_STRICT			= (function() {'use strict'; return !this; })();
-	window.SYSTEM_FEATURE_JSON				= 'JSON' in window && 'parse' in JSON;
-	window.SYSTEM_FEATURE_BASE64			= 'btoa' in window && 'atob' in window;
-	window.SYSTEM_FEATURE_WORKERS			= !!window.Worker;
+	global.SYSTEM_FEATURE_STRICT			= (function() {'use strict'; return !this; })();
+	global.SYSTEM_FEATURE_JSON				= 'JSON' in global && 'parse' in JSON;
+	global.SYSTEM_FEATURE_BASE64			= 'btoa' in global && 'atob' in global;
+	global.SYSTEM_FEATURE_WORKERS			= !!global.Worker;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_SHARED_WORKERS	= !!window.SharedWorker;
-	window.SYSTEM_FEATURE_TYPED_ARRAYS		= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
-	window.SYSTEM_FEATURE_BIGINTS			= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
+	global.SYSTEM_FEATURE_SHARED_WORKERS	= !!global.SharedWorker;
+	global.SYSTEM_FEATURE_TYPED_ARRAYS		= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
+	global.SYSTEM_FEATURE_BIGINTS			= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
 	// noinspection JSUnresolvedVariable,JSUnusedGlobalSymbols
-	window.SYSTEM_FEATURE_SIMD				= typeof SIMD !== 'undefined' ? typeof SIMD.Bool16x8 !== 'undefined' && typeof SIMD.Bool32x4 !== 'undefined' && typeof SIMD.Bool8x16 !== 'undefined' && typeof SIMD.Float32x4 !== 'undefined' && typeof SIMD.Int16x8 !== 'undefined' && typeof SIMD.Int32x4 !== 'undefined' && typeof SIMD.Int8x16 !== 'undefined' && typeof SIMD.Uint32x4 !== 'undefined' && typeof SIMD.Uint8x16 !== 'undefined' : false;
+	global.SYSTEM_FEATURE_SIMD				= typeof SIMD !== 'undefined' ? typeof SIMD.Bool16x8 !== 'undefined' && typeof SIMD.Bool32x4 !== 'undefined' && typeof SIMD.Bool8x16 !== 'undefined' && typeof SIMD.Float32x4 !== 'undefined' && typeof SIMD.Int16x8 !== 'undefined' && typeof SIMD.Int32x4 !== 'undefined' && typeof SIMD.Int8x16 !== 'undefined' && typeof SIMD.Uint32x4 !== 'undefined' && typeof SIMD.Uint8x16 !== 'undefined' : false;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_FULLSCREEN		= !document.documentElement.requestFullscreen ? true : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen;
-	window.SYSTEM_FEATURE_POINTER_LOCK		= 'pointerLockElement' in document ? true : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+	global.SYSTEM_FEATURE_FULLSCREEN		= !document.documentElement.requestFullscreen ? true : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen;
+	global.SYSTEM_FEATURE_POINTER_LOCK		= 'pointerLockElement' in document ? true : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_TIMERS			= !!window.requestAnimationFrame ? true : !!window.webkitRequestAnimationFrame || !!window.mozRequestAnimationFrame || !!window.msRequestAnimationFrame || !!window.oRequestAnimationFrame;
-	window.SYSTEM_FEATURE_CANVAS			= !!(context2D && context2D instanceof CanvasRenderingContext2D);
-	window.SYSTEM_FEATURE_WEBGL				= !!(contextWEBGL && contextWEBGL instanceof WebGLRenderingContext);
+	global.SYSTEM_FEATURE_TIMERS			= !!global.requestAnimationFrame ? true : !!global.webkitRequestAnimationFrame || !!global.mozRequestAnimationFrame || !!global.msRequestAnimationFrame || !!global.oRequestAnimationFrame;
+	global.SYSTEM_FEATURE_CANVAS			= !!(context2D && context2D instanceof CanvasRenderingContext2D);
+	global.SYSTEM_FEATURE_WEBGL				= !!(contextWEBGL && contextWEBGL instanceof WebGLRenderingContext);
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_WEBGL2			= !!(contextWEBGL2 && contextWEBGL2 instanceof WebGL2RenderingContext);
-	window.SYSTEM_FEATURE_WEBVR				= 'getVRDisplays' in navigator ? true : 'mozGetVRDevices' in navigator;
+	global.SYSTEM_FEATURE_WEBGL2			= !!(contextWEBGL2 && contextWEBGL2 instanceof WebGL2RenderingContext);
+	global.SYSTEM_FEATURE_WEBVR				= 'getVRDisplays' in navigator ? true : 'mozGetVRDevices' in navigator;
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_FEATURE_HTML5AUDIO		= (function() {
+	global.SYSTEM_FEATURE_HTML5AUDIO		= (function() {
 		try {
 			// noinspection JSUnresolvedVariable
 			return !!(audio.canPlayType && audio.canPlayType('audio/mpeg;').replace(/no/, ''));
@@ -184,7 +195,7 @@
 		}
 	})();
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_FEATURE_WEBAUDIO			= (function() {
+	global.SYSTEM_FEATURE_WEBAUDIO			= (function() {
 		try {
 			// noinspection JSUnresolvedVariable
 			var context = AudioContext || webkitAudioContext || mozAudioContext || oAudioContext || msAudioContext;
@@ -196,16 +207,17 @@
 		}
 	})();
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_FEATURE_KEYBOARD			= true;
+	// TODO: implement check for keyboard events support
+	global.SYSTEM_FEATURE_KEYBOARD			= true;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_POINTER_EVENTS	= !!window.PointerEvent ? true : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent;
+	global.SYSTEM_FEATURE_POINTER_EVENTS	= !!global.PointerEvent ? true : !!global.webkitPointerEvent || !!global.mozPointerEvent || !!global.msPointerEvent || !!global.oPointerEvent;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_GAMEPADS			= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
+	global.SYSTEM_FEATURE_GAMEPADS			= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_WEBSOCKETS		= (function() {
+	global.SYSTEM_FEATURE_WEBSOCKETS		= (function() {
 		var protocol = 'https:' === location.protocol ? 'wss' : 'ws';
 
-		if ('WebSocket' in window && window.WebSocket.CLOSING === 2) {
+		if ('WebSocket' in global && global.WebSocket.CLOSING === 2) {
 			if ('binaryType' in WebSocket.prototype) {
 				return true;
 			} else {
@@ -217,24 +229,26 @@
 			}
 		}
 	})();
-	window.SYSTEM_FEATURE_SESSION_STORAGE	= 'sessionStorage' in window && window.sessionStorage !== null;
-	window.SYSTEM_FEATURE_LOCAL_STORAGE		= 'localStorage' in window && window.localStorage !== null;
+	global.SYSTEM_FEATURE_SESSION_STORAGE	= 'sessionStorage' in global && global.sessionStorage !== null;
+	global.SYSTEM_FEATURE_LOCAL_STORAGE		= 'localStorage' in global && global.localStorage !== null;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_INDEXED_DB		= !!window.indexedDB ? true : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB;
-	window.SYSTEM_FEATURE_WEBSQL			= !!window.openDatabase;
-	window.SYSYEM_FEATURE_ORIENTATION		= !!window.DeviceOrientationEvent;
-	window.SYSYEM_FEATURE_GEOLOCATION		= !!navigator.geolocation;
-	window.SYSYEM_FEATURE_MOTION			= !!window.DeviceMotionEvent;
+	global.SYSTEM_FEATURE_INDEXED_DB		= !!global.indexedDB ? true : !!global.webkitIndexedDB || !!global.mozIndexedDB || !!global.moz_indexedDB || !!global.oIndexedDB || !!global.msIndexedDB;
+	global.SYSTEM_FEATURE_WEBSQL			= !!global.openDatabase;
+	global.SYSYEM_FEATURE_ORIENTATION		= !!global.DeviceOrientationEvent;
+	global.SYSYEM_FEATURE_GEOLOCATION		= !!navigator.geolocation;
+	global.SYSYEM_FEATURE_MOTION			= !!global.DeviceMotionEvent;
 	// noinspection JSUnresolvedVariable
-	window.SYSYEM_FEATURE_GYROSCOPE			= !!window.Gyroscope;
-	window.SYSTEM_FEATURE_PROXIMITY			= 'ProximitySensor' in window;
+	global.SYSYEM_FEATURE_GYROSCOPE			= !!global.Gyroscope;
+	global.SYSTEM_FEATURE_PROXIMITY			= 'ProximitySensor' in global;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_AMBIENTLIGHT		= !!window.AmbientLightSensor;
-	window.SYSTEM_FEATURE_VIBRATION			= 'vibrate' in navigator;
+	global.SYSTEM_FEATURE_AMBIENTLIGHT		= !!global.AmbientLightSensor;
+	global.SYSTEM_FEATURE_VIBRATION			= 'vibrate' in navigator;
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_BATTERY			= !!navigator.getBattery || !!navigator.battery || !!navigator.mozBattery;
+	global.SYSTEM_FEATURE_BATTERY			= !!navigator.getBattery || !!navigator.battery || !!navigator.mozBattery;
+	// TODO: implement check for Generic Sensor API
 
-	window.SYSTEM_FEATURE_ES5SYNTAX			= (function() {
+	// TODO: check why SYSTEM_FEATURE_ES5SYNTAX fails
+	global.SYSTEM_FEATURE_ES5SYNTAX			= (function() {
 		var value, obj, stringAccess, getter, setter, reservedWords, zeroWidthChars;
 		try {
 			stringAccess = eval('"foobar"[3] === "b"');
@@ -252,20 +266,21 @@
 			return false;
 		}
 	})();
-	window.SYSTEM_FEATURE_ES5UNDEFINED		= (function() {
+	// TODO: check why SYSTEM_FEATURE_ES5UNDEFINED fails
+	global.SYSTEM_FEATURE_ES5UNDEFINED		= (function() {
 		var result, originalUndefined;
 		try {
-			originalUndefined = window.undefined;
-			window.undefined = 12345;
-			result = typeof window.undefined === 'undefined';
-			window.undefined = originalUndefined;
+			originalUndefined = global.undefined;
+			global.undefined = 12345;
+			result = typeof global.undefined === 'undefined';
+			global.undefined = originalUndefined;
 		} catch (e) {
 			return false;
 		}
 		return result;
 	})();
-	window.SYSTEM_FEATURE_ES5ARRAY			= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
-	window.SYSTEM_FEATURE_ES5DATE			= (function() {
+	global.SYSTEM_FEATURE_ES5ARRAY			= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
+	global.SYSTEM_FEATURE_ES5DATE			= (function() {
 		var isoDate = '2013-04-12T06:06:37.307Z', canParseISODate = false;
 
 		try {
@@ -274,17 +289,17 @@
 
 		return !!(Date.now && Date.prototype && Date.prototype.toISOString && Date.prototype.toJSON && canParseISODate);
 	})();
-	window.SYSTEM_FEATURE_ES5FUNCTION		= !!(Function.prototype && Function.prototype.bind);
-	window.SYSTEM_FEATURE_ES5OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
-	window.SYSTEM_FEATURE_ES5STRING			= !!(String.prototype && String.prototype.trim);
-	window.SYSTEM_FEATURE_ES5				= !!(SYSTEM_FEATURE_STRICT && SYSTEM_FEATURE_JSON && SYSTEM_FEATURE_BASE64 /*&& SYSTEM_FEATURE_ES5SYNTAX && SYSTEM_FEATURE_ES5UNDEFINED*/ && SYSTEM_FEATURE_ES5ARRAY && SYSTEM_FEATURE_ES5DATE && SYSTEM_FEATURE_ES5FUNCTION && SYSTEM_FEATURE_ES5OBJECT && SYSTEM_FEATURE_ES5STRING);
+	global.SYSTEM_FEATURE_ES5FUNCTION		= !!(Function.prototype && Function.prototype.bind);
+	global.SYSTEM_FEATURE_ES5OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
+	global.SYSTEM_FEATURE_ES5STRING			= !!(String.prototype && String.prototype.trim);
+	global.SYSTEM_FEATURE_ES5				= !!(SYSTEM_FEATURE_STRICT && SYSTEM_FEATURE_JSON && SYSTEM_FEATURE_BASE64 /*&& SYSTEM_FEATURE_ES5SYNTAX && SYSTEM_FEATURE_ES5UNDEFINED*/ && SYSTEM_FEATURE_ES5ARRAY && SYSTEM_FEATURE_ES5DATE && SYSTEM_FEATURE_ES5FUNCTION && SYSTEM_FEATURE_ES5OBJECT && SYSTEM_FEATURE_ES5STRING);
 
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
+	global.SYSTEM_FEATURE_ES6NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6MATH			= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
-	window.SYSTEM_FEATURE_ES6ARRAY			= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
-	window.SYSTEM_FEATURE_ES6FUNCTION		= (function() {
+	global.SYSTEM_FEATURE_ES6MATH			= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
+	global.SYSTEM_FEATURE_ES6ARRAY			= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
+	global.SYSTEM_FEATURE_ES6FUNCTION		= (function() {
 		try {
 			eval('()=>{}');
 		} catch (e) {
@@ -293,12 +308,12 @@
 		return true;
 	})();
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6OBJECT			= !!(Object.assign && Object.is && Object.setPrototypeOf);
+	global.SYSTEM_FEATURE_ES6OBJECT			= !!(Object.assign && Object.is && Object.setPrototypeOf);
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
+	global.SYSTEM_FEATURE_ES6STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6COLLECTIONS	= !!(window.Map && window.Set && window.WeakMap && window.WeakSet);
-	window.SYSTEM_FEATURE_ES6GENERATORS		= (function() {
+	global.SYSTEM_FEATURE_ES6COLLECTIONS	= !!(global.Map && global.Set && global.WeakMap && global.WeakSet);
+	global.SYSTEM_FEATURE_ES6GENERATORS		= (function() {
 		try {
 			new Function('function* test() {}')();
 		} catch (e) {
@@ -306,32 +321,32 @@
 		}
 		return true;
 	})();
-	window.SYSTEM_FEATURE_ES6PROMISES		= (function() {
-		return 'Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise && (function() {
+	global.SYSTEM_FEATURE_ES6PROMISES		= (function() {
+		return 'Promise' in global && 'resolve' in global.Promise && 'reject' in global.Promise && 'all' in global.Promise && 'race' in global.Promise && (function() {
 			var resolve;
 			// noinspection JSIgnoredPromiseFromCall
-			new window.Promise(function(r) { resolve = r; });
+			new global.Promise(function(r) { resolve = r; });
 			return typeof resolve === 'function';
 		}());
 	})();
-	window.SYSTEM_FEATURE_ES6				= !!(SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6NUMBER && SYSTEM_FEATURE_ES6MATH && SYSTEM_FEATURE_ES6ARRAY && SYSTEM_FEATURE_ES6FUNCTION && SYSTEM_FEATURE_ES6OBJECT && SYSTEM_FEATURE_ES6STRING && SYSTEM_FEATURE_ES6COLLECTIONS && SYSTEM_FEATURE_ES6GENERATORS && SYSTEM_FEATURE_ES6PROMISES);
+	global.SYSTEM_FEATURE_ES6				= !!(SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6NUMBER && SYSTEM_FEATURE_ES6MATH && SYSTEM_FEATURE_ES6ARRAY && SYSTEM_FEATURE_ES6FUNCTION && SYSTEM_FEATURE_ES6OBJECT && SYSTEM_FEATURE_ES6STRING && SYSTEM_FEATURE_ES6COLLECTIONS && SYSTEM_FEATURE_ES6GENERATORS && SYSTEM_FEATURE_ES6PROMISES);
 
-	window.SYSTEM_INFO_CPU_LITTLE_ENDIAN	= (SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
+	global.SYSTEM_INFO_CPU_LITTLE_ENDIAN	= (SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
 		var buffer = new ArrayBuffer(2);
 		new DataView(buffer).setUint16(0, 256, true);
 
 		return new Uint16Array(buffer)[0] === 256;
 	})() : undefined);
 	// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
-	window.SYSTEM_INFO_CPU_BIG_ENDIAN		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : undefined;
+	global.SYSTEM_INFO_CPU_BIG_ENDIAN		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : undefined;
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_INFO_CPU_ENDIANNESS		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'LE' : 'BE') : undefined;
+	global.SYSTEM_INFO_CPU_ENDIANNESS		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'LE' : 'BE') : undefined;
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_INFO_CPU_CORES			= !navigator.hardwareConcurrency ? 1 : navigator.hardwareConcurrency;
+	global.SYSTEM_INFO_CPU_CORES			= !navigator.hardwareConcurrency ? 1 : navigator.hardwareConcurrency;
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_INFO_VIDEO_ACCELERATION	= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : undefined);
+	global.SYSTEM_INFO_VIDEO_ACCELERATION	= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : undefined);
 	// noinspection JSUnusedGlobalSymbols
-	window.SYSTEM_INFO_GPU					= (function() {
+	global.SYSTEM_INFO_GPU					= (function() {
 		if (contextWEBGL) {
 			if (typeof contextWEBGL.getSupportedExtensions === 'function') {
 				if (contextWEBGL.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') !== -1) {
@@ -353,6 +368,10 @@
 
 	var $SCRIPTS = $('script');
 
-	importScripts($SCRIPTS.getAttribute('data-main').lastIndexOf('.js') === -1 ? $SCRIPTS.getAttribute('data-main') + '.js' : $SCRIPTS.getAttribute('data-main'));
+	importScripts($SCRIPTS.getAttribute('data-main'));
 
-}());
+	onerror = function(message, url, lineNumber) {
+		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+	};
+
+}(this));

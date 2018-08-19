@@ -1,4 +1,5 @@
-(function() {
+// noinspection ThisExpressionReferencesGlobalObjectJS
+(function(global) {
 
 	'use strict';
 
@@ -80,6 +81,10 @@
 		$OF.innerHTML = state.F.OF;
 	}
 
+	global.update = function(state) {
+		printState(state);
+	};
+
 	// endregion
 
 	// region Variables
@@ -126,45 +131,43 @@
 	var $DF		= $('.DF');
 	var $OF		= $('.OF');
 
+	var cpu		= null;
+
 	// endregion
 
 	if (SYSTEM_FEATURE_WORKERS) {
-		var cpu = new Worker('js/worker.js');
+		cpu = new Worker('js/worker.js');
 
 		cpu.onmessage = function(e) {
-			console.log('cpu => browser');
-			// console.log(e);
-			// console.log(e.data);
+			global.console.log('cpu => browser');
+			// global.console.log(e);
+			// global.console.log(e.data);
 
 			switch (typeof e.data) {
 				case 'object':
 					if (typeof e.data.state !== 'undefined') {
-						printState(e.data.state);
-						console.log(e.data);
+						global.update(e.data.state);
+						global.console.log(e.data);
 					} else {
-						console.log(e.data);
+						global.console.log(e.data);
 					}
 					break;
 				default:
-					console.log(e.data);
+					global.console.log(e.data);
 					break;
 			}
 		};
 		// noinspection JSUndefinedPropertyAssignment
 		cpu.onmessageerror = function() {
-			console.log('cpu.onmessageerror()');
+			global.console.log('cpu.onmessageerror()');
 		};
 		cpu.onerror = function() {
-			console.log('cpu.onerror()');
+			global.console.log('cpu.onerror()');
 		};
-		// noinspection JSDeprecatedSymbols
-		cpu.postMessage('test');
 		// noinspection JSDeprecatedSymbols
 		cpu.postMessage('state');
-
-		onerror = function(message, url, lineNumber) {
-			console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
-		};
+	} else {
+		importScripts('js/worker.js');
 	}
 
-}());
+}(this));
