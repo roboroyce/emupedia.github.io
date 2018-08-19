@@ -205,17 +205,26 @@ if (!Object.keys) {
 }
 
 // IE 11.228.17134.0
-if (!console.table) {
-	console.table = function(arr) {
-		var i, obj, keys, arr_len = arr.length;
+if (typeof console !== 'undefined') {
+	if (!console.table) {
+		console.table = function(arr) {
+			var i, obj, keys, arr_len = arr.length;
 
-		for (i = 0; i < arr_len; i++) {
-			obj = arr[i];
-			keys = Object.keys(obj);
-			console.log(obj[keys[0]] + ': ' + obj[keys[1]]);
-		}
+			for (i = 0; i < arr_len; i++) {
+				obj = arr[i];
+				keys = Object.keys(obj);
+				console.log(obj[keys[0]] + ': ' + obj[keys[1]]);
+			}
+		};
+	}
+} else {
+	// Safari 5.1.7 (7534.57.2)
+	// noinspection JSValidateTypes
+	console = {
+		log: function() {}
 	};
 }
+
 // endregion
 
 // noinspection ThisExpressionReferencesGlobalObjectJS
@@ -589,9 +598,7 @@ if (!console.table) {
 
 	dumpSystem();
 
-	var $SCRIPTS = $('script');
-
-	importScripts($SCRIPTS.getAttribute('data-main'));
+	importScripts($('script').getAttribute('data-main'));
 
 	onerror = function(message, url, lineNumber) {
 		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
