@@ -220,7 +220,8 @@ if (typeof console !== 'undefined') {
 	// Safari 5.1.7 (7534.57.2)
 	// noinspection JSValidateTypes
 	console = {
-		log: function() {}
+		log: function() {},
+		table: function () {}
 	};
 }
 

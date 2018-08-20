@@ -60,6 +60,30 @@ IF Interrupt flag
 DF Direction flag
 OF Overflow flag
 
+To get a bit mask:
+
+var mask = 1 << 5; // gets the 6th bit
+
+To test if a bit is set:
+
+if ((n & mask) != 0) {
+  // bit is set
+} else {
+  // bit is not set
+}
+
+To set a bit:
+
+n |= mask;
+
+To clear a bit:
+
+n &= ~mask;
+
+To toggle a bit:
+
+n ^= mask;
+
 */
 
 // noinspection ThisExpressionReferencesGlobalObjectJS
@@ -82,37 +106,6 @@ OF Overflow flag
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.U16 = new Uint16Array(self.B);
-
-		// noinspection JSUndefinedPropertyAssignment
-		self.INDEX8 = {
-			AL: 0x00,
-			AH: 0x01,
-			BL: 0x02,
-			BH: 0x03,
-			CL: 0x04,
-			CH: 0x05,
-			DL: 0x06,
-			DH: 0x07
-		};
-
-		// noinspection JSUndefinedPropertyAssignment
-		self.INDEX16 = {
-			AX: 0x00,
-			BX: 0x01,
-			CX: 0x02,
-			DX: 0x03,
-			AF: 0x04,
-			CS: 0x05,
-			DS: 0x06,
-			ES: 0x07,
-			SS: 0x08,
-			SI: 0x09,
-			DI: 0x0A,
-			BP: 0x0B,
-			SP: 0x0C,
-			IP: 0x0D,
-			F:	0x0E
-		};
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.R = {
@@ -252,6 +245,16 @@ OF Overflow flag
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.R8 = {
+			INDEX: {
+			AL: 0x00,
+			AH: 0x01,
+			BL: 0x02,
+			BH: 0x03,
+			CL: 0x04,
+			CH: 0x05,
+			DL: 0x06,
+			DH: 0x07
+		},
 			get AL() {
 				return self.U8[0];
 			},
@@ -304,6 +307,23 @@ OF Overflow flag
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.R16 = {
+			INDEX: {
+				AX: 0x00,
+				BX: 0x01,
+				CX: 0x02,
+				DX: 0x03,
+				AF: 0x04,
+				CS: 0x05,
+				DS: 0x06,
+				ES: 0x07,
+				SS: 0x08,
+				SI: 0x09,
+				DI: 0x0A,
+				BP: 0x0B,
+				SP: 0x0C,
+				IP: 0x0D,
+				F:	0x0E
+			},
 			get AX() {
 				return self.U16[0];
 			},
@@ -435,60 +455,58 @@ OF Overflow flag
 				self.S.setUint16(26, val, true);
 			},
 			get CF() {
-				return self.S.getUint16(26, true) & this.MASK.CF;
+				return (self.S.getUint16(26, true) & this.MASK.CF) >>> this.INDEX.CF;
 			},
 			set CF(val) {
-				self.S.setUint16(26, this.F & val & this.MASK.CF, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.CF) : (this.F & ~this.MASK.CF), true);
 			},
 			get PF() {
-				return self.S.getUint16(26, true) & this.MASK.PF;
+				return (self.S.getUint16(26, true) & this.MASK.PF) >>> this.INDEX.PF;
 			},
 			set PF(val) {
-				console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
-				self.S.setUint16(26, val & this.MASK.PF, true);
-				console.log(self.S.getUint16(26, true).toString(2).padStart(16, '0'));
+				self.S.setUint16(26, val ? (this.F | this.MASK.PF) : (this.F & ~this.MASK.PF), true);
 			},
 			get AF() {
-				return self.S.getUint16(26, true) & this.MASK.AF;
+				return (self.S.getUint16(26, true) & this.MASK.AF) >>> this.INDEX.AF;
 			},
 			set AF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.AF) : (this.F & ~this.MASK.AF), true);
 			},
 			get ZF() {
-				return self.S.getUint16(26, true) & this.MASK.ZF;
+				return (self.S.getUint16(26, true) & this.MASK.ZF) >>> this.INDEX.ZF;
 			},
 			set ZF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.ZF) : (this.F & ~this.MASK.ZF), true);
 			},
 			get SF() {
-				return self.S.getUint16(26, true) & this.MASK.SF;
+				return (self.S.getUint16(26, true) & this.MASK.SF) >>> this.INDEX.SF;
 			},
 			set SF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.SF) : (this.F & ~this.MASK.SF), true);
 			},
 			get TF() {
-				return self.S.getUint16(26, true) & this.MASK.TF;
+				return (self.S.getUint16(26, true) & this.MASK.TF) >>> this.INDEX.TF;
 			},
 			set TF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.TF) : (this.F & ~this.MASK.TF), true);
 			},
 			get IF() {
-				return self.S.getUint16(26, true) & this.MASK.IF;
+				return (self.S.getUint16(26, true) & this.MASK.IF) >>> this.INDEX.IF;
 			},
 			set IF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.IF) : (this.F & ~this.MASK.IF), true);
 			},
 			get DF() {
-				return self.S.getUint16(26, true) & this.MASK.DF;
+				return (self.S.getUint16(26, true) & this.MASK.DF) >>> this.INDEX.DF;
 			},
 			set DF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.DF) : (this.F & ~this.MASK.DF), true);
 			},
 			get OF() {
-				return self.S.getUint16(26, true) & this.MASK.OF;
+				return (self.S.getUint16(26, true) & this.MASK.OF) >>> this.INDEX.OF;
 			},
 			set OF(val) {
-				self.S.setUint16(26, val, true);
+				self.S.setUint16(26, val ? (this.F | this.MASK.OF) : (this.F & ~this.MASK.OF), true);
 			}
 		};
 	}

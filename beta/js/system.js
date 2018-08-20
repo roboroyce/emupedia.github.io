@@ -221,7 +221,8 @@ if (typeof console !== 'undefined') {
 	// Safari 5.1.7 (7534.57.2)
 	// noinspection JSValidateTypes
 	console = {
-		log: function() {}
+		log: function() {},
+		table: function () {}
 	};
 }
 
@@ -461,8 +462,28 @@ if (typeof console !== 'undefined') {
 			}
 		}
 	})();
-	global.SYSTEM_FEATURE_SESSION_STORAGE	= 'sessionStorage' in global && global.sessionStorage !== null;
-	global.SYSTEM_FEATURE_LOCAL_STORAGE		= 'localStorage' in global && global.localStorage !== null;
+	global.SYSTEM_FEATURE_SESSION_STORAGE	= (function() {
+		var mod = 'test';
+
+		try {
+			sessionStorage.setItem(mod, mod);
+			sessionStorage.removeItem(mod);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	})();
+	global.SYSTEM_FEATURE_LOCAL_STORAGE		= (function() {
+		var mod = 'test';
+
+		try {
+			localStorage.setItem(mod, mod);
+			localStorage.removeItem(mod);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	})();
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_INDEXED_DB		= !!global.indexedDB ? true : !!global.webkitIndexedDB || !!global.mozIndexedDB || !!global.moz_indexedDB || !!global.oIndexedDB || !!global.msIndexedDB;
 	global.SYSTEM_FEATURE_WEBSQL			= !!global.openDatabase;

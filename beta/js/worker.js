@@ -17,7 +17,8 @@ if (typeof console !== 'undefined') {
 	// Safari 5.1.7 (7534.57.2)
 	// noinspection JSValidateTypes
 	console = {
-		log: function() {}
+		log: function() {},
+		table: function () {}
 	};
 }
 
@@ -50,11 +51,13 @@ if (typeof console !== 'undefined') {
 
 		cpu.R.IP = 0xDDDD;
 
-		cpu.R.F = 0xEEEE;
+		cpu.R.F = 0xFFFF;
 
 		// cpu.R.AX = 0x1234;
 		// cpu.U16[cpu.INDEX16.AX] = 0x1234;
-		cpu.R16.AX = 0x1234;
+		// cpu.R16.AX = 0x1234;
+
+		cpu.F.OF = 0;
 
 		cpu.dumpState();
 
