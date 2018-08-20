@@ -257,7 +257,7 @@ if (typeof console !== 'undefined') {
 		// Poor's man jQuery :)
 		global.$ = function (selector) {
 			if (document.querySelector) {
-				return document.querySelector(selector);
+				return document.querySelector(selector) !== null ? document.querySelector(selector) : {innerHTML: function() {}};
 			} else {
 				switch (selector.charAt(0)) {
 					case '.':

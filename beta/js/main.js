@@ -5,15 +5,48 @@
 
 	// region Functions
 
-	function dumpBuffer(buffer, radix) {
+	function dumpASCII(buffer) {
+		return Array.from(new Uint8Array(buffer)).map(function(b) {
+			return b >= 32 && b < 128 ? String.fromCharCode(b) : '.';
+		}).join('');
+	}
+
+	function dumpBuffer8(buffer, radix) {
+		return Array.from(new Uint8Array(buffer)).map(function(b) {
+			// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
+			return b.toString(radix).padStart(2, '0');
+		}).join(' ').toUpperCase();
+	}
+
+	function dumpBuffer16(buffer, radix) {
 		return Array.from(new Uint16Array(buffer)).map(function(b) {
 			// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
-			return b.toString(radix).padStart(4, '0')}).join(' ').toUpperCase();
+			return b.toString(radix).padStart(4, '0');
+		}).join(' ').toUpperCase();
+	}
+
+	function dumpHexView(table, buffer, radix) {
+		var len = buffer.byteLength / 16;
+		var offset = 0;
+
+		for (var i = 0; i < len; i++) {
+			var buf = buffer.slice(i * 16, (i + 1) * 16);
+			var row = table.insertRow(-1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+
+			cell1.innerHTML = offset.toString(radix).padStart(6, '0').toUpperCase();
+			cell2.innerHTML = dumpBuffer8(buf, radix);
+			cell3.innerHTML = dumpASCII(buf);
+
+			offset += 16
+		}
 	}
 
 	function printState(state) {
-		$STATE.innerHTML = dumpBuffer(state.S.buffer, 16).replace(' ', '&nbsp;');
-		$RAM.innerHTML = dumpBuffer(state.RAM.buffer, 16).replace(' ', '&nbsp;');
+		$STATE.innerHTML = dumpBuffer16(state.S.buffer, 16).replace(' ', '&nbsp;');
+		dumpHexView($RAM, state.RAM.buffer, 16);
 
 		//noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 		$AX.innerHTML = state.R.AX.toString(16).padStart(4, '0').toUpperCase();

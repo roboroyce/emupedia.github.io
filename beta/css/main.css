@@ -22,7 +22,7 @@ body {
 	font-size: 16px;
 	color: #fff;
 	height: 100%;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 div.vm-container {
@@ -163,45 +163,49 @@ div.screen.text-132x60-res-16-colors {}
 
 /* region Debugger */
 
-div.debugger {
+table.debugger {
+	width: 100%;
 	/*position: absolute;*/
 	/*top: 28px;*/
 	/*right: 10px;*/
-	float: right;
+	/*float: right;*/
 }
 
-div.debugger table {
+table.debugger table {
 	background-color: #181d20;
 	border: 2px solid #42484f;
 	margin-bottom: 20px;
 	border-spacing: 0;
 	border-collapse: collapse;
 	color: #a9bacb;
-	float: right;
+	/*float: right;*/
 }
 
-div.debugger table:nth-child(1) {
+table.debugger table:nth-child(1) {
 	margin-top: 20px;
 }
 
-div.debugger th {
+table.debugger th {
 	text-align: center;
 	border-top: 2px solid #42484f;
 	border-bottom: 2px solid #42484f;
-	padding: 0;
+	border-right: 2px solid #42484f;
+	padding: 0 5px;
 	margin: 0;
 	font-weight: normal;
 }
 
-div.debugger th:not(:nth-child(1)) {
+table.debugger th:not(:nth-child(1)) {
 	border-top: none;
 }
 
-div.debugger td {
+table.debugger td {
 	padding: 0 5px;
+	border-right: 2px solid #42484f;
 }
 
 .state .STATE,
+.ram .RAM,
 .registers .AX,
 .registers .BX,
 .registers .CX,

@@ -110,7 +110,8 @@ n ^= mask;
 		// noinspection JSUndefinedPropertyAssignment
 		self.S = new DataView(self.B.slice(0, 28));
 
-		self.RAM = new DataView(self.B.slice(28));
+		// self.RAM = new DataView(self.B.slice(28));
+		self.RAM = Uint8Array.from({length: 1024 * 1024}, function(v, k) { return k; });
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.R = {
