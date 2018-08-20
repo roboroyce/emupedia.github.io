@@ -396,7 +396,7 @@ if (typeof console !== 'undefined') {
 	var contextWEBGL2						= typeof canvasWEBGL2.getContext === 'function' ? (canvasWEBGL2.getContext('webgl2') || canvasWEBGL2.getContext('experimental-webgl2')) : false;
 
 	global.SYSTEM_FEATURE_STRICT			= (function() {'use strict'; return !this; })();
-	global.SYSTEM_FEATURE_JSON				= 'JSON' in global && 'parse' in JSON;
+	global.SYSTEM_FEATURE_JSON				= 'JSON' in global && 'parse' in JSON && 'stringify' in JSON;
 	global.SYSTEM_FEATURE_BASE64			= 'btoa' in global && 'atob' in global;
 	global.SYSTEM_FEATURE_WORKERS			= !!global.Worker;
 	// noinspection JSUnresolvedVariable

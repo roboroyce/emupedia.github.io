@@ -96,16 +96,21 @@ n ^= mask;
 		var self = this;
 
 		// noinspection JSUndefinedPropertyAssignment
-		self.B = new ArrayBuffer(28);
-
-		// noinspection JSUndefinedPropertyAssignment
-		self.S = new DataView(self.B);
+		self.B = new ArrayBuffer(28 + 1024 * 1024); // 28 bytes for registers + 1048576 bytes for ram
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.U8 = new Uint8Array(self.B);
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.U16 = new Uint16Array(self.B);
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.U32 = new Uint32Array(self.B);
+
+		// noinspection JSUndefinedPropertyAssignment
+		self.S = new DataView(self.B.slice(0, 28));
+
+		self.RAM = new DataView(self.B.slice(28));
 
 		// noinspection JSUndefinedPropertyAssignment
 		self.R = {
@@ -431,22 +436,22 @@ n ^= mask;
 				BIT15:	0x0F  // bit 15: reserved, always set
 			},
 			MASK: {
-				CF:		0x0001, // bit 0: Carry Flag
-				BIT1:	0x0002, // bit 1: reserved, always set
-				PF:		0x0004, // bit 2: Parity Flag
-				BIT3:	0x0008, // bit 3: reserved, always clear
-				AF:		0x0010, // bit 4: Auxiliary Carry Flag (aka Arithmetic flag)
-				BIT5:	0x0020, // bit 5: reserved, always clear
-				ZF:		0x0040, // bit 6: Zero Flag
-				SF:		0x0080, // bit 7: Sign Flag
-				TF:		0x0100, // bit 8: Trap Flag
-				IF:		0x0200, // bit 9: Interrupt Flag
-				DF:		0x0400, // bit 10: Direction Flag
-				OF:		0x0800, // bit 11: Overflow Flag
-				BIT12:	0x1000, // bit 12: reserved, always set
-				BIT13:	0x2000, // bit 13: reserved, always set
-				BIT14:	0x4000, // bit 14: reserved, always set
-				BIT15:	0x8000  // bit 15: reserved, always set
+				CF:		0x0001,
+				BIT1:	0x0002,
+				PF:		0x0004,
+				BIT3:	0x0008,
+				AF:		0x0010,
+				BIT5:	0x0020,
+				ZF:		0x0040,
+				SF:		0x0080,
+				TF:		0x0100,
+				IF:		0x0200,
+				DF:		0x0400,
+				OF:		0x0800,
+				BIT12:	0x1000,
+				BIT13:	0x2000,
+				BIT14:	0x4000,
+				BIT15:	0x8000
 			},
 			get F() {
 				return self.S.getUint16(26, true)
@@ -460,17 +465,35 @@ n ^= mask;
 			set CF(val) {
 				self.S.setUint16(26, val ? (this.F | this.MASK.CF) : (this.F & ~this.MASK.CF), true);
 			},
+			get BIT1() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT1) >>> this.INDEX.BIT1;
+			},
+			set BIT1(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT1) : (this.F & ~this.MASK.BIT1), true);
+			},
 			get PF() {
 				return (self.S.getUint16(26, true) & this.MASK.PF) >>> this.INDEX.PF;
 			},
 			set PF(val) {
 				self.S.setUint16(26, val ? (this.F | this.MASK.PF) : (this.F & ~this.MASK.PF), true);
 			},
+			get BIT3() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT3) >>> this.INDEX.BIT3;
+			},
+			set BIT3(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT3) : (this.F & ~this.MASK.BIT3), true);
+			},
 			get AF() {
 				return (self.S.getUint16(26, true) & this.MASK.AF) >>> this.INDEX.AF;
 			},
 			set AF(val) {
 				self.S.setUint16(26, val ? (this.F | this.MASK.AF) : (this.F & ~this.MASK.AF), true);
+			},
+			get BIT5() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT5) >>> this.INDEX.BIT5;
+			},
+			set BIT5(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT5) : (this.F & ~this.MASK.BIT5), true);
 			},
 			get ZF() {
 				return (self.S.getUint16(26, true) & this.MASK.ZF) >>> this.INDEX.ZF;
@@ -507,6 +530,30 @@ n ^= mask;
 			},
 			set OF(val) {
 				self.S.setUint16(26, val ? (this.F | this.MASK.OF) : (this.F & ~this.MASK.OF), true);
+			},
+			get BIT12() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT12) >>> this.INDEX.BIT12;
+			},
+			set BIT12(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT12) : (this.F & ~this.MASK.BIT12), true);
+			},
+			get BIT13() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT13) >>> this.INDEX.BIT13;
+			},
+			set BIT13(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT13) : (this.F & ~this.MASK.BIT13), true);
+			},
+			get BIT14() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT14) >>> this.INDEX.BIT14;
+			},
+			set BIT14(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT14) : (this.F & ~this.MASK.BIT14), true);
+			},
+			get BIT15() {
+				return (self.S.getUint16(26, true) & this.MASK.BIT15) >>> this.INDEX.BIT15;
+			},
+			set BIT15(val) {
+				self.S.setUint16(26, val ? (this.F | this.MASK.BIT15) : (this.F & ~this.MASK.BIT15), true);
 			}
 		};
 	}
@@ -555,6 +602,12 @@ n ^= mask;
 			Register: 'Flags',
 			Value: this.R.F.toString(16).padStart(4, '0').toUpperCase()
 		}]);
+	};
+
+	CPU.prototype.start = function () {
+		var self = this;
+
+		self.R.F = 0xF002; // starting value for flags
 	};
 
 	if (typeof global.CPU === 'undefined') {

@@ -33,32 +33,7 @@ if (typeof console !== 'undefined') {
 
 	function init() {
 		cpu = new CPU();
-
-		cpu.R.AX = 0x1111;
-		cpu.R.BX = 0x2222;
-		cpu.R.CX = 0x3333;
-		cpu.R.DX = 0x4444;
-
-		cpu.R.CS = 0x5555;
-		cpu.R.DS = 0x6666;
-		cpu.R.ES = 0x7777;
-		cpu.R.SS = 0x8888;
-
-		cpu.R.SI = 0x9999;
-		cpu.R.DI = 0xAAAA;
-		cpu.R.BP = 0xBBBB;
-		cpu.R.SP = 0xCCCC;
-
-		cpu.R.IP = 0xDDDD;
-
-		cpu.R.F = 0xFFFF;
-
-		// cpu.R.AX = 0x1234;
-		// cpu.U16[cpu.INDEX16.AX] = 0x1234;
-		// cpu.R16.AX = 0x1234;
-
-		cpu.F.OF = 0;
-
+		cpu.start();
 		cpu.dumpState();
 
 		if (typeof global.update === 'function') {

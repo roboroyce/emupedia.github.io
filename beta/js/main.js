@@ -7,12 +7,13 @@
 
 	function dumpBuffer(buffer, radix) {
 		return Array.from(new Uint16Array(buffer)).map(function(b) {
-			// noinspection JSUnresolvedFunction
+			// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 			return b.toString(radix).padStart(4, '0')}).join(' ').toUpperCase();
 	}
 
 	function printState(state) {
-		$STATE.innerHTML = dumpBuffer(state.B, 16).replace(' ', '&nbsp;');
+		$STATE.innerHTML = dumpBuffer(state.S.buffer, 16).replace(' ', '&nbsp;');
+		$RAM.innerHTML = dumpBuffer(state.RAM.buffer, 16).replace(' ', '&nbsp;');
 
 		//noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 		$AX.innerHTML = state.R.AX.toString(16).padStart(4, '0').toUpperCase();
@@ -90,6 +91,7 @@
 	// region Variables
 
 	var $STATE	= $('.STATE');
+	var $RAM	= $('.RAM');
 
 	var $AX		= $('.AX');
 	var $BX		= $('.BX');
@@ -135,7 +137,7 @@
 
 	// endregion
 
-	if (SYSTEM_FEATURE_WORKERS) {
+	if (!SYSTEM_FEATURE_WORKERS) {
 		cpu = new Worker('js/worker.js');
 
 		cpu.onmessage = function(e) {
