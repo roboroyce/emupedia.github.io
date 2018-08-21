@@ -32,10 +32,10 @@ div.vm-container {
 }
 
 div.main-container {
-	box-sizing: border-box;
-	width: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
+	/*box-sizing: border-box;*/
+	/*width: 100%;*/
+	/*padding-left: 10px;*/
+	/*padding-right: 10px;*/
 }
 
 /* region Tabs */
@@ -163,26 +163,26 @@ div.screen.text-132x60-res-16-colors {}
 
 /* region Debugger */
 
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
 table.debugger {
 	width: 100%;
-	/*position: absolute;*/
-	/*top: 28px;*/
-	/*right: 10px;*/
-	/*float: right;*/
 }
 
 table.debugger table {
 	background-color: #181d20;
 	border: 2px solid #42484f;
-	margin-bottom: 20px;
-	border-spacing: 0;
-	border-collapse: collapse;
+	/*margin-bottom: 20px;*/
 	color: #a9bacb;
 	/*float: right;*/
 }
 
 table.debugger table:nth-child(1) {
-	margin-top: 20px;
+	/*margin-top: 20px;*/
+	margin-bottom: 20px;
 }
 
 table.debugger th {
@@ -199,13 +199,16 @@ table.debugger th:not(:nth-child(1)) {
 	border-top: none;
 }
 
-table.debugger td {
+table.debugger table td {
 	padding: 0 5px;
+}
+
+table.debugger table.ram td {
 	border-right: 2px solid #42484f;
 }
 
 .state .STATE,
-.ram .RAM,
+.ram,
 .registers .AX,
 .registers .BX,
 .registers .CX,

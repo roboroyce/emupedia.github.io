@@ -125,7 +125,7 @@
 	// region Variables
 
 	var $STATE	= $('.STATE');
-	var $RAM	= $('.RAM');
+	var $RAM	= $('.ram');
 
 	var $AX		= $('.AX');
 	var $BX		= $('.BX');
