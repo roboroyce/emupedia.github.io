@@ -10,21 +10,23 @@
 		<link href="css/main.css" type="text/css" rel="stylesheet">
 	</head>
 
-	<body>
+	<body ondragstart="return false;" ondrop="return false;">
 		<div class="vm-container">
 
 			<ul class="tab-bar">
 				<li class="tab"><a class="power" href="javascript:">START</a></li>
 				<li class="tab"><a class="reset" href="javascript:">RESET</a></li>
 				<li class="tab"><a class="fullscreen" href="javascript:">FULLSCREEN</a></li>
+				<li class="tab"><a class="console" href="javascript:">CONSOLE</a></li>
+				<li class="tab"><a class="console" href="javascript:">KEYBOARD</a></li>
 			</ul>
 
 			<div class="main-container">
 
-				<div class="screen text-640x350-res-80x25-textres-8x14-charsize-16-colors">
-					<div class="text-mode"></div>
-					<canvas class="canvas"></canvas>
-				</div>
+				<!--<div class="screen text-640x350-res-80x25-textres-8x14-charsize-16-colors">-->
+					<!--<div class="text-mode"></div>-->
+					<!--<canvas class="canvas"></canvas>-->
+				<!--</div>-->
 
 				<table class="debugger">
 					<tr>
@@ -87,6 +89,107 @@
 					</tr>
 				</table>
 
+			</div>
+
+			<div class="keyboard">
+				<div class="rows cf">
+					<a class="key escape" href="javascript:">esc</a>
+					<a class="key" href="javascript:">&#x1f505; f1</a>
+					<a class="key" href="javascript:">&#x1f506; f2</a>
+					<a class="key" href="javascript:">f3</a>
+					<a class="key" href="javascript:">f4</a>
+					<a class="key" href="javascript:">f5</a>
+					<a class="key" href="javascript:">f6</a>
+					<a class="key" href="javascript:">&#x23ea; f7</a>
+					<a class="key" href="javascript:">&#x23EF; f8</a>
+					<a class="key" href="javascript:">&#x23e9; f9</a>
+					<a class="key" href="javascript:">&#x1F508; f10</a>
+					<a class="key" href="javascript:">&#x1F509; f11</a>
+					<a class="key" href="javascript:">&#x1F50A; f12</a>
+					<a class="key eject" href="javascript:">&#x23cf;</a>
+				</div>
+				<div class="rows cf">
+					<a class="key square" href="javascript:">~<br />`</a>
+					<a class="key square" href="javascript:">!<br />1</a>
+					<a class="key square" href="javascript:">@<br />2</a>
+					<a class="key square" href="javascript:">#<br />3</a>
+					<a class="key square" href="javascript:">$<br />4</a>
+					<a class="key square" href="javascript:">%<br />5</a>
+					<a class="key square" href="javascript:">^<br />6</a>
+					<a class="key square" href="javascript:">&amp;<br />7</a>
+					<a class="key square" href="javascript:">*<br />8</a>
+					<a class="key square" href="javascript:">(<br />9</a>
+					<a class="key square" href="javascript:">)<br />0</a>
+					<a class="key square" href="javascript:">_<br />-</a>
+					<a class="key square" href="javascript:">+<br />=</a>
+					<a class="key delete" href="javascript:">⟵ Delete</a>
+				</div>
+				<div class="rows cf">
+					<a class="key square tab" href="javascript:">&#x21B9; &#x21E5; tab</a>
+					<a class="key square center" href="javascript:">q</a>
+					<a class="key square center" href="javascript:">w</a>
+					<a class="key square center" href="javascript:">e</a>
+					<a class="key square center" href="javascript:">r</a>
+					<a class="key square center" href="javascript:">t</a>
+					<a class="key square center" href="javascript:">y</a>
+					<a class="key square center" href="javascript:">u</a>
+					<a class="key square center" href="javascript:">i</a>
+					<a class="key square center" href="javascript:">o</a>
+					<a class="key square center" href="javascript:">p</a>
+					<a class="key square" href="javascript:">{<br />[</a>
+					<a class="key square" href="javascript:">}<br />]</a>
+					<a class="key square" href="javascript:">|<br />\</a>
+				</div>
+				<div class="rows cf">
+					<a class="key caps" href="javascript:"><b></b>&#x21EA; <span class="no-caps">caps lock</span></a>
+					<a class="key square center" href="javascript:">a</a>
+					<a class="key square center" href="javascript:">s</a>
+					<a class="key square center" href="javascript:">d</a>
+					<a class="key square center" href="javascript:">f</a>
+					<a class="key square center" href="javascript:">g</a>
+					<a class="key square center" href="javascript:">h</a>
+					<a class="key square center" href="javascript:">j</a>
+					<a class="key square center" href="javascript:">k</a>
+					<a class="key square center" href="javascript:">l</a>
+					<a class="key square" href="javascript:">:<br />;</a>
+					<a class="key square" href="javascript:">"<br />'</a>
+					<a class="key return" href="javascript:">&#x21A9; &#x21B5; &#x23CE; &#x2324;<span class="no-caps">return</span></a>
+				</div>
+				<div class="rows cf">
+					<a class="key left shift" href="javascript:">&#x21E7; shift</a>
+					<a class="key square center" href="javascript:">z</a>
+					<a class="key square center" href="javascript:">x</a>
+					<a class="key square center" href="javascript:">c</a>
+					<a class="key square center" href="javascript:">v</a>
+					<a class="key square center" href="javascript:">b</a>
+					<a class="key square center" href="javascript:">n</a>
+					<a class="key square center" href="javascript:">m</a>
+					<a class="key square" href="javascript:">&lt;<br />,</a>
+					<a class="key square" href="javascript:">&gt;<br />.</a>
+					<a class="key square" href="javascript:">?<br />/</a>
+					<a class="key right shift" href="javascript:">&#x21E7; shift</a>
+				</div>
+				<div class="rows cf">
+					<a class="key bottom" href="javascript:">fn</a>
+					<a class="key bottom wide" href="javascript:">control</a>
+					<a class="key bottom option" href="javascript:">&#x2325;<br />option</a>
+					<a class="key bottom command" href="javascript:">&#x2318;<br />command</a>
+					<a class="key space" href="javascript:">.</a>
+					<a class="key bottom command" href="javascript:">&#x2318;<br />command</a>
+					<a class="key bottom option" href="javascript:">&#x2325;<br />option</a>
+					<div class="arrows-wrap cf">
+						<div class="middle-arrows cf">
+							<a class="key arrows-left-right" href="javascript:">&#x25C0;</a>
+						</div>
+						<div class="middle-arrows cf">
+							<a class="key arrow-up" href="javascript:">&#x25B2;</a>
+							<a class="key arrow-down" href="javascript:">&#x25BC;</a>
+						</div>
+						<div class="middle-arrows">
+							<a class="key arrows-left-right" href="javascript:">&#x25B6;</a>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<input class="console" type="text" />
