@@ -204,6 +204,63 @@ if (!Object.keys) {
 }
 
 // IE 11.228.17134.0
+// noinspection JSUnresolvedVariable
+if (!Int8Array.__proto__.from) {
+	(function() {
+		// noinspection JSUnresolvedVariable
+		Int8Array.__proto__.from = function (obj, func, thisObj) {
+			// noinspection JSUnresolvedVariable
+			var typedArrayClass = Int8Array.__proto__;
+
+			if (typeof this !== 'function') {
+				//throw new TypeError('# is not a constructor');
+			}
+			// noinspection JSUnresolvedVariable
+			if (this.__proto__ !== typedArrayClass) {
+				throw new TypeError('this is not a typed array.');
+			}
+
+			func = func || function (elem) {
+				return elem;
+			};
+
+			if (typeof func !== 'function') {
+				throw new TypeError('specified argument is not a function');
+			}
+
+			obj = Object(obj);
+
+			if (!obj['length']) {
+				return new this(0);
+			}
+
+			var copy_data = [];
+
+			for (var i = 0; i < obj.length; i++) {
+				copy_data.push(obj[i]);
+			}
+
+			copy_data = copy_data.map(func, thisObj);
+
+			var typed_array = new this(copy_data.length);
+
+			for (var j = 0; j < typed_array.length; j++) {
+				typed_array[j] = copy_data[j];
+			}
+
+			return typed_array;
+		}
+	})();
+}
+
+// Safari 5.1.7 (7534.57.2)
+if (!Uint8Array.prototype.slice) {
+	Object.defineProperty(Uint8Array.prototype, 'slice', {
+		value: Array.prototype.slice
+	});
+}
+
+// IE 11.228.17134.0
 if (typeof console !== 'undefined') {
 	if (!console.table) {
 		console.table = function(arr) {

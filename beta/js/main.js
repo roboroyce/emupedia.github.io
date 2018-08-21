@@ -26,7 +26,7 @@
 	}
 
 	function dumpHexView(table, buffer, radix) {
-		var len = buffer.byteLength / 16;
+		var len = 30;
 		var offset = 0;
 
 		for (var i = 0; i < len; i++) {
@@ -36,7 +36,7 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 
-			cell1.innerHTML = offset.toString(radix).padStart(6, '0').toUpperCase();
+			cell1.innerHTML = offset.toString(radix).padStart(8, '0').toUpperCase();
 			cell2.innerHTML = dumpBuffer8(buf, radix);
 			cell3.innerHTML = dumpASCII(buf);
 
@@ -46,6 +46,7 @@
 
 	function printState(state) {
 		$STATE.innerHTML = dumpBuffer16(state.S.buffer, 16).replace(' ', '&nbsp;');
+
 		dumpHexView($RAM, state.RAM.buffer, 16);
 
 		//noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
@@ -170,7 +171,8 @@
 
 	// endregion
 
-	if (!SYSTEM_FEATURE_WORKERS) {
+	// TODO: Safari 5.1.7 (7534.57.2) cannot allocate ArrayBuffer of 1MB in workers so disable workers for Safari
+	if (global.SYSTEM_FEATURE_WORKERS && !global.isSafari) {
 		cpu = new Worker('js/worker.js');
 
 		cpu.onmessage = function(e) {
