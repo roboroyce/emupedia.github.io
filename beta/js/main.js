@@ -3,6 +3,59 @@
 
 	'use strict';
 
+	// region Variables
+
+	var $TKEYBOARD = $('.toggle-keyboard');
+
+	var $KEYBOARD = $('.keyboard');
+
+	var $STATE	= $('.STATE');
+	var $RAM	= $('.ram');
+
+	var $AX		= $('.AX');
+	var $BX		= $('.BX');
+	var $CX		= $('.CX');
+	var $DX		= $('.DX');
+
+	var $AH		= $('.AH');
+	var $AL		= $('.AL');
+	var $BH		= $('.BH');
+	var $BL		= $('.BL');
+	var $CH		= $('.CH');
+	var $CL		= $('.CL');
+	var $DH		= $('.DH');
+	var $DL		= $('.DL');
+
+	var $CS		= $('.CS');
+	var $DS		= $('.DS');
+	var $ES		= $('.ES');
+	var $SS		= $('.SS');
+
+	var $SI		= $('.SI');
+	var $DI		= $('.DI');
+	var $BP		= $('.BP');
+	var $SP		= $('.SP');
+
+	var $IP		= $('.IP');
+
+	var $F		= $('.F');
+
+	var $FLAGS	= $('.FLAGS');
+
+	var $CF		= $('.CF');
+	var $PF		= $('.PF');
+	var $AF		= $('.AF');
+	var $ZF		= $('.ZF');
+	var $SF		= $('.SF');
+	var $TF		= $('.TF');
+	var $IF		= $('.IF');
+	var $DF		= $('.DF');
+	var $OF		= $('.OF');
+
+	var cpu		= null;
+
+	// endregion
+
 	// region Functions
 
 	function dumpASCII(buffer) {
@@ -122,52 +175,9 @@
 
 	// endregion
 
-	// region Variables
+	// region Events
 
-	var $STATE	= $('.STATE');
-	var $RAM	= $('.ram');
 
-	var $AX		= $('.AX');
-	var $BX		= $('.BX');
-	var $CX		= $('.CX');
-	var $DX		= $('.DX');
-
-	var $AH		= $('.AH');
-	var $AL		= $('.AL');
-	var $BH		= $('.BH');
-	var $BL		= $('.BL');
-	var $CH		= $('.CH');
-	var $CL		= $('.CL');
-	var $DH		= $('.DH');
-	var $DL		= $('.DL');
-
-	var $CS		= $('.CS');
-	var $DS		= $('.DS');
-	var $ES		= $('.ES');
-	var $SS		= $('.SS');
-
-	var $SI		= $('.SI');
-	var $DI		= $('.DI');
-	var $BP		= $('.BP');
-	var $SP		= $('.SP');
-
-	var $IP		= $('.IP');
-
-	var $F		= $('.F');
-
-	var $FLAGS	= $('.FLAGS');
-
-	var $CF		= $('.CF');
-	var $PF		= $('.PF');
-	var $AF		= $('.AF');
-	var $ZF		= $('.ZF');
-	var $SF		= $('.SF');
-	var $TF		= $('.TF');
-	var $IF		= $('.IF');
-	var $DF		= $('.DF');
-	var $OF		= $('.OF');
-
-	var cpu		= null;
 
 	// endregion
 
