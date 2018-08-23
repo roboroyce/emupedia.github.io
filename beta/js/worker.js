@@ -41,7 +41,7 @@ if (typeof console !== 'undefined') {
 		}
 	}
 
-	if (typeof window !== 'undefined') {
+	if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document) {
 		global.console.log('Running in page!');
 		// asynchronous load
 		importScripts('i8086/cpu.js', init);

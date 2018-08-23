@@ -90,8 +90,8 @@ n ^= mask;
 (function(global) {
 	'use strict';
 
-	function CPU() {
-		console.log('CPU i8086 initialised!');
+	var CPU = function() {
+		global.console.log('CPU i8086 initialised!');
 
 		var self = this;
 
@@ -568,7 +568,7 @@ n ^= mask;
 				self.S.setUint16(self.R.INDEX.F, val ? (self.R.F | this.MASK.BIT15) : (self.R.F & ~this.MASK.BIT15), true);
 			}
 		};
-	}
+	};
 
 	CPU.prototype.dumpState = function() {
 		console.table([{
@@ -616,7 +616,7 @@ n ^= mask;
 		}]);
 	};
 
-	CPU.prototype.start = function () {
+	CPU.prototype.start = function() {
 		var self = this;
 
 		self.R.AX = 0x1111;

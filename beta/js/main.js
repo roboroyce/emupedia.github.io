@@ -177,7 +177,10 @@
 
 	// region Events
 
-
+	$.on($TKEYBOARD, 'click', function(e) {
+		global.console.log(e);
+		$KEYBOARD.style.display = $KEYBOARD.style.display === 'block' ? 'none' : 'block';
+	});
 
 	// endregion
 
@@ -213,8 +216,10 @@
 		};
 		// noinspection JSDeprecatedSymbols
 		cpu.postMessage('state');
-	} else {
+	} else if (global.SYSTEM_FEATURE_TYPED_ARRAYS) {
 		importScripts('js/worker.js');
+	} else {
+		global.console.log('BROWSER NOT SUPPORTED!');
 	}
 
 }(this));

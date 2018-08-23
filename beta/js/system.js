@@ -205,60 +205,70 @@ if (!Object.keys) {
 }
 
 // IE 11.228.17134.0
-// noinspection JSUnresolvedVariable
-if (!Int8Array.__proto__.from) {
-	(function() {
+if (typeof Int8Array !== 'undefined') {
+	// noinspection JSUnresolvedVariable
+	if (typeof Int8Array.__proto__ !== 'undefined') {
 		// noinspection JSUnresolvedVariable
-		Int8Array.__proto__.from = function (obj, func, thisObj) {
+		if (typeof Int8Array.__proto__.from === 'undefined') {
 			// noinspection JSUnresolvedVariable
-			var typedArrayClass = Int8Array.__proto__;
+			if (!Int8Array.__proto__.from) {
+				(function() {
+					// noinspection JSUnresolvedVariable
+					Int8Array.__proto__.from = function (obj, func, thisObj) {
+						// noinspection JSUnresolvedVariable
+						var typedArrayClass = Int8Array.__proto__;
 
-			if (typeof this !== 'function') {
-				//throw new TypeError('# is not a constructor');
+						if (typeof this !== 'function') {
+							//throw new TypeError('# is not a constructor');
+						}
+						// noinspection JSUnresolvedVariable
+						if (this.__proto__ !== typedArrayClass) {
+							throw new TypeError('this is not a typed array.');
+						}
+
+						func = func || function (elem) {
+							return elem;
+						};
+
+						if (typeof func !== 'function') {
+							throw new TypeError('specified argument is not a function');
+						}
+
+						obj = Object(obj);
+
+						if (!obj['length']) {
+							return new this(0);
+						}
+
+						var copy_data = [];
+
+						for (var i = 0; i < obj.length; i++) {
+							copy_data.push(obj[i]);
+						}
+
+						copy_data = copy_data.map(func, thisObj);
+
+						var typed_array = new this(copy_data.length);
+
+						for (var j = 0; j < typed_array.length; j++) {
+							typed_array[j] = copy_data[j];
+						}
+
+						return typed_array;
+					}
+				})();
 			}
-			// noinspection JSUnresolvedVariable
-			if (this.__proto__ !== typedArrayClass) {
-				throw new TypeError('this is not a typed array.');
-			}
-
-			func = func || function (elem) {
-				return elem;
-			};
-
-			if (typeof func !== 'function') {
-				throw new TypeError('specified argument is not a function');
-			}
-
-			obj = Object(obj);
-
-			if (!obj['length']) {
-				return new this(0);
-			}
-
-			var copy_data = [];
-
-			for (var i = 0; i < obj.length; i++) {
-				copy_data.push(obj[i]);
-			}
-
-			copy_data = copy_data.map(func, thisObj);
-
-			var typed_array = new this(copy_data.length);
-
-			for (var j = 0; j < typed_array.length; j++) {
-				typed_array[j] = copy_data[j];
-			}
-
-			return typed_array;
 		}
-	})();
+	}
 }
 
 // Safari 5.1.7 (7534.57.2)
-if (!Uint8Array.prototype.slice) {
-	Object.defineProperty(Uint8Array.prototype, 'slice', {
-		value: Array.prototype.slice
-	});
+if (typeof Uint8Array !== 'undefined') {
+	if (!Uint8Array.prototype.slice) {
+		Object.defineProperty(Uint8Array.prototype, 'slice', {
+			value: Array.prototype.slice
+		});
+	}
 }
 
 // IE 11.228.17134.0
@@ -288,161 +298,36 @@ if (typeof console !== 'undefined') {
 // noinspection ThisExpressionReferencesGlobalObjectJS
 (function(global) {
 
-	// region Functions
-
-	if (!global.importScripts) {
-		// Poor's man requirejs :)
-		global.importScripts = function (url, callback) {
-			// noinspection JSUnresolvedFunction
-			if (!url.startsWith('js/')) {
-				url = 'js/' + url;
-			}
-
-			// noinspection JSUnresolvedFunction
-			if (!url.endsWith('.js')) {
-				url += '.js';
-			}
-
-			var script = document.createElement('script');
-			script.src = url;
-			script.onload = typeof callback === 'function' ? callback : function() {};
-			document.head.appendChild(script);
-		}
-	}
-
-	if (!global.$) {
-		// Poor's man jQuery :)
-		global.$ = function (selector) {
-			if (document.querySelector) {
-				return document.querySelector(selector) !== null ? document.querySelector(selector) : {innerHTML: function() {}};
-			} else {
-				switch (selector.charAt(0)) {
-					case '.':
-						return document.getElementsByClassName(selector.substr(1))[0];
-					case '#':
-						return document.getElementById(selector.substr(1));
-					default:
-						return document.getElementsByTagName(selector)[0];
-				}
-			}
-		}
-	}
-
-	function dumpSystem() {
-		console.table([{
-			Feature: 'SYSTEM_FEATURE_ES5',
-			Value: SYSTEM_FEATURE_ES5 ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_ES6',
-			Value: SYSTEM_FEATURE_ES6 ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WORKERS',
-			Value: SYSTEM_FEATURE_WORKERS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_SHARED_WORKERS',
-			Value: SYSTEM_FEATURE_SHARED_WORKERS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_TYPED_ARRAYS',
-			Value: SYSTEM_FEATURE_TYPED_ARRAYS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_BIGINTS',
-			Value: SYSTEM_FEATURE_BIGINTS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_SIMD',
-			Value: SYSTEM_FEATURE_SIMD ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_FULLSCREEN',
-			Value: SYSTEM_FEATURE_FULLSCREEN ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_POINTER_LOCK',
-			Value: SYSTEM_FEATURE_POINTER_LOCK ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_TIMERS',
-			Value: SYSTEM_FEATURE_TIMERS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_CANVAS',
-			Value: SYSTEM_FEATURE_CANVAS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBGL',
-			Value: SYSTEM_FEATURE_WEBGL ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBGL2',
-			Value: SYSTEM_FEATURE_WEBGL2 ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBVR',
-			Value: SYSTEM_FEATURE_WEBVR ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_HTML5AUDIO',
-			Value: SYSTEM_FEATURE_HTML5AUDIO ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBAUDIO',
-			Value: SYSTEM_FEATURE_WEBAUDIO ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_KEYBOARD',
-			Value: SYSTEM_FEATURE_KEYBOARD ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_POINTER_EVENTS',
-			Value: SYSTEM_FEATURE_POINTER_EVENTS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_GAMEPADS',
-			Value: SYSTEM_FEATURE_GAMEPADS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBSOCKETS',
-			Value: SYSTEM_FEATURE_WEBSOCKETS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_SESSION_STORAGE',
-			Value: SYSTEM_FEATURE_SESSION_STORAGE ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_LOCAL_STORAGE',
-			Value: SYSTEM_FEATURE_LOCAL_STORAGE ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_INDEXED_DB',
-			Value: SYSTEM_FEATURE_INDEXED_DB ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_WEBSQL',
-			Value: SYSTEM_FEATURE_WEBSQL ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSYEM_FEATURE_GEOLOCATION',
-			Value: SYSYEM_FEATURE_GEOLOCATION ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSYEM_FEATURE_ORIENTATION',
-			Value: SYSYEM_FEATURE_ORIENTATION ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSYEM_FEATURE_MOTION',
-			Value: SYSYEM_FEATURE_MOTION ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSYEM_FEATURE_GYROSCOPE',
-			Value: SYSYEM_FEATURE_GYROSCOPE ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_PROXIMITY',
-			Value: SYSTEM_FEATURE_PROXIMITY ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_AMBIENTLIGHT',
-			Value: SYSTEM_FEATURE_AMBIENTLIGHT ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_VIBRATION',
-			Value: SYSTEM_FEATURE_VIBRATION ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_BATTERY',
-			Value: SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_INFO_CPU_ENDIANNESS',
-			Value: SYSTEM_INFO_CPU_ENDIANNESS
-		} , {
-			Feature: 'SYSTEM_INFO_CPU_CORES',
-			Value: SYSTEM_INFO_CPU_CORES
-		} , {
-			Feature: 'SYSTEM_INFO_GPU',
-			Value: SYSTEM_INFO_GPU
-		} , {
-			Feature: 'SYSTEM_INFO_VIDEO_ACCELERATION',
-			Value: SYSTEM_INFO_VIDEO_ACCELERATION
-		}]);
-	}
-
-	// endregion
-
 	// region System
+
+	var platform							= navigator.platform;
+	var browser								= navigator.userAgent;
+	var version								= navigator.appVersion;
+	var vendor								= navigator.vendor;
+
+	global.isEdge							= browser.indexOf('Edge') !== -1;
+	global.isIE								= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
+	global.isFirefox						= browser.indexOf('Firefox') !== -1;
+	global.isChrome							= browser.indexOf('Chrome') || vendor === 'Google Inc.';
+	global.isOperaPresto					= browser.indexOf('Opera') !== -1;
+	global.isOperaBlink						= browser.indexOf('OPR') !== -1;
+	global.isOpera							= global.isOperaPresto || global.isOperaBlink;
+	global.isSafari							= browser.indexOf('Safari') || vendor === 'Apple Computer, Inc.';
+	global.isOther							= !(global.isSafari && global.isEdge && global.isIE && global.isChrome && global.isOpera);
+
+	global.isWindows						= version.indexOf('Win') !== -1;
+	global.isMacOS							= version.indexOf('Mac') !== -1;
+	global.isUNIX							= version.indexOf('X11') !== -1;
+	global.isLinux							= version.indexOf('Linux') !== -1;
+
+	global.is64								= (platform.indexOf('Win64') || platform.indexOf('amd64') || platform.indexOf('x86_64')) !== -1;
+	global.is32								= !global.is64 ? ((platform.indexOf('Win32') || platform.indexOf('i386') || platform.indexOf('i686')) !== -1) : true;
+
+	global.isMobile							= browser.indexOf('Mobi') !== -1;
+	global.isDesktop						= !global.isMobile;
+
+	global.isBrowser						= !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document);
+	global.isWorker							= !global.isBrowser && typeof importScripts !== 'undefined';
 
 	var audio								= document.createElement('audio');
 	var canvas2D							= document.createElement('canvas');
@@ -641,6 +526,57 @@ if (typeof console !== 'undefined') {
 	})();
 	global.SYSTEM_FEATURE_ES6				= !!(SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6NUMBER && SYSTEM_FEATURE_ES6MATH && SYSTEM_FEATURE_ES6ARRAY && SYSTEM_FEATURE_ES6FUNCTION && SYSTEM_FEATURE_ES6OBJECT && SYSTEM_FEATURE_ES6STRING && SYSTEM_FEATURE_ES6COLLECTIONS && SYSTEM_FEATURE_ES6GENERATORS && SYSTEM_FEATURE_ES6PROMISES);
 
+	global.SYSTEM_INFO_OS					= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
+	global.SYSTEM_INFO_OS_VERSION			= '';
+	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isFirefox ? 'Mozilla Firefox' : (global.isChrome ? 'Google Chrome' : (global.isOpera ? 'Opera' : (global.isSafari ? 'Apple Safari' : undefined)))));
+	global.SYSTEM_INFO_BROWSER_VERSION		= (function() {
+		var offset, version = undefined;
+
+		if ((offset = browser.indexOf('Opera')) !== -1) {
+			version = browser.substring(offset + 6);
+
+			if ((offset = browser.indexOf('Version')) !== -1) {
+				version = browser.substring(offset + 8);
+			}
+		} else if ((offset = browser.indexOf('MSIE')) !== -1) {
+			version = browser.substring(offset + 5);
+		} else if ((offset = browser.indexOf('Trident') !== -1)) {
+			version = browser.substring(offset + 5);
+
+			if ((offset = browser.indexOf('rv:')) !== -1) {
+				version = browser.substring(offset + 3);
+			}
+		} else if ((offset = browser.indexOf('Chrome')) !== -1) {
+			version = browser.substring(offset + 7);
+		} else if ((offset = browser.indexOf('Safari')) !== -1) {
+			version = browser.substring(offset + 7);
+
+			if ((offset = browser.indexOf('Version')) !== -1) {
+				version = browser.substring(offset + 8);
+			}
+		} else if ((offset = browser.indexOf('Firefox')) !== -1) {
+			version = browser.substring(offset + 8);
+		} else if ((browser.lastIndexOf(' ') + 1) < (offset = browser.lastIndexOf('/'))) {
+			version = browser.substring(offset + 1);
+		}
+
+		if (version) {
+			if ((offset = version.indexOf(';')) !== -1) {
+				version = version.substring(0, offset);
+			}
+
+			if ((offset = version.indexOf(' ')) !== -1) {
+				version = version.substring(0, offset);
+			}
+
+			if ((offset = version.indexOf(')')) !== -1) {
+				version = version.substring(0, offset);
+			}
+		}
+
+		return version;
+	})();
+
 	global.SYSTEM_INFO_CPU_LITTLE_ENDIAN	= (SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
 		var buffer = new ArrayBuffer(2);
 		new DataView(buffer).setUint16(0, 256, true);
@@ -674,8 +610,182 @@ if (typeof console !== 'undefined') {
 
 	// endregion
 
-	// noinspection JSUnresolvedVariable
-	global.isSafari = global.navigator.vendor === 'Apple Computer, Inc.';
+	// region Functions
+
+	if (!global.importScripts) {
+		// Poor's man requirejs :)
+		global.importScripts = function (url, callback) {
+			// noinspection JSUnresolvedFunction
+			if (!url.startsWith('js/')) {
+				url = 'js/' + url;
+			}
+
+			// noinspection JSUnresolvedFunction
+			if (!url.endsWith('.js')) {
+				url += '.js';
+			}
+
+			var script = document.createElement('script');
+			script.src = url;
+			script.onload = typeof callback === 'function' ? callback : function() {};
+
+			if (typeof document.head !== 'undefined') {
+				document.head.appendChild(script);
+			}
+		}
+	}
+
+	if (!global.$) {
+		// Poor's man jQuery :)
+		global.$ = function (selector) {
+			if (document.querySelector) {
+				return document.querySelector(selector) !== null ? document.querySelector(selector) : {innerHTML: function() {}};
+			} else {
+				switch (selector.charAt(0)) {
+					case '.':
+						return document.getElementsByClassName(selector.substr(1))[0];
+					case '#':
+						return document.getElementById(selector.substr(1));
+					default:
+						return document.getElementsByTagName(selector)[0];
+				}
+			}
+		};
+
+		global.$.on = function (el, eventName, eventHandler) {
+			if (el.addEventListener) {
+				el.addEventListener(eventName, eventHandler, false);
+			} else if (el.attachEvent) {
+				el.attachEvent('on' + eventName, eventHandler);
+			}
+		};
+	}
+
+	function dumpSystem() {
+		console.table([{
+			Feature: 'SYSTEM_FEATURE_ES5',
+			Value: SYSTEM_FEATURE_ES5 ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_ES6',
+			Value: SYSTEM_FEATURE_ES6 ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WORKERS',
+			Value: SYSTEM_FEATURE_WORKERS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_SHARED_WORKERS',
+			Value: SYSTEM_FEATURE_SHARED_WORKERS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_TYPED_ARRAYS',
+			Value: SYSTEM_FEATURE_TYPED_ARRAYS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_BIGINTS',
+			Value: SYSTEM_FEATURE_BIGINTS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_SIMD',
+			Value: SYSTEM_FEATURE_SIMD ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_FULLSCREEN',
+			Value: SYSTEM_FEATURE_FULLSCREEN ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_POINTER_LOCK',
+			Value: SYSTEM_FEATURE_POINTER_LOCK ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_TIMERS',
+			Value: SYSTEM_FEATURE_TIMERS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_CANVAS',
+			Value: SYSTEM_FEATURE_CANVAS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBGL',
+			Value: SYSTEM_FEATURE_WEBGL ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBGL2',
+			Value: SYSTEM_FEATURE_WEBGL2 ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBVR',
+			Value: SYSTEM_FEATURE_WEBVR ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_HTML5AUDIO',
+			Value: SYSTEM_FEATURE_HTML5AUDIO ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBAUDIO',
+			Value: SYSTEM_FEATURE_WEBAUDIO ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_KEYBOARD',
+			Value: SYSTEM_FEATURE_KEYBOARD ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_POINTER_EVENTS',
+			Value: SYSTEM_FEATURE_POINTER_EVENTS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_GAMEPADS',
+			Value: SYSTEM_FEATURE_GAMEPADS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBSOCKETS',
+			Value: SYSTEM_FEATURE_WEBSOCKETS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_SESSION_STORAGE',
+			Value: SYSTEM_FEATURE_SESSION_STORAGE ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_LOCAL_STORAGE',
+			Value: SYSTEM_FEATURE_LOCAL_STORAGE ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_INDEXED_DB',
+			Value: SYSTEM_FEATURE_INDEXED_DB ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBSQL',
+			Value: SYSTEM_FEATURE_WEBSQL ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSYEM_FEATURE_GEOLOCATION',
+			Value: SYSYEM_FEATURE_GEOLOCATION ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSYEM_FEATURE_ORIENTATION',
+			Value: SYSYEM_FEATURE_ORIENTATION ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSYEM_FEATURE_MOTION',
+			Value: SYSYEM_FEATURE_MOTION ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSYEM_FEATURE_GYROSCOPE',
+			Value: SYSYEM_FEATURE_GYROSCOPE ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_PROXIMITY',
+			Value: SYSTEM_FEATURE_PROXIMITY ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_AMBIENTLIGHT',
+			Value: SYSTEM_FEATURE_AMBIENTLIGHT ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_VIBRATION',
+			Value: SYSTEM_FEATURE_VIBRATION ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_BATTERY',
+			Value: SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_INFO_OS',
+			Value: SYSTEM_INFO_OS
+		} , {
+			Feature: 'SYSTEM_INFO_OS_VERSION',
+			Value: SYSTEM_INFO_OS_VERSION
+		} , {
+			Feature: 'SYSTEM_INFO_BROWSER',
+			Value: SYSTEM_INFO_BROWSER
+		} , {
+			Feature: 'SYSTEM_INFO_BROWSER_VERSION',
+			Value: SYSTEM_INFO_BROWSER_VERSION
+		} , {
+			Feature: 'SYSTEM_INFO_CPU_ENDIANNESS',
+			Value: SYSTEM_INFO_CPU_ENDIANNESS
+		} , {
+			Feature: 'SYSTEM_INFO_CPU_CORES',
+			Value: SYSTEM_INFO_CPU_CORES
+		} , {
+			Feature: 'SYSTEM_INFO_GPU',
+			Value: SYSTEM_INFO_GPU
+		} , {
+			Feature: 'SYSTEM_INFO_VIDEO_ACCELERATION',
+			Value: SYSTEM_INFO_VIDEO_ACCELERATION
+		}]);
+	}
+
+	// endregion
 
 	dumpSystem();
 
