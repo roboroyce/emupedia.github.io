@@ -59,48 +59,47 @@
 	// region Functions
 
 	function dumpASCII(buffer) {
-		return Array.from(new Uint8Array(buffer)).map(function(b) {
+		return buffer.map(function(b) {
 			return b >= 32 && b < 128 ? String.fromCharCode(b) : '.';
 		}).join('');
 	}
 
-	function dumpBuffer8(buffer, radix) {
-		return Array.from(new Uint8Array(buffer)).map(function(b) {
+	function dumpBuffer(buffer, radix, padding) {
+		return buffer.map(function(b) {
 			// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
-			return b.toString(radix).padStart(2, '0');
-		}).join(' ').toUpperCase();
-	}
-
-	function dumpBuffer16(buffer, radix) {
-		return Array.from(new Uint16Array(buffer)).map(function(b) {
-			// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
-			return b.toString(radix).padStart(4, '0');
+			return b.toString(radix).padStart(padding, '0');
 		}).join(' ').toUpperCase();
 	}
 
 	function dumpHexView(table, buffer, radix) {
-		var len = 30;
+		var len = buffer.length / 16;
 		var offset = 0;
+
+		var fragment = document.createDocumentFragment();
 
 		for (var i = 0; i < len; i++) {
 			var buf = buffer.slice(i * 16, (i + 1) * 16);
-			var row = table.insertRow(-1);
+			// var row = fragment.insertRow(-1);
+			var row = document.createElement('TR');
 			var cell1 = row.insertCell(0);
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 
 			cell1.innerHTML = offset.toString(radix).padStart(8, '0').toUpperCase();
-			cell2.innerHTML = dumpBuffer8(buf, radix);
+			cell2.innerHTML = dumpBuffer(buf, radix, 2);
 			cell3.innerHTML = dumpASCII(buf);
+
+			fragment.appendChild(row);
 
 			offset += 16
 		}
+
+		table.tBodies[0].appendChild(fragment);
 	}
 
 	function printState(state) {
-		$STATE.innerHTML = dumpBuffer16(state.S.buffer, 16).replace(' ', '&nbsp;');
-
-		dumpHexView($RAM, state.RAM.buffer, 16);
+		$STATE.innerHTML = dumpBuffer(Array.from(new Uint16Array(state.S16)), 16, 4).replace(' ', '&nbsp;');
+		dumpHexView($RAM, Array.from(new Uint8Array(state.RAM8)), 16);
 
 		//noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 		$AX.innerHTML = state.R.AX.toString(16).padStart(4, '0').toUpperCase();
@@ -169,10 +168,6 @@
 		$OF.innerHTML = state.F.OF;
 	}
 
-	global.update = function(state) {
-		printState(state);
-	};
-
 	// endregion
 
 	// region Events
@@ -184,27 +179,19 @@
 
 	// endregion
 
-	// TODO: Safari 5.1.7 (7534.57.2) cannot allocate ArrayBuffer of 1MB in workers so disable workers for Safari
-	if (global.SYSTEM_FEATURE_WORKERS && !global.isSafari) {
+	// TODO: Safari 5.1.7 (7534.57.2) cannot allocate ArrayBuffer of 1MB in workers so disable workers for it
+	if (global.SYSTEM_FEATURE_WORKERS) {
 		cpu = new Worker('js/worker.js');
 
 		cpu.onmessage = function(e) {
-			global.console.log('cpu => browser');
+			// global.console.log('cpu => browser');
 			// global.console.log(e);
 			// global.console.log(e.data);
 
-			switch (typeof e.data) {
-				case 'object':
-					if (typeof e.data.state !== 'undefined') {
-						global.update(e.data.state);
-						global.console.log(e.data);
-					} else {
-						global.console.log(e.data);
-					}
-					break;
-				default:
-					global.console.log(e.data);
-					break;
+			if (typeof e.data.state !== 'undefined') {
+				printState(e.data.state);
+			} else {
+				global.console.log(e.data);
 			}
 		};
 		// noinspection JSUndefinedPropertyAssignment
@@ -217,6 +204,10 @@
 		// noinspection JSDeprecatedSymbols
 		cpu.postMessage('state');
 	} else if (global.SYSTEM_FEATURE_TYPED_ARRAYS) {
+		global.update = function(state) {
+			printState(state);
+		};
+
 		importScripts('js/worker.js');
 	} else {
 		global.console.log('BROWSER NOT SUPPORTED!');

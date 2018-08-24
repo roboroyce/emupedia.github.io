@@ -633,6 +633,8 @@ n ^= mask;
 		self.R.SP = 0xCCCC;
 		self.R.IP = 0xDDDD;
 		self.R.F = 0xF002; // starting value for flags
+
+		self.RAM8 = Uint8Array.from({length: 1024 * 1024}, function(v, k) { return k; });
 	};
 
 	if (typeof global.CPU === 'undefined') {
