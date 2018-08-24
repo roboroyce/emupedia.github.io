@@ -696,7 +696,7 @@ if (typeof console !== 'undefined') {
 
 	global.SYSTEM_INFO_OS					= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
 	global.SYSTEM_INFO_OS_VERSION			= '';
-	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isFirefox ? 'Mozilla Firefox' : (global.isChrome ? 'Google Chrome' : (global.isOpera ? 'Opera' : (global.isSafari ? 'Apple Safari' : undefined)))));
+	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined)))));
 	global.SYSTEM_INFO_BROWSER_VERSION		= (function() {
 		var offset, version = undefined;
 
@@ -706,6 +706,8 @@ if (typeof console !== 'undefined') {
 			if ((offset = browser.indexOf('Version')) !== -1) {
 				version = browser.substring(offset + 8);
 			}
+		} else if ((offset = browser.indexOf('OPR')) !== -1) {
+				version = browser.substring(offset + 4);
 		} else if ((offset = browser.indexOf('Edge')) !== -1) {
 			version = browser.substring(offset + 5);
 		} else if ((offset = browser.indexOf('MSIE')) !== -1) {
@@ -759,6 +761,8 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_INFO_CPU_ENDIANNESS		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'LE' : 'BE') : undefined;
 	// noinspection JSUnusedGlobalSymbols
 	global.SYSTEM_INFO_CPU_CORES			= !navigator.hardwareConcurrency ? 1 : navigator.hardwareConcurrency;
+	// noinspection JSUnresolvedVariable
+	global.SYSTEM_INFO_RAM					= !navigator.deviceMemory ? 1 : navigator.deviceMemory;
 	// noinspection JSUnusedGlobalSymbols
 	global.SYSTEM_INFO_VIDEO_ACCELERATION	= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : undefined);
 	// noinspection JSUnusedGlobalSymbols
@@ -946,6 +950,9 @@ if (typeof console !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_INFO_CPU_CORES',
 			Value: SYSTEM_INFO_CPU_CORES
+		} , {
+			Feature: 'SYSTEM_INFO_RAM',
+			Value: SYSTEM_INFO_RAM
 		} , {
 			Feature: 'SYSTEM_INFO_GPU',
 			Value: SYSTEM_INFO_GPU
