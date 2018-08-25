@@ -700,12 +700,18 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_FEATURE_ES5OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
 	global.SYSTEM_FEATURE_ES5STRING			= !!(String.prototype && String.prototype.trim);
 	global.SYSTEM_FEATURE_ES5GETSET			= (function() {
+		var value, getter, setter;
+
 		try {
-			eval('foo={get test(){ return "foo"; }}');
+			getter = eval('({ get x(){ return 1 } }).x === 1');
+			eval('({ set x(v){ value = v; } }).x = 1');
+			// noinspection JSUnusedAssignment
+			setter = value === 1;
+
+			return getter && setter;
 		} catch (e) {
 			return false;
 		}
-		return true;
 	})();
 	global.SYSTEM_FEATURE_ES5				= !!(SYSTEM_FEATURE_STRICT && SYSTEM_FEATURE_JSON && SYSTEM_FEATURE_BASE64 && SYSTEM_FEATURE_ES5SYNTAX && SYSTEM_FEATURE_ES5UNDEFINED && SYSTEM_FEATURE_ES5ARRAY && SYSTEM_FEATURE_ES5DATE && SYSTEM_FEATURE_ES5FUNCTION && SYSTEM_FEATURE_ES5OBJECT && SYSTEM_FEATURE_ES5STRING);
 
@@ -724,6 +730,16 @@ if (typeof console !== 'undefined') {
 	})();
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_ES6OBJECT			= !!(Object.assign && Object.is && Object.setPrototypeOf);
+	// noinspection JSUnresolvedVariable
+	global.SYSTEM_FEATURE_ES6CLASS			= (function() {
+		try {
+			eval('class C {}');
+			// noinspection JSUnresolvedVariable
+			return typeof C === 'function';
+		} catch (e) {
+			return false;
+		}
+	})();
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_ES6STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
 	// noinspection JSUnresolvedVariable
@@ -883,7 +899,6 @@ if (typeof console !== 'undefined') {
 	if (!global.importScripts) {
 		// Poor's man requirejs :)
 		global.importScripts = function (url, callback) {
-
 
 			// noinspection JSUnresolvedFunction
 			if (!url.startsWith('js/')) {
