@@ -72,7 +72,8 @@
 	}
 
 	function dumpHexView(table, buffer, radix) {
-		var len = buffer.length / 16;
+		// var len = buffer.length / 16;
+		var len = 30;
 		var offset = 0;
 
 		var fragment = document.createDocumentFragment();
@@ -208,9 +209,25 @@
 			printState(state);
 		};
 
+		global.cpuscript = 'i8086/cpu-es5.js';
+
 		importScripts('js/worker.js');
 	} else {
 		global.console.log('BROWSER NOT SUPPORTED!');
+
+		global.update = function(state) {
+			printState(state);
+		};
+
+		if (global.SYSTEM_FEATURE_ES5GETSET) {
+			global.cpuscript = 'i8086/cpu-es5.js';
+		} else {
+			global.cpuscript = 'i8086/cpu-es3.js';
+		}
+
+		importScripts('js/typedarray.js', function() {
+			importScripts('js/worker.js');
+		});
 	}
 
 }(this));

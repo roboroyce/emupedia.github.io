@@ -206,60 +206,72 @@ if (!Object.keys) {
 
 // region Typed Array
 
-if (typeof Int8Array !== 'undefined') {
-	// IE 11.228.17134.0
-	// noinspection JSUnresolvedVariable
-	if (typeof Int8Array.__proto__ !== 'undefined') {
-		// noinspection JSUnresolvedVariable
-		if (typeof Int8Array.__proto__.from === 'undefined') {
-			// noinspection JSUnresolvedVariable
-			if (!Int8Array.__proto__.from) {
-				(function() {
-					// noinspection JSUnresolvedVariable
-					Int8Array.__proto__.from = function (obj, func, thisObj) {
-						// noinspection JSUnresolvedVariable
-						var typedArrayClass = Int8Array.__proto__;
+if (typeof ArrayBuffer !== 'undefined') {
+	if (!ArrayBuffer.prototype.slice) {
+		function clamp(val, length) {
+			val = (val|0) || 0;
 
-						if (typeof this !== 'function') {
-							//throw new TypeError('# is not a constructor');
-						}
-						// noinspection JSUnresolvedVariable
-						if (this.__proto__ !== typedArrayClass) {
-							throw new TypeError('this is not a typed array.');
-						}
-
-						func = func || function (elem) {
-							return elem;
-						};
-
-						if (typeof func !== 'function') {
-							throw new TypeError('specified argument is not a function');
-						}
-
-						obj = Object(obj);
-
-						if (!obj['length']) {
-							return new this(0);
-						}
-
-						var copy_data = [];
-
-						for (var i = 0; i < obj.length; i++) {
-							copy_data.push(obj[i]);
-						}
-
-						copy_data = copy_data.map(func, thisObj);
-
-						var typed_array = new this(copy_data.length);
-
-						for (var j = 0; j < typed_array.length; j++) {
-							typed_array[j] = copy_data[j];
-						}
-
-						return typed_array;
-					}
-				})();
+			if (val < 0) {
+				return Math.max(val + length, 0);
 			}
+
+			return Math.min(val, length);
+		}
+
+		ArrayBuffer.prototype.slice = function (from, to) {
+			var length = this.byteLength;
+			var begin = clamp(from, length);
+			var end = length;
+
+			if (to !== undefined) {
+				end = clamp(to, length);
+			}
+
+			if (begin > end) {
+				return new ArrayBuffer(0);
+			}
+
+			var num = end - begin;
+			var target = new ArrayBuffer(num);
+			var targetArray = new Uint8Array(target);
+
+			var sourceArray = new Uint8Array(this, begin, num);
+			targetArray.set(sourceArray);
+
+			return target;
+		};
+	}
+}
+
+if (typeof Int8Array !== 'undefined') {
+	// IE 10?
+	if (!Int8Array.from) {
+		Int8Array.from = function (obj, func, thisObj) {
+			func = func || function (elem) {
+				return elem;
+			};
+
+			obj = Object(obj);
+
+			if (!obj['length']) {
+				return new this(0);
+			}
+
+			var copy_data = [];
+
+			for (var i = 0; i < obj.length; i++) {
+				copy_data.push(obj[i]);
+			}
+
+			copy_data = copy_data.map(func, thisObj);
+
+			var typed_array = new this(copy_data.length);
+
+			for (var j = 0; j < typed_array.length; j++) {
+				typed_array[j] = copy_data[j];
+			}
+
+			return typed_array;
 		}
 	}
 
@@ -279,6 +291,37 @@ if (typeof Int8Array !== 'undefined') {
 }
 
 if (typeof Uint8Array !== 'undefined') {
+	// IE 10?
+	if (!Uint8Array.from) {
+		Uint8Array.from = function (obj, func, thisObj) {
+			func = func || function (elem) {
+				return elem;
+			};
+
+			obj = Object(obj);
+
+			if (!obj['length']) {
+				return new this(0);
+			}
+
+			var copy_data = [];
+
+			for (var i = 0; i < obj.length; i++) {
+				copy_data.push(obj[i]);
+			}
+
+			copy_data = copy_data.map(func, thisObj);
+
+			var typed_array = new this(copy_data.length);
+
+			for (var j = 0; j < typed_array.length; j++) {
+				typed_array[j] = copy_data[j];
+			}
+
+			return typed_array;
+		}
+	}
+
 	// Safari 5.1.7 (7534.57.2)
 	if (!Uint8Array.prototype.fill) {
 		Object.defineProperty(Uint8Array.prototype, 'fill', {
@@ -479,11 +522,12 @@ if (typeof console !== 'undefined') {
 	if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document) {
 		global.console.log('Running in page!');
 		// asynchronous load
-		importScripts('i8086/cpu.js', init);
+		importScripts(global.cpuscript, init);
 	} else {
 		global.console.log('Running in worker!');
 		// synchronous load
-		importScripts('i8086/cpu.js');
+		// TODO: should get script from page
+		importScripts('i8086/cpu-es5.js');
 		init();
 	}
 

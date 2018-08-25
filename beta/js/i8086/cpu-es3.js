@@ -1,94 +1,8 @@
-/*
-
-CPUs:
-
-4004   4-bit registers with  4-bit data bus and 12-bit address bus and  4 KB of memory 0.74  MHz 1971 March
-8008   8-bit registers with  8-bit data bus and 14-bit address bus and 16 KB of memory 0.8   MHz 1972 April
-8080   8-bit registers with  8-bit data bus and 16-bit address bus and 64 KB of memory 3.125 MHz 1974 April
-8085   8-bit registers with  8-bit data bus and 16-bit address bus and 64 KB of memory 6     MHz 1976
-8086  16-bit registers with 16-bit data bus and 20-bit address bus and  1 MB of memory 10    MHz 1978 June
-8088  16-bit registers with  8-bit data bus and 20-bit address bus and  1 MB of memory 10    MHz 1979 July
-80186 16-bit registers with 16-bit data bus and 20-bit address bus and  1 MB of memory 25    MHz 1982 January
-80188 16-bit registers with  8-bit data bus and 20-bit address bus and  1 MB of memory 25    MHz 1982 January
-80286 16-bit registers with 16-bit data bus and 24-bit address bus and 16 MB of memory 25    MHz 1982 February
-80386 32-bit registers with 32-bit data bus and 32-bit address bus and  4 GB of memory 40    MHz 1985 October
-
-FPUs:
-
-8087
-80187
-80287
-80387
-
-Intel 8086/186 CPU
-1MB RAM
-8072A 3.5" floppy disk controller (1.44MB/720KB)
-Fixed disk controller (supports a single hard drive up to 528MB)
-Hercules graphics card with 720x348 2-color graphics (64KB video RAM), and CGA 80x25 16-color text mode support
-8253 programmable interval timer (PIT)
-8259 programmable interrupt controller (PIC)
-8042 keyboard controller with 83-key XT-style keyboard
-MC146818 real-time clock
-PC speaker
-
- 1 AX (primary accumulator)
- 2 BX (base, accumulator)
- 3 CX (counter, accumulator)
- 4 DX (accumulator, extended acc.)
-
- 5 CS Code Segment
- 6 DS Data Segment
- 7 ES Extra Segment
- 8 SS Stack Segment
-
- 9 SI Source Index
-10 DI Destination Index
-11 BP Base Pointer
-12 SP Stack Pointer
-
-13 IP Instruction Pointer
-
-14 Flags - - - - OF DF IF TF SF ZF - AF - PF - CF
-
-CF Carry flag
-PF Parity flag
-AF Auxiliary carry flag
-ZF Zero flag
-SF Sign flag
-TF Trap flag
-IF Interrupt flag
-DF Direction flag
-OF Overflow flag
-
-To get a bit mask:
-
-var mask = 1 << 5; // gets the 6th bit
-
-To test if a bit is set:
-
-if ((n & mask) != 0) {
-  // bit is set
-} else {
-  // bit is not set
-}
-
-To set a bit:
-
-n |= mask;
-
-To clear a bit:
-
-n &= ~mask;
-
-To toggle a bit:
-
-n ^= mask;
-
-*/
-
 // noinspection ThisExpressionReferencesGlobalObjectJS
 (function(global) {
 	'use strict';
+
+	// TODO: Benchmark DataView vs TypedArrays performance
 
 	var CPU = function() {
 		global.console.log('CPU i8086 initialised!');
@@ -281,7 +195,7 @@ n ^= mask;
 				CH: 0x05,
 				DL: 0x06,
 				DH: 0x07
-		},
+			},
 			get AL() {
 				return self.S8[this.INDEX.AL];
 			},

@@ -1,5 +1,10 @@
 // region Polyfills
 
+if (!('head' in document)) {
+	// noinspection JSValidateTypes
+	document.head = document.getElementsByTagName('head')[0];
+}
+
 // IE 11.228.17134.0
 if (!String.prototype.startsWith) {
 	String.prototype.startsWith = function(search, pos) {
@@ -205,6 +210,43 @@ if (!Object.keys) {
 }
 
 // region Typed Array
+
+if (typeof ArrayBuffer !== 'undefined') {
+	if (!ArrayBuffer.prototype.slice) {
+		ArrayBuffer.prototype.slice = function (from, to) {
+			function clamp(val, length) {
+				val = (val|0) || 0;
+
+				if (val < 0) {
+					return Math.max(val + length, 0);
+				}
+
+				return Math.min(val, length);
+			}
+
+			var length = this.byteLength;
+			var begin = clamp(from, length);
+			var end = length;
+
+			if (to !== undefined) {
+				end = clamp(to, length);
+			}
+
+			if (begin > end) {
+				return new ArrayBuffer(0);
+			}
+
+			var num = end - begin;
+			var target = new ArrayBuffer(num);
+			var targetArray = new Uint8Array(target);
+
+			var sourceArray = new Uint8Array(this, begin, num);
+			targetArray.set(sourceArray);
+
+			return target;
+		};
+	}
+}
 
 if (typeof Int8Array !== 'undefined') {
 	// IE 11.228.17134.0
@@ -468,14 +510,15 @@ if (typeof console !== 'undefined') {
 	var browser								= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
 	var version								= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
 	var vendor								= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
-	// noinspection JSUnresolvedVariable
+	// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
 	var oscpu								= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
-	console.log(navigator);
+	// console.log(navigator);
 
 	global.isEdge							= browser.indexOf('Edge') !== -1;
 	global.isIE								= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
-	global.isFirefox						= browser.indexOf('Firefox') !== -1;
+	global.isPaleMoon						= browser.indexOf('PaleMoon') !== -1;
+	global.isFirefox						= !global.isPaleMoon && browser.indexOf('Firefox') !== -1;
 	global.isChrome							= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.';
 	global.isOperaPresto					= browser.indexOf('Opera') !== -1;
 	global.isOperaBlink						= browser.indexOf('OPR') !== -1;
@@ -607,12 +650,12 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_FEATURE_AMBIENTLIGHT		= !!global.AmbientLightSensor;
 	global.SYSTEM_FEATURE_VIBRATION			= 'vibrate' in navigator;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_BATTERY			= !!navigator.getBattery || !!navigator.battery || !!navigator.mozBattery;
+	global.SYSTEM_FEATURE_BATTERY			= !!navigator.getBattery ? true : !!navigator.battery || !!navigator.mozBattery;
 	// TODO: implement check for Generic Sensor API
 
-	// TODO: check why SYSTEM_FEATURE_ES5SYNTAX fails
 	global.SYSTEM_FEATURE_ES5SYNTAX			= (function() {
 		var value, obj, stringAccess, getter, setter, reservedWords, zeroWidthChars;
+
 		try {
 			stringAccess = eval('"foobar"[3] === "b"');
 			getter = eval('({ get x(){ return 1 } }).x === 1');
@@ -629,14 +672,15 @@ if (typeof console !== 'undefined') {
 			return false;
 		}
 	})();
-	// TODO: check why SYSTEM_FEATURE_ES5UNDEFINED fails
 	global.SYSTEM_FEATURE_ES5UNDEFINED		= (function() {
 		var result, originalUndefined;
 		try {
-			originalUndefined = global.undefined;
-			global.undefined = 12345;
-			result = typeof global.undefined === 'undefined';
-			global.undefined = originalUndefined;
+			originalUndefined = undefined;
+			// noinspection JSUndeclaredVariable
+			undefined = 12345;
+			result = typeof undefined === 'undefined';
+			// noinspection JSUndeclaredVariable
+			undefined = originalUndefined;
 		} catch (e) {
 			return false;
 		}
@@ -655,7 +699,15 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_FEATURE_ES5FUNCTION		= !!(Function.prototype && Function.prototype.bind);
 	global.SYSTEM_FEATURE_ES5OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
 	global.SYSTEM_FEATURE_ES5STRING			= !!(String.prototype && String.prototype.trim);
-	global.SYSTEM_FEATURE_ES5				= !!(SYSTEM_FEATURE_STRICT && SYSTEM_FEATURE_JSON && SYSTEM_FEATURE_BASE64 /*&& SYSTEM_FEATURE_ES5SYNTAX && SYSTEM_FEATURE_ES5UNDEFINED*/ && SYSTEM_FEATURE_ES5ARRAY && SYSTEM_FEATURE_ES5DATE && SYSTEM_FEATURE_ES5FUNCTION && SYSTEM_FEATURE_ES5OBJECT && SYSTEM_FEATURE_ES5STRING);
+	global.SYSTEM_FEATURE_ES5GETSET			= (function() {
+		try {
+			eval('foo={get test(){ return "foo"; }}');
+		} catch (e) {
+			return false;
+		}
+		return true;
+	})();
+	global.SYSTEM_FEATURE_ES5				= !!(SYSTEM_FEATURE_STRICT && SYSTEM_FEATURE_JSON && SYSTEM_FEATURE_BASE64 && SYSTEM_FEATURE_ES5SYNTAX && SYSTEM_FEATURE_ES5UNDEFINED && SYSTEM_FEATURE_ES5ARRAY && SYSTEM_FEATURE_ES5DATE && SYSTEM_FEATURE_ES5FUNCTION && SYSTEM_FEATURE_ES5OBJECT && SYSTEM_FEATURE_ES5STRING);
 
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_ES6NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
@@ -695,8 +747,48 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_FEATURE_ES6				= !!(SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6NUMBER && SYSTEM_FEATURE_ES6MATH && SYSTEM_FEATURE_ES6ARRAY && SYSTEM_FEATURE_ES6FUNCTION && SYSTEM_FEATURE_ES6OBJECT && SYSTEM_FEATURE_ES6STRING && SYSTEM_FEATURE_ES6COLLECTIONS && SYSTEM_FEATURE_ES6GENERATORS && SYSTEM_FEATURE_ES6PROMISES);
 
 	global.SYSTEM_INFO_OS					= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
-	global.SYSTEM_INFO_OS_VERSION			= '';
-	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined)))));
+	global.SYSTEM_INFO_OS_VERSION			= (function() {
+		var offset, version = undefined;
+
+		if ((offset = browser.indexOf('Windows NT')) !== -1) {
+			version = browser.substring(offset + 11);
+
+			if (version.startsWith('5.0')) {
+				version = '2000';
+			} else if (version.startsWith('5.1')) {
+				version = 'XP';
+			} else if (version.startsWith('5.2')) {
+				version = 'Server';
+			} else if (version.startsWith('6.0')) {
+				version = 'Vista';
+			} else if (version.startsWith('6.1')) {
+				version = '7';
+			} else if (version.startsWith('6.2')) {
+				version = '8';
+			} else if (version.startsWith('6.3')) {
+				version = '8.1';
+			} else if (version.startsWith('10.0')) {
+				version = '10';
+			}
+		}
+
+		if (version) {
+			if ((offset = version.indexOf(';')) !== -1) {
+				version = version.substring(0, offset);
+			}
+
+			if ((offset = version.indexOf(' ')) !== -1) {
+				version = version.substring(0, offset);
+			}
+
+			if ((offset = version.indexOf(')')) !== -1) {
+				version = version.substring(0, offset);
+			}
+		}
+
+		return version;
+	})();
+	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isPaleMoon ? 'PaleMoon' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined))))));
 	global.SYSTEM_INFO_BROWSER_VERSION		= (function() {
 		var offset, version = undefined;
 
@@ -726,6 +818,8 @@ if (typeof console !== 'undefined') {
 			if ((offset = browser.indexOf('Version')) !== -1) {
 				version = browser.substring(offset + 8);
 			}
+		} else if ((offset = browser.indexOf('PaleMoon')) !== -1) {
+			version = browser.substring(offset + 9);
 		} else if ((offset = browser.indexOf('Firefox')) !== -1) {
 			version = browser.substring(offset + 8);
 		} else if ((browser.lastIndexOf(' ') + 1) < (offset = browser.lastIndexOf('/'))) {
@@ -789,6 +883,8 @@ if (typeof console !== 'undefined') {
 	if (!global.importScripts) {
 		// Poor's man requirejs :)
 		global.importScripts = function (url, callback) {
+
+
 			// noinspection JSUnresolvedFunction
 			if (!url.startsWith('js/')) {
 				url = 'js/' + url;
@@ -800,12 +896,23 @@ if (typeof console !== 'undefined') {
 			}
 
 			var script = document.createElement('script');
+			script.type = 'text/javascript';
 			script.src = url;
-			script.onload = typeof callback === 'function' ? callback : function() {};
 
-			if (typeof document.head !== 'undefined') {
-				document.head.appendChild(script);
+			callback = typeof callback === 'function' ? callback : function() {};
+
+			if (script.addEventListener) {
+				script.addEventListener('load', callback, false);
+			} else if (script.readyState) {
+				script.onreadystatechange = function() {
+					if (script.readyState === 'loaded') {
+						callback();
+					}
+				};
 			}
+
+			// Polyfilled
+			document.head.appendChild(script);
 		}
 	}
 
@@ -813,6 +920,7 @@ if (typeof console !== 'undefined') {
 		// Poor's man jQuery :)
 		global.$ = function (selector) {
 			if (document.querySelector) {
+				// noinspection JSUnusedGlobalSymbols
 				return document.querySelector(selector) !== null ? document.querySelector(selector) : {innerHTML: function() {}};
 			} else {
 				switch (selector.charAt(0)) {
@@ -829,8 +937,11 @@ if (typeof console !== 'undefined') {
 		global.$.on = function (el, eventName, eventHandler) {
 			if (el.addEventListener) {
 				el.addEventListener(eventName, eventHandler, false);
-			} else if (el.attachEvent) {
-				el.attachEvent('on' + eventName, eventHandler);
+			} else {
+				// noinspection JSUnresolvedVariable
+				if (el.attachEvent) {
+					el.attachEvent('on' + eventName, eventHandler);
+				}
 			}
 		};
 	}
