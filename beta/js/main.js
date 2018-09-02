@@ -225,9 +225,11 @@
 			global.cpuscript = 'i8086/cpu-es3.js';
 		}
 
-		importScripts('js/typedarray.js', function() {
-			importScripts('js/worker.js');
-		});
+		if (!(global.isFirefox && global.SYSTEM_INFO_BROWSER_VERSION === '2.0.0.20')) {
+			importScripts('js/typedarray.js', function() {
+				importScripts('js/worker.js');
+			});
+		}
 	}
 
 }(this));

@@ -513,8 +513,6 @@ if (typeof console !== 'undefined') {
 	// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
 	var oscpu								= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
-	// console.log(navigator);
-
 	global.isEdge							= browser.indexOf('Edge') !== -1;
 	global.isIE								= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
 	global.isPaleMoon						= browser.indexOf('PaleMoon') !== -1;
@@ -541,18 +539,24 @@ if (typeof console !== 'undefined') {
 	global.isWorker							= !global.isBrowser && typeof postMessage !== 'undefined';
 
 	var audio								= document.createElement('audio');
-	console.log('audio');
-	console.log(audio);
-
 	var canvas2D							= document.createElement('canvas');
-	console.log('canvas');
-	console.log(canvas);
+	var context2D							= typeof canvas2D !== 'undefined' ? (typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false) : false;
+	var canvasWEBGL							= null;
+	var	contextWEBGL						= false;
+	var canvasWEBGL2						= null;
+	var	contextWEBGL2						= false;
 
-	var context2D							= typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false;
-	var canvasWEBGL							= document.createElement('canvas');
-	var contextWEBGL						= typeof canvasWEBGL.getContext === 'function' ? (canvasWEBGL.getContext('webgl') || canvasWEBGL.getContext('experimental-webgl')) : false;
-	var canvasWEBGL2						= document.createElement('canvas');
-	var contextWEBGL2						= typeof canvasWEBGL2.getContext === 'function' ? (canvasWEBGL2.getContext('webgl2') || canvasWEBGL2.getContext('experimental-webgl2')) : false;
+	if (context2D) {
+		try {
+			canvasWEBGL						= document.createElement('canvas');
+			contextWEBGL					= typeof canvasWEBGL !== 'undefined' ? (typeof canvasWEBGL.getContext === 'function' ? (canvasWEBGL.getContext('webgl') || canvasWEBGL.getContext('experimental-webgl')) : false) : false;
+
+			if (contextWEBGL) {
+				canvasWEBGL2				= document.createElement('canvas');
+				contextWEBGL2				= typeof canvasWEBGL2 !== 'undefined' ? (typeof canvasWEBGL2.getContext === 'function' ? (canvasWEBGL2.getContext('webgl2') || canvasWEBGL2.getContext('experimental-webgl2')) : false) : false;
+			}
+		} catch (e) {}
+	}
 
 	global.SYSTEM_FEATURE_STRICT			= (function() {'use strict'; return !this; })();
 	global.SYSTEM_FEATURE_JSON				= 'JSON' in global && 'parse' in JSON && 'stringify' in JSON;
@@ -635,13 +639,19 @@ if (typeof console !== 'undefined') {
 	global.SYSTEM_FEATURE_LOCAL_STORAGE		= (function() {
 		var mod = 'test';
 
-		try {
-			localStorage.setItem(mod, mod);
-			localStorage.removeItem(mod);
-			return true;
-		} catch (e) {
-			return false;
+		if (typeof localStorage !== 'undefined') {
+			if (typeof localStorage.setItem === 'function' && typeof localStorage.removeItem === 'function') {
+				try {
+					localStorage.setItem(mod, mod);
+					localStorage.removeItem(mod);
+					return true;
+				} catch (e) {
+					return false;
+				}
+			}
 		}
+
+		return false;
 	})();
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_INDEXED_DB		= !!global.indexedDB ? true : !!global.webkitIndexedDB || !!global.mozIndexedDB || !!global.moz_indexedDB || !!global.oIndexedDB || !!global.msIndexedDB;
@@ -905,7 +915,6 @@ if (typeof console !== 'undefined') {
 	if (!global.importScripts) {
 		// Poor's man requirejs :)
 		global.importScripts = function (url, callback) {
-
 			// noinspection JSUnresolvedFunction
 			if (!url.startsWith('js/')) {
 				url = 'js/' + url;
@@ -942,26 +951,39 @@ if (typeof console !== 'undefined') {
 		global.$ = function (selector) {
 			if (document.querySelector) {
 				// noinspection JSUnusedGlobalSymbols
-				return document.querySelector(selector) !== null ? document.querySelector(selector) : {innerHTML: function() {}};
+				return document.querySelector(selector) !== null ? document.querySelector(selector) : null;
 			} else {
-				switch (selector.charAt(0)) {
-					case '.':
+				if (selector.charAt(0) === '.') {
+					if (document.getElementsByClassName) {
 						return document.getElementsByClassName(selector.substr(1))[0];
-					case '#':
-						return document.getElementById(selector.substr(1));
-					default:
-						return document.getElementsByTagName(selector)[0];
+					}
 				}
+
+				if (selector.charAt(0) === '#') {
+					if (document.getElementById) {
+						return document.getElementById(selector.substr(1));
+					}
+				}
+
+				if (selector.charAt(0) !== '.' && selector.charAt(0) !== '#') {
+					if (document.getElementsByTagName) {
+						return document.getElementsByTagName(selector)[0];
+					}
+				}
+
+				return null;
 			}
 		};
 
 		global.$.on = function (el, eventName, eventHandler) {
-			if (el.addEventListener) {
-				el.addEventListener(eventName, eventHandler, false);
-			} else {
-				// noinspection JSUnresolvedVariable
-				if (el.attachEvent) {
-					el.attachEvent('on' + eventName, eventHandler);
+			if (el) {
+				if (el.addEventListener) {
+					el.addEventListener(eventName, eventHandler, false);
+				} else {
+					// noinspection JSUnresolvedVariable
+					if (el.attachEvent) {
+						el.attachEvent('on' + eventName, eventHandler);
+					}
 				}
 			}
 		};

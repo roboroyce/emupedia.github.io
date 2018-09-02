@@ -526,8 +526,7 @@ if (typeof console !== 'undefined') {
 	} else {
 		global.console.log('Running in worker!');
 		// synchronous load
-		// TODO: should get script from page
-		importScripts('i8086/cpu-es5.js');
+		importScripts(global.cpuscript);
 		init();
 	}
 
