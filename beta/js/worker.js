@@ -509,6 +509,18 @@ if (typeof console !== 'undefined') {
 
 	var cpu = null;
 
+	function load(cpuscript) {
+		if (typeof cpuscript === 'undefined') {
+			cpuscript = global.cpuscript;
+		}
+
+		global.console.log('Running in worker!');
+		// synchronous load
+		importScripts(cpuscript);
+
+		return init();
+	}
+
 	function init() {
 		cpu = new CPU();
 		cpu.start();
@@ -517,17 +529,15 @@ if (typeof console !== 'undefined') {
 		if (typeof global.update === 'function') {
 			global.update(cpu);
 		}
+
+		return cpu;
 	}
 
 	if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document) {
 		global.console.log('Running in page!');
 		// asynchronous load
-		importScripts(global.cpuscript, init);
-	} else {
-		global.console.log('Running in worker!');
-		// synchronous load
-		importScripts(global.cpuscript);
-		init();
+		// noinspection JSCheckFunctionSignatures
+		importScripts(cpuscript, init);
 	}
 
 	onmessage = function(e) {
@@ -535,13 +545,16 @@ if (typeof console !== 'undefined') {
 		// global.console.log(JSON.parse(JSON.stringify(e)));
 		// global.console.log(e.data);
 
-		switch (e.data) {
-			case 'state':
-				//noinspection JSCheckFunctionSignatures
+		if (typeof e.data === 'object') {
+			if (typeof e.data.cpu !== 'undefined') {
+				return postMessage({state: load(e.data.cpu)});
+			}
+
+			if (typeof e.data.state !== 'undefined') {
 				return postMessage({state: cpu});
-			default:
-				//noinspection JSCheckFunctionSignatures
-				return postMessage('default');
+			}
+		} else {
+			return postMessage('ok');
 		}
 	};
 
