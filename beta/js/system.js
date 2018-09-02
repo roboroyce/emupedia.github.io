@@ -541,7 +541,13 @@ if (typeof console !== 'undefined') {
 	global.isWorker							= !global.isBrowser && typeof postMessage !== 'undefined';
 
 	var audio								= document.createElement('audio');
+	console.log('audio');
+	console.log(audio);
+
 	var canvas2D							= document.createElement('canvas');
+	console.log('canvas');
+	console.log(canvas);
+
 	var context2D							= typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false;
 	var canvasWEBGL							= document.createElement('canvas');
 	var contextWEBGL						= typeof canvasWEBGL.getContext === 'function' ? (canvasWEBGL.getContext('webgl') || canvasWEBGL.getContext('experimental-webgl')) : false;
