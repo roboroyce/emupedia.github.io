@@ -513,10 +513,14 @@ if (typeof console !== 'undefined') {
 	// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
 	var oscpu								= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
+	console.log(browser);
+
 	global.isEdge							= browser.indexOf('Edge') !== -1;
 	global.isIE								= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
+	global.isNetscape						= browser.indexOf('Navigator') !== -1;
+	global.isKMeleon						= browser.indexOf('K-Meleon') !== -1;
 	global.isPaleMoon						= browser.indexOf('PaleMoon') !== -1;
-	global.isFirefox						= !global.isPaleMoon && browser.indexOf('Firefox') !== -1;
+	global.isFirefox						= !global.isNetscape && !global.isPaleMoon && browser.indexOf('Firefox') !== -1;
 	global.isChrome							= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.';
 	global.isOperaPresto					= browser.indexOf('Opera') !== -1;
 	global.isOperaBlink						= browser.indexOf('OPR') !== -1;
@@ -804,6 +808,14 @@ if (typeof console !== 'undefined') {
 			}
 		}
 
+		if ((offset = browser.indexOf('Win 9x')) !== -1) {
+			version = browser.substring(offset + 7);
+
+			if (version.startsWith('4.90')) {
+				version = 'Millennium';
+			}
+		}
+
 		if (version) {
 			if ((offset = version.indexOf(';')) !== -1) {
 				version = version.substring(0, offset);
@@ -820,7 +832,7 @@ if (typeof console !== 'undefined') {
 
 		return version;
 	})();
-	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isPaleMoon ? 'PaleMoon' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined))))));
+	global.SYSTEM_INFO_BROWSER				= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isNetscape ? 'Netscape Navigator' : (global.isKMeleon ? 'K-Meleon' : (global.isPaleMoon ? 'PaleMoon' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined))))))));
 	global.SYSTEM_INFO_BROWSER_VERSION		= (function() {
 		var offset, version = undefined;
 
@@ -850,6 +862,10 @@ if (typeof console !== 'undefined') {
 			if ((offset = browser.indexOf('Version')) !== -1) {
 				version = browser.substring(offset + 8);
 			}
+		} else if ((offset = browser.indexOf('K-Meleon')) !== -1) {
+			version = browser.substring(offset + 9);
+		} else if ((offset = browser.indexOf('Navigator')) !== -1) {
+			version = browser.substring(offset + 10);
 		} else if ((offset = browser.indexOf('PaleMoon')) !== -1) {
 			version = browser.substring(offset + 9);
 		} else if ((offset = browser.indexOf('Firefox')) !== -1) {
@@ -880,11 +896,11 @@ if (typeof console !== 'undefined') {
 		new DataView(buffer).setUint16(0, 256, true);
 
 		return new Uint16Array(buffer)[0] === 256;
-	})() : undefined);
+	})() : true);
 	// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
-	global.SYSTEM_INFO_CPU_BIG_ENDIAN		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : undefined;
+	global.SYSTEM_INFO_CPU_BIG_ENDIAN		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : false;
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_CPU_ENDIANNESS		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'LE' : 'BE') : undefined;
+	global.SYSTEM_INFO_CPU_ENDIANNESS		= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'LE' : 'BE') : 'LE';
 	// noinspection JSUnusedGlobalSymbols
 	global.SYSTEM_INFO_CPU_CORES			= !navigator.hardwareConcurrency ? 1 : navigator.hardwareConcurrency;
 	// noinspection JSUnresolvedVariable
@@ -915,34 +931,36 @@ if (typeof console !== 'undefined') {
 	if (!global.importScripts) {
 		// Poor's man requirejs :)
 		global.importScripts = function (url, callback) {
-			// noinspection JSUnresolvedFunction
-			if (!url.startsWith('js/')) {
-				url = 'js/' + url;
+			if (url) {
+				// noinspection JSUnresolvedFunction
+				if (!url.startsWith('js/')) {
+					url = 'js/' + url;
+				}
+
+				// noinspection JSUnresolvedFunction
+				if (!url.endsWith('.js')) {
+					url += '.js';
+				}
+
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = url;
+
+				callback = typeof callback === 'function' ? callback : function() {};
+
+				if (script.addEventListener) {
+					script.addEventListener('load', callback, false);
+				} else if (script.readyState) {
+					script.onreadystatechange = function() {
+						if (script.readyState === 'loaded') {
+							callback();
+						}
+					};
+				}
+
+				// Polyfilled
+				document.head.appendChild(script);
 			}
-
-			// noinspection JSUnresolvedFunction
-			if (!url.endsWith('.js')) {
-				url += '.js';
-			}
-
-			var script = document.createElement('script');
-			script.type = 'text/javascript';
-			script.src = url;
-
-			callback = typeof callback === 'function' ? callback : function() {};
-
-			if (script.addEventListener) {
-				script.addEventListener('load', callback, false);
-			} else if (script.readyState) {
-				script.onreadystatechange = function() {
-					if (script.readyState === 'loaded') {
-						callback();
-					}
-				};
-			}
-
-			// Polyfilled
-			document.head.appendChild(script);
 		}
 	}
 
@@ -1088,16 +1106,10 @@ if (typeof console !== 'undefined') {
 			Value: SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_INFO_OS',
-			Value: SYSTEM_INFO_OS
-		} , {
-			Feature: 'SYSTEM_INFO_OS_VERSION',
-			Value: SYSTEM_INFO_OS_VERSION
+			Value: SYSTEM_INFO_OS + ' ' + SYSTEM_INFO_OS_VERSION
 		} , {
 			Feature: 'SYSTEM_INFO_BROWSER',
-			Value: SYSTEM_INFO_BROWSER
-		} , {
-			Feature: 'SYSTEM_INFO_BROWSER_VERSION',
-			Value: SYSTEM_INFO_BROWSER_VERSION
+			Value: SYSTEM_INFO_BROWSER + ' ' + SYSTEM_INFO_BROWSER_VERSION
 		} , {
 			Feature: 'SYSTEM_INFO_CPU_ENDIANNESS',
 			Value: SYSTEM_INFO_CPU_ENDIANNESS
@@ -1120,7 +1132,7 @@ if (typeof console !== 'undefined') {
 
 	dumpSystem();
 
-	importScripts($('script').getAttribute('data-main'));
+	importScripts($('#system').getAttribute('data-main'));
 
 	onerror = function(message, url, lineNumber) {
 		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);

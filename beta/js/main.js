@@ -233,12 +233,13 @@
 			global.cpuscript = 'i8086/cpu-es3.js';
 		}
 
-		// TODO: Firefox < 4 no support for Typed Arrays, Polyfill very slow
-		if (!(global.isFirefox && parseInt(global.SYSTEM_INFO_BROWSER_VERSION.split('.')[0]) < 4)) {
+		// TODO: IE 9.0 / Opera 9.6.4 / KMeleon <= 1.6.0 / Firefox < 4.0 no support for Typed Arrays, Polyfill very slow
+		if (!global.isNetscape && !(global.isIE && parseInt(global.SYSTEM_INFO_BROWSER_VERSION.split('.')[0]) <= 9) && !(global.isOperaPresto && parseInt(global.SYSTEM_INFO_BROWSER_VERSION.split('.')[0]) <= 9) && !(global.isKMeleon && parseInt(global.SYSTEM_INFO_BROWSER_VERSION.split('.')[0]) <= 1) && !(global.isFirefox && parseInt(global.SYSTEM_INFO_BROWSER_VERSION.split('.')[0]) < 4)) {
 			importScripts('js/typedarray.js', function() {
 				importScripts('js/worker.js');
 			});
 		} else {
+			alert('BROWSER NOT SUPPORTED!');
 			global.console.log('BROWSER NOT SUPPORTED!');
 		}
 	}

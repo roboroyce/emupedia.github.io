@@ -91,7 +91,6 @@ n ^= mask;
 	'use strict';
 
 	// TODO: Benchmark DataView vs TypedArrays performance
-
 	var CPU = function() {
 		global.console.log('CPU i8086 initialised!');
 

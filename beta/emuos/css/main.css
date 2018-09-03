@@ -1,0 +1,385 @@
+.contents {
+	font-size: 16px;
+	/*margin: 10px;*/
+}
+
+.wrapper-1 {
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	overflow: hidden;
+}
+
+.wrapper-1 .border-1 {
+	border: 1px solid #000;
+}
+
+.wrapper-1 .border-2 {
+	border: 2px solid #c0c0c0;
+}
+
+.wrapper-1 .border-3 {
+	border: 1px solid #000;
+}
+
+.wrapper-1 .top-left {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 22px;
+	height: 4px;
+	border-right: 1px solid #000;
+}
+
+.wrapper-1 .top-right {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 22px;
+	height: 4px;
+	border-left: 1px solid #000;
+}
+
+.wrapper-1 .left-top {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 22px;
+	border-bottom: 1px solid #000;
+}
+
+.wrapper-1 .right-top {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 4px;
+	height: 22px;
+	border-bottom: 1px solid #000;
+}
+
+.wrapper-1 .left-bottom {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 4px;
+	height: 22px;
+	border-top: 1px solid #000;
+}
+
+.wrapper-1 .right-bottom {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 4px;
+	height: 22px;
+	border-top: 1px solid #000;
+}
+
+.wrapper-1 .bottom-left {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 22px;
+	height: 4px;
+	border-right: 1px solid #000;
+}
+
+.wrapper-1 .bottom-right {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 22px;
+	height: 4px;
+	border-left: 1px solid #000;
+}
+
+.wrapper-1 .title-bar {
+	height: 18px;
+	border-bottom: 1px solid #000;
+}
+
+.wrapper-2 {
+	position: relative;
+	display: inline-block;
+	/*padding: 10px;*/
+	overflow: hidden;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .top-left {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/top-left.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .top {
+	display: block;
+	position: absolute;
+	top: 0;
+	background-image: url(../images/top-bottom.png);
+	background-repeat: repeat-x;
+	background-position: center top;
+	left: 23px;
+	right: 23px;
+	height: 4px;
+	_width: 2000px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .top-right {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/top-right.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .left-top {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/left-top.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .right-top {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/right-top.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .left {
+	display: block;
+	position: absolute;
+	left: 0;
+	background-image: url(../images/left-right.png);
+	background-repeat: repeat-y;
+	background-position: left top;
+	top: 23px;
+	bottom: 23px;
+	width: 4px;
+	_height: 2000px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .right {
+	display: block;
+	position: absolute;
+	right: 0;
+	background-image: url(../images/left-right.png);
+	background-repeat: repeat-y;
+	background-position: right top;
+	top: 23px;
+	bottom: 23px;
+	width: 4px;
+	_height: 2000px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .left-bottom {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/left-bottom.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .right-bottom {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/right-bottom.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .bottom-left {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/bottom-left.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .bottom {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	background-image: url(../images/top-bottom.png);
+	background-repeat: repeat-x;
+	background-position: center bottom;
+	left: 23px;
+	right: 23px;
+	height: 4px;
+	_width: 2000px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-2 .bottom-right {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/bottom-right.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.wrapper-3 {
+	border-spacing: 0;
+	border-collapse: collapse;
+	font-size: 0;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .top-left {
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/top-left.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .top {
+	background-image: url(../images/top-bottom.png);
+	background-repeat: repeat-x;
+	background-position: center top;
+	height: 4px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .top-right {
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/top-right.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .left-top {
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/left-top.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .right-top {
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/right-top.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .left {
+	background-image: url(../images/left-right.png);
+	background-repeat: repeat-y;
+	background-position: left top;
+	width: 4px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .right {
+	background-image: url(../images/left-right.png);
+	background-repeat: repeat-y;
+	background-position: right top;
+	width: 4px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .left-bottom {
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/left-bottom.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .right-bottom {
+	width: 4px;
+	height: 23px;
+	background-image: url(../images/right-bottom.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .bottom-left {
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/bottom-left.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .bottom {
+	background-image: url(../images/top-bottom.png);
+	background-repeat: repeat-x;
+	background-position: center bottom;
+	height: 4px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.wrapper-3 .bottom-right {
+	width: 23px;
+	height: 4px;
+	background-image: url(../images/bottom-right.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
