@@ -606,6 +606,8 @@ if (typeof console !== 'undefined') {
 			return false;
 		}
 	})();
+	// noinspection JSUnresolvedVariable
+	global.SYSTEM_FEATURE_WEBMIDI			= !!navigator.requestMIDIAccess;
 	// noinspection JSUnusedGlobalSymbols
 	// TODO: implement check for keyboard events support
 	global.SYSTEM_FEATURE_KEYBOARD			= true;
@@ -1056,6 +1058,9 @@ if (typeof console !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_WEBAUDIO',
 			Value: SYSTEM_FEATURE_WEBAUDIO ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_WEBMIDI',
+			Value: SYSTEM_FEATURE_WEBMIDI ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_FEATURE_KEYBOARD',
 			Value: SYSTEM_FEATURE_KEYBOARD ? 'TRUE' : 'FALSE'
