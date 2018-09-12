@@ -1,0 +1,65 @@
+.mCustomScrollBox.mCS-win311 .mCSB_container {
+	margin-right: 0;
+}
+
+.mCustomScrollBox.mCS-win311 .mCSB_scrollTools_vertical {
+	width: 15px;
+	border-left: 1px solid #000;
+	opacity: 1;
+	filter: none;
+	-ms-filter: none;
+}
+
+.mCustomScrollBox.mCS-win311 .mCSB_draggerContainer {
+	margin: 15px 0;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	/*background: #c0c0c0;*/
+}
+
+.mCustomScrollBox.mCS-win311 .mCSB_draggerRail {
+	width: 100%;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	background: #c0c0c0;
+	filter: none;
+	-ms-filter: none;
+}
+
+.mCustomScrollBox.mCS-win311 .mCSB_dragger {
+
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssOverwrittenProperties*/
+.mCustomScrollBox.mCS-win311 .mCSB_dragger .mCSB_dragger_bar {
+	width: 100%;
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	background: #c0c0c0;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.mCustomScrollBox.mCS-win311 .mCSB_buttonUp,
+.mCustomScrollBox.mCS-win311 .mCSB_buttonDown {
+	width: 13px;
+	height: 13px;
+	background: #c0c0c0;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	opacity: 1;
+	filter: none;
+	-ms-filter: none;
+}
+

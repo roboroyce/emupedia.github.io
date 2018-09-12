@@ -1,0 +1,64 @@
+/*noinspection CssUnknownTarget*/
+html {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/default.cur), url(../images/cursors/crystal/crystal-clear-regular-static/default.cur), default;
+}
+
+/*noinspection CssUnknownTarget*/
+p {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/text.cur), url(../images/cursors/crystal/crystal-clear-regular-static/text.cur), text;
+}
+
+/*noinspection CssUnknownTarget*/
+.button {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/pointer.cur), url(../images/cursors/crystal/crystal-clear-regular-static/pointer.cur), pointer;
+}
+
+/*noinspection CssUnknownTarget*/
+.cursor {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/default.cur), url(../images/cursors/crystal/crystal-clear-regular-static/default.cur), default;
+}
+
+/*noinspection CssUnknownTarget*/
+.title-bar {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/move.cur), url(../images/cursors/crystal/crystal-clear-regular-static/move.cur), move;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-n {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/vertical.cur), url(../images/cursors/crystal/crystal-clear-regular-static/vertical.cur), n-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-e {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/horizontal.cur), url(../images/cursors/crystal/crystal-clear-regular-static/horizontal.cur), e-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-s {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/vertical.cur), url(../images/cursors/crystal/crystal-clear-regular-static/vertical.cur), s-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-w {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/horizontal.cur), url(../images/cursors/crystal/crystal-clear-regular-static/horizontal.cur), w-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-nw {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/diagonal1.cur), url(../images/cursors/crystal/crystal-clear-regular-static/diagonal1.cur), nw-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-ne {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/diagonal2.cur), url(../images/cursors/crystal/crystal-clear-regular-static/diagonal2.cur), nw-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-sw {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/diagonal2.cur), url(../images/cursors/crystal/crystal-clear-regular-static/diagonal2.cur), sw-resize;
+}
+
+/*noinspection CssUnknownTarget*/
+.ui-resizable-se {
+	cursor: url(images/cursors/crystal/crystal-clear-regular-static/diagonal1.cur), url(../images/cursors/crystal/crystal-clear-regular-static/diagonal1.cur), se-resize;
+}
