@@ -22,7 +22,7 @@ $(function() {
 
 	$('.window .content').mCustomScrollbar({
 		theme: 'win311',
-		axis: 'yx',
+		axis: 'y',
 		scrollbarPosition: 'inside',
 		scrollInertia: 0,
 		alwaysShowScrollbar: 0,
@@ -45,6 +45,7 @@ $(function() {
 
 	$('.list').mCustomScrollbar({
 		theme: 'win311',
+		axis: 'y',
 		scrollbarPosition: 'inside',
 		scrollInertia: 0,
 		snapAmount: $('.list li').height(),

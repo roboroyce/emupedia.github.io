@@ -1,5 +1,10 @@
+.mCustomScrollBox.mCS-win311 .mCSB_container_wrapper {
+	margin-right: 15px;
+}
+
 .mCustomScrollBox.mCS-win311 .mCSB_container {
 	margin-right: 0;
+	padding-right: 0;
 }
 
 .mCustomScrollBox.mCS-win311 .mCSB_scrollTools_vertical {
@@ -28,7 +33,6 @@
 }
 
 .mCustomScrollBox.mCS-win311 .mCSB_dragger {
-
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }

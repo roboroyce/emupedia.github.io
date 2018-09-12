@@ -62,3 +62,10 @@ p {
 .ui-resizable-se {
 	cursor: url(images/cursors/win311/diagonal1.ani), url(../images/cursors/win311/diagonal1.ani), url(images/cursors/win311/diagonal1.cur), url(../images/cursors/win311/diagonal1.cur), nw-resize;
 }
+
+/*noinspection CssUnknownTarget*/
+.mCustomScrollBox.mCS-win311 .mCSB_dragger .mCSB_dragger_bar,
+.mCustomScrollBox.mCS-win311 .mCSB_buttonUp,
+.mCustomScrollBox.mCS-win311 .mCSB_buttonDown {
+	cursor: url(images/cursors/win311/pointer.cur), url(../images/cursors/win311/pointer.cur), pointer;
+}
