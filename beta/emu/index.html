@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="format-detection" content="telephone=no">
+
+		<title>Emupedia</title>
+
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body ondragstart="return false;" ondrop="return false;">
+		<div class="vm-container">
+
+			<ul class="tab-bar">
+				<li class="tab"><a class="power" href="javascript:">START</a></li>
+				<li class="tab"><a class="reset" href="javascript:">RESET</a></li>
+				<li class="tab"><a class="fullscreen" href="javascript:">FULLSCREEN</a></li>
+				<li class="tab"><a class="toggle-console" href="javascript:">CONSOLE</a></li>
+				<li class="tab"><a class="toggle-keyboard" href="javascript:">KEYBOARD</a></li>
+			</ul>
+
+			<div class="main-container">
+
+				<!--<div class="screen text-640x350-res-80x25-textres-8x14-charsize-16-colors">-->
+					<!--<div class="text-mode"></div>-->
+					<!--<canvas class="canvas"></canvas>-->
+				<!--</div>-->
+
+				<table class="debugger">
+					<tr>
+						<td align="left" valign="top">
+							<table class="registers">
+								<tr><th>General-Purpose&nbsp;Registers</th></tr>
+								<tr><td>AX&nbsp;<span class="AX">0000</span>&nbsp;AH&nbsp;<span class="AH">00</span>&nbsp;AL&nbsp;<span class="AL">00</span>&nbsp;Accumulator</td></tr>
+								<tr><td>BX&nbsp;<span class="BX">0000</span>&nbsp;BH&nbsp;<span class="BH">00</span>&nbsp;BL&nbsp;<span class="BL">00</span>&nbsp;Base</td></tr>
+								<tr><td>CX&nbsp;<span class="CX">0000</span>&nbsp;CH&nbsp;<span class="CH">00</span>&nbsp;CL&nbsp;<span class="CL">00</span>&nbsp;Counter</td></tr>
+								<tr><td>DX&nbsp;<span class="DX">0000</span>&nbsp;DH&nbsp;<span class="DH">00</span>&nbsp;DL&nbsp;<span class="DL">00</span>&nbsp;Data</td></tr>
+								<tr><th>Segment&nbsp;Registers</th></tr>
+								<tr><td>CS&nbsp;<span class="CS">0000</span>&nbsp;Code&nbsp;Segment</td></tr>
+								<tr><td>DS&nbsp;<span class="DS">0000</span>&nbsp;Data&nbsp;Segment</td></tr>
+								<tr><td>ES&nbsp;<span class="ES">0000</span>&nbsp;Extra&nbsp;Segment</td></tr>
+								<tr><td>SS&nbsp;<span class="SS">0000</span>&nbsp;Stack&nbsp;Segment</td></tr>
+								<tr><th>Misc&nbsp;Registers</th></tr>
+								<tr><td>SI&nbsp;<span class="SI">0000</span>&nbsp;Source&nbsp;Index</td></tr>
+								<tr><td>DI&nbsp;<span class="DI">0000</span>&nbsp;Destination&nbsp;Index</td></tr>
+								<tr><td>BP&nbsp;<span class="BP">0000</span>&nbsp;Base&nbsp;Pointer</td></tr>
+								<tr><td>SP&nbsp;<span class="SP">0000</span>&nbsp;Stack&nbsp;Pointer</td></tr>
+								<tr><th>Instruction&nbsp;Pointer</th></tr>
+								<tr><td>IP&nbsp;<span class="IP">0000</span>&nbsp;Instruction&nbsp;Pointer</td></tr>
+								<tr><th>Flags&nbsp;Register</th></tr>
+								<tr><td>&nbsp;F&nbsp;<span class="F">0000</span>&nbsp;Flags</td></tr>
+							</table>
+
+							<table class="flags">
+								<tr><th>Flags&nbsp;Register</th></tr>
+								<tr><td><span class="FLAGS">0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0</span></td></tr>
+								<tr><th>-&nbsp;-&nbsp;-&nbsp;-&nbsp;O&nbsp;D&nbsp;I&nbsp;T&nbsp;S&nbsp;Z&nbsp;-&nbsp;A&nbsp;-&nbsp;P&nbsp;-&nbsp;C</th></tr>
+								<tr><td>CF&nbsp;<span class="CF">0</span>&nbsp;Carry Flag</td></tr>
+								<tr><td>PF&nbsp;<span class="PF">0</span>&nbsp;Parity Flag</td></tr>
+								<tr><td>AF&nbsp;<span class="AF">0</span>&nbsp;Auxiliary Carry Flag</td></tr>
+								<tr><td>ZF&nbsp;<span class="ZF">0</span>&nbsp;Zero Flag</td></tr>
+								<tr><td>SF&nbsp;<span class="SF">0</span>&nbsp;Sign Flag</td></tr>
+								<tr><td>TF&nbsp;<span class="TF">0</span>&nbsp;Trap Flag</td></tr>
+								<tr><td>IF&nbsp;<span class="IF">0</span>&nbsp;Interrupt Flag</td></tr>
+								<tr><td>DF&nbsp;<span class="DF">0</span>&nbsp;Direction Flag</td></tr>
+								<tr><td>OF&nbsp;<span class="OF">0</span>&nbsp;Overflow Flag</td></tr>
+							</table>
+						</td>
+						<td align="right" valign="top">
+							<table class="state">
+								<tr><th>State</th></tr>
+								<tr><td><span class="STATE">0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000&nbsp;0000</span></td></tr>
+								<tr><th>&nbsp;AX&nbsp;&nbsp;&nbsp;BX&nbsp;&nbsp;&nbsp;CX&nbsp;&nbsp;&nbsp;DX&nbsp;&nbsp;&nbsp;CS&nbsp;&nbsp;&nbsp;DS&nbsp;&nbsp;&nbsp;ES&nbsp;&nbsp;&nbsp;SS&nbsp;&nbsp;&nbsp;SI&nbsp;&nbsp;&nbsp;DI&nbsp;&nbsp;&nbsp;BP&nbsp;&nbsp;&nbsp;SP&nbsp;&nbsp;&nbsp;IP&nbsp;&nbsp;Flags</th></tr>
+							</table>
+
+							<table class="ram">
+								<tr>
+									<th colspan="3">RAM</th>
+								</tr>
+								<tr>
+									<th>OFFSET</th>
+									<th>00&nbsp;01&nbsp;02&nbsp;03&nbsp;04&nbsp;05&nbsp;06&nbsp;07&nbsp;08&nbsp;09&nbsp;0A&nbsp;0B&nbsp;0C&nbsp;0D&nbsp;0E&nbsp;0F</th>
+									<th>ASCII</th>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+			<div class="keyboard">
+				<div class="rows cf">
+					<a class="key escape" href="javascript:">esc</a>
+					<a class="key" href="javascript:">&#x1f505; f1</a>
+					<a class="key" href="javascript:">&#x1f506; f2</a>
+					<a class="key" href="javascript:">f3</a>
+					<a class="key" href="javascript:">f4</a>
+					<a class="key" href="javascript:">f5</a>
+					<a class="key" href="javascript:">f6</a>
+					<a class="key" href="javascript:">&#x23ea; f7</a>
+					<a class="key" href="javascript:">&#x23EF; f8</a>
+					<a class="key" href="javascript:">&#x23e9; f9</a>
+					<a class="key" href="javascript:">&#x1F508; f10</a>
+					<a class="key" href="javascript:">&#x1F509; f11</a>
+					<a class="key" href="javascript:">&#x1F50A; f12</a>
+					<a class="key eject" href="javascript:">&#x23cf;</a>
+				</div>
+				<div class="rows cf">
+					<a class="key square" href="javascript:">~<br />`</a>
+					<a class="key square" href="javascript:">!<br />1</a>
+					<a class="key square" href="javascript:">@<br />2</a>
+					<a class="key square" href="javascript:">#<br />3</a>
+					<a class="key square" href="javascript:">$<br />4</a>
+					<a class="key square" href="javascript:">%<br />5</a>
+					<a class="key square" href="javascript:">^<br />6</a>
+					<a class="key square" href="javascript:">&amp;<br />7</a>
+					<a class="key square" href="javascript:">*<br />8</a>
+					<a class="key square" href="javascript:">(<br />9</a>
+					<a class="key square" href="javascript:">)<br />0</a>
+					<a class="key square" href="javascript:">_<br />-</a>
+					<a class="key square" href="javascript:">+<br />=</a>
+					<a class="key delete" href="javascript:">⟵ Delete</a>
+				</div>
+				<div class="rows cf">
+					<a class="key square tab" href="javascript:">&#x21B9; &#x21E5; tab</a>
+					<a class="key square center" href="javascript:">q</a>
+					<a class="key square center" href="javascript:">w</a>
+					<a class="key square center" href="javascript:">e</a>
+					<a class="key square center" href="javascript:">r</a>
+					<a class="key square center" href="javascript:">t</a>
+					<a class="key square center" href="javascript:">y</a>
+					<a class="key square center" href="javascript:">u</a>
+					<a class="key square center" href="javascript:">i</a>
+					<a class="key square center" href="javascript:">o</a>
+					<a class="key square center" href="javascript:">p</a>
+					<a class="key square" href="javascript:">{<br />[</a>
+					<a class="key square" href="javascript:">}<br />]</a>
+					<a class="key square" href="javascript:">|<br />\</a>
+				</div>
+				<div class="rows cf">
+					<a class="key caps" href="javascript:"><b></b>&#x21EA; <span class="no-caps">caps lock</span></a>
+					<a class="key square center" href="javascript:">a</a>
+					<a class="key square center" href="javascript:">s</a>
+					<a class="key square center" href="javascript:">d</a>
+					<a class="key square center" href="javascript:">f</a>
+					<a class="key square center" href="javascript:">g</a>
+					<a class="key square center" href="javascript:">h</a>
+					<a class="key square center" href="javascript:">j</a>
+					<a class="key square center" href="javascript:">k</a>
+					<a class="key square center" href="javascript:">l</a>
+					<a class="key square" href="javascript:">:<br />;</a>
+					<a class="key square" href="javascript:">"<br />'</a>
+					<a class="key return" href="javascript:">&#x21A9; &#x21B5; &#x23CE; &#x2324;<span class="no-caps">return</span></a>
+				</div>
+				<div class="rows cf">
+					<a class="key left shift" href="javascript:">&#x21E7; shift</a>
+					<a class="key square center" href="javascript:">z</a>
+					<a class="key square center" href="javascript:">x</a>
+					<a class="key square center" href="javascript:">c</a>
+					<a class="key square center" href="javascript:">v</a>
+					<a class="key square center" href="javascript:">b</a>
+					<a class="key square center" href="javascript:">n</a>
+					<a class="key square center" href="javascript:">m</a>
+					<a class="key square" href="javascript:">&lt;<br />,</a>
+					<a class="key square" href="javascript:">&gt;<br />.</a>
+					<a class="key square" href="javascript:">?<br />/</a>
+					<a class="key right shift" href="javascript:">&#x21E7; shift</a>
+				</div>
+				<div class="rows cf">
+					<a class="key bottom" href="javascript:">fn</a>
+					<a class="key bottom wide" href="javascript:">control</a>
+					<a class="key bottom option" href="javascript:">&#x2325;<br />option</a>
+					<a class="key bottom command" href="javascript:">&#x2318;<br />command</a>
+					<a class="key space" href="javascript:">.</a>
+					<a class="key bottom command" href="javascript:">&#x2318;<br />command</a>
+					<a class="key bottom option" href="javascript:">&#x2325;<br />option</a>
+					<div class="arrows-wrap cf">
+						<div class="middle-arrows cf">
+							<a class="key arrows-left-right" href="javascript:">&#x25C0;</a>
+						</div>
+						<div class="middle-arrows cf">
+							<a class="key arrow-up" href="javascript:">&#x25B2;</a>
+							<a class="key arrow-down" href="javascript:">&#x25BC;</a>
+						</div>
+						<div class="middle-arrows">
+							<a class="key arrows-left-right" href="javascript:">&#x25B6;</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--suppress HtmlFormInputWithoutLabel -->
+			<input class="console" type="text" />
+
+			<!--suppress HtmlFormInputWithoutLabel -->
+			<textarea cols="40" rows="12" id="serial" style="display: none"></textarea>
+
+		</div>
+
+		<!--suppress HtmlUnknownAnchorTarget -->
+		<script type="text/javascript" src="js/firebug-lite-1.2.js#startOpened=true"></script>
+		<script id="system" type="text/javascript" data-main="js/main" src="js/system.js"></script>
+	</body>
+</html>
