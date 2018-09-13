@@ -17,6 +17,16 @@ p {
 	padding: 0;
 }
 
+::selection {
+	background: #000080;
+	color: #fff;
+}
+
+::-moz-selection {
+	background: #000080;
+	color: #fff;
+}
+
 .no-select {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;

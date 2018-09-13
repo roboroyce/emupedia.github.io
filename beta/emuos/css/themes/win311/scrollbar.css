@@ -67,3 +67,27 @@
 	-ms-filter: none;
 }
 
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.mCustomScrollBox.mCS-win311 .mCSB_buttonUp {
+	background-image: url(../../../images/icons/win311/up.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.mCustomScrollBox.mCS-win311 .mCSB_buttonDown {
+	background-image: url(../../../images/icons/win311/down.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+

@@ -52,7 +52,7 @@
 
 /* region Dialog */
 
-.dialog {
+.theme-win311 .dialog {
 	position: absolute;
 	display: block;
 	top: 150px;
@@ -64,26 +64,26 @@
 	z-index: 4;
 }
 
-.dialog .border-1 {
+.theme-win311 .dialog .border-1 {
 	height: 100%;
 	background-color: #000;
 	padding: 1px;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.dialog .border-2 {
+.theme-win311 .dialog .border-2 {
 	height: 100%;
 	height: calc(100% - 10px);
 	background-color: #c0c0c0;
 	padding: 4px;
 }
 
-.dialog.focused .border-2 {
+.theme-win311 .dialog.focused .border-2 {
 	background-color: #000080;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.dialog .border-3 {
+.theme-win311 .dialog .border-3 {
 	height: 100%;
 	height: calc(100% - 2px);
 	background-color: #fff;
@@ -91,7 +91,7 @@
 }
 
 /*noinspection CssOverwrittenProperties*/
-.dialog .content {
+.theme-win311 .dialog .content {
 	display: block;
 	background-color: #fff;
 	height: 100%;
@@ -102,7 +102,7 @@
 	overflow: auto;
 }
 
-.dialog .title-bar {
+.theme-win311 .dialog .title-bar {
 	display: block;
 	font-family: Arial, sans-serif;
 	font-size: 13px;
@@ -118,13 +118,13 @@
 	border-bottom: 1px solid #000;
 }
 
-.dialog.focused .title-bar {
+.theme-win311 .dialog.focused .title-bar {
 	/*background-color: #0000c0;*/
 	background-color: #000080;
 	color: #fff;
 }
 
-.dialog .menu-button {
+.theme-win311 .dialog .menu-button {
 	position: absolute;
 	display: block;
 	top: 6px;
@@ -135,13 +135,13 @@
 	border-right: 1px solid #000;
 }
 
-.dialog .menu-button:active,
-.dialog .menu-button:focus {
+.theme-win311 .dialog .menu-button:active,
+.theme-win311 .dialog .menu-button:focus {
 	background-color: #808080;
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.dialog .menu-button .menu-button-inner {
+.theme-win311 .dialog .menu-button .menu-button-inner {
 	display: block;
 	width: 5px;
 	height: 1px;
@@ -154,8 +154,8 @@
 	box-shadow: 1px 1px #808080;
 }
 
-.dialog .menu-button:active .menu-button-inner,
-.dialog .menu-button:focus .menu-button-inner {
+.theme-win311 .dialog .menu-button:active .menu-button-inner,
+.theme-win311 .dialog .menu-button:focus .menu-button-inner {
 	background-color: #000;
 	border: 1px solid #fff;
 	box-shadow: 1px 1px #c0c0c0;
@@ -165,7 +165,7 @@
 
 /* region List */
 
-.list {
+.theme-win311 .list {
 	width: 237px;
 	height: 172px;
 	border: 1px solid #000;
@@ -177,7 +177,7 @@
 	overflow: auto;
 }
 
-.list li {
+.theme-win311 .list li {
 	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
@@ -186,12 +186,12 @@
 	padding-left: 2px;
 }
 
-.list li.selected {
+.theme-win311 .list li.selected {
 	background-color: #000080;
 	color: #fff;
 }
 
-.list li img {
+.theme-win311 .list li img {
 	vertical-align: middle;
 }
 
