@@ -74,44 +74,42 @@
 			$(this).addClass('selected');
 		});
 
-		setTimeout(function() {
-			$(document).contextmenu({
-				delegate: '.emuos-taskbar-window-copy',
-				menu: [{
-					title: 'Refresh',
-					cmd: 'refresh',
-					uiIcon: 'ui-icon-copy'
+		$(document).contextmenu({
+			delegate: '.emuos-taskbar-window-copy',
+			menu: [{
+				title: 'Refresh',
+				cmd: 'refresh',
+				uiIcon: 'ui-icon-copy'
+			} , {
+				title: '----'
+			} , {
+				title: 'Themes',
+				children: [{
+					title: 'Windows 3.1/3.11',
+					cmd: 'win311',
+					uiIcon: 'ui-icon-scissors'
 				} , {
-					title: '----'
-				} , {
-					title: 'Themes',
-					children: [{
-						title: 'Windows 3.1/3.11',
-						cmd: 'win311',
-						uiIcon: 'ui-icon-scissors'
-					} , {
-						title: 'Windows 95/98/Me',
-						cmd: 'win98',
-						uiIcon: 'ui-icon-clipboard'
-					}]
-				}],
-				select: function(e, ui) {
-					switch (ui.cmd) {
-						case 'refresh':
-							window.location = window.location;
-							break;
-						case 'win311':
-							$('body').removeClass('theme-win98').addClass('theme-win311');
-							break;
-						case 'win98':
-							$('body').removeClass('theme-win311').addClass('theme-win98');
-							break;
-					}
-
-					return true;
+					title: 'Windows 95/98/Me',
+					cmd: 'win98',
+					uiIcon: 'ui-icon-clipboard'
+				}]
+			}],
+			select: function(e, ui) {
+				switch (ui.cmd) {
+					case 'refresh':
+						window.location = window.location;
+						break;
+					case 'win311':
+						$('body').removeClass('theme-win98').addClass('theme-win311');
+						break;
+					case 'win98':
+						$('body').removeClass('theme-win311').addClass('theme-win98');
+						break;
 				}
-			});
-		}, 100);
+
+				return true;
+			}
+		});
 
 	});
 
