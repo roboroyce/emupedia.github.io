@@ -1,235 +1,38 @@
-/* region Debug */
-
-.debug .top {
-	background-color: tomato;
-}
-
-.debug .left {
-	background-color: yellow;
-}
-
-.debug .right {
-	background-color: blue;
-}
-
-.debug .bottom {
-	background-color: green;
-}
-
-.debug .top-left {
-	background-color: magenta;
-}
-
-.debug .top-right {
-	background-color: magenta;
-}
-
-.debug .left-top {
-	background-color: cyan;
-}
-
-.debug .right-top {
-	background-color: cyan;
-}
-
-.debug .left-bottom {
-	background-color: magenta;
-}
-
-.debug .right-bottom {
-	background-color: magenta;
-}
-
-.debug .bottom-left {
-	background-color: cyan;
-}
-
-.debug .bottom-right {
-	background-color: cyan;
-}
-
-/* endregion */
-
 /* region Window */
 
-.theme-win311 .window {
-	position: absolute;
-	display: block;
-	width: 340px;
-	height: 123px;
-	/*border: 3px solid #000;*/
-	/*overflow: hidden;*/
-	z-index: 3;
-}
-
-.theme-win311 .window .border-1 {
-	height: 100%;
-	background-color: #000;
-	padding: 1px;
-}
-
-/*noinspection CssOverwrittenProperties*/
-.theme-win311 .window .border-2 {
-	height: 100%;
-	height: calc(100% - 6px);
-	background-color: #c0c0c0;
-	padding: 2px;
-}
-
-/*noinspection CssOverwrittenProperties*/
-.theme-win311 .window .border-3 {
-	height: 100%;
-	height: calc(100% - 2px);
-	background-color: #fff;
+.theme-win311 .emuos-window {
+	border-radius: 0;
 	border: 1px solid #000;
+	padding: 0;
 }
 
-/*noinspection CssOverwrittenProperties*/
-.theme-win311 .window .content {
-	display: block;
-	background-color: #fff;
-	height: 100%;
-	height: calc(100% - 19px);
-	font-family: Arial, sans-serif;
-	font-size: 13px;
-	line-height: 16px;
-	overflow: auto;
-}
-
-.theme-win311 .window .top {
-	display: block;
-	position: absolute;
-	top: 0;
-	/*width: 100%;*/
-	height: 4px;
-}
-
-.theme-win311 .window .left {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 4px;
-	/*height: 100%;*/
-}
-
-.theme-win311 .window .right {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 4px;
-	/*height: 100%;*/
-}
-
-.theme-win311 .window .bottom {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	/*width: 100%;*/
-	height: 4px;
-}
-
-.theme-win311 .window .top-left {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 22px;
-	height: 4px;
-	border-right: 1px solid #000;
-}
-
-.theme-win311 .window .top-right {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 22px;
-	height: 4px;
-	border-left: 1px solid #000;
-}
-
-.theme-win311 .window .left-top {
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 4px;
-	height: 22px;
-	border-bottom: 1px solid #000;
-}
-
-.theme-win311 .window .right-top {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 4px;
-	height: 22px;
-	border-bottom: 1px solid #000;
-}
-
-.theme-win311 .window .left-bottom {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 4px;
-	height: 22px;
-	border-top: 1px solid #000;
-}
-
-.theme-win311 .window .right-bottom {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 4px;
-	height: 22px;
-	border-top: 1px solid #000;
-}
-
-.theme-win311 .window .bottom-left {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 22px;
-	height: 4px;
-	border-right: 1px solid #000;
-}
-
-.theme-win311 .window .bottom-right {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 22px;
-	height: 4px;
-	border-left: 1px solid #000;
-}
-
-.theme-win311 .window .title-bar {
-	display: block;
+.theme-win311 .emuos-window .ui-dialog-titlebar {
+	background-color: #c0c0c0;
+	border-radius: 0;
 	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	line-height: 18px;
 	text-align: center;
-	width: 100%;
-	height: 18px;
-	background-color: #c0c0c0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	border-bottom: 1px solid #000;
 }
 
-.theme-win311 .window.focused .title-bar {
-	/*background-color: #0000c0;*/
+.theme-win311 .emuos-window .ui-dialog-titlebar.ui-state-active {
 	background-color: #000080;
-	color: #fff;
+	border: 1px solid #000080;
+	border-bottom: 1px solid #000;
+}
+
+.theme-win311 .emuos-window .ui-dialog-content {
+	padding: 0;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.theme-win311 .emuos-window .ui-dialog-content p {
+	margin: 0;
+	padding: 0;
 }
 
 .theme-win311 .window .menu-button {

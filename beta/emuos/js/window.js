@@ -1179,7 +1179,7 @@
 					position: ui.position,
 					originalOffset: originalOffset,
 					originalPosition: originalPosition,
-					offset: ui.offset,
+					offset: ui.offset
 				};
 			}
 
@@ -1244,7 +1244,7 @@
 					}
 
 					self._trigger("drag", event, draggableUi(ui));
-				},
+				}
 			});
 
 			this._extendDraggableCancel();
