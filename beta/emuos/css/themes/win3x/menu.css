@@ -1,0 +1,11 @@
+.theme-win3x .ui-menu {
+	min-width: 140px;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .ui-contextmenu {
+	border-top: 1px solid #000;
+	border-left: 1px solid #000;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+}

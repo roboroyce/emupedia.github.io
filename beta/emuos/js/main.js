@@ -45,7 +45,6 @@
 		});*/
 
 		$('.list').mCustomScrollbar({
-			theme: 'win311',
 			axis: 'y',
 			scrollbarPosition: 'inside',
 			scrollInertia: 0,
@@ -88,12 +87,16 @@
 			} , {
 				title: 'Themes',
 				children: [{
-					title: 'Windows 3.1/3.11',
-					cmd: 'win311',
+					title: 'Basic',
+					cmd: 'basic',
+					uiIcon: 'ui-icon-clipboard'
+				} , {
+					title: 'Windows 3.x',
+					cmd: 'win3x',
 					uiIcon: 'ui-icon-scissors'
 				} , {
-					title: 'Windows 95/98/Me',
-					cmd: 'win98',
+					title: 'Windows 9x',
+					cmd: 'win9x',
 					uiIcon: 'ui-icon-clipboard'
 				}]
 			}],
@@ -102,11 +105,14 @@
 					case 'refresh':
 						window.location = window.location;
 						break;
-					case 'win311':
-						$('body').removeClass('theme-win98').addClass('theme-win311');
+					case 'basic':
+						$('body').removeClass('theme-win3x theme-win9x');
 						break;
-					case 'win98':
-						$('body').removeClass('theme-win311').addClass('theme-win98');
+					case 'win3x':
+						$('body').removeClass('theme-win9x').addClass('theme-win3x');
+						break;
+					case 'win9x':
+						$('body').removeClass('theme-win3x').addClass('theme-win9x');
 						break;
 				}
 

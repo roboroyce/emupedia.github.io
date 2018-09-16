@@ -3477,6 +3477,15 @@
 					+ " " + this.classes.icon
 					+ " " + this.options.icons.main
 				);
+
+			var self = this;
+
+			// implement double click on main icon for closing window
+			$icon.on("dblclick." + this._cache.uep, function (event) {
+				if (self.options.closable) {
+					self.close(event);
+				}
+			});
 		},
 
 		_setContentHeight: function () {

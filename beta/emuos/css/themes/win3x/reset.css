@@ -1,0 +1,17 @@
+.theme-win3x .emuos-taskbar-windows-containment {
+	background: url(../../../images/themes/win3x/patterns/castle.bmp);
+}
+
+.theme-win3x .ui-state-active,
+.theme-win3x .ui-state-focus,
+.theme-win3x .ui-widget-content .ui-state-active,
+.theme-win3x .ui-widget-content .ui-state-focus,
+.theme-win3x .ui-widget-header .ui-state-active {
+	background-color: #000080;
+	border: 1px solid #000080;
+	color: #fff;
+}
+
+.theme-win3x .ui-state-focus .ui-icon {
+	background-image: url(../../../images/ui/themes/base/ui-icons_ffffff_256x240.png);
+}

@@ -1,0 +1,101 @@
+/* region Window */
+
+.theme-win3x .emuos-window {
+	border-radius: 0;
+	border: 1px solid #000;
+	background-color: #c0c0c0;
+	outline: 1px solid #000;
+	outline-offset: -4px;
+	padding: 3px;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-win3x .emuos-window .emuos-window-icon {
+	top: 0;
+	left: 0;
+	width: 19px;
+	height: 18px;
+	border: none;
+	border-right: 1px solid #000;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	background-color: #c0c0c0;
+	background-image: url(../../../images/themes/win3x/icons/menu.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .emuos-window .emuos-window-icon:active,
+.theme-win3x .emuos-window .emuos-window-icon:focus {
+	background-color: #3f3f3f;
+	background-image: url(../../../images/themes/win3x/icons/menu-pressed.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .emuos-window .ui-dialog-titlebar {
+	background-color: #c0c0c0;
+	border-radius: 0;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #000;
+	padding: 0;
+	padding-left: 19px;
+	height: 18px;
+}
+
+.theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-title {
+	line-height: 21px;
+	margin: -2px 0 0;
+}
+
+.theme-win3x .emuos-window .ui-dialog-titlebar.ui-state-active {
+	background-color: #000080;
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-titlebar-close {
+	display: none;
+}
+
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
+	border-radius: 0;
+	right: 0;
+	width: 18px;
+	border-left: 1px solid #000;
+}
+
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
+	border-radius: 0;
+	right: 19px;
+	width: 18px;
+	border-left: 1px solid #000;
+}
+
+.theme-win3x .emuos-window .emuos-window-content {
+	padding: 0;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	line-height: 16px;
+	height: calc(100% - 19px) !important;
+	background-color: #fff;
+}
+
+.theme-win3x .emuos-window .emuos-window-content p {
+	margin: 0;
+	padding: 0;
+}
+
+/* endregion */

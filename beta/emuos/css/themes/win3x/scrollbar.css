@@ -1,13 +1,13 @@
-.mCustomScrollBox.mCS-win311 .mCSB_container_wrapper {
+.theme-win3x .mCustomScrollBox .mCSB_container_wrapper {
 	margin-right: 15px;
 }
 
-.mCustomScrollBox.mCS-win311 .mCSB_container {
+.theme-win3x .mCustomScrollBox .mCSB_container {
 	margin-right: 0;
 	padding-right: 0;
 }
 
-.mCustomScrollBox.mCS-win311 .mCSB_scrollTools_vertical {
+.theme-win3x .mCustomScrollBox .mCSB_scrollTools_vertical {
 	width: 15px;
 	border-left: 1px solid #000;
 	opacity: 1;
@@ -15,14 +15,14 @@
 	-ms-filter: none;
 }
 
-.mCustomScrollBox.mCS-win311 .mCSB_draggerContainer {
+.theme-win3x .mCustomScrollBox .mCSB_draggerContainer {
 	margin: 15px 0;
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 	/*background: #c0c0c0;*/
 }
 
-.mCustomScrollBox.mCS-win311 .mCSB_draggerRail {
+.theme-win3x .mCustomScrollBox .mCSB_draggerRail {
 	width: 100%;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -32,13 +32,13 @@
 	-ms-filter: none;
 }
 
-.mCustomScrollBox.mCS-win311 .mCSB_dragger {
+.theme-win3x .mCustomScrollBox .mCSB_dragger {
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssOverwrittenProperties*/
-.mCustomScrollBox.mCS-win311 .mCSB_dragger .mCSB_dragger_bar {
+.theme-win3x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar {
 	width: 100%;
 	width: calc(100% - 2px);
 	height: calc(100% - 2px);
@@ -53,8 +53,8 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.mCustomScrollBox.mCS-win311 .mCSB_buttonUp,
-.mCustomScrollBox.mCS-win311 .mCSB_buttonDown {
+.theme-win3x .mCustomScrollBox .mCSB_buttonUp,
+.theme-win3x .mCustomScrollBox .mCSB_buttonDown {
 	width: 13px;
 	height: 13px;
 	background: #c0c0c0;
@@ -68,8 +68,8 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.mCustomScrollBox.mCS-win311 .mCSB_buttonUp {
-	background-image: url(../../../images/icons/win311/up.png);
+.theme-win3x .mCustomScrollBox .mCSB_buttonUp {
+	background-image: url(../../../images/themes/win3x/icons/up.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
@@ -80,8 +80,8 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.mCustomScrollBox.mCS-win311 .mCSB_buttonDown {
-	background-image: url(../../../images/icons/win311/down.png);
+.mCustomScrollBox .mCSB_buttonDown {
+	background-image: url(../../../images/themes/win3x/icons/down.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
