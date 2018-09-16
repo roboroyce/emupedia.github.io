@@ -3466,12 +3466,12 @@
 			this.uiDialogTitlebar.addClass(this.classes.titlebarIcon);
 
 			if (!$icon.length) {
-				$icon = $("<span></span>")
+				$icon = $("<button class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only\" type=\"button\" role=\"button\" title=\"Menu\"></button>")
 					.prependTo(this.uiDialogTitlebar);
 			}
 
 			$icon
-				.removeAttr("class")
+				//.removeAttr("class")
 				.addClass(
 					this.classes.uiIcon
 					+ " " + this.classes.icon

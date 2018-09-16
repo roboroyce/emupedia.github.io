@@ -12,6 +12,9 @@
 		});
 
 		$('.window').window({
+			icons: {
+				main: ''
+			},
 			group: 'demo'
 		});
 
