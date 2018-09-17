@@ -8,10 +8,12 @@
 			resizable: true,
 			minimizeAll: false,
 			languageSelect: false,
+			toggleFullscreen: true,
 			clock: true
 		});
 
 		$('.window').window({
+			embeddedContent: true,
 			icons: {
 				main: ''
 			}
@@ -116,8 +118,7 @@
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'close':
-						// console.log(e);
-						// $(e.target).window().close();
+						$(e.target).children('.window').first().window('close');
 						break;
 				}
 
@@ -129,7 +130,7 @@
 		});
 
 		$('.emuos-window-icon').on('click', function() {
-			$(this).parents('.emuos-window').contextmenu('open', $(this));
+			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
 		});
 	});
 } (this));
