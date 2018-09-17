@@ -42,7 +42,7 @@
 		});
 
 		$(document).contextmenu({
-			delegate: '.emuos-taskbar-window-copy',
+			delegate: 'body, .emuos-taskbar, .emuos-taskbar-windows-containment, .emuos-taskbar-window-copy',
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
