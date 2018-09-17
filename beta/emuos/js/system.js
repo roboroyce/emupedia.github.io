@@ -967,6 +967,42 @@ if (typeof console !== 'undefined') {
 		}
 	}
 
+	if (!global.importStyles) {
+		global.importStyles = function(url, callback) {
+			if (url) {
+				// noinspection JSUnresolvedFunction
+				if (!url.startsWith('css/')) {
+					url = 'css/' + url;
+				}
+
+				// noinspection JSUnresolvedFunction
+				if (!url.endsWith('.css')) {
+					url += '.css';
+				}
+
+				var style = document.createElement('link');
+				style.type = 'text/css';
+				style.rel = 'stylesheet';
+				style.href = url;
+
+				callback = typeof callback === 'function' ? callback : function() {};
+
+				if (style.addEventListener) {
+					style.addEventListener('load', callback, false);
+				} else if (style.readyState) {
+					style.onreadystatechange = function() {
+						if (style.readyState === 'loaded') {
+							callback();
+						}
+					};
+				}
+
+				// Polyfilled
+				document.head.appendChild(style);
+			}
+		}
+	}
+
 	function dumpSystem() {
 		console.table([{
 			Feature: 'SYSTEM_FEATURE_ES5',

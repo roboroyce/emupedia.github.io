@@ -3,6 +3,11 @@
 	'use strict';
 
 	$(function() {
+		if (!(isIE || isEdge)) {
+			// TODO: Performance problem on window drag and resize caused by custom cursors
+			global.importStyles('css/themes/win3x/cursors.css');
+		}
+
 		$('.taskbar').taskbar({
 			draggable: true,
 			resizable: true,
