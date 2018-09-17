@@ -4,8 +4,6 @@
 	border-radius: 0;
 	border: 1px solid #000;
 	background-color: #c0c0c0;
-	/*outline: 1px solid #000;*/
-	/*outline-offset: -4px;*/
 	padding: 3px;
 }
 
@@ -42,13 +40,18 @@
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
 .theme-win3x .emuos-window .emuos-window-icon:active,
 .theme-win3x .emuos-window .emuos-window-icon:focus {
 	background-color: #3f3f3f;
 	background-image: url(../../../images/themes/win3x/icons/menu-pressed.png);
 	background-repeat: no-repeat;
 	background-position: center;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
@@ -87,18 +90,102 @@
 	display: none;
 }
 
+/*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
-	border-radius: 0;
+	top: 0;
 	right: 0;
-	width: 18px;
+	width: 19px;
+	height: 18px;
+	padding: 0;
+	margin: 0;
+	border: none;
 	border-left: 1px solid #000;
+	border-radius: 0;
+	background: none transparent;
 }
 
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-icon-primary {
+	top: 1px;
+	left: 1px;
+	width: 15px;
+	height: 15px;
+	padding: 0;
+	margin: 0;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	background: none transparent !important;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 0;
+	content: '';
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	background-color: #c0c0c0;
+	background-image: url(../../../images/themes/win3x/icons/maximize.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+/*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
-	border-radius: 0;
-	right: 19px;
-	width: 18px;
+	top: 0;
+	right: 20px;
+	width: 19px;
+	height: 18px;
+	padding: 0;
+	margin: 0;
+	border: none;
 	border-left: 1px solid #000;
+	border-radius: 0;
+	background: none transparent;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-icon-primary {
+	top: 1px;
+	left: 1px;
+	width: 15px;
+	height: 15px;
+	padding: 0;
+	margin: 0;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	background: none transparent !important;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-text {
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	margin: 0;
+	content: '';
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	background-color: #c0c0c0;
+	background-image: url(../../../images/themes/win3x/icons/minimize.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
 }
 
 .theme-win3x .emuos-window .emuos-window-content {
