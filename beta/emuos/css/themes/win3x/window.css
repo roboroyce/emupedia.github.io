@@ -130,7 +130,7 @@
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
 	background-image: url(../../../images/themes/win3x/icons/maximize.png);
-	background-position: center;
+	background-position: 4px 5px;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -o-crisp-edges;
@@ -142,7 +142,7 @@
 /*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
 	top: 0;
-	right: 20px;
+	right: 19px;
 	width: 19px;
 	height: 18px;
 	padding: 0;
@@ -179,7 +179,7 @@
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
 	background-image: url(../../../images/themes/win3x/icons/minimize.png);
-	background-position: center;
+	background-position: 4px 6px;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -o-crisp-edges;
