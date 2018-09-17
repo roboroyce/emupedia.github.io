@@ -7685,53 +7685,83 @@
 		// taken almost witouth changes from http://davidwalsh.name/fullscreen
 		// detect if the fullscreen is available in user browser
 		_fullscreenAvailable: function () {
-			var elem = document.documentElement;
+			var element = document.documentElement;
 
-			return !!(
-				elem.requestFullscreen
-				|| elem.mozRequestFullScreen
-				|| elem.webkitRequestFullscreen
-				|| elem.msRequestFullscreen
-			);
+			var request =	element.requestFullscreen ||		//W3C
+							element.requestFullScreen ||		//W3C
+							element.webkitRequestFullscreen ||	//Chrome etc.
+							element.webkitRequestFullScreen ||	//Chrome etc.
+							element.mozRequestFullscreen ||		//FireFox
+							element.mozRequestFullScreen ||		//FireFox
+							element.msRequestFullscreen ||		//IE11
+							element.msRequestFullScreen;		//IE11
+
+			return !!request;
 		},
 
 		// detect if the browser is in fullscreen mode now;
 		// this function will never fire if fullscreen is not available
 		_fullscreenEnabled: function () {
-			var fullscreenElement =
-				document.fullscreenEnabled
-				|| document.mozFullScreenElement
-				|| document.webkitFullscreenElement
-				|| document.msFullscreenElement;
+			var fullscreenElement =	document.fullscreenEnabled ||
+									document.fullScreenEnabled ||
+									document.FullScreenEnabled ||
+									document.mozFullScreenElement ||
+									document.mozFullscreenElement ||
+									document.webkitFullScreenElement ||
+									document.webkitFullscreenElement ||
+									document.msFullScreenElement ||
+									document.msFullscreenElement;
 
 			return !!fullscreenElement;
 		},
 
 		// request fullscreen
 		_fullscreenEnter: function () {
-			var elem = document.documentElement;
+			var element = document.documentElement;
 
-			if (elem.requestFullscreen) {
-				elem.requestFullscreen();
-			} else if (elem.mozRequestFullScreen) {
-				elem.mozRequestFullScreen();
-			} else if (elem.webkitRequestFullscreen) {
-				elem.webkitRequestFullscreen();
-			} else if (elem.msRequestFullscreen) {
-				elem.msRequestFullscreen();
+			var request =	element.requestFullscreen ||		//W3C
+							element.requestFullScreen ||		//W3C
+							element.webkitRequestFullscreen ||	//Chrome etc.
+							element.webkitRequestFullScreen ||	//Chrome etc.
+							element.mozRequestFullscreen ||		//FireFox
+							element.mozRequestFullScreen ||		//FireFox
+							element.msRequestFullscreen ||		//IE11
+							element.msRequestFullScreen;		//IE11
+
+			if (request) {
+				request.call(element);
+			} else if (typeof window.ActiveXObject !== "undefined") {
+				//for Internet Explorer
+				var wscript = new ActiveXObject("WScript.Shell");
+				if (wscript !== null){
+					wscript.SendKeys("{F11}");
+				}
 			}
 		},
 
 		// exits fullscreen
 		_fullscreenLeave: function () {
-			if (document.exitFullscreen) {
-				document.exitFullscreen();
-			} else if (document.mozExitFullScreen) {
-				document.mozExitFullScreen();
-			} else if (document.webkitExitFullscreen) {
-				document.webkitExitFullscreen();
-			} else if (document.msExitFullscreen) {
-				document.msExitFullscreen();
+			var exit =	document.exitFullscreen ||		//W3C
+						document.exitFullScreen ||		//W3C
+						document.webkitExitFullscreen ||	//Chrome etc.
+						document.webkitExitFullScreen ||	//Chrome etc.
+						document.webkitCancelFullscreen ||	//Chrome etc.
+						document.webkitCancelFullScreen ||	//Chrome etc.
+						document.mozCancelFullscreen ||		//FireFox
+						document.mozCancelFullScreen ||		//FireFox
+						document.mozExitFullscreen ||		//FireFox
+						document.mozExitFullScreen ||		//FireFox
+						document.msExitFullscreen ||		//IE11
+						document.msExitFullScreen;
+
+			if (exit) {
+				exit.call(document);
+			} else if (typeof window.ActiveXObject !== "undefined") {
+				//for Internet Explorer
+				var wscript = new ActiveXObject("WScript.Shell");
+				if (wscript !== null){
+					wscript.SendKeys("{F11}");
+				}
 			}
 		},
 
