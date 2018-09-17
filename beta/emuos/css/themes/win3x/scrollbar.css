@@ -80,7 +80,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.mCustomScrollBox .mCSB_buttonDown {
+.theme-win3x .mCustomScrollBox .mCSB_buttonDown {
 	background-image: url(../../../images/themes/win3x/icons/down.png);
 	background-position: center;
 	background-repeat: no-repeat;

@@ -71,14 +71,14 @@
 	width: 100%;
 	height: 5px;
 	background: transparent;
-	*background: url(../images/firebug/spacer.gif);
+	*background: url(../../images/firebug/spacer.gif);
 	cursor: n-resize;
 	-moz-user-select: none;
 }
 
 #Firebug .Header {
 	height: 38px;
-	background: #ccc url(../images/firebug/firebug.gif) 0 -85px;
+	background: #ccc url(../../images/firebug/firebug.gif) 0 -85px;
 }
 
 #Firebug .Left, #Firebug > .Right {
@@ -141,7 +141,7 @@
 #Firebug .ButtonContainer .Logo {
 	text-decoration: none;
 	padding-left: 24px;
-	background: url(../images/firebug/firebug.gif) no-repeat 5px 3px;
+	background: url(../../images/firebug/firebug.gif) no-repeat 5px 3px;
 	border: 0 !important;
 	opacity: 0.7;
 	filter: Alpha(Opacity=70);
@@ -159,7 +159,7 @@
 	right: 0;
 	top: 12px;
 	padding: 6px 8px 8px 8px;
-	background: url(../images/firebug/firebug.gif) no-repeat -3px -48px;
+	background: url(../../images/firebug/firebug.gif) no-repeat -3px -48px;
 	border: 0 !important;
 	opacity: 0.7;
 	filter: Alpha(Opacity:80);
@@ -205,7 +205,7 @@
 
 #Firebug .Nav {
 	height: 23px;
-	background: url(../images/firebug/firebug.gif) repeat-x 0 -62px;
+	background: url(../../images/firebug/firebug.gif) repeat-x 0 -62px;
 	padding-left: 10px;
 }
 
@@ -240,7 +240,7 @@
 #Firebug .Nav .Settings .Options {
 	text-decoration: none;
 	padding-left: 24px;
-	background: url(../images/firebug/firebug.gif) no-repeat 65px -151px;
+	background: url(../../images/firebug/firebug.gif) no-repeat 65px -151px;
 	border: 0 !important;
 	opacity: 0.7;
 	filter: Alpha(Opacity=70);
@@ -265,7 +265,7 @@
 	left: 0;
 	border: 2px solid #0000ff;
 	background: transparent;
-	*background: url(../images/firebug/spacer.gif);
+	*background: url(../../images/firebug/spacer.gif);
 	opacity: 0.5;
 	filter: Alpha(Opacity=50);
 	padding: 0;
@@ -314,7 +314,7 @@
 }
 
 #Firebug .DOMRow .DOMRowLeft .Object {
-	background: url(../images/firebug/tree_open.gif) no-repeat left center;
+	background: url(../../images/firebug/tree_open.gif) no-repeat left center;
 	cursor: pointer;
 }
 
@@ -324,7 +324,7 @@
 }
 
 #Firebug .DOMRow .DOMRowLeft .Opened {
-	background-image: url(../images/firebug/tree_close.gif)
+	background-image: url(../../images/firebug/tree_close.gif)
 }
 
 #Firebug .DOMRow .DOMRowSubContainer {
@@ -401,7 +401,7 @@
 	padding: 4px 10px 10px 10px;
 	font-size: 1px;
 	*padding: 2px 10px 10px 10px;
-	background: url(../images/firebug/firebug.gif) no-repeat -3px -34px;
+	background: url(../../images/firebug/firebug.gif) no-repeat -3px -34px;
 	opacity: 0.8;
 	filter: Alpha(Opacity:80);
 }
@@ -456,17 +456,17 @@
 }
 
 #Firebug .Left .Console .Monitor .Warn {
-	background: url(../images/firebug/warningIcon.png) #00FFFF no-repeat 2px center;
+	background: url(../../images/firebug/warningIcon.png) #00FFFF no-repeat 2px center;
 	padding-left: 20px;
 }
 
 #Firebug .Left .Console .Monitor .Info {
-	background: url(../images/firebug/infoIcon.png) #fff no-repeat 2px center;
+	background: url(../../images/firebug/infoIcon.png) #fff no-repeat 2px center;
 	padding-left: 20px;
 }
 
 #Firebug .Left .Console .Monitor .Error {
-	background: url(../images/firebug/errorIcon.png) #FFFFE0 no-repeat 2px center;
+	background: url(../../images/firebug/errorIcon.png) #FFFFE0 no-repeat 2px center;
 	padding-left: 20px;
 }
 
@@ -516,11 +516,11 @@
 }
 
 #Firebug .Left .HTML .Block .Parent .Spacer {
-	background-image: url(../images/firebug/tree_open.gif);
+	background-image: url(../../images/firebug/tree_open.gif);
 }
 
 #Firebug .Left .HTML .Block .Open .Spacer {
-	background-image: url(../images/firebug/tree_close.gif)
+	background-image: url(../../images/firebug/tree_close.gif)
 }
 
 #Firebug .Left .HTML .Block .Selected {
@@ -831,7 +831,7 @@
 }
 
 #Firebug .SettingsDiv .Header {
-	background: #CCC url(../images/firebug/firebug.gif) repeat scroll 0 -85px;
+	background: #CCC url(../../images/firebug/firebug.gif) repeat scroll 0 -85px;
 	height: 30px;
 	border-bottom: 1px inset #000;
 }
@@ -890,7 +890,7 @@
 }
 
 #Firebug .SettingsDiv .Content .Progress {
-	background-image: url(../images/firebug/progress.gif);
+	background-image: url(../../images/firebug/progress.gif);
 	width: 66px;
 	height: 66px;
 	position: absolute;
@@ -970,7 +970,7 @@
 	border: 2px solid #000;
 	display: none;
 	position: fixed;
-	background-image: url(../images/firebug/firebug_logo.png);
+	background-image: url(../../images/firebug/firebug_logo.png);
 	text-decoration: underline;
 	cursor: pointer;
 	filter: alpha(opacity:60);

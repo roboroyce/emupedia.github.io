@@ -1,10 +1,8 @@
 html {
-	background: url(../images/patterns/castle.bmp);
 	height: 100%;
 }
 
 body {
-	background: url(../images/wallpapers/winlogo.svg) center no-repeat;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -12,90 +10,7 @@ body {
 	cursor: inherit !important;
 }
 
-p {
-	margin: 0;
-	padding: 0;
-}
-
-::selection {
-	background: #000080;
-	color: #fff;
-}
-
-::-moz-selection {
-	background: #000080;
-	color: #fff;
-}
-
-.no-select {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.arrow-up {
-	display: block;
-	width: 0;
-	height: 0;
-	border-left: 4px solid transparent;
-	border-right: 4px solid transparent;
-	border-bottom: 4px solid #000;
-}
-
-.arrow-down {
-	display: block;
-	width: 0;
-	height: 0;
-	border-left: 4px solid transparent;
-	border-right: 4px solid transparent;
-	border-top: 4px solid #000;
-}
-
-.arrow-right {
-	display: block;
-	width: 0;
-	height: 0;
-	border-top: 4px solid transparent;
-	border-bottom: 4px solid transparent;
-	border-left: 4px solid #000;
-}
-
-.arrow-left {
-	display: block;
-	width: 0;
-	height: 0;
-	border-top: 4px solid transparent;
-	border-bottom: 4px solid transparent;
-	border-right: 4px solid #000;
-}
-
-.ui-resizable-nw {
-	top: 0;
-	left: 0;
-	width: 0;
-	height: 0;
-}
-
-.ui-resizable-ne {
-	top: 0;
-	right: 0;
-	width: 0;
-	height: 0;
-}
-
-.ui-resizable-sw {
-	bottom: 0;
-	left: 0;
-	width: 0;
-	height: 0;
-}
-
-.ui-resizable-se {
-	bottom: 0;
-	right: 0;
-	width: 0;
-	height: 0;
+.ui-menu {
+	min-width: 150px;
+	z-index: 2147483647;
 }

@@ -1,5 +1,24 @@
 .theme-win3x .ui-menu {
-	min-width: 140px;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+/*noinspection CssOptimizeSimilarProperties*/
+.theme-win3x .ui-menu .ui-menu-item {
+	padding: 0;
+	padding-left: 16px;
+	height: 18px;
+}
+
+.theme-win3x .ui-menu .ui-menu-item.ui-state-focus {
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.theme-win3x .ui-menu .ui-menu-divider {
+	border-top: 1px solid #000;
 }
 
 /*noinspection CssOptimizeSimilarProperties*/

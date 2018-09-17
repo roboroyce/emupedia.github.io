@@ -4,9 +4,20 @@
 	border-radius: 0;
 	border: 1px solid #000;
 	background-color: #c0c0c0;
-	outline: 1px solid #000;
-	outline-offset: -4px;
+	/*outline: 1px solid #000;*/
+	/*outline-offset: -4px;*/
 	padding: 3px;
+}
+
+.theme-win3x .emuos-window::before {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	display: block;
+	content: '';
+	width: calc(100% - 6px);
+	height: calc(100% - 6px);
+	border: 1px solid #000;
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
@@ -58,6 +69,12 @@
 .theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-title {
 	line-height: 21px;
 	margin: -2px 0 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .theme-win3x .emuos-window .ui-dialog-titlebar.ui-state-active {

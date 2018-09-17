@@ -1,5 +1,17 @@
+::selection {
+	background: #000080;
+	color: #fff;
+}
+
+::-moz-selection {
+	background: #000080;
+	color: #fff;
+}
+
+/*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-taskbar-windows-containment {
 	background: url(../../../images/themes/win3x/patterns/castle.bmp);
+	background: url(../../../images/themes/win3x/wallpapers/winlogo.svg) center no-repeat, url(../../../images/themes/win3x/patterns/castle.bmp);
 }
 
 .theme-win3x .ui-state-active,

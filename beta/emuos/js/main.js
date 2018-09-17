@@ -1,10 +1,8 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols
 (function(global) {
-
 	'use strict';
 
 	$(function() {
-
 		$('.taskbar').taskbar({
 			minimizeAll: false,
 			languageSelect: false,
@@ -14,15 +12,10 @@
 		$('.window').window({
 			icons: {
 				main: ''
-			},
-			group: 'demo'
+			}
 		});
 
-		var window_height = $('.window').height();
-		var list_item_height = $('.list li').height();
-
-		/*$('.window.ui-dialog-content').mCustomScrollbar({
-			theme: 'win311',
+		$('.emuos-window .emuos-window-content').mCustomScrollbar({
 			axis: 'y',
 			scrollbarPosition: 'inside',
 			scrollInertia: 0,
@@ -42,38 +35,6 @@
 				updateOnSelectorChange: true
 			},
 			live: true
-		});*/
-
-		$('.list').mCustomScrollbar({
-			axis: 'y',
-			scrollbarPosition: 'inside',
-			scrollInertia: 0,
-			snapAmount: list_item_height,
-			keyboard: {
-				enable: true,
-				scrollAmount: list_item_height,
-				scrollType: 'stepped'
-			},
-			scrollButtons: {
-				enable: true,
-				scrollAmount: list_item_height,
-				scrollType: 'stepped'
-			},
-			mouseWheel: {
-				enable: true,
-				scrollAmount: list_item_height
-			},
-			advanced: {
-				updateOnContentResize: true,
-				updateOnImageLoad: true,
-				updateOnSelectorChange: true
-			},
-			live: true
-		});
-
-		$('.list li').off('click').on('click', function() {
-			$('.list li').removeClass('selected');
-			$(this).addClass('selected');
 		});
 
 		$(document).contextmenu({
@@ -120,6 +81,46 @@
 			}
 		});
 
-	});
+		$('.emuos-window').contextmenu({
+			autoTrigger: false,
+			delegate: '.emuos-window-icon',
+			menu: [{
+				title: 'Restore',
+				cmd: 'restore',
+				disabled: true
+			} , {
+				title: 'Move',
+				cmd: 'move'
+			} , {
+				title: 'Size',
+				cmd: 'size'
+			} , {
+				title: 'Minimize',
+				cmd: 'minimize'
+			} , {
+				title: 'Maximize',
+				cmd: 'maximize'
+			} , {
+				title: '----'
+			} , {
+				title: 'Close',
+				cmd: 'close'
+			} , {
+				title: '----'
+			} , {
+				title: 'Next',
+				cmd: 'next'
+			}],
+			select: function(e, ui) {
 
+			},
+			close: function (e, ui) {
+				console.log(e);
+			}
+		});
+
+		$('.emuos-window-icon').on('click', function() {
+			$(this).parents('.emuos-window').contextmenu('open', $(this));
+		});
+	});
 } (this));
