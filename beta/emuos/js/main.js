@@ -13,7 +13,7 @@
 		});
 
 		$('.window').window({
-			embeddedContent: true,
+			// embeddedContent: true,
 			icons: {
 				main: ''
 			}
