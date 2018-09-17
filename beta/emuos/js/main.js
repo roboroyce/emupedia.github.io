@@ -116,8 +116,8 @@
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'close':
-						console.log(e);
-						$(e.target).window('close');
+						// console.log(e);
+						// $(e.target).window().close();
 						break;
 				}
 
