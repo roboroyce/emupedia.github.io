@@ -4,6 +4,8 @@
 
 	$(function() {
 		$('.taskbar').taskbar({
+			draggable: true,
+			resizable: true,
 			minimizeAll: false,
 			languageSelect: false,
 			clock: true
@@ -112,7 +114,14 @@
 				cmd: 'next'
 			}],
 			select: function(e, ui) {
+				switch (ui.cmd) {
+					case 'close':
+						console.log(e);
+						$(e.target).window('close');
+						break;
+				}
 
+				return true;
 			},
 			close: function (e, ui) {
 				console.log(e);
