@@ -491,22 +491,15 @@
 		_validateTaskbar: function (settings) {
 			var validation = this._taskbarStatus();
 
-			if (
-				validation.isEmptyDomObject
-				|| !validation.isTaskbar
-				|| !validation.isPlugin
-			) {
+			if (validation.isEmptyDomObject || !validation.isTaskbar || !validation.isPlugin) {
 				var errorUi = {
 					taskbar: this.options.taskbar,
 					$taskbar: this.$taskbar
 				};
 
 				var reasons = {
-					isEmptyDomObject: "jQuery object passed in \"taskbar\" "
-						+ "option is empty.",
-					isTaskbar: "jQuery object passed in \"taskbar\" option is "
-						+ "not an instance of taskbar, call "
-						+ "$(\"#selector\").taskbar(); first.",
+					isEmptyDomObject: "jQuery object passed in \"taskbar\" option is empty.",
+					isTaskbar: "jQuery object passed in \"taskbar\" option is not an instance of taskbar, call $(\"#selector\").taskbar(); first.",
 					isPlugin: "Taskbar plugin is missing."
 				};
 
@@ -4332,8 +4325,28 @@
 		// test if particular widget from jQuery UI is in given version;
 		// used in deciding behaviour/hacks/flow
 		_versionOf: function (widget, operator, compare) {
-			return $.emuos.taskbar.prototype._versionOf
-				.call(null, widget, operator, compare);
+			// return $.emuos.taskbar.prototype._versionOf.call(null, widget, operator, compare);
+
+			var version = (widget ? $.ui[widget] : $.ui).version.split("."),
+				compareTo = compare.split("."),
+				results = [];
+
+			$.each(compareTo, function (index, part) {
+				var againsts = parseInt(part, 10),
+					current = parseInt(version[index], 10);
+
+				if (operator === ">=") {
+					results.push(current >= againsts);
+				} else if (operator === "==" || operator === "===") {
+					results.push(current === againsts);
+				} else if (operator === "<=") {
+					results.push(current <= againsts);
+				} else {
+					results.push(false);
+				}
+			});
+
+			return $.inArray(false, results) === -1;
 		},
 
 		_parseDuration: function (speed) {
