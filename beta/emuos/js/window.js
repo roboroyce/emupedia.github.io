@@ -911,9 +911,7 @@
 				}
 
 				// call appropriate correction function
-				self._getRealContainment() === "viewport"
-					? resizeWithinViewport.call(this, event, ui)
-					: resizeWithinVisibleArea.call(this, event, ui);
+				self._getRealContainment() === "viewport" ? resizeWithinViewport.call(this, event, ui) : resizeWithinVisibleArea.call(this, event, ui);
 			};
 
 			this.uiDialog.resizable({

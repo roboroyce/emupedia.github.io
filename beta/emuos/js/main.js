@@ -24,8 +24,16 @@
 		});
 
 		$('.iframe').window({
-			title: $('.iframe').attr('title'),
 			embeddedContent: true,
+			title: $('.iframe').attr('title'),
+			width: 640,
+			height: 480,
+			position: {
+				my: 'center',
+				at: 'center center-20%',
+				of: window,
+				collision: 'fit'
+			},
 			icons: {
 				main: ''
 			}
