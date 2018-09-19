@@ -45,7 +45,7 @@
 			require(['jquery', 'vs/editor/editor.main'], function($) {
 				$(function() {
 					function changeTheme(theme) {
-						var newTheme = (theme === 1 ? 'vs-dark' : ( theme === 0 ? 'vs' : 'hc-black' ));
+						var newTheme = (theme === 1 ? 'vs-dark' : (theme === 0 ? 'vs' : 'hc-black' ));
 						monaco.editor.setTheme(newTheme);
 					}
 
@@ -56,10 +56,15 @@
 							'}'
 						].join('\n'),
 						theme: 'vs-dark',
-						language: 'javascript'
+						language: 'javascript',
+						scrollBeyondLastColumn: 0,
+						scrollBeyondLastLine: false,
+						showFoldingControls: 'always',
+						renderWhitespace: 'all',
+						renderControlCharacters: true
 					});
 
-					$(".theme-picker").change(function() {
+					$('.theme-picker').change(function() {
 						changeTheme(this.selectedIndex);
 					});
 
