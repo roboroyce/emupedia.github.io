@@ -8367,8 +8367,7 @@
 	$.emuos.taskbarSetup = function (propagateToInstances, options) {
 		options = arguments.length === 1 ? propagateToInstances : options;
 		if (propagateToInstances === true && arguments.length > 1) {
-			$("." + $.emuos.taskbar.prototype.classes.taskbar)
-				.taskbar("option", options);
+			$("." + $.emuos.taskbar.prototype.classes.taskbar).taskbar("option", options);
 		}
 		var o = $.emuos.taskbar.prototype.options;
 		return options ? $.extend(true, o, options) : o;

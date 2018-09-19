@@ -14,3 +14,13 @@ body {
 	min-width: 150px;
 	z-index: 2147483647;
 }
+
+iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.iframe.emuos-window-content {
+	overflow: hidden;
+}

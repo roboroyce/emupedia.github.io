@@ -18,13 +18,20 @@
 		});
 
 		$('.window').window({
-			// embeddedContent: true,
 			icons: {
 				main: ''
 			}
 		});
 
-		$('.emuos-window .emuos-window-content').mCustomScrollbar({
+		$('.iframe').window({
+			title: $('.iframe').attr('title'),
+			embeddedContent: true,
+			icons: {
+				main: ''
+			}
+		});
+
+		$('.window.emuos-window .emuos-window-content').mCustomScrollbar({
 			axis: 'y',
 			scrollbarPosition: 'inside',
 			scrollInertia: 0,

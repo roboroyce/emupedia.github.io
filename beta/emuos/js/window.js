@@ -735,9 +735,7 @@
 				$dialog = this.uiDialog,
 				options = this.options,
 				handles = options.resizable,
-				resizeHandles = typeof handles === "string"
-					? handles
-					: "n,e,s,w,se,sw,ne,nw";
+				resizeHandles = typeof handles === "string" ? handles : "n,e,s,w,se,sw,ne,nw";
 
 			var resizable;
 
@@ -944,6 +942,10 @@
 
 					var $this = $(this);
 
+					if (self.options.embeddedContent) {
+						self.$window.find('iframe').css('pointer-events', 'none');
+					}
+
 					resizableInstance = $this.data(self.classes.uiResizable);
 
 					$this.addClass(self.classes.uiDialogResizing);
@@ -967,9 +969,15 @@
 				},
 				stop: function (event, ui) {
 					var $this = $(this);
+
 					options.height = $this.height();
 					options.width = $this.width();
+
 					$this.removeClass(self.classes.uiDialogResizing);
+
+					if (self.options.embeddedContent) {
+						self.$window.find('iframe').removeAttr('style');
+					}
 
 					// since version 1.11.1 draggable won't respect
 					// size set via css() in resize event, so we need to correct
@@ -1031,11 +1039,9 @@
 			// we need information which handle is currently being dragged,
 			// this.$elem will not work if invalid taskbar was given
 			// on initialization
-			$(this.bindings[0])
-				.children("." + this.classes.uiResizableHandle)
-				.on("mousedown." + this._cache.uep, function () {
-					self.$latestResizableHandle = $(this);
-				});
+			$(this.bindings[0]).children("." + this.classes.uiResizableHandle).on("mousedown." + this._cache.uep, function () {
+				self.$latestResizableHandle = $(this);
+			});
 		},
 
 		// this function will save scrollX and scrollY before drag
@@ -4080,9 +4086,7 @@
 				return;
 			}
 
-			options.content =
-				(this.options.embeddedContent || options.content)
-				&& (!options || !options.window);
+			options.content = (this.options.embeddedContent || options.content) && (!options || !options.window);
 
 			if (this.$elem.hasClass(this.classes.windowTop) && options.content) {
 				return;
