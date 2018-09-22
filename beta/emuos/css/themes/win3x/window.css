@@ -139,6 +139,13 @@
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
+.theme-win3x .emuos-window.emuos-window-maximized.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
+	background-color: #c0c0c0;
+	background-image: url(../../../images/themes/win3x/icons/restore.png);
+	background-position: 4px 3px;
+	background-repeat: no-repeat;
+}
+
 /*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
 	top: 0;

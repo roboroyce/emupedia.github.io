@@ -61,8 +61,8 @@
 			live: true
 		});
 
-		$(document).contextmenu({
-			delegate: 'body, .emuos-taskbar, .emuos-taskbar-windows-containment, .emuos-taskbar-window-copy',
+		$('body').contextmenu({
+			delegate: '.emuos-taskbar, .emuos-taskbar-windows-containment, .emuos-taskbar-window-copy',
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
