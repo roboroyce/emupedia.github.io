@@ -24,3 +24,14 @@ iframe {
 .iframe.emuos-window-content {
 	overflow: hidden;
 }
+
+.ui-dialog-title,
+.ui-button-text {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+

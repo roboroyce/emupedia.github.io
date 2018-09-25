@@ -1581,7 +1581,6 @@
 			$(window).on("offline." + this._cache.uep, checkConnectivity);
 		},
 
-
 		_setDraggable: function () {
 			var self = this,
 				options = this.options,

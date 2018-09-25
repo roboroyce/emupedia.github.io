@@ -8,6 +8,8 @@
 			global.importStyles('css/themes/win3x/cursors.css');
 		}
 
+		$('.desktop').desktop({});
+
 		$('.taskbar').taskbar({
 			draggable: true,
 			resizable: true,
@@ -61,8 +63,8 @@
 			live: true
 		});
 
-		$('body').contextmenu({
-			delegate: '.emuos-taskbar, .emuos-taskbar-windows-containment, .emuos-taskbar-window-copy',
+		$('html').contextmenu({
+			delegate: 'body, .emuos-taskbar',
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
@@ -138,7 +140,7 @@
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'close':
-						$(e.target).children('.window').first().window('close');
+						$(e.target).children('.window, .iframe').first().window('close');
 						break;
 				}
 

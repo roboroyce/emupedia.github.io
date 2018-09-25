@@ -54,7 +54,7 @@
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
 .theme-win3x .emuos-window .ui-dialog-titlebar {
 	background-color: #c0c0c0;
 	border-radius: 0;
@@ -72,12 +72,6 @@
 .theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-title {
 	line-height: 21px;
 	margin: -2px 0 0;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 .theme-win3x .emuos-window .ui-dialog-titlebar.ui-state-active {

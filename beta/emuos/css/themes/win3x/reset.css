@@ -9,7 +9,7 @@
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-win3x .emuos-taskbar-windows-containment {
+.theme-win3x .emuos-desktop {
 	background: url(../../../images/themes/win3x/patterns/castle.bmp);
 	background: url(../../../images/themes/win3x/wallpapers/winlogo.svg) center no-repeat, url(../../../images/themes/win3x/patterns/castle.bmp);
 }

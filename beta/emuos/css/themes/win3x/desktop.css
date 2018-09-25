@@ -1,0 +1,40 @@
+.emuos-desktop-icon {
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	text-shadow: none;
+}
+
+.emuos-desktop-icon span {
+	display: block;
+	color: #000;
+	background-color: #fff;
+}
+
+.emuos-desktop-icon.ui-selecting span,
+.emuos-desktop-icon.ui-selected span,
+.emuos-desktop-icon.active span {
+	background-color: #000080;
+	color: #fff;
+}
+
+.emuos-desktop-icon.ui-selecting img,
+.emuos-desktop-icon.ui-selected img,
+.emuos-desktop-icon.active img {
+	background-color: #000080;
+}
+
+.emuos-desktop-icon:hover {
+	background-color: transparent;
+	border: none;
+	padding: 6px 1px 6px;
+}
+
+.emuos-desktop-icon:hover img {
+	background-color: #000080;
+}
+
+.emuos-desktop-icon:hover span {
+	background-color: #000080;
+	color: #fff;
+}
