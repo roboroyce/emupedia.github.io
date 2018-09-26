@@ -290,6 +290,8 @@
 			this._debugUnsupportedOptions();
 			this._resetUnsupportedOptions();
 
+			this.options.realTitle = this.$window.attr('title') ? this.$window.attr('title') : undefined;
+
 			this._super();
 
 			// dialogs sets title to undefined is it's null
@@ -322,7 +324,11 @@
 			// +
 			// set title again from cache, after all
 			// subordinate elements were create by this._super()
-			this._setTitle();
+			if (typeof this.options.realTitle !== 'undefined') {
+				this._setTitle(this.options.realTitle);
+			} else {
+				this._setTitle();
+			}
 
 			this._checkForInvalidOptions(
 				$.emuos.window.prototype.options,
@@ -4732,6 +4738,8 @@
 					self.$window.removeAttr(attr);
 				}
 			});
+
+			this.$window.remove();
 		}
 	});
 

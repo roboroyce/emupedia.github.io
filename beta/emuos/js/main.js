@@ -8,10 +8,6 @@
 			global.importStyles('css/themes/win3x/cursors.css');
 		}
 
-		$('.desktop').desktop({
-			iconClass: '.icon'
-		});
-
 		$('.taskbar').taskbar({
 			draggable: true,
 			resizable: true,
@@ -19,6 +15,11 @@
 			languageSelect: false,
 			toggleFullscreen: true,
 			clock: true
+		});
+
+		$('.desktop').desktop({
+			iconClass: '.icon',
+			parent: '.emuos-taskbar-windows-containment'
 		});
 
 		$('.window').window({
@@ -29,7 +30,6 @@
 
 		$('.iframe').window({
 			embeddedContent: true,
-			title: $('.iframe').attr('title'),
 			width: 640,
 			height: 480,
 			position: {
@@ -153,8 +153,9 @@
 			}
 		});
 
-		$('.emuos-window-icon').on('click', function() {
+		$('.emuos-window-icon').on('click', function(e) {
 			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
+			e.preventDefault();
 		});
 	});
 } (this));

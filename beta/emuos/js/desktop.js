@@ -4,7 +4,8 @@
 		version: '@emuos-main-version',
 		options: {
 			/* options */
-			iconClass: ''
+			iconClass: '',
+			parent: ''
 		},
 		_cnst: {
 			dataPrefix: 'emuos-',
@@ -67,7 +68,11 @@
 			var self = this;
 
 			if (!this.$elem.parents().length) {
-				this.$elem.appendTo('body');
+				this.$elem.prependTo('body');
+			}
+
+			if (this.options.parent !== '' && $(this.options.parent).size()) {
+				this.$elem.prependTo($(this.options.parent));
 			}
 
 			// tracks state of various elements of taskbar and holds
@@ -80,7 +85,7 @@
 
 			// the basic classes, widget ID, and a unique id instante storage
 			this.$elem
-				.addClass(this.classes.desktop + ' ' + this.classes.uiWidgetContent)
+				.addClass(this.classes.desktop)
 				.attr('data-desktop-uuid', this.uuid)
 				.uniqueId()
 				.data(this._cnst.dataPrefix + 'desktop', this);
@@ -88,37 +93,37 @@
 			this._cache.icons = this.$elem.children(this.options.iconClass);
 			this._cache.icons.addClass(this.classes.desktopIcon);
 
-			this.$elem.selectable({
-				cancel: '.' + this.classes.uiSortableHandle,
-				filter: '.' + this.classes.desktopIcon,
-				tolerance: 'touch'
-			});
+			setTimeout(function() {
+				self.$elem.selectable({
+					cancel: '.' + self.classes.uiSortableHandle,
+					filter: '.' + self.classes.desktopIcon,
+					tolerance: 'touch'
+				}).sortable({
+					containment: 'parent',
+					// handle: '.' + this.classes.uiSortableHandle,
+					items: '> .' + self.classes.desktopIcon,
+					opacity: 0.8,
+					scroll: false,
+					revert: true,
+					helper: function (e, item) {
+						if (!item.hasClass(self.classes.uiSelected)) {
+							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+							item.addClass(self.classes.uiSelected);
+						}
 
-			this.$elem.sortable({
-				containment: 'parent',
-				// handle: '.' + this.classes.uiSortableHandle,
-				items: '> .' + this.classes.desktopIcon,
-				opacity: 0.8,
-				scroll: false,
-				revert: true,
-				helper: function (e, item) {
-					if (!item.hasClass(self.classes.uiSelected)) {
-						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-						item.addClass(self.classes.uiSelected);
+						var selected = $('.' + self.classes.uiSelected).clone();
+						item.data('multidrag', selected);
+						$('.' + self.classes.uiSelected).not(item).remove();
+
+						return $('<div class="ui-selected-transporter" />').append(selected);
+					},
+					stop: function (e, ui) {
+						var selected = ui.item.data('multidrag');
+						ui.item.after(selected);
+						ui.item.remove();
 					}
-
-					var selected = $('.' + self.classes.uiSelected).clone();
-					item.data('multidrag', selected);
-					$('.' + self.classes.uiSelected).not(item).remove();
-
-					return $('<div class="ui-selected-transporter" />').append(selected);
-				},
-				stop: function (e, ui) {
-					var selected = ui.item.data('multidrag');
-					ui.item.after(selected);
-					ui.item.remove();
-				}
-			});
+				});
+			}, 1000);
 		},
 		// returns all icons
 		_icons: function () {
