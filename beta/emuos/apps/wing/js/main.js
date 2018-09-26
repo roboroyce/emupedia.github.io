@@ -1,6 +1,8 @@
 ;// noinspection ThisExpressionReferencesGlobalObjectJS
 (function(global) {
 	'use strict';
+
+	//noinspection JSUnusedLocalSymbols,JSFileReferences
 	require.config({
 		urlArgs: 'rand=' + (new Date()).getTime(),
 		paths: {
@@ -14,36 +16,15 @@
 		}
 	});
 
+	//noinspection JSUnusedLocalSymbols,JSCheckFunctionSignatures
 	require([
 		'jquery',
 		'phaser'
 	], function($) {
-
-		$(document).on('contextmenu', function(e) {
-			e.preventDefault();
-		});
-
-		//var width					= 1280;
-		//var height				= 720;
-
-		var w = global.innerWidth * global.devicePixelRatio,
-			h = global.innerHeight * global.devicePixelRatio,
-			width = (h > w) ? h : w,
-			height = (h > w) ? w : h;
-
-		if (global.innerWidth >= 1024 && global.devicePixelRatio >= 2) {
-			width = Math.round(width / 2);
-			height = Math.round(height / 2);
-		}
-
-		if (global.devicePixelRatio === 3) {
-			width = Math.round(width / 3) * 2;
-			height = Math.round(height / 3) * 2;
-		}
-
 		var worldwidth				= 6000;
 		var worldheight				= 6000;
 		var background				= null;
+		// noinspection JSUnusedLocalSymbols
 		var logobackground			= null;
 		var logo					= null;
 		var ship					= null;
@@ -53,18 +34,22 @@
 		var pointerconstraint		= null;
 		var bullets					= null;
 		var bulletlifetime			= 2500;
-		var bulletmaxvelocity		= 80000;
+		var bulletmaxvelocity		= 50000;
 		var bulletcollisiongroup	= null;
 		var maxbullets				= 30;
 		var fireRate				= 200;
 		var nextFire				= 0;
+		// noinspection JSUnusedLocalSymbols
 		var enemy1					= null;
+		// noinspection JSUnusedLocalSymbols
 		var enemy2					= null;
 		var planets					= null;
 		var planetscollisiongroup	= null;
 		var maxplanets				= 50;
+		var click					= null;
 
-		var game = new Phaser.Game(width, height, Phaser.CANVAS, 'wing', {
+		// noinspection JSCheckFunctionSignatures
+		var game = new Phaser.Game(640, 480, Phaser.CANVAS, 'wing', {
 			preload: preload,
 			create: create,
 			update: update,
@@ -93,6 +78,23 @@
 			game.load.image('sun', 'assets/sprites/planets/sun.png');
 			game.load.image('uranus', 'assets/sprites/planets/uranus.png');
 			game.load.image('venus', 'assets/sprites/planets/venus.png');
+
+			game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+
+			// noinspection JSCheckFunctionSignatures
+			game.scale.setResizeCallback(function() {
+				game.scale.setMaximum();
+
+				var width = window.innerWidth;
+				var height = window.innerHeight;
+
+				console.log('size: ' + width + ', ' + height);
+
+				// game.camera.setSize(width, height);
+				// game.renderer.resize(width, height);
+				// game.world.setBounds(0, 0, worldwidth, worldheight);
+				// game.camera.follow(ship);
+			});
 		}
 
 		function create() {
@@ -131,9 +133,10 @@
 				planet.body.clearShapes();
 				planet.body.setCircle((planet.width - 32) / 2);
 				planet.body.setCollisionGroup(planetscollisiongroup);
-				planet.body.collides([bulletcollisiongroup ,shipcollisiongroup]);
+				planet.body.collides([bulletcollisiongroup, shipcollisiongroup]);
+				// noinspection ReservedWordAsName
 				planet.body.static = true;
-				//planet.body.debug = true;
+				planet.body.debug = true;
 				planet.angle = game.rnd.angle();
 			}
 
@@ -148,7 +151,7 @@
 			ship.body.collides(planetscollisiongroup);
 			ship.body.collideWorldBounds = true;
 			ship.body.fixedRotation = true;
-			//ship.body.debug = true;
+			ship.body.debug = true;
 			game.camera.follow(ship);
 
 			// Player Bullets
@@ -156,26 +159,33 @@
 			bullets.enableBody = true;
 			bullets.physicsBodyType = Phaser.Physics.P2JS;
 
-			for (var j = 0; i < maxbullets; i++) {
+			// noinspection JSUnusedLocalSymbols
+			/*for (var j = 0; j < maxbullets; j++) {
+				// noinspection JSUnusedLocalSymbols
 				var bullet = bullets.create(game.world.randomX, game.world.randomY, 'bullet');
-				planet.anchor.set(0.5);
-				planet.scale.set(0.75);
-				planet.body.clearShapes();
-				planet.body.setCircle(10);
-				planet.body.setCollisionGroup(planetscollisiongroup);
-				planet.body.collides(shipcollisiongroup);
-				planet.body.debug = true;
-			}
+				bullet.anchor.set(0.5);
+				bullet.scale.set(0.75);
+				bullet.body.clearShapes();
+				bullet.body.setCircle(10);
+				bullet.body.setCollisionGroup(bulletcollisiongroup);
+				bullet.body.collides(shipcollisiongroup);
+				bullet.body.debug = true;
+			}*/
 
-			/*bullets.createMultiple(maxbullets, 'bullet', 0, false);
+			bullets.createMultiple(maxbullets, 'bullet', 0, false);
 			bullets.setAll('anchor.x', 0.5);
 			bullets.setAll('anchor.y', 0.5);
 			bullets.setAll('scale.x', 0.75);
 			bullets.setAll('scale.y', 0.75);
+			bullets.setAll('body.clearShapes');
+			bullets.setAll('body.setCircle', 10);
 			bullets.setAll('body.setCollisionGroup', bulletcollisiongroup);
 			bullets.setAll('body.collides', planetscollisiongroup);
+			bullets.setAll('body.collideWorldBounds', true);
+			bullets.setAll('body.fixedRotation', true);
+			bullets.setAll('body.debug', true);
 			bullets.setAll('outOfBoundsKill', true);
-			bullets.setAll('checkWorldBounds', true);*/
+			bullets.setAll('checkWorldBounds', true);
 
 			/*enemy1 = game.add.group();
 			enemy1.enableBody = true;
@@ -193,11 +203,20 @@
 			logo.alpha = 0.7;
 			logo.fixedToCamera = true;
 
+			// noinspection AmdModulesDependencies
 			pointer = new p2.Body();
 			//pointer.clearShapes();
 			//pointer.setCircle(20);
 			//pointer.debug = true;
 			game.physics.p2.world.addBody(pointer);
+
+			game.input.onDown.add(function() {
+				click = true;
+			}, this);
+
+			game.input.onUp.add(function() {
+				click = false;
+			}, this);
 		}
 
 		function update() {
@@ -226,7 +245,7 @@
 				ship.body.setZeroVelocity();
 			}
 
-			if (game.input.activePointer.isDown) {
+			if (click) {
 				if (game.time.now > nextFire && bullets.countDead() > 0) {
 					nextFire = game.time.now + fireRate;
 					var bullet = bullets.getFirstExists(false);
@@ -298,5 +317,9 @@
 			game.load.physics(newPhysicsKey, '', item);
 			//debugPolygon(newPhysicsKey, shapeKey);
 		}
+
+		$(document).on('contextmenu', function(e) {
+			e.preventDefault();
+		});
 	});
 })(this);

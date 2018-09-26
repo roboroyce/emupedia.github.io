@@ -2799,6 +2799,12 @@
 				dimension = Math.round(Math.min(dimension, containment[name]));
 			}
 
+			if (this.options.height !== 'auto' && name === 'height') {
+				if (this.uiDialogTitlebar) {
+					dimension += this.uiDialogTitlebar.outerHeight();
+				}
+			}
+
 			this.$elem.css(name, dimension);
 		},
 
@@ -3469,8 +3475,7 @@
 				return;
 			}
 
-			var $button = taskbar.$elem
-				.find("[data-window-id=" + this.$window[0].id + "]");
+			var $button = taskbar.$elem.find("[data-window-id=" + this.$window[0].id + "]");
 
 			taskbar._refreshWindowButtonIcon.call($button, taskbar);
 
@@ -3531,6 +3536,14 @@
 				&& this.uiDialogButtonPane.children().length
 			) {
 				maxHeight -= this.uiDialogButtonPane.outerHeight();
+			}
+
+			if (this.uiDialogTitlebar) {
+				maxHeight -= 4;
+			}
+
+			if (this.options.height !== 'auto') {
+				this.$window.css("height", maxHeight);
 			}
 
 			this.$window.css("maxHeight", maxHeight);
