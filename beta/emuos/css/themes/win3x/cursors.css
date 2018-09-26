@@ -9,6 +9,7 @@ p {
 }
 
 /*noinspection CssUnknownTarget*/
+.theme-win3x .emuos-desktop-icon,
 .theme-win3x .ui-button,
 .theme-win3x .ui-menu .ui-menu-item,
 .theme-win3x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar,

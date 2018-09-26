@@ -1,3 +1,8 @@
+.emuos-desktop {
+	width: 100%;
+	height: calc(100% - 40px);
+}
+
 .emuos-desktop-icon {
 	font-family: Arial, sans-serif;
 	font-size: 13px;
@@ -11,17 +16,22 @@
 	background-color: #fff;
 }
 
+.emuos-desktop-icon.ui-sortable-helper span,
+.emuos-desktop-icon.ui-draggable-dragging span,
 .emuos-desktop-icon.ui-selecting span,
-.emuos-desktop-icon.ui-selected span,
-.emuos-desktop-icon.active span {
+.emuos-desktop-icon.ui-selected span {
 	background-color: #000080;
 	color: #fff;
+	outline: 1px dotted #fff;
+	outline-offset: -2px;
 }
 
+.emuos-desktop-icon.ui-sortable-helper img,
+.emuos-desktop-icon.ui-draggable-dragging img,
 .emuos-desktop-icon.ui-selecting img,
-.emuos-desktop-icon.ui-selected img,
-.emuos-desktop-icon.active img {
-	background-color: #000080;
+.emuos-desktop-icon.ui-selected img {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 }
 
 .emuos-desktop-icon:hover {
@@ -30,11 +40,8 @@
 	padding: 6px 1px 6px;
 }
 
-.emuos-desktop-icon:hover img {
-	background-color: #000080;
-}
-
-.emuos-desktop-icon:hover span {
-	background-color: #000080;
-	color: #fff;
+.emuos-desktop-icon.ui-sortable-helper,
+.emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+	padding: 6px 1px 6px;
 }

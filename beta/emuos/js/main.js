@@ -8,7 +8,9 @@
 			global.importStyles('css/themes/win3x/cursors.css');
 		}
 
-		$('.desktop').desktop({});
+		$('.desktop').desktop({
+			iconClass: '.icon'
+		});
 
 		$('.taskbar').taskbar({
 			draggable: true,

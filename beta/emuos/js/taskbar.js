@@ -4716,6 +4716,7 @@
 				this._disableButton.call(this.$clock, this);
 			}
 		},
+
 		_setClockWidth: function () {
 			if (!this.$clock.length) {
 				return;

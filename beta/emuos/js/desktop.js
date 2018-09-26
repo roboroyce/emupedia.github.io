@@ -2,6 +2,10 @@
 	'use strict';
 	$.widget('emuos.desktop', {
 		version: '@emuos-main-version',
+		options: {
+			/* options */
+			iconClass: ''
+		},
 		_cnst: {
 			dataPrefix: 'emuos-',
 			eventPrefix: 'desktop',
@@ -49,21 +53,30 @@
 			uiStateDisabled: 'ui-state-disabled',
 			uiStateDefault: 'ui-state-default',
 			uiSortable: 'ui-sortable',
+			uiSortableHandle: 'ui-sortable-handle',
 			uiTooltip: 'ui-tooltip',
 			uiDialogContent: 'ui-dialog-content',
 			uiDialogTitlebar: 'ui-dialog-titlebar',
 			uiHasDatepicker: 'hasDatepicker',
 			uiIcon: 'ui-icon',
-			uiIconBlank: 'ui-icon-blank'
+			uiIconBlank: 'ui-icon-blank',
+			uiSelected: 'ui-selected'
 		},
 		_create: function () {
 			this.$elem = this.element;
+			var self = this;
 
 			if (!this.$elem.parents().length) {
 				this.$elem.appendTo('body');
 			}
 
-			this.$elem.addClass('emuos-desktop');
+			// tracks state of various elements of taskbar and holds
+			// a bunch of calculated values and options
+			this._cache = {
+				inlineCSS: this.$elem.attr('style') || '',
+				icons: {},
+				uep: this._cnst.eventPrefix + this.uuid
+			};
 
 			// the basic classes, widget ID, and a unique id instante storage
 			this.$elem
@@ -72,13 +85,60 @@
 				.uniqueId()
 				.data(this._cnst.dataPrefix + 'desktop', this);
 
+			this._cache.icons = this.$elem.children(this.options.iconClass);
+			this._cache.icons.addClass(this.classes.desktopIcon);
+
 			this.$elem.selectable({
-				autoRefresh: true,
+				cancel: '.' + this.classes.uiSortableHandle,
 				filter: '.' + this.classes.desktopIcon,
-				tolerance: 'touch',
-				delay: 30,
-				distance: 30
+				tolerance: 'touch'
 			});
+
+			this.$elem.sortable({
+				containment: 'parent',
+				// handle: '.' + this.classes.uiSortableHandle,
+				items: '> .' + this.classes.desktopIcon,
+				opacity: 0.8,
+				scroll: false,
+				revert: true,
+				helper: function (e, item) {
+					if (!item.hasClass(self.classes.uiSelected)) {
+						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+						item.addClass(self.classes.uiSelected);
+					}
+
+					var selected = $('.' + self.classes.uiSelected).clone();
+					item.data('multidrag', selected);
+					$('.' + self.classes.uiSelected).not(item).remove();
+
+					return $('<div class="ui-selected-transporter" />').append(selected);
+				},
+				stop: function (e, ui) {
+					var selected = ui.item.data('multidrag');
+					ui.item.after(selected);
+					ui.item.remove();
+				}
+			});
+		},
+		// returns all icons
+		_icons: function () {
+			var $collection = $();
+
+			$.each(this._cache.icons, function (index, elem) {
+				var $icon = $('#' + index);
+				if ($icon.length) {
+					$collection = $collection.add($icon);
+				}
+			});
+
+			return $collection;
+		},
+		// public method returning windows as jQuery collection
+		icons: function () {
+			return this._icons();
+		},
+		_destroy: function() {
+			this.$elem.selectable('destroy');
 		}
 	});
 })(jQuery);

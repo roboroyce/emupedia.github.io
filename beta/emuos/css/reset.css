@@ -25,6 +25,8 @@ iframe {
 	overflow: hidden;
 }
 
+.emuos-desktop-icon img,
+.emuos-desktop-icon span,
 .ui-dialog-title,
 .ui-button-text {
 	-webkit-touch-callout: none;
