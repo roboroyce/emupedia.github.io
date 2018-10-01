@@ -118,8 +118,11 @@
 				},
 				create: function () {
 					self._cache.icons.off('mousedown').on('mousedown', function (e) {
-						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-						$(e.target).addClass(self.classes.uiSelected)
+						var $el = self.$elem.find('.' + self.classes.uiSelected);
+						if ($el.size() <= 1) {
+							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+							$(e.target).addClass(self.classes.uiSelected)
+						}
 					});
 				},
 				stop: function (e, ui) {
@@ -128,8 +131,11 @@
 					ui.item.remove();
 
 					$('.' + self.classes.uiSelected).off('mousedown').on('mousedown', function (e2) {
-						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-						$(e2.target).addClass(self.classes.uiSelected)
+						var $el = self.$elem.find('.' + self.classes.uiSelected);
+						if ($el.size() <= 1) {
+							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+							$(e2.target).addClass(self.classes.uiSelected)
+						}
 					});
 				}
 			}).selectable({
