@@ -61,7 +61,8 @@
 			uiHasDatepicker: 'hasDatepicker',
 			uiIcon: 'ui-icon',
 			uiIconBlank: 'ui-icon-blank',
-			uiSelected: 'ui-selected'
+			uiSelected: 'ui-selected',
+			uiSelectee: 'ui-selectee'
 		},
 		_create: function () {
 			this.$elem = this.element;
@@ -93,37 +94,48 @@
 			this._cache.icons = this.$elem.children(this.options.iconClass);
 			this._cache.icons.addClass(this.classes.desktopIcon);
 
-			setTimeout(function() {
-				self.$elem.selectable({
-					cancel: '.' + self.classes.uiSortableHandle,
-					filter: '.' + self.classes.desktopIcon,
-					tolerance: 'touch'
-				}).sortable({
-					containment: 'parent',
-					// handle: '.' + this.classes.uiSortableHandle,
-					items: '> .' + self.classes.desktopIcon,
-					opacity: 0.8,
-					scroll: false,
-					revert: true,
-					helper: function (e, item) {
-						if (!item.hasClass(self.classes.uiSelected)) {
-							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-							item.addClass(self.classes.uiSelected);
-						}
-
-						var selected = $('.' + self.classes.uiSelected).clone();
-						item.data('multidrag', selected);
-						$('.' + self.classes.uiSelected).not(item).remove();
-
-						return $('<div class="ui-selected-transporter" />').append(selected);
-					},
-					stop: function (e, ui) {
-						var selected = ui.item.data('multidrag');
-						ui.item.after(selected);
-						ui.item.remove();
+			self.$elem.sortable({
+				containment: 'parent',
+				items: '> .' + self.classes.desktopIcon,
+				opacity: 0.8,
+				scroll: false,
+				revert: true,
+				helper: function (e, item) {
+					if (!item.hasClass(self.classes.uiSelected)) {
+						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+						item.addClass(self.classes.uiSelected);
 					}
-				});
-			}, 1000);
+
+					// noinspection JSJQueryEfficiency
+					var selected = $('.' + self.classes.uiSelected).clone();
+
+					item.data('multidrag', selected);
+
+					// noinspection JSJQueryEfficiency
+					$('.' + self.classes.uiSelected).not(item).remove();
+
+					return $('<div class="ui-selected-transporter" />').append(selected);
+				},
+				create: function () {
+					self._cache.icons.off('mousedown').on('mousedown', function (e) {
+						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+						$(e.target).addClass(self.classes.uiSelected)
+					});
+				},
+				stop: function (e, ui) {
+					var selected = ui.item.data('multidrag');
+					ui.item.after(selected);
+					ui.item.remove();
+
+					$('.' + self.classes.uiSelected).off('mousedown').on('mousedown', function (e2) {
+						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
+						$(e2.target).addClass(self.classes.uiSelected)
+					});
+				}
+			}).selectable({
+				filter: '> .' + self.classes.desktopIcon,
+				tolerance: 'touch'
+			});
 		},
 		// returns all icons
 		_icons: function () {

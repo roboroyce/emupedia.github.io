@@ -553,6 +553,7 @@ if (typeof console !== 'undefined') {
 
 	if (context2D) {
 		try {
+			//TODO: try to cache results to prevent Error: WebGL warning: Exceeded 16 live WebGL contexts for this principal, losing the least recently used one.
 			canvasWEBGL						= document.createElement('canvas');
 			contextWEBGL					= typeof canvasWEBGL !== 'undefined' ? (typeof canvasWEBGL.getContext === 'function' ? (canvasWEBGL.getContext('webgl') || canvasWEBGL.getContext('experimental-webgl')) : false) : false;
 
@@ -931,8 +932,8 @@ if (typeof console !== 'undefined') {
 
 	// region Functions
 
+	// Poor's man requirejs :)
 	if (!global.importScripts) {
-		// Poor's man requirejs :)
 		global.importScripts = function (url, callback) {
 			if (url) {
 				// noinspection JSUnresolvedFunction
@@ -967,6 +968,7 @@ if (typeof console !== 'undefined') {
 		}
 	}
 
+	// Poor's man requirejs :)
 	if (!global.importStyles) {
 		global.importStyles = function(url, callback) {
 			if (url) {
@@ -1130,10 +1132,6 @@ if (typeof console !== 'undefined') {
 	// endregion
 
 	dumpSystem();
-
-	$(function() {
-		importScripts($('#system').attr('data-main'));
-	});
 
 	onerror = function(message, url, lineNumber) {
 		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);

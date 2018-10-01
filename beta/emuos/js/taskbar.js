@@ -8361,9 +8361,9 @@
 		}
 	});
 
-// allow extending prototype for all future instances at once,
-// or if "propagateToInstances" is set to true, affect both prototype
-// and the current instances
+	// allow extending prototype for all future instances at once,
+	// or if "propagateToInstances" is set to true, affect both prototype
+	// and the current instances
 	$.emuos.taskbarSetup = function (propagateToInstances, options) {
 		options = arguments.length === 1 ? propagateToInstances : options;
 		if (propagateToInstances === true && arguments.length > 1) {

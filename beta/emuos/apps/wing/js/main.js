@@ -32,6 +32,9 @@
 		var shipmaxvelocity			= 20;
 		var pointer					= null;
 		var pointerconstraint		= null;
+		var balls					= null;
+		var maxballs				= 100;
+		var ballscollisiongroup		= null;
 		var bullets					= null;
 		var bulletlifetime			= 2500;
 		var bulletmaxvelocity		= 50000;
@@ -55,6 +58,23 @@
 			update: update,
 			render: render
 		});
+
+		function resizePolygon(originalPhysicsKey, newPhysicsKey, shapeKey, scale) {
+			var newData = [];
+			var data = game.cache.getPhysicsData(originalPhysicsKey, shapeKey);
+			for (var i = 0; i < data.length; i++) {
+				var vertices = [];
+				for (var j = 0; j < data[i].shape.length; j += 2) {
+					vertices[j] = data[i].shape[j] * scale;
+					vertices[j + 1] = data[i].shape[j + 1] * scale;
+				}
+				newData.push({shape : vertices});
+			}
+			var item = {};
+			item[shapeKey] = newData;
+			game.load.physics(newPhysicsKey, '', item);
+			//debugPolygon(newPhysicsKey, shapeKey);
+		}
 
 		function preload() {
 			game.time.advancedTiming = true;
@@ -111,13 +131,15 @@
 			//background.fixedToCamera = true;
 
 			game.physics.startSystem(Phaser.Physics.P2JS);
-			//game.physics.p2.setImpactEvents(true);
+			// game.physics.p2.setImpactEvents(true);
 			//game.physics.p2.restitution = 0.8;
+
 			resizePolygon('physics', 'physics2', 'ship2', 0.75);
+
 			planetscollisiongroup = game.physics.p2.createCollisionGroup();
 			shipcollisiongroup = game.physics.p2.createCollisionGroup();
 			bulletcollisiongroup = game.physics.p2.createCollisionGroup();
-			game.physics.p2.updateBoundsCollisionGroup();
+			ballscollisiongroup = game.physics.p2.createCollisionGroup();
 
 			// Planets
 			var planettypes = ['ceres', 'earth', 'eris', 'jupiter', 'mars', 'mercury', 'moon', 'neptune', 'pluto', 'saturn', 'sun', 'uranus', 'venus'];
@@ -133,9 +155,9 @@
 				planet.body.clearShapes();
 				planet.body.setCircle((planet.width - 32) / 2);
 				planet.body.setCollisionGroup(planetscollisiongroup);
-				planet.body.collides([bulletcollisiongroup, shipcollisiongroup]);
+				planet.body.collides([bulletcollisiongroup, shipcollisiongroup, planetscollisiongroup]);
 				// noinspection ReservedWordAsName
-				planet.body.static = true;
+				// planet.body.static = true;
 				planet.body.debug = true;
 				planet.angle = game.rnd.angle();
 			}
@@ -148,7 +170,7 @@
 			ship.body.clearShapes();
 			ship.body.loadPolygon('physics2', 'ship2');
 			ship.body.setCollisionGroup(shipcollisiongroup);
-			ship.body.collides(planetscollisiongroup);
+			ship.body.collides([bulletcollisiongroup, planetscollisiongroup, ballscollisiongroup]);
 			ship.body.collideWorldBounds = true;
 			ship.body.fixedRotation = true;
 			ship.body.debug = true;
@@ -159,17 +181,29 @@
 			bullets.enableBody = true;
 			bullets.physicsBodyType = Phaser.Physics.P2JS;
 
+			/*balls = game.add.physicsGroup(Phaser.Physics.P2JS);
+			for (var j = 0; j < maxballs; j++) {
+				var ball = balls.create(game.world.randomX, game.world.randomY, 'enemy2');
+				ball.body.setCircle(16);
+				ball.body.clearShapes();
+				ball.body.setCollisionGroup(ballscollisiongroup);
+				ball.body.collides([bulletcollisiongroup, planetscollisiongroup, shipcollisiongroup, ballscollisiongroup]);
+				ball.body.collideWorldBounds = true;
+				ball.body.debug = true;
+			}*/
+
 			// noinspection JSUnusedLocalSymbols
 			/*for (var j = 0; j < maxbullets; j++) {
 				// noinspection JSUnusedLocalSymbols
 				var bullet = bullets.create(game.world.randomX, game.world.randomY, 'bullet');
 				bullet.anchor.set(0.5);
 				bullet.scale.set(0.75);
-				bullet.body.clearShapes();
+				// bullet.body.clearShapes();
 				bullet.body.setCircle(10);
 				bullet.body.setCollisionGroup(bulletcollisiongroup);
 				bullet.body.collides(shipcollisiongroup);
 				bullet.body.debug = true;
+				game.physics.p2.enable(bullet, false);
 			}*/
 
 			bullets.createMultiple(maxbullets, 'bullet', 0, false);
@@ -177,15 +211,17 @@
 			bullets.setAll('anchor.y', 0.5);
 			bullets.setAll('scale.x', 0.75);
 			bullets.setAll('scale.y', 0.75);
-			bullets.setAll('body.clearShapes');
+			bullets.setAll('body.clearShapes', null);
 			bullets.setAll('body.setCircle', 10);
 			bullets.setAll('body.setCollisionGroup', bulletcollisiongroup);
-			bullets.setAll('body.collides', planetscollisiongroup);
+			bullets.setAll('body.collides', [shipcollisiongroup, planetscollisiongroup]);
 			bullets.setAll('body.collideWorldBounds', true);
 			bullets.setAll('body.fixedRotation', true);
 			bullets.setAll('body.debug', true);
 			bullets.setAll('outOfBoundsKill', true);
 			bullets.setAll('checkWorldBounds', true);
+
+			game.physics.p2.updateBoundsCollisionGroup();
 
 			/*enemy1 = game.add.group();
 			enemy1.enableBody = true;
@@ -205,9 +241,9 @@
 
 			// noinspection AmdModulesDependencies
 			pointer = new p2.Body();
-			//pointer.clearShapes();
-			//pointer.setCircle(20);
-			//pointer.debug = true;
+			// pointer.clearShapes();
+			// pointer.setCircle(20);
+			// pointer.debug = true;
 			game.physics.p2.world.addBody(pointer);
 
 			game.input.onDown.add(function() {
@@ -277,6 +313,9 @@
 			var renderer = '';
 
 			switch (game.renderType) {
+				case Phaser.AUTO:
+					renderer = 'Renderer: Auto';
+					break;
 				case Phaser.WEBGL:
 					renderer = 'Renderer: WebGL';
 					break;
@@ -299,23 +338,6 @@
 			game.debug.cameraInfo(game.camera, 20, 160);
 			game.debug.inputInfo(20, 280);
 			game.debug.spriteInfo(ship, 20, 450);
-		}
-
-		function resizePolygon(originalPhysicsKey, newPhysicsKey, shapeKey, scale) {
-			var newData = [];
-			var data = game.cache.getPhysicsData(originalPhysicsKey, shapeKey);
-			for (var i = 0; i < data.length; i++) {
-				var vertices = [];
-				for (var j = 0; j < data[i].shape.length; j += 2) {
-					vertices[j] = data[i].shape[j] * scale;
-					vertices[j + 1] = data[i].shape[j + 1] * scale;
-				}
-				newData.push({shape : vertices});
-			}
-			var item = {};
-			item[shapeKey] = newData;
-			game.load.physics(newPhysicsKey, '', item);
-			//debugPolygon(newPhysicsKey, shapeKey);
 		}
 
 		$(document).on('contextmenu', function(e) {

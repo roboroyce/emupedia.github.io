@@ -194,7 +194,7 @@
 	font-family: Arial, sans-serif;
 	font-size: 13px;
 	line-height: 16px;
-	/*height: calc(100% - 19px) !important;*/
+	height: calc(100% - 19px) !important;
 	background-color: #fff;
 }
 

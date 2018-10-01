@@ -63,6 +63,7 @@
 			resizable: true,
 			taskbar: ".emuos-taskbar:eq(0)",
 			title: null,
+			realTitle: null,
 			titleLocalized: null,
 			widgetClass: "",
 			width: 300,
@@ -4756,9 +4757,9 @@
 		}
 	});
 
-// allow settings options for all future instances at once,
-// or if "propagateToInstances" is set to true, affect both prototype
-// and the current instances
+	// allow settings options for all future instances at once,
+	// or if "propagateToInstances" is set to true, affect both prototype
+	// and the current instances
 	$.emuos.windowSetup = function (propagateToInstances, options) {
 		options = arguments.length === 1 ? propagateToInstances : options;
 		if (propagateToInstances === true && arguments.length > 1) {

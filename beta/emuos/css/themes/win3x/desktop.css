@@ -14,10 +14,7 @@
 .emuos-desktop-icon.ui-sortable-helper span,
 .emuos-desktop-icon.ui-draggable-dragging span,
 .emuos-desktop-icon.ui-selecting span,
-.emuos-desktop-icon.ui-selected span,
-.emuos-desktop-icon.active span,
-.emuos-desktop-icon:active span,
-.emuos-desktop-icon:focus span {
+.emuos-desktop-icon.ui-selected span {
 	background-color: #000080;
 	color: #fff;
 }
@@ -25,10 +22,7 @@
 .emuos-desktop-icon.ui-sortable-helper img,
 .emuos-desktop-icon.ui-draggable-dragging img,
 .emuos-desktop-icon.ui-selecting img,
-.emuos-desktop-icon.ui-selected img,
-.emuos-desktop-icon.active img,
-.emuos-desktop-icon:active img,
-.emuos-desktop-icon:focus img {
+.emuos-desktop-icon.ui-selected img {
 	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
 }

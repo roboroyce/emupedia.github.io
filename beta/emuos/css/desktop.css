@@ -10,6 +10,7 @@
 /*noinspection CssOverwrittenProperties*/
 .emuos-desktop-icon {
 	display: block;
+	position: relative;
 	width: 80px;
 	/*background-color: #fff;*/
 	/*background-color: rgba(255, 255, 255, 0.5);*/
@@ -42,8 +43,8 @@
 	/*background-color: rgba(0, 0, 0, 0.5);*/
 	display: block;
 	margin: 0 auto 5px;
-	width: 32px;
-	height: 32px;
+	width: 64px;
+	height: 64px;
 	pointer-events: none;
 }
 
@@ -64,3 +65,17 @@
 	border: 1px solid #fff;
 	padding: 5px 0 5px;
 }
+
+/*.emuos-desktop-icon .ui-sortable-handle {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+.emuos-desktop-icon.ui-selecting .ui-sortable-handle,
+.emuos-desktop-icon.ui-selected .ui-sortable-handle {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+}*/

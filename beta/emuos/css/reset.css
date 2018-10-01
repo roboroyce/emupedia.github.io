@@ -37,3 +37,7 @@ iframe {
 	user-select: none;
 }
 
+.emuos-taskbar-windows-containment {
+	z-index: auto !important;
+}
+
