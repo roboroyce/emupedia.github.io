@@ -1,0 +1,29 @@
+::selection {
+	background: #000080;
+	color: #fff;
+}
+
+::-moz-selection {
+	background: #000080;
+	color: #fff;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-win9x .emuos-desktop {
+	background: url(../../../images/themes/win9x/wallpapers/windows-98-remastered-1920x1080.jpg) center no-repeat;
+	background-size: cover;
+}
+
+.theme-win9x .ui-state-active,
+.theme-win9x .ui-state-focus,
+.theme-win9x .ui-widget-content .ui-state-active,
+.theme-win9x .ui-widget-content .ui-state-focus,
+.theme-win9x .ui-widget-header .ui-state-active {
+	background-color: #000080;
+	border: 1px solid #000080;
+	color: #fff;
+}
+
+.theme-win9x .ui-state-focus .ui-icon {
+	background-image: url(../../../images/ui/themes/base/ui-icons_ffffff_256x240.png);
+}

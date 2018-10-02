@@ -1,0 +1,40 @@
+.theme-win9x .emuos-desktop-icon {
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	text-shadow: none;
+}
+
+.theme-win9x .emuos-desktop-icon span {
+	display: block;
+	color: #000;
+	background-color: #fff;
+}
+
+.theme-win9x .emuos-desktop-icon.ui-sortable-helper span,
+.theme-win9x .emuos-desktop-icon.ui-draggable-dragging span,
+.theme-win9x .emuos-desktop-icon.ui-selecting span,
+.theme-win9x .emuos-desktop-icon.ui-selected span {
+	background-color: #000080;
+	color: #fff;
+	outline: 1px dotted #ffff7f;
+	outline-offset: -1px;
+}
+
+.theme-win9x .emuos-desktop-icon.ui-sortable-helper img,
+.theme-win9x .emuos-desktop-icon.ui-draggable-dragging img,
+.theme-win9x .emuos-desktop-icon.ui-selecting img,
+.theme-win9x .emuos-desktop-icon.ui-selected img {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.theme-win9x .emuos-desktop-icon:hover {
+	background-color: transparent;
+	border: none;
+}
+
+.theme-win9x .emuos-desktop-icon.ui-sortable-helper,
+.theme-win9x .emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+}

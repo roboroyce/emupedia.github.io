@@ -41,3 +41,7 @@ iframe {
 	z-index: auto !important;
 }
 
+.ui-selectable-helper {
+	border: 1px dotted white;
+	mix-blend-mode: difference;
+}

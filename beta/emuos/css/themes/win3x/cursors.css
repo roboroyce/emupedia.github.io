@@ -42,7 +42,7 @@ p {
 
 /*noinspection CssUnknownTarget*/
 .theme-win3x .ui-resizable-s {
-	cursor: url(images/themes/win3x/cursors/vertical.ani), url(../../../images/themes/win3x/cursors/vertical.ani), url(images/themes/win3x/cursors/vertical.cur), url(../../../images/themes/win3x/cursors/vertical.cur), s-resize;
+	cursor: url(../../../images/themes/win3x/cursors/vertical.ani), url(../../../images/themes/win3x/cursors/vertical.cur), url(images/themes/win3x/cursors/vertical.ani), url(images/themes/win3x/cursors/vertical.cur), s-resize;
 }
 
 /*noinspection CssUnknownTarget*/

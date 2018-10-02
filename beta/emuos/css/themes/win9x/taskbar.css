@@ -1,0 +1,72 @@
+.theme-win3x .emuos-taskbar.ui-widget-content {
+	border-top: 1px solid #000;
+	background-color: #c0c0c0;
+}
+
+.theme-win3x .emuos-taskbar .emuos-taskbar-separator {
+	border: none;
+	border-left: 1px solid #000;
+	border-right: 1px solid #fff;
+}
+
+/*noinspection CssOverwrittenProperties*/
+.theme-win3x .emuos-taskbar .ui-button {
+	border: none;
+	border: 1px solid #000;
+	border-radius: 2px;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+.theme-win3x .emuos-taskbar .ui-button .ui-button-icon-primary {
+	/*background-image: url(../../../images/themes/win3x/icons/maximize.png);*/
+	/*background-position: 4px 5px;*/
+	/*background-repeat: no-repeat;*/
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+.theme-win3x .emuos-taskbar .ui-button .ui-button-text {
+	border-top: 2px solid #fff;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #808080;
+	border-bottom: 2px solid #808080;
+	background-color: #c0c0c0;
+}
+
+.theme-win3x .emuos-taskbar .ui-button.ui-state-active .ui-button-text::before {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	display: block;
+	content: '';
+	width: calc(100% - 6px);
+	height: calc(100% - 6px);
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	pointer-events: none;
+}
+
+.theme-win3x .emuos-taskbar .ui-button.ui-state-active {
+	color: #000;
+	border-radius: 3px;
+}
+
+.theme-win3x .emuos-taskbar .ui-button.ui-state-active::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	content: '';
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+	border: 1px solid #000;
+	pointer-events: none;
+}
