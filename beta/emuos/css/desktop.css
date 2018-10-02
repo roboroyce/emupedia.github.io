@@ -1,6 +1,7 @@
 .emuos-desktop {
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 
 .emuos-desktop.ui-widget-content {
@@ -23,7 +24,7 @@
 	font-size: 13px;
 	font-weight: bold;
 	line-height: 1.3;
-	padding: 6px 1px 6px;
+	margin: 6px 1px 6px;
 	text-align: center;
 	text-shadow: #000 1px 1px 1px;
 	text-decoration: none;
@@ -56,14 +57,14 @@
 	background-color: #000;
 	background-color: rgba(0, 0, 0, 0.5);
 	border: 1px solid #fff;
-	padding: 5px 0 5px;
+	/*padding: 5px 0 5px;*/
 }
 
 .emuos-desktop-icon.ui-draggable-dragging {
 	/*background-position: 0 0;*/
 	/*background-repeat: repeat;*/
 	border: 1px solid #fff;
-	padding: 5px 0 5px;
+	/*padding: 5px 0 5px;*/
 }
 
 /*.emuos-desktop-icon .ui-sortable-handle {

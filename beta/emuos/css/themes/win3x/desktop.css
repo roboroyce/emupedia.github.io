@@ -30,11 +30,9 @@
 .emuos-desktop-icon:hover {
 	background-color: transparent;
 	border: none;
-	padding: 6px 1px 6px;
 }
 
 .emuos-desktop-icon.ui-sortable-helper,
 .emuos-desktop-icon.ui-draggable-dragging {
 	border: none;
-	padding: 6px 1px 6px;
 }

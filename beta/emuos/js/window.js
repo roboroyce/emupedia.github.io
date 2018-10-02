@@ -3048,9 +3048,7 @@
 		// get dimensions of element
 		_getDimensions: function (options) {
 			var $e = this;
-			var position = $.extend({},
-				options && options.position ? $e.position() : $e.offset(),
-				{
+			var position = $.extend({}, options && options.position ? $e.position() : $e.offset(), {
 					width: options && options.outer ? $e.outerWidth() : $e.width(),
 					height: options && options.outer ? $e.outerHeight() : $e.height()
 				}
