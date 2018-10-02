@@ -25,6 +25,8 @@
 	}
 }(function ($) {
 	var EmuOS = function (options) {
+		var self = this;
+
 		this.options = {
 			theme: 'theme-win3x',
 			themes: {
@@ -161,13 +163,13 @@
 						window.location = window.location;
 						break;
 					case 'basic':
-						$body.removeClass('theme-win3x theme-win9x');
+						self.$body.removeClass('theme-win3x theme-win9x');
 						break;
 					case 'win3x':
-						$body.removeClass('theme-win9x').addClass('theme-win3x');
+						self.$body.removeClass('theme-win9x').addClass('theme-win3x');
 						break;
 					case 'win9x':
-						$body.removeClass('theme-win3x').addClass('theme-win9x');
+						self.$body.removeClass('theme-win3x').addClass('theme-win9x');
 						break;
 				}
 
