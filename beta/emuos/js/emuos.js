@@ -90,7 +90,7 @@
 			// noinspection JSUnfilteredForInLoop
 			this.$desktop.append(
 				'<a class="icon" href="' + (this.options.icons[j]['link'] !== '' ? this.options.icons[j]['link'] : 'javascript:') + '">' +
-					'<img src="' + this.options.icons[j]['icon'] + '" alt="" />' +
+					'<img src="' + this.options.icons[j]['icon'] + '" alt="' + this.options.icons[j]['name'] + '" />' +
 					'<span>' + this.options.icons[j]['name'] + '</span>' +
 				'</a>')
 		}
