@@ -56,12 +56,11 @@
 			orientation: "horizontal",
 			propagateWindowBlur: false,
 			resizable: false,
+			resizableHandleOffset: 0,
 			resizableHandleOverflow: 2,
 			resolveCollisions: true,
 			startButtons: true,
-			systemButtonsOrder: ["languageSelect", "networkMonitor",
-				"toggleFullscreen", "clock",
-				"minimizeAll"],
+			systemButtonsOrder: ["languageSelect", "networkMonitor", "toggleFullscreen", "clock", "minimizeAll"],
 			toggleFullscreen: false,
 			verticalColumns: 1,
 			verticalColumnsMax: 2,
@@ -414,8 +413,7 @@
 		},
 
 		_initialize: function () {
-			var refreshPositionOnce = this.$elem
-				.hasClass(this.classes.refreshPositionOnce);
+			var refreshPositionOnce = this.$elem.hasClass(this.classes.refreshPositionOnce);
 
 			this._debug();
 			this._createStyles();
@@ -1041,9 +1039,7 @@
 			// the skipResizable settings tells us whether the resizable
 			// is at the initial position; if it's not, it should not receive
 			// rounded borders
-			var $target = settings && settings.skipResizable
-				? $elem
-				: $elem.find("." + this.classes.resizable).addBack();
+			var $target = settings && settings.skipResizable ? $elem : $elem.find("." + this.classes.resizable).addBack();
 
 			// adds proper class
 			$target.addClass(this.classes.uiCornerPrefix + corner);
@@ -1785,9 +1781,7 @@
 				_cache = self._cache,
 				resizable = self.options.resizable,
 				horizontal = self.options.orientation === "horizontal",
-				stick = !horizontal
-					? _cache.stickHorizontal
-					: _cache.stickVertical,
+				stick = !horizontal ? _cache.stickHorizontal : _cache.stickVertical,
 				orientation = self.options.orientation,
 				$elem = self.$elem,
 				$resizable = $elem.find("." + self.classes.resizable);
@@ -1799,10 +1793,7 @@
 				);
 			}
 
-			if (
-				!(!options || !options.destroy)
-				&& $resizable.hasClass(this.classes.uiResizableResizing)
-			) {
+			if (!(!options || !options.destroy) && $resizable.hasClass(this.classes.uiResizableResizing)) {
 				return true;
 			}
 
@@ -1819,8 +1810,7 @@
 				return;
 			}
 
-			$resizable = self._factory("resizable")
-				.prependTo($elem);
+			$resizable = self._factory("resizable").prependTo($elem);
 
 			if (this.options.horizontalWidth === "auto" && horizontal) {
 				var resizableCalculatedWidth = this.$elem.outerWidth();
@@ -1970,10 +1960,10 @@
 			$resizable.resizable({
 				grid: grid[orientation][stick],
 				handles: handles[orientation][stick],
-				minWidth: min [orientation].width,
-				minHeight: min [orientation].height,
-				maxWidth: max [orientation].width,
-				maxHeight: max [orientation].height,
+				minWidth: min[orientation].width,
+				minHeight: min[orientation].height,
+				maxWidth: max[orientation].width,
+				maxHeight: max[orientation].height,
 				// when distance or delay are anything but 0, resizable mask change
 				// it's dimension before resize start; we don't want that because
 				// it's not the original element that get resized,
@@ -2062,9 +2052,7 @@
 					$elem = $self.closest("." + self.classes.resizable),
 					horizontal = self.options.orientation === "horizontal",
 					vertical = !horizontal,
-					stick = horizontal
-						? self._cache.stickVertical
-						: self._cache.stickHorizontal;
+					stick = horizontal ? self._cache.stickVertical : self._cache.stickHorizontal;
 
 				if (event.originalEvent === undefined) {
 					// if event is trigger programatically and resizable
@@ -2110,24 +2098,17 @@
 						right: "auto"
 					};
 
-				if (resizable) {
+				/*if (resizable) {
 					// copy border color of default state
 					if (event.type === "mouseleave") {
-						$.extend(elemCss, self._styleIndicator(
-							self.classes.uiWidgetContent,
-							"borderColor"
-						));
+						$.extend(elemCss, self._styleIndicator(self.classes.uiWidgetContent, "borderColor"));
 					}
 
 					// copy border color of focus state
 					if (event.type === "mouseenter") {
-						$.extend(elemCss, self._styleIndicator(
-							self.classes.uiWidgetContent + " " +
-							self.classes.uiStateFocus,
-							"borderColor"
-						));
+						$.extend(elemCss, self._styleIndicator(self.classes.uiWidgetContent + " " + self.classes.uiStateFocus, "borderColor"));
 					}
-				}
+				}*/
 
 				// minSize was initially set to 0 (technically, this variable
 				// was not present since it would do nothing), but Chrome failed to
@@ -2198,27 +2179,29 @@
 					// horizontal top
 					if (horizontal && stick === "top") {
 						elemCss.borderBottomWidth = resizable ? t.b : 0;
-						elemCss.top = 0 - t.t - t.b;
+						elemCss.top = 0 - t.t - t.b - self.options.resizableHandleOffset;
 					}
 
 					// horizontal bottom
 					if (horizontal && stick === "bottom") {
 						elemCss.borderTopWidth = resizable ? t.t : 0;
+						elemCss.top = 0 - t.t + self.options.resizableHandleOffset;
 					}
 
 					// vertical left
 					if (vertical && stick === "left") {
 						elemCss.borderRightWidth = resizable ? t.r : 0;
-						elemCss.left = 0 - t.l - t.r;
+						elemCss.left = 0 - t.l - t.r - self.options.resizableHandleOffset;
 					}
 
 					// vertical right
 					if (vertical && stick === "right") {
 						elemCss.borderLeftWidth = resizable ? t.l : 0;
+						elemCss.left = 0 - t.l + self.options.resizableHandleOffset;
 					}
 
-					elemCss.width = resizableCalculatedWidth || self._cache.width,
-						elemCss.height = self._cache.height;
+					elemCss.width = resizableCalculatedWidth || self._cache.width;
+					elemCss.height = self._cache.height;
 				}
 
 				// element mouseleave
@@ -2235,52 +2218,43 @@
 
 					// horizontal top
 					if (horizontal && stick === "top") {
-						elemCss.top = self._cache.height - t.t;
+						elemCss.borderBottomWidth = resizable ? t.b : 0;
+						elemCss.top = self._cache.height - t.t - (self.options.resizableHandleOffset !== 0 ? self.options.resizableHandleOffset + 2 : self.options.resizableHandleOffset);
 					}
 
 					// horizontal bottom
 					if (horizontal && stick === "bottom") {
-						elemCss.top = 0 - t.t;
+						elemCss.borderTopWidth = resizable ? t.t : 0;
+						elemCss.top = 0 - t.t + self.options.resizableHandleOffset;
 					}
 
 					// vertical left
 					if (vertical && stick === "left") {
-						elemCss.left = self._cache.width - t.l;
+						elemCss.borderRightWidth = resizable ? t.r : 0;
+						elemCss.left = self._cache.width - t.l - (self.options.resizableHandleOffset !== 0 ? self.options.resizableHandleOffset + 2 : self.options.resizableHandleOffset);
 					}
 
 					// vertical right
 					if (vertical && stick === "right") {
-						elemCss.left = 0 - t.l;
+						elemCss.borderLeftWidth = resizable ? t.l : 0;
+						elemCss.left = 0 - t.l + self.options.resizableHandleOffset;
 					}
 
-					elemCss.width = horizontal
-						? resizableCalculatedWidth || self._cache.width
-						: minSize;
+					elemCss.width = horizontal ? resizableCalculatedWidth || self._cache.width : minSize;
 					elemCss.height = vertical ? self._cache.height : minSize;
 				}
 
-				$handle
-					.css(handleCss)
-					.toggleClass(
-						self.classes.resizableMouseover,
-						event.type === "mouseleave"
-					);
-				$elem.css(elemCss);
+				$handle.css(handleCss);
+				$elem.css(elemCss).toggleClass(self.classes.resizableMouseover, event.type === "mouseenter");
 			};
 
-			$resizable.find("." + this.classes.uiResizableHandle).on(
-				"mouseenter." + this._cnst.eventPrefix + "resizablehandle"
-				+ " mouseleave." + this._cnst.eventPrefix + "resizablehandle",
-				resizableMouseEnterLeave
-			)
-				.on("mousedown." + this._cache.uep, function () {
+			$resizable.find("." + this.classes.uiResizableHandle).on("mouseenter." + this._cnst.eventPrefix + "resizablehandle" + " mouseleave." + this._cnst.eventPrefix + "resizablehandle", resizableMouseEnterLeave).on("mousedown." + this._cache.uep, function () {
 					if (!self.options.resizable) {
 						return true;
 					}
 
 					self._hideAll();
-				})
-				.trigger("mouseleave." + this._cnst.eventPrefix + "resizablehandle");
+			}).trigger("mouseleave." + this._cnst.eventPrefix + "resizablehandle");
 		},
 
 		_getContainment: function () {
@@ -5965,18 +5939,11 @@
 		},
 
 		_startShowing: function (options) {
-			if (
-				!this.$elem.hasClass(this.classes.autoHideHidden)
-				&& !this.$elem.hasClass(this.classes.autoHideHidding)
-				&& !this._openedElements()
-			) {
+			if (!this.$elem.hasClass(this.classes.autoHideHidden) && !this.$elem.hasClass(this.classes.autoHideHidding) && !this._openedElements()) {
 				return;
 			}
 
-			if (
-				this.$elem.hasClass(this.classes.draggableDragging)
-				|| this.$elem.hasClass(this.classes.resizableResizing)
-			) {
+			if (this.$elem.hasClass(this.classes.draggableDragging) || this.$elem.hasClass(this.classes.resizableResizing)) {
 				return;
 			}
 
@@ -5997,11 +5964,7 @@
 				return false;
 			}
 
-			this.$elem.removeClass(
-				this.classes.autoHideHidden
-				+ " " + this.classes.autoHideHidding
-				+ " " + this.classes.autoHidePending
-			);
+			this.$elem.removeClass(this.classes.autoHideHidden + " " + this.classes.autoHideHidding + " " + this.classes.autoHidePending);
 
 			this.$elem.addClass(this.classes.autoHideShowing);
 
@@ -6016,15 +5979,9 @@
 				trigger: options && options.trigger === "api" ? "api" : "user"
 			});
 
-			if (
-				(!options || options.duration !== false)
-				&& this.options.durations.autoHideShow !== false
-			) {
+			if ((!options || options.duration !== false) && this.options.durations.autoHideShow !== false) {
 				this.$elem.animate(props, {
-					duration: options
-						? this._parseDuration(options.duration)
-						|| this.options.durations.autoHideShow
-						: this.options.durations.autoHideShow,
+					duration: options ? this._parseDuration(options.duration) || this.options.durations.autoHideShow : this.options.durations.autoHideShow,
 					progress: function () {
 						self._trigger(
 							"autoHideProgress",
@@ -6043,9 +6000,7 @@
 				});
 			} else {
 				// quick show
-				this.$elem
-					.css(props)
-					.removeClass(this.classes.autoHideShowing);
+				this.$elem.css(props).removeClass(this.classes.autoHideShowing);
 
 				this._trigger("autoHideStop", {}, uiStop);
 
@@ -6054,10 +6009,7 @@
 		},
 
 		_startHidding: function (options) {
-			if (
-				this.$elem.hasClass(this.classes.draggableDragging)
-				|| this.$elem.hasClass(this.classes.resizableResizing)
-			) {
+			if (this.$elem.hasClass(this.classes.draggableDragging) || this.$elem.hasClass(this.classes.resizableResizing)) {
 				return;
 			}
 
@@ -6145,19 +6097,13 @@
 				ui.show = true;
 			}
 
-			ui.$handle = this.$elem
-				.find("." + this.classes.resizable)
-				.find("." + this.classes.uiResizableHandle);
+			ui.$handle = this.$elem.find("." + this.classes.resizable).find("." + this.classes.uiResizableHandle);
 
 			if (options && options.quick !== null) {
 				ui.quick = options && options.duration === false;
 			}
 
-			ui.triggerApi = !!(
-				options
-				&& options.trigger
-				&& options.trigger === "api"
-			);
+			ui.triggerApi = !!(options && options.trigger && options.trigger === "api");
 
 			return ui;
 		},

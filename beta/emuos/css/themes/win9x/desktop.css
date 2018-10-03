@@ -1,3 +1,12 @@
+/*noinspection CssOverwrittenProperties*/
+.theme-win9x .emuos-desktop {
+	background-color: #008080;
+	background-image: url(../../../images/themes/win9x/wallpapers/windows-98-remastered-1920x1080.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
 .theme-win9x .emuos-desktop-icon {
 	font-family: Arial, sans-serif;
 	font-size: 13px;

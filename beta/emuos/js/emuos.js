@@ -99,6 +99,7 @@
 		this.$taskbar.taskbar({
 			draggable: true,
 			resizable: true,
+			resizableHandleOffset: 1,
 			minimizeAll: false,
 			languageSelect: false,
 			toggleFullscreen: true,
@@ -164,12 +165,15 @@
 						break;
 					case 'basic':
 						self.$body.removeClass('theme-win3x theme-win9x');
+						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
 						self.$body.removeClass('theme-win9x').addClass('theme-win3x');
+						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win9x':
 						self.$body.removeClass('theme-win3x').addClass('theme-win9x');
+						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
 						break;
 				}
 
@@ -185,7 +189,7 @@
 		this.$body.append('<div class="window" title="'+ title +'">' + content + '</div>');
 
 		// noinspection JSUnresolvedFunction
-		$('.window').window({
+		var window = $('.window').window({
 			icons: {
 				main: ''
 			}
@@ -239,6 +243,9 @@
 			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
 			e.preventDefault();
 		});
+
+		// noinspection JSValidateTypes
+		return window.window('instance');
 	};
 
 	EmuOS.prototype.iframe = function (options) {
@@ -248,7 +255,7 @@
 		this.$body.append('<div class="iframe" title="'+ title +'"><iframe src="' + src + '" allowfullscreen></iframe></div>');
 
 		// noinspection JSUnresolvedFunction
-		$('.iframe').window({
+		var window = $('.iframe').window({
 			embeddedContent: true,
 			width: 640,
 			height: 480,
@@ -311,6 +318,9 @@
 			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
 			e.preventDefault();
 		});
+
+		// noinspection JSValidateTypes
+		return window.window('instance');
 	};
 
 	return EmuOS;

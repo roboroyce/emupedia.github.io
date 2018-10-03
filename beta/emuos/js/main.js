@@ -67,8 +67,9 @@
 		'lang'
 	], function($, EmuOS) {
 		$(function() {
+			// noinspection JSUnusedLocalSymbols
 			var desktop = new EmuOS({
-				//theme: 'theme-win9x'
+				theme: 'theme-win9x'
 			});
 
 			// noinspection JSUnresolvedFunction
@@ -84,13 +85,13 @@
 					'<p>another paragraph</p>' +
 					'<p>another paragraph</p>' +
 					'<p>another paragraph</p>'
-			});
+			}).minimize();
 
 			// noinspection JSUnresolvedFunction
 			desktop.iframe({
 				title: 'test2',
 				src: 'apps/monaco-editor/index.html'
-			});
+			}).minimize();
 		});
 	});
 } (this));

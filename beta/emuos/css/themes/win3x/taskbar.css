@@ -1,6 +1,21 @@
-.theme-win3x .emuos-taskbar.ui-widget-content {
-	border-top: 1px solid #000;
+.theme-win3x .emuos-taskbar {
 	background-color: #c0c0c0;
+}
+
+.theme-win9x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-bottom {
+	border-top: 1px solid #000;
+}
+
+.theme-win9x .emuos-taskbar.emuos-taskbar-horizontal.emuos-taskbar-stick-top {
+	border-bottom: 1px solid #000;
+}
+
+.theme-win9x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-left {
+	border-right: 1px solid #000;
+}
+
+.theme-win9x .emuos-taskbar.emuos-taskbar-vertical.emuos-taskbar-stick-right {
+	border-left: 1px solid #000;
 }
 
 .theme-win3x .emuos-taskbar .emuos-taskbar-separator {
@@ -29,6 +44,12 @@
 	image-rendering: -webkit-optimize-contrast;
 	image-rendering: pixelated;
 	-ms-interpolation-mode: nearest-neighbor;
+}
+
+.theme-win3x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
+	background-image: url(../../../images/themes/win3x/icons/start.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .theme-win3x .emuos-taskbar .ui-button .ui-button-text {

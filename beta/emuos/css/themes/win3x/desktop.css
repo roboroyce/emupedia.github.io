@@ -1,3 +1,11 @@
+/*noinspection CssOverwrittenProperties*/
+.theme-win3x .emuos-desktop {
+	background: url(../../../images/themes/win3x/patterns/castle.bmp);
+	background: url(../../../images/themes/win3x/wallpapers/winlogo.svg) center no-repeat, url(../../../images/themes/win3x/patterns/castle.bmp);
+	background-size: auto;
+	background-size: 40%, auto;
+}
+
 .theme-win3x .emuos-desktop-icon {
 	font-family: Arial, sans-serif;
 	font-size: 13px;
