@@ -96,7 +96,6 @@
 	background-color: #fff;
 	height: 100%;
 	height: calc(100% - 19px);
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	line-height: 16px;
 	overflow: auto;
@@ -104,7 +103,6 @@
 
 .theme-win311 .dialog .title-bar {
 	display: block;
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	line-height: 18px;
@@ -178,7 +176,6 @@
 }
 
 .theme-win311 .list li {
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	line-height: 38px;

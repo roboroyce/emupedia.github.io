@@ -1,5 +1,4 @@
 .theme-win3x .ui-menu {
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -14,7 +13,6 @@
 }
 
 .theme-win3x .ui-menu .ui-menu-item.ui-state-focus {
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	height: 18px;

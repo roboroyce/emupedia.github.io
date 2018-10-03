@@ -85,11 +85,14 @@
 	border-right: 1px solid #000;
 	border-bottom: 1px solid #000;
 	border-radius: 0;
-	font-family: Arial, sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: bold;
 	height: 20px;
 	margin: 0;
+}
+
+.theme-win9x.browser-firefox .emuos-taskbar .ui-button {
+	font-size: 12px;
 }
 
 .theme-win9x .emuos-taskbar .ui-button.ui-state-active {
@@ -119,10 +122,10 @@
 	border-left: 1px solid #dfdfdf;
 	border-right: 1px solid #808080;
 	border-bottom: 1px solid #808080;
-	padding-top: 1px;
+	padding-top: 2px;
 	padding-right: 11px;
 	padding-left: 11px;
-	padding-bottom: 2px;
+	padding-bottom: 1px;
 	background-color: #c0c0c0;
 	color: #000;
 }
@@ -133,10 +136,6 @@
 	border-left: 1px solid #808080;
 	border-right: 1px solid #dfdfdf;
 	border-bottom: 1px solid #dfdfdf;
-	padding-top: 2px;
-	padding-right: 11px;
-	padding-left: 11px;
-	padding-bottom: 1px;
 	background-color: #c0c0c0;
 	color: #000;
 }
@@ -149,10 +148,10 @@
 
 /*noinspection CssReplaceWithShorthandSafely*/
 .theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-text {
-	padding-top: 1px;
+	padding-top: 2px;
 	padding-right: 2px;
 	padding-left: 20px;
-	padding-bottom: 2px;
+	padding-bottom: 1px;
 }
 
 .theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
@@ -164,10 +163,6 @@
 
 /*noinspection CssReplaceWithShorthandSafely*/
 .theme-win9x .emuos-taskbar .ui-button.ui-state-active.emuos-taskbar-start-button .ui-button-text {
-	padding-top: 2px;
-	padding-right: 2px;
-	padding-left: 20px;
-	padding-bottom: 1px;
 	outline: 1px dotted #000;
 	outline-offset: -3px;
 }

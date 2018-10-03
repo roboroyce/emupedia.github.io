@@ -92,6 +92,20 @@
 
 		this.$html.addClass('emuos').addClass(this.options.theme);
 
+		if (isIE) {
+			this.$html.addClass('browser-ie');
+		} else if (isEdge) {
+			this.$html.addClass('browser-edge');
+		} else if (isChrome || isOperaBlink) {
+			this.$html.addClass('browser-chrome');
+		} else if (isSafari || isOperaPresto) {
+			this.$html.addClass('browser-webkit');
+		} else if (isFirefox || isPaleMoon || isKMeleon || isNetscape) {
+			this.$html.addClass('browser-firefox');
+		} else {
+			this.$html.addClass('browser-other');
+		}
+
 		var start = '';
 
 		if (typeof this.options.start !== 'undefined') {

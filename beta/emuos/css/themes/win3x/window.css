@@ -58,7 +58,6 @@
 .theme-win3x .emuos-window .ui-dialog-titlebar {
 	background-color: #c0c0c0;
 	border-radius: 0;
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	text-align: center;
@@ -191,7 +190,6 @@
 
 .theme-win3x .emuos-window .emuos-window-content {
 	padding: 0;
-	font-family: Arial, sans-serif;
 	font-size: 13px;
 	line-height: 16px;
 	height: calc(100% - 19px) !important;
