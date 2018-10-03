@@ -30,7 +30,6 @@
 		// noinspection JSUnusedGlobalSymbols
 		this.$document	= $(document);
 		this.$window	= $(window);
-		// noinspection JSUnusedGlobalSymbols
 		this.$html		= $('html');
 		this.$body		= $('body');
 
@@ -64,11 +63,8 @@
 			case 'theme-win9x':
 				if (!(isIE || isEdge)) {
 					// TODO: Performance problem on window drag and resize caused by custom cursors
-					if (this.options.theme === 'theme-win3x') {
-						importStyles('css/themes/win3x/cursors.css');
-					} else if (this.options.theme === 'theme-win9x') {
-						importStyles('css/themes/win9x/cursors.css');
-					}
+					importStyles('css/themes/win3x/cursors.css');
+					importStyles('css/themes/win9x/cursors.css');
 				}
 				$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
 					axis: 'y',
@@ -94,7 +90,7 @@
 				break;
 		}
 
-		this.$body.addClass('emuos').addClass(this.options.theme);
+		this.$html.addClass('emuos').addClass(this.options.theme);
 
 		var start = '';
 
@@ -170,7 +166,7 @@
 						window.location = window.location;
 						break;
 					case 'basic':
-						self.$body.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
+						self.$html.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
 						$('.window, .iframe').each(function(i, el) {
 							var $el = $(el);
 							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
@@ -179,7 +175,7 @@
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
-						self.$body.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
+						self.$html.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
 						$('.window, .iframe').each(function(i, el) {
 							var $el = $(el);
 							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: ''}));
@@ -209,7 +205,7 @@
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win9x':
-						self.$body.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
+						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
 						$('.window, .iframe').each(function(i, el) {
 							var $el = $(el);
 							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
@@ -254,7 +250,7 @@
 		// noinspection JSUnresolvedFunction
 		var window = $('.window').window({
 			icons: {
-				main: this.$body.hasClass('theme-basic') || this.$body.hasClass('theme-win9x') ? null : ''
+				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? null : ''
 			}
 		});
 
@@ -329,7 +325,7 @@
 				collision: 'fit'
 			},
 			icons: {
-				main: this.$body.hasClass('theme-basic') || this.$body.hasClass('theme-win9x') ? null : ''
+				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? null : ''
 			}
 		});
 

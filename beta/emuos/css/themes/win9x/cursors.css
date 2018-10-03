@@ -1,10 +1,10 @@
 /*noinspection CssUnknownTarget*/
-html {
+html.theme-win9x {
 	cursor: url(../../../images/themes/win9x/cursors/default.cur), url(images/themes/win9x/cursors/default.cur), default;
 }
 
 /*noinspection CssUnknownTarget*/
-p {
+.theme-win9x p {
 	cursor: url(../../../images/themes/win9x/cursors/text.cur), url(images/themes/win9x/cursors/text.cur), text;
 }
 
