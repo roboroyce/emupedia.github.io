@@ -306,20 +306,15 @@
 
 			// from now on, position other than fixed
 			// will only be used during resize
-			this.$elem
-				.uniqueId()
-				.addClass(this.classes.window)
-				.css("position", "fixed");
+			this.$elem.uniqueId().addClass(this.classes.window).css("position", "fixed");
 
-			this.$window
-				.addClass(this.classes.windowContent);
+			this.$window.addClass(this.classes.windowContent);
 
 			this._debugOptions();
 
 			// this shorcut is required
 			this.$close = this.uiDialogTitlebarClose;
-			this.$title = this.uiDialogTitlebar
-				.find("." + this.classes.uiDialogTitle);
+			this.$title = this.uiDialogTitlebar.find("." + this.classes.uiDialogTitle);
 
 			this._bindTaskbar(this.$taskbar);
 			// +
@@ -331,11 +326,7 @@
 				this._setTitle();
 			}
 
-			this._checkForInvalidOptions(
-				$.emuos.window.prototype.options,
-				this.options,
-				true
-			);
+			this._checkForInvalidOptions($.emuos.window.prototype.options, this.options, true);
 
 			this._setIcon({
 				button: "close"
@@ -1768,10 +1759,7 @@
 
 			// don't create minimize/maximize buttons
 			// if window is not minimizable/maximizable
-			if (
-				b === "maximize" && !this.options.maximizable
-				|| b === "minimize" && !this.options.minimizable
-			) {
+			if (b === "maximize" && !this.options.maximizable || b === "minimize" && !this.options.minimizable) {
 				this._enumerateTitlebarButtons();
 
 				return;
@@ -2815,12 +2803,7 @@
 				options.icon = options.button;
 			}
 
-			this["$" + options.button]
-				.button(
-					"option",
-					"icons.primary",
-					this.options.icons[options.icon]
-				);
+			this["$" + options.button].button("option", "icons.primary", this.options.icons[options.icon]);
 
 			this._addButtonClasses(this["$" + options.button]);
 		},

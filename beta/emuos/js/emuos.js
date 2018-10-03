@@ -27,6 +27,13 @@
 	var EmuOS = function (options) {
 		var self = this;
 
+		// noinspection JSUnusedGlobalSymbols
+		this.$document	= $(document);
+		this.$window	= $(window);
+		// noinspection JSUnusedGlobalSymbols
+		this.$html		= $('html');
+		this.$body		= $('body');
+
 		this.options = {
 			theme: 'theme-win3x',
 			themes: {
@@ -50,23 +57,44 @@
 
 		$.extend(this.options, options);
 
-		// noinspection JSUnusedGlobalSymbols
-		this.$document	= $(document);
-		this.$window	= $(window);
-		// noinspection JSUnusedGlobalSymbols
-		this.$html		= $('html');
-		this.$body		= $('body');
+		switch (this.options.theme) {
+			case 'theme-basic':
+				break;
+			case 'theme-win3x':
+			case 'theme-win9x':
+				if (!(isIE || isEdge)) {
+					// TODO: Performance problem on window drag and resize caused by custom cursors
+					if (this.options.theme === 'theme-win3x') {
+						importStyles('css/themes/win3x/cursors.css');
+					} else if (this.options.theme === 'theme-win9x') {
+						importStyles('css/themes/win9x/cursors.css');
+					}
+				}
+				$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
+					axis: 'y',
+					scrollbarPosition: 'inside',
+					scrollInertia: 0,
+					alwaysShowScrollbar: 0,
+					keyboard: {
+						enable: true
+					},
+					scrollButtons: {
+						enable: true
+					},
+					mouseWheel: {
+						enable: true
+					},
+					advanced: {
+						updateOnContentResize: true,
+						updateOnImageLoad: true,
+						updateOnSelectorChange: true
+					},
+					live: true
+				});
+				break;
+		}
 
 		this.$body.addClass('emuos').addClass(this.options.theme);
-
-		if (!(isIE || isEdge)) {
-			// TODO: Performance problem on window drag and resize caused by custom cursors
-			if (this.$body.hasClass('theme-win3x')) {
-				importStyles('css/themes/win3x/cursors.css');
-			} else if (this.$body.hasClass('theme-win9x')) {
-				importStyles('css/themes/win9x/cursors.css');
-			}
-		}
 
 		var start = '';
 
@@ -112,28 +140,6 @@
 			parent: '.emuos-taskbar-windows-containment'
 		});
 
-		$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
-			axis: 'y',
-			scrollbarPosition: 'inside',
-			scrollInertia: 0,
-			alwaysShowScrollbar: 0,
-			keyboard: {
-				enable: true
-			},
-			scrollButtons: {
-				enable: true
-			},
-			mouseWheel: {
-				enable: true
-			},
-			advanced: {
-				updateOnContentResize: true,
-				updateOnImageLoad: true,
-				updateOnSelectorChange: true
-			},
-			live: true
-		});
-
 		this.$html.contextmenu({
 			delegate: 'body, .emuos-taskbar',
 			menu: [{
@@ -164,15 +170,72 @@
 						window.location = window.location;
 						break;
 					case 'basic':
-						self.$body.removeClass('theme-win3x theme-win9x');
+						self.$body.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
+						$('.window, .iframe').each(function(i, el) {
+							var $el = $(el);
+							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
+						});
+						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
-						self.$body.removeClass('theme-win9x').addClass('theme-win3x');
+						self.$body.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
+						$('.window, .iframe').each(function(i, el) {
+							var $el = $(el);
+							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: ''}));
+						});
+						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
+							axis: 'y',
+							scrollbarPosition: 'inside',
+							scrollInertia: 0,
+							alwaysShowScrollbar: 0,
+							keyboard: {
+								enable: true
+							},
+							scrollButtons: {
+								enable: true
+							},
+							mouseWheel: {
+								enable: true
+							},
+							advanced: {
+								updateOnContentResize: true,
+								updateOnImageLoad: true,
+								updateOnSelectorChange: true
+							},
+							live: true
+						});
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win9x':
-						self.$body.removeClass('theme-win3x').addClass('theme-win9x');
+						self.$body.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
+						$('.window, .iframe').each(function(i, el) {
+							var $el = $(el);
+							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
+						});
+						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
+							axis: 'y',
+							scrollbarPosition: 'inside',
+							scrollInertia: 0,
+							alwaysShowScrollbar: 0,
+							keyboard: {
+								enable: true
+							},
+							scrollButtons: {
+								enable: true
+							},
+							mouseWheel: {
+								enable: true
+							},
+							advanced: {
+								updateOnContentResize: true,
+								updateOnImageLoad: true,
+								updateOnSelectorChange: true
+							},
+							live: true
+						});
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
 						break;
 				}
@@ -191,7 +254,7 @@
 		// noinspection JSUnresolvedFunction
 		var window = $('.window').window({
 			icons: {
-				main: ''
+				main: this.$body.hasClass('theme-basic') || this.$body.hasClass('theme-win9x') ? null : ''
 			}
 		});
 
@@ -266,7 +329,7 @@
 				collision: 'fit'
 			},
 			icons: {
-				main: ''
+				main: this.$body.hasClass('theme-basic') || this.$body.hasClass('theme-win9x') ? null : ''
 			}
 		});
 

@@ -1,13 +1,13 @@
 /* region Window */
 
-.theme-win9x .emuos-window {
+.theme-win3x .emuos-window {
 	border-radius: 0;
 	border: 1px solid #000;
 	background-color: #c0c0c0;
 	padding: 3px;
 }
 
-.theme-win9x .emuos-window::before {
+.theme-win3x .emuos-window::before {
 	position: absolute;
 	top: 2px;
 	left: 2px;
@@ -19,7 +19,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win9x .emuos-window .emuos-window-icon {
+.theme-win3x .emuos-window .emuos-window-icon {
 	top: 0;
 	left: 0;
 	width: 19px;
@@ -30,7 +30,7 @@
 	padding: 0;
 	margin: 0;
 	background-color: #c0c0c0;
-	background-image: url(../../../images/themes/win9x/icons/menu.png);
+	background-image: url(../../../images/themes/win3x/icons/menu.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	image-rendering: -moz-crisp-edges;
@@ -41,10 +41,10 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win9x .emuos-window .emuos-window-icon:active,
-.theme-win9x .emuos-window .emuos-window-icon:focus {
+.theme-win3x .emuos-window .emuos-window-icon:active,
+.theme-win3x .emuos-window .emuos-window-icon:focus {
 	background-color: #3f3f3f;
-	background-image: url(../../../images/themes/win9x/icons/menu-pressed.png);
+	background-image: url(../../../images/themes/win3x/icons/menu-pressed.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	image-rendering: -moz-crisp-edges;
@@ -55,7 +55,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
-.theme-win9x .emuos-window .ui-dialog-titlebar {
+.theme-win3x .emuos-window .ui-dialog-titlebar {
 	background-color: #c0c0c0;
 	border-radius: 0;
 	font-family: Arial, sans-serif;
@@ -69,23 +69,23 @@
 	height: 18px;
 }
 
-.theme-win9x .emuos-window .ui-dialog-titlebar .ui-dialog-title {
+.theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-title {
 	line-height: 21px;
 	margin: -2px 0 0;
 }
 
-.theme-win9x .emuos-window .ui-dialog-titlebar.ui-state-active {
+.theme-win3x .emuos-window .ui-dialog-titlebar.ui-state-active {
 	background-color: #000080;
 	border: none;
 	border-bottom: 1px solid #000;
 }
 
-.theme-win9x .emuos-window .ui-dialog-titlebar .ui-dialog-titlebar-close {
+.theme-win3x .emuos-window .ui-dialog-titlebar .ui-dialog-titlebar-close {
 	display: none;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
 	top: 0;
 	right: 0;
 	width: 19px;
@@ -99,7 +99,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-icon-primary {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-icon-primary {
 	top: 1px;
 	left: 1px;
 	width: 15px;
@@ -112,7 +112,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
 	width: 16px;
 	height: 16px;
 	padding: 0;
@@ -123,7 +123,7 @@
 	border-right: 1px solid #808080;
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
-	background-image: url(../../../images/themes/win9x/icons/maximize.png);
+	background-image: url(../../../images/themes/win3x/icons/maximize.png);
 	background-position: 4px 5px;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
@@ -133,15 +133,15 @@
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
-.theme-win9x .emuos-window.emuos-window-maximized.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
+.theme-win3x .emuos-window.emuos-window-maximized.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
 	background-color: #c0c0c0;
-	background-image: url(../../../images/themes/win9x/icons/restore.png);
+	background-image: url(../../../images/themes/win3x/icons/restore.png);
 	background-position: 4px 3px;
 	background-repeat: no-repeat;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
 	top: 0;
 	right: 19px;
 	width: 19px;
@@ -155,7 +155,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-icon-primary {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-icon-primary {
 	top: 1px;
 	left: 1px;
 	width: 15px;
@@ -168,7 +168,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-text {
+.theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-text {
 	width: 16px;
 	height: 16px;
 	padding: 0;
@@ -179,7 +179,7 @@
 	border-right: 1px solid #808080;
 	border-bottom: 1px solid #808080;
 	background-color: #c0c0c0;
-	background-image: url(../../../images/themes/win9x/icons/minimize.png);
+	background-image: url(../../../images/themes/win3x/icons/minimize.png);
 	background-position: 4px 6px;
 	background-repeat: no-repeat;
 	image-rendering: -moz-crisp-edges;
@@ -189,7 +189,7 @@
 	-ms-interpolation-mode: nearest-neighbor;
 }
 
-.theme-win9x .emuos-window .emuos-window-content {
+.theme-win3x .emuos-window .emuos-window-content {
 	padding: 0;
 	font-family: Arial, sans-serif;
 	font-size: 13px;
@@ -199,7 +199,7 @@
 	background-color: #fff;
 }
 
-.theme-win9x .emuos-window .emuos-window-content p {
+.theme-win3x .emuos-window .emuos-window-content p {
 	margin: 0;
 	padding: 0;
 }

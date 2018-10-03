@@ -85,13 +85,13 @@
 					'<p>another paragraph</p>' +
 					'<p>another paragraph</p>' +
 					'<p>another paragraph</p>'
-			}).minimize();
+			});
 
 			// noinspection JSUnresolvedFunction
 			desktop.iframe({
 				title: 'test2',
 				src: 'apps/monaco-editor/index.html'
-			}).minimize();
+			});
 		});
 	});
 } (this));

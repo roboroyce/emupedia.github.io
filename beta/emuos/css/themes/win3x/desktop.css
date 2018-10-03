@@ -1,5 +1,6 @@
 /*noinspection CssOverwrittenProperties*/
 .theme-win3x .emuos-desktop {
+	background-color: #008080;
 	background: url(../../../images/themes/win3x/patterns/castle.bmp);
 	background: url(../../../images/themes/win3x/wallpapers/winlogo.svg) center no-repeat, url(../../../images/themes/win3x/patterns/castle.bmp);
 	background-size: auto;

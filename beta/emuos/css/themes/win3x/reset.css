@@ -8,6 +8,10 @@
 	color: #fff;
 }
 
+.theme-win3x .emuos-desktop {
+	filter: none;
+}
+
 .theme-win3x .ui-state-active,
 .theme-win3x .ui-state-focus,
 .theme-win3x .ui-widget-content .ui-state-active,
