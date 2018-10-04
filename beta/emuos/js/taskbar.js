@@ -6750,10 +6750,22 @@
 					return;
 				}
 
-				// because of "icons.primary", single setter cannot be used
-				$this.button("option", "icons.primary", self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
-
 				$this.button("option", "text", !self.options.windowButtonsIconsOnly);
+
+				// because of "icons.primary", single setter cannot be used
+				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
+					$this.button("option", "icons.primary", self.classes.uiIconBlank);
+					$this.children('.' + self.classes.uiButtonIconPrimary).first().css({
+						'background-image': 'url(' + icon + ')',
+						'background-repeat': 'no-repeat',
+						'background-position': 'center',
+						'background-size': 'cover'
+					});
+
+					console.log($this.children('.' + self.classes.uiButtonIconPrimary).first());
+				} else {
+					$this.button("option", "icons.primary", self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
+				}
 			} else if ($this.is("." + self.classes.uiMenuItem)) {
 				var $window = $("#" + $this.attr("data-window-id"));
 				icon = $window.window("option", "icons.main");
@@ -6765,7 +6777,16 @@
 
 				$this.children("span." + self.classes.uiIcon).remove();
 
-				$this.prepend($("<span></span>").addClass(self.classes.uiIcon + " " + (icon ? icon : self.classes.uiIconBlank)));
+				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
+					$this.prepend($("<span></span>").css({
+						'background-image': 'url(' + icon + ')',
+						'background-repeat': 'no-repeat',
+						'background-position': 'center',
+						'background-size': 'cover'
+					}).addClass(this.classes.uiIcon));
+				} else {
+					$this.prepend($("<span></span>").addClass(self.classes.uiIcon + " " + (icon ? icon : self.classes.uiIconBlank)));
+				}
 			}
 		},
 

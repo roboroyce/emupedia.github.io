@@ -3477,7 +3477,7 @@
 					'background-image': 'url(' + this.options.icons.main + ')',
 					'background-repeat': 'no-repeat',
 					'background-position': 'center',
-					'background-size': '16px 16px'
+					'background-size': 'cover'
 				}).addClass(this.classes.uiIcon + " " + this.classes.icon);
 			} else {
 				$icon
