@@ -3468,17 +3468,22 @@
 			this.uiDialogTitlebar.addClass(this.classes.titlebarIcon);
 
 			if (!$icon.length) {
-				$icon = $("<button class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only\" type=\"button\" role=\"button\" title=\"Menu\"></button>")
-					.prependTo(this.uiDialogTitlebar);
+				$icon = $( '<span></span>' ).prependTo(this.uiDialogTitlebar);
+				// $icon = $("<button class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only\" type=\"button\" role=\"button\" title=\"Menu\"></button>").prependTo(this.uiDialogTitlebar);
 			}
 
-			$icon
+			if (this.options.icons.main.indexOf('/') !== -1 || this.options.icons.main.indexOf('.') !== -1) {
+				$icon.css({
+					'background-image': 'url(' + this.options.icons.main + ')',
+					'background-repeat': 'no-repeat',
+					'background-position': 'center',
+					'background-size': '16px 16px'
+				}).addClass(this.classes.uiIcon + " " + this.classes.icon);
+			} else {
+				$icon
 				//.removeAttr("class")
-				.addClass(
-					this.classes.uiIcon
-					+ " " + this.classes.icon
-					+ " " + this.options.icons.main
-				);
+					.addClass(this.classes.uiIcon + " " + this.classes.icon + " " + this.options.icons.main);
+			}
 
 			var self = this;
 

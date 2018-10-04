@@ -75,6 +75,7 @@
 			// noinspection JSUnresolvedFunction
 			desktop.window({
 				title: 'test',
+				icon: 'apps/wing/favicon.ico',
 				content: 'this is how the world ends thisdnosifvoibdfo dfuvbdf difubfd' +
 					'<p>another paragraph</p>' +
 					'<p>another paragraph</p>' +
@@ -90,6 +91,7 @@
 			// noinspection JSUnresolvedFunction
 			desktop.iframe({
 				title: 'test2',
+				icon: 'apps/monaco-editor/favicon.ico',
 				src: 'apps/monaco-editor/index.html'
 			});
 		});

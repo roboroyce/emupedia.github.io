@@ -29,10 +29,11 @@
 	border-radius: 0;
 	padding: 0;
 	margin: 0;
-	background-color: #c0c0c0;
-	background-image: url(../../../images/themes/win3x/icons/menu.png);
-	background-repeat: no-repeat;
-	background-position: center;
+	background-color: #c0c0c0 !important;
+	background-image: url(../../../images/themes/win3x/icons/menu.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-size: auto !important;
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -o-crisp-edges;
 	image-rendering: -webkit-optimize-contrast;
@@ -43,10 +44,11 @@
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
 .theme-win3x .emuos-window .emuos-window-icon:active,
 .theme-win3x .emuos-window .emuos-window-icon:focus {
-	background-color: #3f3f3f;
-	background-image: url(../../../images/themes/win3x/icons/menu-pressed.png);
-	background-repeat: no-repeat;
-	background-position: center;
+	background-color: #3f3f3f !important;
+	background-image: url(../../../images/themes/win3x/icons/menu-pressed.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: center !important;
+	background-size: auto !important;
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -o-crisp-edges;
 	image-rendering: -webkit-optimize-contrast;

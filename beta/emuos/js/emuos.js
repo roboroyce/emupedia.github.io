@@ -56,16 +56,11 @@
 
 		$.extend(this.options, options);
 
+		// noinspection FallThroughInSwitchStatementJS
 		switch (this.options.theme) {
 			case 'theme-basic':
 				break;
 			case 'theme-win3x':
-			case 'theme-win9x':
-				if (!(isIE || isEdge)) {
-					// TODO: Performance problem on window drag and resize caused by custom cursors
-					importStyles('css/themes/win3x/cursors.css');
-					importStyles('css/themes/win9x/cursors.css');
-				}
 				$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
 					axis: 'y',
 					scrollbarPosition: 'inside',
@@ -87,6 +82,12 @@
 					},
 					live: true
 				});
+			case 'theme-win9x':
+				if (!(isIE || isEdge)) {
+					// TODO: Performance problem on window drag and resize caused by custom cursors
+					importStyles('css/themes/win3x/cursors.css');
+					importStyles('css/themes/win9x/cursors.css');
+				}
 				break;
 		}
 
@@ -181,19 +182,11 @@
 						break;
 					case 'basic':
 						self.$html.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
-						$('.window, .iframe').each(function(i, el) {
-							var $el = $(el);
-							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
-						});
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
 						self.$html.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
-						$('.window, .iframe').each(function(i, el) {
-							var $el = $(el);
-							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: ''}));
-						});
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
 							axis: 'y',
@@ -220,10 +213,6 @@
 						break;
 					case 'win9x':
 						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
-						$('.window, .iframe').each(function(i, el) {
-							var $el = $(el);
-							$el.window('option', 'icons', $.extend($el.window('option', 'icons'), {main: null}));
-						});
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
 							axis: 'y',
@@ -257,6 +246,7 @@
 
 	EmuOS.prototype.window = function (options) {
 		var title	= typeof options.title		!== 'undefined'	? options.title		: '';
+		var icon	= typeof options.icon		!== 'undefined'	? options.icon		: '';
 		var content	= typeof options.content	!== 'undefined'	? options.content	: '';
 
 		this.$body.append('<div class="window" title="'+ title +'">' + content + '</div>');
@@ -264,7 +254,7 @@
 		// noinspection JSUnresolvedFunction
 		var window = $('.window').window({
 			icons: {
-				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? null : ''
+				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
 			}
 		});
 
@@ -323,6 +313,7 @@
 
 	EmuOS.prototype.iframe = function (options) {
 		var title	= typeof options.title	!== 'undefined'	? options.title	: '';
+		var icon	= typeof options.icon	!== 'undefined'	? options.icon	: '';
 		var src		= typeof options.src	!== 'undefined'	? options.src	: '';
 
 		this.$body.append('<div class="iframe" title="'+ title +'"><iframe src="' + src + '" allowfullscreen></iframe></div>');
@@ -339,7 +330,7 @@
 				collision: 'fit'
 			},
 			icons: {
-				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? null : ''
+				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
 			}
 		});
 

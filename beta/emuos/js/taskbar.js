@@ -3240,14 +3240,11 @@
 			var self = this,
 				o = this.options;
 
-			this.$systemButtonsContainer = this.$elem
-				.find("." + this.classes.systemButtonsContainer);
+			this.$systemButtonsContainer = this.$elem.find("." + this.classes.systemButtonsContainer);
 
 			// remove all buttons except custom buttons
 			// - those could have event binded to them and we don't want them gone
-			this.$systemButtonsContainer
-				.children(":not(." + this.classes.buttonUserDefined + ")")
-				.remove();
+			this.$systemButtonsContainer.children(":not(." + this.classes.buttonUserDefined + ")").remove();
 
 			// stop clock for now
 			if (this._cache.intervals.clock > 0) {
@@ -3256,95 +3253,56 @@
 			}
 
 			// remove separator - we could deal with empty container
-			this.$systemButtonsContainer
-				.siblings("[data-separator-for=systemButtonsContainer]")
-				.remove();
+			this.$systemButtonsContainer.siblings("[data-separator-for=systemButtonsContainer]").remove();
 
 			// act as a part of "destroy" method - destroy container,
 			// with user defined buttons this time, and don't create anything
 			if (settings && settings.destroy) {
-				this
-					.$systemButtonsContainer
-					.remove();
+				this.$systemButtonsContainer.remove();
 
 				return true;
 			}
 
-			this.$systemButtonsContainer = this.$systemButtonsContainer.length
-				? this.$systemButtonsContainer
-				: this._factory("systemButtonsContainer").appendTo(this.$elem);
+			this.$systemButtonsContainer = this.$systemButtonsContainer.length ? this.$systemButtonsContainer : this._factory("systemButtonsContainer").appendTo(this.$elem);
 
 			// go over the list of system buttons and insert those
 			// that should be inserted
 			$.each(o.systemButtonsOrder, function (index, value) {
 				switch (value) {
 					case "languageSelect":
-						if (
-							o.languageSelect
-							&& $.inArray(
-							"languageSelect",
-							o.systemButtonsOrder
-							) > -1) {
+						if (o.languageSelect && $.inArray("languageSelect", o.systemButtonsOrder) > -1) {
 							if (o.languages.length) {
 								self._buildTaskbarLanguageSelect();
 							} else {
 								// generate debug is menu would be empty
-								self._debugLogAdd(
-									"Language select menu wasn't build "
-									+ "because the \"languages\" option is empty.",
-									1, 1
-								);
+								self._debugLogAdd("Language select menu wasn't build because the \"languages\" option is empty.",1, 1	);
 							}
 						}
-
 						break;
-
 					case "minimizeAll":
-						if (
-							o.minimizeAll
-							&& $.inArray("minimizeAll", o.systemButtonsOrder) > -1
-						) {
+						if (o.minimizeAll && $.inArray("minimizeAll", o.systemButtonsOrder) > -1) {
 							self._buildTaskbarMinimizeAll();
 						}
-
 						break;
-
 					case "toggleFullscreen":
 						// this button will not be present if fullscreen API
 						// is not available in user's browser
-						if (
-							o.toggleFullscreen
-							&& $.inArray(
-							"toggleFullscreen",
-							o.systemButtonsOrder
-							) > -1
-							&& self._fullscreenAvailable()) {
+						if (o.toggleFullscreen && $.inArray("toggleFullscreen", o.systemButtonsOrder) > -1 && self._fullscreenAvailable()) {
 							self._buildTaskbarToggleFullscreen();
 						}
-
 						break;
-
 					case "networkMonitor":
 						// this button will not be present if online/offline API
 						// is not available in user's browser
-						if (o.networkMonitor
-							&& $.inArray("networkMonitor", o.systemButtonsOrder) > -1
-							&& typeof window.navigator.onLine !== "undefined") {
+						if (o.networkMonitor && $.inArray("networkMonitor", o.systemButtonsOrder) > -1 && typeof window.navigator.onLine !== "undefined") {
 							self._buildTaskbarNetworkMonitor();
 						}
-
 						break;
-
 					case "clock":
-						if (
-							o.clock
-							&& $.inArray("clock", o.systemButtonsOrder) > -1
-						) {
+						if (o.clock && $.inArray("clock", o.systemButtonsOrder) > -1) {
 							self._buildTaskbarClock();
 						}
-
 						break;
-
 					default:
 						// prepend user defined buttons
 						if (o.buttons && value in o.buttons) {
@@ -3356,24 +3314,18 @@
 								container: self.$systemButtonsContainer
 							});
 						}
-
 						break;
 				}
 			});
 
 			// detach user defined buttons present in DOM,
 			// but not present in systemButtonsOrder and buttonsOrder
-			this._detachUserDefinedButtons.call(
-				this.$systemButtonsContainer,
-				this
-			);
+			this._detachUserDefinedButtons.call(this.$systemButtonsContainer, this);
 
 			if (this.$systemButtonsContainer.children().length) {
-				var $systemButtonsSeparator = this
-					._setSeparators(this.$systemButtonsContainer);
+				var $systemButtonsSeparator = this._setSeparators(this.$systemButtonsContainer);
 
-				$systemButtonsSeparator
-					.addClass(this.classes.systemButtonsSeparator);
+				$systemButtonsSeparator.addClass(this.classes.systemButtonsSeparator);
 
 				this._fixSystemButtonsSeparator();
 			}
@@ -3538,16 +3490,10 @@
 				posCSS = $container.css("position"),
 				edge = posCSS === "absolute" ? "bottom" : "top",
 				pos = posCSS === "absolute" ? "bottom" : "center",
-				cd = this._extendedPosition.call(
-					$container, "offset"
-				),
+				cd = this._extendedPosition.call($container, "offset"),
 				od = this._extendedPosition.call($of, "offset"),
-				td = this._extendedPosition.call(
-					$taskbar, "offset"
-				),
-				wc = this._extendedPosition.call(
-					this.$windowsContainment
-				),
+				td = this._extendedPosition.call($taskbar, "offset"),
+				wc = this._extendedPosition.call(this.$windowsContainment),
 				floatMove = "",
 				position;
 
@@ -3564,12 +3510,7 @@
 
 				var ed = this._extendedPosition.call($elem, "offset");
 
-				var diff = (
-					parseFloat($elem.css("paddingTop"))
-					+ parseFloat($elem.css("paddingBottom"))
-					+ parseFloat($elem.css("borderTopWidth"))
-					+ parseFloat($elem.css("borderBottomWidth"))
-				);
+				var diff = (parseFloat($elem.css("paddingTop")) + parseFloat($elem.css("paddingBottom")) + parseFloat($elem.css("borderTopWidth")) + parseFloat($elem.css("borderBottomWidth")));
 
 				var actualHeight = ed.height - diff;
 				var maxHeight = wc.height - diff;
@@ -3584,38 +3525,23 @@
 			if (horizontal) {
 				position = {
 					of: $of,
-					my: floatVal + floatMove + " " + (
-						top
-							? "top"
-							: "bottom"
-					),
+					my: floatVal + floatMove + " " + (top ? "top" : "bottom"),
 					at: floatVal + " " + (top ? "bottom" : "top"),
 					collision: "flip",
 					using: function (position, elems) {
 						$(this).css(position);
 
-						var ep = self._extendedPosition.call(
-							$(this), "offset"
-							),
+						var ep = self._extendedPosition.call($(this), "offset"),
 							t = parseFloat($(this).css("top"));
 
-						$(this).css("top", top
-							? t + (td.bottom - ep.top)
-							: t - (ep.bottom - td.top));
+						$(this).css("top", top ? t + (td.bottom - ep.top) : t - (ep.bottom - td.top));
 					}
 				};
 			} else {
 				position = {
 					of: $taskbar,
-					my: (left ? "left" : "right")
-						+ floatMove
-						+ " " + pos
-						+ (edge === "top" ? "+" : "-")
-						+ Math.round(
-							Math.abs(cd[edge] - od[edge])
-						),
-					at: (left ? "right" : "left")
-						+ " " + pos,
+					my: (left ? "left" : "right") + floatMove + " " + pos + (edge === "top" ? "+" : "-") + Math.round(Math.abs(cd[edge] - od[edge])),
+					at: (left ? "right" : "left") + " " + pos,
 					collision: "flipfit",
 					using: function (position) {
 						var $this = $(this);
@@ -3626,12 +3552,7 @@
 						}
 
 						var ep = self._extendedPosition.call($this, "offset"),
-							ed = self._extendedPosition
-								.call(
-									self.connectedElement(this)
-										.filter("." + self.classes.uiButton),
-									"offset"
-								);
+							ed = self._extendedPosition.call(self.connectedElement(this).filter("." + self.classes.uiButton), "offset");
 
 						var floatTop = parseFloat($this.css("top"));
 
@@ -3640,26 +3561,13 @@
 						}
 
 						if (ed.bottom > ep.bottom) {
-							$this.css(
-								"top",
-								floatTop + (ed.bottom - ep.bottom)
-							);
+							$this.css("top", floatTop + (ed.bottom - ep.bottom));
 						}
 
 						// fixes a bug where on vertical taskbar on right edge
 						// menu would have a 1px space between it and tkasbar
-						if (
-							!self._cache.horizontal
-							&& self._cache.edge === "right"
-							&& $this.is(":visible")
-						) {
-							$this.css("left", Math.round(
-								parseFloat($this.css("left"))
-								+ td.left
-								- self._extendedPosition.call(
-								$this, "offset"
-								).right
-							));
+						if (!self._cache.horizontal && self._cache.edge === "right" && $this.is(":visible")) {
+							$this.css("left", Math.round(parseFloat($this.css("left")) + td.left - self._extendedPosition.call($this, "offset").right));
 						}
 					}
 				};
@@ -5732,13 +5640,11 @@
 
 		// blur all windows using window "moveToTop" method with additional params
 		_blurWindows: function () {
-			$("." + this.classes.window + ":eq(0) ." +
-				this.classes.windowContent + ":eq(0)")
-				.window("moveToTop", {
-					skipThis: true,
-					skipMinimizing: true,
-					blurModals: true
-				});
+			$("." + this.classes.window + ":eq(0) ." + this.classes.windowContent + ":eq(0)").window("moveToTop", {
+				skipThis: true,
+				skipMinimizing: true,
+				blurModals: true
+			});
 		},
 
 		// returns all windows binded to this taskbar
@@ -6372,11 +6278,7 @@
 				return $();
 			}
 
-			var id = (
-					$elem.hasClass(this.classes.window)
-						? $elem.find("." + this.classes.uiDialogContent)
-						: $elem
-				)[0].id,
+			var id = ($elem.hasClass(this.classes.window) ? $elem.find("." + this.classes.uiDialogContent) : $elem)[0].id,
 				b = this._cache.windowButtons,
 				g = this._cache.groups,
 				self = this,
@@ -6385,11 +6287,7 @@
 			// if window is not in group
 			for (i in b) {
 				if (b.hasOwnProperty(i) && b[i] === "window:" + id) {
-					var $button = this.$elem
-						.find(
-							"." + this.classes.windowButton +
-							"[data-window-id=" + id + "]"
-						);
+					var $button = this.$elem.find("." + this.classes.windowButton + "[data-window-id=" + id + "]");
 
 					if (options.action === "get") {
 						// getter
@@ -6411,18 +6309,9 @@
 					// iterate over windows in group
 					for (var j in g[i]) {
 						if (g[i].hasOwnProperty(j) && g[i][j] === id) {
-							var $group = this.$elem
-									.find(
-										"." + this.classes.windowButton +
-										"[data-group-name=" + i + "]"
-									),
-								$menu = this.$elem
-									.find(
-										"." + this.classes.uiMenu +
-										"[data-group-name=" + i + "]"
-									),
-								$item = $menu
-									.find("[data-window-id=" + id + "]");
+							var $group = this.$elem.find("." + this.classes.windowButton + "[data-group-name=" + i + "]"),
+								$menu = this.$elem.find("." + this.classes.uiMenu + "[data-group-name=" + i + "]"),
+								$item = $menu.find("[data-window-id=" + id + "]");
 
 							if (options.action === "get") {
 								// getter
@@ -6464,9 +6353,7 @@
 								} else {
 									// refresh menu after $item was removed
 									$menu.menu("refresh");
-									this._groupSetTranslatedTitle.call(
-										$group, self
-									);
+									this._groupSetTranslatedTitle.call($group, self);
 								}
 
 								self._positionTaskbarWindowGroup({
@@ -6804,10 +6691,7 @@
 		_refreshButtonIcons: function () {
 			var self = this;
 
-			this.$elem.find(
-				"[data-button-name]." + this.classes.uiButton
-				+ ",[data-menu-button]." + this.classes.uiButton
-			).each(function () {
+			this.$elem.find("[data-button-name]." + this.classes.uiButton + ",[data-menu-button]." + this.classes.uiButton).each(function () {
 				self._refreshButtonIcon.call($(this), self);
 			});
 		},
@@ -6823,32 +6707,21 @@
 
 				// toggleFullscreen: it's icon depends on fullscreen status
 			} else if (button === "toggleFullscreen") {
-				icon = self.options.icons[
-				"toggleFullscreen" + (self._fullscreenEnabled() ? "On" : "Off")
-					];
+				icon = self.options.icons["toggleFullscreen" + (self._fullscreenEnabled() ? "On" : "Off")];
 
 				// networkMonitor: it's icon depends on network connection status
 			} else if (button === "networkMonitor") {
 				icon = self.options.icons[self._getNetworkMonitorKey()];
 
 				// start buttons
-			} else if (
-				$this.hasClass(self.classes.startButton)
-				&& $this.hasClass(self.classes.uiButton)
-			) {
+			} else if ($this.hasClass(self.classes.startButton) && $this.hasClass(self.classes.uiButton)) {
 				// icons.startButton has higher priority than icons.startButtonSet
-				icon = self.options.icons.startButton
-					? self.options.icons.startButton
-					: self.options.icons.startButtonSet
-						? self.options.icons.startButtonSet + "-" +
-						self._translatePosition()
-						: null;
+				icon = self.options.icons.startButton ? self.options.icons.startButton : self.options.icons.startButtonSet ? self.options.icons.startButtonSet + "-" + self._translatePosition() : null;
 			} else {
 				// try to get icon from button object passed in "buttons" option, fail silently
 				try {
 					icon = self.options.buttons[button].icons.primary;
-				} catch (e) {
-				}
+				} catch (e) {}
 			}
 
 			$this.button("option", "icons.primary", icon || null);
@@ -6857,9 +6730,7 @@
 		_refreshwindowButtonsIcons: function () {
 			var self = this;
 
-			this.$elem.find(
-				"[data-window-id]." + this.classes.uiButton
-			).each(function () {
+			this.$elem.find("[data-window-id]." + this.classes.uiButton).each(function () {
 				self._refreshWindowButtonIcon.call($(this), self);
 			});
 		},
@@ -6880,14 +6751,9 @@
 				}
 
 				// because of "icons.primary", single setter cannot be used
-				$this.button("option", "icons.primary",
-					self.options.windowButtonsIconsOnly
-						? icon || self.classes.uiIconBlank
-						: icon
-				);
+				$this.button("option", "icons.primary", self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
 
-				$this.button("option", "text",
-					self.options.windowButtonsIconsOnly ? false : true);
+				$this.button("option", "text", !self.options.windowButtonsIconsOnly);
 			} else if ($this.is("." + self.classes.uiMenuItem)) {
 				var $window = $("#" + $this.attr("data-window-id"));
 				icon = $window.window("option", "icons.main");
@@ -6895,22 +6761,11 @@
 				// replace text node with window title
 				$this.find("a").contents().filter(function () {
 					return this.nodeType === 3;
-				})
-					.first()[0].nodeValue
-					= $window.window("title");
+				}).first()[0].nodeValue = $window.window("title");
 
-				$this
-					.children("span." + self.classes.uiIcon)
-					.remove();
+				$this.children("span." + self.classes.uiIcon).remove();
 
-				$this
-					.prepend(
-						$("<span></span>")
-							.addClass(
-								self.classes.uiIcon
-								+ " " + (icon ? icon : self.classes.uiIconBlank)
-							)
-					);
+				$this.prepend($("<span></span>").addClass(self.classes.uiIcon + " " + (icon ? icon : self.classes.uiIconBlank)));
 			}
 		},
 
@@ -6926,50 +6781,25 @@
 			var destroy = settings && settings.destroy;
 
 			// select the old styles
-			var $oldStyles = $(
-				"style[type=\"text\/css\"]"
-				+ "[data-taskbar-uuid=\"" + this.uuid + "\"]"
-			);
+			var $oldStyles = $("style[type=\"text\/css\"]" + "[data-taskbar-uuid=\"" + this.uuid + "\"]");
 
 			if (!destroy) {
 				// create new element
-				var $styles = $("<style></style>")
-					.attr("type", "text/css")
-					.attr("data-taskbar-uuid", this.uuid)
-					.appendTo("body");
+				var $styles = $("<style></style>").attr("type", "text/css").attr("data-taskbar-uuid", this.uuid).appendTo("body");
 
 				// get background-image for icons in default state
-				var bgUrl = this._styleIndicator(
-					"." + this.classes.uiStateDefault
-					+ " > ." + this.classes.uiIcon, "backgroundImage"
-					).backgroundImage,
+				var bgUrl = this._styleIndicator("." + this.classes.uiStateDefault 	+ " > ." + this.classes.uiIcon, "backgroundImage").backgroundImage,
 					bg = "{background-image:" + bgUrl + ";}",
 					// because of html structure not anticipated by jQuery UI,
 					// we have to force some buttons to have default classes,
 					// because ther were inheriting active class from window on top
-					windowButtons =
-						"." + this.classes.window
-						+ "[data-taskbar-uuid=\"" + this.uuid + "\"]"
-						+ " ." + this.classes.uiDialogTitlebar
-						+ "." + this.classes.uiStateActive
-						+ ":not(." + this.classes.uiStateDefault + ")"
-						+ " ." + this.classes.uiButton
-						+ " ." + this.classes.uiButtonIconPrimary
-						+ bg,
+					windowButtons = "." + this.classes.window + "[data-taskbar-uuid=\"" + this.uuid + "\"]" + " ." + this.classes.uiDialogTitlebar + "." + this.classes.uiStateActive + ":not(." + this.classes.uiStateDefault + ")" + " ." + this.classes.uiButton + " ." + this.classes.uiButtonIconPrimary + bg,
 					menuWindowClose = "";
 
 				// jQuery UI since version 1.11 would also need
 				// default styles for button in menus
-				if (
-					$.ui.menu
-					&& parseFloat($.ui.menu.prototype.version) >= 1.11
-				) {
-					menuWindowClose =
-						"." + this.classes.taskbar
-						+ "[data-taskbar-uuid=\"" + this.uuid + "\"]"
-						+ " ." + this.classes.windowGroupElement
-						+ " ." + this.classes.uiButtonIconPrimary + ":not(:hover)"
-						+ bg;
+				if ($.ui.menu && parseFloat($.ui.menu.prototype.version) >= 1.11) {
+					menuWindowClose = "." + this.classes.taskbar + "[data-taskbar-uuid=\"" + this.uuid + "\"]" + " ." + this.classes.windowGroupElement + " ." + this.classes.uiButtonIconPrimary + ":not(:hover)" + bg;
 				}
 
 				var iframes = "";
@@ -8230,9 +8060,7 @@
 
 			// refresh windows and generate debug warning if any windows are left
 			if ($windows.length) {
-				if (this._debugLogAdd(
-					"Windows were binbed upon calling \"destroy\".",
-					1, 0) !== false && this.options.debug.environment) {
+				if (this._debugLogAdd("Windows were binbed upon calling \"destroy\".", 1, 0) !== false && this.options.debug.environment) {
 					if (window.console) {
 						console.log($windows);
 					}
@@ -8294,9 +8122,7 @@
 
 			this._destroyWindowsContainment();
 
-			$(window)
-				.add($(document))
-				.off("." + this._cache.uep);
+			$(window).add($(document)).off("." + this._cache.uep);
 
 			// remove empty attributes
 			$.each(["class", "style"], function (index, attr) {
