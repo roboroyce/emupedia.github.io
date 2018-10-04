@@ -105,13 +105,13 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win9x .emuos-taskbar .ui-button .ui-button-icon-primary {
+.theme-win9x .emuos-taskbar .emuos-taskbar-window-button.ui-button .ui-button-icon-primary {
 	left: 3px;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -o-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: pixelated;
-	-ms-interpolation-mode: nearest-neighbor;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
 /*noinspection CssReplaceWithShorthandSafely*/

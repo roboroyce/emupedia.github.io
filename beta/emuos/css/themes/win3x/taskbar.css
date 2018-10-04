@@ -38,11 +38,11 @@
 	/*background-image: url(../../../images/themes/win3x/icons/maximize.png);*/
 	/*background-position: 4px 5px;*/
 	/*background-repeat: no-repeat;*/
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -o-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: pixelated;
-	-ms-interpolation-mode: nearest-neighbor;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
 .theme-win3x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {

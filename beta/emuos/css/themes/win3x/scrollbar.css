@@ -85,11 +85,11 @@
 	background-image: url(../../../images/themes/win3x/icons/up.png);
 	background-position: center;
 	background-repeat: no-repeat;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -o-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: pixelated;
-	-ms-interpolation-mode: nearest-neighbor;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
@@ -97,9 +97,9 @@
 	background-image: url(../../../images/themes/win3x/icons/down.png);
 	background-position: center;
 	background-repeat: no-repeat;
-	image-rendering: -moz-crisp-edges;
-	image-rendering: -o-crisp-edges;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: pixelated;
-	-ms-interpolation-mode: nearest-neighbor;
+	/*image-rendering: -moz-crisp-edges;*/
+	/*image-rendering: -o-crisp-edges;*/
+	/*image-rendering: -webkit-optimize-contrast;*/
+	/*image-rendering: pixelated;*/
+	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
