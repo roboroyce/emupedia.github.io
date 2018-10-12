@@ -130,10 +130,10 @@
 
 /*noinspection CssReplaceWithShorthandSafely*/
 .theme-win9x .emuos-taskbar .ui-button.ui-button-text-icon-primary .ui-button-text {
-	padding-top: 2px;
+	padding-top: 1px;
 	padding-right: 2px;
 	padding-left: 20px;
-	padding-bottom: 1px;
+	padding-bottom: 2px;
 }
 
 /*noinspection CssReplaceWithShorthandSafely*/
@@ -152,15 +152,9 @@
 	outline-offset: -3px;
 }
 
-/*noinspection CssReplaceWithShorthandSafely*/
-.theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-text {
-	padding-top: 2px;
-	padding-right: 2px;
-	padding-left: 20px;
-	padding-bottom: 1px;
-}
 
 .theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
+	left: 3px;
 	background-image: url(../../../images/themes/win9x/icons/start.png);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -168,13 +162,14 @@
 
 /*noinspection CssReplaceWithShorthandSafely*/
 .theme-win9x .emuos-taskbar .ui-button.ui-state-active.emuos-taskbar-start-button .ui-button-text {
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-left: 20px;
+	padding-bottom: 1px;
 	outline: 1px dotted #000;
 	outline-offset: -3px;
 }
 
 .theme-win9x .emuos-taskbar .ui-button.ui-state-active.emuos-taskbar-start-button .ui-button-icon-primary {
-	left: 4px;
-	background-image: url(../../../images/themes/win9x/icons/start.png);
-	background-repeat: no-repeat;
 	background-position: center 1px;
 }

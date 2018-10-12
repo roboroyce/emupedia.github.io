@@ -1,15 +1,9 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
 		define(['jquery'], factory);
 	} else if (typeof module === 'object' && module.exports) {
-		// Node/CommonJS
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
-				// require('jQuery') returns a factory that requires window to
-				// build a jQuery instance, we normalize how we use modules
-				// that require this pattern but the window provided is a noop
-				// if it's defined (how jquery works)
 				if (typeof window !== 'undefined') {
 					jQuery = require('jquery');
 				} else {
@@ -20,10 +14,9 @@
 			return jQuery;
 		};
 	} else {
-		// Browser globals
 		factory(jQuery);
 	}
-}(function ($) {
+} (function ($) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -214,27 +207,6 @@
 					case 'win9x':
 						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
-						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
-							axis: 'y',
-							scrollbarPosition: 'inside',
-							scrollInertia: 0,
-							alwaysShowScrollbar: 0,
-							keyboard: {
-								enable: true
-							},
-							scrollButtons: {
-								enable: true
-							},
-							mouseWheel: {
-								enable: true
-							},
-							advanced: {
-								updateOnContentResize: true,
-								updateOnImageLoad: true,
-								updateOnSelectorChange: true
-							},
-							live: true
-						});
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
 						break;
 				}
