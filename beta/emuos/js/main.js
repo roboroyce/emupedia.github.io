@@ -4,6 +4,7 @@
 
 	// noinspection JSFileReferences
 	require.config({
+		waitSeconds : 300,
 		shim: {
 			jquerymousewheel: {
 				deps: ['jquery']
@@ -17,14 +18,23 @@
 			jquerycustomscrollbar: {
 				deps: ['jquery']
 			},
+			jsrsasign: {
+				exports: 'KJUR'
+			},
+			octokat: {
+				deps: ['promise', 'fetch']
+			},
 			emuos: {
 				deps: ['desktop']
+			},
+			filesystem: {
+				deps: ['jqueryui', 'jqyeryajaxretry', 'jsrsasign', 'octokat']
 			},
 			desktop: {
 				deps: ['window']
 			},
 			taskbar: {
-				deps: ['jqueryui']
+				deps: ['filesystem']
 			},
 			window: {
 				deps: ['taskbar']
@@ -44,8 +54,17 @@
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
 			jqueryuicontextmenu: 'libraries/jquery.ui-contextmenu-1.18.1.min',
 			jquerycustomscrollbar: 'libraries/jquery.mCustomScrollbar-3.1.5.min',
+			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.7.min',
+			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
+			promise: 'libraries/es6-promise.auto-polyfill-4.2.5.min',
+			fetch: 'libraries/es6-fetch-polyfill-3.0.0',
+			octokat: 'libraries/octokat-0.10.0',
+			json: 'libraries/requirejs-json-1.0.2',
+			text: 'libraries/requirejs-text-2.0.15',
+			optional: 'libraries/requirejs-optional-1.0.0',
 			emuos: 'emuos',
 			system: 'system',
+			filesystem: 'filesystem',
 			desktop: 'desktop',
 			taskbar: 'taskbar',
 			window: 'window',
@@ -57,18 +76,26 @@
 	require([
 		'jquery',
 		'emuos',
-		'jquerymousewheel',
-		'jqueryuicontextmenu',
-		'jquerycustomscrollbar',
-		'system',
+		'filesystem',
+		'text!../certs/emudisk.pem',
 		'desktop',
 		'taskbar',
 		'window',
-		'lang'
-	], function($, EmuOS) {
+		'lang',
+		'system',
+		'jquerymousewheel',
+		'jqueryuicontextmenu',
+		'jquerycustomscrollbar',
+		'jqyeryajaxretry'
+	], function($, EmuOS, FileSystem, github_private_key) {
 		$(function() {
 			// noinspection JSUnusedLocalSymbols
 			var desktop = new EmuOS({
+				filesystem: new FileSystem({
+					github: {
+						private_key: github_private_key
+					}
+				}),
 				theme: 'theme-win9x'
 			});
 

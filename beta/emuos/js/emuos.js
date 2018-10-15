@@ -1,6 +1,6 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
+		define(['jquery', 'octokat'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -16,17 +16,17 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($) {
+} (function ($, Octokat) {
 	var EmuOS = function (options) {
 		var self = this;
 
 		// noinspection JSUnusedGlobalSymbols
-		this.$document	= $(document);
-		this.$window	= $(window);
-		this.$html		= $('html');
-		this.$body		= $('body');
+		self.$document	= $(document);
+		self.$window	= $(window);
+		self.$html		= $('html');
+		self.$body		= $('body');
 
-		this.options = {
+		self.options = {
 			theme: 'theme-win3x',
 			themes: {
 				basic: 'theme-basic',
@@ -47,7 +47,31 @@
 			}]
 		};
 
-		$.extend(this.options, options);
+		self.options = $.extend(true, self.options, options);
+
+		if (typeof self.options.filesystem !== 'undefined') {
+			if (typeof self.options.filesystem.promise === 'object') {
+				// noinspection JSUnresolvedVariable
+				self.options.filesystem.promise.always(function() {
+					// noinspection JSUnresolvedVariable
+					if (self.options.filesystem.options.github.token !== '') {
+						// noinspection JSUnresolvedVariable
+						var octo = new Octokat({
+							token: self.options.filesystem.options.github.token
+						});
+
+						// noinspection JSUnresolvedVariable
+						octo.repos(self.options.filesystem.options.github.organization, self.options.filesystem.options.github.repo).fetch().then(function (repo) {
+							console.log(repo);
+
+							repo.git.trees('master?recursive=1').fetch().then(function (tree) {
+								console.log(tree);
+							});
+						});
+					}
+				});
+			}
+		}
 
 		// noinspection FallThroughInSwitchStatementJS
 		switch (this.options.theme) {
@@ -175,12 +199,15 @@
 						break;
 					case 'basic':
 						self.$html.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
+						// noinspection JSJQueryEfficiency
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
 						self.$html.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
+						// noinspection JSJQueryEfficiency
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						// noinspection JSJQueryEfficiency
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
 							axis: 'y',
 							scrollbarPosition: 'inside',
@@ -206,6 +233,7 @@
 						break;
 					case 'win9x':
 						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
+						// noinspection JSJQueryEfficiency
 						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
 						break;
@@ -263,6 +291,7 @@
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'close':
+						// noinspection JSValidateTypes
 						$(e.target).children('.window, .iframe').first().window('close');
 						break;
 				}
