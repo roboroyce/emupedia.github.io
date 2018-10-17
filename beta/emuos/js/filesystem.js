@@ -32,6 +32,7 @@
 			github: {
 				organization: 'Emupedia',
 				repo: 'emupedia.github.io',
+				branch: 'master',
 				app_id: 18939,
 				app_install_id: 383274,
 				private_key: ''
@@ -114,6 +115,9 @@
 
 		if (data['type'] === 'tree') {
 			data['childnodes'] = [];
+		} else {
+			data['href'] = 'https://raw.githubusercontent.com/' + self.options.github.organization + '/' + self.options.github.repo + '/' + self.options.github.branch + '/' + data['path'];
+			data['target'] = '_blank';
 		}
 
 		treeNode.push(data);
@@ -121,6 +125,7 @@
 		self.buildTree(index, data, parts.splice(1, parts.length), data['type'] === 'tree' ? data['childnodes'] : []);
 	};
 
+	// noinspection JSUnusedGlobalSymbols
 	FileSystem.prototype.getTree = function(cb) {
 		var self = this;
 
@@ -137,7 +142,7 @@
 					});
 
 					// noinspection JSUnresolvedVariable
-					octo.repos(self.options.github.organization, self.options.github.repo).git.trees('master?recursive=1').fetch().then(function(data) {
+					octo.repos(self.options.github.organization, self.options.github.repo).git.trees(self.options.github.branch + '?recursive=1').fetch().then(function(data) {
 						for (var i = 0 ; i < data.tree.length; i++) {
 							self.buildTree(i, data.tree[i], data.tree[i]['path'].split('/'), tree);
 						}

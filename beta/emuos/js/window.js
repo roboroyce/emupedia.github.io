@@ -1040,12 +1040,10 @@
 			$(this.bindings[0]).siblings("." + this.classes.uiResizableHandle).on("mousedown." + this._cache.uep, function () {
 				self.$latestResizableHandle = $(this);
 
-				console.log('on');
 				if (self.options.embeddedContent) {
 					self.$window.find('iframe').css('pointer-events', 'none');
 				}
 			}).on("mouseup." + this._cache.uep, function () {
-				console.log('off');
 				if (self.options.embeddedContent) {
 					self.$window.find('iframe').removeAttr('style');
 				}
