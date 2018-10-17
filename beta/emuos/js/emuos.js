@@ -49,32 +49,8 @@
 
 		self.options = $.extend(true, self.options, options);
 
-		if (typeof self.options.filesystem !== 'undefined') {
-			if (typeof self.options.filesystem.promise === 'object') {
-				// noinspection JSUnresolvedVariable
-				self.options.filesystem.promise.always(function() {
-					// noinspection JSUnresolvedVariable
-					if (self.options.filesystem.options.github.token !== '') {
-						// noinspection JSUnresolvedVariable
-						var octo = new Octokat({
-							token: self.options.filesystem.options.github.token
-						});
-
-						// noinspection JSUnresolvedVariable
-						octo.repos(self.options.filesystem.options.github.organization, self.options.filesystem.options.github.repo).fetch().then(function (repo) {
-							console.log(repo);
-
-							repo.git.trees('master?recursive=1').fetch().then(function (tree) {
-								console.log(tree);
-							});
-						});
-					}
-				});
-			}
-		}
-
 		// noinspection FallThroughInSwitchStatementJS
-		switch (this.options.theme) {
+		switch (self.options.theme) {
 			case 'theme-basic':
 				break;
 			case 'theme-win3x':
@@ -108,30 +84,30 @@
 				break;
 		}
 
-		this.$html.addClass('emuos').addClass(this.options.theme);
+		self.$html.addClass('emuos').addClass(self.options.theme);
 
 		if (isIE) {
-			this.$html.addClass('browser-ie');
+			self.$html.addClass('browser-ie');
 		} else if (isEdge) {
-			this.$html.addClass('browser-edge');
+			self.$html.addClass('browser-edge');
 		} else if (isChrome || isOperaBlink) {
-			this.$html.addClass('browser-chrome');
+			self.$html.addClass('browser-chrome');
 		} else if (isSafari || isOperaPresto) {
-			this.$html.addClass('browser-webkit');
+			self.$html.addClass('browser-webkit');
 		} else if (isFirefox || isPaleMoon || isKMeleon || isNetscape) {
-			this.$html.addClass('browser-firefox');
+			self.$html.addClass('browser-firefox');
 		} else {
-			this.$html.addClass('browser-other');
+			self.$html.addClass('browser-other');
 		}
 
 		var start = '';
 
-		if (typeof this.options.start !== 'undefined') {
+		if (typeof self.options.start !== 'undefined') {
 			start = '<ul data-menu-lang="*" data-menu-type="start">';
 
-			for (var i in this.options.start) {
+			for (var i in self.options.start) {
 				// noinspection JSUnfilteredForInLoop
-				start += '<li>' + this.options.start[i]['name'] + '</li>';
+				start += '<li>' + self.options.start[i]['name'] + '</li>';
 			}
 
 			start += '</ul>';
@@ -142,17 +118,17 @@
 		this.$desktop = $('.desktop').first();
 		this.$taskbar = $('.taskbar').first();
 
-		for (var j in this.options.icons) {
+		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop
-			this.$desktop.append(
-				'<a class="icon" href="' + (this.options.icons[j]['link'] !== '' ? this.options.icons[j]['link'] : 'javascript:') + '">' +
-					'<img src="' + this.options.icons[j]['icon'] + '" alt="' + this.options.icons[j]['name'] + '" />' +
-					'<span>' + this.options.icons[j]['name'] + '</span>' +
+			self.$desktop.append(
+				'<a class="icon" href="' + (self.options.icons[j]['link'] !== '' ? self.options.icons[j]['link'] : 'javascript:') + '">' +
+					'<img src="' + self.options.icons[j]['icon'] + '" alt="' + self.options.icons[j]['name'] + '" />' +
+					'<span>' + self.options.icons[j]['name'] + '</span>' +
 				'</a>')
 		}
 
 		// noinspection JSUnresolvedFunction
-		this.$taskbar.taskbar({
+		self.$taskbar.taskbar({
 			draggable: true,
 			resizable: true,
 			resizableHandleOffset: 1,
@@ -163,12 +139,12 @@
 		});
 
 		// noinspection JSUnresolvedFunction
-		this.$desktop.desktop({
+		self.$desktop.desktop({
 			iconClass: '.icon',
 			parent: '.emuos-taskbar-windows-containment'
 		});
 
-		this.$html.contextmenu({
+		self.$html.contextmenu({
 			delegate: 'body, .emuos-taskbar',
 			menu: [{
 				title: 'Refresh',
@@ -245,16 +221,20 @@
 	};
 
 	EmuOS.prototype.window = function (options) {
+		var self = this;
+
 		var title	= typeof options.title		!== 'undefined'	? options.title		: '';
 		var icon	= typeof options.icon		!== 'undefined'	? options.icon		: '';
 		var content	= typeof options.content	!== 'undefined'	? options.content	: '';
 
-		this.$body.append('<div class="window" title="'+ title +'">' + content + '</div>');
+		var window	= $('<div class="window" title="'+ title +'">' + content + '</div>');
 
-		// noinspection JSUnresolvedFunction
-		var window = $('.window').window({
+		self.$body.append(window);
+
+		// noinspection JSValidateTypes
+		window.window({
 			icons: {
-				main: this.$html.hasClass('theme-basic') || this.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
+				main: self.$html.hasClass('theme-basic') || self.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
 			}
 		});
 
@@ -313,14 +293,18 @@
 	};
 
 	EmuOS.prototype.iframe = function (options) {
+		var self = this;
+
 		var title	= typeof options.title	!== 'undefined'	? options.title	: '';
 		var icon	= typeof options.icon	!== 'undefined'	? options.icon	: '';
 		var src		= typeof options.src	!== 'undefined'	? options.src	: '';
 
-		this.$body.append('<div class="iframe" title="'+ title +'"><iframe src="' + src + '" allowfullscreen></iframe></div>');
+		var window	= $('<div class="iframe" title="'+ title +'"><iframe src="' + src + '" allowfullscreen></iframe></div>');
 
-		// noinspection JSUnresolvedFunction
-		var window = $('.iframe').window({
+		self.$body.append(window);
+
+		// noinspection JSValidateTypes
+		window.window({
 			embeddedContent: true,
 			width: 640,
 			height: 480,

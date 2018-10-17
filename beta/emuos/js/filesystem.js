@@ -1,6 +1,6 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
+		define(['jquery', 'octokat'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -16,9 +16,9 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($) {
+} (function ($, Octokat) {
 	// noinspection JSUnusedLocalSymbols
-	var root					= window.location.protocol + '//' + window.location.host + '/';
+	var root = window.location.protocol + '//' + window.location.host + '/';
 
 	var FileSystem = function (options) {
 		var self = this;
@@ -84,7 +84,7 @@
 		});
 	};
 
-	FileSystem.prototype.generateJWT = function(github_private_key, github_app_id) {
+	FileSystem.prototype.generateJWT = function (github_private_key, github_app_id) {
 		var iat		= Math.floor(new Date().getTime() / 1000);
 		var exp		= iat + (10 * 60); // maximum 10 minutes
 		var iss		= github_app_id;
@@ -96,8 +96,61 @@
 		return KJUR.jws.JWS.sign(header.alg, JSON.stringify(header), JSON.stringify(payload), KEYUTIL.getKey(github_private_key));
 	};
 
-	FileSystem.prototype.getRawTree = function(github_token) {
+	FileSystem.prototype.buildTree = function (index, data, parts, treeNode) {
+		var self = this;
 
+		if (parts.length === 0) {
+			return;
+		}
+
+		for (var i = 0 ; i < treeNode.length; i++) {
+			if (parts[0] === treeNode[i]['name']) {
+				self.buildTree(index, data, parts.splice(1, parts.length), treeNode[i]['type'] === 'tree' ? treeNode[i]['childnodes'] : []);
+				return;
+			}
+		}
+
+		data['name'] = parts[0];
+
+		if (data['type'] === 'tree') {
+			data['childnodes'] = [];
+		}
+
+		treeNode.push(data);
+
+		self.buildTree(index, data, parts.splice(1, parts.length), data['type'] === 'tree' ? data['childnodes'] : []);
+	};
+
+	FileSystem.prototype.getTree = function(cb) {
+		var self = this;
+
+		var tree = [];
+
+		if (typeof self.promise === 'object') {
+			// noinspection JSUnresolvedVariable
+			self.promise.always(function() {
+				// noinspection JSUnresolvedVariable
+				if (self.options.github.token !== '') {
+					// noinspection JSUnresolvedVariable
+					var octo = new Octokat({
+						token: self.options.github.token
+					});
+
+					// noinspection JSUnresolvedVariable
+					octo.repos(self.options.github.organization, self.options.github.repo).git.trees('master?recursive=1').fetch().then(function(data) {
+						for (var i = 0 ; i < data.tree.length; i++) {
+							self.buildTree(i, data.tree[i], data.tree[i]['path'].split('/'), tree);
+						}
+
+						if (typeof cb === 'function') {
+							cb(tree);
+						}
+					});
+				}
+			});
+		} else {
+			throw new Error('GitHub token is empty');
+		}
 	};
 
 	return FileSystem;

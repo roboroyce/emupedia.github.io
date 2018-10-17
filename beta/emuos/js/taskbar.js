@@ -6761,8 +6761,6 @@
 						'background-position': 'center',
 						'background-size': 'cover'
 					});
-
-					console.log($this.children('.' + self.classes.uiButtonIconPrimary).first());
 				} else {
 					$this.button("option", "icons.primary", self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
 				}
