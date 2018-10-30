@@ -108,7 +108,7 @@
 
 			// noinspection JSUnresolvedFunction
 			desktop.window({
-				title: 'test',
+				title: 'Simple Window with Text',
 				icon: 'apps/wing/favicon.ico',
 				content: 'this is how the world ends thisdnosifvoibdfo dfuvbdf difubfd' +
 					'<p>another paragraph</p>' +
@@ -124,30 +124,71 @@
 
 			// noinspection JSUnresolvedFunction
 			desktop.window({
-				title: 'test',
+				title: 'Tree Component',
 				icon: 'apps/wing/favicon.ico',
-				content: 'this is how the world ends thisdnosifvoibdfo dfuvbdf difubfd' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>' +
-					'<p>another paragraph</p>'
+				content:'<ul class="tree theme-classic">' +
+							'<li class="tree-leaf tree-has-children">' +
+								'<a class="tree-leaf-label" href="javascript:">Label A</a>' +
+								'<input type="checkbox" />' +
+								'<span class="tree-toggle"></span>' +
+								'<ul class="tree-subtree">' +
+									'<li class="tree-leaf tree-has-children">' +
+										'<a class="tree-leaf-label" href="javascript:">Label A.A</a>' +
+										'<input type="checkbox" />' +
+										'<span class="tree-toggle"></span>' +
+										'<ul class="tree-subtree">' +
+											'<li class="tree-leaf">' +
+												'<a class="tree-leaf-label" href="javascript:">Label A.A.A</a>' +
+											'</li>' +
+											'<li class="tree-leaf">' +
+												'<a class="tree-leaf-label" href="javascript:">Label A.A.B</a>' +
+											'</li>' +
+										'</ul>' +
+									'</li>' +
+									'<li class="tree-leaf">' +
+										'<a class="tree-leaf-label" href="javascript:">Label A.A.A</a>' +
+									'</li>' +
+									'<li class="tree-leaf">' +
+										'<a class="tree-leaf-label" href="javascript:">Label A.A.B</a>' +
+									'</li>' +
+									'<li class="tree-leaf tree-has-children">' +
+										'<a class="tree-leaf-label" href="javascript:">Label A.A</a>' +
+										'<input type="checkbox" />' +
+										'<span class="tree-toggle"></span>' +
+										'<ul class="tree-subtree">' +
+											'<li class="tree-leaf">' +
+												'<a class="tree-leaf-label" href="javascript:">Label A.A.A</a>' +
+											'</li>' +
+											'<li class="tree-leaf">' +
+												'<a class="tree-leaf-label" href="javascript:">Label A.A.B</a>' +
+											'</li>' +
+										'</ul>' +
+									'</li>' +
+								'</ul>' +
+							'</li>' +
+							'<li class="tree-leaf tree-has-children">' +
+								'<a class="tree-leaf-label" href="javascript:">Label B</a>' +
+								'<input type="checkbox" />' +
+								'<span class="tree-toggle"></span>' +
+								'<ul class="tree-subtree">' +
+									'<li class="tree-leaf">' +
+										'<a class="tree-leaf-label" href="javascript:">Label B.A</a>' +
+									'</li>' +
+								'</ul>' +
+							'</li>' +
+						'</ul>'
+		});
+
+			// noinspection JSUnresolvedFunction
+			desktop.window({
+				title: 'FileTree Component',
+				icon: 'apps/wing/favicon.ico',
+				content: '<div id="treeview"></div>'
 			});
 
 			// noinspection JSUnresolvedFunction
 			filesystem.getTree(function (tree) {
 				console.log(tree);
-
-				// noinspection JSUnresolvedFunction
-				desktop.window({
-					title: 'test3',
-					icon: 'apps/wing/favicon.ico',
-					content: '<div id="treeview"></div>'
-				});
 
 				// noinspection AmdModulesDependencies
 				$('#treeview').btechcotree({
