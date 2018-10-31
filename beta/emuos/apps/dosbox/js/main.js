@@ -27,34 +27,39 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	require([
 		'jquery',
-		'purl'
+		'purl',
+		'system'
 	], function($, purl) {
 		$(function() {
-			var first = typeof $.url().param('game') === 'undefined';
+			if (SYSTEM_FEATURE_CANVAS && SYSTEM_FEATURE_TYPED_ARRAYS) {
+				var first = typeof $.url().param('game') === 'undefined';
 
-			if (!first) {
-				$('.game option').prop('selected', false).removeAttr('selected');
+				if (!first) {
+					$('.game option').prop('selected', false).removeAttr('selected');
 
-				var index_selected = parseInt($.url().param('game'), 10);
-				var game_selected = $('.game option:eq('+ index_selected +')').prop('selected', true).attr('selected', true).data('game');
+					var index_selected = parseInt($.url().param('game'), 10);
+					var game_selected = $('.game option:eq('+ index_selected +')').prop('selected', true).attr('selected', true).data('game');
 
-				// noinspection JSCheckFunctionSignatures
-				require(['games/' + game_selected, 'dosbox']);
-			}
-
-			$(document).on('click', '.load', function() {
-				var $game = $('.game');
-				var index_selected = parseInt($game.val(), 10);
-				var game_selected = $('.game option:eq('+ index_selected +')').data('game');
-
-				if (first) {
-					first = false;
 					// noinspection JSCheckFunctionSignatures
-					require(['games/' + game_selected, 'dosbox']);
-				} else {
-					location.href = location.protocol + '//' + location.host + location.pathname + '?game=' + index_selected;
+					require(['games/' + game_selected, SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (SYSTEM_FEATURE_ASMJS ? 'dosbox' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
 				}
-			})
+
+				$(document).on('click', '.load', function() {
+					var $game = $('.game');
+					var index_selected = parseInt($game.val(), 10);
+					var game_selected = $('.game option:eq('+ index_selected +')').data('game');
+
+					if (first) {
+						first = false;
+						// noinspection JSCheckFunctionSignatures
+						require(['games/' + game_selected, !SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (!SYSTEM_FEATURE_ASMJS ? 'dosbox' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
+					} else {
+						location.href = location.protocol + '//' + location.host + location.pathname + '?game=' + index_selected;
+					}
+				})
+			} else {
+				alert('DOSBox cannot work because Canvas and/or Typed Arrays are not supported in your browser!')
+			}
 		});
 	});
 } (this));
