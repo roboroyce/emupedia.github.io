@@ -41,7 +41,7 @@
 					var game_selected = $('.game option:eq('+ index_selected +')').prop('selected', true).attr('selected', true).data('game');
 
 					// noinspection JSCheckFunctionSignatures
-					require(['games/' + game_selected, SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (SYSTEM_FEATURE_ASMJS ? 'dosbox' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
+					require(['games/' + game_selected, SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (SYSTEM_FEATURE_ASMJS ? 'dosbox-asm' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
 				}
 
 				$(document).on('click', '.load', function() {
@@ -52,7 +52,7 @@
 					if (first) {
 						first = false;
 						// noinspection JSCheckFunctionSignatures
-						require(['games/' + game_selected, !SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (!SYSTEM_FEATURE_ASMJS ? 'dosbox' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
+						require(['games/' + game_selected, SYSTEM_FEATURE_WEBASSEMBLY ? 'dosbox-wasm' : (SYSTEM_FEATURE_ASMJS ? 'dosbox-asm' : alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))]);
 					} else {
 						location.href = location.protocol + '//' + location.host + location.pathname + '?game=' + index_selected;
 					}
