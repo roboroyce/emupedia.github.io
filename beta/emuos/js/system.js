@@ -536,8 +536,8 @@ if (typeof console !== 'undefined') {
 	global.isUNIX							= version.indexOf('X11') !== -1;
 	global.isLinux							= version.indexOf('Linux') !== -1;
 
-	global.is64								= (browser.indexOf('Win64') || browser.indexOf('amd64') || browser.indexOf('x86_64')) !== -1;
-	global.is32								= !global.is64 ? ((browser.indexOf('Win32') || browser.indexOf('i386') || browser.indexOf('i686')) !== -1) : true;
+	global.is64								= (browser.indexOf('WOW64') || browser.indexOf('Win64') || browser.indexOf('amd64')  || browser.indexOf('x86_64')) !== -1;
+	global.is32								= !global.is64 ? ((browser.indexOf('WOW32') || browser.indexOf('Win32') || browser.indexOf('i386') || browser.indexOf('i686')) !== -1) : true;
 
 	global.isMobile							= browser.indexOf('Mobi') !== -1;
 	global.isDesktop						= !global.isMobile;
@@ -1065,7 +1065,7 @@ if (typeof console !== 'undefined') {
 	}
 
 	function dumpSystem() {
-		console.table([{
+		var dump = [{
 			Feature: 'SYSTEM_INFO_OS',
 			Value: SYSTEM_INFO_OS + ' ' + SYSTEM_INFO_OS_VERSION
 		} , {
@@ -1260,7 +1260,26 @@ if (typeof console !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_BATTERY',
 			Value: SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
-		}]);
+		}];
+
+		//Microsoft Edge 17.17134 (64-bit) cannot list more than 50 items in a table
+		if (isEdge) {
+			var chunks = function(array, size) {
+				var results = [];
+				while (array.length) {
+					results.push(array.splice(0, size));
+				}
+				return results;
+			};
+
+			dump = chunks(dump, 50);
+
+			for (var d in dump) {
+				console.table(dump[d]);
+			}
+		} else {
+			console.table(dump);
+		}
 	}
 
 	// endregion
@@ -1268,7 +1287,6 @@ if (typeof console !== 'undefined') {
 	dumpSystem();
 
 	onerror = function(message, url, lineNumber) {
-		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
 	};
-
 } (this));
