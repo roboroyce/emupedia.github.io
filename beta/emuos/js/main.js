@@ -60,8 +60,8 @@
 			jquerycustomscrollbar: 'libraries/jquery-customscrollbar-3.1.5.min',
 			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.7.min',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
-			promise: 'libraries/es6-promise-polyfill-4.2.5.min',
-			fetch: 'libraries/es6-fetch-polyfill-3.0.0',
+			promise: 'polyfills/es6-promise-4.2.5.min',
+			fetch: 'polyfills/es6-fetch-3.0.0',
 			octokat: 'libraries/octokat-0.10.0',
 			json: 'libraries/requirejs-json-1.0.2',
 			text: 'libraries/requirejs-text-2.0.15',
@@ -177,7 +177,7 @@
 								'</ul>' +
 							'</li>' +
 						'</ul>'
-		});
+			});
 
 			// noinspection JSUnresolvedFunction
 			desktop.window({
@@ -211,11 +211,18 @@
 			});
 
 			// noinspection JSUnresolvedFunction
-			/*desktop.iframe({
-				title: 'test2',
+			desktop.iframe({
+				title: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
 				src: 'apps/monaco-editor/index.html'
-			});*/
+			});
+
+			// noinspection JSUnresolvedFunction
+			desktop.iframe({
+				title: 'DOSBox 0.74',
+				icon: 'apps/dosbox/favicon.ico',
+				src: 'apps/dosbox/index.html'
+			});
 		});
 	});
 } (this));

@@ -41,6 +41,10 @@
 				name: 'Wing 2.0',
 				icon: 'apps/wing/favicon.ico',
 				link: ''
+			} , {
+				name: 'DOSBox 0.74',
+				icon: 'apps/dosbox/favicon.ico',
+				link: ''
 			}],
 			start: [{
 				name: 'Item'
