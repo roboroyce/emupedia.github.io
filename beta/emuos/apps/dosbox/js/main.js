@@ -97,6 +97,7 @@ var Module = {
 			text = m[1];
 		}
 		console.log(text);
+		document.getElementById('status').innerHTML = text;
 	},
 	totalDependencies: 0,
 	monitorRunDependencies: function(left) {
@@ -105,7 +106,7 @@ var Module = {
 	}
 };
 
-Module.setStatus('Downloading...');
+Module.setStatus('Idle...');
 
 if (!Module.expectedDataFileDownloads) {
 	Module.expectedDataFileDownloads = 0;

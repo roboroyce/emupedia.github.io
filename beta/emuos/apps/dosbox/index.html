@@ -18,6 +18,7 @@
 				margin: 0;
 				padding: 0;
 				background-color: #6c6c6c;
+				color: #fff;
 				overflow: hidden;
 			}
 
@@ -32,21 +33,24 @@
 				height: calc(100% - 22px);
 				background-color: #000;
 			}
+
+			#status {
+				float: right;
+			}
 		</style>
 	</head>
 	<body>
 		<span class="controls">
 			<label>
 				<select class="game">
-					<!--<option>Select Game</option>-->
 					<option value="0" data-game="pre1">Prehistorik 1</option>
 					<option value="1" data-game="pre2">Prehistorik 2</option>
 					<option value="2" data-game="loomega">Loom (EGA)</option>
 				</select>
 			</label>
 			<input class="load" type="button" value="Load">
-			<!--<span><input type="checkbox" id="resize">Resize canvas</span>-->
 			<input class="fullscreen" type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)">
+			<span id="status"></span>
 		</span>
 
 		<canvas id="canvas" class="emscripten" tabindex="0"></canvas>
