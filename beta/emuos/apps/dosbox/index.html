@@ -29,20 +29,20 @@
 		</style>
 	</head>
 	<body>
-		<span id="controls">
-			<span>
-				<select>
-					<option>Prehistorik 1</option>
-					<option selected>Prehistorik 2</option>
+		<span class="controls">
+			<label>
+				<select class="game">
+					<option value="0">Prehistorik 1</option>
+					<option value="1">Prehistorik 2</option>
 				</select>
-			</span>
-			<span><input type="button" value="Start" onclick="start()"></span>
+			</label>
+			<input class="load" type="button" value="Load">
 			<!--<span><input type="checkbox" id="resize">Resize canvas</span>-->
-			<span><input type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)"></span>
+			<input class="fullscreen" type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)">
 		</span>
 
 		<canvas id="canvas" class="emscripten" tabindex="0"></canvas>
 
-		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/libraries/require-2.3.6.min.js" data-main="js/main"></script>
 	</body>
 </html>

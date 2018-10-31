@@ -76,7 +76,7 @@
 		}
 	});
 
-	// noinspection JSCheckFunctionSignatures, JSUnusedLocalSymbols
+	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	require([
 		'jquery',
 		'emuos',
