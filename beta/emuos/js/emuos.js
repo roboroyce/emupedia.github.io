@@ -311,7 +311,7 @@
 		window.window({
 			embeddedContent: true,
 			width: 640,
-			height: 480,
+			height: 422,
 			position: {
 				my: 'center',
 				at: 'center center-20%',
