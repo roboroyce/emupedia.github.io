@@ -63,7 +63,7 @@
 			promise: 'polyfills/es6-promise-4.2.5.min',
 			fetch: 'polyfills/es6-fetch-3.0.0',
 			octokat: 'libraries/octokat-0.10.0',
-			json: 'libraries/requirejs-json-1.0.2',
+			json: 'libraries/requirejs-json-0.3.2',
 			text: 'libraries/requirejs-text-2.0.15',
 			optional: 'libraries/requirejs-optional-1.0.0',
 			emuos: 'emuos',

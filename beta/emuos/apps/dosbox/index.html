@@ -4,58 +4,21 @@
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<title>DOSBox</title>
+		<title>DOSBox 0.74</title>
 
-		<style>
-			html {
-				width: 100%;
-				height: 100%;
-			}
-
-			body {
-				width: 100%;
-				height: 100%;
-				margin: 0;
-				padding: 0;
-				background-color: #6c6c6c;
-				color: #fff;
-				overflow: hidden;
-			}
-
-			.controls {
-				height: 22px;
-			}
-
-			/*noinspection CssOverwrittenProperties*/
-			canvas {
-				width: 100%;
-				height: 100%;
-				height: calc(100% - 22px);
-				background-color: #000;
-			}
-
-			#status {
-				float: right;
-			}
-		</style>
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
 	</head>
 	<body>
 		<span class="controls">
-			<label>
-				<select class="game">
-					<option value="0" data-game="pre1">Prehistorik 1</option>
-					<option value="1" data-game="pre2">Prehistorik 2</option>
-					<option value="2" data-game="loomega">Loom (EGA)</option>
-					<option value="3" data-game="wolf3d">Wolfenstein 3D</option>
-				</select>
-			</label>
-			<input class="load" type="button" value="Load">
+			<input class="list" type="button" value="Game List">
 			<input class="fullscreen" type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)">
+			<!--suppress HtmlFormInputWithoutLabel -->
+			<select class="game-dropdown"><option>No Games</option></select>
+			<input class="load" type="button" value="Load">
 			<span id="status"></span>
 		</span>
-
 		<canvas id="canvas" class="emscripten" tabindex="0"></canvas>
-
+		<div class="game-list"></div>
 		<script type="text/javascript" src="js/libraries/require-2.3.6.min.js" data-main="js/main"></script>
 	</body>
 </html>

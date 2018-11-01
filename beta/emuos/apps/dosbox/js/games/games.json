@@ -1,0 +1,102 @@
+{
+	"format": {
+		"version": "1.0"
+	},
+	"games": [{
+		"id": "loomega",
+		"name": "Loom",
+		"executable": "./LOOM.EXE",
+		"files": [{"start": 0, "audio": 0, "end": 5748, "filename": "/00.LFL"}, {"start": 5748, "audio": 0, "end": 60961, "filename": "/01.LFL"}, {"start": 60961, "audio": 0, "end": 119754, "filename": "/02.LFL"}, {"start": 119754, "audio": 0, "end": 134282, "filename": "/03.LFL"}, {"start": 134282, "audio": 0, "end": 167888, "filename": "/04.LFL"}, {"start": 167888, "audio": 0, "end": 194014, "filename": "/05.LFL"}, {"start": 194014, "audio": 0, "end": 219617, "filename": "/06.LFL"}, {"start": 219617, "audio": 0, "end": 267763, "filename": "/07.LFL"}, {"start": 267763, "audio": 0, "end": 323072, "filename": "/08.LFL"}, {"start": 323072, "audio": 0, "end": 379930, "filename": "/09.LFL"}, {"start": 379930, "audio": 0, "end": 415509, "filename": "/10.LFL"}, {"start": 415509, "audio": 0, "end": 444996, "filename": "/11.LFL"}, {"start": 444996, "audio": 0, "end": 465386, "filename": "/12.LFL"}, {"start": 465386, "audio": 0, "end": 511096, "filename": "/13.LFL"}, {"start": 511096, "audio": 0, "end": 532671, "filename": "/14.LFL"}, {"start": 532671, "audio": 0, "end": 554738, "filename": "/15.LFL"}, {"start": 554738, "audio": 0, "end": 602574, "filename": "/16.LFL"}, {"start": 602574, "audio": 0, "end": 631109, "filename": "/17.LFL"}, {"start": 631109, "audio": 0, "end": 649951, "filename": "/18.LFL"}, {"start": 649951, "audio": 0, "end": 683721, "filename": "/19.LFL"}, {"start": 683721, "audio": 0, "end": 721223, "filename": "/20.LFL"}, {"start": 721223, "audio": 0, "end": 728147, "filename": "/21.LFL"}, {"start": 728147, "audio": 0, "end": 749574, "filename": "/22.LFL"}, {"start": 749574, "audio": 0, "end": 786999, "filename": "/23.LFL"}, {"start": 786999, "audio": 0, "end": 839942, "filename": "/24.LFL"}, {"start": 839942, "audio": 0, "end": 887111, "filename": "/25.LFL"}, {"start": 887111, "audio": 0, "end": 912632, "filename": "/26.LFL"}, {"start": 912632, "audio": 0, "end": 925927, "filename": "/27.LFL"}, {"start": 925927, "audio": 0, "end": 971258, "filename": "/28.LFL"}, {"start": 971258, "audio": 0, "end": 977010, "filename": "/29.LFL"}, {"start": 977010, "audio": 0, "end": 1003622, "filename": "/30.LFL"}, {"start": 1003622, "audio": 0, "end": 1032906, "filename": "/31.LFL"}, {"start": 1032906, "audio": 0, "end": 1040441, "filename": "/32.LFL"}, {"start": 1040441, "audio": 0, "end": 1093473, "filename": "/33.LFL"}, {"start": 1093473, "audio": 0, "end": 1152532, "filename": "/34.LFL"}, {"start": 1152532, "audio": 0, "end": 1188989, "filename": "/35.LFL"}, {"start": 1188989, "audio": 0, "end": 1230694, "filename": "/36.LFL"}, {"start": 1230694, "audio": 0, "end": 1260022, "filename": "/37.LFL"}, {"start": 1260022, "audio": 0, "end": 1275089, "filename": "/38.LFL"}, {"start": 1275089, "audio": 0, "end": 1280806, "filename": "/39.LFL"}, {"start": 1280806, "audio": 0, "end": 1296191, "filename": "/40.LFL"}, {"start": 1296191, "audio": 0, "end": 1332604, "filename": "/41.LFL"}, {"start": 1332604, "audio": 0, "end": 1371713, "filename": "/42.LFL"}, {"start": 1371713, "audio": 0, "end": 1421155, "filename": "/43.LFL"}, {"start": 1421155, "audio": 0, "end": 1454021, "filename": "/44.LFL"}, {"start": 1454021, "audio": 0, "end": 1500542, "filename": "/45.LFL"}, {"start": 1500542, "audio": 0, "end": 1555835, "filename": "/46.LFL"}, {"start": 1555835, "audio": 0, "end": 1589616, "filename": "/47.LFL"}, {"start": 1589616, "audio": 0, "end": 1617159, "filename": "/49.LFL"}, {"start": 1617159, "audio": 0, "end": 1635179, "filename": "/50.LFL"}, {"start": 1635179, "audio": 0, "end": 1659266, "filename": "/51.LFL"}, {"start": 1659266, "audio": 0, "end": 1666190, "filename": "/52.LFL"}, {"start": 1666190, "audio": 0, "end": 1710257, "filename": "/53.LFL"}, {"start": 1710257, "audio": 0, "end": 1714927, "filename": "/54.LFL"}, {"start": 1714927, "audio": 0, "end": 1719563, "filename": "/55.LFL"}, {"start": 1719563, "audio": 0, "end": 1727045, "filename": "/56.LFL"}, {"start": 1727045, "audio": 0, "end": 1732495, "filename": "/57.LFL"}, {"start": 1732495, "audio": 0, "end": 1741800, "filename": "/58.LFL"}, {"start": 1741800, "audio": 0, "end": 1782560, "filename": "/59.LFL"}, {"start": 1782560, "audio": 0, "end": 1786729, "filename": "/60.LFL"}, {"start": 1786729, "audio": 0, "end": 1797627, "filename": "/61.LFL"}, {"start": 1797627, "audio": 0, "end": 1814061, "filename": "/62.LFL"}, {"start": 1814061, "audio": 0, "end": 1817909, "filename": "/63.LFL"}, {"start": 1817909, "audio": 0, "end": 1827276, "filename": "/64.LFL"}, {"start": 1827276, "audio": 0, "end": 1829051, "filename": "/65.LFL"}, {"start": 1829051, "audio": 0, "end": 1861490, "filename": "/66.LFL"}, {"start": 1861490, "audio": 0, "end": 1865876, "filename": "/67.LFL"}, {"start": 1865876, "audio": 0, "end": 1876767, "filename": "/68.LFL"}, {"start": 1876767, "audio": 0, "end": 1929347, "filename": "/69.LFL"}, {"start": 1929347, "audio": 0, "end": 1938447, "filename": "/70.LFL"}, {"start": 1938447, "audio": 0, "end": 1944962, "filename": "/79.LFL"}, {"start": 1944962, "audio": 0, "end": 1956851, "filename": "/81.LFL"}, {"start": 1956851, "audio": 0, "end": 2015528, "filename": "/82.LFL"}, {"start": 2015528, "audio": 0, "end": 2074769, "filename": "/83.LFL"}, {"start": 2074769, "audio": 0, "end": 2105275, "filename": "/84.LFL"}, {"start": 2105275, "audio": 0, "end": 2131554, "filename": "/85.LFL"}, {"start": 2131554, "audio": 0, "end": 2154020, "filename": "/86.LFL"}, {"start": 2154020, "audio": 0, "end": 2158223, "filename": "/87.LFL"}, {"start": 2158223, "audio": 0, "end": 2159383, "filename": "/99.LFL"}, {"start": 2159383, "audio": 0, "end": 2159383, "filename": "/DISK4.ID"}, {"start": 2159383, "audio": 0, "end": 2261722, "filename": "/LOOM.EXE"}, {"start": 2261722, "audio": 0, "end": 2263866, "filename": "/READ.ME"}, {"start": 2263866, "audio": 0, "end": 2283343, "filename": "/SAVEGAME._A_"}, {"start": 2283343, "audio": 0, "end": 2283979, "filename": "/SAVEGAME.___"}],
+		"size": 1845242,
+		"hardware": [{
+			"video": {
+				"EGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1990,
+		"genre": "Adventure",
+		"developer": "Lucasfilm Games",
+		"publisher": "Lucasfilm Games",
+		"copyright": "The Walt Disney Company",
+		"licence": "Commercial"
+	} , {
+		"id": "pre1",
+		"name": "Prehistorik 1",
+		"executable": "./HISTORIK.EXE",
+		"files": [{"start": 0, "audio": 0, "end": 3507, "filename": "/--------.ANS"}, {"start": 3507, "audio": 0, "end": 3615, "filename": "/CHKLIST.CPS"}, {"start": 3615, "audio": 0, "end": 6646, "filename": "/COURIER.APP"}, {"start": 6646, "audio": 0, "end": 38488, "filename": "/CT-VOICE.DRV"}, {"start": 38488, "audio": 0, "end": 92792, "filename": "/FILESA.CUR"}, {"start": 92792, "audio": 0, "end": 301497, "filename": "/FILESA.VGA"}, {"start": 301497, "audio": 0, "end": 362704, "filename": "/FILESB.CUR"}, {"start": 362704, "audio": 0, "end": 657870, "filename": "/FILESB.VGA"}, {"start": 657870, "audio": 0, "end": 657877, "filename": "/GRAWAGA.CFG"}, {"start": 657877, "audio": 0, "end": 657985, "filename": "/HISTORIK.CS"}, {"start": 657985, "audio": 0, "end": 822151, "filename": "/HISTORIK.EXE"}, {"start": 822151, "audio": 0, "end": 826997, "filename": "/HISTORIK.NFO"}],
+		"size": 741888,
+		"hardware": [{
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1991,
+		"genre": "Platformer",
+		"developer": "Titus France SA",
+		"publisher": "Titus France SA",
+		"licence": "Commercial"
+	} , {
+		"id": "pre2",
+		"name": "Prehistorik 2",
+		"executable": "./PRE2.EXE",
+		"files": [{"start": 0, "audio": 0, "end": 4097, "filename": "/ALLFONTS.SQZ"}, {"start": 4097, "audio": 0, "end": 10546, "filename": "/BACK0.SQZ"}, {"start": 10546, "audio": 0, "end": 26969, "filename": "/BACK1.SQZ"}, {"start": 26969, "audio": 0, "end": 42369, "filename": "/BACK2.SQZ"}, {"start": 42369, "audio": 0, "end": 61602, "filename": "/BACK3.SQZ"}, {"start": 61602, "audio": 0, "end": 74859, "filename": "/BACK4.SQZ"}, {"start": 74859, "audio": 0, "end": 88495, "filename": "/BACK5.SQZ"}, {"start": 88495, "audio": 0, "end": 107257, "filename": "/BOULA.TRK"}, {"start": 107257, "audio": 0, "end": 130314, "filename": "/BRAVO.TRK"}, {"start": 130314, "audio": 0, "end": 134551, "filename": "/CARTE.TRK"}, {"start": 134551, "audio": 0, "end": 157784, "filename": "/CASTLE.SQZ"}, {"start": 157784, "audio": 0, "end": 157811, "filename": "/CHKLIST.MS"}, {"start": 157811, "audio": 0, "end": 161302, "filename": "/CODE.TRK"}, {"start": 161302, "audio": 0, "end": 161586, "filename": "/FILE_ID.DIZ"}, {"start": 161586, "audio": 0, "end": 189131, "filename": "/FINAL.TRK"}, {"start": 189131, "audio": 0, "end": 203670, "filename": "/FRONT.SQZ"}, {"start": 203670, "audio": 0, "end": 214223, "filename": "/GAMEOVER.SQZ"}, {"start": 214223, "audio": 0, "end": 242619, "filename": "/GLACE.TRK"}, {"start": 242619, "audio": 0, "end": 243140, "filename": "/KEYB.SQZ"}, {"start": 243140, "audio": 0, "end": 253693, "filename": "/KONEC.SQZ"}, {"start": 253693, "audio": 0, "end": 280225, "filename": "/KOOL.TRK"}, {"start": 280225, "audio": 0, "end": 287553, "filename": "/LEVEL1.SQZ"}, {"start": 287553, "audio": 0, "end": 301710, "filename": "/LEVEL2.SQZ"}, {"start": 301710, "audio": 0, "end": 317466, "filename": "/LEVEL3.SQZ"}, {"start": 317466, "audio": 0, "end": 339898, "filename": "/LEVEL4.SQZ"}, {"start": 339898, "audio": 0, "end": 371305, "filename": "/LEVEL5.SQZ"}, {"start": 371305, "audio": 0, "end": 389227, "filename": "/LEVEL6.SQZ"}, {"start": 389227, "audio": 0, "end": 401327, "filename": "/LEVEL7.SQZ"}, {"start": 401327, "audio": 0, "end": 428040, "filename": "/LEVEL8.SQZ"}, {"start": 428040, "audio": 0, "end": 454292, "filename": "/LEVEL9.SQZ"}, {"start": 454292, "audio": 0, "end": 474352, "filename": "/LEVELA.SQZ"}, {"start": 474352, "audio": 0, "end": 476091, "filename": "/LEVELB.SQZ"}, {"start": 476091, "audio": 0, "end": 477638, "filename": "/LEVELC.SQZ"}, {"start": 477638, "audio": 0, "end": 479436, "filename": "/LEVELD.SQZ"}, {"start": 479436, "audio": 0, "end": 497053, "filename": "/LEVELE.SQZ"}, {"start": 497053, "audio": 0, "end": 502329, "filename": "/LEVELF.SQZ"}, {"start": 502329, "audio": 0, "end": 508408, "filename": "/LEVELG.SQZ"}, {"start": 508408, "audio": 0, "end": 547832, "filename": "/LEVELH.SQZ"}, {"start": 547832, "audio": 0, "end": 572144, "filename": "/LEVELI.SQZ"}, {"start": 572144, "audio": 0, "end": 608265, "filename": "/MAP.SQZ"}, {"start": 608265, "audio": 0, "end": 629466, "filename": "/MENU.SQZ"}, {"start": 629466, "audio": 0, "end": 648396, "filename": "/MENU2.SQZ"}, {"start": 648396, "audio": 0, "end": 669973, "filename": "/MINES.TRK"}, {"start": 669973, "audio": 0, "end": 694724, "filename": "/MONSTER.TRK"}, {"start": 694724, "audio": 0, "end": 704120, "filename": "/MOTIF.SQZ"}, {"start": 704120, "audio": 0, "end": 734057, "filename": "/MYSTERY.TRK"}, {"start": 734057, "audio": 0, "end": 786247, "filename": "/PRE2.EXE"}, {"start": 786247, "audio": 0, "end": 786770, "filename": "/pre2trn.com"}, {"start": 786770, "audio": 0, "end": 816873, "filename": "/PRES.TRK"}, {"start": 816873, "audio": 0, "end": 853612, "filename": "/PRESENT.SQZ"}, {"start": 853612, "audio": 0, "end": 899539, "filename": "/PRESENTA.TRK"}, {"start": 899539, "audio": 0, "end": 955456, "filename": "/SAMPLE.SQZ"}, {"start": 955456, "audio": 0, "end": 1049077, "filename": "/SPRITES.SQZ"}, {"start": 1049077, "audio": 0, "end": 1062626, "filename": "/THEEND.SQZ"}, {"start": 1062626, "audio": 0, "end": 1068302, "filename": "/TITUS.SQZ"}, {"start": 1068302, "audio": 0, "end": 1113574, "filename": "/UNION.SQZ"}],
+		"size": 1116583,
+		"hardware": [{
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Platformer",
+		"developer": "Titus France SA",
+		"publisher": "Titus France SA",
+		"licence": "Commercial"
+	} , {
+		"id": "wolf3d",
+		"name": "Wolfenstein 3D",
+		"executable": "./WOLF3D.EXE",
+		"files": [{"start": 0, "audio": 0, "end": 1156, "filename": "/AUDIOHED.WL6"}, {"start": 1156, "audio": 0, "end": 318205, "filename": "/AUDIOT.WL6"}, {"start": 318205, "audio": 0, "end": 318727, "filename": "/CONFIG.WL6"}, {"start": 318727, "audio": 0, "end": 469473, "filename": "/GAMEMAPS.WL6"}, {"start": 469473, "audio": 0, "end": 469875, "filename": "/MAPHEAD.WL6"}, {"start": 469875, "audio": 0, "end": 470899, "filename": "/VGADICT.WL6"}, {"start": 470899, "audio": 0, "end": 773273, "filename": "/VGAGRAPH.WL6"}, {"start": 773273, "audio": 0, "end": 773750, "filename": "/VGAHEAD.WL6"}, {"start": 773750, "audio": 0, "end": 2319150, "filename": "/VSWAP.WL6"}, {"start": 2319150, "audio": 0, "end": 2417552, "filename": "/WOLF3D.EXE"}],
+		"size": 1797987,
+		"hardware": [{
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Action",
+		"developer": "id Software",
+		"publisher": "Apogee Software",
+		"copyright": "Bethesda Softworks",
+		"url": "https://bethesda.net/en/games/WO1CSTPCBG01",
+		"version": "1.1",
+		"licence": "Commercial"
+	}]
+}
