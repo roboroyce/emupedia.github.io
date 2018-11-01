@@ -107,7 +107,7 @@
 			});
 
 			// noinspection JSUnresolvedFunction
-			desktop.window({
+			/*desktop.window({
 				title: 'Simple Window with Text',
 				icon: 'apps/wing/favicon.ico',
 				content: 'this is how the world ends thisdnosifvoibdfo dfuvbdf difubfd' +
@@ -215,7 +215,7 @@
 				title: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
 				src: 'apps/monaco-editor/index.html'
-			});
+			});*/
 
 			// noinspection JSUnresolvedFunction
 			desktop.iframe({
