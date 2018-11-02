@@ -5,9 +5,9 @@
 	"games": [{
 		"id": "aladdin",
 		"name": "Disney's Aladdin",
-		"executable": "./ALADDIN.EXE",
+		"executable": "./ALADDCRK.EXE",
 		"file": "aladdin.zip",
-		"size": 2642100,
+		"size": 1810235,
 		"hardware": [{
 			"input": ["Keyboard"],
 			"video": {
@@ -123,6 +123,58 @@
 		"genre": "Platformer",
 		"developer": "Titus France SA",
 		"publisher": "Titus France SA",
+		"licence": "Commercial",
+	} , {
+		"id": "pop1",
+		"name": "Prince of Persia",
+		"executable": "./PRINCE.EXE",
+		"file": "pop114.zip",
+		"size": 1987074,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1990,
+		"genre": "Platformer",
+		"developer": "Jordan Mechner",
+		"publisher": "Brøderbund Software",
+		"copyright": "Ubisoft",
+		"version": "1.4",
+		"licence": "Commercial"
+	} , {
+		"id": "pop2",
+		"name": "Prince of Persia 2: The Shadow and the Flame",
+		"executable": "./PRINCE.EXE",
+		"file": "pop211.zip",
+		"size": 5124096,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Platformer",
+		"developer": "Jordan Mechner",
+		"publisher": "Brøderbund Software",
+		"copyright": "Ubisoft",
+		"version": "1.1",
 		"licence": "Commercial"
 	} , {
 		"id": "war2",
