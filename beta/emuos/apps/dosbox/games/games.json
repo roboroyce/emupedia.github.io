@@ -3,6 +3,30 @@
 		"version": "1.0"
 	},
 	"games": [{
+		"id": "aladdin",
+		"name": "Disney's Aladdin",
+		"executable": "./ALADDIN.EXE",
+		"file": "aladdin.zip",
+		"size": 2642100,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1994,
+		"genre": "Platformer",
+		"developer": "Virgin Interactive",
+		"publisher": "Virgin Interactive",
+		"licence": "Commercial"
+	} , {
 		"id": "loomega",
 		"name": "Loom",
 		"executable": "./LOOM.EXE",
@@ -50,6 +74,7 @@
 		"genre": "Fighting",
 		"developer": "Midway Games",
 		"publisher": "Acclaim Entertainment",
+		"copyright": "NetherRealm Studios, Warner Bros.",
 		"licence": "Commercial"
 	} , {
 		"id": "pre1",
