@@ -152,7 +152,8 @@
 		"licence": "Commercial"
 	} , {
 		"id": "pop2",
-		"name": "Prince of Persia 2: The Shadow and the Flame",
+		"name": "Prince of Persia 2",
+		"description": "The Shadow and the Flame",
 		"executable": "./PRINCE.EXE",
 		"file": "pop211.zip",
 		"size": 5124096,
