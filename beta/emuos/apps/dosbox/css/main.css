@@ -50,12 +50,23 @@ body {
 	background-color: #cde8ff;
 }
 
+div {
+	text-align: center;
+}
+
 /*noinspection CssOverwrittenProperties*/
 canvas {
 	width: 100%;
 	height: 100%;
 	height: calc(100% - 22px);
 	background-color: #000;
+	margin: auto;
+}
+
+/*noinspection CssOverwrittenProperties*/
+div.emularity-splash-screen {
+	height: 100%;
+	height: calc(100% - 22px);
 }
 
 .fullscreen {
