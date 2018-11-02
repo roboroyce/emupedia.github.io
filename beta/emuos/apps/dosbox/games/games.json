@@ -28,6 +28,30 @@
 		"copyright": "The Walt Disney Company",
 		"licence": "Commercial"
 	} , {
+		"id": "mk1",
+		"name": "Mortal Kombat",
+		"executable": "./DOS32A.EXE MKCRK.EXE",
+		"file": "mk1.zip",
+		"size": 8167485,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Fighting",
+		"developer": "Midway Games",
+		"publisher": "Acclaim Entertainment",
+		"licence": "Commercial"
+	} , {
 		"id": "pre1",
 		"name": "Prehistorik 1",
 		"executable": "./HISTORIK.EXE",
@@ -108,7 +132,7 @@
 		"executable": "./WAR2.EXE",
 		"args": ["-c", "mount d emulator/c -t cdrom"],
 		"file": "war2x.zip",
-		"size": 139744946,
+		"size": 122526490,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse"],
 			"video": {
@@ -131,7 +155,7 @@
 		"licence": "Commercial"
 	} , {
 		"id": "wolf3d",
-		"name": "Wolfenstein 3-D",
+		"name": "Wolfenstein 3D",
 		"executable": "./WOLF3D.EXE",
 		"file": "wolf3d.zip",
 		"size": 1075482,
@@ -148,13 +172,38 @@
 			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
 		}],
 		"language": "English",
-		"year": 1993,
+		"year": 1992,
 		"genre": "Action",
 		"developer": "id Software",
 		"publisher": "Apogee Software",
 		"copyright": "Bethesda Softworks",
 		"url": "https://bethesda.net/en/games/WO1CSTPCBG01",
 		"version": "1.1",
+		"licence": "Commercial"
+	} , {
+		"id": "wolf3ds",
+		"name": "Wolfenstein 3D: Spear of Destiny",
+		"executable": "./SPEAR.EXE",
+		"file": "wolf3ds.zip",
+		"size": 1542721,
+		"hardware": [{
+			"input": ["Keyboard", "Mouse", "Gamepad/Joystick"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1992,
+		"genre": "Action",
+		"developer": "id Software",
+		"publisher": "FormGen Corporation",
+		"version": "1.0",
 		"licence": "Commercial"
 	}]
 }
