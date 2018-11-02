@@ -96,6 +96,7 @@ var loadPackage = function(file, size, file_data, compressed_data, executable) {
 			if (event.total) size = event.total;
 			if (event.loaded) {
 				if (!xhr.addedTotal) {
+					// noinspection JSUndefinedPropertyAssignment
 					xhr.addedTotal = true;
 					if (!Module.dataFileDownloads) Module.dataFileDownloads = {};
 					Module.dataFileDownloads[url] = {
