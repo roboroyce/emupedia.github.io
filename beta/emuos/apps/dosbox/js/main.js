@@ -135,7 +135,7 @@
 				return html;
 			}
 
-			function start(file, executable) {
+			function start(file, executable, args) {
 				// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 				var emulator = new global.Emulator(document.getElementById('canvas'), null,
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
@@ -148,12 +148,13 @@
 						return filename;
 					}),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.nativeResolution(640, 480),
+					global.DosBoxLoader.nativeResolution(640, 400),
 					// noinspectionJSUnresolvedFunction,JSUnresolvedVariable
 					global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', 'games/' + file)),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+					global.DosBoxLoader.extraArgs(args),
+					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 					global.DosBoxLoader.startExe(executable)));
-
 				emulator.start({waitAfterDownloading: false});
 			}
 
@@ -173,7 +174,7 @@
 						// noinspection JSUnfilteredForInLoop
 						if (games['games'][game]['id'] === game_selected) {
 							// noinspection JSUnfilteredForInLoop
-							start(games['games'][game]['file'], games['games'][game]['executable']);
+							start(games['games'][game]['file'], games['games'][game]['executable'], games['games'][game]['args']);
 							break;
 						}
 					}
@@ -190,7 +191,7 @@
 							// noinspection JSUnfilteredForInLoop
 							if (games['games'][game]['id'] === game_selected) {
 								// noinspection JSUnfilteredForInLoop
-								start(games['games'][game]['file'], games['games'][game]['executable']);
+								start(games['games'][game]['file'], games['games'][game]['executable'], games['games'][game]['args']);
 								break;
 							}
 						}

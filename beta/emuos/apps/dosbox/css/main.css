@@ -39,10 +39,11 @@ body {
 }
 
 .game-list table th {
-	text-align: left;
+	/*text-align: left;*/
 }
 
 .game-list table, th, td {
+
 	border: 1px solid #f0f0f0;
 }
 
