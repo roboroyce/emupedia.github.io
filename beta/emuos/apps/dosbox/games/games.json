@@ -79,9 +79,9 @@
 		"id": "war2",
 		"name": "Warcraft II: Tides of Darkness",
 		"executable": "./WAR2.EXE",
-		"args": ["-c", "mount d emulator/c/ISO -t cdrom"],
+		"args": ["-c", "mount d emulator/c -t cdrom"],
 		"file": "war2.zip",
-		"size": 117920165,
+		"size": 82020985,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse"],
 			"video": {
@@ -106,7 +106,7 @@
 		"id": "war2x",
 		"name": "Warcraft II: Beyond the Dark Portal",
 		"executable": "./WAR2.EXE",
-		"args": ["-c", "mount d emulator/c/ISO -t cdrom"],
+		"args": ["-c", "mount d emulator/c -t cdrom"],
 		"file": "war2x.zip",
 		"size": 139744946,
 		"hardware": [{
