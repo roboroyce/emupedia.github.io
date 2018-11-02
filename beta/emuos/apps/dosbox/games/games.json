@@ -1,0 +1,106 @@
+{
+	"format": {
+		"version": "1.0"
+	},
+	"games": [{
+		"id": "loomega",
+		"name": "Loom",
+		"executable": "./LOOM.EXE",
+		"file": "loomega.zip",
+		"size": 1201980,
+		"hardware": [{
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"EGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1990,
+		"genre": "Adventure",
+		"developer": "Lucasfilm Games",
+		"publisher": "Lucasfilm Games",
+		"copyright": "The Walt Disney Company",
+		"licence": "Commercial"
+	} , {
+		"id": "pre1",
+		"name": "Prehistorik 1",
+		"executable": "./HISTORIK.EXE",
+		"file": "pre1.zip",
+		"size": 631738,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1991,
+		"genre": "Platformer",
+		"developer": "Titus France SA",
+		"publisher": "Titus France SA",
+		"licence": "Commercial"
+	} , {
+		"id": "pre2",
+		"name": "Prehistorik 2",
+		"executable": "./PRE2.EXE",
+		"file": "pre2.zip",
+		"size": 1081009,
+		"hardware": [{
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Platformer",
+		"developer": "Titus France SA",
+		"publisher": "Titus France SA",
+		"licence": "Commercial"
+	} , {
+		"id": "wolf3d",
+		"name": "Wolfenstein 3D",
+		"executable": "./WOLF3D.EXE",
+		"file": "wolf3d.zip",
+		"size": 1075482,
+		"hardware": [{
+			"input": ["Keyboard", "Mouse", "Gamepad/Joystick"],
+			"video": {
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		}],
+		"language": "English",
+		"year": 1993,
+		"genre": "Action",
+		"developer": "id Software",
+		"publisher": "Apogee Software",
+		"copyright": "Bethesda Softworks",
+		"url": "https://bethesda.net/en/games/WO1CSTPCBG01",
+		"version": "1.1",
+		"licence": "Commercial"
+	}]
+}
