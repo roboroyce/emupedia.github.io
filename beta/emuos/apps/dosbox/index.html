@@ -11,11 +11,10 @@
 	<body>
 		<span class="controls">
 			<input class="list" type="button" value="Game List">
-			<input class="fullscreen" type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)">
 			<!--suppress HtmlFormInputWithoutLabel -->
 			<select class="game-dropdown"><option>No Games</option></select>
 			<input class="load" type="button" value="Load">
-			<span id="status"></span>
+			<input class="fullscreen" type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, false)">
 		</span>
 		<canvas id="canvas" tabindex="0"></canvas>
 		<div class="game-list"></div>

@@ -1490,20 +1490,22 @@ var Module = null;
 			if (event.lengthComputable)
 				return "(" + (event.total ? (event.loaded / event.total * 100).toFixed(0)
 					: "100") +
-					"%; " + formatBytes(event.loaded) +
-					" of " + formatBytes(event.total) + ")";
-			return "(" + formatBytes(event.loaded) + ")";
+					"%; " + formatBytes(event.loaded, 2) +
+					" of " + formatBytes(event.total, 2) + ")";
+			return "(" + formatBytes(event.loaded, 2) + ")";
 		};
 
-		var formatBytes = function(bytes, base10) {
-			if (bytes === 0)
-				return "0 B";
-			var unit = base10 ? 1000 : 1024,
-				units = base10 ? ["B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
-					: ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"],
-				exp = parseInt((Math.log(bytes) / Math.log(unit))),
-				size = bytes / Math.pow(unit, exp);
-			return size.toFixed(1) + ' ' + units[exp];
+		var formatBytes = function(bytes, decimals) {
+			if (bytes === 0) {
+				return '0 Bytes';
+			}
+
+			var k = 1024,
+				dm = decimals <= 0 ? 0 : decimals || 2,
+				sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+				i = Math.floor(Math.log(bytes) / Math.log(k));
+
+			return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 		};
 
 		var fetch_file = function(title, url, rt, optional) {

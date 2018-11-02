@@ -77,7 +77,7 @@
 		"licence": "Commercial"
 	} , {
 		"id": "wolf3d",
-		"name": "Wolfenstein 3D",
+		"name": "Wolfenstein 3-D",
 		"executable": "./WOLF3D.EXE",
 		"file": "wolf3d.zip",
 		"size": 1075482,

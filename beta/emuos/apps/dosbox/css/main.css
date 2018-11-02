@@ -58,8 +58,6 @@ canvas {
 	background-color: #000;
 }
 
-#status {
-	height: 22px;
-	line-height: 22px;
+.fullscreen {
 	float: right;
 }
