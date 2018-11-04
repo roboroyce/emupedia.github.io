@@ -81,9 +81,9 @@
 		"name": "Prehistorik 1",
 		"executable": "./HISTORIK.EXE",
 		"file": "pre1.zip",
-		"size": 631738,
+		"size": 626070,
 		"hardware": [{
-			"input": ["Keyboard"],
+			"input": ["Keyboard", "Gamepad/Joystick"],
 			"video": {
 				"VGA": [{
 					"resolutions": [
@@ -92,7 +92,7 @@
 					"colors": 256
 				}]
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster", "Roland MT-32"]
 		}],
 		"language": "English",
 		"year": 1991,
@@ -105,7 +105,7 @@
 		"name": "Prehistorik 2",
 		"executable": "./PRE2.EXE",
 		"file": "pre2.zip",
-		"size": 1081009,
+		"size": 1080103,
 		"hardware": [{
 			"input": ["Keyboard"],
 			"video": {
@@ -129,7 +129,7 @@
 		"name": "Prince of Persia",
 		"executable": "./PRINCE.EXE",
 		"file": "pop114.zip",
-		"size": 1987074,
+		"size": 1988713,
 		"hardware": [{
 			"input": ["Keyboard"],
 			"video": {
@@ -140,7 +140,7 @@
 					"colors": 256
 				}]
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["PC Speaker", "Disney Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
 		}],
 		"language": "English",
 		"year": 1990,
@@ -156,7 +156,7 @@
 		"description": "The Shadow and the Flame",
 		"executable": "./PRINCE.EXE",
 		"file": "pop211.zip",
-		"size": 5124096,
+		"size": 5129227,
 		"hardware": [{
 			"input": ["Keyboard"],
 			"video": {
@@ -167,7 +167,7 @@
 					"colors": 256
 				}]
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["PC Speaker", "Disney Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
 		}],
 		"language": "English",
 		"year": 1993,

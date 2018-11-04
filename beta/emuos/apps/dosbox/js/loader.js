@@ -790,9 +790,10 @@ var Module = null;
 
 		if (peripheral) {
 			for (var p in peripheral) {
+				// noinspection JSUnfilteredForInLoop
 				if (Object.prototype.propertyIsEnumerable.call(peripheral, p)) {
-					args.push('-' + p,
-						'/emulator/' + (peripheral[p][0].replace(/\//g, '_')));
+					// noinspection JSUnfilteredForInLoop
+					args.push('-' + p, '/emulator/' + (peripheral[p][0].replace(/\//g, '_')));
 				}
 			}
 		}
@@ -825,7 +826,7 @@ var Module = null;
 			args = args.concat(extra_args);
 		}
 
-		var path = emulator_start.split(/\\|\//); // I have LTS already
+		var path = emulator_start.split(/[\\/]/); // I have LTS already
 		args.push('-c', /^[a-zA-Z]:$/.test(path[0]) ? path.shift() : 'c:');
 		var prog = path.pop();
 		if (path && path.length)
@@ -870,7 +871,9 @@ var Module = null;
 			wasmBinary: game_data.wasmBinary,
 			preInit: function() {
 				// Re-initialize BFS to just use the writable in-memory storage.
+				// noinspection NodeModulesDependencies
 				BrowserFS.initialize(game_data.fs);
+				// noinspection NodeModulesDependencies
 				var BFS = new BrowserFS.EmscriptenFS();
 				// Mount the file system into Emscripten.
 				FS.mkdir('/emulator');
@@ -899,8 +902,10 @@ var Module = null;
 
 	EmscriptenRunner.prototype.mute = function() {
 		try {
-			if (!SDL_PauseAudio)
+			if (!SDL_PauseAudio) {
+				// noinspection JSUndeclaredVariable,JSUnresolvedFunction
 				SDL_PauseAudio = Module.cwrap('SDL_PauseAudio', '', ['number']);
+			}
 			SDL_PauseAudio(true);
 		} catch (x) {
 			console.log("Unable to change audio state:", x);
@@ -909,8 +914,10 @@ var Module = null;
 
 	EmscriptenRunner.prototype.unmute = function() {
 		try {
-			if (!SDL_PauseAudio)
+			if (!SDL_PauseAudio) {
+				// noinspection JSUndeclaredVariable,JSUnresolvedFunction
 				SDL_PauseAudio = Module.cwrap('SDL_PauseAudio', '', ['number']);
+			}
 			SDL_PauseAudio(false);
 		} catch (x) {
 			console.log("Unable to change audio state:", x);
@@ -955,16 +962,16 @@ var Module = null;
 
 	MAMERunner.prototype = Object.create(EmscriptenRunner.prototype, {
 			mute: function() {
+				// noinspection JSUnresolvedFunction
 				var soundmgr = Module.__ZN15running_machine20emscripten_get_soundEv(Module.__ZN15running_machine30emscripten_get_running_machineEv());
-				Module.__ZN13sound_manager4muteEbh(soundmgr,
-					true,
-					0x02); // MUTE_REASON_UI
+				// noinspection JSUnresolvedFunction
+				Module.__ZN13sound_manager4muteEbh(soundmgr, true, 0x02); // MUTE_REASON_UI
 			},
 			unmute: function() {
+				// noinspection JSUnresolvedFunction
 				var soundmgr = Module.__ZN15running_machine20emscripten_get_soundEv(Module.__ZN15running_machine30emscripten_get_running_machineEv());
-				Module.__ZN13sound_manager4muteEbh(soundmgr,
-					false,
-					0x02); // MUTE_REASON_UI
+				// noinspection JSUnresolvedFunction
+				Module.__ZN13sound_manager4muteEbh(soundmgr, false, 0x02); // MUTE_REASON_UI
 			}
 		});
 
@@ -972,6 +979,7 @@ var Module = null;
 	 * SAERunner
 	 */
 	function SAERunner(canvas, game_data) {
+		// noinspection JSUnresolvedFunction
 		this._sae = new ScriptedAmigaEmulator();
 		this._cfg = this._sae.getConfig();
 		this._canvas = canvas;
@@ -979,30 +987,39 @@ var Module = null;
 		var model = null;
 		switch (game_data.amigaModel) {
 			case "A500":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A500;
 				break;
 			case "A500P":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A500P;
 				break;
 			case "A600":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A600;
 				break;
 			case "A1000":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A1000;
 				break;
 			case "A1200":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A1200;
 				break;
 			case "A2000":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A2000;
 				break;
 			case "A3000":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A3000;
 				break;
 			case "A4000":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A4000;
 				break;
 			case "A4000T":
+				// noinspection JSUnresolvedVariable
 				model = SAEC_Model_A4000T;
 				break;
 			/*  future. do not use. cd-emulation is not implemented yet.
@@ -1011,23 +1028,36 @@ var Module = null;
 		}
 		this._sae.setModel(model, 0);
 		this._cfg.memory.z2FastSize = game_data.fastMemory || 2 << 20;
+		// noinspection JSUnresolvedVariable
 		this._cfg.floppy.speed = SAEC_Config_Floppy_Speed_Turbo;
 		this._cfg.video.id = canvas.getAttribute("id");
 
 		if (game_data.nativeResolution && game_data.nativeResolution.height === 360 && game_data.nativeResolution.width === 284) {
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.hresolution = SAEC_Config_Video_HResolution_LoRes;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.vresolution = SAEC_Config_Video_VResolution_NonDouble;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.width = SAEC_Video_DEF_AMIGA_WIDTH; /* 360 */
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.height = SAEC_Video_DEF_AMIGA_HEIGHT; /* 284 */
 		} else if (game_data.nativeResolution && game_data.nativeResolution.height === 1440 && game_data.nativeResolution.width === 568) {
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.hresolution = SAEC_Config_Video_HResolution_SuperHiRes;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.vresolution = SAEC_Config_Video_VResolution_Double;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.width = SAEC_Video_DEF_AMIGA_WIDTH << 2; /* 1440 */
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.height = SAEC_Video_DEF_AMIGA_HEIGHT << 1; /* 568 */
 		} else {
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.hresolution = SAEC_Config_Video_HResolution_HiRes;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.vresolution = SAEC_Config_Video_VResolution_Double;
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.width = SAEC_Video_DEF_AMIGA_WIDTH << 1; /* 720 */
+			// noinspection JSUnresolvedVariable
 			this._cfg.video.size_win.height = SAEC_Video_DEF_AMIGA_HEIGHT << 1; /* 568 */
 		}
 
@@ -1049,6 +1079,7 @@ var Module = null;
 	}
 
 	SAERunner.prototype.start = function() {
+		// noinspection JSUnusedLocalSymbols
 		var err = this._sae.start();
 	};
 
@@ -1096,11 +1127,15 @@ var Module = null;
 				before_run: callbacks
 			};
 		}
+		// noinspection JSUnusedLocalSymbols
 		var js_url;
+		// noinspection JSUnusedLocalSymbols
 		var requests = [];
+		// noinspection JSUnusedLocalSymbols
 		var drawloadingtimer;
 		// TODO: Have an enum value that communicates the current state of the emulator, e.g. 'initializing', 'loading', 'running'.
 		var has_started = false;
+		// noinspection JSUnusedLocalSymbols
 		var loading = false;
 		var defaultSplashColors = {
 			foreground: 'white',
@@ -1120,6 +1155,7 @@ var Module = null;
 
 		var muted = false;
 		var SDL_PauseAudio;
+		// noinspection JSUnusedGlobalSymbols
 		this.isMuted = function() {
 			return muted;
 		};
@@ -1129,6 +1165,7 @@ var Module = null;
 		this.unmute = function() {
 			return this.setMute(false);
 		};
+		// noinspection JSUnusedGlobalSymbols
 		this.toggleMute = function() {
 			return this.setMute(!muted);
 		};
@@ -1142,8 +1179,10 @@ var Module = null;
 				}
 			} else {
 				try {
-					if (!SDL_PauseAudio)
+					if (!SDL_PauseAudio) {
+						// noinspection JSUnresolvedFunction
 						SDL_PauseAudio = Module.cwrap('SDL_PauseAudio', '', ['number']);
+					}
 					SDL_PauseAudio(state);
 				} catch (x) {
 					console.log("Unable to change audio state:", x);
@@ -1204,11 +1243,13 @@ var Module = null;
 			return this;
 		};
 
+		// noinspection JSUnusedGlobalSymbols
 		this.setCSSResolution = function(_resolution) {
 			css_resolution = _resolution;
 			return this;
 		};
 
+		// noinspection JSUnusedGlobalSymbols
 		this.setAspectRatio = function(_aspectRatio) {
 			aspectRatio = _aspectRatio;
 			return this;
@@ -1226,6 +1267,7 @@ var Module = null;
 			return this;
 		};
 
+		// noinspection JSUnusedGlobalSymbols
 		this.setSplashColors = function(colors) {
 			splash.colors = colors;
 			return this;
@@ -1236,6 +1278,7 @@ var Module = null;
 			return this;
 		};
 
+		// noinspection UnnecessaryLocalVariableJS
 		var start = function(options) {
 			if (has_started)
 				return false;
@@ -1261,14 +1304,19 @@ var Module = null;
 			} else {
 				loading = Promise.resolve(loadFiles);
 			}
+			// noinspection JSUnusedLocalSymbols
 			loading.then(function(_game_data) {
 				return new Promise(function(resolve, reject) {
+					// noinspection NodeModulesDependencies
 					var inMemoryFS = new BrowserFS.FileSystem.InMemory();
 					// If the browser supports IndexedDB storage, mirror writes to that storage
 					// for persistence purposes.
+					// noinspection NodeModulesDependencies
 					if (BrowserFS.FileSystem.IndexedDB.isAvailable()) {
+						// noinspection NodeModulesDependencies
 						var AsyncMirrorFS = BrowserFS.FileSystem.AsyncMirror,
 							IndexedDB = BrowserFS.FileSystem.IndexedDB;
+						// noinspection JSUndeclaredVariable,JSUnusedLocalSymbols
 						deltaFS = new AsyncMirrorFS(inMemoryFS,
 							new IndexedDB(function(e, fs) {
 									if (e) {
@@ -1276,6 +1324,7 @@ var Module = null;
 										// private window for example.
 										// don't fail completely, just don't
 										// use indexeddb
+										// noinspection JSUndeclaredVariable
 										deltaFS = inMemoryFS;
 										finish();
 									} else {
@@ -1289,8 +1338,7 @@ var Module = null;
 										});
 									}
 								},
-								"fileSystemKey" in _game_data ? _game_data.fileSystemKey
-									: "emupedia"));
+								"fileSystemKey" in _game_data ? _game_data.fileSystemKey : "emupedia"));
 					} else {
 						finish();
 					}
@@ -1301,13 +1349,14 @@ var Module = null;
 						// Any file system writes to MountableFileSystem will be written to the
 						// deltaFS, letting us mount read-only zip files into the MountableFileSystem
 						// while being able to "write" to them.
-						game_data.fs = new BrowserFS.FileSystem.OverlayFS(deltaFS,
-							new BrowserFS.FileSystem.MountableFileSystem());
+						// noinspection NodeModulesDependencies
+						game_data.fs = new BrowserFS.FileSystem.OverlayFS(deltaFS, new BrowserFS.FileSystem.MountableFileSystem());
 						game_data.fs.initialize(function(e) {
 							if (e) {
 								console.error("Failed to initialize the OverlayFS:", e);
 								reject();
 							} else {
+								// noinspection NodeModulesDependencies
 								var Buffer = BrowserFS.BFSRequire('buffer').Buffer;
 
 								function fetch(file) {
@@ -1370,12 +1419,12 @@ var Module = null;
 						});
 					}
 				});
-			})
-				.then(function(game_files) {
+			}).then(function(game_files) {
 						if (!game_data || splash.failed_loading) {
 							return null;
 						}
 						if (options.waitAfterDownloading) {
+							// noinspection JSUnusedLocalSymbols
 							return new Promise(function(resolve, reject) {
 								splash.setTitle("Press any key to continue...");
 								splash.spinning = false;
@@ -1520,7 +1569,7 @@ var Module = null;
 				xhr.onprogress = function(e) {
 					titleCell.innerHTML = title + " <span style=\"font-size: smaller\">" + formatSize(e) + "</span>";
 				};
-				xhr.onload = function(e) {
+				xhr.onload = function() {
 					if (xhr.status === 200) {
 						success();
 						resolve(xhr.response);
@@ -1532,7 +1581,7 @@ var Module = null;
 						reject();
 					}
 				};
-				xhr.onerror = function(e) {
+				xhr.onerror = function() {
 					if (optional) {
 						success();
 						resolve(null);
@@ -1577,6 +1626,7 @@ var Module = null;
 			};
 		}
 
+		// noinspection JSUnusedLocalSymbols
 		var resizeCanvas = function(canvas, scale, resolution, aspectRatio) {
 			if (scale && resolution) {
 				// optimizeSpeed is the standardized value. different
@@ -1597,6 +1647,7 @@ var Module = null;
 			}
 		};
 
+		// noinspection JSUnusedLocalSymbols
 		var clearCanvas = function() {
 			var context = canvas.getContext('2d');
 			context.fillStyle = splash.getColor('background');
@@ -1743,16 +1794,18 @@ var Module = null;
 		}
 
 		function getpointerlockenabler() {
+			// noinspection JSUnresolvedVariable
 			return canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
 		}
 
+		// noinspection JSUnusedGlobalSymbols
 		this.isfullscreensupported = function() {
 			return !!(getfullscreenenabler());
 		};
 
 		function setupFullScreen() {
-			var self = this;
 			var fullScreenChangeHandler = function() {
+				// noinspection JSUnresolvedVariable
 				if (!(document.mozFullScreenElement || document.fullScreenElement)) {
 					resizeCanvas(canvas, scale, css_resolution, aspectRatio);
 				}
@@ -1808,10 +1861,12 @@ var Module = null;
 	 * misc
 	 */
 	function getfullscreenenabler() {
+		// noinspection JSUnresolvedVariable
 		return canvas.requestFullScreen || canvas.webkitRequestFullScreen || canvas.mozRequestFullScreen;
 	}
 
 	function BFSOpenZip(loadedData) {
+		// noinspection NodeModulesDependencies,JSValidateTypes
 		return new BrowserFS.FileSystem.ZipFS(loadedData);
 	}
 
@@ -1891,6 +1946,8 @@ var Module = null;
 				// already ends in it (which always occurs if dirPath is the root, '/').
 				var itemPath = dirPath + (dirPath[dirPath.length - 1] !== '/' ? "/" : "") + item,
 					itemStat = fs.statSync(itemPath);
+
+				// noinspection JSCheckFunctionSignatures
 				if (itemStat.isDirectory(itemStat.mode)) {
 					searchDirectory(itemPath);
 				} else if (item === 'dosbox.conf') {
@@ -1995,8 +2052,9 @@ var Module = null;
 		// TODO: Actually fill pixel data to created surface.
 		// TODO: Take into account depth and pitch parameters.
 		// console.log('TODO: Partially unimplemented SDL_CreateRGBSurfaceFrom called!');
+		// noinspection JSUnresolvedVariable,JSUnresolvedFunction
 		var surface = SDL.makeSurface(width, height, 0, false, 'CreateRGBSurfaceFrom', rmask, gmask, bmask, amask);
-
+		// noinspection JSUnresolvedVariable,JSUnresolvedFunction
 		var surfaceData = SDL.surfaces[surface];
 		var surfaceImageData = surfaceData.ctx.getImageData(0, 0, width, height);
 		var surfacePixelData = surfaceImageData.data;
@@ -2031,6 +2089,7 @@ var Module = null;
 })(typeof Promise === 'undefined' ? ES6Promise.Promise : Promise);
 
 // legacy
+// noinspection JSUnusedAssignment
 var JSMESS = JSMESS || {};
 JSMESS.ready = function(f) {
 	f();
