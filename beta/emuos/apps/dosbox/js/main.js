@@ -42,7 +42,7 @@
 	require([
 		'jquery',
 		'purl',
-		'json!../games/games.json',
+		'json!games.json',
 		'browserfs',
 		'loader'
 	], function($, purl, games, browserfs, loader) {
@@ -139,18 +139,22 @@
 				// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 				var emulator = new global.Emulator(document.getElementById('canvas'), null,
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					new global.DosBoxLoader(global.DosBoxLoader.emulatorJS('js/dosbox-sync.js'),
+					new global.DosBoxLoader(global.DosBoxLoader.emulatorJS(SYSTEM_FEATURE_WEBASSEMBLY ? 'js/dosbox-sync-wasm.js' : 'js/dosbox-sync-asm.js'),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 					global.DosBoxLoader.locateAdditionalEmulatorJS(function(filename) {
 						if (filename === 'dosbox.html.mem') {
 							return 'js/dosbox-sync.mem';
+						}
+
+						if (filename === 'dosbox.wasm') {
+							return 'js/dosbox-sync.wasm';
 						}
 						return filename;
 					}),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 					global.DosBoxLoader.nativeResolution(640, 400),
 					// noinspectionJSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', 'games/' + file)),
+					global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', file.indexOf('//') !== -1 ? file : 'games/' + file)),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 					global.DosBoxLoader.extraArgs(args),
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
