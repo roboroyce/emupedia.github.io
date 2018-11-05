@@ -34,7 +34,9 @@
 			optional: 'libraries/requirejs-optional-1.0.0',
 			purl: 'libraries/purl-2.3.1',
 			es6promise: 'polyfills/es6-promise-4.2.5.min',
-			browserfs: 'libraries/browserfs-1.4.3.min'
+			es6fetch: 'polyfills/es6-fetch-3.0.0',
+			browserfs: 'libraries/browserfs-1.4.3.min',
+			dropbox: 'libraries/dropbox-sdk-4.0.12'
 		}
 	});
 
@@ -44,10 +46,15 @@
 		'purl',
 		'json!games.json',
 		'browserfs',
+		'dropbox',
+		'es6fetch',
 		'loader'
-	], function($, purl, games, browserfs, loader) {
+	], function($, purl, games, browserfs, dropbox, fetch, loader) {
 		$(function() {
 			console.log(games);
+
+			// noinspection JSUnresolvedFunction
+			var dbx = new dropbox.Dropbox({accessToken: 'Rw1XBhHt3aAAAAAAAAADLlH_3RQLTgbyiwKwBQlcRIHkzxzKbhFyX4oTPGvSqgqt', fetch: fetch.fetch});
 
 			global.BrowserFS = browserfs;
 
@@ -136,30 +143,36 @@
 			}
 
 			function start(file, executable, args) {
-				// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-				var emulator = new global.Emulator(document.getElementById('canvas'), null,
+				// noinspection JSUnresolvedFunction
+				dbx.filesGetTemporaryLink({path: '/' + file}).then(function(response) {
+					// console.log(response);
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					new global.DosBoxLoader(global.DosBoxLoader.emulatorJS(SYSTEM_FEATURE_WEBASSEMBLY ? 'js/dosbox-sync-wasm.js' : 'js/dosbox-sync-asm.js'),
-					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.locateAdditionalEmulatorJS(function(filename) {
-						if (filename === 'dosbox.html.mem') {
-							return 'js/dosbox-sync.mem';
-						}
+					var emulator = new global.Emulator(document.getElementById('canvas'), null,
+						// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+						new global.DosBoxLoader(global.DosBoxLoader.emulatorJS(SYSTEM_FEATURE_WEBASSEMBLY ? 'js/dosbox-sync-wasm.js' : 'js/dosbox-sync-asm.js'),
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+							global.DosBoxLoader.locateAdditionalEmulatorJS(function(filename) {
+								if (filename === 'dosbox.html.mem') {
+									return 'js/dosbox-sync.mem';
+								}
 
-						if (filename === 'dosbox.wasm') {
-							return 'js/dosbox-sync.wasm';
-						}
-						return filename;
-					}),
-					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.nativeResolution(640, 400),
-					// noinspectionJSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', file.indexOf('//') !== -1 ? file : 'games/' + file)),
-					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.extraArgs(args),
-					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					global.DosBoxLoader.startExe(executable)));
-				emulator.start({waitAfterDownloading: false});
+								if (filename === 'dosbox.wasm') {
+									return 'js/dosbox-sync.wasm';
+								}
+								return filename;
+							}),
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+							global.DosBoxLoader.nativeResolution(640, 400),
+							// noinspectionJSUnresolvedFunction,JSUnresolvedVariable
+							global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', response.link)),
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+							global.DosBoxLoader.extraArgs(args),
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
+							global.DosBoxLoader.startExe(executable)));
+					emulator.start({waitAfterDownloading: false});
+				}).catch(function(error) {
+					console.log(error);
+				});
 			}
 
 			$game_list.html('').html(render_game_list(games));

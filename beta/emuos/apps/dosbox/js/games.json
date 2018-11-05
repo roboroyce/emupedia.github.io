@@ -6,7 +6,7 @@
 		"id": "aladdin",
 		"name": "Disney's Aladdin",
 		"executable": "./ALADDCRK.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/8bk8kx9z6nauo3k/GAMES/aladdin.zip",
+		"file": "aladdin.zip",
 		"size": 1810235,
 		"hardware": [{
 			"input": ["Keyboard"],
@@ -30,7 +30,7 @@
 		"id": "loomega",
 		"name": "Loom",
 		"executable": "./LOOM.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/2lesvw1eqo9fwxr/GAMES/loomega.zip",
+		"file": "loomega.zip",
 		"size": 1201980,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse"],
@@ -55,7 +55,7 @@
 		"id": "mk1",
 		"name": "Mortal Kombat",
 		"executable": "./DOS32A.EXE MKCRK.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/lw5d4422ypurhvr/GAMES/mk1.zip",
+		"file": "mk1.zip",
 		"size": 8167485,
 		"hardware": [{
 			"input": ["Keyboard"],
@@ -80,7 +80,7 @@
 		"id": "pre1",
 		"name": "Prehistorik 1",
 		"executable": "./HISTORIK.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/rqej3yrj7kovt8p/GAMES/pre1.zip",
+		"file": "pre1.zip",
 		"size": 626070,
 		"hardware": [{
 			"input": ["Keyboard", "Gamepad/Joystick"],
@@ -104,7 +104,7 @@
 		"id": "pre2",
 		"name": "Prehistorik 2",
 		"executable": "./PRE2.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/cjmjegjv384hj81/GAMES/pre2.zip",
+		"file": "pre2.zip",
 		"size": 1080103,
 		"hardware": [{
 			"input": ["Keyboard"],
@@ -128,7 +128,7 @@
 		"id": "pop1",
 		"name": "Prince of Persia",
 		"executable": "./PRINCE.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/c6iywzj4ksauzsm/GAMES/pop114.zip",
+		"file": "pop114.zip",
 		"size": 1988713,
 		"hardware": [{
 			"input": ["Keyboard"],
@@ -155,7 +155,7 @@
 		"name": "Prince of Persia 2",
 		"description": "The Shadow and the Flame",
 		"executable": "./PRINCE.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/kik2qtrmhm8zgj2/GAMES/pop211.zip",
+		"file": "pop211.zip",
 		"size": 5129227,
 		"hardware": [{
 			"input": ["Keyboard"],
@@ -182,7 +182,7 @@
 		"name": "Warcraft II: Tides of Darkness",
 		"executable": "./WAR2.EXE",
 		"args": ["-c", "mount d emulator/c -t cdrom"],
-		"file": "https://dl.dropboxusercontent.com/1/view/fer0dur7pv5n895/GAMES/war2.zip",
+		"file": "war2.zip",
 		"size": 82020985,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse"],
@@ -209,7 +209,7 @@
 		"name": "Warcraft II: Beyond the Dark Portal",
 		"executable": "./WAR2.EXE",
 		"args": ["-c", "mount d emulator/c -t cdrom"],
-		"file": "https://dl.dropboxusercontent.com/1/view/nrieyino34v20w3/GAMES/war2x.zip",
+		"file": "war2x.zip",
 		"size": 122526490,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse"],
@@ -235,7 +235,7 @@
 		"id": "wolf3d",
 		"name": "Wolfenstein 3D",
 		"executable": "./WOLF3D.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/w7q2i5p3jxmi71n/GAMES/wolf3d.zip",
+		"file": "wolf3d.zip",
 		"size": 1075482,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse", "Gamepad/Joystick"],
@@ -262,7 +262,7 @@
 		"id": "wolf3ds",
 		"name": "Wolfenstein 3D: Spear of Destiny",
 		"executable": "./SPEAR.EXE",
-		"file": "https://dl.dropboxusercontent.com/1/view/sqgnxgavhrqf2c7/GAMES/wolf3ds.zip",
+		"file": "wolf3ds.zip",
 		"size": 1542721,
 		"hardware": [{
 			"input": ["Keyboard", "Mouse", "Gamepad/Joystick"],
