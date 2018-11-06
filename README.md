@@ -4,7 +4,7 @@
 * [RequireJS Text Plugin](https://github.com/requirejs/text) Licence: BSD/MIT
 * [RequireJS JSON Plugin](https://github.com/millermedeiros/requirejs-plugins) Licence: MIT
 * [RequireJS NoExt Plugin](https://github.com/millermedeiros/requirejs-plugins) Licence: MIT
-* [ES3 Base64 Polyfill](https://github.com/davidchambers/Base64.js) Licence: Unknown
+* [ES3 Base64 Polyfill](https://github.com/davidchambers/Base64.js) Licence: Apache 2.0
 * [ES5 Typed Array Polyfill](https://github.com/inexorabletash/polyfill) Licence: MIT
 * [ES6 Promise Polyfill](https://github.com/stefanpenner/es6-promise) Licence: MIT
 * [ES6 Fetch Polyfill](https://github.com/github/fetch) Licence: MIT
