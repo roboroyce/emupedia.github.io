@@ -125,7 +125,7 @@
 		for (var j in self.options.icons) {
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = $('<a class="icon" href="' + (self.options.icons[j]['link'] !== '' ? self.options.icons[j]['link'] : 'javascript:') + '">' +
+			var $icon = $('<a class="icon" href="javascript:">' +
 							'<img src="' + self.options.icons[j]['icon'] + '" alt="' + self.options.icons[j]['name'] + '" />' +
 							'<span>' + self.options.icons[j]['name'] + '</span>' +
 						'</a>');

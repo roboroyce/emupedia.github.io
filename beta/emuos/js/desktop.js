@@ -100,44 +100,7 @@
 				opacity: 0.8,
 				scroll: false,
 				revert: true,
-				helper: function (e, item) {
-					if (!item.hasClass(self.classes.uiSelected)) {
-						self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-						item.addClass(self.classes.uiSelected);
-					}
-
-					// noinspection JSJQueryEfficiency
-					var selected = $('.' + self.classes.uiSelected).clone();
-
-					item.data('multidrag', selected);
-
-					// noinspection JSJQueryEfficiency
-					$('.' + self.classes.uiSelected).not(item).remove();
-
-					return $('<div class="ui-selected-transporter" />').append(selected);
-				},
-				create: function () {
-					self._cache.icons.off('mousedown').on('mousedown', function (e) {
-						var $el = self.$elem.find('.' + self.classes.uiSelected);
-						if ($el.size() <= 1) {
-							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-							$(e.target).addClass(self.classes.uiSelected)
-						}
-					});
-				},
-				stop: function (e, ui) {
-					var selected = ui.item.data('multidrag');
-					ui.item.after(selected);
-					ui.item.remove();
-
-					$('.' + self.classes.uiSelected).off('mousedown').on('mousedown', function (e2) {
-						var $el = self.$elem.find('.' + self.classes.uiSelected);
-						if ($el.size() <= 1) {
-							self.$elem.find('.' + self.classes.uiSelected).removeClass(self.classes.uiSelected);
-							$(e2.target).addClass(self.classes.uiSelected)
-						}
-					});
-				}
+				helper: 'clone'
 			}).selectable({
 				filter: '> .' + self.classes.desktopIcon,
 				tolerance: 'touch'
