@@ -36,15 +36,15 @@
 			icons: [{
 				name: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
-				link: '//' + location.host + location.pathname + 'apps/monaco-editor/index.html'
+				link: 'apps/monaco-editor/index.html'
 			} , {
 				name: 'Wing 2.0',
 				icon: 'apps/wing/favicon.ico',
-				link: '//' + location.host + location.pathname + 'apps/wing/index.html'
+				link: 'apps/wing/index.html'
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'apps/dosbox/favicon.ico',
-				link: '//' + location.host + location.pathname + 'apps/dosbox/index.html'
+				link: 'apps/dosbox/index.html'
 			}],
 			start: [{
 				name: 'Item'
