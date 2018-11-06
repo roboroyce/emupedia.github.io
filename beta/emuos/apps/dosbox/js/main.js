@@ -51,16 +51,6 @@
 		'loader'
 	], function($, purl, games, browserfs, dropbox, fetch, loader) {
 		$(function() {
-			console.log(games);
-
-			// noinspection JSUnresolvedFunction
-			var dbx = new dropbox.Dropbox({accessToken: 'Rw1XBhHt3aAAAAAAAAADLlH_3RQLTgbyiwKwBQlcRIHkzxzKbhFyX4oTPGvSqgqt', fetch: fetch.fetch});
-
-			global.BrowserFS = browserfs;
-
-			var $game_dropdown = $('.game-dropdown');
-			var $game_list = $('.game-list');
-
 			function format_name(name) {
 				return typeof name !== 'undefined' ? name : '?';
 			}
@@ -147,11 +137,11 @@
 				dbx.filesGetTemporaryLink({path: '/' + file}).then(function(response) {
 					// console.log(response);
 					// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-					var emulator = new global.Emulator(document.getElementById('canvas'), null,
+					var emulator = new Emulator(document.getElementById('canvas'), null,
 						// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-						new global.DosBoxLoader(global.DosBoxLoader.emulatorJS(SYSTEM_FEATURE_WEBASSEMBLY ? 'js/dosbox-sync-wasm.js' : 'js/dosbox-sync-asm.js'),
+						new DosBoxLoader(DosBoxLoader.emulatorJS(SYSTEM_FEATURE_WEBASSEMBLY ? 'js/dosbox-sync-wasm.js' : (SYSTEM_FEATURE_ASMJS ? 'js/dosbox-sync-asm.js' :  alert('DOSBox cannot work because WebAssembly and/or ASM.JS is not supported in your browser!'))),
 							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-							global.DosBoxLoader.locateAdditionalEmulatorJS(function(filename) {
+							DosBoxLoader.locateAdditionalEmulatorJS(function(filename) {
 								if (filename === 'dosbox.html.mem') {
 									return 'js/dosbox-sync.mem';
 								}
@@ -162,18 +152,26 @@
 								return filename;
 							}),
 							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-							global.DosBoxLoader.nativeResolution(640, 400),
+							DosBoxLoader.nativeResolution(640, 400),
 							// noinspectionJSUnresolvedFunction,JSUnresolvedVariable
-							global.DosBoxLoader.mountZip('c', global.DosBoxLoader.fetchFile('Game File', response.link)),
+							DosBoxLoader.mountZip('c', DosBoxLoader.fetchFile('Game File', response.link)),
 							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-							global.DosBoxLoader.extraArgs(args),
+							DosBoxLoader.extraArgs(args),
 							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
-							global.DosBoxLoader.startExe(executable)));
+							DosBoxLoader.startExe(executable)));
 					emulator.start({waitAfterDownloading: false});
 				}).catch(function(error) {
 					console.log(error);
 				});
 			}
+
+			global.BrowserFS = browserfs;
+
+			// noinspection JSUnresolvedFunction
+			var dbx = new dropbox.Dropbox({accessToken: 'Rw1XBhHt3aAAAAAAAAADLlH_3RQLTgbyiwKwBQlcRIHkzxzKbhFyX4oTPGvSqgqt', fetch: fetch.fetch});
+
+			var $game_dropdown = $('.game-dropdown');
+			var $game_list = $('.game-list');
 
 			$game_list.html('').html(render_game_list(games));
 			$game_dropdown.html('').html(render_game_dropdown(games));

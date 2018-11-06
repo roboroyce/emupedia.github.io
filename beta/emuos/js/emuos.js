@@ -36,15 +36,15 @@
 			icons: [{
 				name: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
-				link: ''
+				link: 'apps/monaco-editor'
 			} , {
 				name: 'Wing 2.0',
 				icon: 'apps/wing/favicon.ico',
-				link: ''
+				link: 'apps/wing'
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'apps/dosbox/favicon.ico',
-				link: ''
+				link: 'apps/dosbox'
 			}],
 			start: [{
 				name: 'Item'
@@ -123,12 +123,33 @@
 		this.$taskbar = $('.taskbar').first();
 
 		for (var j in self.options.icons) {
+
 			// noinspection JSUnfilteredForInLoop
-			self.$desktop.append(
-				'<a class="icon" href="' + (self.options.icons[j]['link'] !== '' ? self.options.icons[j]['link'] : 'javascript:') + '">' +
-					'<img src="' + self.options.icons[j]['icon'] + '" alt="' + self.options.icons[j]['name'] + '" />' +
-					'<span>' + self.options.icons[j]['name'] + '</span>' +
-				'</a>')
+			var $icon = $('<a class="icon" href="' + (self.options.icons[j]['link'] !== '' ? self.options.icons[j]['link'] : 'javascript:') + '">' +
+							'<img src="' + self.options.icons[j]['icon'] + '" alt="' + self.options.icons[j]['name'] + '" />' +
+							'<span>' + self.options.icons[j]['name'] + '</span>' +
+						'</a>');
+
+			// noinspection JSUnfilteredForInLoop
+			$icon.data('name', self.options.icons[j]['name']);
+			// noinspection JSUnfilteredForInLoop
+			$icon.data('icon', self.options.icons[j]['icon']);
+			// noinspection JSUnfilteredForInLoop
+			$icon.data('link', self.options.icons[j]['link']);
+
+			// noinspection JSUnfilteredForInLoop
+			self.$desktop.append($icon);
+
+			$icon.off('click').on('click', function(e) {
+				e.preventDefault();
+			}).off('dblclick').on('dblclick', function(e) {
+				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+				self.iframe({
+					title: $(this).data('name'),
+					icon :$(this).data('icon'),
+					src: $(this).data('link')
+				});
+			});
 		}
 
 		// noinspection JSUnresolvedFunction

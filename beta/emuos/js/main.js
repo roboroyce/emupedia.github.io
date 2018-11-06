@@ -215,14 +215,14 @@
 				title: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
 				src: 'apps/monaco-editor/index.html'
-			});*/
+			});
 
 			// noinspection JSUnresolvedFunction
 			desktop.iframe({
 				title: 'DOSBox 0.74',
 				icon: 'apps/dosbox/favicon.ico',
 				src: 'apps/dosbox/index.html'
-			});
+			});*/
 		});
 	});
 } (this));
