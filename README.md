@@ -1,4 +1,4 @@
-##Libraries used
+## Libraries used
 
 * [RequireJS](https://github.com/requirejs/requirejs) Licence: BSD/MIT
 * [RequireJS Text Plugin](https://github.com/requirejs/text) Licence: BSD/MIT
