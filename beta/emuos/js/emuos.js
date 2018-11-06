@@ -36,15 +36,15 @@
 			icons: [{
 				name: 'Visual Studio Code',
 				icon: 'apps/monaco-editor/favicon.ico',
-				link: 'apps/monaco-editor'
+				link: '//' + location.host + location.pathname + '/apps/monaco-editor'
 			} , {
 				name: 'Wing 2.0',
 				icon: 'apps/wing/favicon.ico',
-				link: 'apps/wing'
+				link: '//' + location.host + location.pathname + '/apps/wing'
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'apps/dosbox/favicon.ico',
-				link: 'apps/dosbox'
+				link: '//' + location.host + location.pathname + '/apps/dosbox'
 			}],
 			start: [{
 				name: 'Item'
@@ -142,7 +142,7 @@
 
 			$icon.off('click').on('click', function(e) {
 				e.preventDefault();
-			}).off('dblclick').on('dblclick', function(e) {
+			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				self.iframe({
 					title: $(this).data('name'),
