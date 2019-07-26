@@ -76,6 +76,10 @@
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
 				link: 'vfat/apps/paint/index.html'
+			} , {
+				name: 'SVG Editor',
+				icon: 'vfat/apps/svg-editor/favicon.ico',
+				link: 'vfat/apps/svg-editor/index.html'
 			}]
 		};
 
