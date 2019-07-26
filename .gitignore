@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-/beta/emuos2/dist
+/beta/emuos2
 /tmp
 /out-tsc
 # Only exists if Bazel was run

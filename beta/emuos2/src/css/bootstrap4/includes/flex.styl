@@ -1,0 +1,38 @@
+flex(arg1,arg2,arg3)
+  .flex{arg3}-{arg1}
+    -ms-flex-{arg2} arg1 !important
+    flex-{arg2} arg1 !important
+
+if $flex-include
+  for i in row row-reverse column column-reverse
+    flex(i,direction, '')
+  for i in wrap nowrap wrap-reverse
+    flex(i,wrap, '')
+
+if $flex-sm-include
+  @media (min-width: $grid-sm)
+    for i in row row-reverse column column-reverse
+      flex(i,direction,-sm)
+    for i in wrap nowrap wrap-reverse
+      flex(i,wrap,-sm)
+
+if $flex-md-include
+  @media (min-width: $grid-md)
+    for i in row row-reverse column column-reverse
+      flex(i,direction,-md)
+    for i in wrap nowrap wrap-reverse
+      flex(i,wrap,-md)
+
+if $flex-lg-include
+  @media (min-width: $grid-lg)
+    for i in row row-reverse column column-reverse
+      flex(i,direction,-lg)
+    for i in wrap nowrap wrap-reverse
+      flex(i,wrap,-lg)
+
+if $flex-xl-include
+  @media (min-width: $grid-xl)
+        for i in row row-reverse column column-reverse
+          flex(i,direction,-xl)
+        for i in wrap nowrap wrap-reverse
+          flex(i,wrap,-xl)

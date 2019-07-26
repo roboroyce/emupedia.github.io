@@ -1,0 +1,28 @@
+if $float-base-include
+  for i in $floatDirections
+    .float-{i}
+      float i !important
+
+if $float-sm-include
+  @media (min-width: $grid-sm)
+    for i in $floatDirections
+      .float-sm-{i}
+        float i !important
+
+if $float-md-include
+  @media (min-width: $grid-md)
+    for i in $floatDirections
+      .float-md-{i}
+        float i !important
+
+if $float-lg-include
+  @media (min-width: $grid-lg)
+    for i in $floatDirections
+      .float-lg-{i}
+        float i !important
+
+if $float-xl-include
+  @media (min-width: $grid-xl)
+    for i in $floatDirections
+      .float-xl-{i}
+        float i !important
