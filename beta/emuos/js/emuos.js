@@ -44,7 +44,7 @@
 			} , {
 				name: 'Visual Studio Code',
 				icon: 'vfat/apps/monaco-editor/favicon.ico',
-				link: 'https://gitpod.io#https://github.com/Emupedia/emupedia.github.io'
+				link: 'vfat/apps/monaco-editor/index.html'
 			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing/favicon.ico',
@@ -72,6 +72,10 @@
 			} , {
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'
+			} , {
+				name: 'Paint',
+				icon: 'vfat/apps/paint/favicon.ico',
+				link: 'vfat/apps/paint/index.html'
 			}]
 		};
 
