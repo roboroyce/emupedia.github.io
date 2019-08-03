@@ -31,6 +31,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | IE9+, Edge 20+ | 2+    | 1+    | 5.1.7+ | 12+   |
 
 ## Libraries used
+<details><summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                 |
 | :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                    |
@@ -97,8 +98,9 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | 98.js                    | [98.js.org](https://98.js.org)                                                                         | [github.com/1j01/98](https://github.com/1j01/98)                                                             | ❓                                                                                      |
 | Rahul.io                 | [rahul.io](https://rahul.io)                                                                           | [github.com/lolstring/window98-html-css-js](https://github.com/lolstring/window98-html-css-js)               | [MIT](https://github.com/lolstring/window98-html-css-js/blob/master/LICENSE)            |
 | OS.js                    | [os-js.org](https://www.os-js.org)                                                                     | [github.com/os-js/OS.js](https://github.com/os-js/OS.js)                                                     | [BSD](https://github.com/os-js/OS.js/blob/master/LICENSE)                               |
-| **Honorable mentions**   | **(not included because a more faithfull alternative was used)**                                       |                                                                                                              |                                                                                         |                                                       |
+| **Honorable mentions**   | **(not included because a more faithfull alternative was used)**                                       |                                                                                                              |                                                                                         |
 | minesweeper_js           | [minesweeper.zone](https://minesweeper.zone)                                                           | [github.com/reed-jones/minesweeper_js](https://github.com/reed-jones/minesweeper_js)                         | [CC BY-NC 4.0](https://github.com/reed-jones/minesweeper_js/blob/master/LICENSE)        |
+<details>
 
 ## Legal issues
 
