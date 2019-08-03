@@ -66,9 +66,13 @@
 				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
 				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html'
 			} , {
-				name: 'WebQuake 1',
-				icon: 'vfat/games/webquake1/favicon.ico',
-				link: 'vfat/games/webquake1/index.html'
+				name: 'Quake 1',
+				icon: 'vfat/games/quake1/favicon.ico',
+				link: 'vfat/games/quake1/index.html'
+			} , {
+				name: 'Diablo 1',
+				icon: 'vfat/games/diablo1/favicon.ico',
+				link: 'vfat/games/diablo1/index.html'
 			} , {
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'

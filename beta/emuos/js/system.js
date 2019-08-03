@@ -625,6 +625,7 @@ if (typeof Float64Array !== 'undefined') {
 	global.SYSTEM_FEATURE_WORKERS				= !!global.Worker;
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_SHARED_WORKERS		= !!global.SharedWorker;
+	global.SYSTEM_FEATURE_SERVICE_WORKERS		= 'serviceWorker' in navigator;
 	global.SYSTEM_FEATURE_TYPED_ARRAYS			= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
 	global.SYSTEM_FEATURE_BIGINTS				= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
 	// noinspection JSUnresolvedVariable,JSUnusedGlobalSymbols
@@ -676,6 +677,7 @@ if (typeof Float64Array !== 'undefined') {
 
 	global.SYSTEM_FEATURE_SVG					= !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
 	global.SYSTEM_FEATURE_CANVAS				= !!(context2D && context2D instanceof CanvasRenderingContext2D);
+	global.SYSTEM_FEATURE_OFFSCREEN_CANVAS		= !!(SYSTEM_FEATURE_CANVAS && 'OffscreenCanvas' in global);
 	global.SYSTEM_FEATURE_WEBGL					= !!(contextWEBGL && contextWEBGL instanceof WebGLRenderingContext);
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_WEBGL2				= !!(contextWEBGL2 && contextWEBGL2 instanceof WebGL2RenderingContext);
@@ -758,6 +760,9 @@ if (typeof Float64Array !== 'undefined') {
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_INDEXED_DB			= !!global.indexedDB ? true : !!global.webkitIndexedDB || !!global.mozIndexedDB || !!global.moz_indexedDB || !!global.oIndexedDB || !!global.msIndexedDB;
 	global.SYSTEM_FEATURE_WEBSQL				= !!global.openDatabase;
+	global.SYSTEM_FEATURE_CACHE					= 'caches' in global;
+	global.SYSTEM_FEATURE_FETCH					= !!global.fetch;
+	global.SYSTEM_FEATURE_PUSH					= 'PushManager' in global;
 	global.SYSTEM_FEATURE_ORIENTATION			= !!global.DeviceOrientationEvent;
 	global.SYSTEM_FEATURE_GEOLOCATION			= !!navigator.geolocation;
 	global.SYSTEM_FEATURE_MOTION				= !!global.DeviceMotionEvent;
@@ -1199,6 +1204,9 @@ if (typeof Float64Array !== 'undefined') {
 			Feature: 'SYSTEM_FEATURE_SHARED_WORKERS',
 			Value: SYSTEM_FEATURE_SHARED_WORKERS ? 'TRUE' : 'FALSE'
 		} , {
+			Feature: 'SYSTEM_FEATURE_SERVICE_WORKERS',
+			Value: SYSTEM_FEATURE_SERVICE_WORKERS ? 'TRUE' : 'FALSE'
+		} , {
 			Feature: 'SYSTEM_FEATURE_TYPED_ARRAYS',
 			Value: SYSTEM_FEATURE_TYPED_ARRAYS ? 'TRUE' : 'FALSE'
 		} , {
@@ -1240,6 +1248,9 @@ if (typeof Float64Array !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_CANVAS',
 			Value: SYSTEM_FEATURE_CANVAS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_OFFSCREEN_CANVAS',
+			Value: SYSTEM_FEATURE_OFFSCREEN_CANVAS ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_FEATURE_SVG',
 			Value: SYSTEM_FEATURE_SVG ? 'TRUE' : 'FALSE'
@@ -1286,6 +1297,15 @@ if (typeof Float64Array !== 'undefined') {
 			Feature: 'SYSTEM_FEATURE_WEBSQL',
 			Value: SYSTEM_FEATURE_WEBSQL ? 'TRUE' : 'FALSE'
 		} , {
+			Feature: 'SYSTEM_FEATURE_CACHE',
+			Value: SYSTEM_FEATURE_CACHE ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_FETCH',
+			Value: SYSTEM_FEATURE_FETCH ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_PUSH',
+			Value: SYSTEM_FEATURE_PUSH ? 'TRUE' : 'FALSE'
+		} , {
 			Feature: 'SYSTEM_FEATURE_GEOLOCATION',
 			Value: SYSTEM_FEATURE_GEOLOCATION ? 'TRUE' : 'FALSE'
 		} , {
@@ -1311,7 +1331,7 @@ if (typeof Float64Array !== 'undefined') {
 			Value: SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
 		}];
 
-		//Microsoft Edge <= 18.17763 (64-bit) cannot list more than 50 items in a table
+		//Microsoft Edge <= 18.18362 (64-bit) cannot list more than 50 items in a table
 		if (isEdgeHTML) {
 			var chunks = function(array, size) {
 				var results = [];
