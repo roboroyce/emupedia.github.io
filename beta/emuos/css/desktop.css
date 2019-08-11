@@ -48,7 +48,7 @@
 	/*background-color: rgba(0, 0, 0, 0.5);*/
 }
 
-/*noinspection CssOverwrittenProperties*/
+/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
 .icon img,
 .emuos-desktop-icon img {
 	/*background-color: #000;*/
@@ -58,6 +58,12 @@
 	width: 48px;
 	height: 48px;
 	pointer-events: none;
+	image-rendering: optimizeSpeed;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -o-crisp-edges;
+	image-rendering: crisp-edges;
+	-ms-interpolation-mode: nearest-neighbor;
 }
 
 .emuos-desktop-icon span {

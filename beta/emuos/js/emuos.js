@@ -66,6 +66,10 @@
 				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
 				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html'
 			} , {
+				name: 'Doom 1',
+				icon: 'vfat/games/doom1/favicon.gif',
+				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html'
+			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
 				link: 'vfat/games/quake1/index.html'

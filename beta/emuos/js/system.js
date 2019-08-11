@@ -53,6 +53,36 @@ if (!('head' in document)) {
 	document.head = document.getElementsByTagName('head')[0];
 }
 
+/* region Math */
+if (typeof Math.imul === 'undefined') {
+	function ToUint32(argument) {
+		var number = Number(argument);
+		if (isNaN(number) || 1/number === Infinity || 1/number === -Infinity || number === Infinity || number === -Infinity) {
+			// noinspection JSConstructorReturnsPrimitive
+			return 0;
+		}
+		var int = ((number < 0) ? -1 : 1) * Math.floor(Math.abs(number));
+		// noinspection UnnecessaryLocalVariableJS
+		var int32bit = int >>> 0;
+		// noinspection JSConstructorReturnsPrimitive
+		return int32bit;
+	}
+
+	Math.imul = function(x, y) {
+		var a = ToUint32(x);
+		var b = ToUint32(y);
+		var UINT16 = 0xffff;
+		var aHigh = a >>> 16 & UINT16;
+		var aLow = UINT16 & a;
+		var bHigh = b >>> 16 & UINT16;
+		var bLow = UINT16 & b;
+
+		return aLow * bLow + (aHigh * bLow + aLow * bHigh << 16 >>> 0) | 0;
+	};
+}
+
+/* endregion */
+
 // region String
 // IE 11.345.17134.0
 if (!String.prototype.startsWith) {

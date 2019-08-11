@@ -61,7 +61,7 @@
 			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.7.min',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
 			base64: 'polyfills/es3-base64-1.0.1.min',
-			promise: 'polyfills/es6-promise-4.2.5.min',
+			promise: 'polyfills/es6-promise-4.2.8.min',
 			fetch: 'polyfills/es6-fetch-3.0.0',
 			octokat: 'libraries/octokat-0.10.0',
 			json: 'libraries/requirejs-json-0.3.2',
@@ -79,6 +79,7 @@
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	require([
+		'promise',
 		'text!../certs/emudisk.pem',
 		'jquery',
 		'filesystem',
@@ -96,7 +97,12 @@
 		'jqueryuitree',
 		'jquerycustomscrollbar',
 		'jqyeryajaxretry'
-	], function(github_private_key, $, FileSystem, EmuOS, Webamp, webamp_template, tree_template) {
+	], function(Promise, github_private_key, $, FileSystem, EmuOS, Webamp, webamp_template, tree_template) {
+		if (!global.SYSTEM_FEATURE_ES6_PROMISES) {
+			// noinspection JSUnresolvedFunction
+			Promise.polyfill();
+		}
+
 		$(function() {
 			var filesystem = new FileSystem({
 				github: {
