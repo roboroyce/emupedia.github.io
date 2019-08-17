@@ -53,14 +53,16 @@ if (!('head' in document)) {
 	document.head = document.getElementsByTagName('head')[0];
 }
 
-/* region Math */
+// region Math
 if (typeof Math.imul === 'undefined') {
 	function ToUint32(argument) {
 		var number = Number(argument);
-		if (isNaN(number) || 1/number === Infinity || 1/number === -Infinity || number === Infinity || number === -Infinity) {
+
+		if (isNaN(number) || 1 / number === Infinity || 1 / number === -Infinity || number === Infinity || number === -Infinity) {
 			// noinspection JSConstructorReturnsPrimitive
 			return 0;
 		}
+
 		var int = ((number < 0) ? -1 : 1) * Math.floor(Math.abs(number));
 		// noinspection UnnecessaryLocalVariableJS
 		var int32bit = int >>> 0;
@@ -81,7 +83,7 @@ if (typeof Math.imul === 'undefined') {
 	};
 }
 
-/* endregion */
+// endregion
 
 // region String
 // IE 11.345.17134.0
@@ -344,6 +346,7 @@ if (!Object.keys) {
 
 // region Typed Array
 
+// noinspection DuplicatedCode
 if (typeof ArrayBuffer !== 'undefined') {
 	if (!ArrayBuffer.prototype.slice) {
 		ArrayBuffer.prototype.slice = function (from, to) {
@@ -587,7 +590,7 @@ if (typeof Float64Array !== 'undefined') {
 (function(global) {
 	// region System
 
-	// noinspection JSUnusedLocalSymbols
+	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	var platform								= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
 	var browser									= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
 	var version									= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
@@ -793,6 +796,7 @@ if (typeof Float64Array !== 'undefined') {
 	global.SYSTEM_FEATURE_CACHE					= 'caches' in global;
 	global.SYSTEM_FEATURE_FETCH					= !!global.fetch;
 	global.SYSTEM_FEATURE_PUSH					= 'PushManager' in global;
+	// noinspection DuplicatedCode
 	global.SYSTEM_FEATURE_ORIENTATION			= !!global.DeviceOrientationEvent;
 	global.SYSTEM_FEATURE_GEOLOCATION			= !!navigator.geolocation;
 	global.SYSTEM_FEATURE_MOTION				= !!global.DeviceMotionEvent;
@@ -876,7 +880,7 @@ if (typeof Float64Array !== 'undefined') {
 	})();
 	global.SYSTEM_FEATURE_ES5					= !!(SYSTEM_FEATURE_ES3 && SYSTEM_FEATURE_ES5_STRICT_MODE && SYSTEM_FEATURE_ES5_XHR && SYSTEM_FEATURE_ES5_JSON && SYSTEM_FEATURE_ES5_SYNTAX && SYSTEM_FEATURE_ES5_UNDEFINED && SYSTEM_FEATURE_ES5_ARRAY && SYSTEM_FEATURE_ES5_DATE && SYSTEM_FEATURE_ES5_FUNCTION && SYSTEM_FEATURE_ES5_OBJECT && SYSTEM_FEATURE_ES5_STRING);
 
-	// noinspection JSUnresolvedVariable
+	// noinspection JSUnresolvedVariable,DuplicatedCode
 	global.SYSTEM_FEATURE_ES6_NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_ES6_MATH				= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
@@ -1362,6 +1366,7 @@ if (typeof Float64Array !== 'undefined') {
 		}];
 
 		//Microsoft Edge <= 18.18362 (64-bit) cannot list more than 50 items in a table
+		// noinspection DuplicatedCode
 		if (isEdgeHTML) {
 			var chunks = function(array, size) {
 				var results = [];
@@ -1376,6 +1381,7 @@ if (typeof Float64Array !== 'undefined') {
 			dump = chunks(dump, 50);
 
 			for (var d in dump) {
+				// noinspection JSUnfilteredForInLoop
 				global.console.table(dump[d]);
 			}
 		} else {

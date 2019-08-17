@@ -72,7 +72,7 @@
 			} , {
 				name: 'Doom 1',
 				icon: 'vfat/games/doom1/favicon.gif',
-				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html'
 			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
@@ -87,6 +87,12 @@
 				link: 'vfat/games/darkreign/index.html',
 				width: 640,
 				height: 480
+			} , {
+				name: 'Command and Conquer',
+				icon: 'vfat/games/command-and-conquer/favicon.ico',
+				link: 'vfat/games/command-and-conquer/index.html',
+				width: 640,
+				height: 535
 			} , {
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'
@@ -458,7 +464,7 @@
 			height: height !== 0 ? height : 400,
 			position: {
 				my: 'center',
-				at: 'center center - 20%',
+				at: 'center center-20%',
 				of: this.$window.get(0),
 				collision: 'fit'
 			},
