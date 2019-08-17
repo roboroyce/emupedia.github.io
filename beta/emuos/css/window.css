@@ -150,9 +150,9 @@
 
 /* keep titlebar dimensions when title: "" is set to window */
 .emuos-window.ui-dialog .ui-dialog-title:before,
-	/* keep buttonpane buttons dimensions where title is empty */
+/* keep buttonpane buttons dimensions where title is empty */
 .emuos-window .ui-dialog-buttonset .ui-button .ui-button-text:before {
-	content: "";
+	content: '';
 	display: inline-block;
 }
 

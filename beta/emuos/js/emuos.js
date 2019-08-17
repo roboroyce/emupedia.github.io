@@ -60,15 +60,19 @@
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'vfat/apps/dosbox/favicon.ico',
-				link: 'vfat/apps/dosbox/index.html'
+				link: 'vfat/apps/dosbox/index.html',
+				width: 640,
+				height: 422
 			} , {
 				name: 'Wolfenstein 3D',
 				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
-				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html'
+				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html',
+				width: SYSTEM_FEATURE_CANVAS ? 960 : 640,
+				height: SYSTEM_FEATURE_CANVAS ? 600 : 400
 			} , {
 				name: 'Doom 1',
 				icon: 'vfat/games/doom1/favicon.gif',
-				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html'
+				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
 			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
@@ -77,6 +81,12 @@
 				name: 'Diablo 1',
 				icon: 'vfat/games/diablo1/favicon.ico',
 				link: 'vfat/games/diablo1/index.html'
+			} , {
+				name: 'Dark Reign: The Future of War',
+				icon: 'vfat/games/darkreign/favicon.ico',
+				link: 'vfat/games/darkreign/index.html',
+				width: 640,
+				height: 480
 			} , {
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'
@@ -195,6 +205,18 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof self.options.icons[j]['width'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('width', self.options.icons[j]['width']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof self.options.icons[j]['height'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('height', self.options.icons[j]['height']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			self.$desktop.append($icon);
 
 			$icon.off('click').on('click', function(e) {
@@ -206,7 +228,9 @@
 					self.iframe({
 						title: $(this).data('name'),
 						icon :$(this).data('icon'),
-						src: $(this).data('link')
+						src: $(this).data('link'),
+						width: $(this).data('width'),
+						height: $(this).data('height')
 					});
 				} else {
 					// noinspection JSRedundantSwitchStatement
@@ -356,6 +380,7 @@
 			}
 		});
 
+		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',
@@ -414,23 +439,26 @@
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var title	= typeof options.title	!== 'undefined'	? options.title	: '';
-		var icon	= typeof options.icon	!== 'undefined'	? options.icon	: '';
-		var src		= typeof options.src	!== 'undefined'	? options.src	: '';
+		var title	= typeof options.title	!== 'undefined' ? options.title		: '';
+		var icon	= typeof options.icon	!== 'undefined' ? options.icon		: '';
+		var src		= typeof options.src	!== 'undefined' ? options.src		: '';
+		var width	= typeof options.width	!== 'undefined' ? options.width		: 0;
+		var height	= typeof options.height	!== 'undefined' ? options.height	: 0;
 
 		// noinspection HtmlDeprecatedAttribute
 		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe src="' + src + '" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
 		self.$body.append(window);
+		self.$body.find('iframe').first().focus();
 
 		// noinspection JSValidateTypes
 		window.window({
 			embeddedContent: true,
-			width: 640,
-			height: 422,
+			width: width !== 0 ? width : 640,
+			height: height !== 0 ? height : 400,
 			position: {
 				my: 'center',
-				at: 'center center-20%',
+				at: 'center center - 20%',
 				of: this.$window.get(0),
 				collision: 'fit'
 			},
@@ -439,6 +467,7 @@
 			}
 		});
 
+		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',
