@@ -36,27 +36,45 @@
 			icons: [{
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.png',
-				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/'
+				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
+				width: 800,
+				height: 600
 			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
-				link: 'https://v1.windows93.net/'
+				link: 'https://v1.windows93.net/',
+				width: 960,
+				height: 713
 			} , {
 				name: 'Visual Studio Code',
 				icon: 'vfat/apps/monaco-editor/favicon.ico',
-				link: 'vfat/apps/monaco-editor/index.html'
+				link: 'vfat/apps/monaco-editor/index.html',
+				width: 800,
+				height: 600
 			} , {
 				name: 'Wing 2.0',
-				icon: 'vfat/games/wing/favicon.ico',
-				link: 'vfat/games/wing/index.html'
+				icon: 'vfat/games/wing2/favicon.ico',
+				link: 'vfat/games/wing2/index.html',
+				width: 800,
+				height: 600
+			} , {
+				name: 'Worms 2',
+				icon: 'vfat/games/worms2/favicon.ico',
+				link: 'vfat/games/worms2/index.html',
+				width: 800,
+				height: 600
 			} , {
 				name: 'Biolab Disaster',
 				icon: 'vfat/games/biolab-disaster/favicon.png',
-				link: 'vfat/games/biolab-disaster/index.html'
+				link: 'vfat/games/biolab-disaster/index.html',
+				width: 720,
+				height: 480
 			} , {
 				name: 'Super Blob Blaster',
 				icon: 'vfat/games/super-blob-blaster/favicon.png',
-				link: 'vfat/games/super-blob-blaster/index.html'
+				link: 'vfat/games/super-blob-blaster/index.html',
+				width: 720,
+				height: 480
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'vfat/apps/dosbox/favicon.ico',
@@ -464,7 +482,7 @@
 			height: height !== 0 ? height : 400,
 			position: {
 				my: 'center',
-				at: 'center center-20%',
+				at: 'center center-' + (height/2 - 60),
 				of: this.$window.get(0),
 				collision: 'fit'
 			},

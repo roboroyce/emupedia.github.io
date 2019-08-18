@@ -4159,9 +4159,7 @@
 		_buildTaskbarToggleFullscreen: function() {
 			var self = this;
 
-			this.$toggleFullscreen = this._factory('toggleFullscreen').appendTo(this.$systemButtonsContainer).attr('data-button-name', 'toggleFullscreen').button({
-																																									  text: false
-																																								  }).on('click.' + this._cache.uep, function(event) {
+			this.$toggleFullscreen = this._factory('toggleFullscreen').appendTo(this.$systemButtonsContainer).attr('data-button-name', 'toggleFullscreen').button({text: false}).on('click.' + this._cache.uep, function(e) {
 				var ui = {};
 
 				var enabled = self._fullscreenEnabled();
@@ -4169,10 +4167,7 @@
 				// save previous state
 				ui.fullscreenEnabled = enabled;
 
-				if (
-					self._trigger('beforeRequestFullscreen', event, ui)
-					=== false
-				) {
+				if (self._trigger('beforeRequestFullscreen', e, ui) === false) {
 					return;
 				}
 
@@ -4187,7 +4182,7 @@
 				ui.fullscreenEnabledBefore = enabled;
 				ui.fullscreenEnabled = self._fullscreenEnabled();
 
-				self._trigger('requestFullscreen', event, ui);
+				self._trigger('requestFullscreen', e, ui);
 			});
 
 			this._setFullscreenToggleState();
@@ -4197,14 +4192,7 @@
 		// sets label for toggle fullscreen, based on whether
 		// browser is in fullscreen mode or not
 		_setFullscreenToggleState: function() {
-			this.$toggleFullscreen.button('option', 'label',
-										  this._i18n(
-											  this._fullscreenEnabled()
-											  ? 'toggleFullscreenLeave'
-											  : 'toggleFullscreenEnter'
-										  )
-			);
-
+			this.$toggleFullscreen.button('option', 'label', this._i18n(this._fullscreenEnabled() ? 'toggleFullscreenLeave' : 'toggleFullscreenEnter'));
 			this._refreshButtonIcon.call(this.$toggleFullscreen, this);
 		},
 
@@ -7139,7 +7127,10 @@
 		_fullscreenAvailable: function() {
 			var element = document.documentElement;
 
-			var request = element.requestFullscreen ||		//W3C
+			var request = document.fullscreenEnabled ||
+				document.FullScreenEnabled ||
+				document.FullscreenEnabled ||
+				element.requestFullscreen ||		//W3C
 				element.requestFullScreen ||		//W3C
 				element.webkitRequestFullscreen ||	//Chrome etc.
 				element.webkitRequestFullScreen ||	//Chrome etc.
@@ -7154,9 +7145,9 @@
 		// detect if the browser is in fullscreen mode now;
 		// this function will never fire if fullscreen is not available
 		_fullscreenEnabled: function() {
-			var fullscreenElement = document.fullscreenEnabled ||
-				document.fullScreenEnabled ||
-				document.FullScreenEnabled ||
+			var fullscreenElement = document.fullscreenElement ||
+				document.FullScreenElement ||
+				document.FullscreenElement ||
 				document.mozFullScreenElement ||
 				document.mozFullscreenElement ||
 				document.webkitFullScreenElement ||
