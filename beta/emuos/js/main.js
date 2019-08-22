@@ -2,8 +2,213 @@
 (function(global) {
 	'use strict';
 
+	define('optional', [], {
+		load: function(name, req, onload, config) {
+			var onLoadSuccess = function(moduleInstance) {
+				onload(moduleInstance);
+			};
+
+			var onLoadFailure = function(err) {
+				var failedId = err.requireModules && err.requireModules[0];
+				console.warn('Could not load optional module: ' + failedId);
+
+				requirejs.undef(failedId);
+
+				// noinspection JSRedundantSwitchStatement
+				switch (failedId) {
+					default:
+						define(failedId, [], function(){return {};});
+						break;
+				}
+
+				req([failedId], onLoadSuccess);
+			};
+
+			req([name], onLoadSuccess, onLoadFailure);
+		},
+		normalize: function (name, normalize) {
+			return normalize(name);
+		}
+	});
+
+	define('github', [], {
+		load: function (name, req, onload, config) {
+			var obj = {
+				use_get_files_contents: false,
+				cache_prefix: 'github!',
+				cache: {},
+				storage_usable: SYSTEM_FEATURE_LOCAL_STORAGE,
+				get_cache: function (url) {
+					var item = obj.cache_prefix + url;
+					var ret = !!obj.cache[item] ? obj.cache[item] : false;
+
+					if (!ret && obj.storage_usable) {
+						var s_data = localStorage.getItem(item);
+
+						if (s_data) {
+							try {
+								s_data = JSON.parse(s_data);
+							} catch (e) {
+								s_data = false;
+							}
+
+							if (s_data) {
+								ret = obj.cache[url] = s_data;
+							}
+						}
+					}
+
+					return ret;
+				},
+				set_cache: function (url, data) {
+					var item = obj.cache_prefix + url;
+					obj.cache[item] = data;
+
+					if (obj.storage_usable) {
+						localStorage.setItem(item, JSON.stringify(data));
+					}
+				},
+				get_files_contents: function (data, cb) {
+					var tmp_data = JSON.parse(JSON.stringify(data));
+					var ret_data = [];
+					var files_count = 0;
+					var loaded_count = 0;
+
+					// noinspection JSDuplicatedDeclaration
+					for (var file_index in tmp_data) {
+						// noinspection JSDuplicatedDeclaration,JSUnfilteredForInLoop
+						var file = tmp_data[file_index];
+
+						if (file.type === 'file') {
+							files_count++;
+						}
+					}
+
+					// noinspection JSDuplicatedDeclaration
+					for (var file_index in tmp_data) {
+						// noinspection JSDuplicatedDeclaration,JSUnfilteredForInLoop
+						var file = tmp_data[file_index];
+
+						if (file.type === 'file') {
+							// noinspection JSUnresolvedVariable
+							obj.load_url({url: file.download_url}, function (data) {
+								loaded_count++;
+
+								// noinspection JSReferencingMutableVariableFromClosure
+								file.content = data.response;
+								// noinspection JSReferencingMutableVariableFromClosure
+								ret_data.push(file);
+
+								if (loaded_count === files_count) {
+									if (typeof cb === 'function') {
+										cb(ret_data);
+									}
+								}
+							});
+						} else {
+							ret_data.push(file);
+						}
+					}
+				},
+				load: function (url, cb) {
+					obj.use_get_files_contents = false;
+
+					if (!!url) {
+						if (url.indexOf('get-content!') !== -1) {
+							obj.use_get_files_contents = true;
+							url = url.split('get-content!').join('');
+						}
+
+						if (url.indexOf('https://api.github.com/repos/') === -1) {
+							url = 'https://api.github.com/repos/' + url;
+						}
+					}
+
+					var data = obj.get_cache(url) || {url: url};
+
+					obj.load_url(data, function (ret) {
+						if (obj.use_get_files_contents) {
+							if (Array.isArray(ret.response)) {
+								obj.get_files_contents(ret.response, cb);
+							} else if (typeof cb === 'function') {
+								cb(ret.response);
+							}
+						} else {
+							if (typeof cb === 'function') {
+								cb(ret.response);
+							}
+						}
+					});
+				},
+				load_url: function (data, cb) {
+					var xml_http = new XMLHttpRequest();
+
+					xml_http.onreadystatechange = function() {
+						if (xml_http.readyState === 4) {
+							var response = data.response || false;
+
+							if (xml_http.status === 200) {
+								try {
+									response = JSON.parse(xml_http.response);
+								} catch (e) {
+									response = xml_http.response;
+								}
+							}
+
+							var ret = data.url.indexOf('api.github.com') !== -1 ? {
+								url: data.url,
+								token: xml_http.getResponseHeader('ETag'),
+								limit_remaining: xml_http.getResponseHeader('X-RateLimit-Remaining'),
+								limit_reset: xml_http.getResponseHeader('X-RateLimit-Reset'),
+								last_modified: xml_http.getResponseHeader('Last-Modified'),
+								status: xml_http.status,
+								response: response
+							} : {
+								url: data.url,
+								status: xml_http.status,
+								response: response
+							};
+
+							if (xml_http.status === 200) {
+								obj.set_cache(data.url, ret);
+							}
+
+							if (typeof cb === 'function') {
+								cb(ret);
+							}
+						}
+					};
+
+					xml_http.open('GET', data.url);
+
+					if (data) {
+						if (data.token) {
+							xml_http.setRequestHeader('If-None-Match', data.token);
+						}
+
+						if (data.last_modified) {
+							xml_http.setRequestHeader('If-Modified-Since', data.last_modified);
+						}
+					}
+
+					xml_http.send();
+				}
+			};
+
+			// noinspection JSUnresolvedVariable
+			if (config.isBuild && config.inlineJSON === false) {
+				onload(null);
+			} else {
+				obj.load(name, onload);
+			}
+		},
+		normalize: function (name, normalize) {
+			return normalize(name);
+		}
+	});
+
 	// noinspection JSFileReferences
-	require.config({
+	requirejs.config({
 		waitSeconds: 300,
 		shim: {
 			jquerymousewheel: {
@@ -19,7 +224,7 @@
 				deps: ['jqueryui']
 			},
 			jquerycustomscrollbar: {
-				deps: ['jquery']
+				deps: ['jquerymousewheel']
 			},
 			jsrsasign: {
 				exports: 'KJUR'
@@ -31,13 +236,13 @@
 				deps: ['desktop']
 			},
 			filesystem: {
-				deps: ['jqueryui', 'jqyeryajaxretry', 'jsrsasign', 'octokat']
+				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
 			},
 			desktop: {
-				deps: ['window']
+				deps: ['window', 'jqueryuicontextmenu', 'filesystem']
 			},
 			taskbar: {
-				deps: ['filesystem']
+				deps: ['jqueryui']
 			},
 			window: {
 				deps: ['taskbar']
@@ -46,27 +251,22 @@
 				deps: ['taskbar']
 			}
 		},
-		map: {
-			'*': {
-				'jQuery': 'jquery'
-			}
-		},
 		paths: {
 			jquery: 'libraries/jquery-2.2.4.min',
-			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13.min',
+			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
 			jqueryuicontextmenu: 'libraries/jquery-ui-contextmenu-1.18.1.min',
 			jqueryuitree: 'libraries/jquery-ui-tree-3.0.0.min',
 			jquerycustomscrollbar: 'libraries/jquery-customscrollbar-3.1.5.min',
-			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.7.min',
+			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.8.min',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
 			base64: 'polyfills/es3-base64-1.0.1.min',
 			promise: 'polyfills/es6-promise-4.2.8.min',
 			fetch: 'polyfills/es6-fetch-3.0.0',
 			octokat: 'libraries/octokat-0.10.0',
-			json: 'libraries/requirejs-json-0.3.2',
+			json: 'libraries/requirejs-json-1.0.3',
+			noext: 'libraries/requirejs-noext-1.0.3',
 			text: 'libraries/requirejs-text-2.0.15',
-			optional: 'libraries/requirejs-optional-1.0.0',
 			emuos: 'emuos',
 			system: 'system',
 			filesystem: 'filesystem',
@@ -78,7 +278,7 @@
 	});
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
-	require([
+	requirejs([
 		'promise',
 		'text!../certs/emudisk.pem',
 		'jquery',

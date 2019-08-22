@@ -1,3 +1,4 @@
+// noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'octokat'], factory);
@@ -5,8 +6,10 @@
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
 				if (typeof window !== 'undefined') {
+					// noinspection NpmUsedModulesInstalled
 					jQuery = require('jquery');
 				} else {
+					// noinspection NpmUsedModulesInstalled
 					jQuery = require('jquery')(root);
 				}
 			}
@@ -115,6 +118,11 @@
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'
 			} , {
+				name: 'Notepad',
+				icon: 'vfat/apps/notepad/favicon.ico',
+				link: 'vfat/apps/notepad/index.html',
+				autostart: true
+			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
 				link: 'vfat/apps/paint/index.html'
@@ -205,10 +213,10 @@
 			start += '</ul>';
 		}
 
-		this.$body.append('<div class="desktop"></div><div class="taskbar">' + start + '</div>');
+		self.$body.append('<div class="desktop"></div><div class="taskbar">' + start + '</div>');
 
-		this.$desktop = $('.desktop').first();
-		this.$taskbar = $('.taskbar').first();
+		self.$desktop = $('.desktop').first();
+		self.$taskbar = $('.taskbar').first();
 
 		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop
@@ -238,6 +246,12 @@
 			if (typeof self.options.icons[j]['height'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.data('height', self.options.icons[j]['height']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof self.options.icons[j]['autostart'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-autostart', self.options.icons[j]['autostart'] ? 'true' : 'false').data('autostart', self.options.icons[j]['autostart']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -295,6 +309,8 @@
 			iconClass: '.icon',
 			parent: '.emuos-taskbar-windows-containment'
 		});
+
+		self.$desktop.find('[data-autostart="true"]').first().trigger('dblclick');
 
 		self.$html.contextmenu({
 			delegate: 'body, .emuos-taskbar',
@@ -386,6 +402,7 @@
 		return widget;
 	};
 
+	// noinspection DuplicatedCode
 	EmuOS.prototype.window = function (options) {
 		var self = this;
 
@@ -404,7 +421,6 @@
 			}
 		});
 
-		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',
@@ -460,14 +476,15 @@
 		return window.window('instance');
 	};
 
+	// noinspection DuplicatedCode
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var title	= typeof options.title	!== 'undefined' ? options.title		: '';
-		var icon	= typeof options.icon	!== 'undefined' ? options.icon		: '';
-		var src		= typeof options.src	!== 'undefined' ? options.src		: '';
-		var width	= typeof options.width	!== 'undefined' ? options.width		: 0;
-		var height	= typeof options.height	!== 'undefined' ? options.height	: 0;
+		var title		= typeof options.title		!== 'undefined' ? options.title		: '';
+		var icon		= typeof options.icon		!== 'undefined' ? options.icon		: '';
+		var src			= typeof options.src		!== 'undefined' ? options.src		: '';
+		var width		= typeof options.width		!== 'undefined' ? options.width		: 0;
+		var height		= typeof options.height		!== 'undefined' ? options.height	: 0;
 
 		// noinspection HtmlDeprecatedAttribute
 		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe src="' + src + '" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
@@ -491,7 +508,6 @@
 			}
 		});
 
-		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',

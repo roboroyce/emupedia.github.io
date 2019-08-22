@@ -34,7 +34,7 @@
 				repo: 'emupedia.github.io',
 				branch: 'master',
 				app_id: 18939,
-				app_install_id: 383274,
+				app_install_id: 1580976,
 				private_key: ''
 			}
 		};
