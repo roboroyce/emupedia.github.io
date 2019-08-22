@@ -210,47 +210,6 @@
 	// noinspection JSFileReferences
 	requirejs.config({
 		waitSeconds: 300,
-		shim: {
-			jquerymousewheel: {
-				deps: ['jquery']
-			},
-			jqueryui: {
-				deps: ['jquery']
-			},
-			jqueryuicontextmenu: {
-				deps: ['jqueryui']
-			},
-			jqueryuitree: {
-				deps: ['jqueryui']
-			},
-			jquerycustomscrollbar: {
-				deps: ['jquery']
-			},
-			jsrsasign: {
-				exports: 'KJUR'
-			},
-			octokat: {
-				deps: ['promise', 'fetch', 'base64']
-			},
-			emuos: {
-				deps: ['desktop']
-			},
-			filesystem: {
-				deps: ['jqueryui', 'jqyeryajaxretry', 'jsrsasign', 'octokat']
-			},
-			desktop: {
-				deps: ['window']
-			},
-			taskbar: {
-				deps: ['filesystem']
-			},
-			window: {
-				deps: ['taskbar']
-			},
-			lang: {
-				deps: ['taskbar']
-			}
-		},
 		paths: {
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
@@ -274,6 +233,50 @@
 			taskbar: 'taskbar',
 			window: 'window',
 			lang: 'lang-en'
+		},
+		shim: {
+			jquery: {
+				deps: ['system']
+			},
+			jquerymousewheel: {
+				deps: ['jquery']
+			},
+			jqueryui: {
+				deps: ['jquery']
+			},
+			jqueryuicontextmenu: {
+				deps: ['jqueryui']
+			},
+			jqueryuitree: {
+				deps: ['jqueryui']
+			},
+			jquerycustomscrollbar: {
+				deps: ['jquerymousewheel']
+			},
+			jsrsasign: {
+				exports: 'KJUR'
+			},
+			octokat: {
+				deps: ['promise', 'fetch', 'base64']
+			},
+			emuos: {
+				deps: ['desktop', 'filesystem']
+			},
+			filesystem: {
+				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
+			},
+			desktop: {
+				deps: ['window', 'lang', 'jqueryuicontextmenu']
+			},
+			taskbar: {
+				deps: ['jqueryui']
+			},
+			window: {
+				deps: ['taskbar']
+			},
+			lang: {
+				deps: ['taskbar']
+			}
 		}
 	});
 
@@ -285,19 +288,8 @@
 		'filesystem',
 		'emuos',
 		'../vfat/apps/webamp-classic/js/webamp',
-		'text!../vfat/apps/webamp-classic/js/views/layout.html',
-		'text!../vfat/apps/github-tree/index.html',
-		'desktop',
-		'taskbar',
-		'window',
-		'lang',
-		'system',
-		'jquerymousewheel',
-		'jqueryuicontextmenu',
-		'jqueryuitree',
-		'jquerycustomscrollbar',
-		'jqyeryajaxretry'
-	], function(Promise, github_private_key, $, FileSystem, EmuOS, Webamp, webamp_template, tree_template) {
+		'text!../vfat/apps/webamp-classic/js/views/layout.html'
+	], function(Promise, github_private_key, $, FileSystem, EmuOS, Webamp, webamp_template) {
 		if (!global.SYSTEM_FEATURE_ES6_PROMISES) {
 			// noinspection JSUnresolvedFunction
 			Promise.polyfill();
