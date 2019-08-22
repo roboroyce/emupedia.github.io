@@ -224,7 +224,7 @@
 				deps: ['jqueryui']
 			},
 			jquerycustomscrollbar: {
-				deps: ['jquerymousewheel']
+				deps: ['jquery']
 			},
 			jsrsasign: {
 				exports: 'KJUR'
@@ -236,13 +236,13 @@
 				deps: ['desktop']
 			},
 			filesystem: {
-				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
+				deps: ['jqueryui', 'jqyeryajaxretry', 'jsrsasign', 'octokat']
 			},
 			desktop: {
-				deps: ['window', 'jqueryuicontextmenu', 'filesystem']
+				deps: ['window']
 			},
 			taskbar: {
-				deps: ['jqueryui']
+				deps: ['filesystem']
 			},
 			window: {
 				deps: ['taskbar']
