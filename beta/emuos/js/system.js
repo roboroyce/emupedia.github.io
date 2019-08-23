@@ -3,6 +3,7 @@
 // region Console
 
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
 		console.table = function(arr) {
@@ -95,6 +96,7 @@ if (!String.prototype.startsWith) {
 }
 
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (!String.prototype.endsWith) {
 	console.log('String.prototype.endsWith polyfill loaded!');
 	String.prototype.endsWith = function(search, this_len) {
@@ -107,6 +109,7 @@ if (!String.prototype.endsWith) {
 }
 
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (!String.prototype.repeat) {
 	console.log('String.prototype.repeat polyfill loaded!');
 	String.prototype.repeat = function(count) {
@@ -152,6 +155,7 @@ if (!String.prototype.repeat) {
 }
 
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (!String.prototype.padStart) {
 	console.log('String.prototype.padStart polyfill loaded!');
 	String.prototype.padStart = function padStart(targetLength, padString) {
@@ -176,6 +180,7 @@ if (!String.prototype.padStart) {
 
 // region Array
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (!Array.from) {
 	console.log('Array.from polyfill loaded!');
 	Array.from = (function() {
@@ -257,6 +262,7 @@ if (!Array.from) {
 }
 
 // IE 11.345.17134.0
+// noinspection DuplicatedCode
 if (!Array.prototype.fill) {
 	console.log('Array.prototype.fill polyfill loaded!');
 	Object.defineProperty(Array.prototype, 'fill', {
@@ -301,8 +307,10 @@ if (!Array.prototype.fill) {
 
 // region Object
 // IE 7/8
+// noinspection DuplicatedCode
 if (!Object.keys) {
 	console.log('Object.keys polyfill loaded!');
+	// noinspection DuplicatedCode
 	Object.keys = (function() {
 		'use strict';
 		var hasOwnProperty = Object.prototype.hasOwnProperty,
@@ -586,11 +594,11 @@ if (typeof Float64Array !== 'undefined') {
 
 // endregion
 
-// noinspection ThisExpressionReferencesGlobalObjectJS
+// noinspection ThisExpressionReferencesGlobalObjectJS,DuplicatedCode
 (function(global) {
 	// region System
 
-	// noinspection JSUnusedLocalSymbols,DuplicatedCode
+	// noinspection JSUnusedLocalSymbols
 	var platform								= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
 	var browser									= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
 	var version									= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
@@ -936,6 +944,22 @@ if (typeof Float64Array !== 'undefined') {
 	global.SYSTEM_FEATURE_ES6_MODULES			= SYSTEM_FEATURE_ES6_STATIC_MODULES && SYSTEM_FEATURE_ES6_DYNAMIC_MODULES;
 	global.SYSTEM_FEATURE_ES6					= SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6_NUMBER && SYSTEM_FEATURE_ES6_MATH && SYSTEM_FEATURE_ES6_ARRAY && SYSTEM_FEATURE_ES6_FUNCTION && SYSTEM_FEATURE_ES6_OBJECT && SYSTEM_FEATURE_ES6_CLASS && SYSTEM_FEATURE_ES6_STRING && SYSTEM_FEATURE_ES6_COLLECTIONS && SYSTEM_FEATURE_ES6_GENERATORS && SYSTEM_FEATURE_ES6_PROMISES && (SYSTEM_FEATURE_ES6_STATIC_MODULES || SYSTEM_FEATURE_ES6_DYNAMIC_MODULES);
 
+	global.SYSTEM_FEATURE_ES7_ASYNC_AWAIT		= (function() {
+		var isAsync = true;
+
+		try {
+			eval('async () => {}');
+		} catch (e) {
+			if (e instanceof SyntaxError) {
+				isAsync = false;
+			} else {
+				throw e;
+			}
+		}
+
+		return isAsync;
+	})();
+
 	global.SYSTEM_INFO_OS						= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
 	global.SYSTEM_INFO_OS_VERSION				= (function() {
 		var offset, version = undefined;
@@ -1231,6 +1255,9 @@ if (typeof Float64Array !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_ES6',
 			Value: SYSTEM_FEATURE_ES6 ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_ES7_ASYNC_AWAIT',
+			Value: SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_FEATURE_WORKERS',
 			Value: SYSTEM_FEATURE_WORKERS ? 'TRUE' : 'FALSE'
