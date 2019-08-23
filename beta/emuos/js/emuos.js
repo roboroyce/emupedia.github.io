@@ -93,11 +93,15 @@
 			} , {
 				name: 'Doom 1',
 				icon: 'vfat/games/doom1/favicon.gif',
-				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html'
+				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				width: 800,
+				height: 500
 			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
-				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html')
+				link: 'vfat/games/quake1/index.html',
+				width: 800,
+				height: 600
 			} , {
 				name: 'Diablo 1',
 				icon: 'vfat/games/diablo1/favicon.ico',
@@ -121,15 +125,21 @@
 				name: 'Notepad',
 				icon: 'vfat/apps/notepad/favicon.ico',
 				link: 'vfat/apps/notepad/index.html',
+				width: 800,
+				height: 600,
 				autostart: true
 			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
-				link: 'vfat/apps/paint/index.html'
+				link: 'vfat/apps/paint/index.html',
+				width: 800,
+				height: 600
 			} , {
 				name: 'SVG Editor',
 				icon: 'vfat/apps/svg-editor/favicon.ico',
-				link: 'vfat/apps/svg-editor/index.html'
+				link: 'vfat/apps/svg-editor/index.html',
+				width: 800,
+				height: 600
 			}]
 		};
 
