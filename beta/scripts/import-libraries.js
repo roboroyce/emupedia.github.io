@@ -1504,8 +1504,8 @@ function install(install_directory, dependency, version) {
 								} else {
 									replace({
 										files: install_directory + css_directory + 'jquery-ui-' + version + '.min.css',
-										from: /images\//gi,
-										to: '../images/themes/basic/'
+										from: /url\("images\//gi,
+										to: 'url("../images/themes/basic/'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
@@ -1517,8 +1517,8 @@ function install(install_directory, dependency, version) {
 												} else {
 													replace({
 														files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
-														from: /images\//gi,
-														to: '../images/themes/basic/'
+														from: /url\("images\//gi,
+														to: 'url("../images/themes/basic/'
 													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
