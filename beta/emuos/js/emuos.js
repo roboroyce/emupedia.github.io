@@ -99,7 +99,7 @@
 			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
-				link: 'vfat/games/quake1/index.html',
+				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
 				width: 800,
 				height: 600
 			} , {
