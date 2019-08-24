@@ -11,6 +11,7 @@ const scss_directory		= `${packages.config.scss_dir}/`;
 const css_directory			= `${packages.config.css_dir}/`;
 // const pug_directory			= `${packages.config.pug_dir}/`;
 const libraries_directory	= `${packages.config.library_dir}/`;
+const polyfills_directory	= `${packages.config.polyfill_dir}/`;
 const nodemodules_directory	= `${__dirname}/../../node_modules/`;
 
 // noinspection JSUnusedGlobalSymbols
@@ -1001,6 +1002,37 @@ function install(install_directory, dependency, version) {
 								} else {
 									//noinspection JSUnresolvedFunction
 									fs.copy(nodemodules_directory + dependency + '/css/select.bootstrap4.css', install_directory + css_directory + 'datatables-select-bootstrap4-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'es6-promise':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.js', install_directory + polyfills_directory + dependency + '-auto-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.js', install_directory + polyfills_directory + dependency + '-auto-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + polyfills_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + polyfills_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {

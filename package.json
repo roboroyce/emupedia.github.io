@@ -74,6 +74,7 @@
 		"simplestorage.js": "^0.2.1",
 		"stylus": "^0.54.7",
 		"ui-contextmenu": "^1.18.1",
+		"whatwg-fetch": "^3.0.0",
 		"wright": "^1.2.9"
 	},
 	"config": {
@@ -87,7 +88,8 @@
 		"css_dir": "css",
 		"pug_dir": "pug",
 		"js_dir": "js",
-		"library_dir": "js/libraries"
+		"library_dir": "js/libraries",
+		"polyfill_dir": "js/polyfills"
 	},
 	"scripts": {
 		"start": "node ./beta/scripts/start",
