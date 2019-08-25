@@ -211,6 +211,8 @@
 	requirejs.config({
 		waitSeconds: 300,
 		paths: {
+			browserfs: 'libraries/browserfs-1.4.3.min',
+			dropbox: 'libraries/dropbox-4.0.30.min',
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',

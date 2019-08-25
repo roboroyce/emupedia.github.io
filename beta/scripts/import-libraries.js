@@ -432,7 +432,7 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'bootstrap-slider':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + 'bootstrap-slider-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + 'bootstrap-slider-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
@@ -468,6 +468,23 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'browserfs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
 				}
 			});
 			break;
@@ -1041,6 +1058,23 @@ function install(install_directory, dependency, version) {
 									});
 								}
 							});
+						}
+					});
+				}
+			});
+			break;
+		case 'dropbox':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
 						}
 					});
 				}
