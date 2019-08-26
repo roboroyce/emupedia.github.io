@@ -79,6 +79,12 @@
 				width: 720,
 				height: 480
 			} , {
+				name: 'RomCenter 3.71',
+				icon: 'vfat/apps/romcenter/favicon.ico',
+				link: 'vfat/apps/romcenter/index.html',
+				width: 800,
+				height: 600
+			} , {
 				name: 'DOSBox 0.74',
 				icon: 'vfat/apps/dosbox/favicon.ico',
 				link: 'vfat/apps/dosbox/index.html',
