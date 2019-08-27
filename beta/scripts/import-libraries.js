@@ -1268,6 +1268,23 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'hybrids':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
 		case 'inobounce':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
@@ -2661,6 +2678,23 @@ function install(install_directory, dependency, version) {
 				} else {
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/dist/lazyload.js', install_directory + libraries_directory + 'lazyload-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/webcomponentsjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'es6-webcomponents-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'es6-webcomponents-' + version + '.min.js.map', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {

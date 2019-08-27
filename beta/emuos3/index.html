@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="format-detection" content="telephone=no">
+		<title>Emupedia</title>
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<h1>&lt;simple-counter&gt;</h1>
+
+		<p>
+			This example shows how to use <strong>hybrids</strong> library
+			to create a simple custom element.
+		</p>
+
+		<section>
+			<h2>Without attributes</h2>
+			<pre>&lt;simple-counter&gt;&lt;/simple-counter&gt;</pre>
+
+			<section>
+				<!-- code example -->
+				<simple-counter></simple-counter>
+				<!-- code example -->
+			</section>
+
+			<p>
+				Click to increase count value. Try to change <strong>count</strong>
+				property value with developer tools.
+			</p>
+		</section>
+		<section>
+			<h2>With count attribute</h2>
+			<pre>&lt;simple-counter count=&quot;10&quot;&gt;&lt;/simple-counter&gt;</pre>
+
+			<section>
+				<!-- code example -->
+				<simple-counter count="10"></simple-counter>
+				<!-- code example -->
+			</section>
+
+			<p>
+				The element is initialized with <strong>count</strong> set to 10.
+				You can still change it manually by setting property in developer tools.
+			</p>
+		</section>
+
+		<script src="js/polyfills/es6-webcomponents-2.2.10.min.js"></script>
+		<script src="js/libraries/hybrids-4.0.2.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

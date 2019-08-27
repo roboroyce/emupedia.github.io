@@ -103,6 +103,12 @@
 				width: 800,
 				height: 500
 			} , {
+				name: 'Doom 3',
+				icon: 'vfat/games/doom3/favicon.ico',
+				link: 'vfat/games/doom3/index.html',
+				width: 800,
+				height: 600
+			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
 				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
