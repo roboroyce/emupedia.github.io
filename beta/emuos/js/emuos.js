@@ -317,10 +317,14 @@
 
 		// noinspection JSUnresolvedFunction
 		self.$taskbar.taskbar({
+			//windowsContainment: 'viewport',
+			windowsContainment: 'visible',
+			horizontalStick: 'bottom left',
+			horizontalWidth: '100%',
 			draggable: true,
 			resizable: true,
 			resizableHandleOffset: 1,
-			minimizeAll: false,
+			minimizeAll: true,
 			languageSelect: false,
 			toggleFullscreen: true,
 			clock: true
