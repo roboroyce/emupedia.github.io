@@ -6,6 +6,7 @@
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
+		// noinspection DuplicatedCode
 		console.table = function(arr) {
 			var i, obj, keys, arr_len = arr.length;
 
@@ -27,7 +28,7 @@ if (typeof console !== 'undefined') {
 	} else if (typeof postMessage !== 'undefined') {
 		// Worker
 		// Safari 5.1.7 (7534.57.2)
-		// noinspection JSValidateTypes
+		// noinspection JSValidateTypes,DuplicatedCode
 		console = {
 			log: function (str) {
 				//noinspection JSCheckFunctionSignatures
@@ -667,9 +668,10 @@ if (typeof Float64Array !== 'undefined') {
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_SHARED_WORKERS		= !!global.SharedWorker;
 	global.SYSTEM_FEATURE_SERVICE_WORKERS		= 'serviceWorker' in navigator;
+	// noinspection DuplicatedCode
 	global.SYSTEM_FEATURE_TYPED_ARRAYS			= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
 	global.SYSTEM_FEATURE_BIGINTS				= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
-	// noinspection JSUnresolvedVariable,JSUnusedGlobalSymbols
+	// noinspection JSUnresolvedVariable,JSUnusedGlobalSymbols,DuplicatedCode
 	global.SYSTEM_FEATURE_SIMD					= typeof SIMD !== 'undefined' ? typeof SIMD.Bool16x8 !== 'undefined' && typeof SIMD.Bool32x4 !== 'undefined' && typeof SIMD.Bool8x16 !== 'undefined' && typeof SIMD.Float32x4 !== 'undefined' && typeof SIMD.Int16x8 !== 'undefined' && typeof SIMD.Int32x4 !== 'undefined' && typeof SIMD.Int8x16 !== 'undefined' && typeof SIMD.Uint32x4 !== 'undefined' && typeof SIMD.Uint8x16 !== 'undefined' : false;
 	global.SYSTEM_FEATURE_ASMJS					= (function() {
 		try {
@@ -709,12 +711,20 @@ if (typeof Float64Array !== 'undefined') {
 	global.SYSTEM_FEATURE_PERFORMANCE			= !!global.performance ? true : !!global.webkitPerformance || !!global.mozPerformance || !!global.msPerformance || !!global.oPerformance;
 	global.SYSTEM_FEATURE_TIMERS				= SYSTEM_FEATURE_ANIMATION_FRAME && SYSTEM_FEATURE_PERFORMANCE;
 
-	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS		= 'customElements' in global || 'registerElement' in document;
+	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0	= 'registerElement' in document;
+	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1	= 'customElements' in global;
+	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 || SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_SHADOW_DOM			= 'attachShadow' in document.createElement('div') ? true : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div');
-	global.SYSTEM_FEATURE_TEMPLATES				= 'content' in document.createElement('template');
-	global.SYSTEM_FEATURE_IMPORTS				= 'import' in document.createElement('link');
-	global.SYSTEM_FEATURE_WEBCOMPONENTS			= SYSTEM_FEATURE_CUSTOM_ELEMENTS && SYSTEM_FEATURE_SHADOW_DOM && SYSTEM_FEATURE_TEMPLATES && SYSTEM_FEATURE_IMPORTS;
+	global.SYSTEM_FEATURE_SHADOW_DOM_V0			= 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') || 'mozCreateShadowRoot' in document.createElement('div');
+	global.SYSTEM_FEATURE_SHADOW_DOM_V1			= 'attachShadow' in document.createElement('div');
+	global.SYSTEM_FEATURE_SHADOW_DOM			= SYSTEM_FEATURE_SHADOW_DOM_V0 || SYSTEM_FEATURE_SHADOW_DOM_V1;
+	global.SYSTEM_FEATURE_HTML_IMPORTS			= 'import' in document.createElement('link');
+	global.SYSTEM_FEATURE_TEMPLATE				= 'content' in document.createElement('template');
+	global.SYSTEM_FEATURE_TEMPLATE_SLOT			= 'name' in document.createElement('slot');
+	global.SYSTEM_FEATURE_TEMPLATES				= SYSTEM_FEATURE_TEMPLATE && SYSTEM_FEATURE_TEMPLATE_SLOT;
+	global.SYSTEM_FEATURE_WEBCOMPONENTS_V0		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 && SYSTEM_FEATURE_SHADOW_DOM_V0 && SYSTEM_FEATURE_HTML_IMPORTS;
+	global.SYSTEM_FEATURE_WEBCOMPONENTS_V1		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1 && SYSTEM_FEATURE_SHADOW_DOM_V1 && SYSTEM_FEATURE_TEMPLATES;
+	global.SYSTEM_FEATURE_WEBCOMPONENTS			= SYSTEM_FEATURE_WEBCOMPONENTS_V0 || SYSTEM_FEATURE_WEBCOMPONENTS_V1;
 
 	global.SYSTEM_FEATURE_SVG					= !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
 	global.SYSTEM_FEATURE_CANVAS				= !!(context2D && context2D instanceof CanvasRenderingContext2D);
@@ -764,6 +774,7 @@ if (typeof Float64Array !== 'undefined') {
 			}
 		}
 	})();
+	// noinspection DuplicatedCode
 	global.SYSTEM_FEATURE_SESSION_STORAGE		= (function() {
 		var mod = 'test';
 
@@ -781,6 +792,7 @@ if (typeof Float64Array !== 'undefined') {
 
 		return false;
 	})();
+	// noinspection DuplicatedCode
 	global.SYSTEM_FEATURE_LOCAL_STORAGE			= (function() {
 		var mod = 'test';
 
@@ -817,6 +829,8 @@ if (typeof Float64Array !== 'undefined') {
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_BATTERY				= !!navigator.getBattery ? true : !!navigator.battery || !!navigator.mozBattery;
 	// TODO: implement check for Generic Sensor API
+
+	global.SYSTEM_FEATURE_CSS_VARIABLES			= global.CSS && CSS.supports('color', 'var(--fake-var)');
 
 	global.SYSTEM_FEATURE_ES3_BASE64			= 'btoa' in global && 'atob' in global;
 	global.SYSTEM_FEATURE_ES3					= SYSTEM_FEATURE_ES3_BASE64;
@@ -961,6 +975,7 @@ if (typeof Float64Array !== 'undefined') {
 	})();
 
 	global.SYSTEM_INFO_OS						= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
+	// noinspection DuplicatedCode
 	global.SYSTEM_INFO_OS_VERSION				= (function() {
 		var offset, version = undefined;
 
@@ -1024,6 +1039,7 @@ if (typeof Float64Array !== 'undefined') {
 
 	global.SYSTEM_INFO_ENVIRONMENT				= global.isBrowser ? 'Browser' : (global.isWorker ? 'Worker' : (global.isNode ? 'Node' : 'Shell'));
 	global.SYSTEM_INFO_BROWSER					= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isNetscape ? 'Netscape Navigator' : (global.isKMeleon ? 'K-Meleon' : (global.isPaleMoon ? 'PaleMoon' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isElectron ? 'Electron' : (global.isVivaldi ? 'Vivaldi' : (global.isChromium ? 'Chromium' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined)))))))))));
+	// noinspection DuplicatedCode
 	global.SYSTEM_INFO_BROWSER_VERSION			= (function() {
 		var offset, version = undefined;
 
@@ -1172,6 +1188,9 @@ if (typeof Float64Array !== 'undefined') {
 			Feature: 'SYSTEM_INFO_VIDEO_ACCELERATION',
 			Value: SYSTEM_INFO_VIDEO_ACCELERATION
 		} , {
+			Feature: 'SYSTEM_FEATURE_CSS_VARIABLES',
+			Value: SYSTEM_FEATURE_CSS_VARIABLES ? 'TRUE' : 'FALSE'
+		} , {
 			Feature: 'SYSTEM_FEATURE_ES3_BASE64',
 			Value: SYSTEM_FEATURE_ES3_BASE64 ? 'TRUE' : 'FALSE'
 		} , {
@@ -1291,18 +1310,6 @@ if (typeof Float64Array !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_TIMERS',
 			Value: SYSTEM_FEATURE_TIMERS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_CUSTOM_ELEMENTS',
-			Value: SYSTEM_FEATURE_CUSTOM_ELEMENTS ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_SHADOW_DOM',
-			Value: SYSTEM_FEATURE_SHADOW_DOM ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_TEMPLATES',
-			Value: SYSTEM_FEATURE_TEMPLATES ? 'TRUE' : 'FALSE'
-		} , {
-			Feature: 'SYSTEM_FEATURE_IMPORTS',
-			Value: SYSTEM_FEATURE_IMPORTS ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_FEATURE_WEBCOMPONENTS',
 			Value: SYSTEM_FEATURE_WEBCOMPONENTS ? 'TRUE' : 'FALSE'
