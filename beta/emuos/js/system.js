@@ -645,9 +645,9 @@ if (typeof Float64Array !== 'undefined') {
 	var canvas2D								= document.createElement('canvas');
 	var context2D								= typeof canvas2D !== 'undefined' ? (typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false) : false;
 	var canvasWEBGL								= null;
-	var	contextWEBGL							= false;
+	var contextWEBGL							= false;
 	var canvasWEBGL2							= null;
-	var	contextWEBGL2							= false;
+	var contextWEBGL2							= false;
 
 	if (context2D) {
 		try {
@@ -666,6 +666,54 @@ if (typeof Float64Array !== 'undefined') {
 	// noinspection JSUnresolvedVariable
 	global.SYSTEM_FEATURE_SHARED_WORKERS		= !!global.SharedWorker;
 	global.SYSTEM_FEATURE_SERVICE_WORKERS		= 'serviceWorker' in navigator;
+	global.SYSTEM_FEATURE_URL_PARSER			= (function() {
+		try {
+			var root = global.location.protocol + '//' + global.location.host + '/';
+			var url = new URL(root);
+
+			return url.href === root;
+		} catch (e) {
+			return false;
+		}
+	})();
+	global.SYSTEM_FEATURE_URL_BLOB				= SYSTEM_FEATURE_URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
+	global.SYSTEM_FEATURE_DATA_URL				= (function() {
+		function testlimit() {
+			var datauribig = new Image();
+
+			datauribig.onerror = function() {
+				global.SYSTEM_FEATURE_DATA_URL = false;
+			};
+
+			datauribig.onload = function() {
+				global.SYSTEM_FEATURE_DATA_URL = datauribig.width === 1 && datauribig.height === 1;
+			};
+
+			var base64str = 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+			while (base64str.length < 63000) {
+				base64str = '\r\n' + base64str;
+			}
+
+			datauribig.src = 'data:image/gif;base64,' + base64str;
+		}
+
+		var dataurl = new Image();
+
+		dataurl.onerror = function() {
+			global.SYSTEM_FEATURE_DATA_URL = false;
+		};
+
+		dataurl.onload = function() {
+			if (dataurl.width === 1 && dataurl.height === 1) {
+				testlimit();
+			} else {
+				global.SYSTEM_FEATURE_DATA_URL = false;
+			}
+		};
+
+		dataurl.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+	})();
 	// noinspection DuplicatedCode
 	global.SYSTEM_FEATURE_TYPED_ARRAYS			= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
 	global.SYSTEM_FEATURE_BIGINTS				= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
@@ -1289,6 +1337,15 @@ if (typeof Float64Array !== 'undefined') {
 		} , {
 			Feature: 'SYSTEM_FEATURE_TYPED_ARRAYS',
 			Value: SYSTEM_FEATURE_TYPED_ARRAYS ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_URL_PARSER',
+			Value: SYSTEM_FEATURE_URL_PARSER ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_URL_BLOB',
+			Value: SYSTEM_FEATURE_URL_BLOB ? 'TRUE' : 'FALSE'
+		} , {
+			Feature: 'SYSTEM_FEATURE_DATA_URL',
+			Value: SYSTEM_FEATURE_DATA_URL ? 'TRUE' : 'FALSE'
 		} , {
 			Feature: 'SYSTEM_FEATURE_BIGINTS',
 			Value: SYSTEM_FEATURE_BIGINTS ? 'TRUE' : 'FALSE'
