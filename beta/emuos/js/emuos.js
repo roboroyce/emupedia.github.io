@@ -89,7 +89,7 @@
 				icon: 'vfat/apps/dosbox/favicon.ico',
 				link: 'vfat/apps/dosbox/index.html',
 				width: 640,
-				height: 502
+				height: 422
 			} , {
 				name: 'Wolfenstein 3D',
 				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
