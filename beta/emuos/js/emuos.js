@@ -115,6 +115,12 @@
 				width: 800,
 				height: 500
 			} , {
+				name: 'Doom 2: Hell on Earth',
+				icon: 'vfat/games/doom2/favicon.gif',
+				link: 'vfat/games/doom2/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				width: 800,
+				height: 500
+			} , {
 				name: 'Doom 3',
 				icon: 'vfat/games/doom3/favicon.ico',
 				link: 'vfat/games/doom3/index.html',
