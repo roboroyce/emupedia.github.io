@@ -607,8 +607,6 @@ if (typeof Float64Array !== 'undefined') {
 	// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
 	var oscpu									= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
-	global.console.log(browser);
-
 	global.isIE									= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
 	global.isNetscape							= browser.indexOf('Navigator') !== -1;
 	global.isKMeleon							= browser.indexOf('K-Meleon') !== -1;
@@ -1159,7 +1157,9 @@ if (typeof Float64Array !== 'undefined') {
 	// region Functions
 
 	// noinspection JSUnusedLocalSymbols
-	var dumpSystem = function() {
+	global.dumpsystem = function() {
+		global.console.log(typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '');
+
 		var dump = [{
 			Feature: 'SYSTEM_INFO_OS',
 			Value: SYSTEM_INFO_OS + ' ' + SYSTEM_INFO_OS_VERSION
@@ -1421,7 +1421,7 @@ if (typeof Float64Array !== 'undefined') {
 		} else {
 			global.console.table(dump);
 		}
-	}();
+	};
 
 	// endregion
 
