@@ -79,6 +79,18 @@
 				width: 720,
 				height: 480
 			} , {
+				name: 'Spatial Audio (Demo)',
+				icon: 'vfat/games/spatial-audio/favicon.ico',
+				link: 'vfat/games/spatial-audio/index.html',
+				width: 800,
+				height: 600
+			} , {
+				name: 'Voxel Space (Demo)',
+				icon: 'vfat/games/voxel-space/favicon.ico',
+				link: 'vfat/games/voxel-space/index.html',
+				width: 800,
+				height: 600
+			} , {
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',
 				link: 'vfat/apps/romcenter/index.html',
