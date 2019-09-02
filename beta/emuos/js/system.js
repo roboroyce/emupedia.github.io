@@ -15,12 +15,12 @@ window.isNetscape							= browser.indexOf('Navigator') !== -1;
 window.isKMeleon							= browser.indexOf('K-Meleon') !== -1;
 window.isPaleMoon							= browser.indexOf('PaleMoon') !== -1;
 window.isFirefox							= !window.isNetscape && !window.isPaleMoon && browser.indexOf('Firefox') !== -1;
-window.isChrome								= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.';
+window.isChrome								= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.' || !!window.chrome;
 
 window.isEdgeHTML							= browser.indexOf('Edge') !== -1;
 window.isEdgeBlink							= window.isChrome && browser.indexOf('Edg/') !== -1;
 window.isEdge								= window.isEdgeHTML || window.isEdgeBlink;
-window.isChromium							= window.isChrome && browser.indexOf('Chromium') !== -1;
+window.isChromium							= window.isChrome && !window.chrome;
 window.isVivaldi							= window.isChrome && browser.indexOf('Vivaldi') !== -1;
 window.isElectron							= window.isChrome && browser.indexOf('Electron') !== -1;
 window.isOperaPresto						= browser.indexOf('Opera') !== -1;
