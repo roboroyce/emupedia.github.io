@@ -2372,7 +2372,17 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					log.log(dependency + ' version ' + version + ' installed!');
+					replace({
+						files: install_directory + polyfills_directory + 'es6-pointer-events-' + version + '.js',
+						from: /const /g,
+						to: 'var '
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
 				}
 			});
 			break;
@@ -2890,6 +2900,33 @@ function install(install_directory, dependency, version) {
 						} else {
 							//noinspection JSUnresolvedFunction
 							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/html-imports':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/html-imports.min.js', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					replace({
+						files: install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js',
+						from: '//# sourceMappingURL=html-imports.min.js.map',
+						to: '//# sourceMappingURL=es6-html-imports-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/html-imports.min.js.map', install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js.map', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {

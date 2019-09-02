@@ -31,6 +31,10 @@
 	},
 	"devDependencies": {
 		"@webcomponents/custom-elements": "^1.2.4",
+		"@webcomponents/html-imports": "^1.2.1",
+		"@webcomponents/shadycss": "^1.9.1",
+		"@webcomponents/shadydom": "^1.6.0",
+		"@webcomponents/template": "^1.4.0",
 		"@webcomponents/webcomponentsjs": "^2.2.10",
 		"acorn": "^7.0.0",
 		"animate.css": "^3.7.2",
