@@ -1,5 +1,52 @@
 // region Polyfills
 
+// region Browsers
+
+// noinspection JSUnusedLocalSymbols
+var platform								= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
+var browser									= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
+var version									= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
+var vendor									= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
+// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
+var oscpu									= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
+
+window.isIE									= !window.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
+window.isNetscape							= browser.indexOf('Navigator') !== -1;
+window.isKMeleon							= browser.indexOf('K-Meleon') !== -1;
+window.isPaleMoon							= browser.indexOf('PaleMoon') !== -1;
+window.isFirefox							= !window.isNetscape && !window.isPaleMoon && browser.indexOf('Firefox') !== -1;
+window.isChrome								= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.';
+
+window.isEdgeHTML							= browser.indexOf('Edge') !== -1;
+window.isEdgeBlink							= window.isChrome && browser.indexOf('Edg/') !== -1;
+window.isEdge								= window.isEdgeHTML || window.isEdgeBlink;
+window.isChromium							= window.isChrome && browser.indexOf('Chromium') !== -1;
+window.isVivaldi							= window.isChrome && browser.indexOf('Vivaldi') !== -1;
+window.isElectron							= window.isChrome && browser.indexOf('Electron') !== -1;
+window.isOperaPresto						= browser.indexOf('Opera') !== -1;
+window.isOperaBlink							= window.isChrome && browser.indexOf('OPR') !== -1;
+window.isOpera								= window.isOperaPresto || window.isOperaBlink;
+window.isSafari								= browser.indexOf('Safari') !== -1 || vendor === 'Apple Computer, Inc.';
+window.isOther								= !(window.isIE && window.isEdge && window.isFirefox && window.isChrome && window.isOpera && window.isSafari);
+
+window.isWindows							= version.indexOf('Win') !== -1;
+window.isMacOS								= version.indexOf('Mac') !== -1;
+window.isUNIX								= version.indexOf('X11') !== -1;
+window.isLinux								= version.indexOf('Linux') !== -1;
+
+window.is64									= browser.indexOf('WOW64') !== -1 || browser.indexOf('Win64') !== -1 || browser.indexOf('amd64') !== -1 || browser.indexOf('x86_64') !== -1;
+window.is32									= !window.is64 ? (browser.indexOf('WOW32') !== -1 || browser.indexOf('Win32') !== -1 || browser.indexOf('i386') !== -1 || browser.indexOf('i686') !== -1) : true;
+
+window.isMobile								= browser.indexOf('Mobi') !== -1;
+window.isDesktop							= !window.isMobile;
+
+window.isBrowser							= !!(typeof window === 'object' && typeof navigator === 'object' && document);
+window.isWorker								= typeof importScripts === 'function' && typeof postMessage === 'function' && !window.isBrowser;
+window.isNode								= typeof process === 'object' && typeof require === 'function' && !window.isBrowser && !window.isWorker;
+window.isShell								= !(window.isBrowser && window.isWorker && window.isNode);
+
+// endregion
+
 // region Console
 // IE 11.345.17134.0
 // noinspection DuplicatedCode
@@ -47,10 +94,110 @@ if (typeof console !== 'undefined') {
 }
 // endregion
 
+// region Misc
+
 if (!('head' in document)) {
 	// noinspection JSValidateTypes
 	document.head = document.getElementsByTagName('head')[0];
 }
+
+// endregion
+
+// region Events
+
+// defaultPrevented is broken in IE.
+// https://connect.microsoft.com/IE/feedback/details/790389/event-defaultprevented-returns-false-after-preventdefault-was-called
+var workingDefaultPrevented = (function() {
+	var e = document.createEvent('Event');
+	e.initEvent('foo', true, true);
+	e.preventDefault();
+	return e.defaultPrevented;
+})();
+
+if (!workingDefaultPrevented) {
+	var origPreventDefault = Event.prototype.preventDefault;
+	Event.prototype.preventDefault = function() {
+		if (!this.cancelable) {
+			return;
+		}
+
+		origPreventDefault.call(this);
+
+		Object.defineProperty(this, 'defaultPrevented', {
+			get: function() {
+				return true;
+			},
+			configurable: true
+		});
+	};
+}
+
+// Event constructor shim
+if (!window.Event || window.isIE && (typeof window.Event !== 'function')) {
+	var origEvent = window.Event;
+	/**
+	 * @param {!string} inType
+	 * @param {?(EventInit)=} params
+	 */
+	window.Event = function(inType, params) {
+		params = params || {};
+		var e = document.createEvent('Event');
+		e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable));
+		return e;
+	};
+
+	if (origEvent) {
+		// noinspection JSDuplicatedDeclaration
+		for (var i in origEvent) {
+			// noinspection JSUnfilteredForInLoop
+			window.Event[i] = origEvent[i];
+		}
+
+		window.Event.prototype = origEvent.prototype;
+	}
+}
+
+// CustomEvent constructor shim
+if (!window.CustomEvent || window.isIE && (typeof window.CustomEvent !== 'function')) {
+	// noinspection JSValidateTypes
+	window.CustomEvent = function(inType, params) {
+		params = params || {};
+		var e = /** @type {!CustomEvent} */ (document.createEvent('CustomEvent'));
+		e.initCustomEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable), params.detail);
+		return e;
+	};
+
+	window.CustomEvent.prototype = window.Event.prototype;
+}
+
+if (!window.MouseEvent || window.isIE && (typeof window.MouseEvent !== 'function')) {
+	var origMouseEvent = window.MouseEvent;
+
+	// noinspection JSValidateTypes
+	window.MouseEvent = function(inType, params) {
+		params = params || {};
+		var e = document.createEvent('MouseEvent');
+		e.initMouseEvent(inType,
+			Boolean(params.bubbles), Boolean(params.cancelable),
+			params.view || window, params.detail,
+			params.screenX, params.screenY, params.clientX, params.clientY,
+			params.ctrlKey, params.altKey, params.shiftKey, params.metaKey,
+			params.button, params.relatedTarget);
+		return e;
+	};
+
+	if (origMouseEvent) {
+		// noinspection JSDuplicatedDeclaration
+		for (var i in origMouseEvent) {
+			// noinspection JSUnfilteredForInLoop
+			window.MouseEvent[i] = origMouseEvent[i];
+		}
+	}
+
+	window.MouseEvent.prototype = origMouseEvent.prototype;
+}
+
+// endregion
 
 // region Math
 if (typeof Math.imul === 'undefined') {
@@ -180,7 +327,6 @@ if (!String.prototype.padStart) {
 // IE 11.345.17134.0
 // noinspection DuplicatedCode
 if (!Array.from) {
-	console.log('Array.from polyfill loaded!');
 	Array.from = (function() {
 		var toStr = Object.prototype.toString;
 		var isCallable = function (fn) {
@@ -620,48 +766,6 @@ if (typeof Float64Array !== 'undefined') {
 // noinspection ThisExpressionReferencesGlobalObjectJS,DuplicatedCode
 (function(global) {
 	// region System
-
-	// noinspection JSUnusedLocalSymbols
-	var platform								= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
-	var browser									= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
-	var version									= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
-	var vendor									= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
-	// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
-	var oscpu									= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
-
-	global.isIE									= !global.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);
-	global.isNetscape							= browser.indexOf('Navigator') !== -1;
-	global.isKMeleon							= browser.indexOf('K-Meleon') !== -1;
-	global.isPaleMoon							= browser.indexOf('PaleMoon') !== -1;
-	global.isFirefox							= !global.isNetscape && !global.isPaleMoon && browser.indexOf('Firefox') !== -1;
-	global.isChrome								= browser.indexOf('Chrome') !== -1 || vendor === 'Google Inc.';
-	global.isEdgeHTML							= browser.indexOf('Edge') !== -1;
-	global.isEdgeBlink							= global.isChrome && browser.indexOf('Edg/') !== -1;
-	global.isEdge								= global.isEdgeHTML || global.isEdgeBlink;
-	global.isChromium							= global.isChrome && !global.google;
-	global.isVivaldi							= global.isChrome && browser.indexOf('Vivaldi') !== -1;
-	global.isElectron							= global.isChrome && browser.indexOf('Electron') !== -1;
-	global.isOperaPresto						= browser.indexOf('Opera') !== -1;
-	global.isOperaBlink							= global.isChrome && browser.indexOf('OPR') !== -1;
-	global.isOpera								= global.isOperaPresto || global.isOperaBlink;
-	global.isSafari								= browser.indexOf('Safari') !== -1 || vendor === 'Apple Computer, Inc.';
-	global.isOther								= !(global.isIE && global.isEdge && global.isFirefox && global.isChrome && global.isOpera && global.isSafari);
-
-	global.isWindows							= version.indexOf('Win') !== -1;
-	global.isMacOS								= version.indexOf('Mac') !== -1;
-	global.isUNIX								= version.indexOf('X11') !== -1;
-	global.isLinux								= version.indexOf('Linux') !== -1;
-
-	global.is64									= browser.indexOf('WOW64') !== -1 || browser.indexOf('Win64') !== -1 || browser.indexOf('amd64') !== -1 || browser.indexOf('x86_64') !== -1;
-	global.is32									= !global.is64 ? (browser.indexOf('WOW32') !== -1 || browser.indexOf('Win32') !== -1 || browser.indexOf('i386') !== -1 || browser.indexOf('i686') !== -1) : true;
-
-	global.isMobile								= browser.indexOf('Mobi') !== -1;
-	global.isDesktop							= !global.isMobile;
-
-	global.isBrowser							= !!(typeof global === 'object' && typeof navigator === 'object' && document);
-	global.isWorker								= typeof importScripts === 'function' && typeof postMessage === 'function' && !global.isBrowser;
-	global.isNode								= typeof process === 'object' && typeof require === 'function' && !global.isBrowser && !global.isWorker;
-	global.isShell								= !(global.isBrowser && global.isWorker && global.isNode);
 
 	var audio									= document.createElement('audio');
 	var canvas2D								= document.createElement('canvas');
