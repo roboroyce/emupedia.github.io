@@ -1,7 +1,6 @@
 // region Polyfills
 
 // region Console
-
 // IE 11.345.17134.0
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
@@ -46,11 +45,9 @@ if (typeof console !== 'undefined') {
 		};
 	}
 }
-
 // endregion
 
 if (!('head' in document)) {
-	console.log('document.head polyfill loaded!');
 	// noinspection JSValidateTypes
 	document.head = document.getElementsByTagName('head')[0];
 }
@@ -310,7 +307,6 @@ if (!Array.prototype.fill) {
 // IE 7/8
 // noinspection DuplicatedCode
 if (!Object.keys) {
-	console.log('Object.keys polyfill loaded!');
 	// noinspection DuplicatedCode
 	Object.keys = (function() {
 		'use strict';
@@ -347,9 +343,35 @@ if (!Object.keys) {
 					}
 				}
 			}
+
 			return result;
 		};
 	}());
+}
+
+if (!Object.assign) {
+	var assign = function (target, source) {
+		var n$ = Object.getOwnPropertyNames(source);
+
+		for (var i = 0, p; i < n$.length; i++) {
+			p = n$[i];
+			target[p] = source[p];
+		}
+	};
+
+	Object.assign = function (target, sources) {
+		var args = [].slice.call(arguments, 1);
+
+		for (var i = 0, s; i < args.length; i++) {
+			s = args[i];
+
+			if (s) {
+				assign(target, s);
+			}
+		}
+
+		return target;
+	};
 }
 // endregion
 
