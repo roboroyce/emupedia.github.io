@@ -131,6 +131,12 @@
 				width: 640,
 				height: 535
 			} , {
+				name: 'Minecraft',
+				icon: 'vfat/games/minecraft/favicon.ico',
+				link: 'https://classic.minecraft.net',
+				width: 800,
+				height: 600
+			} , {
 				name: 'Webamp Classic',
 				icon: 'vfat/apps/webamp-classic/favicon.ico'
 			} , {
