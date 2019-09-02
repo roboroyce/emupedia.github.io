@@ -862,6 +862,41 @@
 		"license": "Freeware",
 		"status": "Playable"
 	} , {
+		"id": "raptor",
+		"name": "Raptor: Call of the Shadows",
+		"executable": "./RAP.EXE",
+		"sync": false,
+		"file": "raptor.zip",
+		"size": 3786792,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1994,
+		"genre": "Arcade Shooter",
+		"developer": "Cygnus Studios",
+		"publisher": "Apogee Software, LLC",
+		"copyright": "3D Realms",
+		"version": "1.2",
+		"license": "Commercial",
+		"status": "Playable",
+		"clones": [{
+			"id": "raptorsw",
+			"name": "Raptor: Call of the Shadows (Shareware)",
+			"file": "raptorsw.zip",
+			"size": 1826735,
+			"license": "Shareware"
+		}]
+	} , {
 		"id": "tyrian2k",
 		"name": "Tyrian 2000",
 		"executable": "./TYRIAN.EXE",
