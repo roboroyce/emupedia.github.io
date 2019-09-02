@@ -477,12 +477,46 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '//# sourceMappingURL=' + dependency + '.min.js.map',
+						to: '//# sourceMappingURL=' + dependency + '-' + version + '.min.js.map'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											replace({
+												files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+												from: '//# sourceMappingURL=' + dependency + '.js.map',
+												to: '//# sourceMappingURL=' + dependency + '-' + version + '.js.map'
+											}, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
 						}
 					});
 				}
@@ -1876,6 +1910,37 @@ function install(install_directory, dependency, version) {
 													});
 												}
 											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'localforage':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.nopromises.min.js', install_directory + libraries_directory + dependency + '-nopromise-' + version + '.min.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.nopromises.js', install_directory + libraries_directory + dependency + '-nopromise-' + version + '.js', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
 										}
 									});
 								}

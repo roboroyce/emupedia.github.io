@@ -112,7 +112,7 @@
 	background: none transparent !important;
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,DuplicatedCode*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-text {
 	width: 16px;
 	height: 16px;
@@ -168,7 +168,7 @@
 	background: none transparent !important;
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,DuplicatedCode*/
 .theme-win3x .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-text {
 	width: 16px;
 	height: 16px;

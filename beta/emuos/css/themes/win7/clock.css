@@ -1,3 +1,4 @@
+/*noinspection CssUnknownTarget*/
 @import 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
 /*@import url('../../plugins/semantic-ui/dist/semantic.min.css');*/
 /*@import url('../../plugins/animate.css/animate.min.css');*/
@@ -403,7 +404,7 @@ html, body {
 	right: 0;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
 .deskible-notification {
 	position: relative;
 	right: -400px;
@@ -711,7 +712,7 @@ html, body {
 	color: #3b83c0;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
 #deskible-clock {
 	width: 150px;
 	height: 150px;

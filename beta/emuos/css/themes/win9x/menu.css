@@ -3,7 +3,7 @@
 	font-weight: bold;
 }
 
-/*noinspection CssOptimizeSimilarProperties*/
+/*noinspection CssOptimizeSimilarProperties,CssReplaceWithShorthandSafely*/
 .theme-win3x .ui-menu .ui-menu-item {
 	padding: 0;
 	padding-left: 16px;
