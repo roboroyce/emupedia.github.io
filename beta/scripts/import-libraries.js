@@ -1073,21 +1073,89 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.js', install_directory + polyfills_directory + dependency + '-auto-' + version + '.js', copy_options, (error) => {
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.map', install_directory + polyfills_directory + dependency + '-auto-' + version + '.min.js.map', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + polyfills_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+							replace({
+								files: install_directory + polyfills_directory + dependency + '-auto-' + version + '.min.js.map',
+								from: '"file":"es6-promise.auto.min.js"}',
+								to: '"file":"' + dependency + '-auto-' + version + '.min.js"}'
+							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + polyfills_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.js', install_directory + polyfills_directory + dependency + '-auto-' + version + '.js', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.map', install_directory + polyfills_directory + dependency + '-auto-' + version + '.js.map', copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													replace({
+														files: install_directory + polyfills_directory + dependency + '-auto-' + version + '.js.map',
+														from: '"file":"es6-promise.auto.js"}',
+														to: '"file":"' + dependency + '-auto-' + version + '.js"}'
+													}, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															//noinspection JSUnresolvedFunction
+															fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + polyfills_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+																if (error) {
+																	log.error('Error occurred:', error);
+																} else {
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.map', install_directory + polyfills_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+																		if (error) {
+																			log.error('Error occurred:', error);
+																		} else {
+																			replace({
+																				files: install_directory + polyfills_directory + dependency + '-' + version + '.min.js.map',
+																				from: '"file":"es6-promise.min.js"}',
+																				to: '"file":"' + dependency + '-' + version + '.min.js"}'
+																			}, (error) => {
+																				if (error) {
+																					log.error('Error occurred:', error);
+																				} else {
+																					//noinspection JSUnresolvedFunction
+																					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + polyfills_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+																						if (error) {
+																							log.error('Error occurred:', error);
+																						} else {
+																							//noinspection JSUnresolvedFunction
+																							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.map', install_directory + polyfills_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+																								if (error) {
+																									log.error('Error occurred:', error);
+																								} else {
+																									replace({
+																										files: install_directory + polyfills_directory + dependency + '-' + version + '.js.map',
+																										from: '"file":"es6-promise.js"}',
+																										to: '"file":"' + dependency + '-' + version + '.js"}'
+																									}, (error) => {
+																										if (error) {
+																											log.error('Error occurred:', error);
+																										} else {
+																											log.log(dependency + ' version ' + version + ' installed!');
+																										}
+																									});
+																								}
+																							});
+																						}
+																					});
+																				}
+																			});
+																		}
+																	});
+																}
+															});
+														}
+													});
+												}
+											});
 										}
 									});
 								}
@@ -1121,6 +1189,40 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'file-saver':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/FileSaver.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/FileSaver.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+								from: '//# sourceMappingURL=FileSaver.min.js.map',
+								to: '//# sourceMappingURL=' + dependency + '-' + version + '.min.js.map'
+							}, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/FileSaver.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
 				}
 			});
 			break;
@@ -2264,6 +2366,16 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'pepjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/pep.js', install_directory + polyfills_directory + 'es6-pointer-events-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
 		case 'perfect-scrollbar':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
@@ -2752,18 +2864,65 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
-		case '@webcomponents/webcomponentsjs':
+		case 'whatwg-fetch':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'es6-webcomponents-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/fetch.umd.js', install_directory + polyfills_directory + 'es6-fetch-' + version + '.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'es6-webcomponents-' + version + '.min.js.map', copy_options, (error) => {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case '@webcomponents/custom-elements':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					replace({
+						files: install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js',
+						from: '//# sourceMappingURL=custom-elements.min.js.map',
+						to: '//# sourceMappingURL=es6-custom-elements-' + version + '.min.js.map'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case '@webcomponents/webcomponentsjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					replace({
+						files: install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js',
+						from: '//# sourceMappingURL=webcomponents-bundle.js.map',
+						to: '//# sourceMappingURL=es6-web-components-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
 						}
 					});
 				}

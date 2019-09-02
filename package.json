@@ -30,6 +30,7 @@
 		"jquery3.x": "npm:jquery@^3.4.1"
 	},
 	"devDependencies": {
+		"@webcomponents/custom-elements": "^1.2.4",
 		"@webcomponents/webcomponentsjs": "^2.2.10",
 		"acorn": "^7.0.0",
 		"animate.css": "^3.7.2",
@@ -42,6 +43,7 @@
 		"electron-packager": "^14.0.4",
 		"electron-winstaller": "^4.0.0",
 		"es6-promise": "^4.2.8",
+		"file-saver": "^2.0.2",
 		"firebug-lite-ie": "^1.5.3",
 		"fs-extra": "^8.1.0",
 		"hybrids": "^4.0.2",
