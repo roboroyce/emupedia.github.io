@@ -1404,6 +1404,37 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'howler':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency +  '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency +  '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.core.min.js', install_directory + libraries_directory + dependency + '-core-' + version + '.min.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.spatial.min.js', install_directory + libraries_directory + dependency + '-spatial-' + version + '.min.js', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'hybrids':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
