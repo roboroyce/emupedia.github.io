@@ -1066,6 +1066,74 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'dropbox':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									replace({
+										files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
+										from: '"file":"Dropbox-sdk.js"',
+										to: '"file":"' + dependency + '-' + version + '.js"'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.min.js', install_directory + libraries_directory + dependency + '-team-' + version + '.min.js', copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js', install_directory + libraries_directory + dependency + '-team-' + version + '.js', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															//noinspection JSUnresolvedFunction
+															fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js.map', install_directory + libraries_directory + dependency + '-team-' + version + '.js.map', copy_options, (error) => {
+																if (error) {
+																	log.error('Error occurred:', error);
+																} else {
+																	replace({
+																		files: install_directory + libraries_directory + dependency + '-team-' + version + '.js.map',
+																		from: '"file":"DropboxTeam-sdk.js"',
+																		to: '"file":"' + dependency + '-team-' + version + '.js"}'
+																	}, (error) => {
+																		if (error) {
+																			log.error('Error occurred:', error);
+																		} else {
+																			log.log(dependency + ' version ' + version + ' installed!');
+																		}
+																	});
+																}
+															});
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'emularity':
+			// TODO
+			break;
 		case 'es6-promise':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.js', install_directory + polyfills_directory + dependency + '-auto-' + version + '.min.js', copy_options, (error) => {
@@ -1160,23 +1228,6 @@ function install(install_directory, dependency, version) {
 									});
 								}
 							});
-						}
-					});
-				}
-			});
-			break;
-		case 'dropbox':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
-						if (error) {
-							log.error('Error occurred:', error);
-						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
 						}
 					});
 				}
