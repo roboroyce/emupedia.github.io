@@ -16,6 +16,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 * [Internet Archive](https://archive.org)
 * [Archive Team](https://www.archiveteam.org)
+* [Video Game History Foundation](https://gamehistory.org)
+* [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
 ## Live Demo
