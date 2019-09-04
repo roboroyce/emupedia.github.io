@@ -7,7 +7,7 @@ var platform								= typeof navigator.platform !== 'undefined' ? navigator.plat
 var browser									= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
 var version									= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
 var vendor									= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
-// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols
+// noinspection JSUnresolvedVariable,JSUnusedLocalSymbols,JSUnusedGlobalSymbols
 var oscpu									= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
 window.isIE									= !window.isEdge && (browser.indexOf('MSIE') !== -1 || browser.indexOf('Trident') !== -1);

@@ -197,13 +197,38 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case '@babel/polyfill':
 		case 'babel-polyfill':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					log.log(dependency + ' version ' + version + ' installed!');
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/polyfill.js', install_directory + polyfills_directory + 'es7-babel-polyfill-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case '@babel/standalone':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/babel.min.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/babel.js', install_directory + libraries_directory + 'babel-standalone-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
 				}
 			});
 			break;

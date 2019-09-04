@@ -2,6 +2,7 @@
 (function(global) {
 	'use strict';
 
+	// noinspection JSUnusedLocalSymbols
 	define('optional', [], {
 		load: function(name, req, onload, config) {
 			var onLoadSuccess = function(moduleInstance) {

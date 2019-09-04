@@ -6,8 +6,10 @@
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
 				if (typeof window !== 'undefined') {
+					// noinspection NpmUsedModulesInstalled
 					jQuery = require('jquery');
 				} else {
+					// noinspection NpmUsedModulesInstalled
 					jQuery = require('jquery')(root);
 				}
 			}
