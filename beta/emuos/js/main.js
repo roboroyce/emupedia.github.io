@@ -230,7 +230,6 @@
 			noext: 'libraries/requirejs-noext-1.0.3',
 			text: 'libraries/requirejs-text-2.0.15',
 			emuos: 'emuos',
-			system: 'system',
 			filesystem: 'filesystem',
 			desktop: 'desktop',
 			taskbar: 'taskbar',
@@ -238,9 +237,6 @@
 			lang: 'lang-en'
 		},
 		shim: {
-			jquery: {
-				deps: ['system']
-			},
 			jquerymousewheel: {
 				deps: ['jquery']
 			},
