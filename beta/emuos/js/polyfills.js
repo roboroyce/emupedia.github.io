@@ -1,7 +1,7 @@
 // region Polyfills
 
 // region Console
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
@@ -185,7 +185,7 @@ if (typeof Math.imul === 'undefined') {
 // endregion
 
 // region String
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 if (!String.prototype.startsWith) {
 	console.log('String.prototype.startsWith polyfill loaded!');
 	String.prototype.startsWith = function(search, pos) {
@@ -193,7 +193,7 @@ if (!String.prototype.startsWith) {
 	};
 }
 
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.endsWith) {
 	console.log('String.prototype.endsWith polyfill loaded!');
@@ -206,7 +206,7 @@ if (!String.prototype.endsWith) {
 	};
 }
 
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.repeat) {
 	console.log('String.prototype.repeat polyfill loaded!');
@@ -252,7 +252,7 @@ if (!String.prototype.repeat) {
 	}
 }
 
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.padStart) {
 	console.log('String.prototype.padStart polyfill loaded!');
@@ -277,7 +277,7 @@ if (!String.prototype.padStart) {
 // endregion
 
 // region Array
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
 	Array.from = (function() {
@@ -358,7 +358,7 @@ if (!Array.from) {
 	}());
 }
 
-// IE 11.345.17134.0
+// IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!Array.prototype.fill) {
 	console.log('Array.prototype.fill polyfill loaded!');
@@ -515,7 +515,7 @@ if (typeof ArrayBuffer !== 'undefined') {
 }
 
 if (typeof Int8Array !== 'undefined') {
-	// IE 11.345.17134.0
+	// IE 11.295.18362.0
 	if (!Int8Array.prototype.from) {
 		Object.defineProperty(Int8Array.prototype, 'from', {
 			value: function (obj, func, thisObj) {
