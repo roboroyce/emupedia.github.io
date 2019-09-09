@@ -1463,6 +1463,33 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'hjson':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/bundle/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/bundle/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+								from: 'keepComments ? comments = (',
+								to: 'keepComments ? ('
+							}, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'html2canvas':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {

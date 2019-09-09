@@ -932,16 +932,16 @@
 		"file": "war2xrip.zip",
 		"size": 18569304,
 		"hardware": {
-		  "input": ["Keyboard", "Mouse"],
-		  "video": {
-			"VGA": {
-			  "resolutions": [
-				"640x400"
-			  ],
-			  "colors": 256
-			}
-		  },
-		  "sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"640x400"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
 		},
 		"year": 1996,
 		"genre": "Real-Time Strategy (RTS)",
