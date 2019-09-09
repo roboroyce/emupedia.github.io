@@ -9,43 +9,9 @@
 		<link type="text/css" rel="stylesheet" href="css/components.css" />
 	</head>
 	<body>
-		<h1>&lt;simple-counter&gt;</h1>
+		<emuos-desktop></emuos-desktop>
 
-		<p>
-			This example shows how to use <strong>hybrids</strong> library
-			to create a simple custom element.
-		</p>
-
-		<section>
-			<h2>Without attributes</h2>
-			<pre>&lt;simple-counter&gt;&lt;/simple-counter&gt;</pre>
-
-			<section>
-				<!-- code example -->
-				<simple-counter></simple-counter>
-				<!-- code example -->
-			</section>
-
-			<p>
-				Click to increase count value. Try to change <strong>count</strong>
-				property value with developer tools.
-			</p>
-		</section>
-		<section>
-			<h2>With count attribute</h2>
-			<pre>&lt;simple-counter count=&quot;10&quot;&gt;&lt;/simple-counter&gt;</pre>
-
-			<section>
-				<!-- code example -->
-				<simple-counter count="10"></simple-counter>
-				<!-- code example -->
-			</section>
-
-			<p>
-				The element is initialized with <strong>count</strong> set to 10.
-				You can still change it manually by setting property in developer tools.
-			</p>
-		</section>
+		<simple-counter count="10"></simple-counter>
 
 		<script type="text/javascript" src="js/platform.js"></script>
 		<script type="text/javascript" src="js/components/polyfills.js"></script>

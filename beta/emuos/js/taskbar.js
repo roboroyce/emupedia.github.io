@@ -7254,21 +7254,14 @@
 
 			$.each([true, false], function(index, horizontal) {
 				// Create an invisible iframes
-				var $iframe = $('<iframe></iframe>').prependTo('body').addClass(self.classes.resizeIframe
-																					+ ' ' + self.classes[
-					'resizeIframe' + (horizontal
-									  ? 'Horizontal'
-									  : 'Vertical')
-						]
-				);
+				var $iframe = $('<iframe></iframe>').prependTo('body').addClass(self.classes.resizeIframe + ' ' + self.classes['resizeIframe' + (horizontal ? 'Horizontal' : 'Vertical')]);
 
-				$iframe[0]
 				// original comment from
 				// https://gist.github.com/OrganicPanda/8222636
 				// "The trick here is that because this iframe has 100% width
 				// it should fire a window resize event when anything causes it
 				// to resize (even scrollbars on the outer document)"
-				.contentWindow.addEventListener('resize', function() {
+				$iframe[0].contentWindow.addEventListener('resize', function() {
 					self._resizeEvent();
 				});
 

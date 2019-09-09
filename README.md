@@ -121,6 +121,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | ES6 Fetch Polyfill       | ❌                                                                                                     | [github.com/github/fetch](https://github.com/github/fetch)                                                   | [MIT](https://github.com/github/fetch/blob/master/LICENSE)                              |
 | **Honorable mentions**   | **(not included because a more faithfull alternative was used)**                                       |                                                                                                              |                                                                                         |
 | minesweeper_js           | [minesweeper.zone](https://minesweeper.zone)                                                           | [github.com/reed-jones/minesweeper_js](https://github.com/reed-jones/minesweeper_js)                         | [CC BY-NC 4.0](https://github.com/reed-jones/minesweeper_js/blob/master/LICENSE)        |
+| winmine-exe              | [winmine-exe.now.sh](https://winmine-exe.now.sh)                                                       | [github.com/1000hz/winmine-exe](https://github.com/1000hz/winmine-exe)                                       | ❓                                                                                      |
 </details>
 
 ## Legal issues

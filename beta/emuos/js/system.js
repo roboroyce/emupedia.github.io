@@ -1,5 +1,5 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,DuplicatedCode
-(function(global) {
+(function() {
 	// region System
 
 	var audio									= document.createElement('audio');
@@ -23,13 +23,13 @@
 		} catch (e) {}
 	}
 
-	global.SYSTEM_FEATURE_WORKERS				= !!global.Worker;
+	window.SYSTEM_FEATURE_WORKERS				= !!window.Worker;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_SHARED_WORKERS		= !!global.SharedWorker;
-	global.SYSTEM_FEATURE_SERVICE_WORKERS		= 'serviceWorker' in navigator;
-	global.SYSTEM_FEATURE_URL_PARSER			= (function() {
+	window.SYSTEM_FEATURE_SHARED_WORKERS		= !!window.SharedWorker;
+	window.SYSTEM_FEATURE_SERVICE_WORKERS		= 'serviceWorker' in navigator;
+	window.SYSTEM_FEATURE_URL_PARSER			= (function() {
 		try {
-			var root = global.location.protocol + '//' + global.location.host + '/';
+			var root = window.location.protocol + '//' + window.location.host + '/';
 			var url = new URL(root);
 
 			return url.href === root;
@@ -37,17 +37,17 @@
 			return false;
 		}
 	})();
-	global.SYSTEM_FEATURE_URL_BLOB				= SYSTEM_FEATURE_URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
-	global.SYSTEM_FEATURE_DATA_URL				= (function() {
+	window.SYSTEM_FEATURE_URL_BLOB				= SYSTEM_FEATURE_URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
+	window.SYSTEM_FEATURE_DATA_URL				= (function() {
 		function testlimit() {
 			var datauribig = new Image();
 
 			datauribig.onerror = function() {
-				global.SYSTEM_FEATURE_DATA_URL = false;
+				window.SYSTEM_FEATURE_DATA_URL = false;
 			};
 
 			datauribig.onload = function() {
-				global.SYSTEM_FEATURE_DATA_URL = datauribig.width === 1 && datauribig.height === 1;
+				window.SYSTEM_FEATURE_DATA_URL = datauribig.width === 1 && datauribig.height === 1;
 			};
 
 			var base64str = 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
@@ -62,25 +62,25 @@
 		var dataurl = new Image();
 
 		dataurl.onerror = function() {
-			global.SYSTEM_FEATURE_DATA_URL = false;
+			window.SYSTEM_FEATURE_DATA_URL = false;
 		};
 
 		dataurl.onload = function() {
 			if (dataurl.width === 1 && dataurl.height === 1) {
 				testlimit();
 			} else {
-				global.SYSTEM_FEATURE_DATA_URL = false;
+				window.SYSTEM_FEATURE_DATA_URL = false;
 			}
 		};
 
 		dataurl.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 	})();
 	// noinspection DuplicatedCode
-	global.SYSTEM_FEATURE_TYPED_ARRAYS			= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
-	global.SYSTEM_FEATURE_BIGINTS				= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
+	window.SYSTEM_FEATURE_TYPED_ARRAYS			= typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' ? typeof Int8Array !== 'undefined' && typeof Uint8Array !== 'undefined' && typeof Uint8ClampedArray !== 'undefined' && typeof Int16Array !== 'undefined' && typeof Uint16Array !== 'undefined' && typeof Int32Array !== 'undefined' && typeof Uint32Array !== 'undefined' && typeof Float32Array !== 'undefined' && typeof Float64Array !== 'undefined': false;
+	window.SYSTEM_FEATURE_BIGINTS				= typeof BigInt !== 'undefined' ? typeof BigInt64Array !== 'undefined' && typeof BigUint64Array !== 'undefined' : false;
 	// noinspection JSUnresolvedVariable,JSUnusedGlobalSymbols,DuplicatedCode
-	global.SYSTEM_FEATURE_SIMD					= typeof SIMD !== 'undefined' ? typeof SIMD.Bool16x8 !== 'undefined' && typeof SIMD.Bool32x4 !== 'undefined' && typeof SIMD.Bool8x16 !== 'undefined' && typeof SIMD.Float32x4 !== 'undefined' && typeof SIMD.Int16x8 !== 'undefined' && typeof SIMD.Int32x4 !== 'undefined' && typeof SIMD.Int8x16 !== 'undefined' && typeof SIMD.Uint32x4 !== 'undefined' && typeof SIMD.Uint8x16 !== 'undefined' : false;
-	global.SYSTEM_FEATURE_ASMJS					= (function() {
+	window.SYSTEM_FEATURE_SIMD					= typeof SIMD !== 'undefined' ? typeof SIMD.Bool16x8 !== 'undefined' && typeof SIMD.Bool32x4 !== 'undefined' && typeof SIMD.Bool8x16 !== 'undefined' && typeof SIMD.Float32x4 !== 'undefined' && typeof SIMD.Int16x8 !== 'undefined' && typeof SIMD.Int32x4 !== 'undefined' && typeof SIMD.Int8x16 !== 'undefined' && typeof SIMD.Uint32x4 !== 'undefined' && typeof SIMD.Uint8x16 !== 'undefined' : false;
+	window.SYSTEM_FEATURE_ASMJS					= (function() {
 		try {
 			(function MyAsmModule() {
 				'use asm';
@@ -93,7 +93,7 @@
 		} catch(e) {}
 		return false;
 	})();
-	global.SYSTEM_FEATURE_WEBASSEMBLY			= (function() {
+	window.SYSTEM_FEATURE_WEBASSEMBLY			= (function() {
 		try {
 			// noinspection JSUnresolvedVariable
 			if (typeof WebAssembly === "object" && typeof WebAssembly.instantiate === "function") {
@@ -110,38 +110,38 @@
 		return false;
 	})();
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_FULLSCREEN			= !document.documentElement.requestFullscreen ? true : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen;
-	global.SYSTEM_FEATURE_POINTER_LOCK			= 'pointerLockElement' in document ? true : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+	window.SYSTEM_FEATURE_FULLSCREEN			= !document.documentElement.requestFullscreen ? true : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen;
+	window.SYSTEM_FEATURE_POINTER_LOCK			= 'pointerLockElement' in document ? true : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ANIMATION_FRAME		= !!global.requestAnimationFrame ? true : !!global.webkitRequestAnimationFrame || !!global.mozRequestAnimationFrame || !!global.msRequestAnimationFrame || !!global.oRequestAnimationFrame;
+	window.SYSTEM_FEATURE_ANIMATION_FRAME		= !!window.requestAnimationFrame ? true : !!window.webkitRequestAnimationFrame || !!window.mozRequestAnimationFrame || !!window.msRequestAnimationFrame || !!window.oRequestAnimationFrame;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_PERFORMANCE			= !!global.performance ? true : !!global.webkitPerformance || !!global.mozPerformance || !!global.msPerformance || !!global.oPerformance;
-	global.SYSTEM_FEATURE_TIMERS				= SYSTEM_FEATURE_ANIMATION_FRAME && SYSTEM_FEATURE_PERFORMANCE;
+	window.SYSTEM_FEATURE_PERFORMANCE			= !!window.performance ? true : !!window.webkitPerformance || !!window.mozPerformance || !!window.msPerformance || !!window.oPerformance;
+	window.SYSTEM_FEATURE_TIMERS				= SYSTEM_FEATURE_ANIMATION_FRAME && SYSTEM_FEATURE_PERFORMANCE;
 
-	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0	= 'registerElement' in document;
-	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1	= 'customElements' in global;
-	global.SYSTEM_FEATURE_CUSTOM_ELEMENTS		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 || SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1;
+	window.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0	= 'registerElement' in document;
+	window.SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1	= 'customElements' in window;
+	window.SYSTEM_FEATURE_CUSTOM_ELEMENTS		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 || SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_SHADOW_DOM_V0			= 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') || 'mozCreateShadowRoot' in document.createElement('div');
-	global.SYSTEM_FEATURE_SHADOW_DOM_V1			= 'attachShadow' in document.createElement('div');
-	global.SYSTEM_FEATURE_SHADOW_DOM			= SYSTEM_FEATURE_SHADOW_DOM_V0 || SYSTEM_FEATURE_SHADOW_DOM_V1;
-	global.SYSTEM_FEATURE_HTML_IMPORTS			= 'import' in document.createElement('link');
-	global.SYSTEM_FEATURE_TEMPLATE				= 'content' in document.createElement('template');
-	global.SYSTEM_FEATURE_TEMPLATE_SLOT			= 'name' in document.createElement('slot');
-	global.SYSTEM_FEATURE_TEMPLATES				= SYSTEM_FEATURE_TEMPLATE && SYSTEM_FEATURE_TEMPLATE_SLOT;
-	global.SYSTEM_FEATURE_WEBCOMPONENTS_V0		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 && SYSTEM_FEATURE_SHADOW_DOM_V0 && SYSTEM_FEATURE_HTML_IMPORTS;
-	global.SYSTEM_FEATURE_WEBCOMPONENTS_V1		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1 && SYSTEM_FEATURE_SHADOW_DOM_V1 && SYSTEM_FEATURE_TEMPLATES;
-	global.SYSTEM_FEATURE_WEBCOMPONENTS			= SYSTEM_FEATURE_WEBCOMPONENTS_V0 || SYSTEM_FEATURE_WEBCOMPONENTS_V1;
+	window.SYSTEM_FEATURE_SHADOW_DOM_V0			= 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') || 'mozCreateShadowRoot' in document.createElement('div');
+	window.SYSTEM_FEATURE_SHADOW_DOM_V1			= 'attachShadow' in document.createElement('div');
+	window.SYSTEM_FEATURE_SHADOW_DOM			= SYSTEM_FEATURE_SHADOW_DOM_V0 || SYSTEM_FEATURE_SHADOW_DOM_V1;
+	window.SYSTEM_FEATURE_HTML_IMPORTS			= 'import' in document.createElement('link');
+	window.SYSTEM_FEATURE_TEMPLATE				= 'content' in document.createElement('template');
+	window.SYSTEM_FEATURE_TEMPLATE_SLOT			= 'name' in document.createElement('slot');
+	window.SYSTEM_FEATURE_TEMPLATES				= SYSTEM_FEATURE_TEMPLATE && SYSTEM_FEATURE_TEMPLATE_SLOT;
+	window.SYSTEM_FEATURE_WEBCOMPONENTS_V0		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V0 && SYSTEM_FEATURE_SHADOW_DOM_V0 && SYSTEM_FEATURE_HTML_IMPORTS;
+	window.SYSTEM_FEATURE_WEBCOMPONENTS_V1		= SYSTEM_FEATURE_CUSTOM_ELEMENTS_V1 && SYSTEM_FEATURE_SHADOW_DOM_V1 && SYSTEM_FEATURE_TEMPLATES;
+	window.SYSTEM_FEATURE_WEBCOMPONENTS			= SYSTEM_FEATURE_WEBCOMPONENTS_V0 || SYSTEM_FEATURE_WEBCOMPONENTS_V1;
 
-	global.SYSTEM_FEATURE_SVG					= !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
-	global.SYSTEM_FEATURE_CANVAS				= !!(context2D && context2D instanceof CanvasRenderingContext2D);
-	global.SYSTEM_FEATURE_OFFSCREEN_CANVAS		= !!(SYSTEM_FEATURE_CANVAS && 'OffscreenCanvas' in global);
-	global.SYSTEM_FEATURE_WEBGL					= !!(contextWEBGL && contextWEBGL instanceof WebGLRenderingContext);
+	window.SYSTEM_FEATURE_SVG					= !!(document.createElementNS && document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
+	window.SYSTEM_FEATURE_CANVAS				= !!(context2D && context2D instanceof CanvasRenderingContext2D);
+	window.SYSTEM_FEATURE_OFFSCREEN_CANVAS		= !!(SYSTEM_FEATURE_CANVAS && 'OffscreenCanvas' in window);
+	window.SYSTEM_FEATURE_WEBGL					= !!(contextWEBGL && contextWEBGL instanceof WebGLRenderingContext);
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_WEBGL2				= !!(contextWEBGL2 && contextWEBGL2 instanceof WebGL2RenderingContext);
-	global.SYSTEM_FEATURE_WEBVR					= 'getVRDisplays' in navigator ? true : 'mozGetVRDevices' in navigator;
+	window.SYSTEM_FEATURE_WEBGL2				= !!(contextWEBGL2 && contextWEBGL2 instanceof WebGL2RenderingContext);
+	window.SYSTEM_FEATURE_WEBVR					= 'getVRDisplays' in navigator ? true : 'mozGetVRDevices' in navigator;
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_FEATURE_HTML5AUDIO			= (function() {
+	window.SYSTEM_FEATURE_HTML5AUDIO			= (function() {
 		try {
 			// noinspection JSUnresolvedVariable
 			return !!(audio.canPlayType && audio.canPlayType('audio/mpeg;').replace(/no/, ''));
@@ -150,26 +150,26 @@
 		}
 	})();
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_FEATURE_WEBAUDIO				= 'AudioContext' in global ? true : 'webkitAudioContext' in global || 'mozAudioContext' in global || 'oAudioContext' in global || 'msAudioContext' in global;
+	window.SYSTEM_FEATURE_WEBAUDIO				= 'AudioContext' in window ? true : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_WEBMIDI				= !!navigator.requestMIDIAccess;
+	window.SYSTEM_FEATURE_WEBMIDI				= !!navigator.requestMIDIAccess;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_WEBSPEECH_RECOGNITION	= 'SpeechRecognition' in global ? true : 'webkitSpeechRecognition' in global || 'mozSpeechRecognition' in global || 'oSpeechRecognition' in global || 'msSpeechRecognition' in global;
+	window.SYSTEM_FEATURE_WEBSPEECH_RECOGNITION	= 'SpeechRecognition' in window ? true : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_WEBSPEECH_SYNTHESIS	= 'speechSynthesis' in global ? true : 'webkitSpeechSynthesis' in global || 'mozSpeechSynthesis' in global || 'oSpeechSynthesis' in global || 'msSpeechSynthesis' in global;
-	global.SYSTEM_FEATURE_WEBSPEECH				= SYSTEM_FEATURE_WEBSPEECH_RECOGNITION && SYSTEM_FEATURE_WEBSPEECH_SYNTHESIS;
+	window.SYSTEM_FEATURE_WEBSPEECH_SYNTHESIS	= 'speechSynthesis' in window ? true : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window;
+	window.SYSTEM_FEATURE_WEBSPEECH				= SYSTEM_FEATURE_WEBSPEECH_RECOGNITION && SYSTEM_FEATURE_WEBSPEECH_SYNTHESIS;
 	// noinspection JSUnusedGlobalSymbols
 	// TODO: implement check for keyboard events support assume it's there already for now
-	global.SYSTEM_FEATURE_KEYBOARD				= true;
+	window.SYSTEM_FEATURE_KEYBOARD				= true;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_POINTER_EVENTS		= !!global.PointerEvent ? true : !!global.webkitPointerEvent || !!global.mozPointerEvent || !!global.msPointerEvent || !!global.oPointerEvent;
+	window.SYSTEM_FEATURE_POINTER_EVENTS		= !!window.PointerEvent ? true : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_GAMEPADS				= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
+	window.SYSTEM_FEATURE_GAMEPADS				= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_WEBSOCKETS			= (function() {
+	window.SYSTEM_FEATURE_WEBSOCKETS			= (function() {
 		var protocol = 'https:' === location.protocol ? 'wss' : 'ws';
 
-		if ('WebSocket' in global && global.WebSocket.CLOSING === 2) {
+		if ('WebSocket' in window && window.WebSocket.CLOSING === 2) {
 			if ('binaryType' in WebSocket.prototype) {
 				return true;
 			} else {
@@ -182,7 +182,7 @@
 		}
 	})();
 	// noinspection DuplicatedCode
-	global.SYSTEM_FEATURE_SESSION_STORAGE		= (function() {
+	window.SYSTEM_FEATURE_SESSION_STORAGE		= (function() {
 		var mod = 'test';
 
 		if (typeof sessionStorage !== 'undefined') {
@@ -200,7 +200,7 @@
 		return false;
 	})();
 	// noinspection DuplicatedCode
-	global.SYSTEM_FEATURE_LOCAL_STORAGE			= (function() {
+	window.SYSTEM_FEATURE_LOCAL_STORAGE			= (function() {
 		var mod = 'test';
 
 		if (typeof localStorage !== 'undefined') {
@@ -218,34 +218,34 @@
 		return false;
 	})();
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_INDEXED_DB			= !!global.indexedDB ? true : !!global.webkitIndexedDB || !!global.mozIndexedDB || !!global.moz_indexedDB || !!global.oIndexedDB || !!global.msIndexedDB;
-	global.SYSTEM_FEATURE_WEBSQL				= !!global.openDatabase;
-	global.SYSTEM_FEATURE_CACHE					= 'caches' in global;
-	global.SYSTEM_FEATURE_FETCH					= !!global.fetch;
-	global.SYSTEM_FEATURE_PUSH					= 'PushManager' in global;
+	window.SYSTEM_FEATURE_INDEXED_DB			= !!window.indexedDB ? true : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB;
+	window.SYSTEM_FEATURE_WEBSQL				= !!window.openDatabase;
+	window.SYSTEM_FEATURE_CACHE					= 'caches' in window;
+	window.SYSTEM_FEATURE_FETCH					= !!window.fetch;
+	window.SYSTEM_FEATURE_PUSH					= 'PushManager' in window;
 	// noinspection DuplicatedCode
-	global.SYSTEM_FEATURE_ORIENTATION			= !!global.DeviceOrientationEvent;
-	global.SYSTEM_FEATURE_GEOLOCATION			= !!navigator.geolocation;
-	global.SYSTEM_FEATURE_MOTION				= !!global.DeviceMotionEvent;
+	window.SYSTEM_FEATURE_ORIENTATION			= !!window.DeviceOrientationEvent;
+	window.SYSTEM_FEATURE_GEOLOCATION			= !!navigator.geolocation;
+	window.SYSTEM_FEATURE_MOTION				= !!window.DeviceMotionEvent;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_GYROSCOPE				= !!global.Gyroscope;
-	global.SYSTEM_FEATURE_PROXIMITY				= 'ProximitySensor' in global;
+	window.SYSTEM_FEATURE_GYROSCOPE				= !!window.Gyroscope;
+	window.SYSTEM_FEATURE_PROXIMITY				= 'ProximitySensor' in window;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_AMBIENTLIGHT			= !!global.AmbientLightSensor;
-	global.SYSTEM_FEATURE_VIBRATION				= 'vibrate' in navigator;
+	window.SYSTEM_FEATURE_AMBIENTLIGHT			= !!window.AmbientLightSensor;
+	window.SYSTEM_FEATURE_VIBRATION				= 'vibrate' in navigator;
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_BATTERY				= !!navigator.getBattery ? true : !!navigator.battery || !!navigator.mozBattery;
+	window.SYSTEM_FEATURE_BATTERY				= !!navigator.getBattery ? true : !!navigator.battery || !!navigator.mozBattery;
 	// TODO: implement check for Generic Sensor API
 
-	global.SYSTEM_FEATURE_CSS_VARIABLES			= global.CSS && CSS.supports('color', 'var(--fake-var)');
+	window.SYSTEM_FEATURE_CSS_VARIABLES			= window.CSS && CSS.supports('color', 'var(--fake-var)');
 
-	global.SYSTEM_FEATURE_ES3_BASE64			= 'btoa' in global && 'atob' in global;
-	global.SYSTEM_FEATURE_ES3					= SYSTEM_FEATURE_ES3_BASE64;
+	window.SYSTEM_FEATURE_ES3_BASE64			= 'btoa' in window && 'atob' in window;
+	window.SYSTEM_FEATURE_ES3					= SYSTEM_FEATURE_ES3_BASE64;
 
-	global.SYSTEM_FEATURE_ES5_STRICT_MODE		= (function() {'use strict'; return !this; })();
-	global.SYSTEM_FEATURE_ES5_XHR				= 'XMLHttpRequest' in global && 'prototype' in global.XMLHttpRequest && 'addEventListener' in global.XMLHttpRequest.prototype;
-	global.SYSTEM_FEATURE_ES5_JSON				= 'JSON' in global && 'parse' in JSON && 'stringify' in JSON;
-	global.SYSTEM_FEATURE_ES5_SYNTAX			= (function() {
+	window.SYSTEM_FEATURE_ES5_STRICT_MODE		= (function() {'use strict'; return !this; })();
+	window.SYSTEM_FEATURE_ES5_XHR				= 'XMLHttpRequest' in window && 'prototype' in window.XMLHttpRequest && 'addEventListener' in window.XMLHttpRequest.prototype;
+	window.SYSTEM_FEATURE_ES5_JSON				= 'JSON' in window && 'parse' in JSON && 'stringify' in JSON;
+	window.SYSTEM_FEATURE_ES5_SYNTAX			= (function() {
 		var value, obj, stringAccess, getter, setter, reservedWords;//, zeroWidthChars;
 
 		try {
@@ -264,7 +264,7 @@
 			return false;
 		}
 	})();
-	global.SYSTEM_FEATURE_ES5_UNDEFINED			= (function() {
+	window.SYSTEM_FEATURE_ES5_UNDEFINED			= (function() {
 		var result, originalUndefined;
 
 		try {
@@ -280,8 +280,8 @@
 
 		return result;
 	})();
-	global.SYSTEM_FEATURE_ES5_ARRAY				= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
-	global.SYSTEM_FEATURE_ES5_DATE				= (function() {
+	window.SYSTEM_FEATURE_ES5_ARRAY				= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
+	window.SYSTEM_FEATURE_ES5_DATE				= (function() {
 		var isoDate = '2013-04-12T06:06:37.307Z', canParseISODate = false;
 
 		try {
@@ -290,10 +290,10 @@
 
 		return !!(Date.now && Date.prototype && Date.prototype.toISOString && Date.prototype.toJSON && canParseISODate);
 	})();
-	global.SYSTEM_FEATURE_ES5_FUNCTION			= !!(Function.prototype && Function.prototype.bind);
-	global.SYSTEM_FEATURE_ES5_OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
-	global.SYSTEM_FEATURE_ES5_STRING			= !!(String.prototype && String.prototype.trim);
-	global.SYSTEM_FEATURE_ES5_GETSET			= (function() {
+	window.SYSTEM_FEATURE_ES5_FUNCTION			= !!(Function.prototype && Function.prototype.bind);
+	window.SYSTEM_FEATURE_ES5_OBJECT			= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
+	window.SYSTEM_FEATURE_ES5_STRING			= !!(String.prototype && String.prototype.trim);
+	window.SYSTEM_FEATURE_ES5_GETSET			= (function() {
 		var value, getter, setter;
 
 		try {
@@ -307,14 +307,14 @@
 			return false;
 		}
 	})();
-	global.SYSTEM_FEATURE_ES5					= !!(SYSTEM_FEATURE_ES3 && SYSTEM_FEATURE_ES5_STRICT_MODE && SYSTEM_FEATURE_ES5_XHR && SYSTEM_FEATURE_ES5_JSON && SYSTEM_FEATURE_ES5_SYNTAX && SYSTEM_FEATURE_ES5_UNDEFINED && SYSTEM_FEATURE_ES5_ARRAY && SYSTEM_FEATURE_ES5_DATE && SYSTEM_FEATURE_ES5_FUNCTION && SYSTEM_FEATURE_ES5_OBJECT && SYSTEM_FEATURE_ES5_STRING);
+	window.SYSTEM_FEATURE_ES5					= !!(SYSTEM_FEATURE_ES3 && SYSTEM_FEATURE_ES5_STRICT_MODE && SYSTEM_FEATURE_ES5_XHR && SYSTEM_FEATURE_ES5_JSON && SYSTEM_FEATURE_ES5_SYNTAX && SYSTEM_FEATURE_ES5_UNDEFINED && SYSTEM_FEATURE_ES5_ARRAY && SYSTEM_FEATURE_ES5_DATE && SYSTEM_FEATURE_ES5_FUNCTION && SYSTEM_FEATURE_ES5_OBJECT && SYSTEM_FEATURE_ES5_STRING);
 
 	// noinspection JSUnresolvedVariable,DuplicatedCode
-	global.SYSTEM_FEATURE_ES6_NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
+	window.SYSTEM_FEATURE_ES6_NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ES6_MATH				= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
-	global.SYSTEM_FEATURE_ES6_ARRAY				= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
-	global.SYSTEM_FEATURE_ES6_FUNCTION			= (function() {
+	window.SYSTEM_FEATURE_ES6_MATH				= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
+	window.SYSTEM_FEATURE_ES6_ARRAY				= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
+	window.SYSTEM_FEATURE_ES6_FUNCTION			= (function() {
 		try {
 			eval('()=>{}');
 		} catch (e) {
@@ -323,9 +323,9 @@
 		return true;
 	})();
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ES6_OBJECT			= !!(Object.assign && Object.is && Object.setPrototypeOf);
+	window.SYSTEM_FEATURE_ES6_OBJECT			= !!(Object.assign && Object.is && Object.setPrototypeOf);
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ES6_CLASS				= (function() {
+	window.SYSTEM_FEATURE_ES6_CLASS				= (function() {
 		try {
 			eval('class C{}');
 		} catch (e) {
@@ -334,10 +334,10 @@
 		return true;
 	})();
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ES6_STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
+	window.SYSTEM_FEATURE_ES6_STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_FEATURE_ES6_COLLECTIONS		= !!(global.Map && global.Set && global.WeakMap && global.WeakSet);
-	global.SYSTEM_FEATURE_ES6_GENERATORS		= (function() {
+	window.SYSTEM_FEATURE_ES6_COLLECTIONS		= !!(window.Map && window.Set && window.WeakMap && window.WeakSet);
+	window.SYSTEM_FEATURE_ES6_GENERATORS		= (function() {
 		try {
 			new Function('function* test() {}')();
 		} catch (e) {
@@ -345,15 +345,15 @@
 		}
 		return true;
 	})();
-	global.SYSTEM_FEATURE_ES6_PROMISES			= (function() {
-		return 'Promise' in global && 'resolve' in global.Promise && 'reject' in global.Promise && 'all' in global.Promise && 'race' in global.Promise && (function() {
+	window.SYSTEM_FEATURE_ES6_PROMISES			= (function() {
+		return 'Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise && (function() {
 			var resolve;
 			// noinspection JSIgnoredPromiseFromCall
-			new global.Promise(function(r) { resolve = r; });
+			new window.Promise(function(r) { resolve = r; });
 			return typeof resolve === 'function';
 		}());
 	})();
-	global.SYSTEM_FEATURE_ES6_STATIC_MODULES	= (function() {
+	window.SYSTEM_FEATURE_ES6_STATIC_MODULES	= (function() {
 		try {
 			new Function('import("")');
 			return true;
@@ -361,11 +361,11 @@
 			return false;
 		}
 	})();
-	global.SYSTEM_FEATURE_ES6_DYNAMIC_MODULES	= 'noModule' in document.createElement('script');
-	global.SYSTEM_FEATURE_ES6_MODULES			= SYSTEM_FEATURE_ES6_STATIC_MODULES && SYSTEM_FEATURE_ES6_DYNAMIC_MODULES;
-	global.SYSTEM_FEATURE_ES6					= SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6_NUMBER && SYSTEM_FEATURE_ES6_MATH && SYSTEM_FEATURE_ES6_ARRAY && SYSTEM_FEATURE_ES6_FUNCTION && SYSTEM_FEATURE_ES6_OBJECT && SYSTEM_FEATURE_ES6_CLASS && SYSTEM_FEATURE_ES6_STRING && SYSTEM_FEATURE_ES6_COLLECTIONS && SYSTEM_FEATURE_ES6_GENERATORS && SYSTEM_FEATURE_ES6_PROMISES && (SYSTEM_FEATURE_ES6_STATIC_MODULES || SYSTEM_FEATURE_ES6_DYNAMIC_MODULES);
+	window.SYSTEM_FEATURE_ES6_DYNAMIC_MODULES	= 'noModule' in document.createElement('script');
+	window.SYSTEM_FEATURE_ES6_MODULES			= SYSTEM_FEATURE_ES6_STATIC_MODULES && SYSTEM_FEATURE_ES6_DYNAMIC_MODULES;
+	window.SYSTEM_FEATURE_ES6					= SYSTEM_FEATURE_ES5 && SYSTEM_FEATURE_ES6_NUMBER && SYSTEM_FEATURE_ES6_MATH && SYSTEM_FEATURE_ES6_ARRAY && SYSTEM_FEATURE_ES6_FUNCTION && SYSTEM_FEATURE_ES6_OBJECT && SYSTEM_FEATURE_ES6_CLASS && SYSTEM_FEATURE_ES6_STRING && SYSTEM_FEATURE_ES6_COLLECTIONS && SYSTEM_FEATURE_ES6_GENERATORS && SYSTEM_FEATURE_ES6_PROMISES && (SYSTEM_FEATURE_ES6_STATIC_MODULES || SYSTEM_FEATURE_ES6_DYNAMIC_MODULES);
 
-	global.SYSTEM_FEATURE_ES7_ASYNC_AWAIT		= (function() {
+	window.SYSTEM_FEATURE_ES7_ASYNC_AWAIT		= (function() {
 		var isAsync = true;
 
 		try {
@@ -381,9 +381,9 @@
 		return isAsync;
 	})();
 
-	global.SYSTEM_INFO_OS						= global.isWindows ? 'Windows' : (global.isLinux ? 'Linux' : (global.isUNIX ? 'UNIX' : (global.isMacOS ? 'Mac OS' : undefined)));
+	window.SYSTEM_INFO_OS						= window.isWindows ? 'Windows' : (window.isLinux ? 'Linux' : (window.isUNIX ? 'UNIX' : (window.isMacOS ? 'Mac OS' : undefined)));
 	// noinspection DuplicatedCode
-	global.SYSTEM_INFO_OS_VERSION				= (function() {
+	window.SYSTEM_INFO_OS_VERSION				= (function() {
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Windows NT')) !== -1) {
@@ -444,10 +444,10 @@
 		return version;
 	})();
 
-	global.SYSTEM_INFO_ENVIRONMENT				= global.isBrowser ? 'Browser' : (global.isWorker ? 'Worker' : (global.isNode ? 'Node' : 'Shell'));
-	global.SYSTEM_INFO_BROWSER					= global.isEdge ? 'Microsoft Edge' : (global.isIE ? 'Microsoft Internet Explorer' : (global.isNetscape ? 'Netscape Navigator' : (global.isKMeleon ? 'K-Meleon' : (global.isPaleMoon ? 'PaleMoon' : (global.isFirefox ? 'Mozilla Firefox' : (global.isOpera ? 'Opera' : (global.isElectron ? 'Electron' : (global.isVivaldi ? 'Vivaldi' : (global.isChromium ? 'Chromium' : (global.isChrome ? 'Google Chrome' : (global.isSafari ? 'Apple Safari' : undefined)))))))))));
+	window.SYSTEM_INFO_ENVIRONMENT				= window.isBrowser ? 'Browser' : (window.isWorker ? 'Worker' : (window.isNode ? 'Node' : 'Shell'));
+	window.SYSTEM_INFO_BROWSER					= window.isEdge ? 'Microsoft Edge' : (window.isIE ? 'Microsoft Internet Explorer' : (window.isNetscape ? 'Netscape Navigator' : (window.isKMeleon ? 'K-Meleon' : (window.isPaleMoon ? 'PaleMoon' : (window.isFirefox ? 'Mozilla Firefox' : (window.isOpera ? 'Opera' : (window.isElectron ? 'Electron' : (window.isVivaldi ? 'Vivaldi' : (window.isChromium ? 'Chromium' : (window.isChrome ? 'Google Chrome' : (window.isSafari ? 'Apple Safari' : undefined)))))))))));
 	// noinspection DuplicatedCode
-	global.SYSTEM_INFO_BROWSER_VERSION			= (function() {
+	window.SYSTEM_INFO_BROWSER_VERSION			= (function() {
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Opera')) !== -1) {
@@ -526,26 +526,26 @@
 		return version;
 	})();
 
-	global.SYSTEM_INFO_CPU_LITTLE_ENDIAN		= (SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
+	window.SYSTEM_INFO_CPU_LITTLE_ENDIAN		= (SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
 		var buffer = new ArrayBuffer(2);
 		new DataView(buffer).setUint16(0, 256, true);
 
 		return new Uint16Array(buffer)[0] === 256;
 	})() : true);
 	// noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
-	global.SYSTEM_INFO_CPU_BIG_ENDIAN			= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : false;
+	window.SYSTEM_INFO_CPU_BIG_ENDIAN			= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? !SYSTEM_INFO_CPU_LITTLE_ENDIAN : false;
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_CPU_ENDIANNESS			= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'Little-endian' : 'Big-endian') : 'Little-endian';
+	window.SYSTEM_INFO_CPU_ENDIANNESS			= typeof SYSTEM_INFO_CPU_LITTLE_ENDIAN !== 'undefined' ? (SYSTEM_INFO_CPU_LITTLE_ENDIAN ? 'Little-endian' : 'Big-endian') : 'Little-endian';
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_CPU_CORES				= !navigator.hardwareConcurrency ? '≥ 1' : navigator.hardwareConcurrency;
+	window.SYSTEM_INFO_CPU_CORES				= !navigator.hardwareConcurrency ? '≥ 1' : navigator.hardwareConcurrency;
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_CPU_ARCH					= is64 ? '64-bit' : '32-bit';
+	window.SYSTEM_INFO_CPU_ARCH					= is64 ? '64-bit' : '32-bit';
 	// noinspection JSUnresolvedVariable
-	global.SYSTEM_INFO_RAM						= !navigator.deviceMemory ? '≤ 1GB' : '≥' + navigator.deviceMemory + 'GB';
+	window.SYSTEM_INFO_RAM						= !navigator.deviceMemory ? '≤ 1GB' : '≥' + navigator.deviceMemory + 'GB';
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_VIDEO_ACCELERATION		= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : false);
+	window.SYSTEM_INFO_VIDEO_ACCELERATION		= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : false);
 	// noinspection JSUnusedGlobalSymbols
-	global.SYSTEM_INFO_GPU						= (function() {
+	window.SYSTEM_INFO_GPU						= (function() {
 		if (contextWEBGL) {
 			if (typeof contextWEBGL.getSupportedExtensions === 'function') {
 				if (contextWEBGL.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') !== -1) {
@@ -566,8 +566,8 @@
 	// region Functions
 
 	// noinspection JSUnusedLocalSymbols
-	global.dumpsystem = function() {
-		global.console.log(typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '');
+	window.dumpsystem = function() {
+		console.log(typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '');
 
 		var dump = [{
 			Feature: 'SYSTEM_INFO_OS',
@@ -834,16 +834,16 @@
 
 			for (var d in dump) {
 				// noinspection JSUnfilteredForInLoop
-				global.console.table(dump[d]);
+				console.table(dump[d]);
 			}
 		} else {
-			global.console.table(dump);
+			console.table(dump);
 		}
 	};
 
 	// endregion
 
 	onerror = function(message, url, lineNumber) {
-		global.console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
 	};
-} (this));
+}());

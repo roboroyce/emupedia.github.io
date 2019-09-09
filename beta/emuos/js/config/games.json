@@ -925,39 +925,51 @@
 		"license": "Freeware",
 		"status": "Playable"
 	} , {
-		"id": "war2",
-		"group": "Warcraft",
-		"name": "Warcraft II: Tides of Darkness",
+		"id": "war2xrip",
+		"name": "Warcraft II: Beyond the Dark Portal (Rip)",
 		"notes": "JS: uncaught exception: SimulateInfiniteLoop",
-		"executable": "./WAR2.EXE",
-		"mode": "asm",
-		"sync": true,
-		"old": true,
-		"args": ["-c", "mount d emulator/c -t cdrom"],
-		"file": "war2.zip",
-		"size": 82019801,
+		"executable": "./WAR2X/WAR2.EXE",
+		"mode": "wasm",
+		"sync": false,
+		"file": "war2xrip.zip",
+		"size": 18569304,
 		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"640x400"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		  "input": ["Keyboard", "Mouse"],
+		  "video": {
+			"VGA": {
+			  "resolutions": [
+				"640x400"
+			  ],
+			  "colors": 256
+			}
+		  },
+		  "sound": ["PC Speaker", "Adlib", "Sound Blaster"]
 		},
-		"language": "English",
-		"year": 1995,
+		"year": 1996,
 		"genre": "Real-Time Strategy (RTS)",
 		"developer": "Blizzard Entertainment",
 		"publisher": "Davidson & Associates",
 		"copyright": "Activision Blizzard",
-		"version": "1.0",
+		"version": "1.33",
 		"license": "Commercial",
 		"status": "Ingame",
 		"clones": [{
+			"id": "war2",
+			"group": "Warcraft",
+			"name": "Warcraft II: Tides of Darkness",
+			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
+			"executable": "./WAR2.EXE",
+			"mode": "asm",
+			"sync": true,
+			"old": true,
+			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"file": "war2.zip",
+			"size": 82019801,
+			"language": "English",
+			"year": 1995,
+			"version": "1.0",
+			"status": "Ingame"
+		} , {
 			"id": "war2x",
 			"name": "Warcraft II: Beyond the Dark Portal",
 			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
@@ -968,12 +980,7 @@
 			"args": ["-c", "mount d emulator/c -t cdrom"],
 			"file": "war2x.zip",
 			"size": 122526490,
-			"year": 1996,
-			"developer": "Cyberlore Studios",
-			"publisher": "Blizzard Entertainment",
-			"copyright": "Activision Blizzard",
 			"version": "1.3",
-			"license": "Commercial",
 			"status": "Ingame"
 		}]
 	} , {

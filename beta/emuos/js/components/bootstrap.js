@@ -15,12 +15,9 @@ $import = function (url, cb, type) {
 		script.async = false;
 
 		if (script.addEventListener) {
-			console.log('1');
 			script.addEventListener('load', cb, false);
 		} else if (script.readyState) {
-			console.log('2');
 			script.onreadystatechange = function() {
-				console.log('3');
 				if (script.readyState === 'loaded') {
 					cb();
 				}
@@ -36,7 +33,7 @@ if (!SYSTEM_FEATURE_ES6 && !SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 		$import('js/libraries/babel-standalone-7.5.5.min.js', function() {
 			$import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
 				$import('js/libraries/hybrids-4.0.2.min.js', function() {
-					$import('js/components/components.js', $noop(), 'text/babel');
+					$import('js/components/main.js', $noop(), 'text/babel');
 					window.addEventListener("DOMContentLoaded", function() {
 						if ($import_interval != null) {
 							clearInterval($import_interval);
@@ -56,11 +53,11 @@ if (!SYSTEM_FEATURE_ES6 && !SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 } else if (!SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 	$import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
 		$import('js/libraries/hybrids-4.0.2.min.js', function() {
-			$import('js/components/components.js');
+			$import('js/components/main.js');
 		});
 	});
 } else {
 	$import('js/libraries/hybrids-4.0.2.min.js', function() {
-		$import('js/components/components.js');
+		$import('js/components/main.js');
 	});
 }
