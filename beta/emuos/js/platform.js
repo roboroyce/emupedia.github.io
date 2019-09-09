@@ -20,28 +20,28 @@ window.osVersion							= (function() {
 		// noinspection JSValidateTypes
 		version = browser.substring(offset + 11);
 
-		if (version.startsWith('5.0')) {
+		if (version.indexOf('5.0') === 0) {
 			// noinspection JSValidateTypes
 			version = '2000';
-		} else if (version.startsWith('5.1')) {
+		} else if (version.indexOf('5.1') === 0) {
 			// noinspection JSValidateTypes
 			version = 'XP';
-		} else if (version.startsWith('5.2')) {
+		} else if (version.indexOf('5.2') === 0) {
 			// noinspection JSValidateTypes
 			version = 'Server';
-		} else if (version.startsWith('6.0')) {
+		} else if (version.indexOf('6.0') === 0) {
 			// noinspection JSValidateTypes
 			version = 'Vista';
-		} else if (version.startsWith('6.1')) {
+		} else if (version.indexOf('6.1') === 0) {
 			// noinspection JSValidateTypes
 			version = '7';
-		} else if (version.startsWith('6.2')) {
+		} else if (version.indexOf('6.2') === 0) {
 			// noinspection JSValidateTypes
 			version = '8';
-		} else if (version.startsWith('6.3')) {
+		} else if (version.indexOf('6.3') === 0) {
 			// noinspection JSValidateTypes
 			version = '8.1';
-		} else if (version.startsWith('10.0')) {
+		} else if (version.indexOf('10.0') === 0) {
 			// noinspection JSValidateTypes
 			version = '10';
 		}
@@ -51,7 +51,7 @@ window.osVersion							= (function() {
 		// noinspection JSValidateTypes
 		version = browser.substring(offset + 7);
 
-		if (version.startsWith('4.90')) {
+		if (version.indexOf('4.90') === 0) {
 			// noinspection JSValidateTypes
 			version = 'Millennium';
 		}

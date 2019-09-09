@@ -1,4 +1,16 @@
 // noinspection ES6ConvertVarToLetConst
+var $noop = function() {};
+
+if (typeof console === 'undefined') {
+	// noinspection JSValidateTypes
+	console = {
+		log: $noop
+	}
+} else if (typeof console.log !== 'function') {
+	console.log = $noop;
+}
+
+// noinspection ES6ConvertVarToLetConst
 var $import_interval = null;
 
 $import = function (url, cb, type) {
