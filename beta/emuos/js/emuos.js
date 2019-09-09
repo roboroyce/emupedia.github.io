@@ -133,6 +133,12 @@
 				width: 800,
 				height: 600
 			} , {
+				name: 'Quake 2',
+				icon: 'vfat/games/quake2/favicon.ico',
+				link: 'vfat/games/quake2/index.html',
+				width: 800,
+				height: 600
+			} , {
 				name: 'Diablo 1',
 				icon: 'vfat/games/diablo1/favicon.ico',
 				link: 'vfat/games/diablo1/index.html'

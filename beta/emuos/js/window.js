@@ -967,12 +967,8 @@
 
 											// convert position to fixed
 											var scroll = self._getWindowScroll(),
-												top = Math.round(
-													parseFloat($this.css('top'))
-												) - scroll.y,
-												left = Math.round(
-													parseFloat($this.css('left'))
-												) - scroll.x;
+												top = Math.round(parseFloat($this.css('top'))) - scroll.y,
+												left = Math.round(parseFloat($this.css('left'))) - scroll.x;
 
 											$this.css({
 														  top: top,
@@ -2641,11 +2637,7 @@
 				));
 			}
 
-			dimension = this._cache.maximized
-						? containment[name]
-						: dimension === parseInt(dimension, 10)
-						  ? Math.max(min, dimension)
-						  : Math.max(min, current);
+			dimension = this._cache.maximized ? containment[name] : dimension === parseInt(dimension, 10) ? Math.max(min, dimension) : Math.max(min, current);
 
 			if (realContainment === 'viewport' && containment) {
 				dimension = Math.round(Math.min(dimension, containment[name]));
@@ -3348,25 +3340,16 @@
 			}
 
 			this.$window.css({
-								 height: 'auto',
-								 maxHeight: ''
-							 });
+				height: 'auto',
+				maxHeight: ''
+			});
 
 			var e = taskbar._extendedPosition.call(this.$elem, 'offset');
 			var w = taskbar._extendedPosition.call(this.$window, 'offset');
 
-			var maxHeight = Math.round(
-				e.bottom
-				- w.top
-				- parseFloat(this.$window.css('borderBottomWidth'))
-				- parseFloat(this.$window.css('paddingTop'))
-				- parseFloat(this.$window.css('paddingBottom'))
-			);
+			var maxHeight = Math.round(e.bottom - w.top - parseFloat(this.$window.css('borderBottomWidth')) - parseFloat(this.$window.css('paddingTop')) - parseFloat(this.$window.css('paddingBottom')));
 
-			if (
-				this.uiDialogButtonPane.length
-				&& this.uiDialogButtonPane.children().length
-			) {
+			if (this.uiDialogButtonPane.length && this.uiDialogButtonPane.children().length) {
 				maxHeight -= this.uiDialogButtonPane.outerHeight();
 			}
 
