@@ -29,8 +29,8 @@ $import = function (url, cb, type) {
 };
 
 if (!SYSTEM_FEATURE_ES6 && !SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-	$import('js/polyfills/es7-babel-polyfill-7.4.4.min.js', function() {
-		$import('js/libraries/babel-standalone-7.5.5.min.js', function() {
+	$import('js/polyfills/es7-babel-polyfill-7.6.0.min.js', function() {
+		$import('js/libraries/babel-standalone-7.6.0.min.js', function() {
 			$import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
 				$import('js/libraries/hybrids-4.0.2.min.js', function() {
 					$import('js/components/main.js', $noop(), 'text/babel');
