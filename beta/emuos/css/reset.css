@@ -10,19 +10,35 @@ body {
 	cursor: inherit !important;
 }
 
+canvas:-moz-full-screen {
+	background-color: #000;
+}
+
+canvas:-webkit-full-screen {
+	background-color: #000;
+}
+
+canvas:fullscreen {
+	background-color: #000;
+}
+
 .ui-menu {
 	min-width: 150px;
 	z-index: 2147483647;
 }
 
-iframe {
+.emuos-window-content.iframe {
+	position: relative;
+	overflow: hidden;
+}
+
+.emuos-window-content.iframe iframe {
+	position: absolute;
+	left: 0;
+	top: 0;
 	width: 100%;
 	height: 100%;
 	border: none;
-}
-
-.iframe.emuos-window-content {
-	overflow: hidden;
 }
 
 .emuos-desktop-icon img,
