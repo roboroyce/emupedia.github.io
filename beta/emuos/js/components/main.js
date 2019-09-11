@@ -13,7 +13,7 @@ const SimpleCounter = {
 define('simple-counter', SimpleCounter);
 
 const Icon = {
-	render: () => html`<a class="icon emuos-desktop-icon ui-sortable-handle ui-selectee" href="javascript:"><img src="vfat/apps/discord/favicon.png" alt="Discord"><span>Discord</span></a>`
+	render: () => html`<a class="icon emuos-desktop-icon ui-sortable-handle ui-selectee" href="javascript:"><img src="../../vfat/apps/discord/favicon.png" alt="Discord"><span>Discord</span></a>`
 };
 
 define('emuos-desktop-icon', Icon);
