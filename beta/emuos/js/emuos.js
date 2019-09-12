@@ -161,8 +161,9 @@
 				width: 800,
 				height: 600
 			} , {
-				name: 'Webamp Classic',
-				icon: 'vfat/apps/webamp-classic/favicon.ico'
+				name: 'Webamp',
+				icon: 'vfat/apps/webamp/favicon.ico',
+				link: 'vfat/apps/webamp/index.html'
 			} , {
 				name: 'Notepad',
 				icon: 'vfat/apps/notepad/favicon.ico',
