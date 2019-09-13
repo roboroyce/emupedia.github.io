@@ -157,7 +157,7 @@
 			} , {
 				name: 'Minecraft',
 				icon: 'vfat/games/minecraft/favicon.ico',
-				link: 'https://classic.minecraft.net',
+				link: 'vfat/games/minecraft/index.html',
 				width: 800,
 				height: 600
 			} , {

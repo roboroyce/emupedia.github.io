@@ -4,8 +4,8 @@
 /build
 /data
 /dist
-/beta/emuos2/dist
-/beta/emuos2/vfat/apps/midi-player
+/beta/emuos/dist
+/beta/emuos/vfat/apps/midi-player
 /tmp
 /out-tsc
 # Only exists if Bazel was run
