@@ -1,3 +1,5 @@
+// region Polyfills
+
 if (!('head' in document)) {
 	// noinspection JSValidateTypes
 	document.head = document.getElementsByTagName('head')[0];
@@ -12,7 +14,15 @@ if (typeof console === 'undefined') {
 	console.log = function() {};
 }
 
+// endregion
+
 (function() {
+	// Error Handling
+	onerror = function(message, url, lineNumber) {
+		alert('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+	};
+
 	// noinspection ES6ConvertVarToLetConst
 	var $sys = {
 		noop: function() {},
@@ -947,16 +957,234 @@ if (typeof console === 'undefined') {
 		}
 	};
 
-	// endregion
+	/***
+		/// No verification
+		dom.loadScript.add("../js/jszip/jszip.js");
+		/// Strict loading order and verification.
+		dom.loadScript.add({
+			strictOrder: true,
+			urls: [
+				{
+					url: "../js/jszip/jszip.js",
+					verify: "JSZip",
+					onsuccess: function() {
+						console.log(1)
+					}
+				},
+				{
+					url: "../inc/downloadify/js/swfobject.js",
+					verify: "swfobject",
+					onsuccess: function() {
+						console.log(2)
+					}
+				}
+			],
+			onsuccess: function() {
+				console.log(3)
+			}
+		});
+		/// Just verification.
+		dom.loadScript.add({
+			url: "../js/jszip/jszip.js",
+			verify: "JSZip",
+			onsuccess: function() {
+				console.log(1)
+			}
+		});
+	 */
 
-	onerror = function(message, url, lineNumber) {
-		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+	$sys.import = function (url, type, cb) {
+		cb = typeof type === 'function' ? type : (typeof cb === 'function' ? cb : $sys.noop);
+
+		// noinspection DuplicatedCode
+		if (url) {
+			// noinspection ES6ConvertVarToLetConst
+			var el = null, file_type = url.split('.').pop();
+
+			switch (file_type) {
+				case 'js':
+					el = document.createElement('script');
+					el.type = typeof type === 'string' ? type : 'text/javascript';
+					el.src = url;
+					el.async = false;
+					break;
+				case 'css':
+					el = document.createElement('link');
+					el.type =  typeof type === 'string' ? type : 'text/css';
+					el.rel = 'stylesheet';
+					el.href = url;
+					break;
+			}
+
+			if (el.addEventListener) {
+				el.addEventListener('load', cb, false);
+			} else if (el.readyState) {
+				el.onreadystatechange = function() {
+					if (el.readyState === 'loaded') {
+						cb();
+					}
+				};
+			}
+
+			switch (file_type) {
+				case 'js':
+					document.body.appendChild(el);
+					break;
+				case 'css':
+					document.head.appendChild(el);
+					break;
+			}
+		}
+	};
+
+	/***
+		$sys.ajax({
+			url: './dir/something.extension',
+			data: 'test!',
+			format: 'text', // text | xml | json | binary
+			responseType: 'text', // arraybuffer | blob | document | json | text
+			headers: {},
+			withCredentials: true, // true | false
+			///
+			onerror: function(evt, percent) {
+				console.log(evt);
+			},
+			onsuccess: function(evt, responseText) {
+				console.log(responseText);
+			},
+			onprogress: function(evt, percent) {
+				percent = Math.round(percent * 100);
+				loader.create('thread', 'loading... ', percent);
+			}
+		});
+	 */
+
+	$sys.ajax = function(opts, onsuccess, onerror, onprogress) {
+		if (typeof opts === 'string') opts = {url: opts};
+
+		// noinspection ES6ConvertVarToLetConst
+		var data = opts.data;
+		// noinspection ES6ConvertVarToLetConst
+		var url = opts.url;
+		// noinspection ES6ConvertVarToLetConst
+		var method = opts.method || (opts.data ? 'POST' : 'GET');
+		// noinspection ES6ConvertVarToLetConst
+		var format = opts.format;
+		// noinspection ES6ConvertVarToLetConst
+		var headers = opts.headers;
+		// noinspection ES6ConvertVarToLetConst
+		var responseType = opts.responseType;
+		// noinspection ES6ConvertVarToLetConst
+		var withCredentials = opts.withCredentials || false;
+		// noinspection ES6ConvertVarToLetConst
+		onsuccess = onsuccess || opts.onsuccess;
+		// noinspection ES6ConvertVarToLetConst
+		onerror = onerror || opts.onerror;
+		// noinspection ES6ConvertVarToLetConst
+		onprogress = onprogress || opts.onprogress;
+		// noinspection ES6ConvertVarToLetConst
+		var xhr = new XMLHttpRequest();
+		xhr.open(method, url, true);
+
+		if (headers) {
+			// noinspection ES6ConvertVarToLetConst
+			for (var type in headers) {
+				// noinspection JSUnfilteredForInLoop
+				xhr.setRequestHeader(type, headers[type]);
+			}
+		} else if (data) { // set the default headers for POST
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		}
+
+		if (format === 'binary') { //- default to responseType="blob" when supported
+			if (xhr.overrideMimeType) {
+				xhr.overrideMimeType('text/plain; charset=x-user-defined');
+			}
+		}
+
+		if (responseType) {
+			xhr.responseType = responseType;
+		}
+
+		if (withCredentials) {
+			// noinspection JSValidateTypes
+			xhr.withCredentials = 'true';
+		}
+		if (onerror && 'onerror' in xhr) {
+			xhr.onerror = onerror;
+		}
+		if (onprogress && xhr.upload && 'onprogress' in xhr.upload) {
+			if (data) {
+				xhr.upload.onprogress = function(e) {
+					onprogress.call(xhr, e, event.loaded / event.total);
+				};
+			} else {
+				xhr.addEventListener('progress', function(e) {
+					// noinspection ES6ConvertVarToLetConst
+					var totalBytes = 0;
+
+					if (e.lengthComputable) {
+						totalBytes = e.total;
+					} else if (xhr.totalBytes) {
+						totalBytes = xhr.totalBytes;
+					} else {
+						// noinspection ES6ConvertVarToLetConst
+						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
+
+						if (isFinite(rawBytes)) {
+							xhr.totalBytes = totalBytes = rawBytes;
+						} else {
+							return;
+						}
+					}
+
+					onprogress.call(xhr, e, e.loaded / totalBytes);
+				});
+			}
+		}
+
+		xhr.onreadystatechange = function(e) {
+			if (xhr.readyState === 4) { // The request is complete
+				if (xhr.status === 200 || // Response OK
+					xhr.status === 304 || // Not Modified
+					xhr.status === 308 || // Permanent Redirect
+					xhr.status === 0 && root.client.cordova // Cordova quirk
+				) {
+					if (onsuccess) {
+						// noinspection ES6ConvertVarToLetConst
+						var res;
+
+						if (format === 'xml') {
+							// noinspection JSUnresolvedVariable
+							res = e.target.responseXML;
+						} else if (format === 'text') {
+							// noinspection JSUnresolvedVariable
+							res = e.target.responseText;
+						} else if (format === 'json') {
+							try {
+								// noinspection JSUnresolvedVariable
+								res = JSON.parse(e.target.response);
+							} catch(err) {
+								onerror && onerror.call(xhr, e);
+							}
+						}
+						onsuccess.call(xhr, e, res);
+					}
+				} else {
+					onerror && onerror.call(xhr, e);
+				}
+			}
+		};
+
+		xhr.send(data);
+
+		return xhr;
 	};
 
 	$sys.get = function (selector) {
 		if (document.querySelector) {
 			// noinspection JSUnusedGlobalSymbols
-			return document.querySelector(selector) !== null ? document.querySelector(selector) : null;
+			return document.querySelector(selector);
 		} else {
 			if (selector.charAt(0) === '.') {
 				if (document.getElementsByClassName) {
@@ -993,73 +1221,18 @@ if (typeof console === 'undefined') {
 		}
 	};
 
-	// noinspection ES6ConvertVarToLetConst
-	var $import_interval = null;
+	// endregion
 
-	$sys.import = function (url, cb, type) {
-		cb = typeof cb === 'function' ? cb : $sys.noop;
+	// region Init
 
-		// noinspection DuplicatedCode
-		if (url) {
-			// noinspection ES6ConvertVarToLetConst
-			var el = null, file_type = url.split('.').pop();
-
-			switch (file_type) {
-				case 'js':
-					el = document.createElement('script');
-					el.type = typeof type !== 'undefined' ? type : 'text/javascript';
-					el.src = url;
-					el.async = false;
-					break;
-				case 'css':
-					el = document.createElement('link');
-					el.type =  typeof type !== 'undefined' ? type : 'text/css';
-					el.rel = 'stylesheet';
-					el.href = url;
-					break;
-			}
-
-			if (el.addEventListener) {
-				el.addEventListener('load', cb, false);
-			} else if (el.readyState) {
-				el.onreadystatechange = function() {
-					if (el.readyState === 'loaded') {
-						cb();
-					}
-				};
-			}
-
-			switch (file_type) {
-				case 'js':
-					document.body.appendChild(el);
-					break;
-				case 'css':
-					document.head.appendChild(el);
-					break;
-			}
-		}
-	};
-
-	window.$sys = $sys;
-
-	if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
+	if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 		$sys.import('js/polyfills/es7-babel-polyfill-7.6.0.min.js', function() {
 			$sys.import('js/libraries/babel-standalone-7.6.0.min.js', function() {
 				$sys.import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
 					$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
-						$sys.import('js/components/main.js', $sys.noop(), 'text/babel');
-						addEventListener('DOMContentLoaded', function() {
-							if ($import_interval != null) {
-								clearInterval($import_interval);
-								$import_interval = null;
-							}
-						}, false);
-
-						if ($import_interval == null) {
-							$import_interval = setInterval(function() {
-								dispatchEvent(new Event('DOMContentLoaded'));
-							}, 10);
-						}
+						window.define = hybrids.define;
+						window.html = hybrids.html;
+						$sys.import('js/components/main.js');
 					});
 				});
 			});
@@ -1067,12 +1240,21 @@ if (typeof console === 'undefined') {
 	} else if (!$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 		$sys.import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
 			$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
+				window.define = hybrids.define;
+				window.html = hybrids.html;
 				$sys.import('js/components/main.js');
 			});
 		});
 	} else {
 		$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
+			window.define = hybrids.define;
+			window.html = hybrids.html;
 			$sys.import('js/components/main.js');
 		});
 	}
+
+	// endregion
+
+	// Export
+	window.$sys = $sys;
 })();
