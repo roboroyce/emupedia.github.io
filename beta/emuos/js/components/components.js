@@ -10,15 +10,19 @@
 
 	define('simple-counter', SimpleCounter);
 
-	const Taskbar = {
-		render: () => html`<div class="taskbar">TASKBAR</div>`
-	};
+	$sys.ajax('css/components/taskbar.css', function (e, style) {
+		const Taskbar = {
+			render: () => html`TASKBAR`.style(style)
+		};
 
-	define('emuos-taskbar', Taskbar);
+		define('emuos-taskbar', Taskbar);
+	});
 
-	const Desktop = {
-		render: () => html`<div class="desktop">DESKTOP<emuos-taskbar></emuos-taskbar></div>`
-	};
+	$sys.ajax('css/components/desktop.css', function (e, style) {
+		const Desktop = {
+			render: () => html`<emuos-taskbar></emuos-taskbar>`.style(style)
+		};
 
-	define('emuos-desktop', Desktop);
+		define('emuos-desktop', Desktop);
+	});
 })();

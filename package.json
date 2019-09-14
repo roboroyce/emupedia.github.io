@@ -72,6 +72,7 @@
 		"midi": "github:mudcube/MIDI.js",
 		"moment": "^2.24.0",
 		"moment-timezone": "^0.5.26",
+		"normalize.css": "^8.0.1",
 		"octokat": "^0.10.0",
 		"pepjs": "^0.5.2",
 		"perfect-scrollbar": "^1.4.0",

@@ -1060,7 +1060,7 @@ if (typeof console === 'undefined') {
 	 */
 
 	$sys.ajax = function(opts, onsuccess, onerror, onprogress) {
-		if (typeof opts === 'string') opts = {url: opts};
+		opts = typeof opts === 'string' ? {url: opts} : opts;
 
 		// noinspection ES6ConvertVarToLetConst
 		var data = opts.data;
@@ -1069,11 +1069,11 @@ if (typeof console === 'undefined') {
 		// noinspection ES6ConvertVarToLetConst
 		var method = opts.method || (opts.data ? 'POST' : 'GET');
 		// noinspection ES6ConvertVarToLetConst
-		var format = opts.format;
+		var format = opts.format || 'text';
 		// noinspection ES6ConvertVarToLetConst
 		var headers = opts.headers;
 		// noinspection ES6ConvertVarToLetConst
-		var responseType = opts.responseType;
+		var responseType = opts.responseType || 'text';
 		// noinspection ES6ConvertVarToLetConst
 		var withCredentials = opts.withCredentials || false;
 		// noinspection ES6ConvertVarToLetConst
@@ -1092,12 +1092,14 @@ if (typeof console === 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				xhr.setRequestHeader(type, headers[type]);
 			}
-		} else if (data) { // set the default headers for POST
+		} else if (data) {
+			// set the default headers for POST
 			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		}
 
-		if (format === 'binary') { //- default to responseType="blob" when supported
+		if (format === 'binary') {
 			if (xhr.overrideMimeType) {
+				//- default to responseType="blob" when supported
 				xhr.overrideMimeType('text/plain; charset=x-user-defined');
 			}
 		}
