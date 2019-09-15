@@ -21,7 +21,7 @@
 	"main": "./beta/app/index.js",
 	"dependencies": {
 		"auto-launch": "^5.0.5",
-		"electron-log": "^3.0.7",
+		"electron-log": "^3.0.8",
 		"electron-settings": "^3.2.0",
 		"jquery1.x": "npm:jquery@^1.12.4",
 		"jquery2.x": "npm:jquery@^2.2.4",
@@ -55,7 +55,7 @@
 		"hjson": "^3.1.2",
 		"howler": "^2.1.2",
 		"hybrids": "^4.0.2",
-		"i18next": "^17.0.14",
+		"i18next": "^17.0.15",
 		"idb.filesystem.js": "0.0.8",
 		"jquery-i18next": "^1.2.1",
 		"jquery-migrate": "^3.1.0",
