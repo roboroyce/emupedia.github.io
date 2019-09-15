@@ -2207,14 +2207,14 @@ function install(install_directory, dependency, version) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/jquery.mCustomScrollbar.css', install_directory + css_directory + 'libraries/jquery-customscrollbar-' + version + '.css', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/jquery.mCustomScrollbar.css', install_directory + css_directory + 'jquery-customscrollbar-' + version + '.css', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									replace({
-										files: install_directory + css_directory + 'libraries/jquery-customscrollbar-' + version + '.css',
+										files: install_directory + css_directory + 'jquery-customscrollbar-' + version + '.css',
 										from: 'mCSB_buttons.png',
-										to: '../../images/ui/themes/scrollbar/jquery-customscrollbar-buttons-3.1.5.png'
+										to: '../../../images/ui/themes/scrollbar/jquery-customscrollbar-buttons-3.1.5.png'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
@@ -3111,6 +3111,41 @@ function install(install_directory, dependency, version) {
 									log.error('Error occurred:', error);
 								} else {
 									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'xterm':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/lib/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '//# sourceMappingURL=xterm.js.map',
+						to: '//# sourceMappingURL=xterm-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/lib/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+
 								}
 							});
 						}

@@ -98,7 +98,7 @@
 		"images_dir": "images",
 		"fonts_dir": "fonts",
 		"scss_dir": "scss",
-		"css_dir": "css",
+		"css_dir": "css/libraries",
 		"pug_dir": "pug",
 		"js_dir": "js",
 		"library_dir": "js/libraries",
