@@ -460,8 +460,20 @@
 		"developer": "Lucasfilm Games",
 		"publisher": "Lucasfilm Games",
 		"copyright": "The Walt Disney Company",
+		"version": "EGA 3.5.37",
 		"license": "Commercial",
-		"status": "Playable"
+		"status": "Playable",
+		"clones": [{
+			"id": "loomdemo",
+			"name": "Loom (Demo)",
+			"executable": "./LOOMDEMO.EXE",
+			"sync": false,
+			"file": "loomdemo.zip",
+			"size": 277286,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		}]
 	} , {
 		"id": "mk1",
 		"group": "Mortal Kombat",
@@ -544,6 +556,17 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"clones": [{
+			"id": "monkey1demo",
+			"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
+			"executable": "./MIDEMO.EXE",
+			"sync": false,
+			"file": "monkey1demo.zip",
+			"size": 222725,
+			"year": 1990,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
 			"id": "monkey1vga",
 			"executable": "./MONKEY.EXE",
 			"sync": false,
