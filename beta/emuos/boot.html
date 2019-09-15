@@ -7,7 +7,6 @@
 		<meta name="format-detection" content="telephone=no">
 		<title>Emupedia</title>
 		<link type="text/css" rel="stylesheet" href="css/normalize-8.0.1.css" />
-		<!--suppress CssInvalidPropertyValue, CssOverwrittenProperties -->
 		<style>
 			@font-face {
 				font-family: 'dosega', monospace;
@@ -56,6 +55,7 @@
 				overflow: hidden;
 			}
 
+			/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
 			.container img {
 				-ms-interpolation-mode: nearest-neighbor;
 				image-rendering: -webkit-optimize-contrast;
@@ -84,11 +84,11 @@
 			}
 
 			.anim-typewriter1 {
-				animation: typewriter-end-hide 1200ms steps(38) 1s 1 normal both;
+				animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;
 			}
 
 			.anim-typewriter2 {
-				animation: typewriter-end-show 600ms steps(38) 3s 1 normal both;
+				animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;
 			}
 
 			.cursor {
@@ -96,30 +96,33 @@
 			}
 
 			@keyframes typewriter-end-hide {
-				from {
+				0% {
 					height: 0;
 					visibility: visible;
 				}
-				to {
+				50% {
+					height: 606px;
+				}
+				100% {
 					height: 606px;
 					visibility: hidden;
 				}
 			}
 
 			@keyframes typewriter-end-show {
-				from {
+				0% {
 					height: 0;
 				}
-				to {
+				100% {
 					height: 606px;
 				}
 			}
 
 			@keyframes blinkTextCursor {
-				from {
+				0% {
 					border-color: rgba(168, 168, 168, 1);
 				}
-				to {
+				100% {
 					border-color: transparent;
 				}
 			}
