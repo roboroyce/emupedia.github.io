@@ -44,10 +44,6 @@
 				/*background-color: #000;*/
 				background-color: #121010;
 				border: 2px solid #666;
-				font-family: 'dosega', monospace;
-				font-size: 16px;
-				line-height: 16px;
-				white-space: pre;
 				color: #a8a8a8;
 				overflow: hidden;
 				font-smooth: never;
@@ -72,7 +68,7 @@
 			}
 
 			/* flicker */
-			.container-wrapper::after {
+			/*.container-wrapper::after {
 				content: ' ';
 				display: block;
 				position: absolute;
@@ -84,13 +80,18 @@
 				opacity: 0;
 				z-index: 2;
 				pointer-events: none;
-			}
+			}*/
 
 			.container {
 				display: block;
 				position: absolute;
 				width: 800px;
 				height: 600px;
+				font-family: 'dosega', courier, monospace;
+				font-size: 16px;
+				line-height: 16px;
+				margin: 0;
+				white-space: pre;
 				overflow: hidden;
 				text-shadow: 0 0 3px #c8c8c8;
 			}
@@ -135,6 +136,156 @@
 				animation: blinkTextCursor 500ms infinite normal;
 			}
 
+			#switch {
+				display: none;
+			}
+
+			.switch-label {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				display: inline-block;
+				cursor: pointer;
+				background: #fff;
+				color: #111;
+				padding: 10px;
+				border-radius: 5px;
+				box-shadow: 0 2px #666;
+				z-index: 2;
+			}
+
+			.switch-label::after {
+				content: 'OFF';
+			}
+
+			.switch-label::before {
+				content: ' ';
+				display: inline-block;
+				border-radius: 100%;
+				width: 10px;
+				height: 10px;
+				background: #003321;
+				margin-right: 10px;
+				border: 1px solid #111;
+			}
+
+			.switch-label:active {
+				box-shadow: none;
+				transform: translate3d(0, 2px, 0);
+			}
+
+			#switch:checked + .container-wrapper > .switch-label::before {
+				background: #22ff55;
+			}
+
+			#switch:checked + .container-wrapper > .switch-label::after {
+				content: 'ON';
+			}
+
+			#switch:checked ~ .container-wrapper::after {
+				/*animation: flicker 0.15s infinite;*/
+			}
+
+			#switch ~ .container-wrapper > .container {
+				animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+				animation-fill-mode: forwards;
+			}
+
+			#switch:checked ~ .container-wrapper > .container {
+				animation: turn-on 4s linear;
+				animation-fill-mode: forwards;
+			}
+
+			.overlay {
+				color: #00FF00;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 60px;
+				visibility: hidden;
+				pointer-events: none;
+			}
+
+			#switch:checked ~ .container-wrapper .overlay {
+				animation: overlay-anim 5s linear;
+				animation-fill-mode: forwards;
+			}
+
+			@keyframes overlay-anim {
+				0% {
+					visibility: hidden;
+				}
+				20% {
+					visibility: hidden;
+				}
+				21% {
+					visibility: visible;
+				}
+				100% {
+					visibility: hidden;
+				}
+			}
+
+			@keyframes turn-on {
+				0% {
+					transform: scale(1, 0.8) translate3d(0, 0, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 1;
+				}
+				3.5% {
+					transform: scale(1, 0.8) translate3d(0, 100%, 0);
+				}
+				3.6% {
+					transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					opacity: 1;
+				}
+				9% {
+					transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 0;
+				}
+				11% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(0) brightness(0);
+					filter: contrast(0) brightness(0);
+					opacity: 0;
+				}
+				25% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+				100% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+			}
+
+			@keyframes turn-off {
+				0% {
+					transform: scale(1, 1.3) translate3d(0, 0, 0);
+					-webkit-filter: brightness(1);
+					filter: brightness(1);
+					opacity: 1;
+				}
+				60% {
+					transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(10);
+					filter: brightness(10);
+				}
+				100% {
+					animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+					transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(50);
+					filter: brightness(50);
+				}
+			}
+
 			@keyframes typewriter-end-hide {
 				0% {
 					height: 0;
@@ -165,52 +316,6 @@
 				100% {
 					border-color: transparent;
 				}
-			}
-
-			#switch {
-				display: none;
-			}
-
-			/*noinspection CssReplaceWithShorthandSafely*/
-			.switch-label {
-				display: inline-block;
-				cursor: pointer;
-				background: #fff;
-				color: #111;
-				padding: 10px;
-				padding-left: 15px;
-				padding-right: 15px;
-				border-radius: 5px;
-				margin-top: 10px;
-				box-shadow: 0 2px #666;
-			}
-
-			.switch-label::after {
-				content: "on";
-			}
-
-			.switch-label::before {
-				content: " ";
-				display: inline-block;
-				border-radius: 100%;
-				width: 10px;
-				height: 10px;
-				background: #003321;
-				margin-right: 10px;
-				border: 1px solid #111;
-			}
-
-			.switch-label:active {
-				box-shadow: none;
-				transform: translate3d(0, 2px, 0);
-			}
-
-			#switch:checked + .switch-label::before {
-				background: #22ff55;
-			}
-
-			#switch:checked + .switch-label::after {
-				content: "off";
 			}
 
 			@keyframes flicker {
@@ -344,7 +449,6 @@
 					opacity: 0.24387;
 				}
 			}
-
 			/*noinspection CssFloatPxLength*/
 			@keyframes textShadow {
 				0% {
@@ -411,117 +515,11 @@
 					text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
 				}
 			}
-
-			#switch:checked ~ .container-wrapper::after {
-				/*animation: flicker 0.15s infinite;*/
-			}
-
-			@keyframes turn-on {
-				0% {
-					transform: scale(1, 0.8) translate3d(0, 0, 0);
-					-webkit-filter: brightness(30);
-					filter: brightness(30);
-					opacity: 1;
-				}
-				3.5% {
-					transform: scale(1, 0.8) translate3d(0, 100%, 0);
-				}
-				3.6% {
-					transform: scale(1, 0.8) translate3d(0, -100%, 0);
-					opacity: 1;
-				}
-				9% {
-					transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
-					-webkit-filter: brightness(30);
-					filter: brightness(30);
-					opacity: 0;
-				}
-				11% {
-					transform: scale(1, 1) translate3d(0, 0, 0);
-					-webkit-filter: contrast(0) brightness(0);
-					filter: contrast(0) brightness(0);
-					opacity: 0;
-				}
-				25% {
-					transform: scale(1, 1) translate3d(0, 0, 0);
-					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
-					filter: contrast(1) brightness(1.2) saturate(1.3);
-					opacity: 1;
-				}
-				100% {
-					transform: scale(1, 1) translate3d(0, 0, 0);
-					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
-					filter: contrast(1) brightness(1.2) saturate(1.3);
-					opacity: 1;
-				}
-			}
-
-			@keyframes turn-off {
-				0% {
-					transform: scale(1, 1.3) translate3d(0, 0, 0);
-					-webkit-filter: brightness(1);
-					filter: brightness(1);
-					opacity: 1;
-				}
-				60% {
-					transform: scale(1.3, 0.001) translate3d(0, 0, 0);
-					-webkit-filter: brightness(10);
-					filter: brightness(10);
-				}
-				100% {
-					animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-					transform: scale(0, 0.0001) translate3d(0, 0, 0);
-					-webkit-filter: brightness(50);
-					filter: brightness(50);
-				}
-			}
-
-			#switch ~ .container-wrapper > .container {
-				animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
-				animation-fill-mode: forwards;
-			}
-
-			#switch:checked ~ .container-wrapper > .container {
-				animation: turn-on 4s linear;
-				animation-fill-mode: forwards;
-			}
-
-			@keyframes overlay-anim {
-				0% {
-					visibility: hidden;
-				}
-				20% {
-					visibility: hidden;
-				}
-				21% {
-					visibility: visible;
-				}
-				100% {
-					visibility: hidden;
-				}
-			}
-
-			.overlay {
-				color: #00FF00;
-				position: absolute;
-				top: 20px;
-				left: 20px;
-				font-size: 60px;
-				visibility: hidden;
-				pointer-events: none;
-			}
-
-			#switch:checked ~ .container-wrapper .overlay {
-				animation: overlay-anim 5s linear;
-				animation-fill-mode: forwards;
-			}
 		</style>
 	</head>
 	<body>
-		<input type="checkbox" id="switch" checked>
-		<label for="switch" class="switch-label">Turn </label>
-
-	<div class="container-wrapper"><div class="container"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+		<input type="checkbox" id="switch" checked="checked" />
+		<div class="container-wrapper"><pre class="container"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
 Copyright (C) 1984-97, Award Software, Inc.
 
 (55XWUQ0E) Intel i430VX PCIset(TM)
@@ -557,7 +555,7 @@ Copyright (C) 1997, Award Software, Inc.
 
 
 Press <span class="white">DEL</span> to enter SETUP
-12/10/97-i430VX,UMC8669-2A59GH2BC-00</div><div class="container" style="visibility: hidden;">╚═════════════════════════════════════════════════════════════════════════════════╝
+12/10/97-i430VX,UMC8669-2A59GH2BC-00</pre><pre class="container" style="display: none;">╚═════════════════════════════════════════════════════════════════════════════════╝
 
 
 PCI device listing ...
@@ -580,6 +578,6 @@ Bus No. Device No. Func No. Vendor/Device Class Device Classs                   
 
 Verifying DMI Pool Data ............
 Boot from CD :
-DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span></div></div>
+DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span></pre><label for="switch" class="switch-label no-select"></label></div>
 	</body>
 </html>
