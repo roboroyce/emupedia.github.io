@@ -44,7 +44,7 @@
 		"browserfs": "^1.4.3",
 		"debug-logger": "^0.4.1",
 		"dropbox": "^4.0.30",
-		"electron": "^6.0.8",
+		"electron": "^6.0.9",
 		"electron-packager": "^14.0.6",
 		"electron-winstaller": "^4.0.0",
 		"es6-promise": "^4.2.8",
@@ -87,7 +87,8 @@
 		"simplestorage.js": "^0.2.1",
 		"stylus": "^0.54.7",
 		"ui-contextmenu": "^1.18.1",
-		"whatwg-fetch": "^3.0.0"
+		"whatwg-fetch": "^3.0.0",
+		"xterm": "^4.0.1"
 	},
 	"config": {
 		"build_dir": "build",

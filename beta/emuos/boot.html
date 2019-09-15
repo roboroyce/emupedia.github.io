@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="format-detection" content="telephone=no">
+		<title>Emupedia</title>
+		<link type="text/css" rel="stylesheet" href="css/normalize-8.0.1.css" />
+		<!--suppress CssInvalidPropertyValue, CssOverwrittenProperties -->
+		<style>
+			@font-face {
+				font-family: 'dosega', monospace;
+				src: url(css/fonts/dosega.eot);
+				src: url(css/fonts/dosega.eot?#iefix) format('embedded-opentype'),
+				url(css/fonts/dosega.woff2) format('woff2'),
+				url(css/fonts/dosega.woff) format('woff'),
+				url(css/fonts/dosega.ttf) format('truetype'),
+				url(css/fonts/dosega.svg#dosega) format('svg');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #333;
+				overflow: hidden;
+			}
+
+			.container-wrapper {
+				position: relative;
+				padding: 10px;
+				width: 800px;
+				height: 600px;
+				margin: auto;
+				background-color: #000;
+				font-family: 'dosega', monospace;
+				font-size: 16px;
+				line-height: 16px;
+				white-space: pre;
+				color: #a8a8a8;
+				overflow: hidden;
+				font-smooth: never;
+				-webkit-font-smoothing: none;
+				cursor: default;
+			}
+
+			.container {
+				display: block;
+				position: absolute;
+				width: 800px;
+				height: 0;
+				overflow: hidden;
+			}
+
+			.container img {
+				-ms-interpolation-mode: nearest-neighbor;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
+				pointer-events: none;
+			}
+
+			.container span.white {
+				color: #fff;
+			}
+
+			.container span.cursor {
+				display: inline-block;
+				border-bottom: 2px solid rgba(168, 168, 168, 1);
+				height: 12px;
+			}
+
+			.no-select {
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+
+			.anim-typewriter1 {
+				animation: typewriter-end-hide 1200ms steps(38) 1s 1 normal both;
+			}
+
+			.anim-typewriter2 {
+				animation: typewriter-end-show 600ms steps(38) 3s 1 normal both;
+			}
+
+			.cursor {
+				animation: blinkTextCursor 500ms infinite normal;
+			}
+
+			@keyframes typewriter-end-hide {
+				from {
+					height: 0;
+					visibility: visible;
+				}
+				to {
+					height: 606px;
+					visibility: hidden;
+				}
+			}
+
+			@keyframes typewriter-end-show {
+				from {
+					height: 0;
+				}
+				to {
+					height: 606px;
+				}
+			}
+
+			@keyframes blinkTextCursor {
+				from {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				to {
+					border-color: transparent;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container-wrapper no-select"><div class="container anim-typewriter1"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+Copyright (C) 1984-97, Award Software, Inc.
+
+(55XWUQ0E) Intel i430VX PCIset(TM)
+
+PENTIUM-S CPU at 90MHz
+Memory Test : 131072K OK
+
+Award Plug and Play BIOS Extension  v1.0A
+Copyright (C) 1997, Award Software, Inc.
+  Detecting IDE Primary Master   ... EmuDisk
+  Detecting IDE Primary Slave    ... [Press <span class="white">F4</span> to skip]
+  Detecting IDE Secondary Slave  ... None
+  Detecting IDE Secondary Slave  ... None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press <span class="white">DEL</span> to enter SETUP
+12/10/97-i430VX,UMC8669-2A59GH2BC-00</div><div class="container anim-typewriter2">╚═════════════════════════════════════════════════════════════════════════════════╝
+
+
+PCI device listing ...
+Bus No. Device No. Func No. Vendor/Device Class Device Classs                                  IRQ
+───────────────────────────────────────────────────────────────────────────────────
+    0       0         5     1106   5327   0800  I/O(X) APIC Cntrlr                              NA
+    0      15         0     1106   5337   0800  IDE Cntrlr                                      11
+    0      15         1     1106   0571   0800  IDE Cntrlr                                      14
+    0      16         0     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         10
+    0      16         1     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         11
+    0      16         2     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         10
+    0      16         3     1106   303B   0800  USB 1.0/1.1 UHCI Cntrlr                         11
+    0      16         4     1106   3104   0800  USB 2.0 EHCI Cntrlr                             10
+    0      18         0     1106   3065   0800  Network Cntrlr                                  10
+    2       0         0     10DE   0A65   0800  Display Cntrlr                                   5
+    2       0         1     10DE   0BE3   0800  Multimedia Device                                5
+    4       1         0     1106   3288   0800  Multimedia Device                               11
+    5       6         0     1106   3044   0800  Serial Bus Cntrlr                               11
+                                                ACPI Controller                                 11
+
+Verifying DMI Pool Data ............
+Boot from CD :
+DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span></div></div>
+	</body>
+</html>
