@@ -8,6 +8,12 @@
 		<title>Emupedia</title>
 		<link type="text/css" rel="stylesheet" href="css/normalize-8.0.1.css" />
 		<style>
+			::selection {
+				background-color: #a8a8a8;
+				color: #121010;
+				text-shadow: none;
+			}
+
 			@font-face {
 				font-family: 'dosega', monospace;
 				src: url(css/fonts/dosega.eot);
@@ -407,7 +413,7 @@
 			}
 
 			#switch:checked ~ .container-wrapper::after {
-				animation: flicker 0.15s infinite;
+				/*animation: flicker 0.15s infinite;*/
 			}
 
 			@keyframes turn-on {
@@ -515,7 +521,7 @@
 		<input type="checkbox" id="switch" checked>
 		<label for="switch" class="switch-label">Turn </label>
 
-	<div class="container-wrapper no-select"><div class="container"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+	<div class="container-wrapper"><div class="container"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
 Copyright (C) 1984-97, Award Software, Inc.
 
 (55XWUQ0E) Intel i430VX PCIset(TM)
