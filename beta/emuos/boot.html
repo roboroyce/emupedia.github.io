@@ -35,7 +35,9 @@
 				width: 800px;
 				height: 600px;
 				margin: auto;
-				background-color: #000;
+				/*background-color: #000;*/
+				background-color: #121010;
+				border: 2px solid #666;
 				font-family: 'dosega', monospace;
 				font-size: 16px;
 				line-height: 16px;
@@ -45,14 +47,46 @@
 				font-smooth: never;
 				-webkit-font-smoothing: none;
 				cursor: default;
+				/*animation: textShadow 1.6s infinite;*/
+			}
+
+			/* scanlines */
+			.container-wrapper::before {
+				content: ' ';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+				z-index: 2;
+				background-size: 100% 2px, 3px 100%;
+				pointer-events: none;
+			}
+
+			/* flicker */
+			.container-wrapper::after {
+				content: ' ';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(18, 16, 16, 0.1);
+				opacity: 0;
+				z-index: 2;
+				pointer-events: none;
 			}
 
 			.container {
 				display: block;
 				position: absolute;
 				width: 800px;
-				height: 0;
+				height: 600px;
 				overflow: hidden;
+				text-shadow: 0 0 3px #c8c8c8;
 			}
 
 			/*noinspection CssOverwrittenProperties,CssInvalidPropertyValue*/
@@ -126,10 +160,362 @@
 					border-color: transparent;
 				}
 			}
+
+			#switch {
+				display: none;
+			}
+
+			/*noinspection CssReplaceWithShorthandSafely*/
+			.switch-label {
+				display: inline-block;
+				cursor: pointer;
+				background: #fff;
+				color: #111;
+				padding: 10px;
+				padding-left: 15px;
+				padding-right: 15px;
+				border-radius: 5px;
+				margin-top: 10px;
+				box-shadow: 0 2px #666;
+			}
+
+			.switch-label::after {
+				content: "on";
+			}
+
+			.switch-label::before {
+				content: " ";
+				display: inline-block;
+				border-radius: 100%;
+				width: 10px;
+				height: 10px;
+				background: #003321;
+				margin-right: 10px;
+				border: 1px solid #111;
+			}
+
+			.switch-label:active {
+				box-shadow: none;
+				transform: translate3d(0, 2px, 0);
+			}
+
+			#switch:checked + .switch-label::before {
+				background: #22ff55;
+			}
+
+			#switch:checked + .switch-label::after {
+				content: "off";
+			}
+
+			@keyframes flicker {
+				0% {
+					opacity: 0.72376;
+				}
+				5% {
+					opacity: 0.0397;
+				}
+				10% {
+					opacity: 0.36593;
+				}
+				15% {
+					opacity: 0.49496;
+				}
+				20% {
+					opacity: 0.19917;
+				}
+				25% {
+					opacity: 0.65927;
+				}
+				30% {
+					opacity: 0.65098;
+				}
+				35% {
+					opacity: 0.63532;
+				}
+				40% {
+					opacity: 0.06552;
+				}
+				45% {
+					opacity: 0.87534;
+				}
+				50% {
+					opacity: 0.19338;
+				}
+				55% {
+					opacity: 0.47464;
+				}
+				60% {
+					opacity: 0.83527;
+				}
+				65% {
+					opacity: 0.25225;
+				}
+				70% {
+					opacity: 0.84123;
+				}
+				75% {
+					opacity: 0.46063;
+				}
+				80% {
+					opacity: 0.5159;
+				}
+				85% {
+					opacity: 0.02269;
+				}
+				90% {
+					opacity: 0.59581;
+				}
+				95% {
+					opacity: 0.66932;
+				}
+				100% {
+					opacity: 0.12652;
+				}
+			}
+
+			@keyframes flicker2 {
+				0% {
+					opacity: 0.27861;
+				}
+				5% {
+					opacity: 0.34769;
+				}
+				10% {
+					opacity: 0.23604;
+				}
+				15% {
+					opacity: 0.90626;
+				}
+				20% {
+					opacity: 0.18128;
+				}
+				25% {
+					opacity: 0.83891;
+				}
+				30% {
+					opacity: 0.65583;
+				}
+				35% {
+					opacity: 0.67807;
+				}
+				40% {
+					opacity: 0.26559;
+				}
+				45% {
+					opacity: 0.84693;
+				}
+				50% {
+					opacity: 0.96019;
+				}
+				55% {
+					opacity: 0.08594;
+				}
+				60% {
+					opacity: 0.20313;
+				}
+				65% {
+					opacity: 0.71988;
+				}
+				70% {
+					opacity: 0.53455;
+				}
+				75% {
+					opacity: 0.37288;
+				}
+				80% {
+					opacity: 0.71428;
+				}
+				85% {
+					opacity: 0.70419;
+				}
+				90% {
+					opacity: 0.7003;
+				}
+				95% {
+					opacity: 0.36108;
+				}
+				100% {
+					opacity: 0.24387;
+				}
+			}
+
+			/*noinspection CssFloatPxLength*/
+			@keyframes textShadow {
+				0% {
+					text-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				5% {
+					text-shadow: 2.7928974010788217px 0 1px rgba(0,30,255,0.5), -2.7928974010788217px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				10% {
+					text-shadow: 0.02956275843481219px 0 1px rgba(0,30,255,0.5), -0.02956275843481219px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				15% {
+					text-shadow: 0.40218538552878136px 0 1px rgba(0,30,255,0.5), -0.40218538552878136px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				20% {
+					text-shadow: 3.4794037899852017px 0 1px rgba(0,30,255,0.5), -3.4794037899852017px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				25% {
+					text-shadow: 1.6125630401149584px 0 1px rgba(0,30,255,0.5), -1.6125630401149584px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				30% {
+					text-shadow: 0.7015590085143956px 0 1px rgba(0,30,255,0.5), -0.7015590085143956px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				35% {
+					text-shadow: 3.896914047650351px 0 1px rgba(0,30,255,0.5), -3.896914047650351px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				40% {
+					text-shadow: 3.870905614848819px 0 1px rgba(0,30,255,0.5), -3.870905614848819px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				45% {
+					text-shadow: 2.231056963361899px 0 1px rgba(0,30,255,0.5), -2.231056963361899px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				50% {
+					text-shadow: 0.08084290417898504px 0 1px rgba(0,30,255,0.5), -0.08084290417898504px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				55% {
+					text-shadow: 2.3758461067427543px 0 1px rgba(0,30,255,0.5), -2.3758461067427543px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				60% {
+					text-shadow: 2.202193051050636px 0 1px rgba(0,30,255,0.5), -2.202193051050636px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				65% {
+					text-shadow: 2.8638780614874975px 0 1px rgba(0,30,255,0.5), -2.8638780614874975px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				70% {
+					text-shadow: 0.48874025155497314px 0 1px rgba(0,30,255,0.5), -0.48874025155497314px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				75% {
+					text-shadow: 1.8948491305757957px 0 1px rgba(0,30,255,0.5), -1.8948491305757957px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				80% {
+					text-shadow: 0.0833037308038857px 0 1px rgba(0,30,255,0.5), -0.0833037308038857px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				85% {
+					text-shadow: 0.09769827255241735px 0 1px rgba(0,30,255,0.5), -0.09769827255241735px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				90% {
+					text-shadow: 3.443339761481782px 0 1px rgba(0,30,255,0.5), -3.443339761481782px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				95% {
+					text-shadow: 2.1841838852799786px 0 1px rgba(0,30,255,0.5), -2.1841838852799786px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+				100% {
+					text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+				}
+			}
+
+			#switch:checked ~ .container-wrapper::after {
+				animation: flicker 0.15s infinite;
+			}
+
+			@keyframes turn-on {
+				0% {
+					transform: scale(1, 0.8) translate3d(0, 0, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 1;
+				}
+				3.5% {
+					transform: scale(1, 0.8) translate3d(0, 100%, 0);
+				}
+				3.6% {
+					transform: scale(1, 0.8) translate3d(0, -100%, 0);
+					opacity: 1;
+				}
+				9% {
+					transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+					-webkit-filter: brightness(30);
+					filter: brightness(30);
+					opacity: 0;
+				}
+				11% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(0) brightness(0);
+					filter: contrast(0) brightness(0);
+					opacity: 0;
+				}
+				25% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+				100% {
+					transform: scale(1, 1) translate3d(0, 0, 0);
+					-webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+					filter: contrast(1) brightness(1.2) saturate(1.3);
+					opacity: 1;
+				}
+			}
+
+			@keyframes turn-off {
+				0% {
+					transform: scale(1, 1.3) translate3d(0, 0, 0);
+					-webkit-filter: brightness(1);
+					filter: brightness(1);
+					opacity: 1;
+				}
+				60% {
+					transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(10);
+					filter: brightness(10);
+				}
+				100% {
+					animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+					transform: scale(0, 0.0001) translate3d(0, 0, 0);
+					-webkit-filter: brightness(50);
+					filter: brightness(50);
+				}
+			}
+
+			#switch ~ .container-wrapper > .container {
+				animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+				animation-fill-mode: forwards;
+			}
+
+			#switch:checked ~ .container-wrapper > .container {
+				animation: turn-on 4s linear;
+				animation-fill-mode: forwards;
+			}
+
+			@keyframes overlay-anim {
+				0% {
+					visibility: hidden;
+				}
+				20% {
+					visibility: hidden;
+				}
+				21% {
+					visibility: visible;
+				}
+				100% {
+					visibility: hidden;
+				}
+			}
+
+			.overlay {
+				color: #00FF00;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 60px;
+				visibility: hidden;
+				pointer-events: none;
+			}
+
+			#switch:checked ~ .container-wrapper .overlay {
+				animation: overlay-anim 5s linear;
+				animation-fill-mode: forwards;
+			}
 		</style>
 	</head>
 	<body>
-		<div class="container-wrapper no-select"><div class="container anim-typewriter1"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+		<input type="checkbox" id="switch" checked>
+		<label for="switch" class="switch-label">Turn </label>
+
+	<div class="container-wrapper no-select"><div class="container"><img style="float: left; margin-right: 5px;" alt="" src="images/boot/award-logo.png" /><img style="float: right;" alt="" src="images/boot/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
 Copyright (C) 1984-97, Award Software, Inc.
 
 (55XWUQ0E) Intel i430VX PCIset(TM)
@@ -164,9 +550,8 @@ Copyright (C) 1997, Award Software, Inc.
 
 
 
-
 Press <span class="white">DEL</span> to enter SETUP
-12/10/97-i430VX,UMC8669-2A59GH2BC-00</div><div class="container anim-typewriter2">╚═════════════════════════════════════════════════════════════════════════════════╝
+12/10/97-i430VX,UMC8669-2A59GH2BC-00</div><div class="container" style="visibility: hidden;">╚═════════════════════════════════════════════════════════════════════════════════╝
 
 
 PCI device listing ...
