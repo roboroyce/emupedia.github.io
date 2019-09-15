@@ -43,6 +43,12 @@
 				width: 800,
 				height: 600
 			} , {
+				name: 'EmuOS v2.0',
+				icon: 'favicon.ico',
+				link: 'boot.html',
+				width: 824,
+				height: 624
+			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
 				link: 'https://v1.windows93.net/',
