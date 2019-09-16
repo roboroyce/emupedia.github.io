@@ -14,10 +14,10 @@ We revive old games and software by the use of [emulation software](https://en.w
 
 Similar organizations that do [digital preservation](https://en.wikipedia.org/wiki/Digital_preservation) and archiving:
 
-* [Internet Archive](https://archive.org)
-* [Archive Team](https://www.archiveteam.org)
-* [Video Game History Foundation](https://gamehistory.org)
-* [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
+* 🏛 [Internet Archive](https://archive.org)
+* 🏛 [Archive Team](https://www.archiveteam.org)
+* 🏛 [Video Game History Foundation](https://gamehistory.org)
+* 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
 ## Live Demo
