@@ -1077,6 +1077,14 @@
 		"license": "Commercial",
 		"status": "Ingame",
 		"clones": [{
+			"id": "xcom1demo",
+			"name": "X-COM: UFO Defense (Demo)",
+			"executable": "./XCOM.BAT",
+			"file": "xcom1demo.zip",
+			"size": 1097024,
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
 			"id": "xcom2",
 			"name": "X-COM: Terror from the Deep",
 			"notes": "DOSBOX: May hang on mission start",
