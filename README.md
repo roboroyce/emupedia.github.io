@@ -19,19 +19,19 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 * 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
-## Live Demo
+## 👀 Live Demo
 
 [EmuOS](https://emupedia.net/beta/emuos)
 
-## Browser support
+## 🌍 Browser support
 
-##### Simulated desktop environment
+##### 🖥 Simulated desktop environment
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" /></br>IE / Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" /></br>Opera |
 | :---:          | :---: | :---: | :---:  | :---: |
 | IE9+, Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
-## Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
+## 📦 Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
 <details><summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                 |
@@ -45,7 +45,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | jQuery Desktop           | [desktop.sonspring.com](http://desktop.sonspring.com/)                                                 | [https://github.com/nathansmith/jQuery-Desktop](https://github.com/nathansmith/jQuery-Desktop)               | [GPLv3/MIT](https://github.com/nathansmith/jQuery-Desktop/blob/master/README.txt)       |
 </details>
 
-## Libraries used
+## 📚 Libraries used
 <details><summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                 |
@@ -123,7 +123,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | winmine-exe              | [winmine-exe.now.sh](https://winmine-exe.now.sh)                                                       | [github.com/1000hz/winmine-exe](https://github.com/1000hz/winmine-exe)                                       | ❓                                                                                      |
 </details>
 
-## Legal issues
+## 📑 Legal issues
 
 In general, the copying and distribution of video games that are under copyright without authorization is considered a copyright violation (often called as software piracy).
 
@@ -133,7 +133,7 @@ Through the Library of Congress, some key exemptions to the DMCA have been grant
 * In the 2015 exemptions, the Library granted permission for preservationists to work around copy-protection in games which required an authentication step with an external server that was no longer online prior to playing the game which otherwise did not require online connectivity; this specifically did not cover games that were based on a server-client mode like most massively-multiplayer online games (MMOs).
 * In the 2018 exemptions, the Library allowed for preservation and fair use of server-based games like MMos, permitting preservationists to offer such games where they have legally obtained the game's code within museums and libraries.
 
-#### DMCA Takedown notices & Removal Requests
+#### 📄 DMCA Takedown notices & Removal Requests
 
 Emupedia is aware of intellectual property rights and other proprietary rights of others.
 
@@ -152,7 +152,7 @@ You may send an email to **dmca [at] emupedia.net** for all **DMCA Takedown noti
 
 You will receive a confirmation once your request has been processed.
 
-## License
+## 📝 License
 
 Copyright (c) 2016 - 2019, Emupedia
 
