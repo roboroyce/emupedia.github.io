@@ -50,8 +50,8 @@
 				height: 504
 			} , {
 				name: 'Sandbox',
-				icon: 'vfat/apps/sandbox/favicon.ico',
-				link: 'https://cojmar.github.io/charts/',
+				icon: 'https://cojmar.github.io/emuos-sandbox/favicon.ico',
+				link: 'https://cojmar.github.io/emuos-sandbox/',
 				width: 680,
 				height: 480
 			} , {
