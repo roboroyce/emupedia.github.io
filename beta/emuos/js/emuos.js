@@ -40,14 +40,20 @@
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.png',
 				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'EmuOS v2.0',
 				icon: 'favicon.ico',
 				link: 'boot.html',
-				width: 824,
-				height: 624
+				width: 664,
+				height: 504
+			} , {
+				name: 'Sandbox',
+				icon: 'vfat/apps/sandbox/favicon.ico',
+				link: 'https://cojmar.github.io/charts/',
+				width: 680,
+				height: 480
 			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
@@ -58,20 +64,20 @@
 				name: 'Visual Studio Code',
 				icon: 'vfat/apps/monaco-editor/favicon.ico',
 				link: 'vfat/apps/monaco-editor/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Worms 2',
 				icon: 'vfat/games/worms2/favicon.ico',
 				link: 'vfat/games/worms2/index.html',
-				width: 800,
-				height: 600
+				width: 600,
+				height: 400
 			} , {
 				name: 'Biolab Disaster',
 				icon: 'vfat/games/biolab-disaster/favicon.png',
@@ -88,20 +94,20 @@
 				name: 'Spatial Audio (Demo)',
 				icon: 'vfat/games/spatial-audio/favicon.ico',
 				link: 'vfat/games/spatial-audio/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Voxel Space (Demo)',
 				icon: 'vfat/games/voxel-space/favicon.ico',
 				link: 'vfat/games/voxel-space/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',
 				link: 'vfat/apps/romcenter/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'DOSBox 0.74',
 				icon: 'vfat/apps/dosbox/favicon.ico',
@@ -130,20 +136,20 @@
 				name: 'Doom 3',
 				icon: 'vfat/games/doom3/favicon.ico',
 				link: 'vfat/games/doom3/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Quake 1',
 				icon: 'vfat/games/quake1/favicon.ico',
 				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Quake 2',
 				icon: 'vfat/games/quake2/favicon.ico',
 				link: 'vfat/games/quake2/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Diablo 1',
 				icon: 'vfat/games/diablo1/favicon.ico',
@@ -164,8 +170,8 @@
 				name: 'Minecraft',
 				icon: 'vfat/games/minecraft/favicon.ico',
 				link: 'vfat/games/minecraft/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'Webamp',
 				icon: 'vfat/apps/webamp/favicon.ico',
@@ -174,21 +180,21 @@
 				name: 'Notepad',
 				icon: 'vfat/apps/notepad/favicon.ico',
 				link: 'vfat/apps/notepad/index.html',
-				width: 800,
-				height: 600,
+				width: 640,
+				height: 480,
 				autostart: true
 			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
 				link: 'vfat/apps/paint/index.html',
-				width: 800,
-				height: 600
+				width: 640,
+				height: 480
 			} , {
 				name: 'SVG Editor',
 				icon: 'vfat/apps/svg-editor/favicon.ico',
 				link: 'vfat/apps/svg-editor/index.html',
-				width: 800,
-				height: 600
+				width: 600,
+				height: 480
 			}]
 		};
 
