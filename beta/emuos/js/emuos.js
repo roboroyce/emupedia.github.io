@@ -46,12 +46,12 @@
 				name: 'EmuOS v2.0',
 				icon: 'favicon.ico',
 				link: 'boot.html',
-				width: 664,
-				height: 504
+				width: 824,
+				height: 624
 			} , {
 				name: 'Sandbox',
 				icon: 'https://cojmar.github.io/emuos-sandbox/favicon.ico',
-				link: 'https://cojmar.github.io/emuos-sandbox/?baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/',
+				link: 'https://cojmar.github.io/emuos-sandbox/?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/',
 				width: 680,
 				height: 480
 			} , {
@@ -76,8 +76,8 @@
 				name: 'Worms 2',
 				icon: 'vfat/games/worms2/favicon.ico',
 				link: 'vfat/games/worms2/index.html',
-				width: 600,
-				height: 400
+				width: 640,
+				height: 480
 			} , {
 				name: 'Biolab Disaster',
 				icon: 'vfat/games/biolab-disaster/favicon.png',
