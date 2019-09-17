@@ -51,7 +51,7 @@
 			} , {
 				name: 'Sandbox',
 				icon: 'https://cojmar.github.io/emuos-sandbox/favicon.ico',
-				link: 'https://cojmar.github.io/emuos-sandbox/?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/',
+				link: 'https://cojmar.github.io/emuos-sandbox/?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3A&capsule=%3C/body%3A',
 				width: 680,
 				height: 480
 			} , {
