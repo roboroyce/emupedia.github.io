@@ -49,12 +49,6 @@
 				width: 824,
 				height: 624
 			} , {
-				name: 'Sandbox',
-				icon: 'https://cojmar.github.io/emuos-sandbox/favicon.ico',
-				link: 'https://cojmar.github.io/emuos-sandbox/?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
-				width: 680,
-				height: 480
-			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
 				link: 'https://v1.windows93.net/',
@@ -65,6 +59,13 @@
 				icon: 'vfat/apps/monaco-editor/favicon.ico',
 				link: 'vfat/apps/monaco-editor/index.html',
 				width: 640,
+				height: 480
+			} , {
+				name: 'Sandbox',
+				icon: 'vfat/apps/sandbox/favicon.ico',
+				//link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/romcenter?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
+				link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
+				width: 680,
 				height: 480
 			} , {
 				name: 'Wing 2.0',
@@ -107,7 +108,7 @@
 				icon: 'vfat/apps/palette/favicon.ico',
 				link: 'vfat/apps/palette/index.html',
 				width: 900,
-				height: 530
+				height: 550
 			} , {
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',

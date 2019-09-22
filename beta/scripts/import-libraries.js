@@ -1816,6 +1816,50 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'jquery-resizable-dom':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/jquery-resizable.min.js', install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					replace({
+						files: install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js',
+						from: '//# sourceMappingURL=jquery-resizable.min.js.map',
+						to: '//# sourceMappingURL=jquery-resizable-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/jquery-resizable.min.js.map', install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									replace({
+										files: install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js.map',
+										from: /jquery-resizable\.min\.js/g,
+										to: 'jquery-resizable-' + version + '.min.js'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/jquery-resizable.js', install_directory + libraries_directory + 'jquery-resizable-' + version + '.js', copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													log.log(dependency + ' version ' + version + ' installed!');
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'jquery-ui-dist':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/jquery-ui.min.js', install_directory + libraries_directory + 'jquery-ui-' + version + '.min.js', copy_options, (error) => {
