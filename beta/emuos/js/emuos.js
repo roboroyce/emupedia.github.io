@@ -103,7 +103,7 @@
 				width: 640,
 				height: 480
 			} , {
-				name: '8-bit Palette (Demo)',
+				name: '8-bit Palette Cycling (Demo)',
 				icon: 'vfat/apps/palette/favicon.ico',
 				link: 'vfat/apps/palette/index.html',
 				width: 810,
