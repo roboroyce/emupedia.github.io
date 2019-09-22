@@ -106,8 +106,8 @@
 				name: '8-bit Palette Cycling (Demo)',
 				icon: 'vfat/apps/palette/favicon.ico',
 				link: 'vfat/apps/palette/index.html',
-				width: 810,
-				height: 520
+				width: 900,
+				height: 530
 			} , {
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',
