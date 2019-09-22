@@ -103,6 +103,12 @@
 				width: 640,
 				height: 480
 			} , {
+				name: '8-bit Palette (Demo)',
+				icon: 'vfat/apps/palette/favicon.ico',
+				link: 'vfat/apps/palette/index.html',
+				width: 810,
+				height: 520
+			} , {
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',
 				link: 'vfat/apps/romcenter/index.html',
