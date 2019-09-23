@@ -40,7 +40,7 @@
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.png',
 				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'EmuOS v2.0',
@@ -58,26 +58,26 @@
 				name: 'Visual Studio Code',
 				icon: 'vfat/apps/monaco-editor/favicon.ico',
 				link: 'vfat/apps/monaco-editor/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'Sandbox',
 				icon: 'vfat/apps/sandbox/favicon.ico',
 				//link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/romcenter?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
 				link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
-				width: 680,
+				width: 900,
 				height: 480
 			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'Worms 2',
 				icon: 'vfat/games/worms2/favicon.ico',
 				link: 'vfat/games/worms2/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'Biolab Disaster',
@@ -113,7 +113,7 @@
 				name: 'RomCenter 3.71',
 				icon: 'vfat/apps/romcenter/favicon.ico',
 				link: 'vfat/apps/romcenter/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'DOSBox 0.74',
@@ -160,7 +160,9 @@
 			} , {
 				name: 'Diablo 1',
 				icon: 'vfat/games/diablo1/favicon.ico',
-				link: 'vfat/games/diablo1/index.html'
+				link: 'vfat/games/diablo1/index.html',
+				width: 640,
+				height: 480
 			} , {
 				name: 'Dark Reign: The Future of War',
 				icon: 'vfat/games/darkreign/favicon.ico',
@@ -177,30 +179,32 @@
 				name: 'Minecraft',
 				icon: 'vfat/games/minecraft/favicon.ico',
 				link: 'vfat/games/minecraft/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'Webamp',
 				icon: 'vfat/apps/webamp/favicon.ico',
-				link: 'vfat/apps/webamp/index.html'
+				link: 'vfat/apps/webamp/index.html',
+				width: 900,
+				height: 480
 			} , {
 				name: 'Notepad',
 				icon: 'vfat/apps/notepad/favicon.ico',
 				link: 'vfat/apps/notepad/index.html',
-				width: 640,
+				width: 900,
 				height: 480,
 				autostart: true
 			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
 				link: 'vfat/apps/paint/index.html',
-				width: 640,
+				width: 900,
 				height: 480
 			} , {
 				name: 'SVG Editor',
 				icon: 'vfat/apps/svg-editor/favicon.ico',
 				link: 'vfat/apps/svg-editor/index.html',
-				width: 600,
+				width: 900,
 				height: 480
 			}]
 		};
@@ -575,7 +579,7 @@
 			height: height !== 0 ? height : 400,
 			position: {
 				my: 'center',
-				at: 'center center-' + (height/2 - 60),
+				at: 'center center-' + (height/2 + 14),
 				of: this.$window.get(0),
 				collision: 'fit'
 			},
