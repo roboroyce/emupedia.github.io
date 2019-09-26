@@ -1059,7 +1059,7 @@ if (typeof console === 'undefined') {
 		});
 	 */
 
-	$sys.ajax = function(opts, onsuccess, onerror, onprogress) {
+	$sys.fetch = function(opts, onsuccess, onerror, onprogress) {
 		opts = typeof opts === 'string' ? {url: opts} : opts;
 
 		// noinspection ES6ConvertVarToLetConst
@@ -1229,8 +1229,8 @@ if (typeof console === 'undefined') {
 
 	if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 		$sys.import('js/polyfills/es7-babel-polyfill-7.6.0.min.js', function() {
-			$sys.import('js/libraries/babel-standalone-7.6.0.min.js', function() {
-				$sys.import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
+			$sys.import('js/libraries/babel-standalone-7.6.2.min.js', function() {
+				$sys.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
 					$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
 						window.define = hybrids.define;
 						window.html = hybrids.html;
@@ -1240,7 +1240,7 @@ if (typeof console === 'undefined') {
 			});
 		});
 	} else if (!$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-		$sys.import('js/polyfills/es6-web-components-2.2.10.min.js', function() {
+		$sys.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
 			$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
 				window.define = hybrids.define;
 				window.html = hybrids.html;

@@ -2388,6 +2388,16 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'monaco-editor':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/min/vs', install_directory + libraries_directory + 'vs', copy_options, function (error) {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
 		case 'normalize.css':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/' + dependency, install_directory + css_directory + 'normalize-' + version + '.css', copy_options, (error) => {
