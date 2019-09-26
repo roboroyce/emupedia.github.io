@@ -92,6 +92,12 @@
 				width: 720,
 				height: 480
 			} , {
+				name: 'ASCIICKER',
+				icon: 'vfat/games/asciicker/favicon.ico',
+				link: 'vfat/games/asciicker/index.html',
+				width: 640,
+				height: 480
+			} , {
 				name: 'Spatial Audio (Demo)',
 				icon: 'vfat/games/spatial-audio/favicon.ico',
 				link: 'vfat/games/spatial-audio/index.html',

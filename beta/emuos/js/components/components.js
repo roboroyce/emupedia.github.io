@@ -28,7 +28,7 @@
 
 	$sys.fetch('css/components/titlebar.css', function (e, style) {
 		const TitleBar = {
-			render: () => html`<slot id="title" name="title"><span>Title</span></slot><slot name="content">Content</slot>`.style(style)
+			render: () => html`<slot id="title" name="title"><span id="title">Title</span></slot><slot name="content">Content</slot>`.style(style)
 		};
 
 		define('emuos-titlebar', TitleBar);

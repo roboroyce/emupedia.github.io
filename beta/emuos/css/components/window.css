@@ -11,6 +11,11 @@
 	font-smooth: never;
 }
 
+#title {
+	/*color: #fff;*/
+	cursor: default;
+}
+
 #close {
 	float: right;
 	cursor: pointer;
