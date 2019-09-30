@@ -920,6 +920,44 @@
 			"license": "Shareware"
 		}]
 	} , {
+		"id": "starcontrol1",
+		"group": "Star Control",
+		"name": "Star Control: Famous Battles of the Ur-Quan Conflict, Volume IV",
+		"executable": "./STARCON.EXE",
+		"sync": false,
+		"file": "starcontrol1.zip",
+		"size": 910582,
+		"drm": ["Manual Lookup"],
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1990,
+		"genre": "Arcade Shooter",
+		"developer": "Toys for Bob",
+		"publisher": "Accolade",
+		"copyright": "Stardock Corporation",
+		"url": "https://www.stardock.com/games/starcontrol/store#purchase",
+		"license": "Commercial",
+		"status": "Playable",
+		"clones": [{
+			"id": "starcontrol2",
+			"name": "Star Control II: The Ur-Quan Masters",
+			"executable": "./STARCON2.COM",
+			"file": "starcontrol2.zip",
+			"size": 6603466,
+			"year": 1992
+		}]
+	} , {
 		"id": "tyrian2k",
 		"name": "Tyrian 2000",
 		"executable": "./TYRIAN.EXE",
