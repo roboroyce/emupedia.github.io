@@ -1,4 +1,4 @@
-// noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols
+// noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
 	'use strict';
 
@@ -34,6 +34,7 @@
 
 	define('github', [], {
 		load: function (name, req, onload, config) {
+			// noinspection JSUnresolvedVariable,DuplicatedCode
 			var obj = {
 				use_get_files_contents: false,
 				cache_prefix: 'github!',

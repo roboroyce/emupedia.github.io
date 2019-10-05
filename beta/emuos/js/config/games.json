@@ -958,6 +958,46 @@
 			"year": 1992
 		}]
 	} , {
+		"id": "vikings",
+		"group": "The Lost Vikings",
+		"name": "The Lost Vikings",
+		"executable": "./VIKINGS.EXE",
+		"file": "vikings.zip",
+		"size": 1257182,
+		"drm": ["Manual Lookup"],
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1993,
+		"genre": "Platformer",
+		"developer": "Silicon & Synapse, Inc.",
+		"publisher": "Interplay Productions, Inc.",
+		"copyright": "Blizzard Entertainment, Inc.",
+		"url": "https://www.blizzard.com/en-us/games/legacy/",
+		"license": "Commercial",
+		"status": "Playable",
+		"clones": [{
+			"id": "vikingsbc",
+			"name": "The Lost Vikings (Classic Arcade)",
+			"executable": "./VIKINGS.EXE",
+			"file": "vikingsbc.zip",
+			"size": 1370857,
+			"year": 2014,
+			"developer": "Blizzard Entertainment, Inc.",
+			"publisher": "Blizzard Entertainment, Inc.",
+			"license": "Freeware"
+		}]
+	} , {
 		"id": "tyrian2k",
 		"name": "Tyrian 2000",
 		"executable": "./TYRIAN.EXE",
@@ -1006,7 +1046,7 @@
 		},
 		"year": 1996,
 		"genre": "Real-Time Strategy (RTS)",
-		"developer": "Blizzard Entertainment",
+		"developer": "Blizzard Entertainment, Inc.",
 		"publisher": "Davidson & Associates",
 		"copyright": "Activision Blizzard",
 		"version": "1.33",

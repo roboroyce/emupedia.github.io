@@ -541,7 +541,7 @@
 				// noinspection JSRedundantSwitchStatement
 				switch (ui.cmd) {
 					case 'close':
-						// noinspection JSValidateTypes
+						// noinspection JSValidateTypes,JSUnresolvedFunction
 						$(e.target).children('.window, .iframe').first().window('close');
 						break;
 				}
@@ -554,6 +554,7 @@
 		});
 
 		$('.emuos-window-icon').on('click', function(e) {
+			// noinspection JSUnresolvedFunction
 			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
 			e.preventDefault();
 		});
@@ -628,6 +629,7 @@
 				// noinspection JSRedundantSwitchStatement
 				switch (ui.cmd) {
 					case 'close':
+						// noinspection JSUnresolvedFunction
 						$(e.target).children('.window, .iframe').first().window('close');
 						break;
 				}
@@ -640,6 +642,7 @@
 		});
 
 		$('.emuos-window-icon').on('click', function(e) {
+			// noinspection JSUnresolvedFunction
 			$(this).parents('.emuos-window').first().contextmenu('open', $(this));
 			e.preventDefault();
 		});
