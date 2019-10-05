@@ -1,6 +1,7 @@
 // region Polyfills
 
 // region Console
+
 // IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
@@ -45,6 +46,7 @@ if (typeof console !== 'undefined') {
 		};
 	}
 }
+
 // endregion
 
 // region Misc
@@ -153,6 +155,7 @@ if (!window.MouseEvent || window.isIE && (typeof window.MouseEvent !== 'function
 // endregion
 
 // region Math
+
 if (typeof Math.imul === 'undefined') {
 	function ToUint32(argument) {
 		var number = Number(argument);
@@ -185,6 +188,7 @@ if (typeof Math.imul === 'undefined') {
 // endregion
 
 // region String
+
 // IE 11.295.18362.0
 if (!String.prototype.startsWith) {
 	console.log('String.prototype.startsWith polyfill loaded!');
@@ -274,9 +278,11 @@ if (!String.prototype.padStart) {
 		}
 	};
 }
+
 // endregion
 
 // region Array
+
 // IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
@@ -400,9 +406,11 @@ if (!Array.prototype.fill) {
 		}
 	});
 }
+
 // endregion
 
 // region Object
+
 // IE 7/8
 // noinspection DuplicatedCode
 if (!Object.keys) {
@@ -472,6 +480,7 @@ if (!Object.assign) {
 		return target;
 	};
 }
+
 // endregion
 
 // region Typed Array
