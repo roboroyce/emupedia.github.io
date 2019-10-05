@@ -590,7 +590,6 @@ function install(install_directory, dependency, version) {
 									});
 								}
 							});
-
 						}
 					});
 				}
@@ -599,6 +598,16 @@ function install(install_directory, dependency, version) {
 		case 'compass-mixins':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/lib/', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'custom-event-polyfill':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/polyfill.js', install_directory + polyfills_directory + 'es6-custom-event-' + version + '.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
@@ -1097,48 +1106,68 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '"use strict";',
+						to: ''
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									replace({
-										files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
-										from: '"file":"Dropbox-sdk.js"',
-										to: '"file":"' + dependency + '-' + version + '.js"'
+										files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+										from: '"use strict";',
+										to: ''
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.min.js', install_directory + libraries_directory + dependency + '-team-' + version + '.min.js', copy_options, (error) => {
+											fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '-sdk.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
-													//noinspection JSUnresolvedFunction
-													fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js', install_directory + libraries_directory + dependency + '-team-' + version + '.js', copy_options, (error) => {
+													replace({
+														files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
+														from: '"file":"Dropbox-sdk.js"',
+														to: '"file":"' + dependency + '-' + version + '.js"'
+													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
 															//noinspection JSUnresolvedFunction
-															fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js.map', install_directory + libraries_directory + dependency + '-team-' + version + '.js.map', copy_options, (error) => {
+															fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.min.js', install_directory + libraries_directory + dependency + '-team-' + version + '.min.js', copy_options, (error) => {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
-																	replace({
-																		files: install_directory + libraries_directory + dependency + '-team-' + version + '.js.map',
-																		from: '"file":"DropboxTeam-sdk.js"',
-																		to: '"file":"' + dependency + '-team-' + version + '.js"}'
-																	}, (error) => {
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js', install_directory + libraries_directory + dependency + '-team-' + version + '.js', copy_options, (error) => {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
-																			log.log(dependency + ' version ' + version + ' installed!');
+																			//noinspection JSUnresolvedFunction
+																			fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js.map', install_directory + libraries_directory + dependency + '-team-' + version + '.js.map', copy_options, (error) => {
+																				if (error) {
+																					log.error('Error occurred:', error);
+																				} else {
+																					replace({
+																						files: install_directory + libraries_directory + dependency + '-team-' + version + '.js.map',
+																						from: '"file":"DropboxTeam-sdk.js"',
+																						to: '"file":"' + dependency + '-team-' + version + '.js"}'
+																					}, (error) => {
+																						if (error) {
+																							log.error('Error occurred:', error);
+																						} else {
+																							log.log(dependency + ' version ' + version + ' installed!');
+																						}
+																					});
+																				}
+																			});
 																		}
 																	});
 																}

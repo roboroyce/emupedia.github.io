@@ -270,22 +270,15 @@
     }, {
       key: "off",
       value: function off(event, listener) {
-        var _this2 = this;
+        if (!this.observers[event]) return;
 
-        if (!this.observers[event]) {
+        if (!listener) {
+          delete this.observers[event];
           return;
         }
 
-        this.observers[event].forEach(function () {
-          if (!listener) {
-            delete _this2.observers[event];
-          } else {
-            var index = _this2.observers[event].indexOf(listener);
-
-            if (index > -1) {
-              _this2.observers[event].splice(index, 1);
-            }
-          }
+        this.observers[event] = this.observers[event].filter(function (l) {
+          return l !== listener;
         });
       }
     }, {
@@ -1492,6 +1485,8 @@
         var clonedOptions = _objectSpread({}, options);
 
         clonedOptions.applyPostProcessor = false; // avoid post processing on nested lookup
+
+        delete clonedOptions.defaultValue; // assert we do not get a endless loop on interpolating defaultValue again and again
         // if value is something like "myKey": "lorem $(anotherKey, { "count": {{aValueInOptions}} })"
 
         function handleHasOptions(key, inheritedOptions) {
@@ -1507,8 +1502,10 @@
             if (inheritedOptions) clonedOptions = _objectSpread({}, inheritedOptions, clonedOptions);
           } catch (e) {
             this.logger.error("failed parsing options string in nesting for key ".concat(key), e);
-          }
+          } // assert we do not get a endless loop on interpolating defaultValue again and again
 
+
+          delete clonedOptions.defaultValue;
           return key;
         } // regular escape on demand
 
