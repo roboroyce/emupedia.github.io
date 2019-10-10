@@ -51,11 +51,10 @@
 			"license_initial": "Shareware"
 		}]
 	} , {
-		"id": "acat",
+		"id": "alleycat",
 		"name": "Alley Cat",
-		"executable": "./CAT.EXE",
-		"sync": false,
-		"file": "acat.zip",
+		"executable": "./ALLEYCAT.EXE",
+		"file": "alleycat.zip",
 		"size": 29903,
 		"hardware": {
 			"input": ["Keyboard"],
@@ -67,7 +66,7 @@
 					"colors": 4
 				}
 			},
-			"sound": ["PC Speaker"]
+			"sound": ["PC Speaker", "Tandy"]
 		},
 		"language": "English",
 		"year": 1984,
@@ -80,7 +79,13 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=DNfs55L1rXQ"
-		}
+		},
+		"clones": [{
+			"id": "tandycat",
+			"name": "Alley Cat (Tandy)",
+			"executable": "./TANDYCAT.EXE",
+			"version": "PCjr"
+		}]
 	} , {
 		"id": "aladdin",
 		"group": "Disney",
@@ -174,8 +179,6 @@
 		"name": "Digger",
 		"notes": "DOSBOX: Display garbled",
 		"executable": "./DIGGER.COM",
-		"args": ["-c", "cycles=500", "-c", "machine=hercules"],
-		"sync": true,
 		"file": "digger.zip",
 		"size": 22801,
 		"hardware": {
