@@ -3,13 +3,13 @@
 		"version": "1.0"
 	},
 	"games": [{
-		"id": "abuse",
+		"id": "abusesw",
 		"group": "Abuse",
-		"name": "Abuse",
+		"name": "Abuse (v2.0)",
 		"notes": "DOSBOX: Music not working",
 		"executable": "./ABUSE.EXE",
 		"sync": false,
-		"file": "abuse.zip",
+		"file": "abusesw.zip",
 		"size": 2855233,
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
@@ -31,24 +31,22 @@
 		"publisher": "Electronic Arts GmbH / ORIGIN Systems, Inc.",
 		"copyright": "Crack dot Com",
 		"version": "2.0",
-		"license_initial": "Commercial",
 		"license": "Public Domain",
-		"license_notes": "Public Domain (excluding the sound effects)",
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Abuse_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=kLnOi3aRVJI"
 		},
 		"clones": [{
-			"id": "abusesw",
+			"id": "abuse",
+			"name": "Abuse (v1.0)",
 			"executable": "./ABUSE.EXE",
 			"file": "abuse.zip",
-			"size": 2855233,
-			"sync": false,
+			"size": 2645572,
 			"year": 1995,
 			"release_date": "Sep 20, 1995",
 			"version": "1.05",
-			"license_initial": "Shareware"
+			"license": "Commercial"
 		}]
 	} , {
 		"id": "alleycat",
@@ -208,7 +206,7 @@
 		"id": "keen1sw",
 		"group": "Commander Keen",
 		"name": "Episode 1: Marooned on Mars",
-		"description": "Commander Keen in Invasion of the Vorticons",
+		"description": "Commander Keen in...\"Invasion of the Vorticons\"",
 		"executable": "./KEEN1.EXE",
 		"sync": false,
 		"file": "keen1sw.zip",
@@ -227,6 +225,7 @@
 		},
 		"language": "English",
 		"year": 1990,
+		"release_date": "Jan 23, 1990",
 		"genre": "Platformer",
 		"developer": "id Software",
 		"publisher": "Apogee Software",
@@ -241,11 +240,10 @@
 		"clones": [{
 			"id": "keen2",
 			"name": "Episode 2: The Earth Explodes",
-			"description": "Commander Keen in Invasion of the Vorticons",
+			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
 			"executable": "./KEEN2.EXE",
 			"file": "keen2.zip",
 			"size": 122004,
-			"sync": false,
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
@@ -254,11 +252,10 @@
 		} , {
 			"id": "keen3",
 			"name": "Episode 3: Keen Must Die!",
-			"description": "Commander Keen in Invasion of the Vorticons",
+			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
 			"executable": "./KEEN3.EXE",
 			"file": "keen3.zip",
 			"size": 134276,
-			"sync": false,
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
@@ -267,11 +264,11 @@
 		} , {
 			"id": "keen35",
 			"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
+			"description": "Commander Keen in...\"Keen Dreams\"",
 			"executable": "./KDREAMS.EXE",
 			"file": "keen35.zip",
 			"size": 134276,
-			"sync": false,
-			"license": "Shareware",
+			"license": "Commercial",
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Keen_Dreams"
@@ -279,12 +276,12 @@
 		} , {
 			"id": "keen4sw",
 			"name": "Episode 4: Secret of the Oracle",
-			"description": "Commander Keen in Goodbye, Galaxy!",
+			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
 			"executable": "./KEEN4E.EXE",
-			"sync": false,
 			"year": 1991,
 			"file": "keen4sw.zip",
 			"size": 588258,
+			"version": "1.4",
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
@@ -293,12 +290,12 @@
 		} , {
 			"id": "keen5",
 			"name": "Episode 5: The Armaggeddon Machine",
-			"description": "Commander Keen in Goodbye, Galaxy!",
+			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
 			"executable": "./KEEN5E.EXE",
 			"file": "keen5.zip",
 			"size": 628755,
-			"sync": false,
-			"year": 1991,
+			"year": 1992,
+			"version": "1.4",
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
@@ -306,13 +303,13 @@
 			}
 		} , {
 			"id": "keen6",
-			"name": "Episode 6: Aliens Ate My Babysitter!",
-			"description": "Commander Keen in Aliens Ate My Babysitter!",
+			"name": "Episode 6: Aliens Ate My Baby Sitter!",
+			"description": "Commander Keen in...\"Aliens Ate My Baby Sitter!\"",
 			"executable": "./KEEN6C.EXE",
 			"file": "keen6.zip",
 			"size": 522320,
-			"sync": false,
 			"year": 1991,
+			"version": "1.0",
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
@@ -826,51 +823,36 @@
 			"url": "https://deathshadow.com/pakuPaku"
 		}
 	} , {
-		"id": "pre1",
-		"group": "Prehistorik",
-		"name": "Prehistorik 1",
-		"executable": "./HISTORIK.EXE",
-		"sync": false,
-		"file": "pre1.zip",
-		"size": 626070,
+		"id": "popcorn",
+		"name": "PopCorn",
+		"executable": "./POPCORN.EXE",
+		"args": ["-c", "c:", "-c", "cycles=500", "-c", "POPSPEED 0"],
+		"sync": true,
+		"file": "popcorn.zip",
+		"size": 52245,
 		"hardware": {
-			"input": ["Keyboard", "Gamepad/Joystick"],
+			"input": ["Keyboard", "Mouse"],
 			"video": {
-				"VGA": {
+				"CGA": {
 					"resolutions": [
 						"320x200"
 					],
-					"colors": 256
+					"colors": 4
 				}
 			},
-			"sound": ["PC Speaker", "Adlib", "Sound Blaster", "Roland MT-32"]
+			"sound": ["PC Speaker"]
 		},
-		"language": "English",
-		"year": 1991,
-		"genre": "Platformer",
-		"developer": "Titus France SA",
-		"publisher": "Titus France SA",
-		"license": "Commercial",
+		"language": "French",
+		"year": 1988,
+		"genre": "Breakout Clone",
+		"developer": "Lacaze Christophe; Raynal Frédérick",
+		"publisher": "Lacral Software",
+		"copyright": "Lacral Software",
+		"license": "Freeware",
 		"status": "Playable",
 		"links": {
-			"gog": "https://www.gog.com/game/prehistorik_12",
-			"wikipedia": "https://en.wikipedia.org/wiki/Prehistorik"
-		},
-		"clones": [{
-			"id": "pre2",
-			"name": "Prehistorik 2",
-			"executable": "./PRE2.EXE",
-			"sync": false,
-			"file": "pre2.zip",
-			"size": 1080103,
-			"year": 1993,
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"gog": "https://www.gog.com/game/prehistorik_12",
-				"wikipedia": "https://en.wikipedia.org/wiki/Prehistorik_2"
-			}
-		}]
+			"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
+		}
 	} , {
 		"id": "pop1",
 		"group": "Prince of Persia",
