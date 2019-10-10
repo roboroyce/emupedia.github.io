@@ -35,6 +35,7 @@
 		"license": "Public Domain",
 		"license_notes": "Public Domain (excluding the sound effects)",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Abuse_(video_game)",
 		"clones": [{
 			"id": "abusesw",
 			"executable": "./ABUSE.EXE",
@@ -72,7 +73,8 @@
 		"publisher": "Synapse Software / IBM Corp.",
 		"copyright": "Synapse Software / IBM Corp.",
 		"license": "Commercial",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)"
 	} , {
 		"id": "aladdin",
 		"group": "Disney",
@@ -102,6 +104,7 @@
 		"copyright": "Walt Disney",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Disney%27s_Aladdin_(Virgin_Games_video_game)",
 		"clones": [{
 			"id": "lionking",
 			"name": "Disney's Lion King",
@@ -184,12 +187,13 @@
 		"publisher": "Windmill Software",
 		"copyright": "Windmill Software",
 		"license": "Commercial",
-		"status": "Ingame"
+		"status": "Ingame",
+		"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
 	} , {
 		"id": "keen1sw",
 		"group": "Commander Keen",
 		"name": "Episode 1: Marooned on Mars",
-		"description": "Commander Keen: Invasion of the Vorticons",
+		"description": "Commander Keen in Invasion of the Vorticons",
 		"executable": "./KEEN1.EXE",
 		"sync": false,
 		"file": "keen1sw.zip",
@@ -215,26 +219,29 @@
 		"version": "1.31",
 		"license": "Shareware",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons",
 		"clones": [{
 			"id": "keen2",
 			"name": "Episode 2: The Earth Explodes",
-			"description": "Commander Keen: Invasion of the Vorticons",
+			"description": "Commander Keen in Invasion of the Vorticons",
 			"executable": "./KEEN2.EXE",
 			"file": "keen2.zip",
 			"size": 122004,
 			"sync": false,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
 		} , {
 			"id": "keen3",
 			"name": "Episode 3: Keen Must Die!",
-			"description": "Commander Keen: Invasion of the Vorticons",
+			"description": "Commander Keen in Invasion of the Vorticons",
 			"executable": "./KEEN3.EXE",
 			"file": "keen3.zip",
 			"size": 134276,
 			"sync": false,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
 		} , {
 			"id": "keen35",
 			"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
@@ -243,40 +250,44 @@
 			"size": 134276,
 			"sync": false,
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Keen_Dreams"
 		} , {
 			"id": "keen4sw",
 			"name": "Episode 4: Secret of the Oracle",
-			"description": "Commander Keen: Goodbye Galaxy",
+			"description": "Commander Keen in Goodbye, Galaxy!",
 			"executable": "./KEEN4E.EXE",
 			"sync": false,
 			"year": 1991,
 			"file": "keen4sw.zip",
 			"size": 588258,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
 		} , {
 			"id": "keen5",
 			"name": "Episode 5: The Armaggeddon Machine",
-			"description": "Commander Keen: Goodbye Galaxy",
+			"description": "Commander Keen in Goodbye, Galaxy!",
 			"executable": "./KEEN5E.EXE",
 			"file": "keen5.zip",
 			"size": 628755,
 			"sync": false,
 			"year": 1991,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
 		} , {
 			"id": "keen6",
-			"name": "Episode 6: Aliens Ate My Baby Sitter",
-			"description": "Commander Keen: Goodbye Galaxy",
+			"name": "Episode 6: Aliens Ate My Babysitter!",
+			"description": "Commander Keen in Aliens Ate My Babysitter!",
 			"executable": "./KEEN6C.EXE",
 			"file": "keen6.zip",
 			"size": 522320,
 			"sync": false,
 			"year": 1991,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Aliens_Ate_My_Babysitter"
 		}]
 	} , {
 		"id": "diablo1sw",
@@ -308,7 +319,8 @@
 		"copyright": "Activision Blizzard",
 		"license": "Shareware",
 		"status": "Loadable",
-		"enabled": true
+		"enabled": true,
+		"wikipedia": "https://en.wikipedia.org/wiki/Diablo_(video_game)"
 	} , {
 		"id": "dune2",
 		"name": "Dune II: The Building of a Dynasty",
@@ -336,7 +348,8 @@
 		"copyright": "Virgin Interactive",
 		"version": "1.7eu",
 		"license": "Commercial",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Dune_II"
 	} , {
 		"id": "got",
 		"name": "God of Thunder",
@@ -362,14 +375,15 @@
 		"developer": "Ron Davis",
 		"publisher": "Impulse Games",
 		"copyright": "CSE Games, Argo Games",
-		"url": "//www.adeptsoftware.com/got/",
+		"url": "https://www.adeptsoftware.com/got/",
 		"version": "1.1",
 		"license": "Freeware",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)"
 	} , {
 		"id": "homm1",
 		"group": "Heroes of Might and Magic",
-		"name": "Heroes of Might and Magic I (Rip)",
+		"name": "Heroes of Might and Magic I: A Strategic Quest (Rip)",
 		"executable": "./HEROES.EXE",
 		"sync": false,
 		"file": "homm1.zip",
@@ -394,10 +408,11 @@
 		"developer": "New World Computing",
 		"publisher": "New World Computing",
 		"copyright": "Ubisoft Entertainment",
-		"url": "//gog.com/game/heroes_of_might_and_magic",
+		"url": "https://gog.com/game/heroes_of_might_and_magic",
 		"version": "1.0",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic:_A_Strategic_Quest",
 		"clones": [{
 			"id": "homm2",
 			"name": "Heroes of Might and Magic II: The Succession Wars",
@@ -410,9 +425,10 @@
 			"size": 203522890,
 			"year": 1996,
 			"publisher": "3DO Games",
-			"url": "//gog.com/game/heroes_of_might_and_magic_2_gold_edition",
+			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II"
 		} , {
 			"id": "homm2x",
 			"name": "Heroes of Might and Magic II: The Price of Loyalty",
@@ -425,9 +441,10 @@
 			"size": 199548791,
 			"year": 1997,
 			"publisher": "3DO Games",
-			"url": "//gog.com/game/heroes_of_might_and_magic_2_gold_edition",
+			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
 			"status": "Nothing",
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
 			"enabled": false
 		} , {
 			"id": "homm2xrip",
@@ -441,9 +458,10 @@
 			"size": 44235314,
 			"year": 1997,
 			"publisher": "3DO Games",
-			"url": "//gog.com/game/heroes_of_might_and_magic_2_gold_edition",
+			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion"
 		} , {
 			"id": "homm2gold",
 			"name": "Heroes of Might and Magic II Gold",
@@ -455,7 +473,7 @@
 			"size": 316287153,
 			"year": 1998,
 			"publisher": "3DO Games",
-			"url": "//gog.com/game/heroes_of_might_and_magic_2_gold_edition",
+			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
 			"status": "Nothing",
 			"enabled": false
@@ -485,13 +503,15 @@
 		"developer": "Adept Software (Adam Pedersen)",
 		"publisher": "Software Creations, Impulse Games",
 		"copyright": "Adept Software (Adam Pedersen)",
-		"url": "//www.adeptsoftware.com/jetpack/",
+		"url": "https://www.adeptsoftware.com/jetpack/",
 		"version": "1.5",
 		"license": "Freeware",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)"
 	} , {
 		"id": "loomega",
 		"name": "Loom",
+		"group": "Loom",
 		"executable": "./LOOM.EXE",
 		"sync": false,
 		"file": "loomega.zip",
@@ -518,6 +538,7 @@
 		"version": "EGA 3.5.37",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Loom_(video_game)",
 		"clones": [{
 			"id": "loomdemo",
 			"name": "Loom (Demo)",
@@ -559,6 +580,7 @@
 		"version": "CD",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_(1992_video_game)",
 		"clones": [{
 			"id": "mk2",
 			"name": "Mortal Kombat 2",
@@ -568,7 +590,8 @@
 			"size": 9797146,
 			"year": 1993,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_II"
 		} , {
 			"id": "mk3",
 			"name": "Mortal Kombat 3",
@@ -578,7 +601,8 @@
 			"size": 19720043,
 			"year": 1995,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_3"
 		}]
 	} , {
 		"id": "monkey1ega",
@@ -610,6 +634,7 @@
 		"version": "EGA",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island",
 		"clones": [{
 			"id": "monkey1demo",
 			"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
@@ -693,7 +718,8 @@
 		"copyright": "Diversions Entertainment",
 		"version": "2.1",
 		"license": "Freeware",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/One_Must_Fall:_2097"
 	} , {
 		"id": "pakupaku",
 		"name": "Paku Paku",
@@ -720,7 +746,7 @@
 		"publisher": "Jason M. Knight",
 		"copyright": "Jason M. Knight",
 		"version": "1.6",
-		"url": "//deathshadow.com/pakuPaku",
+		"url": "https://deathshadow.com/pakuPaku",
 		"license": "Public Domain",
 		"status": "Playable"
 	} , {
@@ -750,6 +776,7 @@
 		"publisher": "Titus France SA",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Prehistorik",
 		"clones": [{
 			"id": "pre2",
 			"name": "Prehistorik 2",
@@ -759,7 +786,8 @@
 			"size": 1080103,
 			"year": 1993,
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Prehistorik_2"
 		}]
 	} , {
 		"id": "pop1",
@@ -791,6 +819,7 @@
 		"version": "1.4",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)",
 		"clones": [{
 			"id": "pop2",
 			"name": "Prince of Persia 2",
@@ -802,7 +831,8 @@
 			"year": 1993,
 			"version": "1.1",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Prince_of_Persia_2:_The_Shadow_and_the_Flame"
 		}]
 	} , {
 		"id": "robbo",
@@ -832,7 +862,8 @@
 		"copyright": "X LanD Computer Games",
 		"license": "Freeware",
 		"license_notes": "Creative Commons BY-SA 2.5",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
 	} , {
 		"id": "qbasic",
 		"name": "QBasic",
@@ -861,6 +892,7 @@
 		"version": "1.1",
 		"license": "Commercial",
 		"status": "Working",
+		"wikipedia": "https://en.wikipedia.org/wiki/QBasic",
 		"clones": [{
 			"id": "gorilla",
 			"name": "QBasic - Gorillas (Demo)",
@@ -873,7 +905,8 @@
 			"publisher": "IBM Corp.",
 			"copyright": "IBM Corp.",
 			"license": "Freeware",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Gorillas_(video_game)"
 		} , {
 			"id": "nibbles",
 			"name": "QBasic - Nibbles (Demo)",
@@ -885,7 +918,8 @@
 			"publisher": "Microsoft Corp.",
 			"copyright": "Microsoft Corp.",
 			"license": "Freeware",
-			"status": "Playable"
+			"status": "Playable",
+			"wikipedia": "https://en.wikipedia.org/wiki/Nibbles_(video_game)"
 		}]
 	} , {
 		"id": "quake1",
@@ -939,6 +973,7 @@
 		"version": "1.06",
 		"license": "Commercial",
 		"status": "Ingame",
+		"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)",
 		"clones": [{
 			"id": "quake1mp1",
 			"name": "Mission Pack 1: Scourge of Armagon",
@@ -950,7 +985,8 @@
 			"publisher": "id Software",
 			"copyright": "Bethesda Softworks",
 			"license": "Commercial",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)#Quake_Mission_Pack_No._1:_Scourge_of_Armagon"
 		} , {
 			"id": "quake1mp2",
 			"name": "Mission Pack 2: Dissolution of Eternity",
@@ -962,7 +998,8 @@
 			"publisher": "id Software",
 			"copyright": "Bethesda Softworks",
 			"license": "Commercial",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)#Quake_Mission_Pack_No._2:_Dissolution_of_Eternity"
 		}]
 	} , {
 		"id": "squarez",
@@ -989,7 +1026,7 @@
 		"developer": "Adept Software (Adam Pedersen)",
 		"publisher": "Software Creations, Impulse Games",
 		"copyright": "Adept Software (Adam Pedersen)",
-		"url": "//www.adeptsoftware.com/squarez/",
+		"url": "https://www.adeptsoftware.com/squarez/",
 		"version": "1.5",
 		"license": "Freeware",
 		"status": "Playable"
@@ -1021,6 +1058,7 @@
 		"version": "1.2",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Raptor:_Call_of_the_Shadows",
 		"clones": [{
 			"id": "raptorsw",
 			"name": "Raptor: Call of the Shadows (Shareware)",
@@ -1055,7 +1093,8 @@
 		"copyright": "First Star Software, Inc.",
 		"version": "1.2",
 		"license": "Commercial",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
 	} , {
 		"id": "starcontrol1",
 		"group": "Star Control",
@@ -1086,13 +1125,15 @@
 		"url": "https://www.stardock.com/games/starcontrol/store#purchase",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Star_Control",
 		"clones": [{
 			"id": "starcontrol2",
 			"name": "Star Control II: The Ur-Quan Masters",
 			"executable": "./STARCON2.COM",
 			"file": "starcontrol2.zip",
 			"size": 6603466,
-			"year": 1992
+			"year": 1992,
+			"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II"
 		}]
 	} , {
 		"id": "vikings",
@@ -1123,6 +1164,7 @@
 		"url": "https://www.blizzard.com/en-us/games/legacy/",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/The_Lost_Vikings",
 		"clones": [{
 			"id": "vikingsbc",
 			"name": "The Lost Vikings (Classic Arcade)",
@@ -1161,7 +1203,8 @@
 		"copyright": "Eclipse Software",
 		"version": "3.0",
 		"license": "Freeware",
-		"status": "Playable"
+		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)"
 	} , {
 		"id": "war2xrip",
 		"group": "Warcraft",
@@ -1189,6 +1232,7 @@
 		"version": "1.33",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal",
 		"clones": [{
 			"id": "war2",
 			"name": "Warcraft II: Tides of Darkness",
@@ -1201,7 +1245,8 @@
 			"language": "English",
 			"year": 1995,
 			"version": "1.0",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Tides_of_Darkness"
 		} , {
 			"id": "war2x",
 			"name": "Warcraft II: Beyond the Dark Portal",
@@ -1211,7 +1256,8 @@
 			"file": "war2x.zip",
 			"size": 122526490,
 			"version": "1.3",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
 		}]
 	} , {
 		"id": "wolf3d",
@@ -1243,6 +1289,7 @@
 		"version": "1.1",
 		"license": "Commercial",
 		"status": "Playable",
+		"wikipedia": "https://en.wikipedia.org/wiki/Wolfenstein_3D",
 		"clones": [{
 			"id": "wolf3ds",
 			"name": "Wolfenstein 3D: Spear of Destiny",
@@ -1291,6 +1338,7 @@
 		"version": "1.2",
 		"license": "Commercial",
 		"status": "Ingame",
+		"wikipedia": "https://en.wikipedia.org/wiki/UFO:_Enemy_Unknown",
 		"clones": [{
 			"id": "xcom1demo",
 			"name": "X-COM: UFO Defense (Demo)",
@@ -1313,7 +1361,8 @@
 			"publisher": "MicroProse",
 			"copyright": "Take-Two Interactive",
 			"license": "Commercial",
-			"status": "Ingame"
+			"status": "Ingame",
+			"wikipedia": "https://en.wikipedia.org/wiki/X-COM:_Terror_from_the_Deep"
 		}]
 	} , {
 		"id": "win95",
@@ -1343,6 +1392,7 @@
 		"copyright": "Microsoft",
 		"version": "4.00.950",
 		"license": "Commercial",
-		"status": "Working"
+		"status": "Working",
+		"wikipedia": "https://en.wikipedia.org/wiki/Windows_95"
 	}]
 }
