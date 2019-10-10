@@ -47,6 +47,33 @@
 			"license_initial": "Shareware"
 		}]
 	} , {
+		"id": "acat",
+		"name": "Alley Cat",
+		"executable": "./CAT.EXE",
+		"sync": false,
+		"file": "acat.zip",
+		"size": 29903,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1984,
+		"genre": "Platformer",
+		"developer": "Bill Williams / John Harris",
+		"publisher": "Synapse Software / IBM Corp.",
+		"copyright": "Synapse Software / IBM Corp.",
+		"license": "Commercial",
+		"status": "Playable"
+	} , {
 		"id": "aladdin",
 		"group": "Disney",
 		"name": "Disney's Aladdin",
@@ -130,6 +157,34 @@
 			"license": "Commercial",
 			"status": "Playable"
 		}]
+	} , {
+		"id": "digger",
+		"name": "Digger",
+		"notes": "DOSBOX: Display garbled",
+		"executable": "./DIGGER.COM",
+		"sync": false,
+		"file": "digger.zip",
+		"size": 22801,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1983,
+		"genre": "Puzzle",
+		"developer": "Rob Sleath",
+		"publisher": "Windmill Software",
+		"copyright": "Windmill Software",
+		"license": "Commercial",
+		"status": "Ingame"
 	} , {
 		"id": "keen1sw",
 		"group": "Commander Keen",
@@ -779,6 +834,60 @@
 		"license_notes": "Creative Commons BY-SA 2.5",
 		"status": "Playable"
 	} , {
+		"id": "qbasic",
+		"name": "QBasic",
+		"executable": "./QBASIC.EXE",
+		"sync": true,
+		"file": "qbasic.zip",
+		"size": 211243,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1990,
+		"genre": "Software",
+		"developer": "Microsoft Corp.",
+		"publisher": "Microsoft Corp.",
+		"copyright": "Microsoft Corp.",
+		"version": "1.1",
+		"license": "Commercial",
+		"status": "Working",
+		"clones": [{
+			"id": "gorilla",
+			"name": "QBasic - Gorillas (Demo)",
+			"executable": "./",
+			"args": ["-c", "C:", "-c", "QBASIC /RUN GORILLA.BAS"],
+			"language": "English",
+			"year": 1991,
+			"genre": "Artillery",
+			"developer": "IBM Corp.",
+			"publisher": "IBM Corp.",
+			"copyright": "IBM Corp.",
+			"license": "Freeware",
+			"status": "Playable"
+		} , {
+			"id": "nibbles",
+			"name": "QBasic - Nibbles (Demo)",
+			"args": ["-c", "C:", "-c","QBASIC.EXE /RUN NIBBLES.BAS"],
+			"language": "English",
+			"year": 1990,
+			"genre": "Snake",
+			"developer": "Microsoft Corp.",
+			"publisher": "Microsoft Corp.",
+			"copyright": "Microsoft Corp.",
+			"license": "Freeware",
+			"status": "Playable"
+		}]
+	} , {
 		"id": "quake1",
 		"group": "Quake 1",
 		"name": "Quake 1",
@@ -919,6 +1028,34 @@
 			"size": 1826735,
 			"license": "Shareware"
 		}]
+	} , {
+		"id": "rockford",
+		"name": "Rockford",
+		"executable": "./ROCKFORD.EXE",
+		"sync": false,
+		"file": "rockford.zip",
+		"size": 170613,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1988,
+		"genre": "Puzzle",
+		"developer": "Synergistic Software, Inc.",
+		"publisher": "Mastertronic, Ltd.",
+		"copyright": "First Star Software, Inc.",
+		"version": "1.2",
+		"license": "Commercial",
+		"status": "Playable"
 	} , {
 		"id": "starcontrol1",
 		"group": "Star Control",
