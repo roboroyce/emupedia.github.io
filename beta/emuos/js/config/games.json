@@ -36,6 +36,7 @@
 		"license_notes": "Public Domain (excluding the sound effects)",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Abuse_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=kLnOi3aRVJI",
 		"clones": [{
 			"id": "abusesw",
 			"executable": "./ABUSE.EXE",
@@ -74,7 +75,8 @@
 		"copyright": "Synapse Software / IBM Corp.",
 		"license": "Commercial",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)"
+		"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=DNfs55L1rXQ"
 	} , {
 		"id": "aladdin",
 		"group": "Disney",
@@ -220,6 +222,7 @@
 		"license": "Shareware",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons",
+		"youtube": "https://www.youtube.com/watch?v=nP-D7SGy9t0",
 		"clones": [{
 			"id": "keen2",
 			"name": "Episode 2: The Earth Explodes",
@@ -349,7 +352,8 @@
 		"version": "1.7eu",
 		"license": "Commercial",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/Dune_II"
+		"wikipedia": "https://en.wikipedia.org/wiki/Dune_II",
+		"youtube": "https://www.youtube.com/watch?v=noU0MSDBoJ8"
 	} , {
 		"id": "got",
 		"name": "God of Thunder",
@@ -379,7 +383,8 @@
 		"version": "1.1",
 		"license": "Freeware",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)"
+		"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=jpRrwVOsDw0"
 	} , {
 		"id": "homm1",
 		"group": "Heroes of Might and Magic",
@@ -428,7 +433,8 @@
 			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
 			"status": "Ingame",
-			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II"
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II",
+			"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
 		} , {
 			"id": "homm2x",
 			"name": "Heroes of Might and Magic II: The Price of Loyalty",
@@ -445,6 +451,7 @@
 			"license": "Commercial",
 			"status": "Nothing",
 			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
+			"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg",
 			"enabled": false
 		} , {
 			"id": "homm2xrip",
@@ -461,7 +468,8 @@
 			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
 			"status": "Ingame",
-			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion"
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
+			"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
 		} , {
 			"id": "homm2gold",
 			"name": "Heroes of Might and Magic II Gold",
@@ -476,6 +484,8 @@
 			"url": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 			"license": "Commercial",
 			"status": "Nothing",
+			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II",
+			"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg",
 			"enabled": false
 		}]
 	} , {
@@ -507,7 +517,8 @@
 		"version": "1.5",
 		"license": "Freeware",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)"
+		"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=sxrgPVa-R3g"
 	} , {
 		"id": "loomega",
 		"name": "Loom",
@@ -581,6 +592,7 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_(1992_video_game)",
+		"youtube": "https://www.youtube.com/watch?v=HEjc_pIkI20",
 		"clones": [{
 			"id": "mk2",
 			"name": "Mortal Kombat 2",
@@ -719,7 +731,8 @@
 		"version": "2.1",
 		"license": "Freeware",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/One_Must_Fall:_2097"
+		"wikipedia": "https://en.wikipedia.org/wiki/One_Must_Fall:_2097",
+		"youtube": "https://www.youtube.com/watch?v=l9ph0HO0N5U"
 	} , {
 		"id": "pakupaku",
 		"name": "Paku Paku",
@@ -974,6 +987,7 @@
 		"license": "Commercial",
 		"status": "Ingame",
 		"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=WZlyz6LL6vg",
 		"clones": [{
 			"id": "quake1mp1",
 			"name": "Mission Pack 1: Scourge of Armagon",
@@ -1059,6 +1073,7 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Raptor:_Call_of_the_Shadows",
+		"youtube": "https://www.youtube.com/watch?v=aHcEXYD_qjM",
 		"clones": [{
 			"id": "raptorsw",
 			"name": "Raptor: Call of the Shadows (Shareware)",
@@ -1127,6 +1142,7 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Star_Control",
+		"youtube": "https://www.youtube.com/watch?v=uQeNh5CRO9U",
 		"clones": [{
 			"id": "starcontrol2",
 			"name": "Star Control II: The Ur-Quan Masters",
@@ -1134,7 +1150,8 @@
 			"file": "starcontrol2.zip",
 			"size": 6603466,
 			"year": 1992,
-			"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II"
+			"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II",
+			"youtube": "https://www.youtube.com/watch?v=NlUxFaqAmjU"
 		}]
 	} , {
 		"id": "vikings",
@@ -1205,7 +1222,8 @@
 		"version": "3.0",
 		"license": "Freeware",
 		"status": "Playable",
-		"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)"
+		"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)",
+		"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
 	} , {
 		"id": "war2xrip",
 		"group": "Warcraft",
@@ -1291,6 +1309,7 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"wikipedia": "https://en.wikipedia.org/wiki/Wolfenstein_3D",
+		"youtube": "https://www.youtube.com/watch?v=kHCsy0Ngp1M",
 		"clones": [{
 			"id": "wolf3ds",
 			"name": "Wolfenstein 3D: Spear of Destiny",
@@ -1340,6 +1359,7 @@
 		"license": "Commercial",
 		"status": "Ingame",
 		"wikipedia": "https://en.wikipedia.org/wiki/UFO:_Enemy_Unknown",
+		"youtube": "https://www.youtube.com/watch?v=cmmoB21PDSU",
 		"clones": [{
 			"id": "xcom1demo",
 			"name": "X-COM: UFO Defense (Demo)",
