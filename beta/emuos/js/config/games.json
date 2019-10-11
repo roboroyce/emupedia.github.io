@@ -91,7 +91,7 @@
 		"executable": "./AV.EXE",
 		"sync": false,
 		"file": "avolley.zip",
-		"size": 1810424,
+		"size": 24236,
 		"year": 1989,
 		"genre": "Arcade Sports",
 		"developer": "Rhett Anderson",
@@ -405,7 +405,6 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"sync": true,
 			"args": ["-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2.zip",
 			"size": 203522890,
@@ -424,7 +423,6 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"sync": true,
 			"args": ["-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2x.zip",
 			"size": 199548791,
@@ -444,7 +442,6 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"sync": true,
 			"args": ["-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2xrip.zip",
 			"size": 44235314,
@@ -1075,18 +1072,19 @@
 			"youtube": "https://www.youtube.com/watch?v=l9ph0HO0N5U"
 		}
 	} , {
-		"id": "pakupaku",
-		"name": "Paku Paku",
-		"executable": "./PAKU.EXE",
-		"sync": false,
-		"file": "pakupaku16.zip",
-		"size": 71507,
+		"id": "pacpc",
+		"group": "Pac-Man",
+		"name": "Pac PC (Pac-Man Clone)",
+		"executable": "./PACPC2.EXE",
+		"args": ["-c", "cycles=7000" ,"-c", "c:", "-c", "PACPC2 F"],
+		"file": "pacpc.zip",
+		"size": 192934,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
 				"VGA": {
 					"resolutions": [
-						"160x100"
+						"256x256"
 					],
 					"colors": 16
 				}
@@ -1094,23 +1092,98 @@
 			"sound": ["PC Speaker", "Sound Blaster"]
 		},
 		"language": "English",
-		"year": 2011,
+		"year": 1997,
 		"genre": "Arcade",
-		"developer": "Jason M. Knight",
-		"publisher": "Jason M. Knight",
-		"copyright": "Jason M. Knight",
-		"version": "1.6",
-		"license": "Public Domain",
+		"developer": "JROK",
+		"publisher": "JROK",
+		"copyright": "JROK",
+		"version": "2.00A",
+		"license": "Freeware",
 		"status": "Playable",
 		"links": {
-			"url": "https://deathshadow.com/pakuPaku"
+			"url": "http://www.jrok.com/games_orig.html",
+			"wikipedia": "https://en.wikipedia.org/wiki/Pac-Man"
+		},
+		"clones": [{
+			"id": "mspac",
+			"name": "Ms Pac PC (Ms. Pac-Man Clone)",
+			"executable": "./MSPAC.EXE",
+			"args": ["-c", "cycles=7000" ,"-c", "c:", "-c", "MSPAC F"],
+			"file": "mspac.zip",
+			"size": 645870,
+			"version": "1.02B",
+			"links": {
+				"wiki": "https://en.wikipedia.org/wiki/Ms._Pac-Man"
+			}
+		} , {
+			"id": "pakupaku",
+			"name": "Paku Paku (Pac-Man Clone)",
+			"executable": "./PAKU.EXE",
+			"sync": false,
+			"args": [],
+			"file": "pakupaku16.zip",
+			"size": 71507,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"160x100"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster"]
+			},
+			"language": "English",
+			"year": 2011,
+			"genre": "Arcade",
+			"developer": "Jason M. Knight",
+			"publisher": "Jason M. Knight",
+			"copyright": "Jason M. Knight",
+			"version": "1.6",
+			"license": "Public Domain",
+			"links": {
+				"url": "https://deathshadow.com/pakuPaku"
+			}
+		}]
+	} , {
+		"id": "pcbert",
+		"name": "Q*bert",
+		"executable": "./PCBERT.EXE",
+		"sync": false,
+		"file": "pcbert.zip",
+		"size": 688139,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"256x256"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1997,
+		"genre": "Arcade",
+		"developer": "JROK",
+		"publisher": "JROK",
+		"copyright": "JROK",
+		"version": "1.01",
+		"license": "Freeware",
+		"status": "Playable",
+		"links": {
+			"url": "http://www.jrok.com/pcbert.html",
+			"wikipedia": "https://en.wikipedia.org/wiki/Q*bert"
 		}
 	} , {
 		"id": "popcorn",
 		"name": "PopCorn",
 		"executable": "./POPCORN.EXE",
 		"args": ["-c", "c:", "-c", "cycles=500", "-c", "POPSPEED 0"],
-		"sync": true,
 		"file": "popcorn.zip",
 		"size": 52245,
 		"hardware": {
@@ -1187,42 +1260,9 @@
 			}
 		}]
 	} , {
-		"id": "robbo",
-		"name": "Robbo",
-		"description": "The Adventures of Robbo",
-		"executable": "./ROBBO.EXE",
-		"sync": false,
-		"file": "robbo.zip",
-		"size": 2004224,
-		"hardware": {
-			"input": ["Keyboard"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
-		},
-		"language": "English",
-		"year": 1993,
-		"genre": "Puzzle",
-		"developer": "X LanD Computer Games",
-		"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
-		"copyright": "X LanD Computer Games",
-		"license": "Freeware",
-		"license_notes": "Creative Commons BY-SA 2.5",
-		"status": "Playable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
-		}
-	} , {
 		"id": "qbasic",
 		"name": "QBasic",
 		"executable": "./QBASIC.EXE",
-		"sync": true,
 		"file": "qbasic.zip",
 		"size": 211243,
 		"hardware": {
@@ -1407,6 +1447,38 @@
 			"license": "Shareware"
 		}]
 	} , {
+		"id": "robbo",
+		"name": "Robbo",
+		"description": "The Adventures of Robbo",
+		"executable": "./ROBBO.EXE",
+		"sync": false,
+		"file": "robbo.zip",
+		"size": 2004224,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
+		},
+		"language": "English",
+		"year": 1993,
+		"genre": "Puzzle",
+		"developer": "X LanD Computer Games",
+		"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
+		"copyright": "X LanD Computer Games",
+		"license": "Freeware",
+		"license_notes": "Creative Commons BY-SA 2.5",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
+		}
+	} , {
 		"id": "rockford",
 		"name": "Rockford",
 		"executable": "./ROCKFORD.EXE",
@@ -1552,7 +1624,6 @@
 		"name": "Tapper",
 		"executable": "./TAPPER.COM",
 		"args": ["-c", "cycles=500"],
-		"sync": true,
 		"file": "tapper.zip",
 		"size": 44594,
 		"hardware": {
@@ -1799,7 +1870,6 @@
 		"description": "UFO: Enemy Unknown",
 		"notes": "DOSBOX: May hang on mission start",
 		"executable": "./UFO.BAT",
-		"sync": true,
 		"mode": "asm",
 		"file": "xcom112.zip",
 		"size": 3274320,
@@ -1843,7 +1913,6 @@
 			"name": "X-COM: Terror from the Deep",
 			"notes": "DOSBOX: May hang on mission start",
 			"executable": "./TERROR.COM",
-			"sync": true,
 			"mode": "asm",
 			"file": "xcom2.zip",
 			"size": 4586858,
