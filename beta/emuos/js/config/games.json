@@ -529,14 +529,14 @@
 		},
 		"clones": [{
 			"id": "jazzhol1",
-			"name": "Jazz Jackrabbit: Holiday Hare",
+			"name": "Jazz Jackrabbit: Holiday Hare 1",
 			"file": "jazzhol1.zip",
 			"size": 1360653,
 			"license": "Freeware",
 			"status": "Playable"
 		} , {
 			"id": "jazzhol2",
-			"name": "Jazz Jackrabbit: Holiday Hare",
+			"name": "Jazz Jackrabbit: Holiday Hare 2",
 			"file": "jazzhol2.zip",
 			"size": 1364205,
 			"year": 1995,
@@ -660,12 +660,12 @@
 	} , {
 		"id": "lemmdemo",
 		"group": "Lemmings",
-		"name": "Lemmings (Demo)",
+		"name": "Lemmings",
 		"notes": "DOSBOX: Palette problems, vgaonly not working",
-		"executable": "./VGALEMMI.EXE",
-		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "VGALEMMI -v -p"],
-		"file": "lemmdemo.zip",
-		"size": 234203,
+		"executable": "./LEMVGA.COM",
+		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "LEMVGA -v -p"],
+		"file": "lemmings.zip",
+		"size": 666161,
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
@@ -696,20 +696,61 @@
 		"developer": "DMA Design Limited",
 		"publisher": "Psygnosis Limited",
 		"copyright": "Psygnosis Limited",
-		"version": "DEMO",
-		"license": "Public Domain",
+		"license": "Commercial",
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=kYAQhq76atY"
 		},
 		"clones": [{
+			"id": "lemmdemo",
+			"name": "Lemmings (Demo)",
+			"executable": "./VGALEMMI.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "VGALEMMI -v -p"],
+			"file": "lemmdemo.zip",
+			"size": 234203,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
 			"id": "lemmcovx",
-			"name": "Lemmings (Covox)",
+			"name": "Lemmings Covox (Demo)",
 			"executable": "./VGAL.EXE",
-			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI /v /p"],
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGAL /v /p"],
 			"file": "lemmcovx.zip",
 			"size": 250494,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
+			"id": "lemxmas1",
+			"name": "Lemmings Xmas 1 (Demo)",
+			"executable": "./VGAL.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGAL /v /p"],
+			"file": "lemxmas1.zip",
+			"size": 213154,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
+			"id": "lemxmas2",
+			"name": "Lemmings Xmas 2 (Demo)",
+			"executable": "./VGAL.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGAL /v /p"],
+			"file": "lemxmas2.zip",
+			"size": 155037,
+			"year": 1992,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
+			"id": "lemmhol",
+			"name": "Lemmings Holiday (Demo)",
+			"executable": "./VGALEMMI.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI /v /p"],
+			"file": "lemmhol.zip",
+			"size": 162756,
+			"year": 1993,
 			"version": "DEMO",
 			"license": "Shareware",
 			"status": "Playable"
@@ -717,6 +758,7 @@
 			"id": "lem2demo",
 			"name": "Lemmings 2: The Tribes (Demo)",
 			"executable": "./L2.EXE",
+			"args": [],
 			"sync": false,
 			"file": "lem2demo.zip",
 			"size": 474714,
@@ -726,6 +768,20 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_2:_The_Tribes"
+			}
+		} , {
+			"id": "lemm3chr",
+			"name": "Lemmings 3: The Lemmings Chronicles",
+			"executable": "./L3F.EXE",
+			"args": [],
+			"sync": false,
+			"file": "lemm3chr.zip",
+			"size": 4774747,
+			"year": 1994,
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/All_New_World_of_Lemmings"
 			}
 		}]
 	} , {
