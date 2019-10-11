@@ -496,12 +496,13 @@
 			"youtube": "https://www.youtube.com/watch?v=sxrgPVa-R3g"
 		}
 	} , {
-		"id": "jazzsw",
-		"name": "Jazz Jackrabbit (Shareware)",
+		"id": "jazzcd",
+		"group": "Jazz Jackrabbit",
+		"name": "Jazz Jackrabbit CD",
 		"executable": "./JAZZ.EXE",
 		"sync": false,
-		"file": "jazzsw.zip",
-		"size": 1349883,
+		"file": "jazzcd.zip",
+		"size": 7805842,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
@@ -520,7 +521,8 @@
 		"developer": "Epic MegaGames, Inc.",
 		"publisher": "Epic MegaGames, Inc.",
 		"copyright": "Epic MegaGames, Inc.",
-		"license": "Shareware",
+		"license": "Commercial",
+		"version": "CD",
 		"status": "Playable",
 		"links": {
 			"gog": "https://www.gog.com/game/jazz_jackrabbit_collection",
@@ -529,10 +531,19 @@
 		},
 		"clones": [{
 			"id": "jazzhol1",
+			"name": "Jazz Jackrabbit (Shareware)",
+			"file": "jazzsw.zip",
+			"size": 1349883,
+			"license": "Freeware",
+			"version": "-",
+			"status": "Playable"
+		} , {
+			"id": "jazzhol1",
 			"name": "Jazz Jackrabbit: Holiday Hare 1",
 			"file": "jazzhol1.zip",
 			"size": 1360653,
 			"license": "Freeware",
+			"version": "DEMO",
 			"status": "Playable"
 		} , {
 			"id": "jazzhol2",
@@ -541,6 +552,7 @@
 			"size": 1364205,
 			"year": 1995,
 			"license": "Freeware",
+			"version": "DEMO",
 			"status": "Playable"
 		}]
 	} , {
