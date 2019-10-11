@@ -86,6 +86,22 @@
 			"version": "PCjr"
 		}]
 	} , {
+		"id": "avolley",
+		"name": "Arcade Volleyball",
+		"executable": "./AV.EXE",
+		"sync": false,
+		"file": "avolley.zip",
+		"size": 1810424,
+		"year": 1989,
+		"genre": "Arcade Sports",
+		"developer": "Rhett Anderson",
+		"publisher": "COMPUTE! Publications",
+		"license": "Public Domain",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Arcade_Volleyball"
+		}
+	} , {
 		"id": "aladdin",
 		"group": "Disney",
 		"name": "Disney's Aladdin",
