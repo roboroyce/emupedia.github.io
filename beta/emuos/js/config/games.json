@@ -774,6 +774,36 @@
 			"status": "Playable"
 		}]
 	} , {
+		"id": "lotus3",
+		"group": "Lotus",
+		"name": "Lotus III: The Ultimate Challenge",
+		"executable": "./LOTUS.EXE",
+		"sync": false,
+		"file": "lotus3.zip",
+		"size": 1070010,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
+		},
+		"language": "English",
+		"year": 1992,
+		"genre": "Racing",
+		"developer": "Magnetic Fields",
+		"publisher": "Gremlin Graphics",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Lotus_(video_game_series)#Lotus_III:_The_Ultimate_Challenge"
+		}
+	} , {
 		"id": "mk1",
 		"group": "Mortal Kombat",
 		"name": "Mortal Kombat 1",
@@ -1398,6 +1428,38 @@
 			}
 		}]
 	} , {
+		"id": "supaplex",
+		"name": "Supaplex",
+		"executable": "./SUPAPLEX.EXE",
+		"sync": false,
+		"file": "supaplex.zip",
+		"size": 276476,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
+		},
+		"language": "English",
+		"year": 1991,
+		"genre": "Puzzle",
+		"developer": "Think!Ware Development",
+		"publisher": "Dream Factory",
+		"copyright": "Digital Integration",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"url": "https://www.elmerproductions.com/sp/index.html",
+			"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
+			"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
+		}
+	} , {
 		"id": "tapper",
 		"name": "Tapper",
 		"executable": "./TAPPER.COM",
@@ -1427,6 +1489,38 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Tapper_(video_game)"
+		}
+	} , {
+		"id": "tyrian2k",
+		"name": "Tyrian 2000",
+		"executable": "./TYRIAN.EXE",
+		"sync": false,
+		"file": "tyrian2k30.zip",
+		"size": 5180854,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1999,
+		"genre": "Arcade Shooter",
+		"developer": "Eclipse Software",
+		"publisher": "XSIV Games",
+		"copyright": "Eclipse Software",
+		"version": "3.0",
+		"license": "Freeware",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)",
+			"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
 		}
 	} , {
 		"id": "vikings",
@@ -1472,38 +1566,6 @@
 			"publisher": "Blizzard Entertainment, Inc.",
 			"license": "Freeware"
 		}]
-	} , {
-		"id": "tyrian2k",
-		"name": "Tyrian 2000",
-		"executable": "./TYRIAN.EXE",
-		"sync": false,
-		"file": "tyrian2k30.zip",
-		"size": 5180854,
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1999,
-		"genre": "Arcade Shooter",
-		"developer": "Eclipse Software",
-		"publisher": "XSIV Games",
-		"copyright": "Eclipse Software",
-		"version": "3.0",
-		"license": "Freeware",
-		"status": "Playable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)",
-			"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
-		}
 	} , {
 		"id": "warcraft",
 		"group": "Warcraft",
