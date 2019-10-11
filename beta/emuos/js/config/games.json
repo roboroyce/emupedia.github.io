@@ -781,6 +781,7 @@
 		"sync": false,
 		"file": "lotus3.zip",
 		"size": 1070010,
+		"drm": ["Manual Lookup"],
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
@@ -1282,35 +1283,6 @@
 			}
 		}]
 	} , {
-		"id": "squarez",
-		"name": "Squarez Deluxe",
-		"executable": "./SQUAREZ.EXE",
-		"sync": false,
-		"file": "squarez15.zip",
-		"size": 120404,
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1993,
-		"genre": "Puzzle",
-		"developer": "Adept Software (Adam Pedersen)",
-		"publisher": "Software Creations, Impulse Games",
-		"copyright": "Adept Software (Adam Pedersen)",
-		"url": "http://www.adeptsoftware.com/squarez/",
-		"version": "1.5",
-		"license": "Freeware",
-		"status": "Playable"
-	} , {
 		"id": "raptor",
 		"name": "Raptor: Call of the Shadows",
 		"executable": "./RAP.EXE",
@@ -1380,7 +1352,36 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
-		}
+		},
+	} , {
+		"id": "squarez",
+		"name": "Squarez Deluxe",
+		"executable": "./SQUAREZ.EXE",
+		"sync": false,
+		"file": "squarez15.zip",
+		"size": 120404,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1993,
+		"genre": "Puzzle",
+		"developer": "Adept Software (Adam Pedersen)",
+		"publisher": "Software Creations, Impulse Games",
+		"copyright": "Adept Software (Adam Pedersen)",
+		"url": "http://www.adeptsoftware.com/squarez/",
+		"version": "1.5",
+		"license": "Freeware",
+		"status": "Playable"
 	} , {
 		"id": "starcontrol1",
 		"group": "Star Control",
@@ -1436,6 +1437,7 @@
 		"sync": false,
 		"file": "supaplex.zip",
 		"size": 276476,
+		"drm": ["Manual Lookup"],
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
