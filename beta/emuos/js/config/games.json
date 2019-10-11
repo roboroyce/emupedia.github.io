@@ -52,6 +52,7 @@
 		"id": "alleycat",
 		"name": "Alley Cat",
 		"executable": "./ALLEYCAT.EXE",
+		"sync": false,
 		"file": "alleycat.zip",
 		"size": 29903,
 		"hardware": {
@@ -171,6 +172,51 @@
 			"copyright": "Walt Disney",
 			"license": "Commercial",
 			"status": "Playable"
+		}]
+	} , {
+		"id": "ddave",
+		"group": "Dangerous Dave",
+		"name": "Dangerous Dave",
+		"executable": "./DAVE.EXE",
+		"sync": false,
+		"file": "ddave.zip",
+		"size": 95851,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1988,
+		"genre": "Platformer",
+		"developer": "John Romero",
+		"publisher": "Softdisk Publishing",
+		"copyright": "Softdisk Publishing",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"gog": "https://www.gog.com/game/dangerous_dave_pack",
+			"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave",
+			"youtube": "https://www.youtube.com/watch?v=TAjHtpLwFrE"
+		},
+		"clones": [{
+			"id": "ddavethm",
+			"name": "Dangerous Dave in the Haunted Mansion",
+			"file": "ddavethm.zip",
+			"size": 215019,
+			"year": 1991,
+			"developer": "id Software",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
+				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
+			}
 		}]
 	} , {
 		"id": "digger",
@@ -453,6 +499,7 @@
 		"id": "jazzsw",
 		"name": "Jazz Jackrabbit (Shareware)",
 		"executable": "./JAZZ.EXE",
+		"sync": false,
 		"file": "jazzsw.zip",
 		"size": 1349883,
 		"hardware": {
@@ -617,7 +664,6 @@
 		"notes": "DOSBOX: Palette problems, vgaonly not working",
 		"executable": "./VGALEMMI.EXE",
 		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "VGALEMMI -v -p"],
-		"sync": true,
 		"file": "lemmdemo.zip",
 		"size": 234203,
 		"hardware": {
@@ -671,6 +717,7 @@
 			"id": "lem2demo",
 			"name": "Lemmings 2: The Tribes (Demo)",
 			"executable": "./L2.EXE",
+			"sync": false,
 			"file": "lem2demo.zip",
 			"size": 474714,
 			"year": 1993,
@@ -1178,7 +1225,6 @@
 			"name": "Mission Pack 1: Scourge of Armagon",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./QUAKE.EXE -nocdaudio -stdvid -game hipnotic",
-			"sync": false,
 			"year": 1997,
 			"developer": "Hipnotic Interactive",
 			"publisher": "id Software",
@@ -1193,7 +1239,6 @@
 			"name": "Mission Pack 2: Dissolution of Eternity",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./QUAKE.EXE -nocdaudio -stdvid -game rogue",
-			"sync": false,
 			"year": 1997,
 			"developer": "Rogue Entertainment",
 			"publisher": "id Software",
@@ -1388,6 +1433,7 @@
 		"group": "The Lost Vikings",
 		"name": "The Lost Vikings",
 		"executable": "./VIKINGS.EXE",
+		"sync": false,
 		"file": "vikings.zip",
 		"size": 1257182,
 		"drm": ["Manual Lookup"],
@@ -1459,41 +1505,69 @@
 			"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
 		}
 	} , {
-		"id": "war2xrip",
+		"id": "warcraft",
 		"group": "Warcraft",
-		"name": "Warcraft II: Beyond the Dark Portal (Rip)",
-		"executable": "./WAR2X/WAR2.EXE",
-		"file": "war2xrip.zip",
-		"size": 18569304,
+		"name": "Warcraft I: Orcs and Humans (Demo)",
+		"executable": "./WAR.EXE",
+		"file": "warcraft.zip",
+		"size": 1416812,
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
 				"VGA": {
 					"resolutions": [
-						"640x400"
+						"320x200"
 					],
 					"colors": 256
 				}
 			},
 			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
 		},
-		"year": 1996,
+		"year": 1995,
 		"genre": "Real-Time Strategy (RTS)",
 		"developer": "Blizzard Entertainment, Inc.",
-		"publisher": "Davidson & Associates",
+		"publisher": "Blizzard Entertainment, Inc.",
 		"copyright": "Activision Blizzard",
-		"version": "1.33",
-		"license": "Commercial",
+		"version": "1.12",
+		"license": "Shareware",
 		"status": "Playable",
 		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
+			"gog": "https://www.gog.com/game/warcraft_bundle",
+			"wikipedia": "https://en.wikipedia.org/wiki/Warcraft:_Orcs_%26_Humans"
 		},
 		"clones": [{
+			"name": "Warcraft II: Beyond the Dark Portal (Rip)",
+			"executable": "./WAR2X/WAR2.EXE",
+			"file": "war2xrip.zip",
+			"size": 18569304,
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"640x400"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+			},
+			"year": 1996,
+			"genre": "Real-Time Strategy (RTS)",
+			"developer": "Blizzard Entertainment, Inc.",
+			"publisher": "Davidson & Associates",
+			"copyright": "Activision Blizzard",
+			"version": "1.33",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
+			}
+		} , {
 			"id": "war2",
 			"name": "Warcraft II: Tides of Darkness",
 			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./WAR2.EXE",
-			"sync": true,
 			"args": ["-c", "mount d emulator/c -t cdrom"],
 			"file": "war2.zip",
 			"size": 82019801,
