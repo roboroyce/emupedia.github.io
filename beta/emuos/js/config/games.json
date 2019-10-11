@@ -177,6 +177,7 @@
 		"name": "Digger",
 		"notes": "DOSBOX: Display garbled",
 		"executable": "./DIGGER.COM",
+		"args": ["-c", "cycles=500", "-c", "machine=cga", "-c", "c:", "-c", "DIGGER"],
 		"file": "digger.zip",
 		"size": 22801,
 		"hardware": {
@@ -202,120 +203,6 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
 		}
-	} , {
-		"id": "keen1sw",
-		"group": "Commander Keen",
-		"name": "Episode 1: Marooned on Mars",
-		"description": "Commander Keen in...\"Invasion of the Vorticons\"",
-		"executable": "./KEEN1.EXE",
-		"sync": false,
-		"file": "keen1sw.zip",
-		"size": 154033,
-		"hardware": {
-			"input": ["Keyboard", "Joystick"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1990,
-		"release_date": "Jan 23, 1990",
-		"genre": "Platformer",
-		"developer": "id Software",
-		"publisher": "Apogee Software",
-		"copyright": "id Software",
-		"version": "1.31",
-		"license": "Shareware",
-		"status": "Playable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons",
-			"youtube": "https://www.youtube.com/watch?v=nP-D7SGy9t0"
-		},
-		"clones": [{
-			"id": "keen2",
-			"name": "Episode 2: The Earth Explodes",
-			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
-			"executable": "./KEEN2.EXE",
-			"file": "keen2.zip",
-			"size": 122004,
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
-			}
-		} , {
-			"id": "keen3",
-			"name": "Episode 3: Keen Must Die!",
-			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
-			"executable": "./KEEN3.EXE",
-			"file": "keen3.zip",
-			"size": 134276,
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
-			}
-		} , {
-			"id": "keen35",
-			"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
-			"description": "Commander Keen in...\"Keen Dreams\"",
-			"executable": "./KDREAMS.EXE",
-			"file": "keen35.zip",
-			"size": 134276,
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Keen_Dreams"
-			}
-		} , {
-			"id": "keen4sw",
-			"name": "Episode 4: Secret of the Oracle",
-			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
-			"executable": "./KEEN4E.EXE",
-			"year": 1991,
-			"file": "keen4sw.zip",
-			"size": 588258,
-			"version": "1.4",
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
-			}
-		} , {
-			"id": "keen5",
-			"name": "Episode 5: The Armaggeddon Machine",
-			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
-			"executable": "./KEEN5E.EXE",
-			"file": "keen5.zip",
-			"size": 628755,
-			"year": 1992,
-			"version": "1.4",
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
-			}
-		} , {
-			"id": "keen6",
-			"name": "Episode 6: Aliens Ate My Baby Sitter!",
-			"description": "Commander Keen in...\"Aliens Ate My Baby Sitter!\"",
-			"executable": "./KEEN6C.EXE",
-			"file": "keen6.zip",
-			"size": 522320,
-			"year": 1991,
-			"version": "1.0",
-			"license": "Commercial",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Aliens_Ate_My_Babysitter"
-			}
-		}]
 	} , {
 		"id": "diablo1sw",
 		"name": "Diablo I",
@@ -411,7 +298,7 @@
 		"license": "Freeware",
 		"status": "Playable",
 		"links": {
-			"url": "https://www.adeptsoftware.com/got/",
+			"url": "http://www.adeptsoftware.com/got/",
 			"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=jpRrwVOsDw0"
 		}
@@ -558,14 +445,246 @@
 		"license": "Freeware",
 		"status": "Playable",
 		"links": {
-			"url": "https://www.adeptsoftware.com/jetpack/",
+			"url": "http://www.adeptsoftware.com/jetpack/",
 			"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=sxrgPVa-R3g"
 		}
 	} , {
+		"id": "jazzsw",
+		"name": "Jazz Jackrabbit (Shareware)",
+		"executable": "./JAZZ.EXE",
+		"file": "jazzsw.zip",
+		"size": 1349883,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1994,
+		"genre": "Platformer",
+		"developer": "Epic MegaGames, Inc.",
+		"publisher": "Epic MegaGames, Inc.",
+		"copyright": "Epic MegaGames, Inc.",
+		"license": "Shareware",
+		"status": "Playable",
+		"links": {
+			"gog": "https://www.gog.com/game/jazz_jackrabbit_collection",
+			"wikipedia": "https://en.wikipedia.org/wiki/Jazz_Jackrabbit_(1994_video_game)",
+			"youtube": "https://www.youtube.com/watch?v=BQFtSfloEn0"
+		},
+		"clones": [{
+			"id": "jazzhol1",
+			"name": "Jazz Jackrabbit: Holiday Hare",
+			"file": "jazzhol1.zip",
+			"size": 1360653,
+			"license": "Freeware",
+			"status": "Playable"
+		} , {
+			"id": "jazzhol2",
+			"name": "Jazz Jackrabbit: Holiday Hare",
+			"file": "jazzhol2.zip",
+			"size": 1364205,
+			"year": 1995,
+			"license": "Freeware",
+			"status": "Playable"
+		}]
+	} , {
+		"id": "keen1sw",
+		"group": "Commander Keen",
+		"name": "Episode 1: Marooned on Mars",
+		"description": "Commander Keen in...\"Invasion of the Vorticons\"",
+		"executable": "./KEEN1.EXE",
+		"sync": false,
+		"file": "keen1sw.zip",
+		"size": 154033,
+		"hardware": {
+			"input": ["Keyboard", "Joystick"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1990,
+		"release_date": "Jan 23, 1990",
+		"genre": "Platformer",
+		"developer": "id Software",
+		"publisher": "Apogee Software",
+		"copyright": "id Software",
+		"version": "1.31",
+		"license": "Shareware",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons",
+			"youtube": "https://www.youtube.com/watch?v=nP-D7SGy9t0"
+		},
+		"clones": [{
+			"id": "keen2",
+			"name": "Episode 2: The Earth Explodes",
+			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
+			"executable": "./KEEN2.EXE",
+			"file": "keen2.zip",
+			"size": 122004,
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
+			}
+		} , {
+			"id": "keen3",
+			"name": "Episode 3: Keen Must Die!",
+			"description": "Commander Keen in...\"Invasion of the Vorticons\"",
+			"executable": "./KEEN3.EXE",
+			"file": "keen3.zip",
+			"size": 134276,
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
+			}
+		} , {
+			"id": "keen35",
+			"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
+			"description": "Commander Keen in...\"Keen Dreams\"",
+			"executable": "./KDREAMS.EXE",
+			"file": "keen35.zip",
+			"size": 134276,
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Keen_Dreams"
+			}
+		} , {
+			"id": "keen4sw",
+			"name": "Episode 4: Secret of the Oracle",
+			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
+			"executable": "./KEEN4E.EXE",
+			"year": 1991,
+			"file": "keen4sw.zip",
+			"size": 588258,
+			"version": "1.4",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
+			}
+		} , {
+			"id": "keen5",
+			"name": "Episode 5: The Armaggeddon Machine",
+			"description": "Commander Keen in...\"Goodbye, Galaxy!\"",
+			"executable": "./KEEN5E.EXE",
+			"file": "keen5.zip",
+			"size": 628755,
+			"year": 1992,
+			"version": "1.4",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
+			}
+		} , {
+			"id": "keen6",
+			"name": "Episode 6: Aliens Ate My Baby Sitter!",
+			"description": "Commander Keen in...\"Aliens Ate My Baby Sitter!\"",
+			"executable": "./KEEN6C.EXE",
+			"file": "keen6.zip",
+			"size": 522320,
+			"year": 1991,
+			"version": "1.0",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Aliens_Ate_My_Babysitter"
+			}
+		}]
+	} , {
+		"id": "lemmdemo",
+		"group": "Lemmings",
+		"name": "Lemmings (Demo)",
+		"notes": "DOSBOX: Palette problems, vgaonly not working",
+		"executable": "./VGALEMMI.EXE",
+		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "VGALEMMI -v -p"],
+		"sync": true,
+		"file": "lemmdemo.zip",
+		"size": 234203,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"CGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}],
+				"EGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}],
+				"VGA": [{
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}]
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1991,
+		"genre": "Puzzle",
+		"developer": "DMA Design Limited",
+		"publisher": "Psygnosis Limited",
+		"copyright": "Psygnosis Limited",
+		"version": "DEMO",
+		"license": "Public Domain",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_(video_game)",
+			"youtube": "https://www.youtube.com/watch?v=kYAQhq76atY"
+		},
+		"clones": [{
+			"id": "lemmcovx",
+			"name": "Lemmings (Covox)",
+			"executable": "./VGAL.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI /v /p"],
+			"file": "lemmcovx.zip",
+			"size": 250494,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
+			"id": "lem2demo",
+			"name": "Lemmings 2: The Tribes (Demo)",
+			"executable": "./L2.EXE",
+			"file": "lem2demo.zip",
+			"size": 474714,
+			"year": 1993,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_2:_The_Tribes"
+			}
+		}]
+	} , {
 		"id": "loomega",
-		"name": "Loom",
 		"group": "Loom",
+		"name": "Loom",
 		"executable": "./LOOM.EXE",
 		"sync": false,
 		"file": "loomega.zip",
@@ -851,6 +970,7 @@
 		"license": "Freeware",
 		"status": "Playable",
 		"links": {
+			"url": "http://www.ludoid.fr",
 			"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
 		}
 	} , {
@@ -1109,7 +1229,7 @@
 		"developer": "Adept Software (Adam Pedersen)",
 		"publisher": "Software Creations, Impulse Games",
 		"copyright": "Adept Software (Adam Pedersen)",
-		"url": "https://www.adeptsoftware.com/squarez/",
+		"url": "http://www.adeptsoftware.com/squarez/",
 		"version": "1.5",
 		"license": "Freeware",
 		"status": "Playable"
