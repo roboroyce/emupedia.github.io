@@ -794,10 +794,12 @@
 			"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
 		},
 		"language": "English",
-		"year": 1992,
+		"year": 1993,
+		"release_date": "July 14, 1993",
 		"genre": "Racing",
 		"developer": "Magnetic Fields",
 		"publisher": "Gremlin Graphics",
+		"version": "14/07/1993",
 		"license": "Commercial",
 		"status": "Playable",
 		"links": {
