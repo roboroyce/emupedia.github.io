@@ -172,41 +172,80 @@
 			}
 		}]
 	} , {
-		"id": "robbo",
+		"id": "bdash1",
 		"group": "Boulder Dash",
-		"name": "The Adventures of Robbo (Boulder Dash Clone)",
-		"description": "The Adventures of Robbo",
-		"executable": "./ROBBO.EXE",
+		"name": "Boulder Dash I",
+		"alternatenames": ["Boulder Dash Vol. 1", "Boulder Dash - Starring: Rockford", "バルダーダッシュ"],
+		"executable": "./BDASH.EXE",
 		"sync": false,
-		"file": "robbo.zip",
-		"size": 2004224,
+		"file": "bdash1.zip",
+		"size": 11702,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
-				"VGA": {
+				"CGA": {
 					"resolutions": [
 						"320x200"
 					],
-					"colors": 256
+					"colors": 4
 				}
 			},
-			"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
+			"sound": ["PC Speaker"]
 		},
 		"language": "English",
-		"year": 1993,
+		"year": 1984,
 		"genre": "Puzzle",
-		"developer": "X LanD Computer Games",
-		"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
-		"copyright": "X LanD Computer Games",
-		"license": "Freeware",
-		"license_notes": "Creative Commons BY-SA 2.5",
+		"developer": "First Star Software, Inc.",
+		"publisher": "First Star Software, Inc.",
+		"copyright": "First Star Software, Inc.",
+		"license": "Commercial",
 		"status": "Playable",
 		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
+			"wikipedia": "https://en.wikipedia.org/wiki/Boulder_Dash"
 		},
 		"clones": [{
+			"id": "bdash2",
+			"name": "Boulder Dash II: Rockford's Riot",
+			"alternatenames": ["Boulder Dash II: La venganza de Rockford"],
+			"executable": "./BDASH2.EXE",
+			"sync": false,
+			"file": "bdash2.zip",
+			"size": 15872,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"CGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"language": "English",
+			"year": 1985
+		} , {
+			"id": "sbdash",
+			"name": "Super Boulder Dash",
+			"executable": "./SUPRBOLD.COM",
+			"sync": false,
+			"file": "sbdash.zip",
+			"size": 30636,
+			"year": 1986,
+			"publisher": "Electronic Arts, Inc."
+		} , {
+			"id": "bdashck",
+			"name": "Boulder Dash IV: Construction Kit",
+			"executable": "./BDCK.EXE",
+			"sync": false,
+			"file": "bdashck.zip",
+			"size": 37289,
+			"year": 1987,
+			"publisher": "Epyx, Inc."
+		} , {
 			"id": "rockford",
-			"name": "Rockford (Boulder Dash Clone)",
+			"name": "Rockford",
 			"executable": "./ROCKFORD.EXE",
 			"sync": false,
 			"file": "rockford.zip",
@@ -214,7 +253,7 @@
 			"hardware": {
 				"input": ["Keyboard"],
 				"video": {
-					"VGA": {
+					"EGA": {
 						"resolutions": [
 							"320x200"
 						],
@@ -223,15 +262,11 @@
 				},
 				"sound": ["PC Speaker"]
 			},
-			"language": "English",
 			"year": 1988,
-			"genre": "Puzzle",
-			"developer": "Synergistic Software, Inc.",
+			"developer": "Arcadia Systems / Synergistic Software, Inc.",
 			"publisher": "Mastertronic, Ltd.",
 			"copyright": "First Star Software, Inc.",
 			"version": "1.2",
-			"license": "Commercial",
-			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
 			}
@@ -244,7 +279,7 @@
 			"size": 276476,
 			"drm": ["Manual Lookup"],
 			"hardware": {
-				"input": ["Keyboard", "Mouse"],
+				"input": ["Keyboard"],
 				"video": {
 					"VGA": {
 						"resolutions": [
@@ -255,18 +290,45 @@
 				},
 				"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
 			},
-			"language": "English",
 			"year": 1991,
-			"genre": "Puzzle",
-			"developer": "Think!Ware Development",
+			"developer": "Chaos / Think!Ware Development",
 			"publisher": "Dream Factory",
 			"copyright": "Digital Integration",
 			"license": "Freeware",
-			"status": "Playable",
 			"links": {
 				"url": "https://www.elmerproductions.com/sp/index.html",
 				"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
 				"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
+			}
+		} , {
+			"id": "robbo",
+			"name": "The Adventures of Robbo (Boulder Dash Clone)",
+			"executable": "./ROBBO.EXE",
+			"sync": false,
+			"file": "robbo.zip",
+			"size": 2004224,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
+			},
+			"year": 1993,
+			"genre": "Puzzle",
+			"developer": "X LanD Computer Games",
+			"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
+			"copyright": "X LanD Computer Games",
+			"license": "Freeware",
+			"license_notes": "Creative Commons BY-SA 2.5",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
 			}
 		}]
 	} , {
