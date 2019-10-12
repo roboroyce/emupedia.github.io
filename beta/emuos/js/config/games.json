@@ -87,6 +87,7 @@
 		}]
 	} , {
 		"id": "avolley",
+		"group": "Arcade Volleyball",
 		"name": "Arcade Volleyball",
 		"executable": "./AV.EXE",
 		"sync": false,
@@ -100,7 +101,183 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Arcade_Volleyball"
-		}
+		},
+		"clones": []
+	} , {
+		"id": "arkanoid",
+		"group": "Breakout",
+		"name": "Arkanoid (Breakout Clone)",
+		"executable": "./ARKANOID.COM",
+		"file": "arkanoid.zip",
+		"size": 77823,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1988,
+		"genre": "Arcade",
+		"developer": "Taito Corporation; NovaLogic, Inc.",
+		"publisher": "Taito Corporation",
+		"copyright": "Taito Corporation",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"wiki": "https://en.wikipedia.org/wiki/Arkanoid",
+			"youtube": "https://www.youtube.com/watch?v=r9qmKODaAJY"
+		},
+		"clones": [{
+			"id": "popcorn",
+			"name": "PopCorn (Breakout Clone)",
+			"executable": "./POPCORN.EXE",
+			"args": ["-c", "c:", "-c", "cycles=500", "-c", "POPSPEED 0"],
+			"file": "popcorn.zip",
+			"size": 52245,
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"CGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"language": "French",
+			"developer": "Lacaze Christophe; Raynal Frédérick",
+			"publisher": "Lacral Software",
+			"copyright": "Lacral Software",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://www.ludoid.fr",
+				"wiki": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
+				"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
+			}
+		}]
+	} , {
+		"id": "ddave",
+		"group": "Dangerous Dave",
+		"name": "Dangerous Dave",
+		"executable": "./DAVE.EXE",
+		"sync": false,
+		"file": "ddave.zip",
+		"size": 95851,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1988,
+		"genre": "Platformer",
+		"developer": "John Romero",
+		"publisher": "Softdisk Publishing",
+		"copyright": "Softdisk Publishing",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"gog": "https://www.gog.com/game/dangerous_dave_pack",
+			"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave",
+			"youtube": "https://www.youtube.com/watch?v=TAjHtpLwFrE"
+		},
+		"clones": [{
+			"id": "ddavethm",
+			"name": "Dangerous Dave in the Haunted Mansion",
+			"file": "ddavethm.zip",
+			"size": 215019,
+			"year": 1991,
+			"developer": "id Software",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
+				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
+			}
+		}]
+	} , {
+		"id": "digger",
+		"group": "Digger",
+		"name": "Digger",
+		"notes": "DOSBOX: Display garbled",
+		"executable": "./DIGGER.COM",
+		"args": ["-c", "cycles=500", "-c", "machine=cga", "-c", "c:", "-c", "DIGGER"],
+		"file": "digger.zip",
+		"size": 22801,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1983,
+		"genre": "Puzzle",
+		"developer": "Rob Sleath",
+		"publisher": "Windmill Software",
+		"copyright": "Windmill Software",
+		"license": "Commercial",
+		"status": "Ingame",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
+		},
+		"clones": []
+	} , {
+		"id": "diablo1sw",
+		"group": "Diablo",
+		"name": "Diablo I",
+		"notes": "DOSBOX: Hangs after intro movie",
+		"executable": "mem",
+		"args": ["-c", "imgmount c a:\\WIN95.IMG -size 512,63,16,101", "-c", "imgmount d b:\\DIABLO.IMG -size 512,63,16,132", "-c", "boot -l c"],
+		"files": ["win95.zip", "diablo1sw.zip"],
+		"size": 51095535,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1996,
+		"genre": "Role-Playing Game (RPG)",
+		"subgenre": "Action Role-Playing Game (ARPG)",
+		"subsubgenre": "Hack and Slash",
+		"developer": "Blizzard North",
+		"publisher": "Blizzard Entertainment",
+		"copyright": "Activision Blizzard",
+		"license": "Shareware",
+		"status": "Loadable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Diablo_(video_game)"
+		},
+		"clones": []
 	} , {
 		"id": "aladdin",
 		"group": "Disney",
@@ -190,117 +367,8 @@
 			"status": "Playable"
 		}]
 	} , {
-		"id": "ddave",
-		"group": "Dangerous Dave",
-		"name": "Dangerous Dave",
-		"executable": "./DAVE.EXE",
-		"sync": false,
-		"file": "ddave.zip",
-		"size": 95851,
-		"hardware": {
-			"input": ["Keyboard"],
-			"video": {
-				"EGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 16
-				}
-			},
-			"sound": ["PC Speaker"]
-		},
-		"language": "English",
-		"year": 1988,
-		"genre": "Platformer",
-		"developer": "John Romero",
-		"publisher": "Softdisk Publishing",
-		"copyright": "Softdisk Publishing",
-		"license": "Commercial",
-		"status": "Playable",
-		"links": {
-			"gog": "https://www.gog.com/game/dangerous_dave_pack",
-			"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave",
-			"youtube": "https://www.youtube.com/watch?v=TAjHtpLwFrE"
-		},
-		"clones": [{
-			"id": "ddavethm",
-			"name": "Dangerous Dave in the Haunted Mansion",
-			"file": "ddavethm.zip",
-			"size": 215019,
-			"year": 1991,
-			"developer": "id Software",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
-				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
-			}
-		}]
-	} , {
-		"id": "digger",
-		"name": "Digger",
-		"notes": "DOSBOX: Display garbled",
-		"executable": "./DIGGER.COM",
-		"args": ["-c", "cycles=500", "-c", "machine=cga", "-c", "c:", "-c", "DIGGER"],
-		"file": "digger.zip",
-		"size": 22801,
-		"hardware": {
-			"input": ["Keyboard"],
-			"video": {
-				"CGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 4
-				}
-			},
-			"sound": ["PC Speaker"]
-		},
-		"language": "English",
-		"year": 1983,
-		"genre": "Puzzle",
-		"developer": "Rob Sleath",
-		"publisher": "Windmill Software",
-		"copyright": "Windmill Software",
-		"license": "Commercial",
-		"status": "Ingame",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
-		}
-	} , {
-		"id": "diablo1sw",
-		"name": "Diablo I",
-		"notes": "DOSBOX: Hangs after intro movie",
-		"executable": "mem",
-		"args": ["-c", "imgmount c a:\\WIN95.IMG -size 512,63,16,101", "-c", "imgmount d b:\\DIABLO.IMG -size 512,63,16,132", "-c", "boot -l c"],
-		"files": ["win95.zip", "diablo1sw.zip"],
-		"size": 51095535,
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1996,
-		"genre": "Role-Playing Game (RPG)",
-		"subgenre": "Action Role-Playing Game (ARPG)",
-		"subsubgenre": "Hack and Slash",
-		"developer": "Blizzard North",
-		"publisher": "Blizzard Entertainment",
-		"copyright": "Activision Blizzard",
-		"license": "Shareware",
-		"status": "Loadable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Diablo_(video_game)"
-		},
-		"enabled": true
-	} , {
 		"id": "dune2",
+		"group": "Dune",
 		"name": "Dune II: The Building of a Dynasty",
 		"executable": "./DUNE2.EXE",
 		"sync": false,
@@ -330,9 +398,11 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Dune_II",
 			"youtube": "https://www.youtube.com/watch?v=noU0MSDBoJ8"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "got",
+		"group": "God of Thunder",
 		"name": "God of Thunder",
 		"executable": "./GOT.EXE",
 		"sync": false,
@@ -352,9 +422,9 @@
 		},
 		"language": "English",
 		"year": 1993,
-		"genre": "Platformer",
-		"developer": "Ron Davis",
-		"publisher": "Impulse Games",
+		"genre": "Action Puzzle",
+		"developer": "Ron Davis / Impulse Software / Adept Software",
+		"publisher": "Impulse Games / Software Creations",
 		"copyright": "CSE Games, Argo Games",
 		"version": "1.1",
 		"license": "Freeware",
@@ -363,7 +433,8 @@
 			"url": "http://www.adeptsoftware.com/got/",
 			"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=jpRrwVOsDw0"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "homm1",
 		"group": "Heroes of Might and Magic",
@@ -477,6 +548,7 @@
 		}]
 	} , {
 		"id": "jetpack",
+		"group": "Jetpack",
 		"name": "Jetpack",
 		"executable": "./JETPACK.EXE",
 		"sync": false,
@@ -507,7 +579,8 @@
 			"url": "http://www.adeptsoftware.com/jetpack/",
 			"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=sxrgPVa-R3g"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "jazzcd",
 		"group": "Jazz Jackrabbit",
@@ -886,7 +959,8 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Lotus_(video_game_series)#Lotus_III:_The_Ultimate_Challenge"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "mk1",
 		"group": "Mortal Kombat",
@@ -1041,6 +1115,7 @@
 		}]
 	} , {
 		"id": "omf2097",
+		"group": "One Must Fall",
 		"name": "One Must Fall: 2097",
 		"executable": "./FILE0001.EXE",
 		"sync": false,
@@ -1070,7 +1145,8 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/One_Must_Fall:_2097",
 			"youtube": "https://www.youtube.com/watch?v=l9ph0HO0N5U"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "pacpc",
 		"group": "Pac-Man",
@@ -1149,7 +1225,8 @@
 		}]
 	} , {
 		"id": "pcbert",
-		"name": "Q*bert",
+		"group": "Q*bert",
+		"name": "PC*bert (Q*bert Clone)",
 		"executable": "./PCBERT.EXE",
 		"sync": false,
 		"file": "pcbert.zip",
@@ -1178,38 +1255,8 @@
 		"links": {
 			"url": "http://www.jrok.com/pcbert.html",
 			"wikipedia": "https://en.wikipedia.org/wiki/Q*bert"
-		}
-	} , {
-		"id": "popcorn",
-		"name": "PopCorn",
-		"executable": "./POPCORN.EXE",
-		"args": ["-c", "c:", "-c", "cycles=500", "-c", "POPSPEED 0"],
-		"file": "popcorn.zip",
-		"size": 52245,
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"CGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 4
-				}
-			},
-			"sound": ["PC Speaker"]
 		},
-		"language": "French",
-		"year": 1988,
-		"genre": "Breakout Clone",
-		"developer": "Lacaze Christophe; Raynal Frédérick",
-		"publisher": "Lacral Software",
-		"copyright": "Lacral Software",
-		"license": "Freeware",
-		"status": "Playable",
-		"links": {
-			"url": "http://www.ludoid.fr",
-			"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
-		}
+		"clones": []
 	} , {
 		"id": "pop1",
 		"group": "Prince of Persia",
@@ -1448,7 +1495,8 @@
 		}]
 	} , {
 		"id": "robbo",
-		"name": "Robbo",
+		"group": "Robbo",
+		"name": "The Adventures of Robbo (Robbo Clone)",
 		"description": "The Adventures of Robbo",
 		"executable": "./ROBBO.EXE",
 		"sync": false,
@@ -1477,9 +1525,44 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
-		}
+		},
+		"clones": [{
+			"id": "supaplex",
+			"name": "Supaplex (Robbo Clone)",
+			"executable": "./SUPAPLEX.EXE",
+			"sync": false,
+			"file": "supaplex.zip",
+			"size": 276476,
+			"drm": ["Manual Lookup"],
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
+			},
+			"language": "English",
+			"year": 1991,
+			"genre": "Puzzle",
+			"developer": "Think!Ware Development",
+			"publisher": "Dream Factory",
+			"copyright": "Digital Integration",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "https://www.elmerproductions.com/sp/index.html",
+				"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
+				"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
+			}
+		}]
 	} , {
 		"id": "rockford",
+		"group": "Rockford",
 		"name": "Rockford",
 		"executable": "./ROCKFORD.EXE",
 		"sync": false,
@@ -1508,9 +1591,11 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "squarez",
+		"group": "Squarez Deluxe",
 		"name": "Squarez Deluxe",
 		"executable": "./SQUAREZ.EXE",
 		"sync": false,
@@ -1537,7 +1622,8 @@
 		"url": "http://www.adeptsoftware.com/squarez/",
 		"version": "1.5",
 		"license": "Freeware",
-		"status": "Playable"
+		"status": "Playable",
+		"clones": []
 	} , {
 		"id": "starcontrol1",
 		"group": "Star Control",
@@ -1587,40 +1673,8 @@
 			}
 		}]
 	} , {
-		"id": "supaplex",
-		"name": "Supaplex",
-		"executable": "./SUPAPLEX.EXE",
-		"sync": false,
-		"file": "supaplex.zip",
-		"size": 276476,
-		"drm": ["Manual Lookup"],
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
-		},
-		"language": "English",
-		"year": 1991,
-		"genre": "Puzzle",
-		"developer": "Think!Ware Development",
-		"publisher": "Dream Factory",
-		"copyright": "Digital Integration",
-		"license": "Freeware",
-		"status": "Playable",
-		"links": {
-			"url": "https://www.elmerproductions.com/sp/index.html",
-			"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
-			"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
-		}
-	} , {
 		"id": "tapper",
+		"group": "Tapper",
 		"name": "Tapper",
 		"executable": "./TAPPER.COM",
 		"args": ["-c", "cycles=500"],
@@ -1648,9 +1702,11 @@
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Tapper_(video_game)"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "tyrian2k",
+		"group": "Tyrian",
 		"name": "Tyrian 2000",
 		"executable": "./TYRIAN.EXE",
 		"sync": false,
@@ -1680,7 +1736,8 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
-		}
+		},
+		"clones": []
 	} , {
 		"id": "vikings",
 		"group": "The Lost Vikings",
@@ -1929,7 +1986,7 @@
 		}]
 	} , {
 		"id": "win95",
-		"group": "Operating System",
+		"group": "Windows",
 		"name": "Windows 95",
 		"executable": "boot WIN95.IMG",
 		"args": ["-c", "imgmount a c:\\WIN95.IMG -size 512,63,16,101"],
@@ -1958,6 +2015,7 @@
 		"status": "Working",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Windows_95"
-		}
+		},
+		"clones": []
 	}]
 }
