@@ -75,6 +75,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.js',
 						from: /\$\(img\)\.error\(function\(e\){/gi,
@@ -88,6 +89,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 										from: /e\(i\)\.error\(function\(e\){/gi,
@@ -101,6 +103,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + css_directory + dependency + '-' + version + '.min.css',
 														from: /@import url\("\.\/vendor\/normalize\.min\.css"\);@import url\("\.\/vendor\/animation\.min\.css"\);/gi,
@@ -109,6 +112,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
+															// noinspection JSValidateTypes
 															replace({
 																files: install_directory + css_directory + dependency + '-' + version + '.min.css',
 																from: /realtive/gi,
@@ -122,6 +126,7 @@ function install(install_directory, dependency, version) {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
+																			// noinspection JSValidateTypes
 																			replace({
 																				files: install_directory + css_directory + dependency + '-' + version + '.css',
 																				from: /@import url\("\.\/vendor\/normalize\.css"\);/gi,
@@ -130,6 +135,7 @@ function install(install_directory, dependency, version) {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
+																					// noinspection JSValidateTypes
 																					replace({
 																						files: install_directory + css_directory + dependency + '-' + version + '.css',
 																						from: /@import url\("\.\/vendor\/animation\.css"\);/gi,
@@ -138,6 +144,7 @@ function install(install_directory, dependency, version) {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
+																							// noinspection JSValidateTypes
 																							replace({
 																								files: install_directory + css_directory + dependency + '-' + version + '.css',
 																								from: /realtive/gi,
@@ -238,6 +245,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: /\.bundle/gi,
@@ -256,6 +264,7 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											// noinspection JSValidateTypes
 											replace({
 												files: install_directory + libraries_directory + dependency + '-' + version + '.js',
 												from: /\.bundle/gi,
@@ -269,6 +278,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
+															// noinspection JSValidateTypes
 															replace({
 																files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
 																from: /\.bundle/gi,
@@ -361,6 +371,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + dependency + '-' + version + '.min.css',
 										from: /\/img\/bootstrap-colorpicker\//gi,
@@ -379,6 +390,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
+															// noinspection JSValidateTypes
 															replace({
 																files: install_directory + css_directory + dependency + '-' + version + '.css',
 																from: /\/img\/bootstrap-colorpicker\//gi,
@@ -502,6 +514,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: '//# sourceMappingURL=' + dependency + '.min.js.map',
@@ -510,30 +523,53 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+							// noinspection JSValidateTypes
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+								from: /["|']use strict["|'];?/g,
+								to: ''
+							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											replace({
-												files: install_directory + libraries_directory + dependency + '-' + version + '.js',
-												from: '//# sourceMappingURL=' + dependency + '.js.map',
-												to: '//# sourceMappingURL=' + dependency + '-' + version + '.js.map'
-											}, (error) => {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
-													//noinspection JSUnresolvedFunction
-													fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+													// noinspection JSValidateTypes
+													replace({
+														files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+														from: '//# sourceMappingURL=' + dependency + '.js.map',
+														to: '//# sourceMappingURL=' + dependency + '-' + version + '.js.map'
+													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
-															log.log(dependency + ' version ' + version + ' installed!');
+															// noinspection JSValidateTypes
+															replace({
+																files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+																from: /["|']use strict["|'];?/g,
+																to: ''
+															}, (error) => {
+																if (error) {
+																	log.error('Error occurred:', error);
+																} else {
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+																		if (error) {
+																			log.error('Error occurred:', error);
+																		} else {
+																			log.log(dependency + ' version ' + version + ' installed!');
+																		}
+																	});
+																}
+															});
 														}
 													});
 												}
@@ -631,6 +667,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + scss_directory + 'coreui-' + version + '/coreui.scss',
 										from: 'node_modules/bootstrap/scss/bootstrap',
@@ -1106,9 +1143,10 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
-						from: '"use strict";',
+						from: /["|']use strict["|'];?/g,
 						to: ''
 					}, (error) => {
 						if (error) {
@@ -1119,9 +1157,10 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + dependency + '-' + version + '.js',
-										from: '"use strict";',
+										from: /["|']use strict["|'];?/g,
 										to: ''
 									}, (error) => {
 										if (error) {
@@ -1132,6 +1171,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
 														from: '"file":"Dropbox-sdk.js"',
@@ -1155,6 +1195,7 @@ function install(install_directory, dependency, version) {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
+																					// noinspection JSValidateTypes
 																					replace({
 																						files: install_directory + libraries_directory + dependency + '-team-' + version + '.js.map',
 																						from: '"file":"DropboxTeam-sdk.js"',
@@ -1199,6 +1240,7 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
+							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + polyfills_directory + dependency + '-auto-' + version + '.min.js.map',
 								from: '"file":"es6-promise.auto.min.js"}',
@@ -1217,6 +1259,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + polyfills_directory + dependency + '-auto-' + version + '.js.map',
 														from: '"file":"es6-promise.auto.js"}',
@@ -1235,6 +1278,7 @@ function install(install_directory, dependency, version) {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
+																			// noinspection JSValidateTypes
 																			replace({
 																				files: install_directory + polyfills_directory + dependency + '-' + version + '.min.js.map',
 																				from: '"file":"es6-promise.min.js"}',
@@ -1253,6 +1297,7 @@ function install(install_directory, dependency, version) {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
+																									// noinspection JSValidateTypes
 																									replace({
 																										files: install_directory + polyfills_directory + dependency + '-' + version + '.js.map',
 																										from: '"file":"es6-promise.js"}',
@@ -1308,6 +1353,7 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
+							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 								from: '//# sourceMappingURL=FileSaver.min.js.map',
@@ -1357,6 +1403,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + css_directory + 'flag-icon-' + version + '.min.css',
 						from: /\.\.\/fonts\//gi,
@@ -1370,6 +1417,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + 'flag-icon-' + version + '.css',
 										from: /\.\.\/fonts\//gi,
@@ -1410,6 +1458,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + css_directory + 'font-awesome-' + version + '.css',
 						from: /\.\.\/webfonts\//gi,
@@ -1423,6 +1472,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + 'font-awesome-' + version + '.min.css',
 										from: /\.\.\/webfonts\//gi,
@@ -1503,6 +1553,7 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
+							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + libraries_directory + dependency + '-' + version + '.js',
 								from: 'keepComments ? comments = (',
@@ -1573,6 +1624,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: '//# sourceMappingURL=hybrids.js.map',
@@ -1630,6 +1682,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'jquery-' + version + '.min.js',
 						from: '//# sourceMappingURL=' + 'jquery-' + version + '.map',
@@ -1648,6 +1701,7 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											// noinspection JSValidateTypes
 											replace({
 												files: install_directory + libraries_directory + 'jquery-' + version + '.map',
 												from: 'jquery.js',
@@ -1656,6 +1710,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + libraries_directory + 'jquery-' + version + '.map',
 														from: 'jquery.min.js',
@@ -1719,6 +1774,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: '//# sourceMappingURL=jquery.form.min.js.map',
@@ -1732,6 +1788,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + dependency + '-' + version + '.map',
 										from: '../src/jquery.form.js',
@@ -1740,6 +1797,7 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											// noinspection JSValidateTypes
 											replace({
 												files: install_directory + libraries_directory + dependency + '-' + version + '.map',
 												from: 'jquery.form.min.js',
@@ -1851,6 +1909,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js',
 						from: '//# sourceMappingURL=jquery-resizable.min.js.map',
@@ -1864,6 +1923,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + 'jquery-resizable-' + version + '.min.js.map',
 										from: /jquery-resizable\.min\.js/g,
@@ -1905,6 +1965,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + 'jquery-ui-' + version + '.min.css',
 										from: /url\("images\//gi,
@@ -1918,6 +1979,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
 														from: /url\("images\//gi,
@@ -2007,6 +2069,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + css_directory + 'font-lato-' + version + '.min.css',
 						from: /\.\.\/fonts\//gi,
@@ -2020,6 +2083,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + 'font-lato-' + version + '.css',
 										from: /\.\.\/fonts\//gi,
@@ -2284,6 +2348,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + css_directory + 'jquery-customscrollbar-' + version + '.css',
 										from: 'mCSB_buttons.png',
@@ -2315,6 +2380,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: '//# sourceMappingURL=' + dependency + '.min.js.map',
@@ -2328,6 +2394,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + dependency + '-' + version + '.map',
 										from: '"sources":["' + dependency + '.js"]',
@@ -2336,6 +2403,7 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											// noinspection JSValidateTypes
 											replace({
 												files: install_directory + libraries_directory + dependency + '-' + version + '.map',
 												from: '"file":"' + dependency + '.min.js"',
@@ -2349,6 +2417,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
+															// noinspection JSValidateTypes
 															replace({
 																files: install_directory + 'index.html',
 																from: dependency + '.js',
@@ -2446,6 +2515,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + css_directory + 'font-open-sans-' + version + '.css',
 						from: /\.\/fonts\/\w+\//gi,
@@ -2608,6 +2678,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + polyfills_directory + 'es6-pointer-events-' + version + '.js',
 						from: /const /g,
@@ -2923,6 +2994,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + css_directory + dependency + '-' + version + '.css',
 														from: /"\.\/font\//gi,
@@ -2936,6 +3008,7 @@ function install(install_directory, dependency, version) {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
+																	// noinspection JSValidateTypes
 																	replace({
 																		files: install_directory + css_directory + dependency + '-bs4-' + version + '.css',
 																		from: /"\.\/font\//gi,
@@ -3044,6 +3117,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'jquery-ui-contextmenu-' + version + '.min.js',
 						from: ',"jquery-ui/ui/widgets/menu"',
@@ -3057,6 +3131,7 @@ function install(install_directory, dependency, version) {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
+									// noinspection JSValidateTypes
 									replace({
 										files: install_directory + libraries_directory + 'jquery-ui-contextmenu-' + version + '.js',
 										from: ', "jquery-ui/ui/widgets/menu"',
@@ -3070,6 +3145,7 @@ function install(install_directory, dependency, version) {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
+													// noinspection JSValidateTypes
 													replace({
 														files: install_directory + libraries_directory + 'jquery-ui-contextmenu-' + version + '.min.js.map',
 														from: 'jquery.ui-contextmenu',
@@ -3126,6 +3202,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + polyfills_directory + 'es6-custom-elements-' + version + '.min.js',
 						from: '//# sourceMappingURL=custom-elements.min.js.map',
@@ -3153,6 +3230,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + polyfills_directory + 'es6-html-imports-' + version + '.min.js',
 						from: '//# sourceMappingURL=html-imports.min.js.map',
@@ -3180,6 +3258,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + polyfills_directory + 'es6-web-components-' + version + '.min.js',
 						from: '//# sourceMappingURL=webcomponents-bundle.js.map',
@@ -3207,6 +3286,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
 						from: '//# sourceMappingURL=xterm.js.map',

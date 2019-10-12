@@ -1,6 +1,7 @@
 ;(function($, undefined) {
 	'use strict';
 	/*jshint laxbreak:true,-W030,maxcomplexity:60,smarttabs:true,-W004,-W044*/
+	// noinspection JSUnusedLocalSymbols
 	$.widget('emuos.taskbar', {
 		version: '@emuos-main-version',
 		options: {
@@ -367,9 +368,11 @@
 			this.$windowsContainment = $();
 			this.$windowCopy = $();
 
+			// noinspection JSUnusedGlobalSymbols
 			this.$droppableTop = $();
 			this.$droppableRight = $();
 			this.$droppableBottom = $();
+			// noinspection JSUnusedGlobalSymbols
 			this.$droppableLeft = $();
 
 			// the basic classes, widget ID, and a unique id instante storage
@@ -507,6 +510,7 @@
 		},
 
 		_debugEnvironment: function() {
+			// noinspection JSUnusedLocalSymbols
 			var o = this.options;
 
 			// position, dialog, button, and window are mandatory
@@ -631,6 +635,7 @@
 		},
 
 		_debugOptions: function() {
+			// noinspection JSUnusedLocalSymbols
 			var o = this.options, i;
 
 			// check and correct those taskbar options that should be positive integers
@@ -656,6 +661,7 @@
 
 			// check if custom buttons does not share names with native buttons
 			for (i in this.options.buttons) {
+				// noinspection JSUnfilteredForInLoop
 				if ($.inArray(i, this._systemButtons) > -1) {
 					this._debugLogAdd('Custom button "' + i + '" detected. ' + 'Custom button should not share names with native buttons.', 1, 2);
 				}
@@ -680,7 +686,7 @@
 				// taskbar will later translated "auto" height to px,
 				// but when we dealing with droppable, that's already calculated
 				// and stored, so use this instead
-									 ? isTaskbar ? options.horizontalRowHeight : this._cache.horizontalRowHeight : isTaskbar ? options.verticalColumnWidth : this._cache.verticalColumnWidth,
+				? isTaskbar ? options.horizontalRowHeight : this._cache.horizontalRowHeight : isTaskbar ? options.verticalColumnWidth : this._cache.verticalColumnWidth,
 				// determines whether an auto height should be applied
 				// to horizontal taskbar; note: auto width of vertical taskbar
 				// is not supported; this is a planned feature
@@ -691,11 +697,11 @@
 
 			// to which edge of the window, right or left, should the taskbar stick,
 			// regardless of orientation
-			_cache.stickHorizontal = horizontal ? options.horizontalStick.indexOf('right') !== -1 ? 'right' : 'left' : options.verticalStick.indexOf('right') !== -1 ? 'right' : 'left',
+			_cache.stickHorizontal = horizontal ? options.horizontalStick.indexOf('right') !== -1 ? 'right' : 'left' : options.verticalStick.indexOf('right') !== -1 ? 'right' : 'left';
 
-				// to which edge of the window, top or bottom, should the taskbar stick,
-				// regardless of orientation
-				_cache.stickVertical = !horizontal ? options.verticalStick.indexOf('top') !== -1 ? 'top' : 'bottom' : options.horizontalStick.indexOf('top') !== -1 ? 'top' : 'bottom';
+			// to which edge of the window, top or bottom, should the taskbar stick,
+			// regardless of orientation
+			_cache.stickVertical = !horizontal ? options.verticalStick.indexOf('top') !== -1 ? 'top' : 'bottom' : options.horizontalStick.indexOf('top') !== -1 ? 'top' : 'bottom';
 
 			// copy setting (used by droppables)
 			_cache.horizontal = horizontal;
@@ -786,12 +792,8 @@
 
 		_setWidthAndHeight: function(_cache) {
 			// width and height differs now from what was initially set by user
-			_cache.width = _cache.horizontal
-						   ? _cache.actualSize
-						   : _cache.secondarySize,
-				_cache.height = !_cache.horizontal
-								? _cache.actualSize
-								: _cache.secondarySize;
+			_cache.width = _cache.horizontal ? _cache.actualSize : _cache.secondarySize;
+			_cache.height = !_cache.horizontal ? _cache.actualSize : _cache.secondarySize;
 
 			return _cache;
 		},
@@ -811,7 +813,7 @@
 
 			if (percentSize) {
 				// translates % to px
-				actualSize = parseFloat(mainDimension, 10) / 100 *
+				actualSize = parseFloat(mainDimension) / 100 *
 					(horizontal ? containment.width : containment.height);
 			} else if (mainDimension === 'auto' && horizontal) {
 				// use actualSize
@@ -913,6 +915,7 @@
 		},
 
 		_addTaskbarRoundedCorners: function(settings) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				_cache = this._cache,
 				options = this.options,
@@ -969,6 +972,7 @@
 		},
 
 		_resolveCollisions: function(_cache) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				horizontal = this.options.orientation === 'horizontal',
 				actualSize = _cache.actualSize,
@@ -1002,6 +1006,7 @@
 				$.each(
 					neighbouringEdges[edge],
 					function(index, neighbouringEdge) {
+						// noinspection JSPotentiallyInvalidUsageOfThis
 						var $collidingTaskbars = $taskbars[neighbouringEdge].not(this.$elem);
 
 						// margins needs to be > 0 and there has to be some taskbars;
@@ -1142,6 +1147,7 @@
 
 		// set position and dimensions for taskbar or droppable
 		_setTaskbarPositionDimensions: function(options) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				_cache = options && options._cache
 						 ? options._cache
@@ -1166,7 +1172,9 @@
 			// on this taskbar
 			if (isTaskbar && this.options.resolveCollisions === true) {
 				for (var i in _cache.colissionCss) {
+					// noinspection JSUnfilteredForInLoop
 					if (_cache.colissionCss [i] > 0) {
+						// noinspection JSUnfilteredForInLoop
 						$elem.css(i, _cache.colissionCss[i]);
 					}
 				}
@@ -1175,6 +1183,7 @@
 
 		// compute row height for "orientation": "horizontal"
 		_computeAutoHeight: function(options) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				// create fake taskbar and prepend it
 				$elem = $('<div></div>').addClass(
@@ -1202,6 +1211,7 @@
 			}
 
 			// create fake start button
+			// noinspection JSUnusedLocalSymbols
 			var $start = this._factory('startButton', {
 				text: 'Placeholder',
 				name: 'start'
@@ -1261,6 +1271,7 @@
 			});
 
 			//
+			// noinspection JSUnusedLocalSymbols
 			$(window).on('blur.' + this._cache.uep, function(event) {
 				if (self.options.propagateWindowBlur) {
 					self._blurWindows();
@@ -1388,6 +1399,7 @@
 			// return a jQuery object with draggable or resizable in progress,
 			// or empty jQuery object otherwise
 			function getWindowWithInteraction() {
+				// noinspection JSUnusedLocalSymbols
 				var $windowDragging = $(
 					'.' + self.classes.window +
 					'.' + self.classes.uiDraggableDragging
@@ -1411,6 +1423,7 @@
 				return $();
 			}
 
+			// noinspection JSUnusedLocalSymbols
 			$(window).on('scroll.' + this._cache.uep, function(event) {
 				self._setDraggableContainment();
 
@@ -1470,6 +1483,7 @@
 				}
 			});
 
+			// noinspection JSUnusedLocalSymbols
 			var checkConnectivity = function(e) {
 				self._setNetworkMonitorStatus();
 			};
@@ -1511,27 +1525,26 @@
 																	   position: 'fixed'
 																   });
 
-				var thickestBorderWidth = 0,
-					thickestBorder;
+				var thickestBorderWidth = 0, thickestBorder;
 
 				// get the thickest border; helper border color will be taken
 				// from this one, as it is most notable to user
 				$.each([
 						   'borderTopWidth', 'borderRightWidth',
 						   'borderBottomWidth', 'borderLeftWidth'
-					   ],
-					   function(index, value) {
-						   var currentBorderWidth = parseInt($elem.css(value), 10);
+					   ], function(index, value) {
+					var currentBorderWidth = parseInt($elem.css(value), 10);
 
-						   // if border in the current itteration is thicker than what we
-						   // had to this point, select it so it could later be used
-						   if (currentBorderWidth > thickestBorderWidth) {
-							   thickestBorderWidth = currentBorderWidth;
-							   thickestBorder = value.slice(0, -5);
-						   }
-					   });
+					// if border in the current itteration is thicker than what we
+					// had to this point, select it so it could later be used
+					if (currentBorderWidth > thickestBorderWidth) {
+						thickestBorderWidth = currentBorderWidth;
+						thickestBorder = value.slice(0, -5);
+					}
+				});
 
 				// color of the thickest border
+				// noinspection JSUnusedAssignment
 				var color = $elem.css(thickestBorder + 'Color');
 
 				// set color of the thickest border and 1px width
@@ -1539,10 +1552,9 @@
 				$.each([
 						   'borderTop', 'borderRight',
 						   'borderBottom', 'borderLeft'
-					   ],
-					   function(index, value) {
-						   $helper.css(value + 'Width', '1px').css(value + 'Color', color);
-					   });
+					   ], function(index, value) {
+					$helper.css(value + 'Width', '1px').css(value + 'Color', color);
+				});
 
 				// copy a bunch of properties from taskbar
 				self._copyStyles({
@@ -1566,6 +1578,7 @@
 				return ui;
 			}
 
+			// noinspection JSCheckFunctionSignatures
 			var options = {
 				scroll: false,
 				// prevents scrolling
@@ -1770,6 +1783,7 @@
 				}
 			};
 
+			// noinspection JSUnusedLocalSymbols
 			var resizableUi = function(originalUi, eventType) {
 				var o = self.options,
 					sizeAxis,
@@ -2181,10 +2195,10 @@
 
 		// show droppable zones
 		_showDroppable: function() {
+			// noinspection JSUnusedLocalSymbols
 			var $elem = this.$elem;
 
-			$('.' + this.classes.droppable +
-				  '[data-taskbar-uuid= ' + this.uuid + ']').removeClass(this.classes.hidden);
+			$('.' + this.classes.droppable + '[data-taskbar-uuid= ' + this.uuid + ']').removeClass(this.classes.hidden);
 		},
 
 		// hide droppable zones
@@ -2201,6 +2215,7 @@
 				return;
 			}
 
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				options = this.options,
 				$container = self._factory('droppableContainer').insertAfter(self.$elem),
@@ -2216,328 +2231,282 @@
 				horizontal,
 				$elem;
 
-			$.each(['top', 'right', 'bottom', 'left'],
-				   function(index, position) {
-					   horizontal = $.inArray(position, ['top', 'bottom']) > -1;
+			$.each(['top', 'right', 'bottom', 'left'], function(index, position) {
+				horizontal = $.inArray(position, ['top', 'bottom']) > -1;
 
-					   var upperKey = position.charAt(0).toUpperCase() + position.slice(1);
+				var upperKey = position.charAt(0).toUpperCase() + position.slice(1);
 
-					   // create droppables and keep their jQuery objects
-					   self['$droppable' + upperKey] = $elem = self._factory('droppable').data(self._cnst.dataPrefix + 'droppable-edge', position).uniqueId().appendTo($container);
+				// create droppables and keep their jQuery objects
+				self['$droppable' + upperKey] = $elem = self._factory('droppable').data(self._cnst.dataPrefix + 'droppable-edge', position).uniqueId().appendTo($container);
 
-					   // use the same function that is used for
-					   // calculating taskbar dimensions
-					   _cache = self._setDimensions({
-														elem: $elem,
-														orientation: horizontal ? 'horizontal' : 'vertical',
+				// use the same function that is used for
+				// calculating taskbar dimensions
+				_cache = self._setDimensions({
+					elem: $elem,
+					orientation: horizontal ? 'horizontal' : 'vertical',
+					horizontalWidth: '100%',
+					horizontalStick: sticks[position],
+					horizontalRows: 1,
+					horizontalRowHeight: _cache.horizontalRowHeight,
+					verticalHeight: '100%',
+					verticalStick: sticks[position],
+					verticalColumns: 1,
+					verticalColumnWidth: _cache.verticalColumnWidth
+				});
 
-														horizontalWidth: '100%',
-														horizontalStick: sticks[position],
-														horizontalRows: 1,
-														horizontalRowHeight: _cache.horizontalRowHeight,
+				// set CSS to droppable
+				self._setTaskbarPositionDimensions({
+					elem: $elem,
+					_cache: _cache,
+					addClass: self.classes.hidden
+				});
 
-														verticalHeight: '100%',
-														verticalStick: sticks[position],
-														verticalColumns: 1,
-														verticalColumnWidth: _cache.verticalColumnWidth
-													});
+				// noinspection JSUnusedLocalSymbols
+				var droppableAccept = function($draggable, $droppable, ee) {
+					var droppableEdge = $droppable.data(self._cnst.dataPrefix + 'droppable-edge'),
+						taskbarEdge = $draggable.data(self._cnst.dataPrefix + 'taskbarEdge'),
+						margins = self.$windowsContainment.data(self._cnst.dataPrefix + 'taskbar-margins');
 
-					   // set CSS to droppable
-					   self._setTaskbarPositionDimensions({
-															  elem: $elem,
-															  _cache: _cache,
-															  addClass: self.classes.hidden
-														  });
+					return self.uuid === $draggable.data(self._cnst.dataPrefix + 'taskbar').uuid && (self.options.dropOnExisting || margins[droppableEdge] === 0 || taskbarEdge === droppableEdge);
+				};
 
-					   var droppableAccept = function($draggable, $droppable, ee) {
-						   var droppableEdge = $droppable.data(self._cnst.dataPrefix + 'droppable-edge'),
-							   taskbarEdge = $draggable.data(self._cnst.dataPrefix + 'taskbarEdge'),
-							   margins = self.$windowsContainment.data(self._cnst.dataPrefix + 'taskbar-margins');
+				var draggableDrop = function(event, ui) {
+					var $target = $(event.target), o = self.options, requestedStick;
 
-						   var accept =
-							   self.uuid === $draggable.data(
-							   self._cnst.dataPrefix + 'taskbar'
-							   ).uuid
-							   && (
-								   self.options.dropOnExisting
-								   || margins[droppableEdge] === 0
-								   || taskbarEdge === droppableEdge
-							   );
+					// taskbar helper could be positioned over two droppables
+					// at the same time and two drop events will occur, but only
+					// the last droppable entered will have this class
+					if (!$target.hasClass(self.classes.droppableOver) && event.type !== 'dropover') {
+						return false;
+					}
 
-						   return accept;
-					   };
+					// noinspection JSUnusedAssignment
+					var orientation, containment = self._getContainment(), prefix = self.classes.taskbarPrefix, stickPrefix = prefix + 'stick-', stick = [];
 
-					   var draggableDrop = function(event, ui) {
-						   var $target = $(event.target),
-							   o = self.options,
-							   requestedStick;
+					var classes = $target.attr('class').split(' ').map(function(className) {
+						// get droppable orientation
+						if ($.inArray(className, [prefix + 'horizontal', prefix + 'vertical']) > -1) {
+							return orientation = className.replace(
+								self.classes.taskbarPrefix, ''
+							);
+						}
 
-						   // taskbar helper could be positioned over two droppables
-						   // at the same time and two drop events will occur, but only
-						   // the last droppable entered will have this class
-						   if (
-							   !$target.hasClass(self.classes.droppableOver)
-							   && event.type !== 'dropover'
-						   ) {
-							   return false;
-						   }
+						// get droppable stick
+						if (className.indexOf(stickPrefix) !== -1) {
+							return className.replace(stickPrefix, '');
+						}
+					});
 
-						   var orientation,
-							   containment = self._getContainment(),
-							   prefix = self.classes.taskbarPrefix,
-							   stickPrefix = prefix + 'stick-',
-							   stick = [];
+					// in those cases taskbar cannot be dropped on current droppable
+					// noinspection JSUnusedAssignment
+					if (o.draggable === 'orientation' && orientation !== o.orientation || o.draggable === 'vertical' && orientation === 'horizontal' || o.draggable === 'horizontal' && orientation === 'vertical') {
+						return false;
+					}
 
-						   var classes = $target.attr('class').split(' ').map(function(className) {
-																				  // get droppable orientation
-																				  if ($.inArray(className,
-																								[prefix + 'horizontal', prefix + 'vertical']
-																				  ) > -1) {
-																					  return orientation = className.replace(
-																						  self.classes.taskbarPrefix, ''
-																					  );
-																				  }
+					// if it not false at this point, it's true for dropover:
+					// droppable can be highlighted
+					if (event.type === 'dropover') {
+						return true;
+					}
 
-																				  // get droppable stick
-																				  if (className.indexOf(stickPrefix) !== -1) {
-																					  return className.replace(stickPrefix, '');
-																				  }
-																			  }
-						   );
+					for (var i in classes) {
+						// noinspection JSUnusedAssignment
+						if ($.inArray(classes[i], ['right', 'left']) > -1 && orientation === 'horizontal') {
+							requestedStick = event.clientX > containment.width / 2 ? 'right' : 'left';
 
-						   // in those cases taskbar cannot be dropped on current droppable
-						   if (
-							   o.draggable === 'orientation'
-							   && orientation !== o.orientation
-							   ||
-							   o.draggable === 'vertical'
-							   && orientation === 'horizontal'
-							   ||
-							   o.draggable === 'horizontal'
-							   && orientation === 'vertical'
-						   ) {
-							   return false;
-						   }
+							if (!options.draggableBetweenEdges) {
+								// if edge doesn't match, do nothing
+								if (o.horizontalStick.indexOf(requestedStick) === -1) {
+									return false;
+								}
 
-						   // if it not false at this point, it's true for dropover:
-						   // droppable can be highlighted
-						   if (event.type === 'dropover') {
-							   return true;
-						   }
+								// if taskbar is not draggable between edges,
+								// take the original stick
+								classes[i] = options.horizontalStick.replace(/(bottom|top)/, '');
+							} else {
+								// if taskbar is draggable between edges,
+								// rely on mouse position
+								classes[i] = requestedStick;
+							}
+						}
 
-						   for (var i in classes) {
-							   if (
-								   $.inArray(classes[i], ['right', 'left']) > -1
-								   && orientation === 'horizontal'
-							   ) {
-								   requestedStick = event.clientX > containment.width / 2
-													? 'right'
-													: 'left';
+						// noinspection JSUnusedAssignment
+						if ($.inArray(classes[i], ['top', 'bottom']) > -1 && orientation === 'vertical') {
+							requestedStick = event.clientY > containment.height / 2 ? 'bottom' : 'top';
 
-								   if (!options.draggableBetweenEdges) {
-									   // if edge doesn't match, do nothing
-									   if (o.horizontalStick.indexOf(requestedStick) === -1) {
-										   return false;
-									   }
+							if (!options.draggableBetweenEdges) {
+								// if edge doesn't match, do nothing
+								if (o.verticalStick.indexOf(requestedStick) === -1) {
+									return false;
+								}
 
-									   // if taskbar is not draggable between edges,
-									   // take the original stick
-									   classes[i] = options.horizontalStick.replace(/(bottom|top)/, '');
-								   } else {
-									   // if taskbar is draggable between edges,
-									   // rely on mouse position
-									   classes[i] = requestedStick;
-								   }
-							   }
+								// if taskbar is not draggable between edges,
+								// take the original stick
+								classes[i] = options.verticalStick.replace(/(left|right)/, '');
+							} else {
+								// if taskbar is draggable between edges,
+								// rely on mouse position
+								classes[i] = requestedStick;
+							}
+						}
+					}
 
-							   if (
-								   $.inArray(classes[i], ['top', 'bottom']) > -1
-								   && orientation === 'vertical'
-							   ) {
-								   requestedStick = event.clientY > containment.height / 2
-													? 'bottom'
-													: 'top';
+					// trim what's left
+					$.each(classes, function(index) {
+						classes[index] = $.trim(classes[index]);
+					});
 
-								   if (!options.draggableBetweenEdges) {
-									   // if edge doesn't match, do nothing
-									   if (o.verticalStick.indexOf(requestedStick) === -1) {
-										   return false;
-									   }
+					// filter out anything that isn't stick
+					stick = $.grep(classes, function(cl) {
+						return $.inArray(cl, ['right', 'left', 'bottom', 'top']) > -1;
+					});
 
-									   // if taskbar is not draggable between edges,
-									   // take the original stick
-									   classes[i] = options.verticalStick.replace(/(left|right)/, '');
-								   } else {
-									   // if taskbar is draggable between edges,
-									   // rely on mouse position
-									   classes[i] = requestedStick;
-								   }
-							   }
-						   }
+					// make the collection unique
+					stick = $.unique(stick);
 
-						   // trim what's left
-						   $.each(classes, function(index) {
-							   classes[index] = $.trim(classes[index]);
-						   });
+					var edge;
 
-						   // filter out anything that isn't stick
-						   stick = $.grep(classes, function(cl) {
-							   return $.inArray(
-								   cl,
-								   ['right', 'left', 'bottom', 'top']
-							   ) > -1;
-						   });
+					// noinspection JSUnusedAssignment
+					if (orientation === 'horizontal') {
+						edge = $.inArray('top', stick) > -1 ? 'top' : 'bottom';
+					}
 
-						   // make the collection unique
-						   stick = $.unique(stick);
+					// noinspection JSUnusedAssignment
+					if (orientation === 'vertical') {
+						edge = $.inArray('left', stick) > -1 ? 'left' : 'right';
+					}
 
-						   var edge;
+					// noinspection JSUnusedAssignment
+					var key = orientation + 'Stick', optionStick = stick.join(' ');
 
-						   if (orientation === 'horizontal') {
-							   edge = $.inArray('top', stick) > -1 ? 'top' : 'bottom';
-						   }
+					// jQuery 1.10.2 (and earlier probably) will shuffle
+					// elements in $.unique function differently
+					// than the later versions,
+					// so let's normalize this function result
+					optionStick = {
+						'left bottom': 'bottom left',
+						'right bottom': 'bottom right',
+						'left top': 'top left',
+						'right top': 'top right'
+					}[optionStick] || optionStick;
 
-						   if (orientation === 'vertical') {
-							   edge = $.inArray('left', stick) > -1 ? 'left' : 'right';
-						   }
+					// noinspection JSUnusedAssignment
+					var noChange = o[key] === optionStick && o.orientation === orientation;
 
-						   var key = orientation + 'Stick',
-							   optionStick = stick.join(' ');
+					ui.originalEdge = self._cache.edge;
+					ui.edge = edge;
 
-						   // jQuery 1.10.2 (and earlier probably) will shuffle
-						   // elements in $.unique function differently
-						   // than the later versions,
-						   // so let's normalize this function result
-						   optionStick = {
-							   'left bottom': 'bottom left',
-							   'right bottom': 'bottom right',
-							   'left top': 'top left',
-							   'right top': 'top right'
-						   }[optionStick] || optionStick;
+					ui.originalStick = o[key];
+					ui.stick = optionStick;
 
-						   var noChange = o[key] === optionStick
-							   && o.orientation === orientation;
+					ui.originalOrientation = o.orientation;
+					// noinspection JSUnusedAssignment
+					ui.orientation = orientation;
 
-						   ui.originalEdge = self._cache.edge;
-						   ui.edge = edge;
+					delete ui.draggable;
 
-						   ui.originalStick = o[key];
-						   ui.stick = optionStick;
+					if (self._trigger('beforeDrop', event, $.extend({}, ui)) === false) {
+						return false;
+					}
 
-						   ui.originalOrientation = o.orientation;
-						   ui.orientation = orientation;
+					// don't refresh taskbar if stick and orientation
+					// stayed the same
+					if (!noChange) {
+						// for performance reasons, set one option internally,
+						// then set the seconde one via the pubic API,
+						// this will refresh taskbar position for both options
+						o[key] = optionStick;
+						// noinspection JSUnusedAssignment
+						self.$elem.taskbar('option', 'orientation', orientation);
+					}
 
-						   delete ui.draggable;
+					self._trigger('drop', event, $.extend({}, ui));
+				};
 
-						   if (
-							   self._trigger('beforeDrop', event, $.extend({}, ui))
-							   === false
-						   ) {
-							   return false;
-						   }
+				function extendDroppableUi(event, ui) {
+					var $this = $(this);
 
-						   // don't refresh taskbar if stick and orientation
-						   // stayed the same
-						   if (!noChange) {
-							   // for performance reasons, set one option internally,
-							   // then set the seconde one via the pubic API,
-							   // this will refresh taskbar position for both options
-							   o[key] = optionStick;
-							   self.$elem.taskbar('option', 'orientation', orientation);
-						   }
+					ui.originalEdge = self._cache.edge;
+					ui.edge = $this.data(self._cnst.dataPrefix + 'droppable-edge');
 
-						   self._trigger('drop', event, $.extend({}, ui));
-					   };
+					var horizontal = ui.edge.match(/top|bottom/), o = self.options;
 
-					   function extendDroppableUi(event, ui) {
+					ui.originalOrientation = o.orientation;
+					ui.orientation = horizontal ? 'horizontal' : 'vertical';
+
+					delete ui.draggable;
+
+					return ui;
+				}
+
+				var droppableConfig = {
+					accept: function($elem) {
+						// we only accept taskbar for which droppables were created
+						if ($elem.hasClass(self.classes.taskbar)) {
+							return droppableAccept($elem, $(this));
+						}
+
+						return false;
+					},
+					drop: draggableDrop,
+					out: function(event, ui) {
 						   var $this = $(this);
 
-						   ui.originalEdge = self._cache.edge;
-						   ui.edge = $this.data(
-							   self._cnst.dataPrefix + 'droppable-edge'
+						   ui.highlighted = $this.hasClass(self.classes.droppableOver);
+
+						   ui = extendDroppableUi.call(this, event, ui);
+
+						   self._trigger(
+							   'beforeDroppableOut',
+							   event,
+							   $.extend({}, ui)
 						   );
 
-						   var horizontal = ui.edge.match(/top|bottom/),
-							   o = self.options;
+						   $this.css('backgroundColor', '').removeClass(
+							   self.classes.droppableOver
+							   + ' ' + self.classes.droppablePending
+						   );
 
-						   ui.originalOrientation = o.orientation;
-						   ui.orientation = horizontal
-											? 'horizontal'
-											: 'vertical';
+						   $('.' + self.classes.droppablePending).css(
+							   'backgroundColor',
+							   self.$elem.css('backgroundColor')
+						   ).removeClass(self.classes.droppablePending).addClass(self.classes.droppableOver);
 
-						   delete ui.draggable;
+						   self._trigger('droppableOut', event, $.extend({}, ui));
+					   },
+					over: function(event, ui) {
+						   $('.' + self.classes.droppableOver).css('backgroundColor', '').removeClass(self.classes.droppableOver).addClass(self.classes.droppablePending);
 
-						   return ui;
-					   }
+						   ui = extendDroppableUi.call(this, event, ui);
 
-					   var droppableConfig = {
-						   accept: function($elem) {
-							   // we only accept taskbar for which droppables were created
-							   if ($elem.hasClass(self.classes.taskbar)) {
-								   return droppableAccept($elem, $(this));
-							   }
+						   if (draggableDrop(event, $.extend({}, ui)) === false) {
+							   return;
+						   }
 
-							   return false;
-						   },
-						   drop: draggableDrop,
-						   out: function(event, ui) {
-							   var $this = $(this);
+						   if (self._trigger(
+							   'beforeDroppableOver',
+							   event,
+							   $.extend(true, {}, ui)
+						   ) === false) {
+							   return;
+						   }
 
-							   ui.highlighted = $this.hasClass(self.classes.droppableOver);
+						   $(this).addClass(self.classes.droppableOver).css(
+							   'backgroundColor',
+							   self.$elem.css('backgroundColor')
+						   );
 
-							   ui = extendDroppableUi.call(this, event, ui);
+						   self._trigger('droppableOver', event, $.extend({}, ui));
+					   },
+					tolerance: 'touch'
+				};
 
-							   self._trigger(
-								   'beforeDroppableOut',
-								   event,
-								   $.extend({}, ui)
-							   );
-
-							   $this.css('backgroundColor', '').removeClass(
-								   self.classes.droppableOver
-								   + ' ' + self.classes.droppablePending
-							   );
-
-							   $('.' + self.classes.droppablePending).css(
-								   'backgroundColor',
-								   self.$elem.css('backgroundColor')
-							   ).removeClass(self.classes.droppablePending).addClass(self.classes.droppableOver);
-
-							   self._trigger('droppableOut', event, $.extend({}, ui));
-						   },
-						   over: function(event, ui) {
-							   $('.' + self.classes.droppableOver).css('backgroundColor', '').removeClass(self.classes.droppableOver).addClass(self.classes.droppablePending);
-
-							   ui = extendDroppableUi.call(this, event, ui);
-
-							   if (draggableDrop(event, $.extend({}, ui)) === false) {
-								   return;
-							   }
-
-							   if (self._trigger(
-								   'beforeDroppableOver',
-								   event,
-								   $.extend(true, {}, ui)
-							   ) === false) {
-								   return;
-							   }
-
-							   $(this).addClass(self.classes.droppableOver).css(
-								   'backgroundColor',
-								   self.$elem.css('backgroundColor')
-							   );
-
-							   self._trigger('droppableOver', event, $.extend({}, ui));
-						   },
-						   tolerance: 'touch'
-					   };
-
-					   if (!$elem.hasClass(self.classes.uiDroppable)) {
-						   $elem.droppable(droppableConfig);
-					   } else {
-						   $elem.droppable('option', droppableConfig);
-					   }
-				   });
+				if (!$elem.hasClass(self.classes.uiDroppable)) {
+					$elem.droppable(droppableConfig);
+				} else {
+					$elem.droppable('option', droppableConfig);
+				}
+			});
 		},
 
 		// get translations for current language, or for language
@@ -2545,9 +2514,7 @@
 		_getDictionary: function(name) {
 			var l = this.options.localization;
 
-			return typeof l === 'object' && l !== null
-				   ? l [name || this.options.language] || {}
-				   : {};
+			return typeof l === 'object' && l !== null ? l [name || this.options.language] || {} : {};
 		},
 
 		// main internationalization function;
@@ -2597,6 +2564,7 @@
 				for (var i in keys) {
 					// both ":key" and "key" are a valid keys
 					// for string like "Hello :key." to became "Hello world."
+					// noinspection JSUnfilteredForInLoop
 					translated = translated.replace(i.charAt(0) === ':' ? i : ':' + i, keys[i]);
 				}
 			}
@@ -2729,8 +2697,8 @@
 
 		// this function will blur those button that should not be active
 		blurConnectedButtons: function() {
-			var self = this,
-				$elem = $(this);
+			// noinspection JSUnusedLocalSymbols
+			var self = this, $elem = $(this);
 
 			var filter = '[data-menu-type], ' + '.' + this.classes.datepicker;
 
@@ -2827,6 +2795,7 @@
 
 		// main function that build taskbar subordinates
 		_buildTaskbarContent: function(settings) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				o = this.options,
 				c = this.classes,
@@ -3069,6 +3038,7 @@
 
 			var nonEmpty = false;
 
+			// noinspection JSUnresolvedFunction
 			$children.each(function() {
 				var $this = $(this);
 
@@ -3362,6 +3332,7 @@
 			}
 
 			if (horizontal) {
+				// noinspection JSUnusedLocalSymbols
 				position = {
 					of: $of,
 					my: floatVal + floatMove + ' ' + (top ? 'top' : 'bottom'),
@@ -3487,20 +3458,13 @@
 													   });
 
 				var startFocusSelect = function(event, ui) {
+					// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 					var $item = $(ui.item),
 						$supmenu = $item.closest('.' + self.classes.uiMenu),
 						$submenu = $item.children('.' + self.classes.uiMenu + ':eq(0)'),
 						$root = $submenu.parents('.' + self.classes.uiMenu).filter(':last'),
-						expand =
-							!self._cache.horizontal
-							&& self._cache.stickHorizontal === 'right'
-							? 'left'
-							: 'right',
-						stick =
-							self._cache.horizontal
-							&& self._cache.stickVertical === 'bottom'
-							? 'bottom'
-							: 'top',
+						expand = !self._cache.horizontal && self._cache.stickHorizontal === 'right' ? 'left' : 'right',
+						stick = self._cache.horizontal && self._cache.stickVertical === 'bottom' ? 'bottom' : 'top',
 						floatMove = 0;
 
 					if (event.type === 'menufocus') {
@@ -3710,12 +3674,14 @@
 						// if MutationObserver is present, we'll use it to make
 						// the positioning smooth and inconspicuous for the user
 						if (MutationObserver) {
+							// noinspection JSUnresolvedFunction
 							$submenu.each(function() {
 								// disconnects observers from previous menus
 								self._disconnectObservers('submenus');
 
 								var $this = $(this);
 
+								// noinspection JSValidateTypes
 								var observer = new MutationObserver(function() {
 									var ready = $this.css('display') === 'block'
 										// checks if css top and left has been
@@ -3770,6 +3736,7 @@
 									  }
 								  }).position(startPosition).hide();
 
+				// noinspection JSUnusedLocalSymbols
 				$start.on('click.' + self._cache.uep, function(event) {
 					self._hideMenus({
 										not: $menu
@@ -3829,7 +3796,9 @@
 				// if value.labelLocalized is specified and the translation
 				// is present, it will be set to value.label and original label
 				// will no longer be accessible
+				// noinspection JSUnresolvedVariable
 				if (typeof (value.labelLocalized) === 'string') {
+					// noinspection JSUnresolvedVariable
 					value.label = self._i18n(value.labelLocalized) || value.label;
 				}
 
@@ -3837,10 +3806,7 @@
 				// use the internal index as label
 				if (!value.label) {
 					// throw a warning, this should not be happening
-					self._debugLogAdd(
-						'No label or labelLocalized providen for button "' +
-						index + '".', 2, 1
-					);
+					self._debugLogAdd('No label or labelLocalized providen for button "' + index + '".', 2, 1);
 					value.label = index;
 				}
 
@@ -4019,6 +3985,7 @@
 			});
 
 			// refresh windows translations
+			// noinspection JSUnusedLocalSymbols
 			$.each(this._cache.windows, function(index, $elem) {
 				var instance = $(this).data(self._cnst.dataPrefix + 'window');
 
@@ -4028,6 +3995,7 @@
 
 		// function that performs minimize all action
 		_minimizeAll: function() {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				$windows = $('.' + this.classes.windowContent),
 				windowsLength = $windows.length;
@@ -4038,6 +4006,7 @@
 			);
 
 			// minimize all windows, not just those of current taskbar
+			// noinspection JSUnusedLocalSymbols
 			$windows.each(function(index) {
 				var $window = $(this);
 
@@ -4098,6 +4067,7 @@
 				this.$minimizeAll.on(
 					'mouseenter.' + this._cache.uep
 					+ ' mouseleave.' + this._cache.uep, function(e) {
+						// noinspection JSJQueryEfficiency
 						$('.' + self.classes.window).removeClass(
 							self.classes.windowMinimizeAllHover
 							+ ' ' + self.classes.windowMinimizeAllUnhover
@@ -4131,7 +4101,7 @@
 									// multiply by 2; this class doesn't need
 									// to be removed immediately, and this way we're
 									// sure the CSS animation will end smoothly
-									delay = parseFloat(value, 10) * 2;
+									delay = parseFloat(value) * 2;
 									return false;
 								}
 							});
@@ -4418,23 +4388,14 @@
 			var $this = $(this);
 			$this.css('marginTop', '');
 
-			if (
-				self._cache.horizontal
-				&& self._cache.edge === 'top'
-				&& self.options.horizontalRows > 1
-			) {
+			if (self._cache.horizontal && self._cache.edge === 'top' && self.options.horizontalRows > 1) {
 				$this.each(function() {
+					// noinspection JSUnusedLocalSymbols
 					var $this = $(this),
 						taskbarHeight = self.$elem.outerHeight(),
 						height = $this.outerHeight(),
-						paddings = parseFloat($this.css('paddingTop'))
-							+ parseFloat($this.css('paddingBottom')),
-						borders = parseFloat(
-							self.$elem.css('borderTopWidth')
-							)
-							+ parseFloat(
-								self.$elem.css('borderBottomWidth')
-							),
+						paddings = parseFloat($this.css('paddingTop')) + parseFloat($this.css('paddingBottom')),
+						borders = parseFloat(self.$elem.css('borderTopWidth')) + parseFloat(self.$elem.css('borderBottomWidth')),
 						// taskbar height minus taskbar borders and elem padding
 						// it's what we need
 						val = taskbarHeight - height - borders;
@@ -4531,9 +4492,7 @@
 
 				var $parents = $this.parents();
 
-				var parentIsInitialContainer =
-					$parents.is(self.$startButtonsContainer)
-					|| $parents.is(self.$buttonsContainer);
+				var parentIsInitialContainer = $parents.is(self.$startButtonsContainer) || $parents.is(self.$buttonsContainer);
 
 				// move tooltips to the center or left for containers
 				// that are on the center or left
@@ -4561,38 +4520,38 @@
 				}
 
 				$this.tooltip({
-								  position: position,
-								  tooltipClass: self.classes.buttonTooltip,
-								  show: self.options.durations.buttonsTooltipsShow,
-								  hide: self.options.durations.buttonsTooltipsHide,
-								  open: function(event, ui) {
-									  var $tooltip = $(ui.tooltip);
-									  var $target = $(event.target);
-									  var tooltipId = $tooltip[0].id;
-									  var targetId = $target[0].id;
+					position: position,
+					tooltipClass: self.classes.buttonTooltip,
+					show: self.options.durations.buttonsTooltipsShow,
+					hide: self.options.durations.buttonsTooltipsHide,
+					open: function(event, ui) {
+						var $tooltip = $(ui.tooltip);
+						var $target = $(event.target);
+						// noinspection JSUnusedLocalSymbols
+						var tooltipId = $tooltip[0].id;
+						// noinspection JSUnusedLocalSymbols
+						var targetId = $target[0].id;
 
-									  // hide other tooltips
-									  self._hideTooltips({
-															 not: $target
-														 });
+						// hide other tooltips
+						self._hideTooltips({
+							not: $target
+						});
 
-									  $tooltip.on('mouseenter.' + self._cache.uep, function() {
-										  self._hideTooltips();
-										  self._hideToolTipNoAnimation.call(
-											  $target, self, $tooltip
-										  );
-									  });
+						$tooltip.on('mouseenter.' + self._cache.uep, function() {
+							self._hideTooltips();
+							self._hideToolTipNoAnimation.call($target, self, $tooltip);
+						});
 
-									  var $connected = self.connectedElement($this).filter('.' + self.classes.uiHasDatepicker).add(
-										  self.connectedElement($this).filter('.' + self.classes.uiMenu)
-									  );
+						var $connected = self.connectedElement($this).filter('.' + self.classes.uiHasDatepicker).add(
+							self.connectedElement($this).filter('.' + self.classes.uiMenu)
+						);
 
-									  // some buttons with tooltips don't have connected elements
-									  if ($connected.length && $connected.is(':visible')) {
-										  self._hideTooltips();
-									  }
-								  }
-							  });
+						// some buttons with tooltips don't have connected elements
+						if ($connected.length && $connected.is(':visible')) {
+							self._hideTooltips();
+						}
+					}
+				});
 			});
 		},
 
@@ -4625,6 +4584,7 @@
 		_hideToolTipNoAnimation: function(self, $tooltip) {
 			if (!$tooltip) {
 				var describedBy = this.attr('aria-describedby');
+				// noinspection JSUnusedAssignment
 				$tooltip = $('#' + describedBy);
 			}
 
@@ -4690,16 +4650,12 @@
 						return false;
 					}
 
-					if (
-						$this.css('float') === 'right'
-						&& self._cache.horizontal
-					) {
+					if ($this.css('float') === 'right' && self._cache.horizontal) {
 						return false;
 					}
-					if (
-						$this.css('position') === 'absolute'
-						&& !self._cache.horizontal
-					) {
+
+					// noinspection RedundantIfStatementJS
+					if ($this.css('position') === 'absolute' && !self._cache.horizontal) {
 						return false;
 					}
 
@@ -4733,26 +4689,14 @@
 					}
 				});
 
+				// noinspection JSCheckFunctionSignatures
 				$next = $next.filter(':not(:empty):eq(0)');
 
 				// calculate far right position, far left position,
 				// and horizontal padding
-				farRight =
-					$next.length
-					? $next.position().left
-					: this.$elem.outerWidth() - $wins.position().left,
-
-					farLeft =
-						$prev.length
-						? $prev.position().left + $prev.outerWidth()
-						: parseInt(this.$elem.css('left'), 10) || 0,
-
-					paddingsHorizontal = parseFloat(
-						this._styleIndicator(
-							'$.' + this.classes.windowButtonsContainer
-							+ ' > div.' + this.classes.windowButton, 'paddingLeft'
-						).paddingLeft
-					);
+				farRight = $next.length ? $next.position().left : this.$elem.outerWidth() - $wins.position().left;
+				farLeft = $prev.length ? $prev.position().left + $prev.outerWidth() : parseInt(this.$elem.css('left'), 10) || 0;
+				paddingsHorizontal = parseFloat(this._styleIndicator('$.' + this.classes.windowButtonsContainer + ' > div.' + this.classes.windowButton, 'paddingLeft').paddingLeft);
 			} else {
 				// find all previous containers that aren't empty
 				var $winsPrevAll = $wins.siblings().filter(function() {
@@ -4766,85 +4710,37 @@
 				});
 
 				// is this is first child looking from the top
-				this.$windowButtonsContainer.toggleClass(
-					this.classes.windowButtonsContainerFirstChild,
-					!$winsPrevAll.length
-				);
+				this.$windowButtonsContainer.toggleClass(this.classes.windowButtonsContainerFirstChild, !$winsPrevAll.length);
 
 				// is this the only nonempty container
-				this.$windowButtonsContainer.toggleClass(
-					this.classes.windowButtonsContainerOnlyChild,
-					!$winsNextAll.length && !$winsPrevAll.length
-				);
+				this.$windowButtonsContainer.toggleClass(this.classes.windowButtonsContainerOnlyChild, !$winsNextAll.length && !$winsPrevAll.length);
 
 				// get separator height, usually 1px
-				var separatorFixHeight = this.$systemButtonsContainer.children('.' + this.classes.uiButton).filter(':visible').length
-										 ? parseInt(
-					$('[data-separator-for=systemButtonsContainer]').css('borderTopWidth'),
-					10
-				) || 0
-										 : 0;
+				// noinspection JSCheckFunctionSignatures
+				var separatorFixHeight = this.$systemButtonsContainer.children('.' + this.classes.uiButton).filter(':visible').length ? parseInt($('[data-separator-for=systemButtonsContainer]').css('borderTopWidth'), 10) || 0 : 0;
 
 				// find next element looking from the top
 				$next = this.$elem.find('.' + this.classes.systemButtonsSeparator).filter(':visible');
 
 				// calculate far bottom position, far top position,
 				// and vertical padding
-				farBottom = $next.length
-							? this._extendedPosition.call($next, 'offset').top
-							: this.$elem.outerHeight() - $wins.position().top,
-
-					farTop = $prev.length
-							 ? this._extendedPosition.call($prev, 'offset').bottom
-							 : this._extendedPosition.call(this.$elem, 'offset').top,
-
-					paddingsVertical = $wins.hasClass(this.classes.windowButtonsContainerOnlyChild)
-									   ? 0
-									   : parseFloat(
-						this._styleIndicator(
-							'$.' + this.classes.windowButtonsContainer
-							+ ' > div.' + this.classes.windowButton,
-							'paddingTop'
-						).paddingTop
-					) * 2 - separatorFixHeight;
+				farBottom = $next.length ? this._extendedPosition.call($next, 'offset').top : this.$elem.outerHeight() - $wins.position().top;
+				farTop = $prev.length ? this._extendedPosition.call($prev, 'offset').bottom : this._extendedPosition.call(this.$elem, 'offset').top;
+				paddingsVertical = $wins.hasClass(this.classes.windowButtonsContainerOnlyChild) ? 0 : parseFloat(this._styleIndicator('$.' + this.classes.windowButtonsContainer + ' > div.' + this.classes.windowButton, 'paddingTop').paddingTop) * 2 - separatorFixHeight;
 			}
 
 			// calculate height and width
-			var windowButtonsWidth = !this._cache.horizontal
-				// horizontal
-									 ? ''
-				// vertical
-									 : farRight - farLeft - paddingsHorizontal * 2;
-
-			var verticalHeight = ($next && $next.length
-								  ? $next.position().top + $next.outerHeight()
-								  : this.$elem.innerWidth()
-				)
-				- (
-					$prev.length
-					? ($prev.position().top + $prev.outerHeight())
-					: (this.$elem.outerHeight() + this.$elem.position().top)
-				)
-				- parseFloat(computed.paddingTop) * 2;
-
-			var windowButtonsHeight = this._cache.horizontal
-				// horizontal
-									  ? this.$elem.innerHeight()
-				// vertical
-									  : farBottom - farTop - paddingsVertical;
+			var windowButtonsWidth = !this._cache.horizontal ? '' : farRight - farLeft - paddingsHorizontal * 2;
+			// noinspection JSUnusedLocalSymbols
+			var verticalHeight = ($next && $next.length ? $next.position().top + $next.outerHeight() : this.$elem.innerWidth()) - ($prev.length ? ($prev.position().top + $prev.outerHeight()) : (this.$elem.outerHeight() + this.$elem.position().top)) - parseFloat(computed.paddingTop) * 2;
+			var windowButtonsHeight = this._cache.horizontal ? this.$elem.innerHeight() : farBottom - farTop - paddingsVertical;
 
 			// if horizontal taskbar has only one row, set axis on sortable,
 			// so buttons won't bounce of the edges of container
-			var singleHorizontalRow =
-				this._cache.horizontal
-				&& this.options.horizontalRows === 1;
+			var singleHorizontalRow = this._cache.horizontal && this.options.horizontalRows === 1;
 
 			if (this.options.windowButtonsSortable && $.ui.sortable) {
-				this.$windowButtonsContainer.sortable(
-					'option',
-					'axis',
-					singleHorizontalRow ? 'x' : false
-				);
+				this.$windowButtonsContainer.sortable('option', 'axis', singleHorizontalRow ? 'x' : false);
 			}
 
 			// just to be sure
@@ -4861,6 +4757,7 @@
 		// set equal sizes to window buttons, in case when buttons with their
 		// natural sizes would overflow container
 		_setWindowButtonsSizes: function() {
+			// noinspection JSUnusedLocalSymbols
 			var self = this,
 				widths = {},
 				heights = {},
@@ -4870,16 +4767,12 @@
 				return;
 			}
 
+			// noinspection JSUnusedLocalSymbols
 			var $buttonFirst = $buttons.filter(':eq(0)'),
 				$buttonLast = $buttons.filter(':last'),
-				marginRight = parseFloat(
-					window.getComputedStyle($buttonFirst[0]).marginRight
-				),
-				marginBottom = parseFloat(
-					window.getComputedStyle($buttonFirst[0]).marginBottom
-				),
-				diff =
-					$buttonFirst.outerWidth() - $buttonFirst.innerWidth();
+				marginRight = parseFloat(window.getComputedStyle($buttonFirst[0]).marginRight),
+				marginBottom = parseFloat(window.getComputedStyle($buttonFirst[0]).marginBottom),
+				diff = $buttonFirst.outerWidth() - $buttonFirst.innerWidth();
 
 			// reset styles
 			$buttons.each(function() {
@@ -4896,28 +4789,18 @@
 			});
 
 			if (this._cache.horizontal) {
-
 				var width = 0;
 
-				if ($buttonLast.offset().top
-					>= this.$windowButtonsContainer.offset().top
-					+ this.$windowButtonsContainer.innerHeight()
-				) {
+				if ($buttonLast.offset().top >= this.$windowButtonsContainer.offset().top + this.$windowButtonsContainer.innerHeight()) {
 					// buttons don't overflow container, nothing to do here
 					$.each(widths, function(index, value) {
 						width += value;
 					});
 
 					// number of buttons expected to be container in each row
-					var inRow = Math.ceil(
-						$buttons.length / this._getRealRowCol('horizontal')
-						),
+					var inRow = Math.ceil($buttons.length / this._getRealRowCol('horizontal')),
 						// button max width to be applied
-						maxWidth = Math.floor(
-							this.$windowButtonsContainer.innerWidth() / inRow
-							- marginRight
-							- diff
-						);
+						maxWidth = Math.floor(this.$windowButtonsContainer.innerWidth() / inRow - marginRight - diff);
 
 					$buttons.css('maxWidth', maxWidth);
 
@@ -5151,9 +5034,8 @@
 				return;
 			}
 
-			var $elems = self.connectedElement(this),
-				active = false,
-				activeClass = self.classes.uiStateActive;
+			// noinspection JSUnusedLocalSymbols
+			var $elems = self.connectedElement(this), active = false, activeClass = self.classes.uiStateActive;
 
 			$.each($elems, function() {
 				var $elem = $(this);
@@ -5219,6 +5101,7 @@
 		_setConnectedButtonsStates: function() {
 			var self = this;
 
+			// noinspection JSUnresolvedFunction
 			this.$systemButtonsContainer.add(this.$windowButtonsContainer).add(this.$buttonsContainer).children('.' + this.classes.uiButton).each(function() {
 				self._setConnectedButtonState.call(this, self);
 			});
@@ -5289,9 +5172,8 @@
 				return String(hour);
 			};
 
-			var tmptime = format,
-				ampmName = this._i18n('clockAmSymbol'),
-				hour = parseInt(time.hour, 10);
+			// noinspection JSCheckFunctionSignatures
+			var tmptime = format, ampmName = this._i18n('clockAmSymbol'), hour = parseInt(time.hour, 10);
 
 			if (hour > 11) {
 				ampmName = this._i18n('clockPmSymbol');
@@ -5318,10 +5200,13 @@
 					case 'l':
 						return ('00' + time.millisec).slice(-3);
 					case 'c':
+						// noinspection JSUnresolvedVariable
 						return ('00' + time.microsec).slice(-3);
 					case 'z':
+						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
 						return $.timepicker.timezoneOffsetString(time.timezone === null ? options.timezone : time.timezone, false);
 					case 'Z':
+						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
 						return $.timepicker.timezoneOffsetString(time.timezone === null ? options.timezone : time.timezone, true);
 					case 'T':
 						return ampmName.charAt(0).toUpperCase();
@@ -5352,6 +5237,7 @@
 		_windows: function() {
 			var $collection = $();
 
+			// noinspection JSUnusedLocalSymbols
 			$.each(this._cache.windows, function(index, elem) {
 				var $window = $('#' + index);
 				if ($window.length) {
@@ -5390,6 +5276,7 @@
 
 		// initialize all autoHide functionality events
 		_initAutoHide: function(settings) {
+			// noinspection JSUnusedLocalSymbols
 			var $elem = this.$elem,
 				self = this,
 				_cache = this._cache,
@@ -5571,8 +5458,8 @@
 
 			this.$elem.addClass(this.classes.autoHideShowing);
 
-			var _cache = this._cache,
-				props = this._autoHideStopAndReturnDestination();
+			// noinspection JSUnusedLocalSymbols
+			var _cache = this._cache, props = this._autoHideStopAndReturnDestination();
 
 			// second object for autoHideStop
 			var uiStop = this._autoHideUi(false, options);
@@ -5625,6 +5512,7 @@
 			// second object for autoHideStop
 			var uiStop = this._autoHideUi(true, options);
 
+			// noinspection JSUnusedLocalSymbols
 			var uiProgress = this._autoHideUi(true, {
 				quick: null,
 				trigger: options && options.trigger === 'api' ? 'api' : 'user'
@@ -5767,8 +5655,10 @@
 					return $('<div></div>');
 				};
 
+			// noinspection JSUnusedGlobalSymbols
 			var elems = {
 				startButton: function() {
+					// noinspection JSUnusedLocalSymbols
 					var startSettings = {icons: {}};
 
 					var title = self._i18n('startButton:' + params.name);
@@ -6318,14 +6208,11 @@
 		},
 
 		_refreshGroupIcon: function(self) {
-			var $this = $(this),
-				group = $this.attr('data-group-name');
+			var $this = $(this), group = $this.attr('data-group-name');
 
 			// because of "icons.primary", single setter cannot be used
-			$this.button('option', 'icons.primary',
-						 self.options.icons['group:' + group] || null);
-			$this.button('option', 'text',
-						 self.options.windowButtonsIconsOnly ? false : true);
+			$this.button('option', 'icons.primary', self.options.icons['group:' + group] || null);
+			$this.button('option', 'text', !self.options.windowButtonsIconsOnly);
 		},
 
 		_refreshButtonIcons: function() {
@@ -6377,15 +6264,14 @@
 		},
 
 		_refreshWindowButtonIcon: function(self) {
-			var $this = $(this),
-				button = $this.attr('data-window-id'),
-				group = $this.attr('data-group-name'),
-				icon,
-				title;
+			// noinspection JSUnusedLocalSymbols
+			var $this = $(this), button = $this.attr('data-window-id'), group = $this.attr('data-group-name'), icon, title;
 
 			if ($this.is('.' + self.classes.uiButton)) {
 				// get icon and title from window
+				// noinspection JSJQueryEfficiency
 				icon = $('#' + button).window('option', 'icons.main');
+				// noinspection JSJQueryEfficiency,JSUnusedAssignment
 				title = $('#' + button).window('option', 'title');
 
 				if (!$this.hasClass(self.classes.uiButton)) {
@@ -6397,12 +6283,13 @@
 				// because of "icons.primary", single setter cannot be used
 				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
 					$this.button('option', 'icons.primary', self.classes.uiIconBlank);
+					// noinspection JSUnresolvedFunction
 					$this.children('.' + self.classes.uiButtonIconPrimary).first().css({
-																						   'background-image': 'url(' + icon + ')',
-																						   'background-repeat': 'no-repeat',
-																						   'background-position': 'center',
-																						   'background-size': 'cover'
-																					   });
+						'background-image': 'url(' + icon + ')',
+						'background-repeat': 'no-repeat',
+						'background-position': 'center',
+						'background-size': 'cover'
+					});
 				} else {
 					$this.button('option', 'icons.primary', self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
 				}
@@ -6615,16 +6502,13 @@
 		},
 
 		_getMaxTaskbarsMargins: function() {
+			// noinspection JSUnusedAssignment
 			var self = this,
-
 				// list of all taskbar
 				$taskbarList = this._getTaskbarList(),
-
 				// object of empty zero's for every edge
 				taskbarsMargins = this._zeroDirections(),
-				viewportMargins = $.extend(true, {},
-										   this.options.viewportMargins
-				),
+				viewportMargins = $.extend(true, {}, this.options.viewportMargins),
 				margins = {};
 
 			// itterate over taskbars sticking to every edge of window
@@ -6843,11 +6727,7 @@
 		// translates current taskbar position to the direction in which start menu
 		// arrow should point, that is, to the center of the screen
 		_translatePosition: function(options) {
-			var position = this._cache.horizontal
-						   ? this._cache.stickVertical === 'top' ? 's' : 'n'
-						   : this._cache.stickHorizontal === 'left' ? 'e' : 'w';
-
-			return position;
+			return this._cache.horizontal ? this._cache.stickVertical === 'top' ? 's' : 'n' : this._cache.stickHorizontal === 'left' ? 'e' : 'w';
 		},
 
 		// helper function
@@ -6886,6 +6766,7 @@
 			if (l1 === 0) {
 				return l2 * 1;
 			}
+
 			if (l2 === 0) {
 				return l1 * 1;
 			}
@@ -6896,15 +6777,10 @@
 			var p1 = new Array(l2 + 1);
 			var p2 = new Array(l2 + 1);
 
-			var i1,
-				i2,
-				c0,
-				c1,
-				c2,
-				tmp;
+			var i1, i2, c0, c1, c2, tmp;
 
 			for (i2 = 0; i2 <= l2; i2++) {
-				p1[i2] = i2 * 1;
+				p1[i2] = i2;
 			}
 
 			for (i1 = 0; i1 < l1; i1++) {
@@ -7079,6 +6955,7 @@
 			});
 
 			// get computed styles
+			// noinspection JSUnusedAssignment
 			var computedStyles = window.getComputedStyle(subject);
 
 			// shortcut
@@ -7104,6 +6981,7 @@
 			}
 
 			// cleanup
+			// noinspection JSUnusedAssignment
 			document.body.removeChild(parent);
 
 			return requestedStyles;
@@ -7127,6 +7005,7 @@
 		_fullscreenAvailable: function() {
 			var element = document.documentElement;
 
+			// noinspection JSUnresolvedVariable
 			var request = document.fullscreenEnabled ||
 				document.FullScreenEnabled ||
 				document.FullscreenEnabled ||
@@ -7145,6 +7024,7 @@
 		// detect if the browser is in fullscreen mode now;
 		// this function will never fire if fullscreen is not available
 		_fullscreenEnabled: function() {
+			// noinspection JSUnresolvedVariable
 			var fullscreenElement = document.fullscreenElement ||
 				document.FullScreenElement ||
 				document.FullscreenElement ||
@@ -7162,14 +7042,15 @@
 		_fullscreenEnter: function() {
 			var element = document.documentElement;
 
-			var request = element.requestFullscreen ||		//W3C
-				element.requestFullScreen ||		//W3C
-				element.webkitRequestFullscreen ||	//Chrome etc.
-				element.webkitRequestFullScreen ||	//Chrome etc.
-				element.mozRequestFullscreen ||		//FireFox
-				element.mozRequestFullScreen ||		//FireFox
-				element.msRequestFullscreen ||		//IE11
-				element.msRequestFullScreen;		//IE11
+			// noinspection JSUnresolvedVariable
+			var request = element.requestFullscreen ||	//W3C
+				element.requestFullScreen ||			//W3C
+				element.webkitRequestFullscreen ||		//Chrome etc.
+				element.webkitRequestFullScreen ||		//Chrome etc.
+				element.mozRequestFullscreen ||			//FireFox
+				element.mozRequestFullScreen ||			//FireFox
+				element.msRequestFullscreen ||			//IE11
+				element.msRequestFullScreen;			//IE11
 
 			if (request) {
 				request.call(element);
@@ -7177,6 +7058,7 @@
 				//for Internet Explorer
 				var wscript = new ActiveXObject('WScript.Shell');
 				if (wscript !== null) {
+					// noinspection JSUnresolvedFunction
 					wscript.SendKeys('{F11}');
 				}
 			}
@@ -7184,8 +7066,9 @@
 
 		// exits fullscreen
 		_fullscreenLeave: function() {
-			var exit = document.exitFullscreen ||		//W3C
-				document.exitFullScreen ||		//W3C
+			// noinspection JSUnresolvedVariable
+			var exit = document.exitFullscreen ||	//W3C
+				document.exitFullScreen ||			//W3C
 				document.webkitExitFullscreen ||	//Chrome etc.
 				document.webkitExitFullScreen ||	//Chrome etc.
 				document.webkitCancelFullscreen ||	//Chrome etc.
@@ -7203,6 +7086,7 @@
 				//for Internet Explorer
 				var wscript = new ActiveXObject('WScript.Shell');
 				if (wscript !== null) {
+					// noinspection JSUnresolvedFunction
 					wscript.SendKeys('{F11}');
 				}
 			}
@@ -7296,6 +7180,7 @@
 		// so it's better to disconnect them once they job is done
 		_disconnectObservers: function(keyy) {
 			for (var i in this._cache.mutationObservers [keyy]) {
+				// noinspection JSUnfilteredForInLoop
 				this._cache.mutationObservers [keyy][i].disconnect();
 			}
 
@@ -7571,6 +7456,7 @@
 		},
 
 		_setOption: function(key, value) {
+			// noinspection JSUnusedLocalSymbols
 			var self = this;
 
 			this._checkForInvalidOptions(undefined, key);
@@ -7751,6 +7637,7 @@
 				 .attr('style', this._cache.inlineCSS);
 
 			// remove helper iframes if no taskbars are left
+			// noinspection JSJQueryEfficiency
 			if ($('.' + this.classes.taskbar).length === 0) {
 				$('.' + this.classes.resizeIframe).remove();
 			}
@@ -7765,6 +7652,7 @@
 			// +
 			this._refreshNeighbours();
 
+			// noinspection JSJQueryEfficiency
 			$('.' + this.classes.taskbar).each(function() {
 				var instance = $(this).data(self._cnst.dataPrefix + 'taskbar');
 				instance._refreshWindowsContainment();

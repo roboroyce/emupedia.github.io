@@ -1155,7 +1155,9 @@
 			}
 
 			function fixFloatingPosition(event, ui) {
+				// noinspection JSCheckFunctionSignatures
 				ui.position.top = Math.round(parseFloat(ui.position.top));
+				// noinspection JSCheckFunctionSignatures
 				ui.position.left = Math.round(parseFloat(ui.position.left));
 			}
 
@@ -1874,13 +1876,16 @@
 
 						// Math.max account for cases when top window is modal;
 						// z-index cannot go lower than z-index set by modal logic
+						// noinspection JSUnresolvedFunction
 						var currentZIndex = parseInt($elem.css('zIndex'), 10);
+						// noinspection JSUnresolvedFunction
 						$elem.css('zIndex', Math.max(
 							initialZIndex, currentZIndex
 						));
 
 						// window cannot be moved to top if it has overlay,
 						// meaning a confirm close procedure is ongoing
+						// noinspection JSUnresolvedFunction
 						if (!$elem.hasClass(this.classes.bodyOverlayed)) {
 							this._setTopClasses($elem);
 						}
@@ -1907,6 +1912,7 @@
 
 						// set window button state, also set state for window
 						// on top, that could be active modal
+						// noinspection JSUnresolvedFunction
 						$elem.add($modal).each(function() {
 							$(this).children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window')._setConnectedButtonState();
 						});
@@ -1926,6 +1932,7 @@
 
 				// use public API to moveToTop if element was not this window wrapper
 				if (move) {
+					// noinspection JSUnresolvedFunction
 					$elem.children('.' + this.classes.windowContent).window('moveToTop');
 
 					return;
@@ -2801,6 +2808,7 @@
 					draggable = (state || maximizedDraggableAvailable)
 						&& this.options.draggable;
 
+				// noinspection JSValidateTypes
 				this.$elem.draggable(draggable ? 'enable' : 'disable');
 			}
 
@@ -3733,8 +3741,10 @@
 					var $window = $(this).children('.' + self.classes.windowContent);
 
 					// force minimize window
+					// noinspection JSUnresolvedFunction
 					var minimize = $window.window('option', 'durations.minimize');
 
+					// noinspection JSUnresolvedFunction
 					$window.window('option', 'durations.minimize', false).window('minimize', options).window('option', 'durations.minimize', minimize);
 				});
 			}

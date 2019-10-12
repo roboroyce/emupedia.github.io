@@ -11,7 +11,7 @@ function getInstallerConfig () {
 
 	const root = `${__dirname}/..`;
 
-	// noinspection JSCheckFunctionSignatures
+	// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 	return Promise.resolve({
 		title: packages.description,
 		appDirectory: `${root}/${packages.config.build_dir}/${packages.config.out_dir}`,

@@ -485,8 +485,8 @@ if (!Object.assign) {
 
 // region Typed Array
 
-// noinspection DuplicatedCode
 if (typeof ArrayBuffer !== 'undefined') {
+	// noinspection DuplicatedCode
 	if (!ArrayBuffer.prototype.slice) {
 		ArrayBuffer.prototype.slice = function (from, to) {
 			function clamp(val, length) {

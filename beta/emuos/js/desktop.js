@@ -106,6 +106,7 @@
 		_icons: function () {
 			var $collection = $();
 
+			// noinspection JSUnusedLocalSymbols
 			$.each(this._cache.icons, function (index, elem) {
 				var $icon = $('#' + index);
 				if ($icon.length) {

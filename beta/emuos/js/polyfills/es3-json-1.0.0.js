@@ -155,7 +155,8 @@
 // methods in a closure to avoid creating global variables.
 
 if (typeof JSON !== "object") {
-    JSON = {};
+    // noinspection JSValidateTypes
+	JSON = {};
 }
 
 (function () {
@@ -262,7 +263,8 @@ if (typeof JSON !== "object") {
 
 // What happens next depends on the value's type.
 
-        switch (typeof value) {
+        // noinspection JSUnreachableSwitchBranches
+		switch (typeof value) {
         case "string":
             return quote(value);
 

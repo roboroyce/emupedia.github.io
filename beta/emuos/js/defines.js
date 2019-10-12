@@ -8,7 +8,7 @@ if (typeof atob === 'undefined') {
 		if (str.length % 4 === 1) {
 			throw "'atob' failed: The string to be decoded is not correctly encoded.";
 		}
-		// noinspection JSAssignmentUsedAsCondition,CommaExpressionJS
+		// noinspection JSAssignmentUsedAsCondition,CommaExpressionJS,JSUnusedAssignment
 		for (var bc = 0, bs, buffer, idx = 0, output = ''; buffer = str.charAt(idx++); ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) {
 			buffer = chars.indexOf(buffer);
 		}
@@ -29,6 +29,7 @@ if (typeof btoa === 'undefined') {
 				throw "'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.";
 			}
 
+			// noinspection JSUnusedAssignment
 			block = block << 8 | charCode;
 		}
 
