@@ -589,7 +589,7 @@
 	} , {
 		"id": "jazzcd",
 		"group": "Jazz Jackrabbit",
-		"name": "Jazz Jackrabbit CD",
+		"name": "Jazz Jackrabbit (CD)",
 		"executable": "./JAZZ.EXE",
 		"sync": false,
 		"file": "jazzcd.zip",
@@ -1332,7 +1332,6 @@
 		"group": "Prince of Persia",
 		"name": "Prince of Persia 1",
 		"executable": "./PRINCE.EXE",
-		"sync": false,
 		"file": "pop114.zip",
 		"size": 1988713,
 		"drm": ["Manual Lookup"],
