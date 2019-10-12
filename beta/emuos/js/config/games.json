@@ -50,6 +50,7 @@
 		}]
 	} , {
 		"id": "alleycat",
+		"group": "Alley Cat",
 		"name": "Alley Cat",
 		"executable": "./ALLEYCAT.EXE",
 		"sync": true,
@@ -168,6 +169,104 @@
 				"url": "http://www.ludoid.fr",
 				"wiki": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
 				"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
+			}
+		}]
+	} , {
+		"id": "robbo",
+		"group": "Boulder Dash",
+		"name": "The Adventures of Robbo (Boulder Dash Clone)",
+		"description": "The Adventures of Robbo",
+		"executable": "./ROBBO.EXE",
+		"sync": false,
+		"file": "robbo.zip",
+		"size": 2004224,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
+		},
+		"language": "English",
+		"year": 1993,
+		"genre": "Puzzle",
+		"developer": "X LanD Computer Games",
+		"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
+		"copyright": "X LanD Computer Games",
+		"license": "Freeware",
+		"license_notes": "Creative Commons BY-SA 2.5",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
+		},
+		"clones": [{
+			"id": "rockford",
+			"name": "Rockford (Boulder Dash Clone)",
+			"executable": "./ROCKFORD.EXE",
+			"sync": false,
+			"file": "rockford.zip",
+			"size": 170613,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"language": "English",
+			"year": 1988,
+			"genre": "Puzzle",
+			"developer": "Synergistic Software, Inc.",
+			"publisher": "Mastertronic, Ltd.",
+			"copyright": "First Star Software, Inc.",
+			"version": "1.2",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
+			}
+		} , {
+			"id": "supaplex",
+			"name": "Supaplex (Boulder Dash Clone)",
+			"executable": "./SUPAPLEX.EXE",
+			"sync": false,
+			"file": "supaplex.zip",
+			"size": 276476,
+			"drm": ["Manual Lookup"],
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
+			},
+			"language": "English",
+			"year": 1991,
+			"genre": "Puzzle",
+			"developer": "Think!Ware Development",
+			"publisher": "Dream Factory",
+			"copyright": "Digital Integration",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "https://www.elmerproductions.com/sp/index.html",
+				"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
+				"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
 			}
 		}]
 	} , {
@@ -761,7 +860,7 @@
 			}
 		}]
 	} , {
-		"id": "lemmdemo",
+		"id": "lemmmings",
 		"group": "Lemmings",
 		"name": "Lemmings",
 		"notes": "DOSBOX: Palette problems, vgaonly not working",
@@ -1562,106 +1661,6 @@
 			"size": 1826735,
 			"license": "Shareware"
 		}]
-	} , {
-		"id": "robbo",
-		"group": "Robbo",
-		"name": "The Adventures of Robbo (Robbo Clone)",
-		"description": "The Adventures of Robbo",
-		"executable": "./ROBBO.EXE",
-		"sync": false,
-		"file": "robbo.zip",
-		"size": 2004224,
-		"hardware": {
-			"input": ["Keyboard"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Source", "Tandy", "Sound Blaster", "Sound Blaster Pro", "Roland MT-32"]
-		},
-		"language": "English",
-		"year": 1993,
-		"genre": "Puzzle",
-		"developer": "X LanD Computer Games",
-		"publisher": "Laboratorium Komputerowe Avalon, Epic MegaGames",
-		"copyright": "X LanD Computer Games",
-		"license": "Freeware",
-		"license_notes": "Creative Commons BY-SA 2.5",
-		"status": "Playable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
-		},
-		"clones": [{
-			"id": "supaplex",
-			"name": "Supaplex (Robbo Clone)",
-			"executable": "./SUPAPLEX.EXE",
-			"sync": false,
-			"file": "supaplex.zip",
-			"size": 276476,
-			"drm": ["Manual Lookup"],
-			"hardware": {
-				"input": ["Keyboard", "Mouse"],
-				"video": {
-					"VGA": {
-						"resolutions": [
-							"320x200"
-						],
-						"colors": 256
-					}
-				},
-				"sound": ["PC Speaker", "Sound Blaster", "Adlib"]
-			},
-			"language": "English",
-			"year": 1991,
-			"genre": "Puzzle",
-			"developer": "Think!Ware Development",
-			"publisher": "Dream Factory",
-			"copyright": "Digital Integration",
-			"license": "Freeware",
-			"status": "Playable",
-			"links": {
-				"url": "https://www.elmerproductions.com/sp/index.html",
-				"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
-				"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
-			}
-		}]
-	} , {
-		"id": "rockford",
-		"group": "Rockford",
-		"name": "Rockford",
-		"executable": "./ROCKFORD.EXE",
-		"sync": false,
-		"file": "rockford.zip",
-		"size": 170613,
-		"hardware": {
-			"input": ["Keyboard"],
-			"video": {
-				"VGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 16
-				}
-			},
-			"sound": ["PC Speaker"]
-		},
-		"language": "English",
-		"year": 1988,
-		"genre": "Puzzle",
-		"developer": "Synergistic Software, Inc.",
-		"publisher": "Mastertronic, Ltd.",
-		"copyright": "First Star Software, Inc.",
-		"version": "1.2",
-		"license": "Commercial",
-		"status": "Playable",
-		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
-		},
-		"clones": []
 	} , {
 		"id": "squarez",
 		"group": "Squarez Deluxe",
