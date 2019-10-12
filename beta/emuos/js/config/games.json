@@ -85,6 +85,9 @@
 			"id": "tandycat",
 			"name": "Alley Cat (Tandy)",
 			"executable": "./TANDYCAT.EXE",
+			"sync": true,
+			"old": true,
+			"mode": "asm",
 			"version": "PCjr"
 		}]
 	} , {
