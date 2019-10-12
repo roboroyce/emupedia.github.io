@@ -1225,7 +1225,72 @@
 			"version": "1.6",
 			"license": "Public Domain",
 			"links": {
-				"url": "https://deathshadow.com/pakuPaku"
+				"url": "https://deathshadow.com/pakuPaku",
+				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones"
+			}
+		} , {
+			"id": "cd-man2",
+			"name": "CD-Man (Pac-Man Clone)",
+			"executable": "./CDMAN2.EXE",
+			"sync": false,
+			"args": [],
+			"file": "cd-man2.zip",
+			"size": 465385,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"EGA": {
+						"resolutions": [
+							"640x350"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"language": "English",
+			"year": 1992,
+			"genre": "Arcade",
+			"developer": "Creative Dimensions",
+			"publisher": "Creative Dimensions",
+			"copyright": "Creative Dimensions",
+			"version": "2.0",
+			"license": "Commercial",
+			"links": {
+				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
+				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
+			}
+		} , {
+			"id": "cd-man1",
+			"name": "CD-Man (Shareware) (Pac-Man Clone)",
+			"executable": "./CD-MAN.EXE",
+			"sync": false,
+			"args": [],
+			"file": "cd-man1.zip",
+			"size": 212277,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"EGA": {
+						"resolutions": [
+							"640x350"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"language": "English",
+			"year": 1989,
+			"genre": "Arcade",
+			"developer": "Creative Dimensions",
+			"publisher": "Creative Dimensions",
+			"copyright": "Creative Dimensions",
+			"version": "Pre-release 1.0",
+			"license": "Shareware",
+			"links": {
+				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
+				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
 			}
 		}]
 	} , {
@@ -1343,7 +1408,7 @@
 		},
 		"clones": [{
 			"id": "gorilla",
-			"name": "QBasic - Gorillas (Demo)",
+			"name": "QBasic - Gorillas",
 			"executable": "./",
 			"args": ["-c", "c:", "-c", "QBASIC /RUN GORILLA.BAS"],
 			"language": "English",
@@ -1359,7 +1424,7 @@
 			}
 		} , {
 			"id": "nibbles",
-			"name": "QBasic - Nibbles (Demo)",
+			"name": "QBasic - Nibbles",
 			"args": ["-c", "c:", "-c","QBASIC.EXE /RUN NIBBLES.BAS"],
 			"language": "English",
 			"year": 1990,
