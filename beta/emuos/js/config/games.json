@@ -53,9 +53,7 @@
 		"group": "Alley Cat",
 		"name": "Alley Cat",
 		"executable": "./ALLEYCAT.EXE",
-		"sync": true,
-		"old": true,
-		"mode": "asm",
+		"args": [],
 		"file": "alleycat.zip",
 		"size": 29903,
 		"hardware": {
@@ -86,9 +84,7 @@
 			"id": "tandycat",
 			"name": "Alley Cat (Tandy)",
 			"executable": "./TANDYCAT.EXE",
-			"sync": true,
-			"old": true,
-			"mode": "asm",
+			"args": ["-c", "machine=pcjr", "-c", "tandy=on"],
 			"version": "PCjr"
 		}]
 	} , {
@@ -144,7 +140,7 @@
 			"id": "popcorn",
 			"name": "PopCorn (Breakout Clone)",
 			"executable": "./POPCORN.EXE",
-			"args": ["-c", "c:", "-c", "cycles=500", "-c", "POPSPEED 0"],
+			"args": ["-c", "cycles=500", "-c", "-c", "c:", "POPSPEED 0"],
 			"file": "popcorn.zip",
 			"size": 52245,
 			"hardware": {
@@ -174,10 +170,10 @@
 	} , {
 		"id": "bdash1",
 		"group": "Boulder Dash",
-		"name": "Boulder Dash I",
+		"name": "Boulder Dash I: Rockford",
 		"alternatenames": ["Boulder Dash Vol. 1", "Boulder Dash - Starring: Rockford", "バルダーダッシュ"],
 		"executable": "./BDASH.EXE",
-		"sync": false,
+		"args": ["-c", "cycles=200" , "-c", "machine=tandy", "-c", "tandy=on", "-c", "joysticktype=none"],
 		"file": "bdash1.zip",
 		"size": 11702,
 		"hardware": {
@@ -188,9 +184,15 @@
 						"320x200"
 					],
 					"colors": 4
+				},
+				"TGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
 				}
 			},
-			"sound": ["PC Speaker"]
+			"sound": ["PC Speaker", "Tandy"]
 		},
 		"language": "English",
 		"year": 1984,
@@ -208,45 +210,39 @@
 			"name": "Boulder Dash II: Rockford's Riot",
 			"alternatenames": ["Boulder Dash II: La venganza de Rockford"],
 			"executable": "./BDASH2.EXE",
-			"sync": false,
 			"file": "bdash2.zip",
 			"size": 15872,
-			"hardware": {
-				"input": ["Keyboard"],
-				"video": {
-					"CGA": {
-						"resolutions": [
-							"320x200"
-						],
-						"colors": 4
-					}
-				},
-				"sound": ["PC Speaker"]
-			},
-			"language": "English",
 			"year": 1985
 		} , {
 			"id": "sbdash",
 			"name": "Super Boulder Dash",
 			"executable": "./SUPRBOLD.COM",
-			"sync": false,
 			"file": "sbdash.zip",
 			"size": 30636,
+			"year": 1986,
+			"publisher": "Electronic Arts, Inc."
+		} , {
+			"id": "sbdashb",
+			"name": "Super Boulder Dash (Bootable)",
+			"executable": "",
+			"args": ["-c", "cycles=200" , "-c", "machine=tandy", "-c", "tandy=on", "-c", "joysticktype=none", "-c", "c:", "-c", "boot BOULDER.IMG"],
+			"file": "sbdashb.zip",
+			"size": 221399,
 			"year": 1986,
 			"publisher": "Electronic Arts, Inc."
 		} , {
 			"id": "bdashck",
 			"name": "Boulder Dash IV: Construction Kit",
 			"executable": "./BDCK.EXE",
-			"sync": false,
 			"file": "bdashck.zip",
 			"size": 37289,
 			"year": 1987,
 			"publisher": "Epyx, Inc."
 		} , {
 			"id": "rockford",
-			"name": "Rockford",
+			"name": "Rockford: The Arcade Game",
 			"executable": "./ROCKFORD.EXE",
+			"args": [],
 			"sync": false,
 			"file": "rockford.zip",
 			"size": 170613,
@@ -274,6 +270,7 @@
 			"id": "supaplex",
 			"name": "Supaplex (Boulder Dash Clone)",
 			"executable": "./SUPAPLEX.EXE",
+			"args": [],
 			"sync": false,
 			"file": "supaplex.zip",
 			"size": 276476,
@@ -304,6 +301,7 @@
 			"id": "robbo",
 			"name": "The Adventures of Robbo (Boulder Dash Clone)",
 			"executable": "./ROBBO.EXE",
+			"args": [],
 			"sync": false,
 			"file": "robbo.zip",
 			"size": 2004224,
@@ -927,7 +925,7 @@
 		"name": "Lemmings",
 		"notes": "DOSBOX: Palette problems, vgaonly not working",
 		"executable": "./LEMVGA.COM",
-		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "LEMVGA -v -p"],
+		"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "LEMVGA -v -p"],
 		"file": "lemmings.zip",
 		"size": 666161,
 		"hardware": {
@@ -970,7 +968,7 @@
 			"id": "lemmdemo",
 			"name": "Lemmings (Demo)",
 			"executable": "./VGALEMMI.EXE",
-			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly","-c", "c:", "-c", "VGALEMMI -v -p"],
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI -v -p"],
 			"file": "lemmdemo.zip",
 			"size": 234203,
 			"version": "DEMO",
@@ -1192,7 +1190,7 @@
 	} , {
 		"id": "monkey1ega",
 		"group": "Monkey Island",
-		"name": "Monkey Island I: The Secret of Monkey Island",
+		"name": "Monkey Island I: The Secret of Monkey Island (EGA)",
 		"executable": "./MONKEY.EXE",
 		"sync": false,
 		"file": "monkey1ega.zip",
@@ -1236,6 +1234,7 @@
 			"status": "Playable"
 		} , {
 			"id": "monkey1vga",
+			"name": "Monkey Island I: The Secret of Monkey Island (VGA)",
 			"executable": "./MONKEY.EXE",
 			"sync": false,
 			"file": "monkey1vga.zip",
@@ -1258,6 +1257,7 @@
 			"status": "Playable"
 		} , {
 			"id": "monkey1vgatalkie",
+			"name": "Monkey Island I: The Secret of Monkey Island (CD)",
 			"executable": "./MONKEY.EXE",
 			"sync": false,
 			"file": "monkey1vgatalkie.zip",
@@ -1318,7 +1318,7 @@
 		"group": "Pac-Man",
 		"name": "Pac PC II (Pac-Man Clone)",
 		"executable": "./PACPC2.EXE",
-		"args": ["-c", "cycles=7000" ,"-c", "c:", "-c", "PACPC2 F"],
+		"args": ["-c", "cycles=7000", "-c", "c:", "-c", "PACPC2 F"],
 		"file": "pacpc.zip",
 		"size": 192934,
 		"hardware": {
@@ -1350,7 +1350,7 @@
 			"id": "mspac",
 			"name": "Ms Pac PC (Ms. Pac-Man Clone)",
 			"executable": "./MSPAC.EXE",
-			"args": ["-c", "cycles=7000" ,"-c", "c:", "-c", "MSPAC F"],
+			"args": ["-c", "cycles=7000", "-c", "c:", "-c", "MSPAC F"],
 			"file": "mspac.zip",
 			"size": 645870,
 			"version": "1.02B",
@@ -1585,7 +1585,7 @@
 		} , {
 			"id": "nibbles",
 			"name": "QBasic - Nibbles",
-			"args": ["-c", "c:", "-c","QBASIC.EXE /RUN NIBBLES.BAS"],
+			"args": ["-c", "c:", "-c", "QBASIC.EXE /RUN NIBBLES.BAS"],
 			"language": "English",
 			"year": 1990,
 			"genre": "Snake",
