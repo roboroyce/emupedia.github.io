@@ -2,14 +2,154 @@
 	"format": {
 		"version": "2.0"
 	},
-	"type": [{
-		"games": [{
-			"genre": [{
+	"software": {
+		"type": [{
+			"id": "action",
+			"name": "Action",
+			"games": [{
+				"id": "tapper",
+				"name": "Tapper",
+				"hardware": {
+					"input": ["Keyboard"],
+					"video": {
+						"CGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 4
+						}
+					},
+					"sound": ["PC Speaker"]
+				},
+				"language": "English",
+				"year": 1983,
+				"developer": "Marvin Glass and Associates",
+				"publisher": "Midway",
+				"copyright": "Midway",
+				"links": {
+					"wikipedia": "https://en.wikipedia.org/wiki/Tapper_(video_game)"
+				},
+				"executables": [{
+					"id": "tapper",
+					"name": "Tapper",
+					"file": "tapper.zip",
+					"size": 44594,
+					"executable": "./TAPPER.COM",
+					"args": ["-c", "cycles=500"],
+					"license": "Commercial",
+					"status": "Playable"
+				}]
+			}]
+		} , {
+			"id": "adventure",
+			"name": "Adventure",
+			"games": [{
+				"id": "loom",
+				"name": "Loom",
+				"drm": ["Manual Lookup"],
+				"hardware": {
+					"input": ["Keyboard", "Mouse"],
+					"video": {
+						"EGA": [{
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 16
+						}]
+					},
+					"sound": ["PC Speaker", "Sound Blaster"]
+				},
+				"language": "English",
+				"year": 1990,
+				"developer": "Lucasfilm Games",
+				"publisher": "Lucasfilm Games",
+				"copyright": "The Walt Disney Company",
+				"links": {
+					"gog": "https://www.gog.com/game/loom",
+					"wikipedia": "https://en.wikipedia.org/wiki/Loom_(video_game)"
+				},
+				"executables": [{
+					"id": "loom",
+					"name": "Loom",
+					"executable": "./LOOM.EXE",
+					"sync": false,
+					"file": "loomega.zip",
+					"size": 1201980,
+					"version": "EGA 3.5.37",
+					"license": "Commercial",
+					"status": "Playable"
+				} , {
+					"id": "loomdemo",
+					"name": "Loom (Demo)",
+					"executable": "./LOOMDEMO.EXE",
+					"sync": false,
+					"file": "loomdemo.zip",
+					"size": 277286,
+					"version": "DEMO",
+					"license": "Shareware",
+					"status": "Playable"
+				}]
+			}]
+		} , {
+			"id": "arcade",
+			"name": "Arcade",
+			"games": [{
 
 			}]
-		}],
-		"software": [{
+		} , {
+			"id": "shooter",
+			"name": "Arcade Shooter",
+			"games": [{
 
+			}]
+		} , {
+			"id": "sports",
+			"name": "Arcade Sports",
+			"games": [{
+
+			}]
+		} , {
+			"id": "fighting",
+			"name": "Fighting",
+			"games": [{
+
+			}]
+		} , {
+			"id": "fps",
+			"name": "First Person Shooter (FPS)",
+			"games": [{
+
+			}]
+		} , {
+			"id": "platformer",
+			"name": "Platformer",
+			"games": [{
+
+			}]
+		} , {
+			"id": "puzzle",
+			"name": "Puzzle",
+			"games": [{
+
+			}]
+		} , {
+			"id": "racing",
+			"name": "Racing",
+			"games": [{
+
+			}]
+		} , {
+			"id": "rpg",
+			"name": "Role-Playing Game (RPG)",
+			"games": [{
+
+			}]
+		} , {
+			"id": "tbs",
+			"name": "Turn-Based Strategy (TBS)",
+			"games": [{
+
+			}]
 		}]
-	}]
+	}
 }
