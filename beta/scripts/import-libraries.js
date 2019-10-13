@@ -2678,36 +2678,58 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+							// noinspection JSValidateTypes
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+								from: /["|']use strict["|'];?/g,
+								to: ''
+							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											// noinspection JSValidateTypes
-											replace({
-												files: install_directory + libraries_directory + dependency + '-' + version + '.js',
-												from: '//# sourceMappingURL=pdfmake.js.map',
-												to: '//# sourceMappingURL=pdfmake-' + version + '.js.map'
-											}, (error) => {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
-													//noinspection JSUnresolvedFunction
-													fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+													// noinspection JSValidateTypes
+													replace({
+														files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+														from: '//# sourceMappingURL=pdfmake.js.map',
+														to: '//# sourceMappingURL=pdfmake-' + version + '.js.map'
+													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
-															//noinspection JSUnresolvedFunction
-															fs.copy(nodemodules_directory + dependency + '/build/vfs_fonts.js', install_directory + libraries_directory + dependency + '-fonts-' + version + '.js', copy_options, (error) => {
+															// noinspection JSValidateTypes
+															replace({
+																files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+																from: /["|']use strict["|'];?/g,
+																to: ''
+															}, (error) => {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
-																	log.log(dependency + ' version ' + version + ' installed!');
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+																		if (error) {
+																			log.error('Error occurred:', error);
+																		} else {
+																			//noinspection JSUnresolvedFunction
+																			fs.copy(nodemodules_directory + dependency + '/build/vfs_fonts.js', install_directory + libraries_directory + dependency + '-fonts-' + version + '.js', copy_options, (error) => {
+																				if (error) {
+																					log.error('Error occurred:', error);
+																				} else {
+																					log.log(dependency + ' version ' + version + ' installed!');
+																				}
+																			});
+																		}
+																	});
 																}
 															});
 														}
