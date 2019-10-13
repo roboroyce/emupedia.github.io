@@ -292,27 +292,49 @@ function install(install_directory, dependency, version) {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
-																			//noinspection JSUnresolvedFunction
-																			fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.min.css.map', install_directory + css_directory + dependency + '-' + version + '.min.css.map', copy_options, (error) => {
+																			// noinspection JSValidateTypes
+																			replace({
+																				files: install_directory + css_directory + dependency + '-' + version + '.min.css',
+																				from: '/*# sourceMappingURL=bootstrap.min.css.map */',
+																				to: '/*# sourceMappingURL=bootstrap-' + version + '.min.css.map */'
+																			}, (error) => {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
 																					//noinspection JSUnresolvedFunction
-																					fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
+																					fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.min.css.map', install_directory + css_directory + dependency + '-' + version + '.min.css.map', copy_options, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
 																							//noinspection JSUnresolvedFunction
-																							fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css.map', install_directory + css_directory + dependency + '-' + version + '.css.map', copy_options, (error) => {
+																							fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
-																									//noinspection JSUnresolvedFunction
-																									fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+																									// noinspection JSValidateTypes
+																									replace({
+																										files: install_directory + css_directory + dependency + '-' + version + '.css',
+																										from: '/*# sourceMappingURL=bootstrap.css.map */',
+																										to: '/*# sourceMappingURL=bootstrap-' + version + '.css.map */'
+																									}, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
 																										} else {
-																											log.log(dependency + ' version ' + version + ' installed!');
+																											//noinspection JSUnresolvedFunction
+																											fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css.map', install_directory + css_directory + dependency + '-' + version + '.css.map', copy_options, (error) => {
+																												if (error) {
+																													log.error('Error occurred:', error);
+																												} else {
+																													//noinspection JSUnresolvedFunction
+																													fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+																														if (error) {
+																															log.error('Error occurred:', error);
+																														} else {
+																															log.log(dependency + ' version ' + version + ' installed!');
+																														}
+																													});
+																												}
+																											});
 																										}
 																									});
 																								}
@@ -2647,8 +2669,12 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '//# sourceMappingURL=pdfmake.min.js.map',
+						to: '//# sourceMappingURL=pdfmake-' + version + '.min.js.map'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
@@ -2658,11 +2684,36 @@ function install(install_directory, dependency, version) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/build/vfs_fonts.js', install_directory + libraries_directory + dependency + '-fonts-' + version + '.js', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
+											// noinspection JSValidateTypes
+											replace({
+												files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+												from: '//# sourceMappingURL=pdfmake.js.map',
+												to: '//# sourceMappingURL=pdfmake-' + version + '.js.map'
+											}, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															//noinspection JSUnresolvedFunction
+															fs.copy(nodemodules_directory + dependency + '/build/vfs_fonts.js', install_directory + libraries_directory + dependency + '-fonts-' + version + '.js', copy_options, (error) => {
+																if (error) {
+																	log.error('Error occurred:', error);
+																} else {
+																	log.log(dependency + ' version ' + version + ' installed!');
+																}
+															});
+														}
+													});
+												}
+											});
 										}
 									});
 								}
@@ -2754,22 +2805,44 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.min.js.map', install_directory + libraries_directory + 'popper-' + version + '.min.js.map', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'popper-' + version + '.min.js',
+						from: '//# sourceMappingURL=popper.min.js.map',
+						to: '//# sourceMappingURL=popper-' + version + '.min.js.map'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.js', install_directory + libraries_directory + 'popper-' + version + '.js', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.min.js.map', install_directory + libraries_directory + 'popper-' + version + '.min.js.map', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.js.map', install_directory + libraries_directory + 'popper-' + version + '.js.map', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.js', install_directory + libraries_directory + 'popper-' + version + '.js', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
+											// noinspection JSValidateTypes
+											replace({
+												files: install_directory + libraries_directory + 'popper-' + version + '.js',
+												from: '//# sourceMappingURL=popper.js.map',
+												to: '//# sourceMappingURL=popper-' + version + '.js.map'
+											}, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.js.map', install_directory + libraries_directory + 'popper-' + version + '.js.map', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
 										}
 									});
 								}
