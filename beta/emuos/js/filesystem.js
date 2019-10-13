@@ -21,7 +21,7 @@
 	}
 } (function ($, Octokat) {
 	// noinspection JSUnusedLocalSymbols
-	var root = window.location.protocol + '//' + window.location.host + '/';
+	var root = location.protocol + '//' + location.host + '/';
 
 	var FileSystem = function (options) {
 		var self = this;
@@ -33,12 +33,15 @@
 				retry_count: 5
 			},
 			github: {
-				organization: 'Emupedia',
-				repo: 'emupedia.github.io',
-				branch: 'master',
-				app_id: 18939,
-				app_install_id: 1580976,
+				organization: '',
+				repo: '',
+				branch: '',
+				app_id: 0,
+				app_install_id: 0,
 				private_key: ''
+			},
+			dropbox: {
+				token: ''
 			}
 		};
 
@@ -57,8 +60,6 @@
 			});
 
 			return self;
-		} else {
-			throw new Error('GitHub private key is empty');
 		}
 	};
 

@@ -1,0 +1,15 @@
+{
+	"format": {
+		"version": "2.0"
+	},
+	"type": [{
+		"games": [{
+			"genre": [{
+
+			}]
+		}],
+		"software": [{
+
+		}]
+	}]
+}

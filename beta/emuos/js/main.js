@@ -223,9 +223,9 @@
 			jquerycustomscrollbar: 'libraries/jquery-customscrollbar-3.1.5.min',
 			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.8.min',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
-			base64: 'polyfills/es3-base64-1.0.1.min',
-			promise: 'polyfills/es6-promise-4.2.8.min',
-			fetch: 'polyfills/es6-fetch-3.0.0',
+			es3base64: 'polyfills/es3-base64-1.0.1.min',
+			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
+			es6fetch: 'polyfills/es6-fetch-3.0.0',
 			octokat: 'libraries/octokat-0.10.0',
 			json: 'libraries/requirejs-json-1.0.3',
 			noext: 'libraries/requirejs-noext-1.0.3',
@@ -257,7 +257,7 @@
 				exports: 'KJUR'
 			},
 			octokat: {
-				deps: ['promise', 'fetch', 'base64']
+				deps: ['es6promise', 'es6fetch', 'es3base64']
 			},
 			emuos: {
 				deps: ['desktop', 'filesystem']
@@ -282,35 +282,32 @@
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
-		'promise',
-		'text!../certs/emudisk.pem',
 		'jquery',
 		'filesystem',
-		'emuos',
-		'../vfat/apps/webamp-classic/js/webamp',
-		'text!../vfat/apps/webamp-classic/js/views/layout.html'
-	], function(Promise, github_private_key, $, FileSystem, EmuOS, Webamp, webamp_template) {
-		if (!global.SYSTEM_FEATURE_ES6_PROMISES) {
-			// noinspection JSUnresolvedFunction
-			Promise.polyfill();
-		}
+		'emuos'
+	], function($, FileSystem, EmuOS) {
 
 		$(function() {
-			var filesystem = new FileSystem({
+			/*var filesystem = new FileSystem({
 				github: {
-					private_key: github_private_key
+					organization: 'Emupedia',
+					repo: 'emupedia.github.io',
+					branch: 'master',
+					app_id: 18939,
+					app_install_id: 1580976,
+					private_key: window['GITHUB_PRIVATE_KEY']
+				},
+				dropbox: {
+					token: window['DROPBOX_TOKEN']
 				}
-			});
+			});*/
 
-			var webamp = new Webamp({template: webamp_template});
+			// var webamp = new Webamp({template: webamp_template});
 
 			// noinspection JSUnusedLocalSymbols
 			var desktop = new EmuOS({
-				filesystem: filesystem,
-				theme: 'theme-win9x',
-				apps: {
-					webamp: webamp
-				}
+				filesystem: null,
+				theme: 'theme-win9x'
 			});
 
 			// noinspection JSUnresolvedFunction

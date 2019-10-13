@@ -263,7 +263,7 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_URL_PARSER				= (function() {
 		try {
 			// noinspection ES6ConvertVarToLetConst
-			var root = window.location.protocol + '//' + window.location.host + '/';
+			var root = location.protocol + '//' + location.host + '/';
 			// noinspection ES6ConvertVarToLetConst
 			var url = new URL(root);
 

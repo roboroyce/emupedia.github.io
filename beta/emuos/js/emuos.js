@@ -63,7 +63,6 @@
 			} , {
 				name: 'Sandbox',
 				icon: 'vfat/apps/sandbox/favicon.ico',
-				//link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/romcenter?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
 				link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
 				width: 900,
 				height: 480
