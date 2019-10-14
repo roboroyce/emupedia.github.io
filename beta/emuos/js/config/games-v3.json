@@ -1,0 +1,35 @@
+{
+	"name": "Games",
+	"type": "main category",
+	"data": {},
+	"nodes": [{
+			"name": "Arcade",
+			"type": "sub category",
+			"data": {},
+			"nodes": [{
+				"name": "Prince of Persia",
+				"type": "game",
+				"data": {
+					"year": "1988",
+					"wiki": "http://wikipedia.com",
+					"link": "http://www.test.com"
+				},
+				"nodes": [{
+						"name": "clasic",
+						"type": "game version",
+						"data": {
+							"cmd": "prince"
+						},
+						"nodes": []
+				} , {
+					"name": "megahit",
+					"type": "game version",
+					"data": {
+						"cmd": "prince -megahit"
+					},
+					"nodes": []
+				}]
+			}]
+		}
+	]
+}
