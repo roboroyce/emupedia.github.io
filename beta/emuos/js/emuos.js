@@ -37,17 +37,17 @@
 				win9x: 'theme-win9x'
 			},
 			icons: [{
-				name: 'Discord',
-				icon: 'vfat/apps/discord/favicon.png',
-				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
-				width: 900,
-				height: 480
-			} , {
 				name: 'EmuOS v2.0',
 				icon: 'favicon.ico',
 				link: 'boot.html',
 				width: 824,
 				height: 624
+			} , {
+				name: 'ÐeKaÐeNcE',
+				icon: 'https://launcher.dekadence.ro/favicon.ico',
+				link: 'https://launcher.dekadence.ro',
+				width: 900,
+				height: 480
 			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
@@ -209,6 +209,12 @@
 				name: 'SVG Editor',
 				icon: 'vfat/apps/svg-editor/favicon.ico',
 				link: 'vfat/apps/svg-editor/index.html',
+				width: 900,
+				height: 480
+			} , {
+				name: 'Discord',
+				icon: 'vfat/apps/discord/favicon.png',
+				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
 				width: 900,
 				height: 480
 			}]
