@@ -37,7 +37,8 @@
 					"executable": "./TAPPER.COM",
 					"args": ["-c", "cycles=500"],
 					"license": "Commercial",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/267517-tapper-pc-booter-screenshot-title-screen-cga-with-rgb-monitor.png", "https://www.mobygames.com/images/shots/l/267519-tapper-pc-booter-screenshot-the-customers-have-arrived-cga.png"]
 				}]
 			}]
 		} , {
@@ -70,14 +71,15 @@
 				},
 				"executables": [{
 					"id": "loom",
-					"name": "Loom",
+					"name": "Loom (Retail)",
 					"executable": "./LOOM.EXE",
 					"sync": false,
 					"file": "loomega.zip",
 					"size": 1201980,
 					"version": "EGA 3.5.37",
 					"license": "Commercial",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/3420-loom-dos-screenshot-title-screen-vga-cdrom.gif", "https://www.mobygames.com/images/shots/l/669-loom-dos-screenshot-attacked-by-a-swan.gif"]
 				} , {
 					"id": "loomdemo",
 					"name": "Loom (Demo)",
@@ -87,11 +89,13 @@
 					"size": 277286,
 					"version": "DEMO",
 					"license": "Shareware",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/664-loom-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/669-loom-dos-screenshot-attacked-by-a-swan.gif"]
 				}]
 			} , {
 				"id": "monkey",
-				"name": "Monkey Island",
+				"name": "Monkey Island I",
+				"fullname": "Monkey Island I: The Secret of Monkey Island",
 				"drm": ["Dial-a-Pirate"],
 				"hardware": {
 					"input": ["Keyboard", "Mouse"],
@@ -116,36 +120,39 @@
 				},
 				"executables": [{
 					"id": "monkey1vgatalkie",
-					"name": "Monkey Island I: The Secret of Monkey Island (CD)",
+					"name": "CD Version (VGA + Voices)",
 					"executable": "./MONKEY.EXE",
 					"sync": false,
 					"file": "monkey1vgatalkie.zip",
 					"size": 124983889,
 					"version": "CD",
 					"license": "Commercial",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
 				} , {
 					"id": "monkey1vga",
-					"name": "Monkey Island I: The Secret of Monkey Island (VGA)",
+					"name": "VGA Version",
 					"executable": "./MONKEY.EXE",
 					"sync": false,
 					"file": "monkey1vga.zip",
 					"size": 3187135,
 					"version": "VGA",
 					"license": "Commercial",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
 				} , {
-					"name": "Monkey Island I: The Secret of Monkey Island (EGA)",
+					"name": "EGA Version",
 					"executable": "./MONKEY.EXE",
 					"sync": false,
 					"file": "monkey1ega.zip",
 					"size": 1569844,
 					"version": "EGA",
 					"license": "Commercial",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
 				} , {
 					"id": "monkey1demo",
-					"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
+					"name": "Demo Version",
 					"executable": "./MIDEMO.EXE",
 					"sync": false,
 					"file": "monkey1demo.zip",
@@ -153,7 +160,8 @@
 					"year": 1990,
 					"version": "DEMO",
 					"license": "Shareware",
-					"status": "Playable"
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
 				}]
 			}]
 		} , {
