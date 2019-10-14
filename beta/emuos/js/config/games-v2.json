@@ -120,7 +120,7 @@
 				},
 				"executables": [{
 					"id": "monkey1vgatalkie",
-					"name": "CD Version (VGA + Voices)",
+					"name": "CD Version",
 					"executable": "./MONKEY.EXE",
 					"sync": false,
 					"file": "monkey1vgatalkie.zip",
