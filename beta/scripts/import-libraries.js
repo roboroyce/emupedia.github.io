@@ -301,36 +301,58 @@ function install(install_directory, dependency, version) {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
-																					//noinspection JSUnresolvedFunction
-																					fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.min.css.map', install_directory + css_directory + dependency + '-' + version + '.min.css.map', copy_options, (error) => {
+																					// noinspection JSValidateTypes
+																					replace({
+																						files: install_directory + css_directory + dependency + '-' + version + '.min.css',
+																						from: 'button{border-radius:0}',
+																						to: ''
+																					}, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
 																							//noinspection JSUnresolvedFunction
-																							fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
+																							fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.min.css.map', install_directory + css_directory + dependency + '-' + version + '.min.css.map', copy_options, (error) => {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
-																									// noinspection JSValidateTypes
-																									replace({
-																										files: install_directory + css_directory + dependency + '-' + version + '.css',
-																										from: '/*# sourceMappingURL=bootstrap.css.map */',
-																										to: '/*# sourceMappingURL=bootstrap-' + version + '.css.map */'
-																									}, (error) => {
+																									//noinspection JSUnresolvedFunction
+																									fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
 																										} else {
-																											//noinspection JSUnresolvedFunction
-																											fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css.map', install_directory + css_directory + dependency + '-' + version + '.css.map', copy_options, (error) => {
+																											// noinspection JSValidateTypes
+																											replace({
+																												files: install_directory + css_directory + dependency + '-' + version + '.css',
+																												from: '/*# sourceMappingURL=bootstrap.css.map */',
+																												to: '/*# sourceMappingURL=bootstrap-' + version + '.css.map */'
+																											}, (error) => {
 																												if (error) {
 																													log.error('Error occurred:', error);
 																												} else {
-																													//noinspection JSUnresolvedFunction
-																													fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+																													// noinspection JSValidateTypes
+																													replace({
+																														files: install_directory + css_directory + dependency + '-' + version + '.css',
+																														from: 'button {\n  border-radius: 0;\n}',
+																														to: ''
+																													}, (error) => {
 																														if (error) {
 																															log.error('Error occurred:', error);
 																														} else {
-																															log.log(dependency + ' version ' + version + ' installed!');
+																															//noinspection JSUnresolvedFunction
+																															fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css.map', install_directory + css_directory + dependency + '-' + version + '.css.map', copy_options, (error) => {
+																																if (error) {
+																																	log.error('Error occurred:', error);
+																																} else {
+																																	//noinspection JSUnresolvedFunction
+																																	fs.copy(nodemodules_directory + dependency + '/scss/', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+																																		if (error) {
+																																			log.error('Error occurred:', error);
+																																		} else {
+																																			log.log(dependency + ' version ' + version + ' installed!');
+																																		}
+																																	});
+																																}
+																															});
 																														}
 																													});
 																												}
