@@ -31,7 +31,7 @@
 				},
 				"executables": [{
 					"id": "tapper",
-					"name": "Tapper",
+					"name": "Tapper (CGA)",
 					"file": "tapper.zip",
 					"size": 44594,
 					"executable": "./TAPPER.COM",
@@ -71,7 +71,7 @@
 				},
 				"executables": [{
 					"id": "loom",
-					"name": "Loom (Retail)",
+					"name": "Loom (EGA)",
 					"executable": "./LOOM.EXE",
 					"sync": false,
 					"file": "loomega.zip",
@@ -82,7 +82,7 @@
 					"screenshots": ["https://www.mobygames.com/images/shots/l/3420-loom-dos-screenshot-title-screen-vga-cdrom.gif", "https://www.mobygames.com/images/shots/l/669-loom-dos-screenshot-attacked-by-a-swan.gif"]
 				} , {
 					"id": "loomdemo",
-					"name": "Loom (Demo)",
+					"name": "Loom (EGA Demo)",
 					"executable": "./LOOMDEMO.EXE",
 					"sync": false,
 					"file": "loomdemo.zip",
@@ -168,19 +168,167 @@
 			"id": "arcade",
 			"name": "Arcade",
 			"games": [{
-
+				"id": "arkanoid",
+				"name": "Arkanoid",
+				"fullname": "Arkanoid (Breakout Clone)",
+				"hardware": {
+					"input": ["Keyboard", "Mouse"],
+					"video": {
+						"EGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 16
+						}
+					},
+					"sound": ["PC Speaker"]
+				},
+				"language": "English",
+				"year": 1988,
+				"developer": "Taito Corporation; NovaLogic, Inc.",
+				"publisher": "Taito Corporation",
+				"copyright": "Taito Corporation",
+				"links": {
+					"wiki": "https://en.wikipedia.org/wiki/Arkanoid",
+					"youtube": "https://www.youtube.com/watch?v=r9qmKODaAJY"
+				},
+				"executables": [{
+					"id": "arkanoid",
+					"name": "Arkanoid (EGA)",
+					"executable": "./ARKANOID.COM",
+					"file": "arkanoid.zip",
+					"size": 77823,
+					"license": "Commercial",
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/529575-arkanoid-dos-screenshot-fun-time-arcade-with-taito-logo-ega.png", "https://www.mobygames.com/images/shots/l/5146-arkanoid-dos-screenshot-let-the-games-begin-ega.gif"]
+				}]
+			} , {
+				"id": "popcorn",
+				"name": "PopCorn",
+				"fullname": "PopCorn (Breakout Clone)",
+				"hardware": {
+					"input": ["Keyboard", "Mouse"],
+					"video": {
+						"CGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 4
+						}
+					},
+					"sound": ["PC Speaker"]
+				},
+				"language": "French",
+				"year": 1988,
+				"developer": "Lacaze Christophe; Raynal Frédérick",
+				"publisher": "Lacral Software",
+				"copyright": "Lacral Software",
+				"links": {
+					"url": "http://www.ludoid.fr",
+					"wiki": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
+					"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
+				},
+				"executables": [{
+					"id": "popcorn",
+					"name": "PopCorn",
+					"executable": "./POPCORN.EXE",
+					"args": ["-c", "cycles=500", "-c", "-c", "c:", "POPSPEED 0"],
+					"file": "popcorn.zip",
+					"size": 52245,
+					"license": "Freeware",
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/24080-popcorn-dos-screenshot-opening-screen.gif", "https://www.mobygames.com/images/shots/l/15005-popcorn-dos-screenshot.jpg"]
+				}]
 			}]
 		} , {
 			"id": "shooter",
 			"name": "Arcade Shooter",
 			"games": [{
-
+				"id": "raptor",
+				"name": "Raptor",
+				"fullname": "Raptor: Call of the Shadows",
+				"hardware": {
+					"input": ["Keyboard", "Mouse"],
+					"video": {
+						"VGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 256
+						}
+					},
+					"sound": ["PC Speaker", "Sound Blaster"]
+				},
+				"language": "English",
+				"year": 1994,
+				"developer": "Cygnus Studios",
+				"publisher": "Apogee Software, LLC",
+				"copyright": "3D Realms",
+				"links": {
+					"gog": "https://www.gog.com/game/raptor_call_of_the_shadows_2010_edition",
+					"wikipedia": "https://en.wikipedia.org/wiki/Raptor:_Call_of_the_Shadows",
+					"youtube": "https://www.youtube.com/watch?v=aHcEXYD_qjM"
+				},
+				"executables": [{
+					"id": "raptor",
+					"name": "Raptor (Retail)",
+					"executable": "./RAP.EXE",
+					"sync": false,
+					"file": "raptor.zip",
+					"size": 3786792,
+					"version": "1.2",
+					"license": "Commercial",
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/2472-raptor-call-of-the-shadows-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/2476-raptor-call-of-the-shadows-dos-screenshot-a-typical-boss.gif"]
+				} , {
+					"id": "raptorsw",
+					"name": "Raptor (Shareware)",
+					"executable": "./RAP.EXE",
+					"sync": false,
+					"file": "raptorsw.zip",
+					"size": 1826735,
+					"license": "Shareware",
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/2472-raptor-call-of-the-shadows-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/2476-raptor-call-of-the-shadows-dos-screenshot-a-typical-boss.gif"]
+				}]
 			}]
 		} , {
 			"id": "sports",
 			"name": "Arcade Sports",
 			"games": [{
-
+				"id": "avolley",
+				"name": "Volleyball",
+				"fullname": "Arcade Volleyball",
+				"hardware": {
+					"input": ["Keyboard"],
+					"video": {
+						"CGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 4
+						}
+					},
+					"sound": ["PC Speaker"]
+				},
+				"language": "English",
+				"year": 1989,
+				"developer": "Rhett Anderson",
+				"publisher": "COMPUTE! Publications",
+				"links": {
+					"wikipedia": "https://en.wikipedia.org/wiki/Arcade_Volleyball"
+				},
+				"executables": [{
+					"id": "avolley",
+					"name": "Volleyball (CGA)",
+					"executable": "./AV.EXE",
+					"sync": false,
+					"file": "avolley.zip",
+					"size": 24236,
+					"license": "Public Domain",
+					"status": "Playable",
+					"screenshots": ["https://www.mobygames.com/images/shots/l/2564-arcade-volleyball-dos-screenshot-menu.gif", "https://www.mobygames.com/images/shots/l/2565-arcade-volleyball-dos-screenshot-game-started.gif"]
+				}]
 			}]
 		} , {
 			"id": "fighting",

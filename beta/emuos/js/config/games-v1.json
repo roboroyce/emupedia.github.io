@@ -95,6 +95,19 @@
 		"sync": false,
 		"file": "avolley.zip",
 		"size": 24236,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
 		"year": 1989,
 		"genre": "Arcade Sports",
 		"developer": "Rhett Anderson",
