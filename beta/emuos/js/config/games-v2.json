@@ -89,6 +89,72 @@
 					"license": "Shareware",
 					"status": "Playable"
 				}]
+			} , {
+				"id": "monkey",
+				"name": "Monkey Island",
+				"drm": ["Dial-a-Pirate"],
+				"hardware": {
+					"input": ["Keyboard", "Mouse"],
+					"video": {
+						"EGA": {
+							"resolutions": [
+								"320x200"
+							],
+							"colors": 16
+						}
+					},
+					"sound": ["PC Speaker", "Sound Blaster"]
+				},
+				"language": "English",
+				"year": 1989,
+				"developer": "Lucasfilm Games",
+				"publisher": "Lucasfilm Games",
+				"copyright": "Lucasfilm Games",
+				"links": {
+					"gog": "https://www.gog.com/game/the_secret_of_monkey_island_special_edition",
+					"wikipedia": "https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island"
+				},
+				"executables": [{
+					"id": "monkey1vgatalkie",
+					"name": "Monkey Island I: The Secret of Monkey Island (CD)",
+					"executable": "./MONKEY.EXE",
+					"sync": false,
+					"file": "monkey1vgatalkie.zip",
+					"size": 124983889,
+					"version": "CD",
+					"license": "Commercial",
+					"status": "Playable"
+				} , {
+					"id": "monkey1vga",
+					"name": "Monkey Island I: The Secret of Monkey Island (VGA)",
+					"executable": "./MONKEY.EXE",
+					"sync": false,
+					"file": "monkey1vga.zip",
+					"size": 3187135,
+					"version": "VGA",
+					"license": "Commercial",
+					"status": "Playable"
+				} , {
+					"name": "Monkey Island I: The Secret of Monkey Island (EGA)",
+					"executable": "./MONKEY.EXE",
+					"sync": false,
+					"file": "monkey1ega.zip",
+					"size": 1569844,
+					"version": "EGA",
+					"license": "Commercial",
+					"status": "Playable"
+				} , {
+					"id": "monkey1demo",
+					"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
+					"executable": "./MIDEMO.EXE",
+					"sync": false,
+					"file": "monkey1demo.zip",
+					"size": 222725,
+					"year": 1990,
+					"version": "DEMO",
+					"license": "Shareware",
+					"status": "Playable"
+				}]
 			}]
 		} , {
 			"id": "arcade",
