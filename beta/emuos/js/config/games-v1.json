@@ -37,6 +37,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Abuse_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=kLnOi3aRVJI"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/650138-abuse-dos-screenshot-main-menu-v2-0.png", "https://www.mobygames.com/images/shots/l/70203-abuse-dos-screenshot-activate-the-laser-turrets-and-they-ll.gif"],
 		"clones": [{
 			"id": "abuse",
 			"name": "Abuse (v1.0)",
@@ -46,7 +47,8 @@
 			"year": 1995,
 			"release_date": "Sep 20, 1995",
 			"version": "1.05",
-			"license": "Commercial"
+			"license": "Commercial",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
 		}]
 	} , {
 		"id": "alleycat",
@@ -80,12 +82,14 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=DNfs55L1rXQ"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/740-alley-cat-pc-booter-screenshot-title-screen-cga.gif", "https://www.mobygames.com/images/shots/l/746-alley-cat-pc-booter-screenshot-outside-cga.gif"],
 		"clones": [{
 			"id": "tandycat",
 			"name": "Alley Cat (Tandy)",
 			"executable": "./TANDYCAT.EXE",
 			"args": ["-c", "machine=pcjr", "-c", "tandy=on"],
-			"version": "PCjr"
+			"version": "PCjr",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/463593-alley-cat-pc-booter-screenshot-title-screen-pcjr.png", "https://www.mobygames.com/images/shots/l/463594-alley-cat-pc-booter-screenshot-the-cat-is-outside-pcjr.png"]
 		}]
 	} , {
 		"id": "avolley",
@@ -117,6 +121,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Arcade_Volleyball"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/2564-arcade-volleyball-dos-screenshot-menu.gif", "https://www.mobygames.com/images/shots/l/2565-arcade-volleyball-dos-screenshot-game-started.gif"],
 		"clones": []
 	} , {
 		"id": "arkanoid",
@@ -149,6 +154,7 @@
 			"wiki": "https://en.wikipedia.org/wiki/Arkanoid",
 			"youtube": "https://www.youtube.com/watch?v=r9qmKODaAJY"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/529575-arkanoid-dos-screenshot-fun-time-arcade-with-taito-logo-ega.png", "https://www.mobygames.com/images/shots/l/5146-arkanoid-dos-screenshot-let-the-games-begin-ega.gif"],
 		"clones": [{
 			"id": "popcorn",
 			"name": "PopCorn (Breakout Clone)",
@@ -178,7 +184,8 @@
 				"url": "http://www.ludoid.fr",
 				"wiki": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
 				"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/24080-popcorn-dos-screenshot-opening-screen.gif", "https://www.mobygames.com/images/shots/l/15005-popcorn-dos-screenshot.jpg"]
 		}]
 	} , {
 		"id": "bdash1",
@@ -218,6 +225,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Boulder_Dash"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/17493-boulder-dash-pc-booter-screenshot-title-screen-cga.gif", "https://www.mobygames.com/images/shots/l/17494-boulder-dash-pc-booter-screenshot-level-1-cga.gif"],
 		"clones": [{
 			"id": "bdash2",
 			"name": "Boulder Dash II: Rockford's Riot",
@@ -225,7 +233,8 @@
 			"executable": "./BDASH2.EXE",
 			"file": "bdash2.zip",
 			"size": 15872,
-			"year": 1985
+			"year": 1985,
+			"screenshots": ["https://www.mobygames.com/images/shots/l/17496-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/17498-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-level.gif"]
 		} , {
 			"id": "sbdash",
 			"name": "Super Boulder Dash",
@@ -250,7 +259,8 @@
 			"file": "bdashck.zip",
 			"size": 37289,
 			"year": 1987,
-			"publisher": "Epyx, Inc."
+			"publisher": "Epyx, Inc.",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/293324-boulder-dash-construction-kit-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/293326-boulder-dash-construction-kit-dos-screenshot-placing-objects.png"]
 		} , {
 			"id": "rockford",
 			"name": "Rockford: The Arcade Game",
@@ -278,7 +288,8 @@
 			"version": "1.2",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/15150-rockford-the-arcade-game-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/15151-rockford-the-arcade-game-dos-screenshot-playing-as-an-explorer.gif"]
 		} , {
 			"id": "supaplex",
 			"name": "Supaplex (Boulder Dash Clone)",
@@ -309,7 +320,8 @@
 				"url": "https://www.elmerproductions.com/sp/index.html",
 				"wikipedia": "https://en.wikipedia.org/wiki/Supaplex",
 				"youtube": "https://www.youtube.com/watch?v=ka6RbWwHuOM"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/9214-supaplex-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/9219-supaplex-dos-screenshot-demo.gif"]
 		} , {
 			"id": "robbo",
 			"name": "The Adventures of Robbo (Boulder Dash Clone)",
@@ -340,12 +352,14 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Robbo_(video_game)"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/34302-robbo-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/34303-robbo-dos-screenshot-in-game.gif"]
 		}]
 	} , {
 		"id": "ddave",
 		"group": "Dangerous Dave",
 		"name": "Dangerous Dave",
+		"fullname": "Dangerous Dave in the Deserted Pirate's Hideout!",
 		"executable": "./DAVE.EXE",
 		"sync": false,
 		"file": "ddave.zip",
@@ -375,6 +389,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave",
 			"youtube": "https://www.youtube.com/watch?v=TAjHtpLwFrE"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/44668-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif", "https://www.mobygames.com/images/shots/l/811-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif"],
 		"clones": [{
 			"id": "ddavethm",
 			"name": "Dangerous Dave in the Haunted Mansion",
@@ -385,17 +400,18 @@
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
 				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/6485-dangerous-dave-in-the-haunted-mansion-dos-screenshot-game-title.gif", "https://www.mobygames.com/images/shots/l/6487-dangerous-dave-in-the-haunted-mansion-dos-screenshot-the-beginning.gif"]
 		}]
 	} , {
 		"id": "digger",
 		"group": "Digger",
-		"name": "Digger",
+		"name": "Digger (Bootable) (CGA)",
 		"notes": "DOSBOX: Display garbled",
-		"executable": "./DIGGER.COM",
-		"args": ["-c", "cycles=500", "-c", "machine=cga", "-c", "c:", "-c", "DIGGER"],
+		"executable": "./DIGGER4.COM",
+		"args": ["-c", "cycles=1000"],
 		"file": "digger.zip",
-		"size": 22801,
+		"size": 187213,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
@@ -419,7 +435,34 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
 		},
-		"clones": []
+		"screenshots": ["https://www.mobygames.com/images/shots/l/895664-digger-dos-screenshot-title-screen-cga.png", "https://www.mobygames.com/images/shots/l/895665-digger-dos-screenshot-level-1-cga.png"],
+		"clones": [{
+			"id": "diggervga",
+			"name": "Digger (Retail) (VGA)",
+			"executable": "./DIGGER3.COM",
+			"year": 1986,
+			"license": "Commercial",
+			"status": "Playable"
+		} , {
+			"id": "diggerdemo",
+			"name": "Digger (Demo) (VGA)",
+			"notes": "DOSBOX: Intro message corrupted",
+			"executable": "./DIGGER.EXE",
+			"year": 1986,
+			"license": "Shareware",
+			"status": "Playable"
+		} , {
+			"id": "diggerre",
+			"name": "Digger Remastered (VGA)",
+			"executable": "./DIGGERRE.EXE",
+			"year": 2001,
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://www.digger.org"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/895658-digger-dos-screenshot-title-screen-vga.png", "https://www.mobygames.com/images/shots/l/895660-digger-dos-screenshot-level-1-vga.png"]
+		}]
 	} , {
 		"id": "diablo1sw",
 		"group": "Diablo",
