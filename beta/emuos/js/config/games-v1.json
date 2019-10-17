@@ -409,7 +409,7 @@
 		"name": "Digger (Bootable) (CGA)",
 		"notes": "DOSBOX: Display garbled",
 		"executable": "./DIGGER4.COM",
-		"args": ["-c", "cycles=1000"],
+		"args": ["-c", "cycles=1000","-c", "machine=cga"],
 		"file": "digger.zip",
 		"size": 187213,
 		"hardware": {
@@ -440,6 +440,7 @@
 			"id": "diggervga",
 			"name": "Digger (Retail) (VGA)",
 			"executable": "./DIGGER3.COM",
+			"args": [],
 			"year": 1986,
 			"license": "Commercial",
 			"status": "Playable"
@@ -448,6 +449,7 @@
 			"name": "Digger (Demo) (VGA)",
 			"notes": "DOSBOX: Intro message corrupted",
 			"executable": "./DIGGER.EXE",
+			"args": [],
 			"year": 1986,
 			"license": "Shareware",
 			"status": "Playable"
@@ -455,6 +457,7 @@
 			"id": "diggerre",
 			"name": "Digger Remastered (VGA)",
 			"executable": "./DIGGERRE.EXE",
+			"args": [],
 			"year": 2001,
 			"license": "Freeware",
 			"status": "Playable",
@@ -497,7 +500,9 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Diablo_(video_game)"
 		},
-		"clones": []
+		"screenshots": ["https://www.mobygames.com/images/shots/l/196625-diablo-windows-screenshot-title-screen.jpg", "https://www.mobygames.com/images/shots/l/7741-diablo-windows-screenshot-fighting-some-skeletons.jpg"],
+		"clones": [],
+		"enabled": false
 	} , {
 		"id": "aladdin",
 		"group": "Disney",
@@ -531,6 +536,7 @@
 			"gog": "https://www.gog.com/game/disney_classic_games_aladdin_and_the_lion_king",
 			"wikipedia": "https://en.wikipedia.org/wiki/Disney%27s_Aladdin_(Virgin_Games_video_game)"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/8945-disney-s-aladdin-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/8951-disney-s-aladdin-dos-screenshot-a-little-apple-can-destroy.gif"],
 		"clones": [{
 			"id": "lionking",
 			"name": "Disney's Lion King",
@@ -557,7 +563,8 @@
 			"publisher": "Virgin Interactive",
 			"copyright": "Walt Disney",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/9030-the-lion-king-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/9033-the-lion-king-dos-screenshot-walking-in-the-rocks.gif"]
 		} , {
 			"id": "jungle",
 			"name": "Disney's The Jungle Book",
@@ -584,7 +591,8 @@
 			"publisher": "Virgin Interactive",
 			"copyright": "Walt Disney",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/275638-disney-s-the-jungle-book-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/275641-disney-s-the-jungle-book-dos-screenshot-wheeeee.png"]
 		}]
 	} , {
 		"id": "dune2",
@@ -619,6 +627,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Dune_II",
 			"youtube": "https://www.youtube.com/watch?v=noU0MSDBoJ8"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/61891-dune-ii-the-building-of-a-dynasty-dos-screenshot-main-menu.png", "https://www.mobygames.com/images/shots/l/74608-dune-ii-the-building-of-a-dynasty-dos-screenshot-when-having.gif"],
 		"clones": []
 	} , {
 		"id": "got",
@@ -654,6 +663,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/God_of_Thunder_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=jpRrwVOsDw0"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/4868-god-of-thunder-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/4870-god-of-thunder-dos-screenshot-starting-point.gif"],
 		"clones": []
 	} , {
 		"id": "homm1",
@@ -690,6 +700,7 @@
 			"gog": "https://gog.com/game/heroes_of_might_and_magic",
 			"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic:_A_Strategic_Quest"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/20498-heroes-of-might-and-magic-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/20519-heroes-of-might-and-magic-dos-screenshot-combat-on-ship.gif"],
 		"clones": [{
 			"id": "homm2",
 			"name": "Heroes of Might and Magic II: The Succession Wars",
@@ -707,7 +718,8 @@
 				"gog": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 				"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II",
 				"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/634490-heroes-of-might-and-magic-ii-the-succession-wars-dos-screenshot.png", "https://www.mobygames.com/images/shots/l/583816-heroes-of-might-and-magic-ii-the-succession-wars-dos-screenshot.png"]
 		} , {
 			"id": "homm2x",
 			"name": "Heroes of Might and Magic II: The Price of Loyalty",
@@ -726,6 +738,7 @@
 				"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
 				"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
 			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/145015-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg", "https://www.mobygames.com/images/shots/l/145020-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg"],
 			"enabled": false
 		} , {
 			"id": "homm2xrip",
@@ -745,7 +758,8 @@
 				"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
 				"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
 
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/145015-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg", "https://www.mobygames.com/images/shots/l/145020-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg"]
 		} , {
 			"id": "homm2gold",
 			"name": "Heroes of Might and Magic II Gold",
@@ -800,6 +814,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Jetpack_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=sxrgPVa-R3g"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/444678-jetpack-dos-screenshot-main-menu-of-jetpack-painted-by-wayne.png", "https://www.mobygames.com/images/shots/l/444679-jetpack-dos-screenshot-start-playing-jetpack-in-level-1.png"],
 		"clones": []
 	} , {
 		"id": "jazzcd",
@@ -835,14 +850,16 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Jazz_Jackrabbit_(1994_video_game)",
 			"youtube": "https://www.youtube.com/watch?v=BQFtSfloEn0"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/51066-jazz-jackrabbit-cd-rom-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/51069-jazz-jackrabbit-cd-rom-dos-screenshot-exoticus.gif"],
 		"clones": [{
-			"id": "jazzhol1",
+			"id": "jazzsw",
 			"name": "Jazz Jackrabbit (Shareware)",
 			"file": "jazzsw.zip",
 			"size": 1349883,
 			"license": "Freeware",
 			"version": "-",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/8485-jazz-jackrabbit-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/48785-jazz-jackrabbit-dos-screenshot-letni.gif"]
 		} , {
 			"id": "jazzhol1",
 			"name": "Jazz Jackrabbit: Holiday Hare 1",
@@ -850,7 +867,8 @@
 			"size": 1360653,
 			"license": "Freeware",
 			"version": "DEMO",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/874406-jazz-jackrabbit-holiday-hare-1994-dos-screenshot-holiday-themed.png", "https://www.mobygames.com/images/shots/l/47486-jazz-jackrabbit-holiday-hare-1994-dos-screenshot-my-what-a.gif"]
 		} , {
 			"id": "jazzhol2",
 			"name": "Jazz Jackrabbit: Holiday Hare 2",
@@ -859,7 +877,8 @@
 			"year": 1995,
 			"license": "Freeware",
 			"version": "DEMO",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/34022-jazz-jackrabbit-holiday-hare-1995-dos-screenshot-the-title.gif", "https://www.mobygames.com/images/shots/l/34027-jazz-jackrabbit-holiday-hare-1995-dos-screenshot-looks-like.gif"]
 		}]
 	} , {
 		"id": "keen1sw",
@@ -896,6 +915,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons",
 			"youtube": "https://www.youtube.com/watch?v=nP-D7SGy9t0"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/25378-commander-keen-1-marooned-on-mars-dos-screenshot-opening-screen.gif", "https://www.mobygames.com/images/shots/l/888-commander-keen-1-marooned-on-mars-dos-screenshot-ingame-screenshot.gif"],
 		"clones": [{
 			"id": "keen2",
 			"name": "Episode 2: The Earth Explodes",
@@ -907,7 +927,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/24577-commander-keen-2-the-earth-explodes-dos-screenshot-episode.gif", "https://www.mobygames.com/images/shots/l/890-commander-keen-2-the-earth-explodes-dos-screenshot-ingame-screenshot.gif"]
 		} , {
 			"id": "keen3",
 			"name": "Episode 3: Keen Must Die!",
@@ -919,7 +940,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Invasion_of_the_Vorticons"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/76520-commander-keen-3-keen-must-die-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/908-commander-keen-3-keen-must-die-dos-screenshot-a-huge-sign-in.gif"]
 		} , {
 			"id": "keen35",
 			"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
@@ -931,7 +953,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Keen_Dreams"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/76521-commander-keen-keen-dreams-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/10135-commander-keen-keen-dreams-dos-screenshot-keen-dreams-screenshot.gif"]
 		} , {
 			"id": "keen4sw",
 			"name": "Episode 4: Secret of the Oracle",
@@ -945,7 +968,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/159025-commander-keen-4-secret-of-the-oracle-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/912-commander-keen-4-secret-of-the-oracle-dos-screenshot-jumping.gif"]
 		} , {
 			"id": "keen5",
 			"name": "Episode 5: The Armaggeddon Machine",
@@ -959,7 +983,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Goodbye,_Galaxy"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/556160-commander-keen-5-the-armageddon-machine-dos-screenshot-title.png", "https://www.mobygames.com/images/shots/l/915-commander-keen-5-the-armageddon-machine-dos-screenshot-ingame.gif"]
 		} , {
 			"id": "keen6",
 			"name": "Episode 6: Aliens Ate My Baby Sitter!",
@@ -973,7 +998,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Commander_Keen_in_Aliens_Ate_My_Babysitter"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/7023-commander-keen-aliens-ate-my-babysitter-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/7027-commander-keen-aliens-ate-my-babysitter-dos-screenshot-hey-tell.gif"]
 		}]
 	} , {
 		"id": "lemmmings",
@@ -1020,6 +1046,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=kYAQhq76atY"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/864344-lemmings-oh-no-more-lemmings-dos-screenshot-title-screen-lemmings.png", "https://www.mobygames.com/images/shots/l/864345-lemmings-oh-no-more-lemmings-dos-screenshot-first-stage-lemmings.png"],
 		"clones": [{
 			"id": "lemmdemo",
 			"name": "Lemmings (Demo)",
@@ -1030,6 +1057,16 @@
 			"version": "DEMO",
 			"license": "Shareware",
 			"status": "Playable"
+		} , {
+			"id": "lemmohno",
+			"name": "Lemmings: Oh No! More Lemmings",
+			"executable": "./VGALEMM.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMM -v -p"],
+			"file": "lemmohno.zip",
+			"size": 341857,
+			"license": "Commercial",
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/864346-lemmings-oh-no-more-lemmings-dos-screenshot-title-screen-oh.png", "https://www.mobygames.com/images/shots/l/864347-lemmings-oh-no-more-lemmings-dos-screenshot-first-stage-oh.png"]
 		} , {
 			"id": "lemmcovx",
 			"name": "Lemmings Covox (Demo)",
@@ -1049,7 +1086,8 @@
 			"size": 213154,
 			"version": "DEMO",
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/574330-xmas-lemmings-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/574331-xmas-lemmings-dos-screenshot-the-beginning-of-level-1.png"]
 		} , {
 			"id": "lemxmas2",
 			"name": "Lemmings Xmas 2 (Demo)",
@@ -1060,18 +1098,32 @@
 			"year": 1992,
 			"version": "DEMO",
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/25482-xmas-lemmings-dos-screenshot-xmas-lemmings-1992-demo-start.gif", "https://www.mobygames.com/images/shots/l/25484-xmas-lemmings-dos-screenshot-xmas-92-playing-level-1.gif"]
 		} , {
-			"id": "lemmhol",
-			"name": "Lemmings Holiday (Demo)",
+			"id": "lemmhol1",
+			"name": "Lemmings Holiday 1 (Demo)",
 			"executable": "./VGALEMMI.EXE",
 			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI /v /p"],
-			"file": "lemmhol.zip",
+			"file": "lemmhol1.zip",
 			"size": 162756,
 			"year": 1993,
 			"version": "DEMO",
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/25486-holiday-lemmings-dos-screenshot-holiday-lemmings-1993-start.gif", "https://www.mobygames.com/images/shots/l/25490-holiday-lemmings-dos-screenshot-holiday-93-playing-level-1.gif"]
+		} , {
+			"id": "lemmhol2",
+			"name": "Lemmings Holiday 2 (Demo)",
+			"executable": "./VGALEMMI.EXE",
+			"args": ["-c", "cycles=7000", "-c", "machine=vgaonly", "-c", "c:", "-c", "VGALEMMI /v /p"],
+			"file": "lemmhol2.zip",
+			"size": 178138,
+			"year": 1994,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/25491-holiday-lemmings-dos-screenshot-holiday-lemmings-1994-demo.gif", "https://www.mobygames.com/images/shots/l/25493-holiday-lemmings-dos-screenshot-holiday-94-playing-level-1.gif"]
 		} , {
 			"id": "lem2demo",
 			"name": "Lemmings 2: The Tribes (Demo)",
@@ -1086,7 +1138,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Lemmings_2:_The_Tribes"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/8510-lemmings-2-the-tribes-dos-screenshot-menu.gif", "https://www.mobygames.com/images/shots/l/548836-lemmings-2-the-tribes-dos-screenshot-circus-lemmings.png"]
 		} , {
 			"id": "lemm3chr",
 			"name": "Lemmings 3: The Lemmings Chronicles",
@@ -1100,7 +1153,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/All_New_World_of_Lemmings"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/291497-the-lemmings-chronicles-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/291500-the-lemmings-chronicles-dos-screenshot-first-level-of-the.png"]
 		}]
 	} , {
 		"id": "loomega",
@@ -1136,6 +1190,7 @@
 			"gog": "https://www.gog.com/game/loom",
 			"wikipedia": "https://en.wikipedia.org/wiki/Loom_(video_game)"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/3420-loom-dos-screenshot-title-screen-vga-cdrom.gif", "https://www.mobygames.com/images/shots/l/669-loom-dos-screenshot-attacked-by-a-swan.gif"],
 		"clones": [{
 			"id": "loomdemo",
 			"name": "Loom (Demo)",
@@ -1145,7 +1200,8 @@
 			"size": 277286,
 			"version": "DEMO",
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/664-loom-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/669-loom-dos-screenshot-attacked-by-a-swan.gif"]
 		}]
 	} , {
 		"id": "lotus3",
@@ -1180,6 +1236,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Lotus_(video_game_series)#Lotus_III:_The_Ultimate_Challenge"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/8802-lotus-the-ultimate-challenge-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/8808-lotus-the-ultimate-challenge-dos-screenshot-strong-side-winds.gif"],
 		"clones": []
 	} , {
 		"id": "mk1",
@@ -1216,6 +1273,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_(1992_video_game)",
 			"youtube": "https://www.youtube.com/watch?v=HEjc_pIkI20"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/3011-mortal-kombat-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3015-mortal-kombat-dos-screenshot-sub-zero-vs-scorpion.gif"],
 		"clones": [{
 			"id": "mk2",
 			"name": "Mortal Kombat 2",
@@ -1228,7 +1286,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_II"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3020-mortal-kombat-ii-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3022-mortal-kombat-ii-dos-screenshot-kung-lao-hurls-scorpion.gif"]
 		} , {
 			"id": "mk3",
 			"name": "Mortal Kombat 3",
@@ -1241,7 +1300,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Mortal_Kombat_3"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3028-mortal-kombat-3-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3035-mortal-kombat-3-dos-screenshot-kung-lao-s-hat-hurls-kabal-wow.gif"]
 		}]
 	} , {
 		"id": "monkey1ega",
@@ -1277,6 +1337,7 @@
 			"gog": "https://www.gog.com/game/the_secret_of_monkey_island_special_edition",
 			"wikipedia": "https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"],
 		"clones": [{
 			"id": "monkey1demo",
 			"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
@@ -1287,7 +1348,8 @@
 			"year": 1990,
 			"version": "DEMO",
 			"license": "Shareware",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
 		} , {
 			"id": "monkey1vga",
 			"name": "Monkey Island I: The Secret of Monkey Island (VGA)",
@@ -1310,7 +1372,8 @@
 			"year": 1990,
 			"version": "VGA",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
 		} , {
 			"id": "monkey1vgatalkie",
 			"name": "Monkey Island I: The Secret of Monkey Island (CD)",
@@ -1333,7 +1396,8 @@
 			"year": 1990,
 			"version": "CD",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
 		}]
 	} , {
 		"id": "omf2097",
