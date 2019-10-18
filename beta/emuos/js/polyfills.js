@@ -156,9 +156,40 @@ if (!window.MouseEvent || window.isIE && (typeof window.MouseEvent !== 'function
 
 // region Math
 
+if (typeof Number.EPSILON === 'undefined') {
+	Number.EPSILON = 2.7755575615628914e-17;
+}
+
+if (typeof Number.MIN_SAFE_INTEGER === 'undefined') {
+	Number.MIN_SAFE_INTEGER = -9007199254740991;
+}
+
+if (typeof Number.MAX_SAFE_INTEGER === 'undefined') {
+	Number.MAX_SAFE_INTEGER = 9007199254740991;
+}
+
+if (typeof Number.isNaN === 'undefined') {
+	Number.isNaN = function(value) {
+		// noinspection EqualityComparisonWithCoercionJS
+		return value !== null && (value != value || +value != value);
+	};
+}
+
+if (typeof Number.isFinite === 'undefined') {
+	Number.isFinite = function(value) {
+		return typeof value === 'number' && isFinite(value);
+	};
+}
+
 if (typeof Number.isInteger === 'undefined') {
 	Number.isInteger = function(value) {
 		return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
+	};
+}
+
+if (typeof Number.isSafeInteger === 'undefined') {
+	Number.isSafeInteger = function (value) {
+		return Number.isInteger(value) && Math.abs(value) <= Number.MAX_SAFE_INTEGER;
 	};
 }
 
