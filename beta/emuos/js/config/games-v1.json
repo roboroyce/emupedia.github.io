@@ -1432,51 +1432,103 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/One_Must_Fall:_2097",
 			"youtube": "https://www.youtube.com/watch?v=l9ph0HO0N5U"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/956-one-must-fall-2097-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/13554-one-must-fall-2097-dos-screenshot-create-your-own-character.gif"],
 		"clones": []
 	} , {
-		"id": "pacpc",
+		"id": "pacman",
 		"group": "Pac-Man",
-		"name": "Pac PC II (Pac-Man Clone)",
-		"executable": "./PACPC2.EXE",
-		"args": ["-c", "cycles=7000", "-c", "c:", "-c", "PACPC2 F"],
-		"file": "pacpc.zip",
-		"size": 192934,
+		"name": "Pac-Man (Bootable)",
+		"executable": "./PAC-MAN.EXE",
+		"args": ["-c", "cycles=7000"],
+		"file": "pacman.zip",
+		"size": 10013,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
 				"VGA": {
 					"resolutions": [
-						"256x256"
+						"320x200"
 					],
 					"colors": 16
 				}
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["PC Speaker"]
 		},
 		"language": "English",
-		"year": 1997,
+		"year": 1983,
 		"genre": "Arcade",
-		"developer": "James Rowan aka JROK",
-		"publisher": "James Rowan aka JROK",
-		"copyright": "James Rowan aka JROK",
-		"version": "2.00A",
-		"license": "Freeware",
+		"developer": "Namco Limited",
+		"publisher": "Atarisoft",
+		"copyright": "Namco Limited",
+		"license": "Commercial",
 		"status": "Playable",
 		"links": {
-			"url": "http://www.jrok.com/games_orig.html",
 			"wikipedia": "https://en.wikipedia.org/wiki/Pac-Man"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/479-pac-man-pc-booter-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/538670-pac-man-pc-booter-screenshot-ready.png"],
 		"clones": [{
-			"id": "mspac",
-			"name": "Ms Pac PC (Ms. Pac-Man Clone)",
-			"executable": "./MSPAC.EXE",
-			"args": ["-c", "cycles=7000", "-c", "c:", "-c", "MSPAC F"],
-			"file": "mspac.zip",
-			"size": 645870,
-			"version": "1.02B",
+			"id": "mspacman",
+			"name": "Ms. Pac-Man (Bootable)",
+			"executable": "./MSPACMAN.COM",
+			"args": [],
+			"file": "mspacman.zip",
+			"size": 17690,
+			"year": 1984,
+			"developer": "General Computer Corporation, Midway Mfg. Co.",
+			"publisher": "Atarisoft",
+			"license": "Commercial",
+			"status": "Playable",
 			"links": {
 				"wiki": "https://en.wikipedia.org/wiki/Ms._Pac-Man"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/2868-ms-pac-man-pc-booter-screenshot-title-screen-cga-with-rgb-monitor.gif", "https://www.mobygames.com/images/shots/l/2869-ms-pac-man-pc-booter-screenshot-gameplay-cga-with-rgb-monitor.gif"]
+		} , {
+			"id": "pacpc",
+			"name": "Pac PC II (Pac-Man Clone)",
+			"executable": "./PACPC2.EXE",
+			"args": ["-c", "cycles=7000", "-c", "c:", "-c", "PACPC2 F"],
+			"file": "pacpc.zip",
+			"size": 192934,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"256x256"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster"]
+			},
+			"year": 1997,
+			"developer": "James Rowan aka JROK",
+			"publisher": "James Rowan aka JROK",
+			"copyright": "James Rowan aka JROK",
+			"version": "2.00A",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://www.jrok.com/games_orig.html"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/218109-pac-pc-ii-dos-screenshot-title-screen-and-main-menu.gif", "https://www.mobygames.com/images/shots/l/218112-pac-pc-ii-dos-screenshot-starting-position.gif"]
+		} , {
+			"id": "mspacpc",
+			"name": "Ms. Pac PC (Ms. Pac-Man Clone)",
+			"executable": "./MSPAC.EXE",
+			"args": ["-c", "cycles=7000", "-c", "c:", "-c", "MSPAC F"],
+			"file": "mspacpc.zip",
+			"size": 645870,
+			"developer": "James Rowan aka JROK",
+			"publisher": "James Rowan aka JROK",
+			"copyright": "James Rowan aka JROK",
+			"version": "1.02B",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://www.jrok.com/games_orig.html"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/7809-ms-pac-pc-dos-screenshot.jpg", "https://www.mobygames.com/images/shots/l/7808-ms-pac-pc-dos-screenshot.jpg"]
 		} , {
 			"id": "pakupaku",
 			"name": "Paku Paku (Pac-Man Clone)",
@@ -1508,10 +1560,11 @@
 			"links": {
 				"url": "https://deathshadow.com/pakuPaku",
 				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/581389-paku-paku-dos-screenshot-title-and-scores.png", "https://www.mobygames.com/images/shots/l/581390-paku-paku-dos-screenshot-ready.png"]
 		} , {
 			"id": "cd-man2",
-			"name": "CD-Man (Pac-Man Clone)",
+			"name": "CD-Man (v2.0) (Pac-Man Clone)",
 			"executable": "./CDMAN2.EXE",
 			"sync": false,
 			"args": [],
@@ -1540,7 +1593,8 @@
 			"links": {
 				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
 				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/5514-cd-man-version-2-0-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/5515-cd-man-version-2-0-dos-screenshot-first-world-the-enchanted.gif"]
 		} , {
 			"id": "cd-man1",
 			"name": "CD-Man (Shareware) (Pac-Man Clone)",
@@ -1572,42 +1626,72 @@
 			"links": {
 				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
 				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/5514-cd-man-version-2-0-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/5515-cd-man-version-2-0-dos-screenshot-first-world-the-enchanted.gif"]
 		}]
 	} , {
-		"id": "pcbert",
+		"id": "pcqbert",
 		"group": "Q*bert",
-		"name": "PC*bert (Q*bert Clone)",
-		"executable": "./PCBERT.EXE",
-		"sync": false,
-		"file": "pcbert.zip",
-		"size": 688139,
+		"name": "Q*bert",
+		"executable": "./PCQBERT.EXE",
+		"args": ["-c", "cycles=1000","-c", "machine=cga"],
+		"file": "pcqbert.zip",
+		"size": 16909,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
-				"VGA": {
+				"CGA": {
 					"resolutions": [
-						"256x256"
+						"320x200"
 					],
-					"colors": 16
+					"colors": 4
 				}
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["PC Speaker"]
 		},
 		"language": "English",
-		"year": 1997,
+		"year": 1984,
 		"genre": "Arcade",
-		"developer": "James Rowan aka JROK",
-		"publisher": "James Rowan aka JROK",
-		"copyright": "James Rowan aka JROK",
-		"version": "1.01",
-		"license": "Freeware",
+		"developer": "Gottlieb",
+		"publisher": "Parker Brothers",
+		"copyright": "Parker Brothers",
+		"license": "Commercial",
 		"status": "Playable",
 		"links": {
-			"url": "http://www.jrok.com/pcbert.html",
 			"wikipedia": "https://en.wikipedia.org/wiki/Q*bert"
 		},
-		"clones": []
+		"screenshots": ["https://www.mobygames.com/images/shots/l/503864-q-bert-dos-screenshot-ibm-title-screen.png", "https://www.mobygames.com/images/shots/l/503867-q-bert-dos-screenshot-start-of-level-1.png"],
+		"clones": [{
+			"id": "pcbert",
+			"name": "PC*bert (Q*bert Clone)",
+			"executable": "./PCBERT.EXE",
+			"args": [],
+			"file": "pcbert.zip",
+			"size": 688139,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"EGA": {
+						"resolutions": [
+							"256x256"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster"]
+			},
+			"year": 1997,
+			"developer": "James Rowan aka JROK",
+			"publisher": "James Rowan aka JROK",
+			"copyright": "James Rowan aka JROK",
+			"version": "1.01",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://www.jrok.com/pcbert.html"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/503864-q-bert-dos-screenshot-ibm-title-screen.png", "https://www.mobygames.com/images/shots/l/503867-q-bert-dos-screenshot-start-of-level-1.png"]
+		}]
 	} , {
 		"id": "pop1",
 		"group": "Prince of Persia",
@@ -1640,6 +1724,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Prince_of_Persia_(1989_video_game)"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/814-prince-of-persia-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/816-prince-of-persia-dos-screenshot-a-fight-in-the-dungeons.gif"],
 		"clones": [{
 			"id": "pop2",
 			"name": "Prince of Persia 2",
@@ -1654,7 +1739,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Prince_of_Persia_2:_The_Shadow_and_the_Flame"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/820-prince-of-persia-2-the-shadow-the-flame-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/827-prince-of-persia-2-the-shadow-the-flame-dos-screenshot-at-the.gif"]
 		}]
 	} , {
 		"id": "qbasic",
@@ -1686,6 +1772,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/QBasic"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/225585-ms-dos-5-included-games-dos-screenshot-gorillas-directions.png"],
 		"clones": [{
 			"id": "gorilla",
 			"name": "QBasic - Gorillas",
@@ -1701,7 +1788,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Gorillas_(video_game)"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/167979-ms-dos-5-included-games-dos-screenshot-gorillas-title-screen.png", "https://www.mobygames.com/images/shots/l/225589-ms-dos-5-included-games-dos-screenshot-gorillas-and-off-the.png"]
 		} , {
 			"id": "nibbles",
 			"name": "QBasic - Nibbles",
@@ -1716,7 +1804,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Nibbles_(video_game)"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/90433-ms-dos-5-included-games-dos-screenshot-nibbles-title-screen.png", "https://www.mobygames.com/images/shots/l/90436-ms-dos-5-included-games-dos-screenshot-nibbles-chase-down-the.png"]
 		}]
 	} , {
 		"id": "quake1",
@@ -1774,6 +1863,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=WZlyz6LL6vg"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/398882-quake-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/582952-quake-dos-screenshot-first-mini-boss-this-guy-is-tough.png"],
 		"clones": [{
 			"id": "quake1mp1",
 			"name": "Mission Pack 1: Scourge of Armagon",
@@ -1787,7 +1877,8 @@
 			"status": "Ingame",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)#Quake_Mission_Pack_No._1:_Scourge_of_Armagon"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/398882-quake-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/83323-quake-mission-pack-no-i-scourge-of-armagon-dos-screenshot-wow.jpg"]
 		} , {
 			"id": "quake1mp2",
 			"name": "Mission Pack 2: Dissolution of Eternity",
@@ -1801,7 +1892,8 @@
 			"status": "Ingame",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Quake_(video_game)#Quake_Mission_Pack_No._2:_Dissolution_of_Eternity"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/398882-quake-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/81408-quake-mission-pack-no-2-dissolution-of-eternity-dos-screenshot.jpg"]
 		}]
 	} , {
 		"id": "raptor",
@@ -1836,6 +1928,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Raptor:_Call_of_the_Shadows",
 			"youtube": "https://www.youtube.com/watch?v=aHcEXYD_qjM"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/2472-raptor-call-of-the-shadows-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/2476-raptor-call-of-the-shadows-dos-screenshot-a-typical-boss.gif"],
 		"clones": [{
 			"id": "raptorsw",
 			"name": "Raptor: Call of the Shadows (Shareware)",
@@ -1873,6 +1966,7 @@
 		"version": "1.5",
 		"license": "Freeware",
 		"status": "Playable",
+		"screenshots": ["https://www.mobygames.com/images/shots/l/10154-squarez-deluxe-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/10156-squarez-deluxe-dos-screenshot-looks-like-a-game-over.gif"],
 		"clones": []
 	} , {
 		"id": "starcontrol1",
@@ -1910,6 +2004,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Star_Control",
 			"youtube": "https://www.youtube.com/watch?v=uQeNh5CRO9U"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/4748-star-control-dos-screenshot-title-screen-mcga-vga.gif", "https://www.mobygames.com/images/shots/l/4751-star-control-dos-screenshot-the-syreen-s-song-turns-hostile.gif"],
 		"clones": [{
 			"id": "starcontrol2",
 			"name": "Star Control II: The Ur-Quan Masters",
@@ -1920,7 +2015,8 @@
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II",
 				"youtube": "https://www.youtube.com/watch?v=NlUxFaqAmjU"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/923189-star-control-ii-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/4763-star-control-ii-dos-screenshot-the-human-starbase.gif"]
 		}]
 	} , {
 		"id": "tapper",
@@ -1953,6 +2049,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Tapper_(video_game)"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/267517-tapper-pc-booter-screenshot-title-screen-cga-with-rgb-monitor.png", "https://www.mobygames.com/images/shots/l/267519-tapper-pc-booter-screenshot-the-customers-have-arrived-cga.png"],
 		"clones": []
 	} , {
 		"id": "tyrian2k",
@@ -1987,6 +2084,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Tyrian_(video_game)",
 			"youtube": "https://www.youtube.com/watch?v=rlh7UK2prHc"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/4466-tyrian-2000-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/4468-tyrian-2000-dos-screenshot-level-1.gif"],
 		"clones": []
 	} , {
 		"id": "vikings",
@@ -2021,6 +2119,7 @@
 			"url": "https://www.blizzard.com/en-us/games/legacy/",
 			"wikipedia": "https://en.wikipedia.org/wiki/The_Lost_Vikings"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/6859-the-lost-vikings-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/6861-the-lost-vikings-dos-screenshot-eric-olaf-and-baleog-hunting.gif"],
 		"clones": [{
 			"id": "vikingsbc",
 			"name": "The Lost Vikings (Classic Arcade)",
@@ -2063,6 +2162,7 @@
 			"gog": "https://www.gog.com/game/warcraft_bundle",
 			"wikipedia": "https://en.wikipedia.org/wiki/Warcraft:_Orcs_%26_Humans"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/10098-warcraft-orcs-humans-dos-screenshot-title-screen-main-menu.jpg", "https://www.mobygames.com/images/shots/l/20422-warcraft-orcs-humans-dos-screenshot-well-protected-side-especially.gif"],
 		"clones": [{
 			"name": "Warcraft II: Beyond the Dark Portal (Rip)",
 			"executable": "./WAR2X/WAR2.EXE",
@@ -2090,7 +2190,8 @@
 			"status": "Playable",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/105965-warcraft-ii-beyond-the-dark-portal-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/105670-warcraft-ii-beyond-the-dark-portal-dos-screenshot-mushrooms.gif"]
 		} , {
 			"id": "war2",
 			"name": "Warcraft II: Tides of Darkness",
@@ -2105,7 +2206,8 @@
 			"status": "Ingame",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Tides_of_Darkness"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/11374-warcraft-ii-tides-of-darkness-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/64523-warcraft-ii-tides-of-darkness-dos-screenshot-peasants-are-the.gif"]
 		} , {
 			"id": "war2x",
 			"name": "Warcraft II: Beyond the Dark Portal",
@@ -2118,7 +2220,8 @@
 			"status": "Ingame",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/105965-warcraft-ii-beyond-the-dark-portal-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/105670-warcraft-ii-beyond-the-dark-portal-dos-screenshot-mushrooms.gif"]
 		}]
 	} , {
 		"id": "wolf3d",
@@ -2155,6 +2258,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/Wolfenstein_3D",
 			"youtube": "https://www.youtube.com/watch?v=kHCsy0Ngp1M"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/1358-wolfenstein-3d-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/1359-wolfenstein-3d-dos-screenshot-episode-1.gif"],
 		"clones": [{
 			"id": "wolf3ds",
 			"name": "Wolfenstein 3D: Spear of Destiny",
@@ -2207,6 +2311,7 @@
 			"wikipedia": "https://en.wikipedia.org/wiki/UFO:_Enemy_Unknown",
 			"youtube": "https://www.youtube.com/watch?v=cmmoB21PDSU"
 		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/2540-x-com-ufo-defense-dos-screenshot-opening-titles.gif", "https://www.mobygames.com/images/shots/l/2548-x-com-ufo-defense-dos-screenshot-environments-are-nicely-detailed.gif"],
 		"clones": [{
 			"id": "xcom1demo",
 			"name": "X-COM: UFO Defense (Demo)",
@@ -2232,7 +2337,8 @@
 			"links": {
 				"gog": "https://www.gog.com/game/xcom_terror_from_the_deep",
 				"wikipedia": "https://en.wikipedia.org/wiki/X-COM:_Terror_from_the_Deep"
-			}
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/2724-x-com-terror-from-the-deep-dos-screenshot-game-logo.gif", "https://www.mobygames.com/images/shots/l/2733-x-com-terror-from-the-deep-dos-screenshot-islands-are-one-of.gif"]
 		}]
 	} , {
 		"id": "win95",
