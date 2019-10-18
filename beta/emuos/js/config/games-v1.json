@@ -85,7 +85,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/740-alley-cat-pc-booter-screenshot-title-screen-cga.gif", "https://www.mobygames.com/images/shots/l/746-alley-cat-pc-booter-screenshot-outside-cga.gif"],
 		"clones": [{
 			"id": "tandycat",
-			"name": "Alley Cat (Tandy)",
+			"name": "Alley Cat (PCjr)",
 			"executable": "./TANDYCAT.EXE",
 			"args": ["-c", "machine=pcjr", "-c", "tandy=on"],
 			"version": "PCjr",
@@ -2272,7 +2272,8 @@
 			"drm": ["Manual Lookup"],
 			"version": "1.0",
 			"license": "Commercial",
-			"status": "Playable"
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/1427-spear-of-destiny-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/1430-spear-of-destiny-dos-screenshot-damn-vines.gif"]
 		}]
 	} , {
 		"id": "xcom1",
@@ -2372,6 +2373,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Windows_95"
 		},
+		"screenshots": ["images/screenshots/win95.png"],
 		"clones": []
 	}]
 }
