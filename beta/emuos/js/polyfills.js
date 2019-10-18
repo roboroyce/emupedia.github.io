@@ -156,6 +156,12 @@ if (!window.MouseEvent || window.isIE && (typeof window.MouseEvent !== 'function
 
 // region Math
 
+if (typeof Number.isInteger === 'undefined') {
+	Number.isInteger = function(value) {
+		return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
+	};
+}
+
 if (typeof Math.imul === 'undefined') {
 	function ToUint32(argument) {
 		var number = Number(argument);
