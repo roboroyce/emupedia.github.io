@@ -2063,6 +2063,59 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'js-dos':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '//# sourceMappingURL=js-dos.js.map',
+						to: '//# sourceMappingURL=js-dos-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							// noinspection JSValidateTypes
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+								from: 'this.instantiateWasm=t,',
+								to: 'this.instantiateWasm=t,e = e || window.WDOSBOX,'
+							}, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.js', copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.wasm.js', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'jsonpath':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {

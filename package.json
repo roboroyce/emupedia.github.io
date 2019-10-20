@@ -82,6 +82,7 @@
     "jquery-ui-dist": "^1.12.1",
     "jquery.ajax-retry-secured": "^0.2.8",
     "jquery.fullscreen": "^0.6.0",
+    "js-dos": "^6.22.33",
     "jsonpath": "^1.0.2",
     "jsrsasign": "^8.0.12",
     "jszip": "^3.2.2",
