@@ -214,7 +214,7 @@
 			} , {
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.png',
-				link: 'https://disweb.deploys.io/channels/510149138491506688/604419869345185884/',
+				link: 'https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/',
 				width: 900,
 				height: 480
 			}]
