@@ -53,11 +53,11 @@
 	} , {
 		"id": "alleycat",
 		"group": "Alley Cat",
-		"name": "Alley Cat",
+		"name": "Alley Cat (CGA) (PC Booter)",
 		"executable": "./ALLEYCAT.EXE",
 		"args": [],
 		"file": "alleycat.zip",
-		"size": 29903,
+		"size": 92289,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
@@ -84,8 +84,13 @@
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/740-alley-cat-pc-booter-screenshot-title-screen-cga.gif", "https://www.mobygames.com/images/shots/l/746-alley-cat-pc-booter-screenshot-outside-cga.gif"],
 		"clones": [{
+			"id": "alleycat2",
+			"name": "Alley Cat (Alternate) (CGA) (PC Booter)",
+			"executable": "./CAT.EXE",
+			"version": "ALT"
+		} , {
 			"id": "tandycat",
-			"name": "Alley Cat (PCjr)",
+			"name": "Alley Cat (PCjr) (CGA) (PC Booter)",
 			"executable": "./TANDYCAT.EXE",
 			"args": ["-c", "machine=pcjr", "-c", "tandy=on"],
 			"version": "PCjr",
@@ -94,7 +99,7 @@
 	} , {
 		"id": "avolley",
 		"group": "Arcade Volleyball",
-		"name": "Arcade Volleyball",
+		"name": "Arcade Volleyball (CGA)",
 		"executable": "./AV.EXE",
 		"sync": false,
 		"file": "avolley.zip",
@@ -126,7 +131,7 @@
 	} , {
 		"id": "arkanoid",
 		"group": "Breakout",
-		"name": "Arkanoid (Breakout Clone)",
+		"name": "Arkanoid (VGA) (Breakout Clone)",
 		"executable": "./ARKANOID.COM",
 		"file": "arkanoid.zip",
 		"size": 77823,
@@ -151,13 +156,13 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"links": {
-			"wiki": "https://en.wikipedia.org/wiki/Arkanoid",
+			"wikipedia": "https://en.wikipedia.org/wiki/Arkanoid",
 			"youtube": "https://www.youtube.com/watch?v=r9qmKODaAJY"
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/529575-arkanoid-dos-screenshot-fun-time-arcade-with-taito-logo-ega.png", "https://www.mobygames.com/images/shots/l/5146-arkanoid-dos-screenshot-let-the-games-begin-ega.gif"],
 		"clones": [{
 			"id": "popcorn",
-			"name": "PopCorn (Breakout Clone)",
+			"name": "PopCorn (CGA) (Breakout Clone)",
 			"executable": "./POPCORN.EXE",
 			"args": ["-c", "cycles=500", "-c", "-c", "c:", "POPSPEED 0"],
 			"file": "popcorn.zip",
@@ -182,7 +187,7 @@
 			"status": "Playable",
 			"links": {
 				"url": "http://www.ludoid.fr",
-				"wiki": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
+				"wikipedia": "https://en.wikipedia.org/wiki/Breakout_(video_game)",
 				"youtube": "https://www.youtube.com/watch?v=SygD93F95js"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/24080-popcorn-dos-screenshot-opening-screen.gif", "https://www.mobygames.com/images/shots/l/15005-popcorn-dos-screenshot.jpg"]
@@ -190,7 +195,7 @@
 	} , {
 		"id": "bdash1",
 		"group": "Boulder Dash",
-		"name": "Boulder Dash I: Rockford",
+		"name": "Boulder Dash I: Rockford (CGA) (PC Booter)",
 		"alternatenames": ["Boulder Dash Vol. 1", "Boulder Dash - Starring: Rockford", "バルダーダッシュ"],
 		"executable": "./BDASH.EXE",
 		"args": ["-c", "cycles=200" , "-c", "machine=tandy", "-c", "tandy=on", "-c", "joysticktype=none"],
@@ -228,7 +233,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/17493-boulder-dash-pc-booter-screenshot-title-screen-cga.gif", "https://www.mobygames.com/images/shots/l/17494-boulder-dash-pc-booter-screenshot-level-1-cga.gif"],
 		"clones": [{
 			"id": "bdash2",
-			"name": "Boulder Dash II: Rockford's Riot",
+			"name": "Boulder Dash II: Rockford's Riot (CGA) (PC Booter)",
 			"alternatenames": ["Boulder Dash II: La venganza de Rockford"],
 			"executable": "./BDASH2.EXE",
 			"file": "bdash2.zip",
@@ -237,7 +242,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/17496-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/17498-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-level.gif"]
 		} , {
 			"id": "sbdash",
-			"name": "Super Boulder Dash",
+			"name": "Super Boulder Dash (CGA)",
 			"executable": "./SUPRBOLD.COM",
 			"file": "sbdash.zip",
 			"size": 30636,
@@ -245,7 +250,7 @@
 			"publisher": "Electronic Arts, Inc."
 		} , {
 			"id": "sbdashb",
-			"name": "Super Boulder Dash (Bootable)",
+			"name": "Super Boulder Dash (CGA) (PC Booter)",
 			"executable": "",
 			"args": ["-c", "cycles=200" , "-c", "machine=tandy", "-c", "tandy=on", "-c", "joysticktype=none", "-c", "c:", "-c", "boot BOULDER.IMG"],
 			"file": "sbdashb.zip",
@@ -254,7 +259,7 @@
 			"publisher": "Electronic Arts, Inc."
 		} , {
 			"id": "bdashck",
-			"name": "Boulder Dash IV: Construction Kit",
+			"name": "Boulder Dash IV: Construction Kit (CGA)",
 			"executable": "./BDCK.EXE",
 			"file": "bdashck.zip",
 			"size": 37289,
@@ -263,7 +268,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/293324-boulder-dash-construction-kit-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/293326-boulder-dash-construction-kit-dos-screenshot-placing-objects.png"]
 		} , {
 			"id": "rockford",
-			"name": "Rockford: The Arcade Game",
+			"name": "Rockford: The Arcade Game (EGA)",
 			"executable": "./ROCKFORD.EXE",
 			"args": [],
 			"sync": false,
@@ -292,7 +297,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/15150-rockford-the-arcade-game-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/15151-rockford-the-arcade-game-dos-screenshot-playing-as-an-explorer.gif"]
 		} , {
 			"id": "supaplex",
-			"name": "Supaplex (Boulder Dash Clone)",
+			"name": "Supaplex (VGA) (Boulder Dash Clone)",
 			"executable": "./SUPAPLEX.EXE",
 			"args": [],
 			"sync": false,
@@ -324,7 +329,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/9214-supaplex-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/9219-supaplex-dos-screenshot-demo.gif"]
 		} , {
 			"id": "robbo",
-			"name": "The Adventures of Robbo (Boulder Dash Clone)",
+			"name": "The Adventures of Robbo (VGA) (Boulder Dash Clone)",
 			"executable": "./ROBBO.EXE",
 			"args": [],
 			"sync": false,
@@ -356,13 +361,38 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/34302-robbo-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/34303-robbo-dos-screenshot-in-game.gif"]
 		}]
 	} , {
-		"id": "ddave",
+		"id": "catalog",
+		"group": "Catalog",
+		"name": "Catalog",
+		"executable": "./CATALOG/CATALOG.EXE",
+		"file": "catalog.zip",
+		"size": 4168729,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1990,
+		"genre": "Software",
+		"status": "Nothing",
+		"clones": [],
+		"enabled": false
+	} , {
+		"id": "dave",
 		"group": "Dangerous Dave",
-		"name": "Dangerous Dave",
+		"name": "Dangerous Dave (EGA)",
 		"fullname": "Dangerous Dave in the Deserted Pirate's Hideout!",
 		"executable": "./DAVE.EXE",
 		"sync": false,
-		"file": "ddave.zip",
+		"file": "dave.zip",
 		"size": 95851,
 		"hardware": {
 			"input": ["Keyboard"],
@@ -391,12 +421,29 @@
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/44668-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif", "https://www.mobygames.com/images/shots/l/811-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif"],
 		"clones": [{
-			"id": "ddavethm",
-			"name": "Dangerous Dave in the Haunted Mansion",
-			"file": "ddavethm.zip",
-			"size": 215019,
+			"id": "ddave1",
+			"name": "Dangerous Dave in the Haunted Mansion (EGA)",
+			"file": "ddave1.zip",
+			"size": 198115,
 			"year": 1991,
 			"developer": "id Software",
+			"publisher": "Softdisk Publishing",
+			"copyright": "id Software",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
+				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/6485-dangerous-dave-in-the-haunted-mansion-dos-screenshot-game-title.gif", "https://www.mobygames.com/images/shots/l/6487-dangerous-dave-in-the-haunted-mansion-dos-screenshot-the-beginning.gif"]
+		} , {
+			"id": "ddave2",
+			"name": "Dangerous Dave in the Haunted Mansion (Alternate) (EGA)",
+			"file": "ddave2.zip",
+			"size": 215019,
+			"year": 1993,
+			"developer": "id Software",
+			"publisher": "Softdisk Publishing",
+			"copyright": "Softdisk Publishing",
+			"version": "ALT",
 			"links": {
 				"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
 				"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
@@ -406,8 +453,8 @@
 	} , {
 		"id": "digger",
 		"group": "Digger",
-		"name": "Digger (Bootable) (CGA)",
-		"notes": "DOSBOX: Display garbled",
+		"name": "Digger (CGA) (PC Booter)",
+		"notes": "DOSBOX: Display garbled for DIGGER.EXE",
 		"executable": "./DIGGER4.COM",
 		"args": ["-c", "cycles=1000","-c", "machine=cga"],
 		"file": "digger.zip",
@@ -431,14 +478,14 @@
 		"publisher": "Windmill Software",
 		"copyright": "Windmill Software",
 		"license": "Commercial",
-		"status": "Ingame",
+		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/895664-digger-dos-screenshot-title-screen-cga.png", "https://www.mobygames.com/images/shots/l/895665-digger-dos-screenshot-level-1-cga.png"],
 		"clones": [{
 			"id": "diggervga",
-			"name": "Digger (Retail) (VGA)",
+			"name": "Digger (VGA) (Retail)",
 			"executable": "./DIGGER3.COM",
 			"args": [],
 			"year": 1986,
@@ -595,9 +642,43 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/275638-disney-s-the-jungle-book-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/275641-disney-s-the-jungle-book-dos-screenshot-wheeeee.png"]
 		}]
 	} , {
+		"id": "dkong",
+		"group": "Donkey Kong",
+		"name": "Donkey Kong (CGA) (PC Booter)",
+		"alternatenames": ["ドンキーコング"],
+		"executable": "./DKONG.EXE",
+		"args": ["-c", "cycles=600","-c", "machine=cga"],
+		"file": "dkong.zip",
+		"size": 25154,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1983,
+		"genre": "Arcade Platformer",
+		"developer": "Nintendo Co., Ltd.",
+		"publisher": "Atarisoft",
+		"copyright": "Nintendo Co., Ltd.",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Donkey_Kong_(video_game)"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/2862-donkey-kong-pc-booter-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/2863-donkey-kong-pc-booter-screenshot-beginning-of-gameplay-first.gif"],
+		"clones": []
+	} , {
 		"id": "dune2",
 		"group": "Dune",
-		"name": "Dune II: The Building of a Dynasty",
+		"name": "Dune II: The Building of a Dynasty (VGA) (Retail)",
 		"executable": "./DUNE2.EXE",
 		"sync": false,
 		"file": "dune2.zip",
@@ -632,7 +713,7 @@
 	} , {
 		"id": "got",
 		"group": "God of Thunder",
-		"name": "God of Thunder",
+		"name": "God of Thunder (VGA) (Freeware)",
 		"executable": "./GOT.EXE",
 		"sync": false,
 		"file": "got11.zip",
@@ -664,6 +745,55 @@
 			"youtube": "https://www.youtube.com/watch?v=jpRrwVOsDw0"
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/4868-god-of-thunder-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/4870-god-of-thunder-dos-screenshot-starting-point.gif"],
+		"clones": []
+	} , {
+		"id": "grandpc",
+		"group": "Grand Prix",
+		"name": "Grand Prix Circuit",
+		"executable": "./GPEGA.EXE",
+		"file": "grandpc.zip",
+		"size": 373557,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				},
+				"HGC": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				},
+				"TGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1988,
+		"genre": "Racing",
+		"developer": "Distinctive Software, Inc.",
+		"publisher": "Accolade, Inc.",
+		"license": "Commercial",
+		"status": "Playable",
+		"screenshots": ["https://www.mobygames.com/images/shots/l/45127-grand-prix-circuit-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/45129-grand-prix-circuit-dos-screenshot-start-of-a-race-in-detroit.gif"],
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Grand_Prix_Circuit_(video_game)"
+		},
 		"clones": []
 	} , {
 		"id": "homm1",
@@ -703,7 +833,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/20498-heroes-of-might-and-magic-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/20519-heroes-of-might-and-magic-dos-screenshot-combat-on-ship.gif"],
 		"clones": [{
 			"id": "homm2",
-			"name": "Heroes of Might and Magic II: The Succession Wars",
+			"name": "Heroes of Might and Magic II: The Succession Wars (CD) (Retail)",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
@@ -722,7 +852,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/634490-heroes-of-might-and-magic-ii-the-succession-wars-dos-screenshot.png", "https://www.mobygames.com/images/shots/l/583816-heroes-of-might-and-magic-ii-the-succession-wars-dos-screenshot.png"]
 		} , {
 			"id": "homm2x",
-			"name": "Heroes of Might and Magic II: The Price of Loyalty",
+			"name": "Heroes of Might and Magic II: The Price of Loyalty (CD) (Retail)",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
@@ -762,7 +892,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/145015-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg", "https://www.mobygames.com/images/shots/l/145020-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg"]
 		} , {
 			"id": "homm2gold",
-			"name": "Heroes of Might and Magic II Gold",
+			"name": "Heroes of Might and Magic II Gold (CD) (Retail)",
 			"notes": "DOSBOX: The image must be on a host or local drive JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./HEROES2.EXE",
 			"sync": false,
@@ -782,7 +912,7 @@
 		}]
 	} , {
 		"id": "jetpack",
-		"group": "Jetpack",
+		"group": "Jetpack (VGA) (Freeware)",
 		"name": "Jetpack",
 		"executable": "./JETPACK.EXE",
 		"sync": false,
@@ -819,7 +949,7 @@
 	} , {
 		"id": "jazzcd",
 		"group": "Jazz Jackrabbit",
-		"name": "Jazz Jackrabbit (CD)",
+		"name": "Jazz Jackrabbit (VGA) (CD) (Retail)",
 		"executable": "./JAZZ.EXE",
 		"sync": false,
 		"file": "jazzcd.zip",
@@ -853,16 +983,16 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/51066-jazz-jackrabbit-cd-rom-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/51069-jazz-jackrabbit-cd-rom-dos-screenshot-exoticus.gif"],
 		"clones": [{
 			"id": "jazzsw",
-			"name": "Jazz Jackrabbit (Shareware)",
+			"name": "Jazz Jackrabbit (VGA) (Shareware)",
 			"file": "jazzsw.zip",
 			"size": 1349883,
-			"license": "Freeware",
-			"version": "-",
+			"license": "Shareware",
+			"version": "DEMO",
 			"status": "Playable",
 			"screenshots": ["https://www.mobygames.com/images/shots/l/8485-jazz-jackrabbit-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/48785-jazz-jackrabbit-dos-screenshot-letni.gif"]
 		} , {
 			"id": "jazzhol1",
-			"name": "Jazz Jackrabbit: Holiday Hare 1",
+			"name": "Jazz Jackrabbit: Holiday Hare 1 (VGA) (Demo)",
 			"file": "jazzhol1.zip",
 			"size": 1360653,
 			"license": "Freeware",
@@ -871,7 +1001,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/874406-jazz-jackrabbit-holiday-hare-1994-dos-screenshot-holiday-themed.png", "https://www.mobygames.com/images/shots/l/47486-jazz-jackrabbit-holiday-hare-1994-dos-screenshot-my-what-a.gif"]
 		} , {
 			"id": "jazzhol2",
-			"name": "Jazz Jackrabbit: Holiday Hare 2",
+			"name": "Jazz Jackrabbit: Holiday Hare 2 (VGA) (Demo)",
 			"file": "jazzhol2.zip",
 			"size": 1364205,
 			"year": 1995,
@@ -1239,9 +1369,161 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/8802-lotus-the-ultimate-challenge-dos-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/8808-lotus-the-ultimate-challenge-dos-screenshot-strong-side-winds.gif"],
 		"clones": []
 	} , {
+		"id": "mariolui",
+		"group": "Mario Bros.",
+		"name": "Mario & Luigi (Freeware) (Super Mario Bros. Clone)",
+		"executable": "./MARIO.EXE",
+		"args": ["-c", "cycles=max"],
+		"file": "mariolui.zip",
+		"size": 118296,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1994,
+		"genre": "Platformer",
+		"developer": "Mike Wiering",
+		"publisher": "Wiering Software",
+		"copyright": "Wiering Software",
+		"version": "1.0",
+		"license": "Freeware",
+		"status": "Playable",
+		"links": {
+			"url": "http://www.wieringsoftware.nl/mario/index.html",
+			"wikipedia": "https://en.wikipedia.org/wiki/Super_Mario_Bros."
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/723750-mario-luigi-dos-screenshot-main-menu.png", "https://www.mobygames.com/images/shots/l/723754-mario-luigi-dos-screenshot-brutal-murder-by-fire.png"],
+		"clones": [{
+			"id": "mariob",
+			"name": "Mario & Luigi (Freeware) (Beta Unfinished) (Super Mario Bros. Clone)",
+			"executable": "./MARIOB.EXE",
+			"version": "BETA",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/723752-mario-luigi-dos-screenshot-beginning-of-level-1.png"]
+		} , {
+			"id": "angelo",
+			"name": "Super Angelo 2 (Shareware) (Super Mario Bros. Clone)",
+			"executable": "./ANGELO.EXE",
+			"args": ["-c", "cycles=max", "-c", "c:", "-c", "ANGELO.EXE /M"],
+			"file": "angelo.zip",
+			"size": 232575,
+			"languages": ["English", "Dutch"],
+			"year": 2003,
+			"license": "Shareware",
+			"version": "2.2",
+			"links": {
+				"url": "http://www.wieringsoftware.nl/mario/games.html"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/928591-super-angelo-dos-screenshot-title-scrceen-shareware-version.png", "https://www.mobygames.com/images/shots/l/928593-super-angelo-dos-screenshot-starting-level-1.png"]
+		}]
+	} , {
+		"id": "monkey1vgatalkie",
+		"group": "Monkey Island",
+		"name": "Monkey Island I: The Secret of Monkey Island (CD) (Retail)",
+		"executable": "./MONKEY.EXE",
+		"sync": false,
+		"file": "monkey1vgatalkie.zip",
+		"size": 124983889,
+		"drm": ["Dial-a-Pirate"],
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"year": 1990,
+		"genre": "Adventure",
+		"developer": "Lucasfilm Games",
+		"publisher": "Lucasfilm Games",
+		"copyright": "Lucasfilm Games",
+		"version": "CD",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"gog": "https://www.gog.com/game/the_secret_of_monkey_island_special_edition",
+			"wikipedia": "https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"],
+		"clones": [{
+			"id": "monkey1vga",
+			"name": "Monkey Island I: The Secret of Monkey Island (VGA) (Retail)",
+			"executable": "./MONKEY.EXE",
+			"sync": false,
+			"file": "monkey1vga.zip",
+			"size": 3187135,
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster"]
+			},
+			"year": 1990,
+			"version": "VGA",
+			"license": "Commercial",
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
+		} , {
+			"id": "monkey1ega",
+			"name": "Monkey Island I: The Secret of Monkey Island (EGA) (Retail)",
+			"executable": "./MONKEY.EXE",
+			"sync": false,
+			"file": "monkey1ega.zip",
+			"size": 1569844,
+			"hardware": {
+				"input": ["Keyboard", "Mouse"],
+				"video": {
+					"EGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 16
+					}
+				},
+				"sound": ["PC Speaker", "Sound Blaster"]
+			},
+			"language": "English",
+			"year": 1989,
+			"version": "EGA",
+			"license": "Commercial",
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
+		} , {
+			"id": "monkey1demo",
+			"name": "Monkey Island I: The Secret of Monkey Island (EGA) (Demo)",
+			"executable": "./MIDEMO.EXE",
+			"sync": false,
+			"file": "monkey1demo.zip",
+			"size": 222725,
+			"year": 1990,
+			"version": "DEMO",
+			"license": "Shareware",
+			"status": "Playable",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
+		}]
+	} , {
 		"id": "mk1",
 		"group": "Mortal Kombat",
-		"name": "Mortal Kombat 1",
+		"name": "Mortal Kombat 1 (Retail)",
 		"executable": "./MK1.EXE",
 		"sync": false,
 		"file": "mk1.zip",
@@ -1276,7 +1558,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/3011-mortal-kombat-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3015-mortal-kombat-dos-screenshot-sub-zero-vs-scorpion.gif"],
 		"clones": [{
 			"id": "mk2",
-			"name": "Mortal Kombat 2",
+			"name": "Mortal Kombat 2 (Retail)",
 			"executable": "./MK2.EXE",
 			"sync": false,
 			"file": "mk2.zip",
@@ -1290,7 +1572,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/3020-mortal-kombat-ii-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3022-mortal-kombat-ii-dos-screenshot-kung-lao-hurls-scorpion.gif"]
 		} , {
 			"id": "mk3",
-			"name": "Mortal Kombat 3",
+			"name": "Mortal Kombat 3 (Retail)",
 			"executable": "./MK3CRK.EXE",
 			"sync": false,
 			"file": "mk3.zip",
@@ -1304,104 +1586,8 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/3028-mortal-kombat-3-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/3035-mortal-kombat-3-dos-screenshot-kung-lao-s-hat-hurls-kabal-wow.gif"]
 		}]
 	} , {
-		"id": "monkey1ega",
-		"group": "Monkey Island",
-		"name": "Monkey Island I: The Secret of Monkey Island (EGA)",
-		"executable": "./MONKEY.EXE",
-		"sync": false,
-		"file": "monkey1ega.zip",
-		"size": 1569844,
-		"drm": ["Dial-a-Pirate"],
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"EGA": {
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 16
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1989,
-		"genre": "Adventure",
-		"developer": "Lucasfilm Games",
-		"publisher": "Lucasfilm Games",
-		"copyright": "Lucasfilm Games",
-		"version": "EGA",
-		"license": "Commercial",
-		"status": "Playable",
-		"links": {
-			"gog": "https://www.gog.com/game/the_secret_of_monkey_island_special_edition",
-			"wikipedia": "https://en.wikipedia.org/wiki/The_Secret_of_Monkey_Island"
-		},
-		"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"],
-		"clones": [{
-			"id": "monkey1demo",
-			"name": "Monkey Island I: The Secret of Monkey Island (Demo)",
-			"executable": "./MIDEMO.EXE",
-			"sync": false,
-			"file": "monkey1demo.zip",
-			"size": 222725,
-			"year": 1990,
-			"version": "DEMO",
-			"license": "Shareware",
-			"status": "Playable",
-			"screenshots": ["https://www.mobygames.com/images/shots/l/3177-the-secret-of-monkey-island-dos-screenshot-title-screen-ega.gif", "https://www.mobygames.com/images/shots/l/3179-the-secret-of-monkey-island-dos-screenshot-the-scumm-bar-ega.gif"]
-		} , {
-			"id": "monkey1vga",
-			"name": "Monkey Island I: The Secret of Monkey Island (VGA)",
-			"executable": "./MONKEY.EXE",
-			"sync": false,
-			"file": "monkey1vga.zip",
-			"size": 3187135,
-			"hardware": {
-				"input": ["Keyboard", "Mouse"],
-				"video": {
-					"VGA": {
-						"resolutions": [
-							"320x200"
-						],
-						"colors": 256
-					}
-				},
-				"sound": ["PC Speaker", "Sound Blaster"]
-			},
-			"year": 1990,
-			"version": "VGA",
-			"license": "Commercial",
-			"status": "Playable",
-			"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
-		} , {
-			"id": "monkey1vgatalkie",
-			"name": "Monkey Island I: The Secret of Monkey Island (CD)",
-			"executable": "./MONKEY.EXE",
-			"sync": false,
-			"file": "monkey1vgatalkie.zip",
-			"size": 124983889,
-			"hardware": {
-				"input": ["Keyboard", "Mouse"],
-				"video": {
-					"VGA": {
-						"resolutions": [
-							"320x200"
-						],
-						"colors": 256
-					}
-				},
-				"sound": ["PC Speaker", "Sound Blaster"]
-			},
-			"year": 1990,
-			"version": "CD",
-			"license": "Commercial",
-			"status": "Playable",
-			"screenshots": ["https://www.mobygames.com/images/shots/l/3162-the-secret-of-monkey-island-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/62795-the-secret-of-monkey-island-dos-screenshot-game-start-at-the.png"]
-		}]
-	} , {
 		"id": "omf2097",
-		"group": "One Must Fall",
+		"group": "One Must Fall (Freeware)",
 		"name": "One Must Fall: 2097",
 		"executable": "./FILE0001.EXE",
 		"sync": false,
@@ -1437,7 +1623,7 @@
 	} , {
 		"id": "pacman",
 		"group": "Pac-Man",
-		"name": "Pac-Man (Bootable)",
+		"name": "Pac-Man (PC Booter)",
 		"executable": "./PAC-MAN.EXE",
 		"args": ["-c", "cycles=7000"],
 		"file": "pacman.zip",
@@ -1468,7 +1654,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/479-pac-man-pc-booter-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/538670-pac-man-pc-booter-screenshot-ready.png"],
 		"clones": [{
 			"id": "mspacman",
-			"name": "Ms. Pac-Man (Bootable)",
+			"name": "Ms. Pac-Man (PC Booter)",
 			"executable": "./MSPACMAN.COM",
 			"args": [],
 			"file": "mspacman.zip",
@@ -1479,7 +1665,7 @@
 			"license": "Commercial",
 			"status": "Playable",
 			"links": {
-				"wiki": "https://en.wikipedia.org/wiki/Ms._Pac-Man"
+				"wikipedia": "https://en.wikipedia.org/wiki/Ms._Pac-Man"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/2868-ms-pac-man-pc-booter-screenshot-title-screen-cga-with-rgb-monitor.gif", "https://www.mobygames.com/images/shots/l/2869-ms-pac-man-pc-booter-screenshot-gameplay-cga-with-rgb-monitor.gif"]
 		} , {
@@ -1559,12 +1745,12 @@
 			"license": "Public Domain",
 			"links": {
 				"url": "https://deathshadow.com/pakuPaku",
-				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones"
+				"wikipedia": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/581389-paku-paku-dos-screenshot-title-and-scores.png", "https://www.mobygames.com/images/shots/l/581390-paku-paku-dos-screenshot-ready.png"]
 		} , {
 			"id": "cd-man2",
-			"name": "CD-Man (v2.0) (Pac-Man Clone)",
+			"name": "CD-Man (v2.0) (Retail) (Pac-Man Clone)",
 			"executable": "./CDMAN2.EXE",
 			"sync": false,
 			"args": [],
@@ -1591,13 +1777,13 @@
 			"version": "2.0",
 			"license": "Commercial",
 			"links": {
-				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
+				"wikipedia": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
 				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/5514-cd-man-version-2-0-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/5515-cd-man-version-2-0-dos-screenshot-first-world-the-enchanted.gif"]
 		} , {
 			"id": "cd-man1",
-			"name": "CD-Man (Shareware) (Pac-Man Clone)",
+			"name": "CD-Man (Beta Unfinished) (Pac-Man Clone)",
 			"executable": "./CD-MAN.EXE",
 			"sync": false,
 			"args": [],
@@ -1621,10 +1807,10 @@
 			"developer": "Creative Dimensions",
 			"publisher": "Creative Dimensions",
 			"copyright": "Creative Dimensions",
-			"version": "Pre-release 1.0",
+			"version": "BETA",
 			"license": "Shareware",
 			"links": {
-				"wiki": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
+				"wikipedia": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
 				"youtube": "https://www.youtube.com/watch?v=oKn2II_h94o"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/5514-cd-man-version-2-0-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/5515-cd-man-version-2-0-dos-screenshot-first-world-the-enchanted.gif"]
@@ -1695,7 +1881,7 @@
 	} , {
 		"id": "pop1",
 		"group": "Prince of Persia",
-		"name": "Prince of Persia 1",
+		"name": "Prince of Persia (VGA) (Retail)",
 		"executable": "./PRINCE.EXE",
 		"file": "pop114.zip",
 		"size": 1988713,
@@ -1728,7 +1914,7 @@
 		"clones": [{
 			"id": "pop2",
 			"name": "Prince of Persia 2",
-			"description": "Prince of Persia 2: The Shadow and the Flame",
+			"description": "Prince of Persia 2: The Shadow and the Flame (VGA) (Retail)",
 			"executable": "./PRINCE.EXE",
 			"sync": false,
 			"file": "pop211.zip",
@@ -1810,7 +1996,7 @@
 	} , {
 		"id": "quake1",
 		"group": "Quake 1",
-		"name": "Quake 1",
+		"name": "Quake 1 (Retail)",
 		"notes": "JS: RuntimeError: integer overflow",
 		"description": "Quake 1",
 		"executable": "./QUAKE.EXE -nocdaudio -stdvid",
@@ -1866,7 +2052,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/398882-quake-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/582952-quake-dos-screenshot-first-mini-boss-this-guy-is-tough.png"],
 		"clones": [{
 			"id": "quake1mp1",
-			"name": "Mission Pack 1: Scourge of Armagon",
+			"name": "Mission Pack 1: Scourge of Armagon (Retail)",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./QUAKE.EXE -nocdaudio -stdvid -game hipnotic",
 			"year": 1997,
@@ -1881,7 +2067,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/398882-quake-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/83323-quake-mission-pack-no-i-scourge-of-armagon-dos-screenshot-wow.jpg"]
 		} , {
 			"id": "quake1mp2",
-			"name": "Mission Pack 2: Dissolution of Eternity",
+			"name": "Mission Pack 2: Dissolution of Eternity (Retail)",
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./QUAKE.EXE -nocdaudio -stdvid -game rogue",
 			"year": 1997,
@@ -1897,7 +2083,8 @@
 		}]
 	} , {
 		"id": "raptor",
-		"name": "Raptor: Call of the Shadows",
+		"group": "Raptor",
+		"name": "Raptor: Call of the Shadows (Retail)",
 		"executable": "./RAP.EXE",
 		"sync": false,
 		"file": "raptor.zip",
@@ -1937,8 +2124,61 @@
 			"license": "Shareware"
 		}]
 	} , {
+		"id": "risk1",
+		"group": "Risk",
+		"name": "Risk: The World Conquest Game",
+		"fullname": "The Computer Edition of Risk: The World Conquest Game",
+		"executable": "./RISK.EXE",
+		"file": "risk1.zip",
+		"size": 271301,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"CGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				},
+				"TGA": {
+					"resolutions": [
+						"640×200"
+					],
+					"colors": 16
+				},
+				"EGA": {
+					"resolutions": [
+						"640×350"
+					],
+					"colors": 16
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1989,
+		"genre": "Board Game",
+		"developer": "Gang of Five",
+		"publisher": "Leisure Genius",
+		"version": "1.9",
+		"license": "Commercial",
+		"status": "Playable",
+		"screenshots": ["https://www.mobygames.com/images/shots/l/106561-the-computer-edition-of-risk-the-world-conquest-game-dos-screenshot.gif", "https://www.mobygames.com/images/shots/l/2123-the-computer-edition-of-risk-the-world-conquest-game-dos-screenshot.gif"],
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/The_Computer_Edition_of_Risk:_The_World_Conquest_Game"
+		},
+		"clones": [{
+			"id": "risk2",
+			"name": "Risk: The World Conquest Game (Alternate)",
+			"executable": "./EGARISK.EXE",
+			"sync": false,
+			"file": "risk2.zip",
+			"size": 102525,
+			"version": "ALT"
+		}]
+	} , {
 		"id": "squarez",
-		"group": "Squarez Deluxe",
+		"group": "Squarez Deluxe (Freeware)",
 		"name": "Squarez Deluxe",
 		"executable": "./SQUAREZ.EXE",
 		"sync": false,
@@ -1962,17 +2202,19 @@
 		"developer": "Adept Software (Adam Pedersen)",
 		"publisher": "Software Creations, Impulse Games",
 		"copyright": "Adept Software (Adam Pedersen)",
-		"url": "http://www.adeptsoftware.com/squarez/",
 		"version": "1.5",
 		"license": "Freeware",
 		"status": "Playable",
 		"screenshots": ["https://www.mobygames.com/images/shots/l/10154-squarez-deluxe-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/10156-squarez-deluxe-dos-screenshot-looks-like-a-game-over.gif"],
+		"links": {
+			"url": "http://www.adeptsoftware.com/squarez/"
+		},
 		"clones": []
 	} , {
 		"id": "starcontrol1",
 		"group": "Star Control",
-		"name": "Star Control I",
-		"description": "Star Control: Famous Battles of the Ur-Quan Conflict, Volume IV",
+		"name": "Star Control I (VGA) (Retail)",
+		"alternatenames": ["Star Control: Famous Battles of the Ur-Quan Conflict, Volume IV"],
 		"executable": "./STARCON.EXE",
 		"sync": false,
 		"file": "starcontrol1.zip",
@@ -2007,7 +2249,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/4748-star-control-dos-screenshot-title-screen-mcga-vga.gif", "https://www.mobygames.com/images/shots/l/4751-star-control-dos-screenshot-the-syreen-s-song-turns-hostile.gif"],
 		"clones": [{
 			"id": "starcontrol2",
-			"name": "Star Control II: The Ur-Quan Masters",
+			"name": "Star Control II: The Ur-Quan Masters (VGA) (Retail)",
 			"executable": "./STARCON2.COM",
 			"file": "starcontrol2.zip",
 			"size": 6603466,
@@ -2021,7 +2263,7 @@
 	} , {
 		"id": "tapper",
 		"group": "Tapper",
-		"name": "Tapper",
+		"name": "Tapper (CGA) (PC Booter)",
 		"executable": "./TAPPER.COM",
 		"args": ["-c", "cycles=500"],
 		"file": "tapper.zip",
@@ -2054,7 +2296,7 @@
 	} , {
 		"id": "tyrian2k",
 		"group": "Tyrian",
-		"name": "Tyrian 2000",
+		"name": "Tyrian 2000 (Freeware)",
 		"executable": "./TYRIAN.EXE",
 		"sync": false,
 		"file": "tyrian2k30.zip",
@@ -2087,9 +2329,54 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/4466-tyrian-2000-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/4468-tyrian-2000-dos-screenshot-level-1.gif"],
 		"clones": []
 	} , {
+		"id": "utopia",
+		"group": "Utopia",
+		"name": "Utopia: The Creation of a Nation (Retail)",
+		"executable": "./UTOPIA.EXE",
+		"sync": false,
+		"file": "utopia.zip",
+		"size": 893181,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"TGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"EGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Adlib", "Roland"]
+		},
+		"language": "English",
+		"languages": ["English", "French", "German", "Italian"],
+		"year": 1992,
+		"genre": "Economic Simulator",
+		"developer": "Celestial Software",
+		"publisher": "Gremlin Graphics Software Limited",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Utopia:_The_Creation_of_a_Nation"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/323200-utopia-the-creation-of-a-nation-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/323202-utopia-the-creation-of-a-nation-dos-screenshot-starting-up.png"],
+		"clones": []
+	} , {
 		"id": "vikings",
 		"group": "The Lost Vikings",
-		"name": "The Lost Vikings",
+		"name": "The Lost Vikings (Retail)",
 		"executable": "./VIKINGS.EXE",
 		"sync": false,
 		"file": "vikings.zip",
@@ -2122,7 +2409,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/6859-the-lost-vikings-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/6861-the-lost-vikings-dos-screenshot-eric-olaf-and-baleog-hunting.gif"],
 		"clones": [{
 			"id": "vikingsbc",
-			"name": "The Lost Vikings (Classic Arcade)",
+			"name": "The Lost Vikings (Freeware)",
 			"executable": "./VIKINGS.EXE",
 			"file": "vikingsbc.zip",
 			"size": 1370857,
@@ -2224,8 +2511,42 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/105965-warcraft-ii-beyond-the-dark-portal-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/105670-warcraft-ii-beyond-the-dark-portal-dos-screenshot-mushrooms.gif"]
 		}]
 	} , {
+		"id": "win95",
+		"group": "Windows",
+		"name": "Windows 95 (Retail)",
+		"executable": "boot WIN95.IMG",
+		"args": ["-c", "imgmount a c:\\WIN95.IMG -size 512,63,16,101"],
+		"file": "win95.zip",
+		"size": 16960727,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Sound Blaster"]
+		},
+		"language": "English",
+		"year": 1995,
+		"genre": "Operating System (OS)",
+		"developer": "Microsoft",
+		"publisher": "Microsoft",
+		"copyright": "Microsoft",
+		"version": "4.00.950",
+		"license": "Commercial",
+		"status": "Working",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Windows_95"
+		},
+		"screenshots": ["images/screenshots/win95.png"],
+		"clones": []
+	} , {
 		"id": "wolf3d",
-		"group": "Wolfenstein 3D",
+		"group": "Wolfenstein 3D (VGA) (Retail)",
 		"name": "Wolfenstein 3D",
 		"executable": "./WOLF3D.EXE",
 		"sync": false,
@@ -2261,7 +2582,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/1358-wolfenstein-3d-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/1359-wolfenstein-3d-dos-screenshot-episode-1.gif"],
 		"clones": [{
 			"id": "wolf3ds",
-			"name": "Wolfenstein 3D: Spear of Destiny",
+			"name": "Wolfenstein 3D: Spear of Destiny (VGA) (Retail)",
 			"executable": "./SPEAR.EXE",
 			"sync": false,
 			"file": "wolf3ds.zip",
@@ -2278,8 +2599,8 @@
 	} , {
 		"id": "xcom1",
 		"group": "X-COM",
-		"name": "X-COM: UFO Defense",
-		"description": "UFO: Enemy Unknown",
+		"name": "X-COM: UFO Defense (VGA) (Retail)",
+		"alternatenames": ["UFO: Enemy Unknown"],
 		"notes": "DOSBOX: May hang on mission start",
 		"executable": "./UFO.BAT",
 		"mode": "asm",
@@ -2323,7 +2644,7 @@
 			"status": "Playable"
 		} , {
 			"id": "xcom2",
-			"name": "X-COM: Terror from the Deep",
+			"name": "X-COM: Terror from the Deep (VGA) (Retail)",
 			"notes": "DOSBOX: May hang on mission start",
 			"executable": "./TERROR.COM",
 			"mode": "asm",
@@ -2342,38 +2663,48 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/2724-x-com-terror-from-the-deep-dos-screenshot-game-logo.gif", "https://www.mobygames.com/images/shots/l/2733-x-com-terror-from-the-deep-dos-screenshot-islands-are-one-of.gif"]
 		}]
 	} , {
-		"id": "win95",
-		"group": "Windows",
-		"name": "Windows 95",
-		"executable": "boot WIN95.IMG",
-		"args": ["-c", "imgmount a c:\\WIN95.IMG -size 512,63,16,101"],
-		"file": "win95.zip",
-		"size": 16960727,
+		"id": "xonix1",
+		"group": "Qix",
+		"name": "Xonix (CGA) (Qix Clone)",
+		"alternatenames": ["Lokup"],
+		"executable": "./XONIX.EXE",
+		"args": ["-c", "cycles=1000"],
+		"file": "xonix1.zip",
+		"size": 31759,
 		"hardware": {
-			"input": ["Keyboard", "Mouse"],
+			"input": ["Keyboard"],
 			"video": {
-				"VGA": {
+				"CGA": {
 					"resolutions": [
 						"320x200"
 					],
-					"colors": 256
+					"colors": 4
 				}
 			},
-			"sound": ["PC Speaker", "Sound Blaster"]
+			"sound": ["None"]
 		},
 		"language": "English",
-		"year": 1995,
-		"genre": "Operating System (OS)",
-		"developer": "Microsoft",
-		"publisher": "Microsoft",
-		"copyright": "Microsoft",
-		"version": "4.00.950",
+		"year": 1984,
+		"genre": "Arcade",
+		"developer": "Ilan Rav; Dani Katz",
+		"publisher": "Ilan Rav; Dani Katz",
+		"copyright": "Ilan Rav; Dani Katz",
+		"version": "1.0",
 		"license": "Commercial",
-		"status": "Working",
+		"status": "Playable",
 		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Windows_95"
+			"wikipedia": "https://en.wikipedia.org/wiki/Xonix"
 		},
-		"screenshots": ["images/screenshots/win95.png"],
-		"clones": []
+		"screenshots": ["https://www.mobygames.com/images/shots/l/442323-xonix-dos-screenshot-title-screen-big-blinking-text.png", "https://www.mobygames.com/images/shots/l/442326-xonix-dos-screenshot-level-1-separated-one-of-the-balls-now.png"],
+		"clones": [{
+			"id": "xonix22",
+			"name": "Xonix (v2.2) (CGA) (Qix Clone)",
+			"executable": "./XONIX.EXE",
+			"file": "xonix22.zip",
+			"size": 31121,
+			"year": 1985,
+			"version": "2.2",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/443888-xonix-dos-screenshot-in-version-2-2-the-title-screen-has-a.png", "https://www.mobygames.com/images/shots/l/442325-xonix-dos-screenshot-level-1-best-strategy-is-to-separate.png"]
+		}]
 	}]
 }
