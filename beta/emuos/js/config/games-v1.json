@@ -513,7 +513,7 @@
 	} , {
 		"id": "dave",
 		"group": "Dangerous Dave",
-		"name": "Dangerous Dave (EGA)",
+		"name": "Dangerous Dave 1 (EGA)",
 		"fullname": "Dangerous Dave in the Deserted Pirate's Hideout!",
 		"executable": "./DAVE.EXE",
 		"sync": false,
@@ -547,7 +547,7 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/44668-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif", "https://www.mobygames.com/images/shots/l/811-dangerous-dave-in-the-deserted-pirate-s-hideout-dos-screenshot.gif"],
 		"clones": [{
 			"id": "ddave1",
-			"name": "Dave II: Haunted Mansion (EGA)",
+			"name": "DAVE2: Haunted Mansion (EGA)",
 			"fullname": "Dangerous Dave in the Haunted Mansion",
 			"file": "ddave1.zip",
 			"size": 198115,
@@ -562,7 +562,7 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/6485-dangerous-dave-in-the-haunted-mansion-dos-screenshot-game-title.gif", "https://www.mobygames.com/images/shots/l/6487-dangerous-dave-in-the-haunted-mansion-dos-screenshot-the-beginning.gif"]
 		} , {
 			"id": "ddave2",
-			"name": "Dave II: Haunted Mansion (Alternate) (EGA)",
+			"name": "DAVE2: Haunted Mansion (Alternate) (EGA)",
 			"fullname": "Dangerous Dave in the Haunted Mansion",
 			"file": "ddave2.zip",
 			"size": 215019,
@@ -670,7 +670,7 @@
 		"publisher": "Blizzard Entertainment",
 		"copyright": "Activision Blizzard",
 		"license": "Shareware",
-		"status": "Loadable",
+		"status": "Nothing",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Diablo_(video_game)"
 		},
@@ -1420,39 +1420,159 @@
 			"id": "mariob",
 			"name": "Mario & Luigi (Freeware) (Beta) (Clone)",
 			"executable": "./MARIOB.EXE",
+			"year": 1993,
 			"version": "BETA",
 			"screenshots": ["https://www.mobygames.com/images/shots/l/723752-mario-luigi-dos-screenshot-beginning-of-level-1.png"]
 		} , {
 			"id": "angelo",
 			"name": "Super Angelo (Shareware) (Clone)",
 			"executable": "./ANGELO.EXE",
-			"args": ["-c", "cycles=max", "-c", "c:", "-c", "ANGELO.EXE /M"],
+			"args": ["-c", "cycles=max", "-c", "c:", "-c", "ANGELO.EXE -M"],
 			"file": "angelo.zip",
 			"size": 232575,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Adlib", "MPU401"]
+			},
 			"languages": ["English", "Dutch"],
-			"year": 2003,
-			"license": "Shareware",
+			"year": 1995,
 			"version": "2.2",
+			"license": "Shareware",
 			"links": {
 				"url": "http://www.wieringsoftware.nl/mario/games.html"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/928591-super-angelo-dos-screenshot-title-scrceen-shareware-version.png", "https://www.mobygames.com/images/shots/l/928593-super-angelo-dos-screenshot-starting-level-1.png"]
 		} , {
+			"id": "sint",
+			"name": "Sint Nicolaas (Freeware) (Clone)",
+			"executable": "./SINT.EXE",
+			"args": ["-c", "cycles=max", "-c", "c:", "-c", "SINT.EXE -M"],
+			"file": "sint.zip",
+			"size": 166320,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Adlib", "MPU401"]
+			},
+			"languages": ["English", "Dutch"],
+			"year": 1998,
+			"version": "1.6",
+			"license": "Freeware",
+			"links": {
+				"url": "https://wieringsoftware.com/games/sint-nicolaas/",
+				"youtube": "https://www.youtube.com/watch?v=p_WfEnHnMKs"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/746709-sint-nicolaas-dos-screenshot-main-menu.png", "https://www.mobygames.com/images/shots/l/746711-sint-nicolaas-dos-screenshot-starting-the-first-level.png"]
+		} , {
 			"id": "charlie1",
 			"name": "Charlie the Duck (Shareware) (Clone)",
 			"executable": "./CHARLIE.EXE",
-			"args": ["-c", "cycles=max", "-c", "c:", "-c", "CHARLIE.EXE /M"],
+			"args": ["-c", "cycles=max", "-c", "c:", "-c", "CHARLIE.EXE -M"],
 			"file": "charlie1.zip",
 			"size": 364564,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Adlib", "MPU401"]
+			},
+			"languages": ["English", "Dutch"],
 			"year": 1996,
-			"license": "Shareware",
 			"version": "2.4",
+			"license": "Shareware",
 			"links": {
 				"url": "https://wieringsoftware.com/games/charlie-the-duck/",
 				"youtube": "https://www.youtube.com/watch?v=Yf68G4BzGZw"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/873562-charlie-the-duck-dos-screenshot-title-screen-shareware-version.png", "https://www.mobygames.com/images/shots/l/15236-charlie-the-duck-dos-screenshot-world-1-level-1.gif"]
+		} , {
+			"id": "charlie2",
+			"name": "Charlie II (Shareware) (Clone)",
+			"executable": "./CH2DOS.EXE",
+			"args": ["-c", "cycles=max"],
+			"file": "charlie2.zip",
+			"size": 670392,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"VGA": {
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 256
+					}
+				},
+				"sound": ["PC Speaker", "Adlib", "MPU401"]
+			},
+			"languages": ["English", "Dutch"],
+			"year": 2001,
+			"version": "3.11",
+			"license": "Shareware",
+			"status": "Ingame",
+			"links": {
+				"url": "https://wieringsoftware.com/games/charlie-ii/",
+				"youtube": "https://www.youtube.com/watch?v=VXIFOcOHIHM"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/239614-charlie-ii-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/239616-charlie-ii-dos-screenshot-starting-level-1.png"]
 		}]
+	} , {
+		"id": "sw",
+		"group": "Mario Kart",
+		"name": "Super Worms (Shareware) (Clone)",
+		"executable": "./SW.EXE",
+		"args": ["-c", "cycles=max"],
+		"file": "sw.zip",
+		"size": 80480,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"VGA": {
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Adlib", "MPU401"]
+		},
+		"language": "English",
+		"languages": ["English", "Dutch"],
+		"year": 2001,
+		"genre": "Racing",
+		"developer": "Mike Wiering",
+		"publisher": "Wiering Software",
+		"copyright": "Wiering Software",
+		"version": "1.63",
+		"license": "Shareware",
+		"status": "Ingame",
+		"links": {
+			"url": "https://wieringsoftware.com/games/super-worms/",
+			"wikipedia": "https://en.wikipedia.org/wiki/Super_Mario_Kart",
+			"youtube": "https://www.youtube.com/watch?time_continue=231&v=4EkJpwKVgvo"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/643085-super-worms-dos-screenshot-menu.png", "https://www.mobygames.com/images/shots/l/643087-super-worms-dos-screenshot-start-game.png"],
+		"clones": []
 	} , {
 		"id": "monkey1vgatalkie",
 		"group": "Monkey Island",
