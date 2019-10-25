@@ -31,7 +31,7 @@
 				},
 				"executables": [{
 					"id": "tapper",
-					"name": "Tapper (CGA)",
+					"name": "Tapper (CGA) (PC Booter)",
 					"file": "tapper.zip",
 					"size": 44594,
 					"executable": "./TAPPER.COM",
