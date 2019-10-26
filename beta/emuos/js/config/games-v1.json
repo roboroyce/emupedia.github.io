@@ -1031,7 +1031,7 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"args": ["-c", "cycles=max", "-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2.zip",
 			"size": 203522890,
 			"year": 1996,
@@ -1050,7 +1050,7 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"args": ["-c", "cycles=max", "-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2x.zip",
 			"size": 199548791,
 			"year": 1997,
@@ -1070,7 +1070,7 @@
 			"notes": "JS: RuntimeError: integer overflow",
 			"executable": "./HEROES2.EXE",
 			"mode": "asm",
-			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"args": ["-c", "cycles=max", "-c", "mount d emulator/c -t cdrom"],
 			"file": "homm2xrip.zip",
 			"size": 44235314,
 			"year": 1997,
@@ -1081,7 +1081,6 @@
 				"gog": "https://gog.com/game/heroes_of_might_and_magic_2_gold_edition",
 				"wikipedia": "https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_II#Expansion",
 				"youtube": "https://www.youtube.com/watch?v=G-wRuVyYJEg"
-
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/145015-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg", "https://www.mobygames.com/images/shots/l/145020-heroes-of-might-and-magic-ii-the-price-of-loyalty-windows.jpg"]
 		} , {
@@ -1090,7 +1089,7 @@
 			"notes": "DOSBOX: The image must be on a host or local drive JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./HEROES2.EXE",
 			"sync": false,
-			"args": ["-c", "imgmount d emulator/c/iso/homm2.cue -t iso -fs iso"],
+			"args": ["-c", "cycles=max", "-c", "imgmount d emulator/c/iso/homm2.cue -t iso -fs iso"],
 			"file": "homm2gold.zip",
 			"size": 316287153,
 			"year": 1998,
@@ -2222,14 +2221,12 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/90433-ms-dos-5-included-games-dos-screenshot-nibbles-title-screen.png", "https://www.mobygames.com/images/shots/l/90436-ms-dos-5-included-games-dos-screenshot-nibbles-chase-down-the.png"]
 		}]
 	} , {
-		"id": "xonix1",
+		"id": "qix",
 		"group": "Qix",
-		"name": "Xonix (CGA) (Qix Clone)",
-		"altnames": ["Lokup"],
-		"executable": "./XONIX.EXE",
-		"args": ["-c", "cycles=1000"],
-		"file": "xonix1.zip",
-		"size": 31759,
+		"name": "Qix (VGA)",
+		"executable": "./QIX.EXE",
+		"file": "qix.zip",
+		"size": 196619,
 		"hardware": {
 			"input": ["Keyboard"],
 			"video": {
@@ -2241,29 +2238,81 @@
 					"colors": 4
 				}
 			},
-			"sound": ["None"]
+			"sound": ["PC Speaker"]
 		},
 		"language": "English",
-		"year": 1984,
+		"year": 1989,
 		"genre": "Arcade",
-		"developer": "Ilan Rav; Dani Katz",
-		"publisher": "Ilan Rav; Dani Katz",
-		"copyright": "Ilan Rav; Dani Katz",
-		"version": "1.0",
+		"developer": "Taito America Corporation",
+		"publisher": "Taito Corporation",
 		"license": "Commercial",
 		"status": "Playable",
 		"links": {
-			"wikipedia": "https://en.wikipedia.org/wiki/Xonix"
+			"wikipedia": "https://en.wikipedia.org/wiki/Qix"
 		},
-		"screenshots": ["https://www.mobygames.com/images/shots/l/442323-xonix-dos-screenshot-title-screen-big-blinking-text.png", "https://www.mobygames.com/images/shots/l/442326-xonix-dos-screenshot-level-1-separated-one-of-the-balls-now.png"],
+		"screenshots": ["https://www.mobygames.com/images/shots/l/14018-qix-dos-screenshot-title-screen-vga.gif", "https://www.mobygames.com/images/shots/l/442326-xonix-dos-screenshot-level-1-separated-one-of-the-balls-now.png"],
 		"clones": [{
+			"id": "xonix1",
+			"name": "Xonix (CGA) (Qix Clone)",
+			"altnames": ["Lokup"],
+			"executable": "./XONIX.EXE",
+			"args": ["-c", "cycles=1000"],
+			"file": "xonix1.zip",
+			"size": 31759,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"CGA": {
+						"name": "Color Graphics Adapter",
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["None"]
+			},
+			"year": 1984,
+			"developer": "Ilan Rav; Dani Katz",
+			"publisher": "Ilan Rav; Dani Katz",
+			"copyright": "Ilan Rav; Dani Katz",
+			"version": "1.0",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Xonix"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/442323-xonix-dos-screenshot-title-screen-big-blinking-text.png", "https://www.mobygames.com/images/shots/l/442326-xonix-dos-screenshot-level-1-separated-one-of-the-balls-now.png"]
+		} , {
 			"id": "xonix22",
 			"name": "Xonix (v2.2) (CGA) (Qix Clone)",
+			"altnames": ["Lokup"],
 			"executable": "./XONIX.EXE",
 			"file": "xonix22.zip",
 			"size": 31121,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"CGA": {
+						"name": "Color Graphics Adapter",
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["None"]
+			},
 			"year": 1985,
+			"developer": "Ilan Rav; Dani Katz",
+			"publisher": "Ilan Rav; Dani Katz",
+			"copyright": "Ilan Rav; Dani Katz",
 			"version": "2.2",
+			"license": "Commercial",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Xonix"
+			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/443888-xonix-dos-screenshot-in-version-2-2-the-title-screen-has-a.png", "https://www.mobygames.com/images/shots/l/442325-xonix-dos-screenshot-level-1-best-strategy-is-to-separate.png"]
 		}]
 	} , {
@@ -2273,7 +2322,7 @@
 		"notes": "JS: RuntimeError: integer overflow",
 		"description": "Quake 1",
 		"executable": "./QUAKE.EXE -nocdaudio -stdvid",
-		"sync": false,
+		"args": ["-c", "cycles=max"],
 		"file": "quake108.zip",
 		"size": 52260092,
 		"hardware": {
@@ -2542,62 +2591,12 @@
 			"screenshots": ["https://www.mobygames.com/images/shots/l/923189-star-control-ii-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/4763-star-control-ii-dos-screenshot-the-human-starbase.gif"]
 		}]
 	} , {
-		"id": "starcontrol1",
-		"group": "Star Control",
-		"name": "Star Control I (VGA) (Retail)",
-		"altnames": ["Star Control: Famous Battles of the Ur-Quan Conflict, Volume IV"],
-		"executable": "./STARCON.EXE",
-		"sync": false,
-		"file": "starcontrol1.zip",
-		"size": 910582,
-		"drm": ["Manual Lookup"],
-		"hardware": {
-			"input": ["Keyboard", "Mouse"],
-			"video": {
-				"VGA": {
-					"name": "Video Graphics Array",
-					"resolutions": [
-						"320x200"
-					],
-					"colors": 256
-				}
-			},
-			"sound": ["PC Speaker", "Sound Blaster"]
-		},
-		"language": "English",
-		"year": 1990,
-		"genre": "Arcade Shooter",
-		"developer": "Toys for Bob",
-		"publisher": "Accolade",
-		"copyright": "Stardock Corporation",
-		"license": "Commercial",
-		"status": "Playable",
-		"links": {
-			"url": "https://www.stardock.com/games/starcontrol/store#purchase",
-			"gog": "https://www.gog.com/game/star_control_i_ii",
-			"wikipedia": "https://en.wikipedia.org/wiki/Star_Control",
-			"youtube": "https://www.youtube.com/watch?v=uQeNh5CRO9U"
-		},
-		"screenshots": ["https://www.mobygames.com/images/shots/l/4748-star-control-dos-screenshot-title-screen-mcga-vga.gif", "https://www.mobygames.com/images/shots/l/4751-star-control-dos-screenshot-the-syreen-s-song-turns-hostile.gif"],
-		"clones": [{
-			"id": "starcontrol2",
-			"name": "Star Control II: The Ur-Quan Masters (VGA) (Retail)",
-			"executable": "./STARCON2.COM",
-			"file": "starcontrol2.zip",
-			"size": 6603466,
-			"year": 1992,
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II",
-				"youtube": "https://www.youtube.com/watch?v=NlUxFaqAmjU"
-			},
-			"screenshots": ["https://www.mobygames.com/images/shots/l/923189-star-control-ii-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/4763-star-control-ii-dos-screenshot-the-human-starbase.gif"]
-		}]
-	} , {
 		"id": "stunts",
 		"group": "Stunts",
 		"name": "Stunts (Retail)",
 		"altnames": ["4D Sports Driving", "4D Driving"],
 		"executable": "./ST.COM",
+		"args": ["-c", "cycles=max"],
 		"file": "stunts.zip",
 		"size": 1085390,
 		"hardware": {
@@ -2662,12 +2661,46 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/11419-stunts-dos-screenshot-stunts-v1-1-title-screen.gif", "https://www.mobygames.com/images/shots/l/1469-stunts-dos-screenshot-racing-in-monaco.gif"],
 		"clones": []
 	} , {
+		"id": "tapper",
+		"group": "Tapper",
+		"name": "Tapper (CGA) (PC Booter)",
+		"executable": "./TAPPER.COM",
+		"args": ["-c", "cycles=500"],
+		"file": "tapper.zip",
+		"size": 44594,
+		"hardware": {
+			"input": ["Keyboard"],
+			"video": {
+				"CGA": {
+					"name": "Color Graphics Adapter",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 4
+				}
+			},
+			"sound": ["PC Speaker"]
+		},
+		"language": "English",
+		"year": 1983,
+		"genre": "Action",
+		"developer": "Marvin Glass and Associates",
+		"publisher": "Midway",
+		"copyright": "Midway",
+		"license": "Commercial",
+		"status": "Playable",
+		"links": {
+			"wikipedia": "https://en.wikipedia.org/wiki/Tapper_(video_game)"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/267517-tapper-pc-booter-screenshot-title-screen-cga-with-rgb-monitor.png", "https://www.mobygames.com/images/shots/l/267519-tapper-pc-booter-screenshot-the-customers-have-arrived-cga.png"],
+		"clones": []
+	} , {
 		"id": "arena",
 		"group": "The Elder Scrolls",
 		"name": "The Elder Scrolls I: Arena (Retail)",
 		"altnames": ["Arena"],
 		"executable": "./A.EXE",
-		"args": ["-c", "c:", "-c", "A.EXE -sa:220 -si:5 -sd:1 -ma:220 -mq:5 -md:1 -ssbdig.adv -msbfm.adv"],
+		"args": ["-c", "cycles=max", "-c", "c:", "-c", "A.EXE -sa:220 -si:5 -sd:1 -ma:220 -mq:5 -md:1 -ssbdig.adv -msbfm.adv"],
 		"file": "arena.zip",
 		"size": 9468383,
 		"drm": ["Manual Lookup"],
@@ -2869,7 +2902,7 @@
 			"fullname": "Warcraft II: Tides of Darkness",
 			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./WAR2.EXE",
-			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"args": ["-c", "cycles=max", "-c", "mount d emulator/c -t cdrom"],
 			"file": "war2.zip",
 			"size": 82019801,
 			"language": "English",
@@ -2915,7 +2948,7 @@
 			"name": "Warcraft II: Beyond the Dark Portal",
 			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./WAR2.EXE",
-			"args": ["-c", "mount d emulator/c -t cdrom"],
+			"args": ["-c", "cycles=max", "-c", "mount d emulator/c -t cdrom"],
 			"file": "war2x.zip",
 			"size": 122526490,
 			"version": "1.3",
