@@ -2187,6 +2187,22 @@
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/225585-ms-dos-5-included-games-dos-screenshot-gorillas-directions.png"],
 		"clones": [{
+			"id": "nibbles",
+			"name": "QBasic: Nibbles",
+			"args": ["-c", "c:", "-c", "QBASIC.EXE /RUN NIBBLES.BAS"],
+			"language": "English",
+			"year": 1990,
+			"genre": "Snake",
+			"developer": "Microsoft Corp.",
+			"publisher": "Microsoft Corp.",
+			"copyright": "Microsoft Corp.",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"wikipedia": "https://en.wikipedia.org/wiki/Nibbles_(video_game)"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/90433-ms-dos-5-included-games-dos-screenshot-nibbles-title-screen.png", "https://www.mobygames.com/images/shots/l/90436-ms-dos-5-included-games-dos-screenshot-nibbles-chase-down-the.png"]
+		} , {
 			"id": "gorilla",
 			"name": "QBasic: Gorillas",
 			"executable": "./",
@@ -2203,22 +2219,6 @@
 				"wikipedia": "https://en.wikipedia.org/wiki/Gorillas_(video_game)"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/167979-ms-dos-5-included-games-dos-screenshot-gorillas-title-screen.png", "https://www.mobygames.com/images/shots/l/225589-ms-dos-5-included-games-dos-screenshot-gorillas-and-off-the.png"]
-		} , {
-			"id": "nibbles",
-			"name": "QBasic: Nibbles",
-			"args": ["-c", "c:", "-c", "QBASIC.EXE /RUN NIBBLES.BAS"],
-			"language": "English",
-			"year": 1990,
-			"genre": "Snake",
-			"developer": "Microsoft Corp.",
-			"publisher": "Microsoft Corp.",
-			"copyright": "Microsoft Corp.",
-			"license": "Freeware",
-			"status": "Playable",
-			"links": {
-				"wikipedia": "https://en.wikipedia.org/wiki/Nibbles_(video_game)"
-			},
-			"screenshots": ["https://www.mobygames.com/images/shots/l/90433-ms-dos-5-included-games-dos-screenshot-nibbles-title-screen.png", "https://www.mobygames.com/images/shots/l/90436-ms-dos-5-included-games-dos-screenshot-nibbles-chase-down-the.png"]
 		}]
 	} , {
 		"id": "qix",

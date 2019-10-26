@@ -610,6 +610,8 @@
     }
   };
 
+  var checkedLoadedFor = {};
+
   var Translator =
   /*#__PURE__*/
   function (_EventEmitter) {
@@ -857,7 +859,9 @@
         var postProcessorNames = typeof postProcess === 'string' ? [postProcess] : postProcess;
 
         if (res !== undefined && res !== null && postProcessorNames && postProcessorNames.length && options.applyPostProcessor !== false) {
-          res = postProcessor.handle(postProcessorNames, res, key, options, this);
+          res = postProcessor.handle(postProcessorNames, res, key, this.options && this.options.postProcessPassResolved ? _objectSpread({
+            i18nResolved: resolved
+          }, options) : options, this);
         }
 
         return res;
@@ -893,8 +897,10 @@
             if (_this4.isValidLookup(found)) return;
             usedNS = ns;
 
-            if (_this4.utils && _this4.utils.hasLoadedNamespace && !_this4.utils.hasLoadedNamespace(usedNS)) {
-              _this4.logger.warn("key \"".concat(usedKey, "\" for namespace \"").concat(usedNS, "\" won't get resolved as namespace was not yet loaded"), 'This means something IS WRONG in your application setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');
+            if (!checkedLoadedFor["".concat(codes[0], "-").concat(ns)] && _this4.utils && _this4.utils.hasLoadedNamespace && !_this4.utils.hasLoadedNamespace(usedNS)) {
+              checkedLoadedFor["".concat(codes[0], "-").concat(ns)] = true;
+
+              _this4.logger.warn("key \"".concat(usedKey, "\" for namespace \"").concat(usedNS, "\" for languages \"").concat(codes.join(', '), "\" won't get resolved as namespace was not yet loaded"), 'This means something IS WRONG in your application setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');
             }
 
             codes.forEach(function (code) {
@@ -1876,6 +1882,8 @@
       // function(str, match)
       postProcess: false,
       // string or array of postProcessor names
+      postProcessPassResolved: false,
+      // pass resolved object into 'options.i18nResolved' for postprocessor
       returnNull: true,
       // allows null value as valid translation
       returnEmptyString: true,
@@ -2099,13 +2107,16 @@
 
     }, {
       key: "loadResources",
-      value: function loadResources() {
+      value: function loadResources(language) {
         var _this3 = this;
 
-        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : noop;
+        var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+        var usedCallback = callback;
+        var usedLng = typeof language === 'string' ? language : this.language;
+        if (typeof language === 'function') usedCallback = language;
 
         if (!this.options.resources || this.options.partialBundledLanguages) {
-          if (this.language && this.language.toLowerCase() === 'cimode') return callback(); // avoid loading resources for cimode
+          if (usedLng && usedLng.toLowerCase() === 'cimode') return usedCallback(); // avoid loading resources for cimode
 
           var toLoad = [];
 
@@ -2119,14 +2130,14 @@
             });
           };
 
-          if (!this.language) {
+          if (!usedLng) {
             // at least load fallbacks in this case
             var fallbacks = this.services.languageUtils.getFallbackCodes(this.options.fallbackLng);
             fallbacks.forEach(function (l) {
               return append(l);
             });
           } else {
-            append(this.language);
+            append(usedLng);
           }
 
           if (this.options.preload) {
@@ -2135,9 +2146,9 @@
             });
           }
 
-          this.services.backendConnector.load(toLoad, this.options.ns, callback);
+          this.services.backendConnector.load(toLoad, this.options.ns, usedCallback);
         } else {
-          callback(null);
+          usedCallback(null);
         }
       }
     }, {
@@ -2188,16 +2199,24 @@
       value: function changeLanguage(lng, callback) {
         var _this4 = this;
 
+        this.isLanguageChangingTo = lng;
         var deferred = defer();
         this.emit('languageChanging', lng);
 
         var done = function done(err, l) {
-          _this4.translator.changeLanguage(l);
-
           if (l) {
+            _this4.language = l;
+            _this4.languages = _this4.services.languageUtils.toResolveHierarchy(l);
+
+            _this4.translator.changeLanguage(l);
+
+            _this4.isLanguageChangingTo = undefined;
+
             _this4.emit('languageChanged', l);
 
             _this4.logger.log('languageChanged', l);
+          } else {
+            _this4.isLanguageChangingTo = undefined;
           }
 
           deferred.resolve(function () {
@@ -2210,13 +2229,16 @@
 
         var setLng = function setLng(l) {
           if (l) {
-            _this4.language = l;
-            _this4.languages = _this4.services.languageUtils.toResolveHierarchy(l);
+            if (!_this4.language) {
+              _this4.language = l;
+              _this4.languages = _this4.services.languageUtils.toResolveHierarchy(l);
+            }
+
             if (!_this4.translator.language) _this4.translator.changeLanguage(l);
             if (_this4.services.languageDetector) _this4.services.languageDetector.cacheUserLanguage(l);
           }
 
-          _this4.loadResources(function (err) {
+          _this4.loadResources(l, function (err) {
             done(err, l);
           });
         };
