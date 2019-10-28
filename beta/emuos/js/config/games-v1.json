@@ -662,6 +662,7 @@
 		"license": "Commercial",
 		"status": "Playable",
 		"links": {
+			"url": "http://digger.org/index.html",
 			"wikipedia": "https://en.wikipedia.org/wiki/Digger_(video_game)"
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/895664-digger-dos-screenshot-title-screen-cga.png", "https://www.mobygames.com/images/shots/l/895665-digger-dos-screenshot-level-1-cga.png"],
@@ -691,7 +692,7 @@
 			"license": "Freeware",
 			"status": "Playable",
 			"links": {
-				"url": "http://www.digger.org"
+				"url": "http://digger.org/remaster.html"
 			},
 			"screenshots": ["https://www.mobygames.com/images/shots/l/895658-digger-dos-screenshot-title-screen-vga.png", "https://www.mobygames.com/images/shots/l/895660-digger-dos-screenshot-level-1-vga.png"]
 		}]
@@ -959,15 +960,15 @@
 					],
 					"colors": 4
 				},
-				"TGA": {
-					"name": "Tandy Graphics Adapter",
+				"EGA": {
+					"name": "Enhanced Graphics Adapter",
 					"resolutions": [
 						"320x200"
 					],
 					"colors": 16
 				},
-				"EGA": {
-					"name": "Enhanced Graphics Adapter",
+				"TGA": {
+					"name": "Tandy Graphics Adapter",
 					"resolutions": [
 						"320x200"
 					],
@@ -2223,7 +2224,7 @@
 	} , {
 		"id": "qix",
 		"group": "Qix",
-		"name": "Qix (VGA)",
+		"name": "Qix (EGA)",
 		"executable": "./QIX.EXE",
 		"file": "qix.zip",
 		"size": 196619,
@@ -2236,15 +2237,44 @@
 						"320x200"
 					],
 					"colors": 4
+				},
+				"EGA": {
+					"name": "Enhanced Graphics Adapter",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"TGA": {
+					"name": "Tandy Graphics Adapter",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"MCGA": {
+					"name": "Multi-Color Graphics Array",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
+				},
+				"VGA": {
+					"name": "Video Graphics Array",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 16
 				}
 			},
-			"sound": ["PC Speaker"]
+			"sound": ["PC Speaker", "Tandy", "Adlib", "Sound Blaster"]
 		},
 		"language": "English",
 		"year": 1989,
 		"genre": "Arcade",
 		"developer": "Taito America Corporation",
 		"publisher": "Taito Corporation",
+		"copyright": "Taito Corporation",
 		"license": "Commercial",
 		"status": "Playable",
 		"links": {
@@ -2252,6 +2282,69 @@
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/14018-qix-dos-screenshot-title-screen-vga.gif", "https://www.mobygames.com/images/shots/l/442326-xonix-dos-screenshot-level-1-separated-one-of-the-balls-now.png"],
 		"clones": [{
+			"id": "styx",
+			"name": "Styx (CGA) (PC Booter) (Qix Clone)",
+			"executable": "./STYX.COM",
+			"args": ["-c", "cycles=1000"],
+			"file": "styx.zip",
+			"size": 43286,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"CGA": {
+						"name": "Color Graphics Adapter",
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"year": 1983,
+			"developer": "Windmill Software",
+			"publisher": "Windmill Software",
+			"copyright": "Windmill Software",
+			"license": "Commercial",
+			"status": "Bad Graphics",
+			"links": {
+				"url": "http://digger.org/styx/index.htm",
+				"wikipedia": "https://en.wikipedia.org/wiki/Styx_(Windmill_game)"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/271584-styx-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/271586-styx-dos-screenshot-fill-the-playing-field-by-cutting-out.png"],
+			"enabled": false
+		} , {
+			"id": "styxre",
+			"name": "Styx Remastered (CGA) (Qix Clone)",
+			"executable": "./STYX.EXE",
+			"args": ["-c", "cycles=1000"],
+			"file": "styx.zip",
+			"size": 43286,
+			"hardware": {
+				"input": ["Keyboard"],
+				"video": {
+					"CGA": {
+						"name": "Color Graphics Adapter",
+						"resolutions": [
+							"320x200"
+						],
+						"colors": 4
+					}
+				},
+				"sound": ["PC Speaker"]
+			},
+			"year": 1998,
+			"developer": "Andrew Jenner",
+			"publisher": "Windmill Software",
+			"copyright": "Windmill Software",
+			"license": "Freeware",
+			"status": "Playable",
+			"links": {
+				"url": "http://digger.org/styx/remaster.htm",
+				"wikipedia": "https://en.wikipedia.org/wiki/Styx_(Windmill_game)"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/271584-styx-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/271586-styx-dos-screenshot-fill-the-playing-field-by-cutting-out.png"]
+		} , {
 			"id": "xonix1",
 			"name": "Xonix (CGA) (Qix Clone)",
 			"altnames": ["Lokup"],
@@ -2270,7 +2363,7 @@
 						"colors": 4
 					}
 				},
-				"sound": ["None"]
+				"sound": ["PC Speaker"]
 			},
 			"year": 1984,
 			"developer": "Ilan Rav; Dani Katz",
@@ -2301,7 +2394,7 @@
 						"colors": 4
 					}
 				},
-				"sound": ["None"]
+				"sound": ["PC Speaker"]
 			},
 			"year": 1985,
 			"developer": "Ilan Rav; Dani Katz",
@@ -2466,17 +2559,17 @@
 					],
 					"colors": 4
 				},
-				"TGA": {
-					"name": "Tandy Graphics Adapter",
-					"resolutions": [
-						"640×200"
-					],
-					"colors": 16
-				},
 				"EGA": {
 					"name": "Enhanced Graphics Adapter",
 					"resolutions": [
 						"640×350"
+					],
+					"colors": 16
+				},
+				"TGA": {
+					"name": "Tandy Graphics Adapter",
+					"resolutions": [
+						"640×200"
 					],
 					"colors": 16
 				}
@@ -2826,15 +2919,15 @@
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
-				"TGA": {
-					"name": "Tandy Graphics Adapter",
+				"EGA": {
+					"name": "Enhanced Graphics Adapter",
 					"resolutions": [
 						"320x200"
 					],
 					"colors": 16
 				},
-				"EGA": {
-					"name": "Enhanced Graphics Adapter",
+				"TGA": {
+					"name": "Tandy Graphics Adapter",
 					"resolutions": [
 						"320x200"
 					],
