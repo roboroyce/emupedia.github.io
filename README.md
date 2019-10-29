@@ -7,7 +7,7 @@ We mainly collect content from:
 * a wide variety of systems no longer in production
 * [abandonware](https://en.wikipedia.org/wiki/Abandonware), [shareware](https://en.wikipedia.org/wiki/Shareware) or [freeware](https://en.wikipedia.org/wiki/Freeware) games websites
 * [open source](https://en.wikipedia.org/wiki/Free_and_open-source_software) [ports of old games](https://en.wikipedia.org/wiki/Porting) that work in [modern web browsers](https://en.wikipedia.org/wiki/List_of_web_browsers)
-* new games and software developed with [modern web technologies](https://en.wikipedia.org/wiki/HTML5) using [retro-style](https://en.wikipedia.org/wiki/Retrogaming) graphics 
+* new games and software developed with [modern web technologies](https://en.wikipedia.org/wiki/HTML5) using [retro-style](https://en.wikipedia.org/wiki/Retrogaming) graphics
 
 We revive old games and software by the use of [emulation software](https://en.wikipedia.org/wiki/Emulator).
 
@@ -55,6 +55,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | DOSBox                   | [dosbox.com](https://www.dosbox.com)                                                                   | [sourceforge.net/projects/dosbox](https://sourceforge.net/projects/dosbox)                                   | [GPLv2](https://sourceforge.net/projects/dosbox)                                        |
 | Em-DOSBox                | ❌                                                                                                     | [github.com/dreamlayers/em-dosbox](https://github.com/dreamlayers/em-dosbox)                                 | [GPLv2](https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING)       |
 | emularity                | [archiveteam.org/index.php?title=Emularity](https://www.archiveteam.org/index.php?title=Emularity)     | [github.com/db48x/emularity](https://github.com/db48x/emularity)                                             | [GPLv3](https://github.com/db48x/emularity/blob/master/LICENSE)                         |
+| JS-DOS                   | [js-dos.com](https://js-dos.com/)                                                                      | [github.com/caiiiycuk/js-dos](https://github.com/caiiiycuk/js-dos)                                           | ❓                                                                                      |
 | **Apps**                 |                                                                                                        |                                                                                                              |                                                                                         |
 | WebAmp                   | [webamp.org](https://webamp.org)                                                                       | [github.com/captbaritone/webamp](https://github.com/captbaritone/webamp)                                     | [MIT](https://github.com/captbaritone/webamp/blob/master/LICENSE.txt)                   |
 | Butterchurn              | [butterchurnviz.com](https://butterchurnviz.com)                                                       | [github.com/jberg/butterchurn](https://github.com/jberg/butterchurn)                                         | [MIT](https://github.com/jberg/butterchurn/blob/master/LICENSE)                         |
@@ -127,7 +128,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 In general, the copying and distribution of video games that are under copyright without authorization is considered a copyright violation (often called as software piracy).
 
-Through the Library of Congress, some key exemptions to the DMCA have been granted to allow for video game preservation. 
+Through the Library of Congress, some key exemptions to the DMCA have been granted to allow for video game preservation.
 
 * In the 2003 set of exemptions, the Library disallowed enforcement of the DMCA for "computer programs protected by dongles that prevent access due to malfunction or damage and which are obsolete" and for "computer programs and video games distributed in formats that have become obsolete and which require the original media or hardware as a condition of access".
 * In the 2015 exemptions, the Library granted permission for preservationists to work around copy-protection in games which required an authentication step with an external server that was no longer online prior to playing the game which otherwise did not require online connectivity; this specifically did not cover games that were based on a server-client mode like most massively-multiplayer online games (MMOs).

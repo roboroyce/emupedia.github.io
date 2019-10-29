@@ -579,7 +579,7 @@
 		var height		= typeof options.height		!== 'undefined' ? options.height	: 0;
 
 		// noinspection HtmlDeprecatedAttribute
-		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe src="' + src + '" onload="this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
+		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
 		self.$body.append(window);
 		self.$body.find('iframe').first().focus();
