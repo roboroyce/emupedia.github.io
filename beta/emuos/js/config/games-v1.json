@@ -444,6 +444,72 @@
 		"clones": [],
 		"enabled": false
 	} , {
+		"id": "cncenrip",
+		"group": "Command & Conquer",
+		"name": "Command & Conquer I (English) (Rip)",
+		"executable": "./CNC_EN.COM",
+		"sync": false,
+		"file": "cncrip.zip",
+		"size": 18993887,
+		"hardware": {
+			"input": ["Keyboard", "Mouse"],
+			"video": {
+				"VGA": {
+					"name": "Video Graphics Array",
+					"resolutions": [
+						"320x200"
+					],
+					"colors": 256
+				}
+			},
+			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+		},
+		"language": "English",
+		"languages": ["English", "French", "German"],
+		"year": 1995,
+		"genre": "Real-Time Strategy (RTS)",
+		"developer": "Westwood Studios, Inc.",
+		"publisher": "Virgin Interactive Entertainment, Inc. / Virgin Games",
+		"copyright": "Electronic Arts Inc. / EA Games",
+		"version": "1.22P",
+		"license": "Commercial",
+		"status": "Slow",
+		"links": {
+			"url": "https://www.ea.com/games/command-and-conquer/command-and-conquer",
+			"wikipedia": "https://en.wikipedia.org/wiki/Command_%26_Conquer_(1995_video_game)",
+			"youtube": "https://www.youtube.com/watch?v=fdBwcJhxbfY"
+		},
+		"screenshots": ["https://www.mobygames.com/images/shots/l/75891-command-conquer-dos-screenshot-main-title-main-menu.gif", "https://www.mobygames.com/images/shots/l/75895-command-conquer-dos-screenshot-some-missions-already-start.gif"],
+		"clones": [{
+			"id": "cncfrrip",
+			"name": "Command & Conquer I (French) (Rip)",
+			"executable": "./CNC_FR.COM",
+			"sync": false,
+			"version": "1.20"
+		} , {
+			"id": "cncderip",
+			"name": "Command & Conquer I (German) (Rip)",
+			"executable": "./CNC_DE.COM",
+			"sync": false,
+			"version": "1.20"
+		} , {
+			"id": "cncredalertrip",
+			"name": "Command & Conquer II: Red Alert (Rip)",
+			"executable": "./RA.EXE",
+			"args": ["-c", "cycles=max", "-c", "c:", "-c", "RA.EXE"],
+			"sync": true,
+			"file": "cncredalertrip.zip",
+			"size": 51498081,
+			"year": 1996,
+			"version": "1.04",
+			"links": {
+				"url": "https://www.ea.com/games/command-and-conquer/command-and-conquer-red-alert-2",
+				"wikipedia": "https://en.wikipedia.org/wiki/Command_%26_Conquer:_Red_Alert",
+				"youtube": "-"
+			},
+			"screenshots": ["https://www.mobygames.com/images/shots/l/845807-command-conquer-red-alert-dos-screenshot-main-menu.gif", "https://www.mobygames.com/images/shots/l/845809-command-conquer-red-alert-dos-screenshot-on-a-mission-to-rescue.gif"]
+		}]
+	} , {
 		"id": "keen1sw",
 		"group": "Commander Keen",
 		"name": "Episode 1: Marooned on Mars",
@@ -941,9 +1007,9 @@
 		"language": "English",
 		"year": 1992,
 		"genre": "Real-Time Strategy (RTS)",
-		"developer": "Westwood Studios",
-		"publisher": "Virgin Games",
-		"copyright": "Virgin Interactive",
+		"developer": "Westwood Studios, Inc.",
+		"publisher": "Virgin Interactive Entertainment, Inc. / Virgin Games",
+		"copyright": "Electronic Arts Inc. / EA Games",
 		"version": "1.7eu",
 		"license": "Commercial",
 		"status": "Playable",
