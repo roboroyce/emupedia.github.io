@@ -463,7 +463,7 @@
 					"colors": 256
 				}
 			},
-			"sound": ["PC Speaker", "Adlib", "Sound Blaster"]
+			"sound": ["Sound Blaster Pro/Pro2/16/ASP/AWE-32", "Gold Sound Standard", "Cardinal Sound Studio", "Ensoniq Soundscape", "ESS AudioDrive", "Gravis Ultrasound", "Microsoft Sound System", "Pro Audio Spectrum", "Roland RAP-10"]
 		},
 		"language": "English",
 		"languages": ["English", "French", "German"],
@@ -498,7 +498,7 @@
 			"name": "Command & Conquer II: Red Alert (Rip)",
 			"notes": "JS: uncaught exception: SimulateInfiniteLoop",
 			"executable": "./RA.EXE",
-			"argss": ["-c", "cycles=max", "-c", "c:", "-c", "RA.EXE"],
+			"argss": ["-c", "cycles=max", "-c", "c:"],
 			"sync": false,
 			"file": "cncredalertrip.zip",
 			"size": 51498081,
