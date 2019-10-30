@@ -192,6 +192,7 @@
 					"id": "arkanoid",
 					"name": "Arkanoid (EGA)",
 					"executable": "./ARKANOID.COM",
+					"sync": true,
 					"file": "arkanoid.zip",
 					"size": 77823,
 					"license": "Commercial",
