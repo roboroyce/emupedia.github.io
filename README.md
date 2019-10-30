@@ -19,6 +19,10 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 * 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
+## 💬 Join us on Discord
+
+[Discord](https://discord.gg/wXtGQ4p)
+
 ## 👀 Live Demo
 
 [EmuOS](https://emupedia.net/beta/emuos)
