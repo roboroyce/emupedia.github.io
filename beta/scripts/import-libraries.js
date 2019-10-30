@@ -2112,7 +2112,35 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
-															log.log(dependency + ' version ' + version + ' installed!');
+															//noinspection JSUnresolvedFunction
+															fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.js', copy_options, (error) => {
+																if (error) {
+																	log.error('Error occurred:', error);
+																} else {
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.wasm.js', copy_options, (error) => {
+																		if (error) {
+																			log.error('Error occurred:', error);
+																		} else {
+																			//noinspection JSUnresolvedFunction
+																			fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.js', copy_options, (error) => {
+																				if (error) {
+																					log.error('Error occurred:', error);
+																				} else {
+																					//noinspection JSUnresolvedFunction
+																					fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.wasm.js', copy_options, (error) => {
+																						if (error) {
+																							log.error('Error occurred:', error);
+																						} else {
+																							log.log(dependency + ' version ' + version + ' installed!');
+																						}
+																					});
+																				}
+																			});
+																		}
+																	});
+																}
+															});
 														}
 													});
 												}

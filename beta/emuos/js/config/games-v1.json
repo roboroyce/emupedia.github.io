@@ -446,7 +446,7 @@
 	} , {
 		"id": "cncenrip",
 		"group": "Command & Conquer",
-		"name": "Command & Conquer I (English) (Rip)",
+		"name": "Command & Conquer I: Tiberian Dawn (English) (Rip)",
 		"executable": "./CNC_EN.COM",
 		"argss": ["-c", "cycles=max", "-c", "c:", "-c", "GAME_EN.EXE"],
 		"sync": false,
@@ -483,13 +483,13 @@
 		"screenshots": ["https://www.mobygames.com/images/shots/l/75891-command-conquer-dos-screenshot-main-title-main-menu.gif", "https://www.mobygames.com/images/shots/l/75895-command-conquer-dos-screenshot-some-missions-already-start.gif"],
 		"clones": [{
 			"id": "cncfrrip",
-			"name": "Command & Conquer I (French) (Rip)",
+			"name": "Command & Conquer I: Tiberian Dawn (French) (Rip)",
 			"executable": "./CNC_FR.COM",
 			"sync": false,
 			"version": "1.20"
 		} , {
 			"id": "cncderip",
-			"name": "Command & Conquer I (German) (Rip)",
+			"name": "Command & Conquer I: Tiberian Dawn (German) (Rip)",
 			"executable": "./CNC_DE.COM",
 			"sync": false,
 			"version": "1.20"
