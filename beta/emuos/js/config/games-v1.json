@@ -10,7 +10,7 @@
 		"executable": "./ABUSE.EXE",
 		"sync": false,
 		"file": "abuse200r.zip",
-		"size": 2855233,
+		"size": 2844598,
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
 			"video": {
@@ -44,7 +44,7 @@
 			"name": "Abuse (v2.00) (Shareware)",
 			"executable": "./ABUSE.EXE",
 			"file": "abuse200sw.zip",
-			"size": 2645572,
+			"size": 2426353,
 			"year": 1996,
 			"version": "2.00",
 			"license": "Shareware"
@@ -66,7 +66,7 @@
 			"size": 2645572,
 			"year": 1995,
 			"release_date": "Sep 20, 1995",
-			"version": "1.05",
+			"version": "1.01",
 			"license": "Commercial",
 			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
 		} , {
@@ -87,7 +87,7 @@
 			"size": 2217695,
 			"year": 1995,
 			"version": "0.33",
-			"license": "Commercial",
+			"license": "Shareware",
 			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
 		}]
 	} , {
