@@ -3,13 +3,13 @@
 		"version": "1.0"
 	},
 	"games": [{
-		"id": "abusesw",
+		"id": "abuse200r",
 		"group": "Abuse",
-		"name": "Abuse (v2.0)",
-		"notes": "DOSBOX: Music not working",
+		"name": "Abuse (v2.00) (Retail)",
+		"notes": "DOSBOX: Music not working, missing general midi emulation",
 		"executable": "./ABUSE.EXE",
 		"sync": false,
-		"file": "abusesw.zip",
+		"file": "abuse200r.zip",
 		"size": 2855233,
 		"hardware": {
 			"input": ["Keyboard", "Mouse"],
@@ -31,8 +31,8 @@
 		"developer": "Crack dot Com",
 		"publisher": "Electronic Arts GmbH / ORIGIN Systems, Inc.",
 		"copyright": "Crack dot Com",
-		"version": "2.0",
-		"license": "Public Domain",
+		"version": "2.00",
+		"license": "Freeware",
 		"status": "Playable",
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Abuse_(video_game)",
@@ -40,14 +40,53 @@
 		},
 		"screenshots": ["https://www.mobygames.com/images/shots/l/650138-abuse-dos-screenshot-main-menu-v2-0.png", "https://www.mobygames.com/images/shots/l/70203-abuse-dos-screenshot-activate-the-laser-turrets-and-they-ll.gif"],
 		"clones": [{
-			"id": "abuse",
-			"name": "Abuse (v1.0)",
+			"id": "abuse200sw",
+			"name": "Abuse (v2.00) (Shareware)",
 			"executable": "./ABUSE.EXE",
-			"file": "abuse.zip",
+			"file": "abuse200sw.zip",
+			"size": 2645572,
+			"year": 1996,
+			"version": "2.00",
+			"license": "Shareware"
+		} , {
+			"id": "abuse105sw",
+			"name": "Abuse (v1.05) (Shareware)",
+			"executable": "./ABUSE.EXE",
+			"file": "abuse105sw.zip",
+			"size": 2241282,
+			"year": 1995,
+			"version": "1.05",
+			"license": "Shareware",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
+		} , {
+			"id": "abuse101r",
+			"name": "Abuse (v1.01) (Retail)",
+			"executable": "./ABUSE.EXE",
+			"file": "abuse101r.zip",
 			"size": 2645572,
 			"year": 1995,
 			"release_date": "Sep 20, 1995",
 			"version": "1.05",
+			"license": "Commercial",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
+		} , {
+			"id": "abuse101sw",
+			"name": "Abuse (v1.01) (Shareware)",
+			"executable": "./ABUSE.EXE",
+			"file": "abuse101sw.zip",
+			"size": 2237825,
+			"year": 1995,
+			"version": "1.01",
+			"license": "Shareware",
+			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
+		} , {
+			"id": "abuse033b",
+			"name": "Abuse (v0.33) (Beta)",
+			"executable": "./ABUSE.EXE",
+			"file": "abuse033b.zip",
+			"size": 2217695,
+			"year": 1995,
+			"version": "0.33",
 			"license": "Commercial",
 			"screenshots": ["https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"]
 		}]
