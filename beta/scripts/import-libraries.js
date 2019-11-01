@@ -2132,7 +2132,49 @@ function install(install_directory, dependency, version) {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
-																							log.log(dependency + ' version ' + version + ' installed!');
+																							//noinspection JSUnresolvedFunction
+																							fs.copy(nodemodules_directory + dependency + '/dist/dosbox.js', install_directory + 'vfat/apps/dosbox/js/dosbox.js', copy_options, (error) => {
+																								if (error) {
+																									log.error('Error occurred:', error);
+																								} else {
+																									//noinspection JSUnresolvedFunction
+																									fs.copy(nodemodules_directory + dependency + '/dist/dosbox.js.mem', install_directory + 'vfat/apps/dosbox/js/dosbox.js.mem', copy_options, (error) => {
+																										if (error) {
+																											log.error('Error occurred:', error);
+																										} else {
+																											//noinspection JSUnresolvedFunction
+																											fs.copy(nodemodules_directory + dependency + '/dist/dosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/dosbox-emterp.js', copy_options, (error) => {
+																												if (error) {
+																													log.error('Error occurred:', error);
+																												} else {
+																													//noinspection JSUnresolvedFunction
+																													fs.copy(nodemodules_directory + dependency + '/dist/dosbox-emterp.js.mem', install_directory + 'vfat/apps/dosbox/js/dosbox-emterp.js.mem', copy_options, (error) => {
+																														if (error) {
+																															log.error('Error occurred:', error);
+																														} else {
+																															//noinspection JSUnresolvedFunction
+																															fs.copy(nodemodules_directory + dependency + '/dist/dosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/dosbox-nosync.js', copy_options, (error) => {
+																																if (error) {
+																																	log.error('Error occurred:', error);
+																																} else {
+																																	//noinspection JSUnresolvedFunction
+																																	fs.copy(nodemodules_directory + dependency + '/dist/dosbox-nosync.js.mem', install_directory + 'vfat/apps/dosbox/js/dosbox-nosync.js.mem', copy_options, (error) => {
+																																		if (error) {
+																																			log.error('Error occurred:', error);
+																																		} else {
+																																			log.log(dependency + ' version ' + version + ' installed!');
+																																		}
+																																	});
+																																}
+																															});
+																														}
+																													});
+																												}
+																											});
+																										}
+																									});
+																								}
+																							});
 																						}
 																					});
 																				}

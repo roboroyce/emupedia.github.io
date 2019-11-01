@@ -215,7 +215,7 @@
 		"links": {
 			"wikipedia": "https://en.wikipedia.org/wiki/Arcade_Volleyball"
 		},
-		"screenshots": ["https://www.mobygames.com/images/shots/l/2564-arcade-volleyball-dos-screenshot-menu.gif", "https://www.mobygames.com/images/shots/l/2565-arcade-volleyball-dos-screenshot-game-started.gif"],
+		"screenshots": ["images/screenshots/avolley.gif"],
 		"clones": []
 	} , {
 		"id": "bdash1",
