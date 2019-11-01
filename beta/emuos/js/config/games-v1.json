@@ -189,6 +189,7 @@
 		"group": "Arcade Volleyball",
 		"name": "Arcade Volleyball (CGA)",
 		"executable": "./AV.EXE",
+		"mode": "asm",
 		"sync": false,
 		"file": "avolley.zip",
 		"size": 24236,
