@@ -316,6 +316,7 @@
 					"id": "avolley",
 					"name": "Volleyball (CGA)",
 					"executable": "./AV.EXE",
+					"mode": "asm",
 					"file": "avolley.zip",
 					"size": 24236,
 					"license": "Public Domain",
