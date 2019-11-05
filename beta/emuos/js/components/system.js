@@ -1228,8 +1228,8 @@ if (typeof console === 'undefined') {
 	// region Init
 
 	if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-		$sys.import('js/polyfills/es7-babel-polyfill-7.6.0.min.js', function() {
-			$sys.import('js/libraries/babel-standalone-7.6.4.min.js', function() {
+		$sys.import('js/polyfills/es7-babel-polyfill-7.7.0.min.js', function() {
+			$sys.import('js/libraries/babel-standalone-7.7.1.min.js', function() {
 				$sys.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
 					$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
 						window.define = hybrids.define;
