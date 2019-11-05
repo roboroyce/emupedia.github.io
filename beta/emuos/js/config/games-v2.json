@@ -43,7 +43,7 @@
 						"versions": [
 							{
 								"id": "tapper",
-								"name": "Tapper (CGA) (PC Booter)",
+								"name": "CGA PC Booter Version",
 								"file": "tapper.zip",
 								"size": 44594,
 								"executable": "./TAPPER.COM",
@@ -66,7 +66,7 @@
 				"name": "Adventure",
 				"games": [
 					{
-						"id": "loomega",
+						"id": "loom",
 						"name": "Loom",
 						"hardware": {
 							"input": [
@@ -105,7 +105,7 @@
 						"versions": [
 							{
 								"id": "loomega",
-								"name": "Loom (EGA) (Retail)",
+								"name": "Retail version",
 								"file": "loomega.zip",
 								"size": 1201980,
 								"executable": "./LOOM.EXE",
@@ -123,7 +123,7 @@
 							},
 							{
 								"id": "loomdemo",
-								"name": "Loom (EGA) (Demo)",
+								"name": "Demo version",
 								"file": "loomdemo.zip",
 								"size": 277286,
 								"executable": "./LOOMDEMO.EXE",
@@ -138,8 +138,8 @@
 						]
 					},
 					{
-						"id": "monkey1vgatalkie",
-						"name": "Monkey Island",
+						"id": "monkey1",
+						"name": "Monkey Island I",
 						"hardware": {
 							"input": [
 								"Keyboard",
@@ -174,7 +174,7 @@
 						"versions": [
 							{
 								"id": "monkey1vgatalkie",
-								"name": "Monkey Island I: The Secret of Monkey Island (CD) (Retail)",
+								"name": "CD Version",
 								"file": "monkey1vgatalkie.zip",
 								"size": 124983889,
 								"executable": "./MONKEY.EXE",
@@ -192,11 +192,10 @@
 							},
 							{
 								"id": "monkey1vga",
-								"name": "Monkey Island I: The Secret of Monkey Island (VGA) (Retail)",
+								"name": "VGA Version",
 								"file": "monkey1vga.zip",
 								"size": 3187135,
 								"executable": "./MONKEY.EXE",
-								"mode": "asm",
 								"sync": false,
 								"license": "Commercial",
 								"status": "Playable",
@@ -207,7 +206,7 @@
 							},
 							{
 								"id": "monkey1ega",
-								"name": "Monkey Island I: The Secret of Monkey Island (EGA) (Retail)",
+								"name": "EGA Version",
 								"file": "monkey1ega.zip",
 								"size": 1569844,
 								"executable": "./MONKEY.EXE",
@@ -221,7 +220,7 @@
 							},
 							{
 								"id": "monkey1demo",
-								"name": "Monkey Island I: The Secret of Monkey Island (EGA) (Demo)",
+								"name": "Demo Version",
 								"file": "monkey1demo.zip",
 								"size": 222725,
 								"executable": "./MIDEMO.EXE",
@@ -715,6 +714,7 @@
 								"file": "arkanoid.zip",
 								"size": 77823,
 								"executable": "./ARKANOID.COM",
+								"sync": true,
 								"license": "Commercial",
 								"status": "Playable",
 								"links": {
@@ -1798,15 +1798,7 @@
 								"size": 92289,
 								"executable": "./ALLEYCAT.EXE",
 								"license": "Commercial",
-								"status": "Playable",
-								"links": {
-									"wikipedia": "https://en.wikipedia.org/wiki/Alley_Cat_(video_game)",
-									"youtube": "https://www.youtube.com/watch?v=DNfs55L1rXQ"
-								},
-								"screenshots": [
-									"https://www.mobygames.com/images/shots/l/740-alley-cat-pc-booter-screenshot-title-screen-cga.gif",
-									"https://www.mobygames.com/images/shots/l/746-alley-cat-pc-booter-screenshot-outside-cga.gif"
-								]
+								"status": "Playable"
 							},
 							{
 								"id": "alleycat2",
