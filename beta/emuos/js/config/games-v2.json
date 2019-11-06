@@ -42,7 +42,8 @@
 						"name": "CGA PC Booter Version",
 						"file": "tapper.zip",
 						"size": 44594,
-						"executable": "./TAPPER.COM",
+						"executable": ".\\TAPPER.COM",
+						"cycles": 500,
 						"license": "Commercial",
 						"status": "Playable"
 					}]
@@ -89,8 +90,7 @@
 						"name": "Retail version",
 						"file": "loomega.zip",
 						"size": 1201980,
-						"executable": "./LOOM.EXE",
-						"sync": false,
+						"executable": ".\\LOOM.EXE",
 						"license": "Commercial",
 						"status": "Playable",
 						"screenshots": [
@@ -101,8 +101,7 @@
 						"name": "Demo version",
 						"file": "loomdemo.zip",
 						"size": 277286,
-						"executable": "./LOOMDEMO.EXE",
-						"sync": false,
+						"executable": ".\\LOOMDEMO.EXE",
 						"license": "Shareware",
 						"status": "Playable",
 						"screenshots": [
@@ -145,8 +144,7 @@
 						"name": "CD Version",
 						"file": "monkey1vgatalkie.zip",
 						"size": 124983889,
-						"executable": "./MONKEY.EXE",
-						"sync": false,
+						"executable": ".\\MONKEY.EXE",
 						"license": "Commercial",
 						"status": "Playable",
 						"links": {
@@ -161,8 +159,7 @@
 						"name": "VGA Version",
 						"file": "monkey1vga.zip",
 						"size": 3187135,
-						"executable": "./MONKEY.EXE",
-						"sync": false,
+						"executable": ".\\MONKEY.EXE",
 						"license": "Commercial",
 						"status": "Playable",
 						"screenshots": [
@@ -173,8 +170,7 @@
 						"name": "EGA Version",
 						"file": "monkey1ega.zip",
 						"size": 1569844,
-						"executable": "./MONKEY.EXE",
-						"sync": false,
+						"executable": ".\\MONKEY.EXE",
 						"license": "Commercial",
 						"status": "Playable",
 						"screenshots": [
@@ -185,8 +181,7 @@
 						"name": "Demo Version",
 						"file": "monkey1demo.zip",
 						"size": 222725,
-						"executable": "./MIDEMO.EXE",
-						"sync": false,
+						"executable": ".\\MIDEMO.EXE",
 						"license": "Shareware",
 						"status": "Playable",
 						"screenshots": [
@@ -239,7 +234,8 @@
 					"name": "Action Fighter",
 					"file": "afighter.zip",
 					"size": 71645,
-					"executable": "./ACT_EGA.EXE",
+					"executable": ".\\ACT_EGA.EXE",
+					"cycles": 500,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -285,7 +281,8 @@
 					"name": "Pac-Man (PC Booter)",
 					"file": "pacman.zip",
 					"size": 10013,
-					"executable": "./PAC-MAN.EXE",
+					"executable": ".\\PAC-MAN.EXE",
+					"cycles": 7000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -299,7 +296,8 @@
 					"name": "Ms. Pac-Man (PC Booter)",
 					"file": "mspacman.zip",
 					"size": 17690,
-					"executable": "./MSPACMAN.COM",
+					"executable": ".\\MSPACMAN.COM",
+					"cycles": 7000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -313,7 +311,8 @@
 					"name": "Pac PC II (Pac-Man Clone)",
 					"file": "pacpc.zip",
 					"size": 192934,
-					"executable": "./PACPC2.EXE",
+					"executable": ".\\PACPC2.EXE",
+					"cycles": 7000,
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -327,7 +326,8 @@
 					"name": "Ms. Pac PC (Ms. Pac-Man Clone)",
 					"file": "mspacpc.zip",
 					"size": 645870,
-					"executable": "./MSPAC.EXE",
+					"executable": ".\\MSPAC.EXE",
+					"cycles": 7000,
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -341,8 +341,7 @@
 					"name": "Paku Paku (Pac-Man Clone)",
 					"file": "pakupaku16.zip",
 					"size": 71507,
-					"executable": "./PAKU.EXE",
-					"sync": false,
+					"executable": ".\\PAKU.EXE",
 					"license": "Public Domain",
 					"links": {
 						"url": "https://deathshadow.com/pakuPaku",
@@ -356,8 +355,7 @@
 					"name": "CD-Man (v2.0) (Retail) (Pac-Man Clone)",
 					"file": "cd-man2.zip",
 					"size": 465385,
-					"executable": "./CDMAN2.EXE",
-					"sync": false,
+					"executable": ".\\CDMAN2.EXE",
 					"license": "Commercial",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
@@ -371,8 +369,7 @@
 					"name": "CD-Man (Beta Unfinished) (Pac-Man Clone)",
 					"file": "cd-man1.zip",
 					"size": 212277,
-					"executable": "./CD-MAN.EXE",
-					"sync": false,
+					"executable": ".\\CD-MAN.EXE",
 					"license": "Shareware",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/List_of_Pac-Man_clones",
@@ -418,7 +415,8 @@
 					"name": "Q*bert",
 					"file": "pcqbert.zip",
 					"size": 16909,
-					"executable": "./PCQBERT.EXE",
+					"executable": ".\\PCQBERT.EXE",
+					"cycles": 600,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -432,7 +430,8 @@
 					"name": "PC*bert (Q*bert Clone)",
 					"file": "pcbert.zip",
 					"size": 688139,
-					"executable": "./PCBERT.EXE",
+					"executable": ".\\PCBERT.EXE",
+					"cycles": 3000,
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -506,7 +505,7 @@
 					"name": "Qix (EGA)",
 					"file": "qix.zip",
 					"size": 196619,
-					"executable": "./QIX.EXE",
+					"executable": ".\\QIX.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -520,7 +519,8 @@
 					"name": "Styx (CGA) (PC Booter) (Qix Clone)",
 					"file": "styx.zip",
 					"size": 43286,
-					"executable": "./STYX.COM",
+					"executable": ".\\STYX.COM",
+					"cycles": 1000,
 					"license": "Commercial",
 					"status": "Bad Graphics",
 					"links": {
@@ -535,7 +535,8 @@
 					"name": "Styx Remastered (CGA) (Qix Clone)",
 					"file": "styx.zip",
 					"size": 43286,
-					"executable": "./STYX.EXE",
+					"executable": ".\\STYX.EXE",
+					"cycles": 1000,
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -550,7 +551,8 @@
 					"name": "Xonix (CGA) (Qix Clone)",
 					"file": "xonix1.zip",
 					"size": 31759,
-					"executable": "./XONIX.EXE",
+					"executable": ".\\XONIX.EXE",
+					"cycles": 1000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -564,7 +566,8 @@
 					"name": "Xonix (v2.2) (CGA) (Qix Clone)",
 					"file": "xonix22.zip",
 					"size": 31121,
-					"executable": "./XONIX.EXE",
+					"executable": ".\\XONIX.EXE",
+					"cycles": 1000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -619,7 +622,7 @@
 					"name": "Arkanoid (VGA) (Breakout Clone)",
 					"file": "arkanoid.zip",
 					"size": 77823,
-					"executable": "./ARKANOID.COM",
+					"executable": ".\\ARKANOID.COM",
 					"sync": true,
 					"license": "Commercial",
 					"status": "Playable",
@@ -635,7 +638,8 @@
 					"name": "PopCorn (CGA) (Breakout Clone)",
 					"file": "popcorn.zip",
 					"size": 52245,
-					"executable": "./POPCORN.EXE",
+					"executable": ".\\POPCORN.EXE",
+					"cycles": 7000,
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -687,7 +691,8 @@
 					"name": "Donkey Kong (CGA) (PC Booter)",
 					"file": "dkong.zip",
 					"size": 25154,
-					"executable": "./DKONG.EXE",
+					"executable": ".\\DKONG.EXE",
+					"cycles": 600,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -739,8 +744,7 @@
 					"name": "Raptor: Call of the Shadows (Retail)",
 					"file": "raptor.zip",
 					"size": 3786792,
-					"executable": "./RAP.EXE",
-					"sync": false,
+					"executable": ".\\RAP.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -756,7 +760,9 @@
 					"name": "Raptor: Call of the Shadows (Shareware)",
 					"file": "raptorsw.zip",
 					"size": 1826735,
-					"license": "Shareware"
+					"executable": ".\\RAP.EXE",
+					"license": "Shareware",
+					"status": "Playable"
 				}]
 			} , {
 				"id": "starcontrol1",
@@ -797,8 +803,7 @@
 					"name": "Star Control I (VGA) (Retail)",
 					"file": "starcontrol1.zip",
 					"size": 910582,
-					"executable": "./STARCON.EXE",
-					"sync": false,
+					"executable": ".\\STARCON.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -815,7 +820,7 @@
 					"name": "Star Control II: The Ur-Quan Masters (VGA) (Retail)",
 					"file": "starcontrol2.zip",
 					"size": 6603466,
-					"executable": "./STARCON2.COM",
+					"executable": ".\\STARCON2.COM",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Star_Control_II",
 						"youtube": "https://www.youtube.com/watch?v=NlUxFaqAmjU"
@@ -861,8 +866,7 @@
 					"name": "Tyrian 2000 (Freeware)",
 					"file": "tyrian2k30.zip",
 					"size": 5180854,
-					"executable": "./TYRIAN.EXE",
-					"sync": false,
+					"executable": ".\\TYRIAN.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -912,8 +916,7 @@
 					"name": "Arcade Volleyball (CGA)",
 					"file": "avolley.zip",
 					"size": 24236,
-					"executable": "./AV.EXE",
-					"sync": false,
+					"executable": ".\\AV.EXE",
 					"license": "Public Domain",
 					"status": "Playable",
 					"links": {
@@ -976,7 +979,8 @@
 					"name": "Risk: The World Conquest Game",
 					"file": "risk1.zip",
 					"size": 271301,
-					"executable": "./RISK.EXE",
+					"executable": ".\\RISK.EXE",
+					"sync": true,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -990,8 +994,7 @@
 					"name": "Risk: The World Conquest Game (Alternate)",
 					"file": "risk2.zip",
 					"size": 102525,
-					"executable": "./EGARISK.EXE",
-					"sync": false
+					"executable": ".\\EGARISK.EXE"
 				}]
 			}]
 		} , {
@@ -1046,8 +1049,7 @@
 					"name": "Utopia: The Creation of a Nation (Retail)",
 					"file": "utopia.zip",
 					"size": 893181,
-					"executable": "./UTOPIA.EXE",
-					"sync": false,
+					"executable": ".\\UTOPIA.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1099,8 +1101,7 @@
 					"name": "Mortal Kombat 1 (Retail)",
 					"file": "mk1.zip",
 					"size": 11007547,
-					"executable": "./MK1.EXE",
-					"sync": false,
+					"executable": ".\\MK1.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1116,8 +1117,7 @@
 					"name": "Mortal Kombat 2 (Retail)",
 					"file": "mk2.zip",
 					"size": 9797146,
-					"executable": "./MK2.EXE",
-					"sync": false,
+					"executable": ".\\MK2.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1131,8 +1131,7 @@
 					"name": "Mortal Kombat 3 (Retail)",
 					"file": "mk3.zip",
 					"size": 19720043,
-					"executable": "./MK3CRK.EXE",
-					"sync": false,
+					"executable": ".\\MK3CRK.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1179,8 +1178,7 @@
 					"name": "One Must Fall: 2097 (Freeware)",
 					"file": "omf209721.zip",
 					"size": 6417387,
-					"executable": "./FILE0001.EXE",
-					"sync": false,
+					"executable": ".\\FILE0001.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -1234,8 +1232,7 @@
 					"name": "Doom I (Shareware)",
 					"file": "doom.zip",
 					"size": 2280752,
-					"executable": "./DOOM.EXE",
-					"sync": false,
+					"executable": ".\\DOOM.EXE",
 					"license": "Shareware",
 					"status": "Slow",
 					"links": {
@@ -1252,8 +1249,7 @@
 					"name": "Doom I: The Ultimate Doom (Retail)",
 					"file": "doomu.zip",
 					"size": 5526060,
-					"executable": "./DOOM.EXE",
-					"sync": false,
+					"executable": ".\\DOOM.EXE",
 					"license": "Commercial",
 					"status": "Slow",
 					"screenshots": [
@@ -1304,7 +1300,7 @@
 					"name": "Quake 1 (Retail)",
 					"file": "quake108.zip",
 					"size": 52260092,
-					"executable": "./QUAKE.EXE -nocdaudio -stdvid",
+					"executable": ".\\QUAKE.EXE -nocdaudio -stdvid",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -1317,7 +1313,7 @@
 				} , {
 					"id": "quake1mp1",
 					"name": "Mission Pack 1: Scourge of Armagon (Expansion)",
-					"executable": "./QUAKE.EXE -nocdaudio -stdvid -game hipnotic",
+					"executable": ".\\QUAKE.EXE -nocdaudio -stdvid -game hipnotic",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -1329,7 +1325,7 @@
 				} , {
 					"id": "quake1mp2",
 					"name": "Mission Pack 2: Dissolution of Eternity (Expansion)",
-					"executable": "./QUAKE.EXE -nocdaudio -stdvid -game rogue",
+					"executable": ".\\QUAKE.EXE -nocdaudio -stdvid -game rogue",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -1378,8 +1374,7 @@
 					"name": "Wolfenstein 3D (VGA) (Retail)",
 					"file": "wolf3d.zip",
 					"size": 1075482,
-					"executable": "./WOLF3D.EXE",
-					"sync": false,
+					"executable": ".\\WOLF3D.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1396,8 +1391,7 @@
 					"name": "Wolfenstein 3D: Spear of Destiny (VGA) (Retail)",
 					"file": "wolf3ds.zip",
 					"size": 1542721,
-					"executable": "./SPEAR.EXE",
-					"sync": false,
+					"executable": ".\\SPEAR.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"screenshots": [
@@ -1445,8 +1439,7 @@
 					"name": "Abuse (v2.00) (Retail)",
 					"file": "abuse200r.zip",
 					"size": 2844598,
-					"executable": "./ABUSE.EXE",
-					"sync": false,
+					"executable": ".\\ABUSE.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -1461,14 +1454,14 @@
 					"name": "Abuse (v2.00) (Shareware)",
 					"file": "abuse200sw.zip",
 					"size": 2426353,
-					"executable": "./ABUSE.EXE",
+					"executable": ".\\ABUSE.EXE",
 					"license": "Shareware"
 				} , {
 					"id": "abuse105sw",
 					"name": "Abuse (v1.05) (Shareware)",
 					"file": "abuse105sw.zip",
 					"size": 2241282,
-					"executable": "./ABUSE.EXE",
+					"executable": ".\\ABUSE.EXE",
 					"license": "Shareware",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"
@@ -1478,7 +1471,7 @@
 					"name": "Abuse (v1.01) (Retail)",
 					"file": "abuse101r.zip",
 					"size": 2645572,
-					"executable": "./ABUSE.EXE",
+					"executable": ".\\ABUSE.EXE",
 					"license": "Commercial",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"
@@ -1488,7 +1481,7 @@
 					"name": "Abuse (v1.01) (Shareware)",
 					"file": "abuse101sw.zip",
 					"size": 2237825,
-					"executable": "./ABUSE.EXE",
+					"executable": ".\\ABUSE.EXE",
 					"license": "Shareware",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"
@@ -1498,7 +1491,7 @@
 					"name": "Abuse (v0.33) (Beta)",
 					"file": "abuse033b.zip",
 					"size": 2217695,
-					"executable": "./ABUSE.EXE",
+					"executable": ".\\ABUSE.EXE",
 					"license": "Shareware",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/650145-abuse-dos-screenshot-main-menu-v0-33-beta.png", "https://www.mobygames.com/images/shots/l/70211-abuse-dos-screenshot-like-in-the-movies-these-alien-rip-offs.gif"
@@ -1548,17 +1541,21 @@
 					"name": "Alley Cat (CGA) (PC Booter)",
 					"file": "alleycat.zip",
 					"size": 92289,
-					"executable": "./ALLEYCAT.EXE",
+					"executable": ".\\ALLEYCAT.EXE",
 					"license": "Commercial",
 					"status": "Playable"
 				} , {
 					"id": "alleycat2",
 					"name": "Alley Cat (Alternate) (CGA) (PC Booter)",
-					"executable": "./CAT.EXE"
+					"file": "alleycat.zip",
+					"size": 92289,
+					"executable": ".\\CAT.EXE"
 				} , {
 					"id": "tandycat",
 					"name": "Alley Cat (CGA) (PCjr) (PC Booter)",
-					"executable": "./TANDYCAT.EXE",
+					"file": "alleycat.zip",
+					"size": 92289,
+					"executable": ".\\TANDYCAT.EXE",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/463593-alley-cat-pc-booter-screenshot-title-screen-pcjr.png", "https://www.mobygames.com/images/shots/l/463594-alley-cat-pc-booter-screenshot-the-cat-is-outside-pcjr.png"
 					]
@@ -1600,8 +1597,7 @@
 					"name": "Episode 1: Marooned on Mars",
 					"file": "keen1sw.zip",
 					"size": 154033,
-					"executable": "./KEEN1.EXE",
-					"sync": false,
+					"executable": ".\\KEEN1.EXE",
 					"license": "Shareware",
 					"status": "Playable",
 					"links": {
@@ -1616,7 +1612,7 @@
 					"name": "Episode 2: The Earth Explodes",
 					"file": "keen2.zip",
 					"size": 122004,
-					"executable": "./KEEN2.EXE",
+					"executable": ".\\KEEN2.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1630,7 +1626,7 @@
 					"name": "Episode 3: Keen Must Die!",
 					"file": "keen3.zip",
 					"size": 134276,
-					"executable": "./KEEN3.EXE",
+					"executable": ".\\KEEN3.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1644,7 +1640,7 @@
 					"name": "Episode 3.5: Keen Dreams (The Lost Episode)",
 					"file": "keen35.zip",
 					"size": 134276,
-					"executable": "./KDREAMS.EXE",
+					"executable": ".\\KDREAMS.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1658,7 +1654,7 @@
 					"name": "Episode 4: Secret of the Oracle",
 					"file": "keen4sw.zip",
 					"size": 588258,
-					"executable": "./KEEN4E.EXE",
+					"executable": ".\\KEEN4E.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1672,7 +1668,7 @@
 					"name": "Episode 5: The Armaggeddon Machine",
 					"file": "keen5.zip",
 					"size": 628755,
-					"executable": "./KEEN5E.EXE",
+					"executable": ".\\KEEN5E.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1686,7 +1682,7 @@
 					"name": "Episode 6: Aliens Ate My Baby Sitter!",
 					"file": "keen6.zip",
 					"size": 522320,
-					"executable": "./KEEN6C.EXE",
+					"executable": ".\\KEEN6C.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1734,8 +1730,7 @@
 					"name": "Dangerous Dave (EGA)",
 					"file": "dave.zip",
 					"size": 95851,
-					"executable": "./DAVE.EXE",
-					"sync": false,
+					"executable": ".\\DAVE.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1751,6 +1746,7 @@
 					"name": "Dangerous Dave in the Haunted Mansion (EGA)",
 					"file": "ddave1.zip",
 					"size": 198115,
+					"executable": ".\\DAVE.EXE",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
 						"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
@@ -1763,6 +1759,7 @@
 					"name": "Dangerous Dave in the Haunted Mansion (Alternate) (EGA)",
 					"file": "ddave2.zip",
 					"size": 215019,
+					"executable": ".\\DAVE.EXE",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Dangerous_Dave_in_the_Haunted_Mansion",
 						"youtube": "https://www.youtube.com/watch?v=ezYVeE1KJfk"
@@ -1808,8 +1805,7 @@
 					"name": "Disney's Aladdin",
 					"file": "aladdin.zip",
 					"size": 1810424,
-					"executable": "./ALADDCRK.EXE",
-					"sync": false,
+					"executable": ".\\ALADDCRK.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1824,8 +1820,7 @@
 					"name": "Disney's Lion King",
 					"file": "lionking.zip",
 					"size": 3234052,
-					"executable": "./LIONKING.EXE",
-					"sync": false,
+					"executable": ".\\LIONKING.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"screenshots": [
@@ -1836,8 +1831,7 @@
 					"name": "Disney's The Jungle Book",
 					"file": "jungle.zip",
 					"size": 2591699,
-					"executable": "./JUNGLE.EXE",
-					"sync": false,
+					"executable": ".\\JUNGLE.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"screenshots": [
@@ -1882,8 +1876,7 @@
 					"name": "Jazz Jackrabbit (VGA) (CD) (Retail)",
 					"file": "jazzcd.zip",
 					"size": 7805842,
-					"executable": "./JAZZ.EXE",
-					"sync": false,
+					"executable": ".\\JAZZ.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -1899,6 +1892,7 @@
 					"name": "Jazz Jackrabbit (VGA) (Shareware)",
 					"file": "jazzsw.zip",
 					"size": 1349883,
+					"executable": ".\\JAZZ.EXE",
 					"license": "Shareware",
 					"status": "Playable",
 					"screenshots": [
@@ -1909,6 +1903,7 @@
 					"name": "Jazz Jackrabbit: Holiday Hare 1 (VGA) (Demo)",
 					"file": "jazzhol1.zip",
 					"size": 1360653,
+					"executable": ".\\JAZZ.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"screenshots": [
@@ -1919,6 +1914,7 @@
 					"name": "Jazz Jackrabbit: Holiday Hare 2 (VGA) (Demo)",
 					"file": "jazzhol2.zip",
 					"size": 1364205,
+					"executable": ".\\JAZZ.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"screenshots": [
@@ -1965,8 +1961,7 @@
 					"name": "Jetpack (VGA) (Freeware)",
 					"file": "jetpack15.zip",
 					"size": 362680,
-					"executable": "./JETPACK.EXE",
-					"sync": false,
+					"executable": ".\\JETPACK.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -2015,7 +2010,7 @@
 					"name": "Mario & Luigi (Freeware) (Super Mario Bros. Clone)",
 					"file": "mariolui.zip",
 					"size": 118296,
-					"executable": "./MARIO.EXE",
+					"executable": ".\\MARIO.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -2028,7 +2023,9 @@
 				} , {
 					"id": "mariob",
 					"name": "Mario & Luigi (Freeware) (Beta) (Mario Bros. Clone)",
-					"executable": "./MARIOB.EXE",
+					"file": "mariolui.zip",
+					"size": 118296,
+					"executable": ".\\MARIOB.EXE",
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/723752-mario-luigi-dos-screenshot-beginning-of-level-1.png"
 					]
@@ -2037,7 +2034,7 @@
 					"name": "Super Angelo (Shareware) (Mario Bros. Clone)",
 					"file": "angelo.zip",
 					"size": 232575,
-					"executable": "./ANGELO.EXE",
+					"executable": ".\\ANGELO.EXE",
 					"license": "Shareware",
 					"links": {
 						"url": "http://www.wieringsoftware.nl/mario/games.html"
@@ -2050,7 +2047,7 @@
 					"name": "Sint Nicolaas (Freeware) (Clone)",
 					"file": "sint.zip",
 					"size": 166320,
-					"executable": "./SINT.EXE",
+					"executable": ".\\SINT.EXE",
 					"license": "Freeware",
 					"links": {
 						"url": "https://wieringsoftware.com/games/sint-nicolaas/",
@@ -2064,7 +2061,7 @@
 					"name": "Charlie the Duck (Shareware) (Mario Bros. Clone)",
 					"file": "charlie1.zip",
 					"size": 364564,
-					"executable": "./CHARLIE.EXE",
+					"executable": ".\\CHARLIE.EXE",
 					"license": "Shareware",
 					"links": {
 						"url": "https://wieringsoftware.com/games/charlie-the-duck/",
@@ -2078,7 +2075,7 @@
 					"name": "Charlie II (Shareware) (Clone)",
 					"file": "charlie2.zip",
 					"size": 670392,
-					"executable": "./CH2DOS.EXE",
+					"executable": ".\\CH2DOS.EXE",
 					"license": "Shareware",
 					"status": "Ingame",
 					"links": {
@@ -2125,7 +2122,7 @@
 					"name": "Prince of Persia 1 (VGA) (Retail)",
 					"file": "pop114.zip",
 					"size": 1988713,
-					"executable": "./PRINCE.EXE",
+					"executable": ".\\PRINCE.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2139,8 +2136,7 @@
 					"name": "Prince of Persia 2: The Shadow and the Flame (VGA) (Retail)",
 					"file": "pop211.zip",
 					"size": 5129227,
-					"executable": "./PRINCE.EXE",
-					"sync": false,
+					"executable": ".\\PRINCE.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2197,7 +2193,8 @@
 					"name": "Boulder Dash I: Rockford (CGA) (PC Booter)",
 					"file": "bdash1.zip",
 					"size": 11702,
-					"executable": "./BDASH.EXE",
+					"executable": ".\\BDASH.EXE",
+					"cycles": 200,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2211,7 +2208,8 @@
 					"name": "Boulder Dash II: Rockford's Riot (CGA) (PC Booter)",
 					"file": "bdash2.zip",
 					"size": 15872,
-					"executable": "./BDASH2.EXE",
+					"executable": ".\\BDASH2.EXE",
+					"cycles": 200,
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/17496-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-title.gif", "https://www.mobygames.com/images/shots/l/17498-boulder-dash-ii-rockford-s-revenge-pc-booter-screenshot-level.gif"
 					]
@@ -2220,19 +2218,24 @@
 					"name": "Super Boulder Dash (CGA)",
 					"file": "sbdash.zip",
 					"size": 30636,
-					"executable": "./SUPRBOLD.COM"
+					"executable": ".\\SUPRBOLD.COM",
+					"cycles": 200
 				} , {
 					"id": "sbdashb",
 					"name": "Super Boulder Dash (CGA) (PC Booter)",
 					"file": "sbdashb.zip",
 					"size": 221399,
-					"executable": ""
+					"executable": "mem",
+					"sync": true,
+					"cycles": 200,
+					"args": ["-c", "machine=tandy", "-c", "tandy=on", "-c", "joysticktype=none", "-c", "c:", "-c", "boot BOULDER.IMG"]
 				} , {
 					"id": "bdashck",
 					"name": "Boulder Dash IV: Construction Kit (CGA)",
 					"file": "bdashck.zip",
 					"size": 37289,
-					"executable": "./BDCK.EXE",
+					"executable": ".\\BDCK.EXE",
+					"cycles": 200,
 					"screenshots": [
 						"https://www.mobygames.com/images/shots/l/293324-boulder-dash-construction-kit-dos-screenshot-title-screen.png", "https://www.mobygames.com/images/shots/l/293326-boulder-dash-construction-kit-dos-screenshot-placing-objects.png"
 					]
@@ -2241,8 +2244,7 @@
 					"name": "Rockford: The Arcade Game (EGA)",
 					"file": "rockford.zip",
 					"size": 170613,
-					"executable": "./ROCKFORD.EXE",
-					"sync": false,
+					"executable": ".\\ROCKFORD.EXE",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Rockford_(video_game)"
 					},
@@ -2254,8 +2256,7 @@
 					"name": "Supaplex (VGA) (Boulder Dash Clone)",
 					"file": "supaplex.zip",
 					"size": 276476,
-					"executable": "./SUPAPLEX.EXE",
-					"sync": false,
+					"executable": ".\\SUPAPLEX.EXE",
 					"license": "Freeware",
 					"links": {
 						"url": "https://www.elmerproductions.com/sp/index.html",
@@ -2270,8 +2271,7 @@
 					"name": "The Adventures of Robbo (VGA) (Boulder Dash Clone)",
 					"file": "robbo.zip",
 					"size": 2004224,
-					"executable": "./ROBBO.EXE",
-					"sync": false,
+					"executable": ".\\ROBBO.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -2318,7 +2318,8 @@
 					"name": "Digger (CGA) (PC Booter)",
 					"file": "digger.zip",
 					"size": 187213,
-					"executable": "./DIGGER4.COM",
+					"executable": ".\\DIGGER4.COM",
+					"cycles": 1000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2331,19 +2332,27 @@
 				} , {
 					"id": "diggervga",
 					"name": "Digger (VGA) (Retail)",
-					"executable": "./DIGGER3.COM",
+					"file": "digger.zip",
+					"size": 187213,
+					"executable": ".\\DIGGER3.COM",
+					"cycles": 1000,
 					"license": "Commercial",
 					"status": "Playable"
 				} , {
 					"id": "diggerdemo",
 					"name": "Digger (Demo) (VGA)",
-					"executable": "./DIGGER.EXE",
+					"file": "digger.zip",
+					"size": 187213,
+					"executable": ".\\DIGGER.EXE",
+					"cycles": 1000,
 					"license": "Shareware",
 					"status": "Playable"
 				} , {
 					"id": "diggerre",
 					"name": "Digger Remastered (VGA)",
-					"executable": "./DIGGERRE.EXE",
+					"file": "digger.zip",
+					"size": 187213,
+					"executable": ".\\DIGGERRE.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -2410,7 +2419,8 @@
 					"name": "Lemmings 1 (Retail)",
 					"file": "lemmings.zip",
 					"size": 666161,
-					"executable": "./LEMVGA.COM",
+					"executable": ".\\LEMVGA.COM -v -p",
+					"cycles": 7000,
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2425,7 +2435,8 @@
 					"name": "Lemmings 1 (Demo)",
 					"file": "lemmdemo.zip",
 					"size": 234203,
-					"executable": "./VGALEMMI.EXE",
+					"executable": ".\\VGALEMMI.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable"
 				} , {
@@ -2433,7 +2444,8 @@
 					"name": "Lemmings: Oh No! More Lemmings",
 					"file": "lemmohno.zip",
 					"size": 341857,
-					"executable": "./VGALEMM.EXE",
+					"executable": ".\\VGALEMM.EXE -v -p",
+					"cycles": 7000,
 					"license": "Commercial",
 					"status": "Playable",
 					"screenshots": [
@@ -2444,7 +2456,8 @@
 					"name": "Lemmings Covox (Demo)",
 					"file": "lemmcovx.zip",
 					"size": 250494,
-					"executable": "./VGAL.EXE",
+					"executable": ".\\VGAL.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable"
 				} , {
@@ -2452,7 +2465,8 @@
 					"name": "Lemmings Xmas 1 (Demo)",
 					"file": "lemxmas1.zip",
 					"size": 213154,
-					"executable": "./VGAL.EXE",
+					"executable": ".\\VGAL.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable",
 					"screenshots": [
@@ -2463,7 +2477,8 @@
 					"name": "Lemmings Xmas 2 (Demo)",
 					"file": "lemxmas2.zip",
 					"size": 155037,
-					"executable": "./VGAL.EXE",
+					"executable": ".\\VGAL.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable",
 					"screenshots": [
@@ -2474,7 +2489,8 @@
 					"name": "Lemmings Holiday 1 (Demo)",
 					"file": "lemmhol1.zip",
 					"size": 162756,
-					"executable": "./VGALEMMI.EXE",
+					"executable": ".\\VGALEMMI.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable",
 					"screenshots": [
@@ -2485,7 +2501,8 @@
 					"name": "Lemmings Holiday 2 (Demo)",
 					"file": "lemmhol2.zip",
 					"size": 178138,
-					"executable": "./VGALEMMI.EXE",
+					"executable": ".\\VGALEMMI.EXE -v -p",
+					"cycles": 7000,
 					"license": "Shareware",
 					"status": "Playable",
 					"screenshots": [
@@ -2496,8 +2513,7 @@
 					"name": "Lemmings 2: The Tribes (Demo)",
 					"file": "lem2demo.zip",
 					"size": 474714,
-					"executable": "./L2.EXE",
-					"sync": false,
+					"executable": ".\\L2.EXE",
 					"license": "Shareware",
 					"status": "Playable",
 					"links": {
@@ -2511,8 +2527,7 @@
 					"name": "Lemmings 3: The Lemmings Chronicles",
 					"file": "lemm3chr.zip",
 					"size": 4774747,
-					"executable": "./L3F.EXE",
-					"sync": false,
+					"executable": ".\\L3F.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2558,8 +2573,7 @@
 					"name": "Squarez Deluxe (Freeware)",
 					"file": "squarez15.zip",
 					"size": 120404,
-					"executable": "./SQUAREZ.EXE",
-					"sync": false,
+					"executable": ".\\SQUAREZ.EXE",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
@@ -2610,8 +2624,7 @@
 					"name": "The Lost Vikings (Retail)",
 					"file": "vikings.zip",
 					"size": 1257182,
-					"executable": "./VIKINGS.EXE",
-					"sync": false,
+					"executable": ".\\VIKINGS.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2626,7 +2639,7 @@
 					"name": "The Lost Vikings (Freeware)",
 					"file": "vikingsbc.zip",
 					"size": 1370857,
-					"executable": "./VIKINGS.EXE",
+					"executable": ".\\VIKINGS.EXE",
 					"license": "Freeware"
 				}]
 			}]
@@ -2689,7 +2702,7 @@
 					"name": "Grand Prix Circuit",
 					"file": "grandpc.zip",
 					"size": 373557,
-					"executable": "./GPEGA.EXE",
+					"executable": ".\\GPEGA.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2734,8 +2747,7 @@
 					"name": "Lotus III: The Ultimate Challenge",
 					"file": "lotus3.zip",
 					"size": 1070010,
-					"executable": "./LOTUS.EXE",
-					"sync": false,
+					"executable": ".\\LOTUS.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -2782,7 +2794,7 @@
 					"name": "Super Worms (Shareware) (Clone)",
 					"file": "sw.zip",
 					"size": 80480,
-					"executable": "./SW.EXE",
+					"executable": ".\\SW.EXE",
 					"license": "Shareware",
 					"status": "Ingame",
 					"links": {
@@ -2865,7 +2877,7 @@
 					"name": "Stunts (Retail)",
 					"file": "stunts.zip",
 					"size": 1085390,
-					"executable": "./ST.COM",
+					"executable": ".\\ST.COM",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -2918,8 +2930,7 @@
 					"name": "Command & Conquer I: Tiberian Dawn (English) (Rip)",
 					"file": "cncrip.zip",
 					"size": 18993887,
-					"executable": "./CNC_EN.COM",
-					"sync": false,
+					"executable": ".\\CNC_EN.COM",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -2933,20 +2944,21 @@
 			} , {
 				"id": "cncfrrip",
 				"name": "Command & Conquer I: Tiberian Dawn (French) (Rip)",
-				"executable": "./CNC_FR.COM",
-				"sync": false
+				"file": "cncrip.zip",
+				"size": 18993887,
+				"executable": ".\\CNC_FR.COM"
 			} , {
 				"id": "cncderip",
 				"name": "Command & Conquer I: Tiberian Dawn (German) (Rip)",
-				"executable": "./CNC_DE.COM",
-				"sync": false
+				"file": "cncrip.zip",
+				"size": 18993887,
+				"executable": ".\\CNC_DE.COM"
 			} , {
 				"id": "cncredalertrip",
 				"name": "Command & Conquer II: Red Alert (Rip)",
 				"file": "cncredalertrip.zip",
 				"size": 51498081,
-				"executable": "./RA.EXE",
-				"sync": false,
+				"executable": ".\\RA.EXE",
 				"links": {
 					"url": "https://www.ea.com/games/command-and-conquer/command-and-conquer-red-alert-2",
 					"wikipedia": "https://en.wikipedia.org/wiki/Command_%26_Conquer:_Red_Alert",
@@ -2993,8 +3005,7 @@
 					"name": "Dune II: The Building of a Dynasty (VGA) (Retail)",
 					"file": "dune2.zip",
 					"size": 4384799,
-					"executable": "./DUNE2.EXE",
-					"sync": false,
+					"executable": ".\\DUNE2.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -3041,7 +3052,7 @@
 					"name": "Warcraft I: Orcs and Humans (Demo)",
 					"file": "warcraft.zip",
 					"size": 1416812,
-					"executable": "./WAR.EXE",
+					"executable": ".\\WAR.EXE",
 					"license": "Shareware",
 					"status": "Playable",
 					"links": {
@@ -3056,7 +3067,7 @@
 					"name": "Warcraft II: Tides of Darkness",
 					"file": "war2.zip",
 					"size": 82019801,
-					"executable": "./WAR2.EXE",
+					"executable": ".\\WAR2.EXE",
 					"status": "Slow",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Tides_of_Darkness"
@@ -3065,10 +3076,11 @@
 						"https://www.mobygames.com/images/shots/l/11374-warcraft-ii-tides-of-darkness-dos-screenshot-title-screen.gif", "https://www.mobygames.com/images/shots/l/64523-warcraft-ii-tides-of-darkness-dos-screenshot-peasants-are-the.gif"
 					]
 				} , {
+					"id": "war2xrip",
 					"name": "Warcraft II: Beyond the Dark Portal (Rip) (Expansion)",
 					"file": "war2xrip.zip",
 					"size": 18569304,
-					"executable": "./WAR2X/WAR2.EXE",
+					"executable": ".\\WAR2X\\WAR2.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -3082,7 +3094,7 @@
 					"name": "Warcraft II: Beyond the Dark Portal",
 					"file": "war2x.zip",
 					"size": 122526490,
-					"executable": "./WAR2.EXE",
+					"executable": ".\\WAR2.EXE",
 					"status": "Slow",
 					"links": {
 						"wikipedia": "https://en.wikipedia.org/wiki/Warcraft_II:_Beyond_the_Dark_Portal"
@@ -3129,8 +3141,10 @@
 				"versions": [{
 					"id": "diablo1sw",
 					"name": "Diablo I",
+					"files": ["win95.zip", "diablo1sw.zip"],
 					"size": 51095535,
 					"executable": "mem",
+					"args": ["-c", "imgmount c a:\\WIN95.IMG -size 512,63,16,101", "-c", "imgmount d b:\\DIABLO.IMG -size 512,63,16,132", "-c", "boot -l c"],
 					"license": "Shareware",
 					"status": "Nothing",
 					"links": {
@@ -3178,7 +3192,7 @@
 					"name": "The Elder Scrolls I: Arena (Retail)",
 					"file": "arena.zip",
 					"size": 9468383,
-					"executable": "./A.EXE",
+					"executable": ".\\A.EXE",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -3241,8 +3255,7 @@
 					"name": "Heroes of Might and Magic I: A Strategic Quest (Rip)",
 					"file": "homm1.zip",
 					"size": 9944558,
-					"executable": "./HEROES.EXE",
-					"sync": false,
+					"executable": ".\\HEROES.EXE",
 					"license": "Commercial",
 					"status": "Playable",
 					"links": {
@@ -3257,8 +3270,8 @@
 					"name": "Heroes of Might and Magic II: The Succession Wars (CD) (Retail)",
 					"file": "homm2.zip",
 					"size": 203522890,
-					"executable": "./HEROES2.EXE",
-					"mode": "asm",
+					"executable": ".\\HEROES2.EXE",
+					"args": ["-c", "mount d c:\\ -t cdrom"],
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -3274,8 +3287,8 @@
 					"name": "Heroes of Might and Magic II: The Price of Loyalty (CD) (Expansion)",
 					"file": "homm2x.zip",
 					"size": 199548791,
-					"executable": "./HEROES2.EXE",
-					"mode": "asm",
+					"executable": ".\\HEROES2.EXE",
+					"args": ["-c", "mount d c:\\ -t cdrom"],
 					"license": "Commercial",
 					"status": "Nothing",
 					"links": {
@@ -3291,8 +3304,7 @@
 					"name": "Heroes of Might and Magic II: The Price of Loyalty (Rip) (Expansion)",
 					"file": "homm2xrip.zip",
 					"size": 44235314,
-					"executable": "./HEROES2.EXE",
-					"mode": "asm",
+					"executable": ".\\HEROES2.EXE",
 					"license": "Commercial",
 					"status": "Slow",
 					"links": {
@@ -3308,8 +3320,8 @@
 					"name": "Heroes of Might and Magic II Gold (CD) (Retail)",
 					"file": "homm2gold.zip",
 					"size": 316287153,
-					"executable": "./HEROES2.EXE",
-					"sync": false,
+					"executable": ".\\HEROES2.EXE",
+					"args": ["-c", "imgmount d c:\\ISO\\HOMM2.CUE -t iso -fs iso"],
 					"license": "Commercial",
 					"status": "Nothing",
 					"links": {
@@ -3356,8 +3368,9 @@
 					"name": "X-COM: UFO Defense (VGA) (Retail)",
 					"file": "xcom112.zip",
 					"size": 3274320,
-					"executable": "./UFO.BAT",
-					"mode": "asm",
+					"executable": ".\\UFO.BAT",
+					"cycles": 15000,
+					"sync": true,
 					"license": "Commercial",
 					"status": "Crashes",
 					"links": {
@@ -3373,7 +3386,8 @@
 					"name": "X-COM: UFO Defense (Demo)",
 					"file": "xcom1demo.zip",
 					"size": 1097024,
-					"executable": "./XCOM.BAT",
+					"executable": ".\\XCOM.BAT",
+					"cycles": 15000,
 					"license": "Shareware",
 					"status": "Playable"
 				} , {
@@ -3381,8 +3395,8 @@
 					"name": "X-COM: Terror from the Deep (VGA) (Retail)",
 					"file": "xcom2.zip",
 					"size": 4586858,
-					"executable": "./TERROR.COM",
-					"mode": "asm",
+					"executable": ".\\TERROR.COM",
+					"cycles": 15000,
 					"license": "Commercial",
 					"status": "Crashes",
 					"links": {
@@ -3434,6 +3448,8 @@
 					"file": "win95.zip",
 					"size": 16960727,
 					"executable": "boot WIN95.IMG",
+					"sync": true,
+					"args": ["-c", "imgmount a c:\\WIN95.IMG -size 512,63,16,101"],
 					"license": "Commercial",
 					"status": "Working",
 					"links": {
@@ -3474,7 +3490,7 @@
 						"name": "Catalog",
 						"file": "catalog.zip",
 						"size": 4168729,
-						"executable": "./CATALOG/CATALOG.EXE",
+						"executable": ".\\CATALOG\\CATALOG.EXE",
 						"status": "Nothing"
 					}]
 			} , {
@@ -3512,7 +3528,7 @@
 					"name": "QBasic",
 					"file": "qbasic.zip",
 					"size": 211243,
-					"executable": "./QBASIC.EXE",
+					"executable": ".\\QBASIC.EXE",
 					"license": "Commercial",
 					"status": "Working",
 					"links": {
@@ -3535,7 +3551,7 @@
 				} , {
 					"id": "gorilla",
 					"name": "QBasic: Gorillas",
-					"executable": "./",
+					"executable": ".\\",
 					"license": "Freeware",
 					"status": "Playable",
 					"links": {
