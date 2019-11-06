@@ -31,9 +31,9 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ##### 🖥 Simulated desktop environment
 
-| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" /></br>IE / Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" /></br>Opera |
-| :---:          | :---: | :---: | :---:  | :---: |
-| IE9+, Edge 20+ | 4+    | 26+   | 5+     | 12+   |
+| <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="IE" /></br>IE | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /></br>Opera |
+| :---:   | :---:    | :---: | :---: | :---:  | :---: |
+| IE11+   | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
 ## 📦 Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
 <details><summary>Click to reveal</summary>
