@@ -320,6 +320,13 @@ if (!String.prototype.padStart) {
 
 // region Array
 
+if (typeof Array.isArray === 'undefined') {
+	// noinspection JSValidateTypes
+	Array.isArray = function(arr) {
+		return Object.prototype.toString.call(arr) === '[object Array]';
+	}
+}
+
 // IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
