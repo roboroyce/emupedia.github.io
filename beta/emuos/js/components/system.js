@@ -659,6 +659,10 @@
 
 	// region API
 
+	$sys.api.banner = function() {
+		console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
+	}();
+
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	$sys.api.dumpsystem = function() {
 		// noinspection DuplicatedCode
