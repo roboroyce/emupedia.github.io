@@ -6,6 +6,7 @@
 		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
 	};
 
+	// noinspection ES6ConvertVarToLetConst
 	var $sys = {
 		api: {
 			noop: function() {}
@@ -40,10 +41,15 @@
 
 	// region Platform
 
+	// noinspection ES6ConvertVarToLetConst
 	var platform										= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
+	// noinspection ES6ConvertVarToLetConst
 	var browser											= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
+	// noinspection ES6ConvertVarToLetConst
 	var version											= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
+	// noinspection ES6ConvertVarToLetConst
 	var vendor											= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
+	// noinspection ES6ConvertVarToLetConst
 	var oscpu											= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
 	$sys.platform.is64									= browser.indexOf('WOW64') !== -1 || browser.indexOf('Win64') !== -1 || browser.indexOf('amd64') !== -1 || browser.indexOf('x86_64') !== -1;
@@ -54,6 +60,7 @@
 	$sys.platform.isLinux								= version.indexOf('Linux') !== -1;
 	$sys.platform.name									= $sys.platform.isWindows ? 'Windows' : ($sys.platform.isLinux ? 'Linux' : ($sys.platform.isUNIX ? 'UNIX' : ($sys.platform.isMacOS ? 'Mac OS' : undefined)));
 	$sys.platform.version								= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Windows NT')) !== -1) {
@@ -137,6 +144,7 @@
 	$sys.browser.name									= $sys.browser.isEdge ? 'Microsoft Edge' : ($sys.browser.isIE ? 'Microsoft Internet Explorer' : ($sys.browser.isNetscape ? 'Netscape Navigator' : ($sys.browser.isKMeleon ? 'K-Meleon' : ($sys.browser.isPaleMoon ? 'PaleMoon' : ($sys.browser.isFirefox ? 'Mozilla Firefox' : ($sys.browser.isOpera ? 'Opera' : ($sys.browser.isElectron ? 'Electron' : ($sys.browser.isVivaldi ? 'Vivaldi' : ($sys.browser.isChromium ? 'Chromium' : ($sys.browser.isChrome ? 'Google Chrome' : ($sys.browser.isSafari ? 'Apple Safari' : undefined)))))))))));
 	// noinspection DuplicatedCode
 	$sys.browser.version								= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Opera')) !== -1) {
@@ -229,12 +237,19 @@
 
 	// region Features
 
+	// noinspection ES6ConvertVarToLetConst
 	var audio											= document.createElement('audio');
+	// noinspection ES6ConvertVarToLetConst
 	var canvas2D										= document.createElement('canvas');
+	// noinspection ES6ConvertVarToLetConst
 	var context2D										= typeof canvas2D !== 'undefined' ? (typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false) : false;
+	// noinspection ES6ConvertVarToLetConst
 	var canvasWEBGL										= null;
+	// noinspection ES6ConvertVarToLetConst
 	var contextWEBGL									= false;
+	// noinspection ES6ConvertVarToLetConst
 	var canvasWEBGL2									= null;
+	// noinspection ES6ConvertVarToLetConst
 	var contextWEBGL2									= false;
 
 	if (context2D) {
@@ -256,7 +271,9 @@
 	$sys.feature.SYSTEM_FEATURE_SERVICE_WORKERS			= 'serviceWorker' in navigator;
 	$sys.feature.SYSTEM_FEATURE_URL_PARSER				= (function() {
 		try {
+			// noinspection ES6ConvertVarToLetConst
 			var root = location.protocol + '//' + location.host + '/';
+			// noinspection ES6ConvertVarToLetConst
 			var url = new URL(root);
 
 			return url.href === root;
@@ -267,6 +284,7 @@
 	$sys.feature.SYSTEM_FEATURE_URL_BLOB				= $sys.feature.SYSTEM_FEATURE_URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
 	$sys.feature.SYSTEM_FEATURE_DATA_URL				= (function() {
 		function testlimit() {
+			// noinspection ES6ConvertVarToLetConst
 			var datauribig = new Image();
 
 			datauribig.onerror = function() {
@@ -277,6 +295,7 @@
 				$sys.feature.SYSTEM_FEATURE_DATA_URL = datauribig.width === 1 && datauribig.height === 1;
 			};
 
+			// noinspection ES6ConvertVarToLetConst
 			var base64str = 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 			while (base64str.length < 63000) {
@@ -286,6 +305,7 @@
 			datauribig.src = 'data:image/gif;base64,' + base64str;
 		}
 
+		// noinspection ES6ConvertVarToLetConst
 		var dataurl = new Image();
 
 		dataurl.onerror = function() {
@@ -326,7 +346,7 @@
 		try {
 			// noinspection JSUnresolvedVariable
 			if (typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function') {
-				// noinspection JSUnresolvedVariable
+				// noinspection JSUnresolvedVariable,ES6ConvertVarToLetConst
 				var module = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
 				// noinspection JSUnresolvedVariable
 				if (module instanceof WebAssembly.Module) {
@@ -396,6 +416,7 @@
 	$sys.feature.SYSTEM_FEATURE_GAMEPADS				= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
 	// noinspection JSUnresolvedVariable
 	$sys.feature.SYSTEM_FEATURE_WEBSOCKETS				= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var protocol = 'https:' === location.protocol ? 'wss' : 'ws';
 
 		if ('WebSocket' in window && window.WebSocket.CLOSING === 2) {
@@ -412,6 +433,7 @@
 	})();
 	// noinspection DuplicatedCode
 	$sys.feature.SYSTEM_FEATURE_SESSION_STORAGE			= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var mod = 'test';
 
 		if (typeof sessionStorage !== 'undefined') {
@@ -430,6 +452,7 @@
 	})();
 	// noinspection DuplicatedCode
 	$sys.feature.SYSTEM_FEATURE_LOCAL_STORAGE			= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var mod = 'test';
 
 		if (typeof localStorage !== 'undefined') {
@@ -475,6 +498,7 @@
 	$sys.feature.SYSTEM_FEATURE_ES5_XHR					= 'XMLHttpRequest' in window && 'prototype' in window.XMLHttpRequest && 'addEventListener' in window.XMLHttpRequest.prototype;
 	$sys.feature.SYSTEM_FEATURE_ES5_JSON				= 'JSON' in window && 'parse' in JSON && 'stringify' in JSON;
 	$sys.feature.SYSTEM_FEATURE_ES5_SYNTAX				= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var value, obj, stringAccess, getter, setter, reservedWords;//, zeroWidthChars;
 
 		try {
@@ -494,6 +518,7 @@
 		}
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES5_UNDEFINED			= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var result, originalUndefined;
 
 		try {
@@ -511,6 +536,7 @@
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES5_ARRAY				= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
 	$sys.feature.SYSTEM_FEATURE_ES5_DATE				= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var isoDate = '2013-04-12T06:06:37.307Z', canParseISODate = false;
 
 		try {
@@ -523,6 +549,7 @@
 	$sys.feature.SYSTEM_FEATURE_ES5_OBJECT				= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
 	$sys.feature.SYSTEM_FEATURE_ES5_STRING				= !!(String.prototype && String.prototype.trim);
 	$sys.feature.SYSTEM_FEATURE_ES5_GETSET				= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var value, getter, setter;
 
 		try {
@@ -576,6 +603,7 @@
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES6_PROMISES			= (function() {
 		return 'Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise && (function() {
+			// noinspection ES6ConvertVarToLetConst
 			var resolve;
 			// noinspection JSIgnoredPromiseFromCall
 			new window.Promise(function(r) { resolve = r; });
@@ -595,6 +623,7 @@
 	$sys.feature.SYSTEM_FEATURE_ES6						= $sys.feature.SYSTEM_FEATURE_ES5 && $sys.feature.SYSTEM_FEATURE_ES6_NUMBER && $sys.feature.SYSTEM_FEATURE_ES6_MATH && $sys.feature.SYSTEM_FEATURE_ES6_ARRAY && $sys.feature.SYSTEM_FEATURE_ES6_FUNCTION && $sys.feature.SYSTEM_FEATURE_ES6_OBJECT && $sys.feature.SYSTEM_FEATURE_ES6_CLASS && $sys.feature.SYSTEM_FEATURE_ES6_STRING && $sys.feature.SYSTEM_FEATURE_ES6_COLLECTIONS && $sys.feature.SYSTEM_FEATURE_ES6_GENERATORS && $sys.feature.SYSTEM_FEATURE_ES6_PROMISES && ($sys.feature.SYSTEM_FEATURE_ES6_STATIC_MODULES || $sys.feature.SYSTEM_FEATURE_ES6_DYNAMIC_MODULES);
 
 	$sys.feature.SYSTEM_FEATURE_ES7_ASYNC_AWAIT			= (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var isAsync = true;
 
 		try {
@@ -621,6 +650,7 @@
 	$sys.info.SYSTEM_INFO_BROWSER_VERSION				= $sys.browser.version;
 
 	$sys.info.SYSTEM_INFO_CPU_LITTLE_ENDIAN				= ($sys.feature.SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
+		// noinspection ES6ConvertVarToLetConst
 		var buffer = new ArrayBuffer(2);
 		new DataView(buffer).setUint16(0, 256, true);
 
@@ -643,6 +673,7 @@
 		if (contextWEBGL) {
 			if (typeof contextWEBGL.getSupportedExtensions === 'function') {
 				if (contextWEBGL.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') !== -1) {
+					// noinspection ES6ConvertVarToLetConst
 					var dbgRenderInfo = contextWEBGL.getExtension('WEBGL_debug_renderer_info');
 
 					if (typeof dbgRenderInfo.UNMASKED_RENDERER_WEBGL !== 'undefined') {
@@ -665,7 +696,7 @@
 
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	$sys.api.dumpsystem = function() {
-		// noinspection DuplicatedCode
+		// noinspection DuplicatedCode,ES6ConvertVarToLetConst
 		var dump = [{
 			Feature: 'SYSTEM_INFO_OS',
 			Value: $sys.info.SYSTEM_INFO_OS + ' ' + $sys.info.SYSTEM_INFO_OS_VERSION
@@ -917,7 +948,9 @@
 		// Microsoft EdgeHTML <= 18.18362 (64-bit) cannot list more than 50 items in a table
 		// noinspection DuplicatedCode
 		if ($sys.browser.isEdgeHTML) {
+			// noinspection ES6ConvertVarToLetConst
 			var chunks = function(array, size) {
+				// noinspection ES6ConvertVarToLetConst
 				var results = [];
 
 				while (array.length) {
@@ -928,6 +961,7 @@
 			};
 			dump = chunks(dump, 50);
 
+			// noinspection ES6ConvertVarToLetConst
 			for (var d in dump) {
 				// noinspection JSUnfilteredForInLoop
 				console.table(dump[d]);
@@ -979,6 +1013,7 @@
 
 		// noinspection DuplicatedCode
 		if (url) {
+			// noinspection ES6ConvertVarToLetConst
 			var el = null, file_type = url.split('.').pop();
 
 			switch (file_type) {
@@ -1043,20 +1078,29 @@
 	$sys.api.fetch = function(opts, onsuccess, onerror, onprogress) {
 		opts = typeof opts === 'string' ? {url: opts} : opts;
 
+		// noinspection ES6ConvertVarToLetConst
 		var data = opts.data;
+		// noinspection ES6ConvertVarToLetConst
 		var url = opts.url;
+		// noinspection ES6ConvertVarToLetConst
 		var method = opts.method || (opts.data ? 'POST' : 'GET');
+		// noinspection ES6ConvertVarToLetConst
 		var format = opts.format || 'text';
+		// noinspection ES6ConvertVarToLetConst
 		var headers = opts.headers;
+		// noinspection ES6ConvertVarToLetConst
 		var responseType = opts.responseType || 'text';
+		// noinspection ES6ConvertVarToLetConst
 		var withCredentials = opts.withCredentials || false;
 		onsuccess = onsuccess || opts.onsuccess;
 		onerror = onerror || opts.onerror;
 		onprogress = onprogress || opts.onprogress;
+		// noinspection ES6ConvertVarToLetConst
 		var xhr = new XMLHttpRequest();
 		xhr.open(method, url, true);
 
 		if (headers) {
+			// noinspection ES6ConvertVarToLetConst
 			for (var type in headers) {
 				// noinspection JSUnfilteredForInLoop
 				xhr.setRequestHeader(type, headers[type]);
@@ -1091,6 +1135,7 @@
 				};
 			} else {
 				xhr.addEventListener('progress', function(e) {
+					// noinspection ES6ConvertVarToLetConst
 					var totalBytes = 0;
 
 					if (e.lengthComputable) {
@@ -1098,6 +1143,7 @@
 					} else if (xhr.totalBytes) {
 						totalBytes = xhr.totalBytes;
 					} else {
+						// noinspection ES6ConvertVarToLetConst
 						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
 
 						if (isFinite(rawBytes)) {
@@ -1120,6 +1166,7 @@
 					xhr.status === 0 && root.client.cordova // Cordova quirk
 				) {
 					if (onsuccess) {
+						// noinspection ES6ConvertVarToLetConst
 						var res;
 
 						if (format === 'xml') {
