@@ -1,6 +1,6 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	'use strict';
+	console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
 	// noinspection JSUnusedLocalSymbols
 	define('optional', [], {
@@ -286,7 +286,6 @@
 		'filesystem',
 		'emuos'
 	], function($, FileSystem, EmuOS) {
-
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
