@@ -1,6 +1,6 @@
 (function() {
 	if (!$sys.feature.SYSTEM_FEATURE_ES6) {
-		$sys.import('js/components/components.js', 'text/babel');
+		$sys.api.import('js/components/components.js', 'text/babel');
 
 		// noinspection JSUnresolvedVariable
 		if (typeof Babel !== 'undefined') {
@@ -11,10 +11,10 @@
 			}
 		}
 
-		$sys.get('body').innerHTML = '<emuos-desktop></emuos-desktop>';
+		$sys.api.get('body').innerHTML = '<emuos-desktop></emuos-desktop>';
 	} else {
-		$sys.import('js/components/components.js', function() {
-			$sys.get('body').innerHTML = '<emuos-desktop></emuos-desktop>';
+		$sys.api.import('js/components/components.js', function() {
+			$sys.api.get('body').innerHTML = '<emuos-desktop></emuos-desktop>';
 		});
 	}
 })();

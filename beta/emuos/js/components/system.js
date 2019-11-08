@@ -1,58 +1,59 @@
-// region Polyfills
-
-if (!('head' in document)) {
-	// noinspection JSValidateTypes
-	document.head = document.getElementsByTagName('head')[0];
-}
-
-if (typeof console === 'undefined') {
-	// noinspection JSValidateTypes
-	console = {
-		log: function() {}
-	}
-} else if (typeof console.log !== 'function') {
-	console.log = function() {};
-}
-
-// endregion
-
+// noinspection DuplicatedCode
 (function() {
 	// Error Handling
-	onerror = function(message, url, lineNumber) {
-		alert('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
+	window.onerror = function(message, url, lineNumber) {
+		//alert('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
 		console.log('Error: ' + message + ' in ' + url + ' at line ' + lineNumber);
 	};
 
-	// noinspection ES6ConvertVarToLetConst
 	var $sys = {
-		noop: function() {},
+		api: {
+			noop: function() {}
+		},
 		platform: {},
+		environment: {},
 		browser: {},
 		feature: {},
 		info: {}
 	};
 
+	// region Polyfills
+
+	if (!('head' in document)) {
+		// noinspection JSValidateTypes
+		document.head = document.getElementsByTagName('head')[0];
+	}
+
+	if (typeof console === 'undefined') {
+		// noinspection JSValidateTypes
+		console = {
+			log: $sys.api.noop,
+			table: $sys.api.noop
+		}
+	} else if (typeof console.log !== 'function') {
+		console.log = $sys.api.noop;
+	} else if (typeof console.table !== 'function') {
+		console.table = $sys.api.noop;
+	}
+
+	// endregion
+
 	// region Platform
 
-	// noinspection ES6ConvertVarToLetConst
-	//var platform										= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
-	// noinspection ES6ConvertVarToLetConst
+	var platform										= typeof navigator.platform !== 'undefined' ? navigator.platform : '';
 	var browser											= typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '';
-	// noinspection ES6ConvertVarToLetConst
 	var version											= typeof navigator.appVersion !== 'undefined' ? navigator.appVersion : '';
-	// noinspection ES6ConvertVarToLetConst
 	var vendor											= typeof navigator.vendor !== 'undefined' ? navigator.vendor : '';
-	// noinspection ES6ConvertVarToLetConst,JSUnresolvedVariable
-	//var oscpu											= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
+	var oscpu											= typeof navigator.oscpu !== 'undefined' ? navigator.oscpu : '';
 
+	$sys.platform.is64									= browser.indexOf('WOW64') !== -1 || browser.indexOf('Win64') !== -1 || browser.indexOf('amd64') !== -1 || browser.indexOf('x86_64') !== -1;
+	$sys.platform.is32									= !$sys.platform.is64 ? (browser.indexOf('WOW32') !== -1 || browser.indexOf('Win32') !== -1 || browser.indexOf('i386') !== -1 || browser.indexOf('i686') !== -1) : false;
 	$sys.platform.isWindows								= version.indexOf('Win') !== -1;
 	$sys.platform.isMacOS								= version.indexOf('Mac') !== -1;
 	$sys.platform.isUNIX								= version.indexOf('X11') !== -1;
 	$sys.platform.isLinux								= version.indexOf('Linux') !== -1;
-	$sys.platform.osName								= $sys.platform.isWindows ? 'Windows' : ($sys.platform.isLinux ? 'Linux' : ($sys.platform.isUNIX ? 'UNIX' : ($sys.platform.isMacOS ? 'Mac OS' : undefined)));
-	// noinspection DuplicatedCode
-	$sys.platform.osVersion								= (function() {
-		// noinspection ES6ConvertVarToLetConst
+	$sys.platform.name									= $sys.platform.isWindows ? 'Windows' : ($sys.platform.isLinux ? 'Linux' : ($sys.platform.isUNIX ? 'UNIX' : ($sys.platform.isMacOS ? 'Mac OS' : undefined)));
+	$sys.platform.version								= (function() {
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Windows NT')) !== -1) {
@@ -122,24 +123,20 @@ if (typeof console === 'undefined') {
 	$sys.browser.isEdgeHTML								= browser.indexOf('Edge') !== -1;
 	$sys.browser.isEdgeBlink							= $sys.browser.isChrome && browser.indexOf('Edg/') !== -1;
 	$sys.browser.isEdge									= $sys.browser.isEdgeHTML || $sys.browser.isEdgeBlink;
-	$sys.browser.isChromium								= $sys.browser.isChrome && !$sys.browser.chrome;
+	$sys.browser.isChromium								= $sys.browser.isChrome && !window.chrome;
 	$sys.browser.isVivaldi								= $sys.browser.isChrome && browser.indexOf('Vivaldi') !== -1;
 	$sys.browser.isElectron								= $sys.browser.isChrome && browser.indexOf('Electron') !== -1;
 	$sys.browser.isOperaPresto							= browser.indexOf('Opera') !== -1;
 	$sys.browser.isOperaBlink							= $sys.browser.isChrome && browser.indexOf('OPR') !== -1;
 	$sys.browser.isOpera								= $sys.browser.isOperaPresto || $sys.browser.isOperaBlink;
-	$sys.browser.isSafari								= browser.indexOf('Safari') !== -1 || vendor === 'Apple Computer, Inc.';
+	$sys.browser.isSafari								= browser.indexOf('Safari') !== -1 && vendor === 'Apple Computer, Inc.';
 	$sys.browser.isOther								= !($sys.browser.isIE || $sys.browser.isEdge || $sys.browser.isFirefox || $sys.browser.isChrome || $sys.browser.isOpera || $sys.browser.isSafari);
-
-	$sys.isBrowser										= !!(typeof window === 'object' && typeof navigator === 'object' && document);
-	$sys.isWorker										= typeof importScripts === 'function' && typeof postMessage === 'function' && !$sys.isBrowser;
-	$sys.isNode											= typeof process === 'object' && typeof require === 'function' && !$sys.isBrowser && !$sys.isWorker;
-	$sys.isShell										= !($sys.isBrowser || $sys.isWorker || $sys.isNode);
-	$sys.environment									= $sys.isBrowser ? 'Browser' : ($sys.isWorker ? 'Worker' : ($sys.isNode ? 'Node' : 'Shell'));
-	$sys.browserName									= $sys.browser.isEdge ? 'Microsoft Edge' : ($sys.browser.isIE ? 'Microsoft Internet Explorer' : ($sys.browser.isNetscape ? 'Netscape Navigator' : ($sys.browser.isKMeleon ? 'K-Meleon' : ($sys.browser.isPaleMoon ? 'PaleMoon' : ($sys.browser.isFirefox ? 'Mozilla Firefox' : ($sys.browser.isOpera ? 'Opera' : ($sys.browser.isElectron ? 'Electron' : ($sys.browser.isVivaldi ? 'Vivaldi' : ($sys.browser.isChromium ? 'Chromium' : ($sys.browser.isChrome ? 'Google Chrome' : ($sys.browser.isSafari ? 'Apple Safari' : undefined)))))))))));
+	$sys.browser.isMobile								= browser.indexOf('Mobi') !== -1;
+	$sys.browser.isDesktop								= !$sys.browser.isMobile;
 	// noinspection DuplicatedCode
-	$sys.browserVersion									= (function() {
-		// noinspection ES6ConvertVarToLetConst
+	$sys.browser.name									= $sys.browser.isEdge ? 'Microsoft Edge' : ($sys.browser.isIE ? 'Microsoft Internet Explorer' : ($sys.browser.isNetscape ? 'Netscape Navigator' : ($sys.browser.isKMeleon ? 'K-Meleon' : ($sys.browser.isPaleMoon ? 'PaleMoon' : ($sys.browser.isFirefox ? 'Mozilla Firefox' : ($sys.browser.isOpera ? 'Opera' : ($sys.browser.isElectron ? 'Electron' : ($sys.browser.isVivaldi ? 'Vivaldi' : ($sys.browser.isChromium ? 'Chromium' : ($sys.browser.isChrome ? 'Google Chrome' : ($sys.browser.isSafari ? 'Apple Safari' : undefined)))))))))));
+	// noinspection DuplicatedCode
+	$sys.browser.version								= (function() {
 		var offset, version = undefined;
 
 		if ((offset = browser.indexOf('Opera')) !== -1) {
@@ -217,30 +214,27 @@ if (typeof console === 'undefined') {
 
 		return version;
 	})();
+	$sys.browser.useragent								= browser;
+	$sys.browser.vendor									= vendor;
+	$sys.browser.platform								= platform;
+	oscpu ? $sys.browser.oscpu							= oscpu : '';
 
-	$sys.browser.isMobile								= browser.indexOf('Mobi') !== -1;
-	$sys.browser.isDesktop								= !$sys.browser.isMobile;
-
-	$sys.platform.is64									= browser.indexOf('WOW64') !== -1 || browser.indexOf('Win64') !== -1 || browser.indexOf('amd64') !== -1 || browser.indexOf('x86_64') !== -1;
-	$sys.platform.is32									= !$sys.platform.is64 ? (browser.indexOf('WOW32') !== -1 || browser.indexOf('Win32') !== -1 || browser.indexOf('i386') !== -1 || browser.indexOf('i686') !== -1) : false;
+	$sys.environment.isBrowser							= !!(typeof window === 'object' && typeof navigator === 'object' && document);
+	$sys.environment.isWorker							= typeof importScripts === 'function' && typeof postMessage === 'function' && !$sys.isBrowser;
+	$sys.environment.isNode								= typeof process === 'object' && typeof require === 'function' && !$sys.isBrowser && !$sys.isWorker;
+	$sys.environment.isShell							= !($sys.environment.isBrowser || $sys.environment.isWorker || $sys.environment.isNode);
+	$sys.environment.name								= $sys.environment.isBrowser ? 'Browser' : ($sys.environment.isWorker ? 'Worker' : ($sys.environment.isNode ? 'Node' : 'Shell'));
 
 	// endregion
 
 	// region Features
 
-	// noinspection ES6ConvertVarToLetConst
 	var audio											= document.createElement('audio');
-	// noinspection ES6ConvertVarToLetConst
 	var canvas2D										= document.createElement('canvas');
-	// noinspection ES6ConvertVarToLetConst
 	var context2D										= typeof canvas2D !== 'undefined' ? (typeof canvas2D.getContext === 'function' ? canvas2D.getContext('2d') : false) : false;
-	// noinspection ES6ConvertVarToLetConst
 	var canvasWEBGL										= null;
-	// noinspection ES6ConvertVarToLetConst
 	var contextWEBGL									= false;
-	// noinspection ES6ConvertVarToLetConst
 	var canvasWEBGL2									= null;
-	// noinspection ES6ConvertVarToLetConst
 	var contextWEBGL2									= false;
 
 	if (context2D) {
@@ -262,9 +256,7 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_SERVICE_WORKERS			= 'serviceWorker' in navigator;
 	$sys.feature.SYSTEM_FEATURE_URL_PARSER				= (function() {
 		try {
-			// noinspection ES6ConvertVarToLetConst
 			var root = location.protocol + '//' + location.host + '/';
-			// noinspection ES6ConvertVarToLetConst
 			var url = new URL(root);
 
 			return url.href === root;
@@ -275,7 +267,6 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_URL_BLOB				= $sys.feature.SYSTEM_FEATURE_URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
 	$sys.feature.SYSTEM_FEATURE_DATA_URL				= (function() {
 		function testlimit() {
-			// noinspection ES6ConvertVarToLetConst
 			var datauribig = new Image();
 
 			datauribig.onerror = function() {
@@ -286,7 +277,6 @@ if (typeof console === 'undefined') {
 				$sys.feature.SYSTEM_FEATURE_DATA_URL = datauribig.width === 1 && datauribig.height === 1;
 			};
 
-			// noinspection ES6ConvertVarToLetConst
 			var base64str = 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 			while (base64str.length < 63000) {
@@ -296,7 +286,6 @@ if (typeof console === 'undefined') {
 			datauribig.src = 'data:image/gif;base64,' + base64str;
 		}
 
-		// noinspection ES6ConvertVarToLetConst
 		var dataurl = new Image();
 
 		dataurl.onerror = function() {
@@ -337,7 +326,7 @@ if (typeof console === 'undefined') {
 		try {
 			// noinspection JSUnresolvedVariable
 			if (typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function') {
-				// noinspection JSUnresolvedVariable,ES6ConvertVarToLetConst
+				// noinspection JSUnresolvedVariable
 				var module = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
 				// noinspection JSUnresolvedVariable
 				if (module instanceof WebAssembly.Module) {
@@ -407,7 +396,6 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_GAMEPADS				= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
 	// noinspection JSUnresolvedVariable
 	$sys.feature.SYSTEM_FEATURE_WEBSOCKETS				= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var protocol = 'https:' === location.protocol ? 'wss' : 'ws';
 
 		if ('WebSocket' in window && window.WebSocket.CLOSING === 2) {
@@ -424,7 +412,6 @@ if (typeof console === 'undefined') {
 	})();
 	// noinspection DuplicatedCode
 	$sys.feature.SYSTEM_FEATURE_SESSION_STORAGE			= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var mod = 'test';
 
 		if (typeof sessionStorage !== 'undefined') {
@@ -443,7 +430,6 @@ if (typeof console === 'undefined') {
 	})();
 	// noinspection DuplicatedCode
 	$sys.feature.SYSTEM_FEATURE_LOCAL_STORAGE			= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var mod = 'test';
 
 		if (typeof localStorage !== 'undefined') {
@@ -489,7 +475,6 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_ES5_XHR					= 'XMLHttpRequest' in window && 'prototype' in window.XMLHttpRequest && 'addEventListener' in window.XMLHttpRequest.prototype;
 	$sys.feature.SYSTEM_FEATURE_ES5_JSON				= 'JSON' in window && 'parse' in JSON && 'stringify' in JSON;
 	$sys.feature.SYSTEM_FEATURE_ES5_SYNTAX				= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var value, obj, stringAccess, getter, setter, reservedWords;//, zeroWidthChars;
 
 		try {
@@ -509,7 +494,6 @@ if (typeof console === 'undefined') {
 		}
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES5_UNDEFINED			= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var result, originalUndefined;
 
 		try {
@@ -527,7 +511,6 @@ if (typeof console === 'undefined') {
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES5_ARRAY				= !!(Array.prototype && Array.prototype.every && Array.prototype.filter && Array.prototype.forEach && Array.prototype.indexOf && Array.prototype.lastIndexOf && Array.prototype.map && Array.prototype.some && Array.prototype.reduce && Array.prototype.reduceRight && Array.isArray);
 	$sys.feature.SYSTEM_FEATURE_ES5_DATE				= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var isoDate = '2013-04-12T06:06:37.307Z', canParseISODate = false;
 
 		try {
@@ -540,7 +523,6 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_ES5_OBJECT				= !!(Object.keys && Object.create && Object.getPrototypeOf && Object.getOwnPropertyNames && Object.isSealed && Object.isFrozen && Object.isExtensible && Object.getOwnPropertyDescriptor && Object.defineProperty && Object.defineProperties && Object.seal && Object.freeze && Object.preventExtensions);
 	$sys.feature.SYSTEM_FEATURE_ES5_STRING				= !!(String.prototype && String.prototype.trim);
 	$sys.feature.SYSTEM_FEATURE_ES5_GETSET				= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var value, getter, setter;
 
 		try {
@@ -594,7 +576,6 @@ if (typeof console === 'undefined') {
 	})();
 	$sys.feature.SYSTEM_FEATURE_ES6_PROMISES			= (function() {
 		return 'Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise && (function() {
-			// noinspection ES6ConvertVarToLetConst
 			var resolve;
 			// noinspection JSIgnoredPromiseFromCall
 			new window.Promise(function(r) { resolve = r; });
@@ -614,7 +595,6 @@ if (typeof console === 'undefined') {
 	$sys.feature.SYSTEM_FEATURE_ES6						= $sys.feature.SYSTEM_FEATURE_ES5 && $sys.feature.SYSTEM_FEATURE_ES6_NUMBER && $sys.feature.SYSTEM_FEATURE_ES6_MATH && $sys.feature.SYSTEM_FEATURE_ES6_ARRAY && $sys.feature.SYSTEM_FEATURE_ES6_FUNCTION && $sys.feature.SYSTEM_FEATURE_ES6_OBJECT && $sys.feature.SYSTEM_FEATURE_ES6_CLASS && $sys.feature.SYSTEM_FEATURE_ES6_STRING && $sys.feature.SYSTEM_FEATURE_ES6_COLLECTIONS && $sys.feature.SYSTEM_FEATURE_ES6_GENERATORS && $sys.feature.SYSTEM_FEATURE_ES6_PROMISES && ($sys.feature.SYSTEM_FEATURE_ES6_STATIC_MODULES || $sys.feature.SYSTEM_FEATURE_ES6_DYNAMIC_MODULES);
 
 	$sys.feature.SYSTEM_FEATURE_ES7_ASYNC_AWAIT			= (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var isAsync = true;
 
 		try {
@@ -630,14 +610,17 @@ if (typeof console === 'undefined') {
 		return isAsync;
 	})();
 
-	$sys.info.SYSTEM_INFO_OS							= $sys.platform.osName;
-	$sys.info.SYSTEM_INFO_OS_VERSION					= $sys.platform.osVersion;
-	$sys.info.SYSTEM_INFO_ENVIRONMENT					= $sys.environment;
-	$sys.info.SYSTEM_INFO_BROWSER						= $sys.browserName;
-	$sys.info.SYSTEM_INFO_BROWSER_VERSION				= $sys.browserVersion;
+	// endregion
+
+	// region Info
+
+	$sys.info.SYSTEM_INFO_OS							= $sys.platform.name;
+	$sys.info.SYSTEM_INFO_OS_VERSION					= $sys.platform.version;
+	$sys.info.SYSTEM_INFO_ENVIRONMENT					= $sys.environment.name;
+	$sys.info.SYSTEM_INFO_BROWSER						= $sys.browser.name;
+	$sys.info.SYSTEM_INFO_BROWSER_VERSION				= $sys.browser.version;
 
 	$sys.info.SYSTEM_INFO_CPU_LITTLE_ENDIAN				= ($sys.feature.SYSTEM_FEATURE_TYPED_ARRAYS ? (function() {
-		// noinspection ES6ConvertVarToLetConst
 		var buffer = new ArrayBuffer(2);
 		new DataView(buffer).setUint16(0, 256, true);
 
@@ -660,7 +643,6 @@ if (typeof console === 'undefined') {
 		if (contextWEBGL) {
 			if (typeof contextWEBGL.getSupportedExtensions === 'function') {
 				if (contextWEBGL.getSupportedExtensions().indexOf('WEBGL_debug_renderer_info') !== -1) {
-					// noinspection ES6ConvertVarToLetConst
 					var dbgRenderInfo = contextWEBGL.getExtension('WEBGL_debug_renderer_info');
 
 					if (typeof dbgRenderInfo.UNMASKED_RENDERER_WEBGL !== 'undefined') {
@@ -675,13 +657,11 @@ if (typeof console === 'undefined') {
 
 	// endregion
 
-	// region Functions
+	// region API
 
-	// noinspection JSUnusedLocalSymbols
-	$sys.dumpsystem = function() {
-		console.log(typeof navigator.userAgent !== 'undefined' ? navigator.userAgent : '');
-
-		// noinspection ES6ConvertVarToLetConst,DuplicatedCode
+	// noinspection JSUnusedLocalSymbols,DuplicatedCode
+	$sys.api.dumpsystem = function() {
+		// noinspection DuplicatedCode
 		var dump = [{
 			Feature: 'SYSTEM_INFO_OS',
 			Value: $sys.info.SYSTEM_INFO_OS + ' ' + $sys.info.SYSTEM_INFO_OS_VERSION
@@ -930,12 +910,10 @@ if (typeof console === 'undefined') {
 			Value: $sys.feature.SYSTEM_FEATURE_BATTERY ? 'TRUE' : 'FALSE'
 		}];
 
-		//Microsoft Edge <= 18.18362 (64-bit) cannot list more than 50 items in a table
+		// Microsoft EdgeHTML <= 18.18362 (64-bit) cannot list more than 50 items in a table
 		// noinspection DuplicatedCode
 		if ($sys.browser.isEdgeHTML) {
-			// noinspection ES6ConvertVarToLetConst
 			var chunks = function(array, size) {
-				// noinspection ES6ConvertVarToLetConst
 				var results = [];
 
 				while (array.length) {
@@ -944,10 +922,8 @@ if (typeof console === 'undefined') {
 
 				return results;
 			};
-
 			dump = chunks(dump, 50);
 
-			// noinspection ES6ConvertVarToLetConst
 			for (var d in dump) {
 				// noinspection JSUnfilteredForInLoop
 				console.table(dump[d]);
@@ -993,12 +969,12 @@ if (typeof console === 'undefined') {
 		});
 	 */
 
-	$sys.import = function (url, type, cb) {
+	// noinspection DuplicatedCode
+	$sys.api.import = function (url, type, cb) {
 		cb = typeof type === 'function' ? type : (typeof cb === 'function' ? cb : $sys.noop);
 
 		// noinspection DuplicatedCode
 		if (url) {
-			// noinspection ES6ConvertVarToLetConst
 			var el = null, file_type = url.split('.').pop();
 
 			switch (file_type) {
@@ -1038,7 +1014,7 @@ if (typeof console === 'undefined') {
 	};
 
 	/***
-		$sys.ajax({
+		$sys.api.ajax({
 			url: './dir/something.extension',
 			data: 'test!',
 			format: 'text', // text | xml | json | binary
@@ -1059,35 +1035,24 @@ if (typeof console === 'undefined') {
 		});
 	 */
 
-	$sys.fetch = function(opts, onsuccess, onerror, onprogress) {
+	// noinspection DuplicatedCode
+	$sys.api.fetch = function(opts, onsuccess, onerror, onprogress) {
 		opts = typeof opts === 'string' ? {url: opts} : opts;
 
-		// noinspection ES6ConvertVarToLetConst
 		var data = opts.data;
-		// noinspection ES6ConvertVarToLetConst
 		var url = opts.url;
-		// noinspection ES6ConvertVarToLetConst
 		var method = opts.method || (opts.data ? 'POST' : 'GET');
-		// noinspection ES6ConvertVarToLetConst
 		var format = opts.format || 'text';
-		// noinspection ES6ConvertVarToLetConst
 		var headers = opts.headers;
-		// noinspection ES6ConvertVarToLetConst
 		var responseType = opts.responseType || 'text';
-		// noinspection ES6ConvertVarToLetConst
 		var withCredentials = opts.withCredentials || false;
-		// noinspection ES6ConvertVarToLetConst
 		onsuccess = onsuccess || opts.onsuccess;
-		// noinspection ES6ConvertVarToLetConst
 		onerror = onerror || opts.onerror;
-		// noinspection ES6ConvertVarToLetConst
 		onprogress = onprogress || opts.onprogress;
-		// noinspection ES6ConvertVarToLetConst
 		var xhr = new XMLHttpRequest();
 		xhr.open(method, url, true);
 
 		if (headers) {
-			// noinspection ES6ConvertVarToLetConst
 			for (var type in headers) {
 				// noinspection JSUnfilteredForInLoop
 				xhr.setRequestHeader(type, headers[type]);
@@ -1122,7 +1087,6 @@ if (typeof console === 'undefined') {
 				};
 			} else {
 				xhr.addEventListener('progress', function(e) {
-					// noinspection ES6ConvertVarToLetConst
 					var totalBytes = 0;
 
 					if (e.lengthComputable) {
@@ -1130,7 +1094,6 @@ if (typeof console === 'undefined') {
 					} else if (xhr.totalBytes) {
 						totalBytes = xhr.totalBytes;
 					} else {
-						// noinspection ES6ConvertVarToLetConst
 						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
 
 						if (isFinite(rawBytes)) {
@@ -1153,7 +1116,6 @@ if (typeof console === 'undefined') {
 					xhr.status === 0 && root.client.cordova // Cordova quirk
 				) {
 					if (onsuccess) {
-						// noinspection ES6ConvertVarToLetConst
 						var res;
 
 						if (format === 'xml') {
@@ -1183,7 +1145,8 @@ if (typeof console === 'undefined') {
 		return xhr;
 	};
 
-	$sys.get = function (selector) {
+	// noinspection DuplicatedCode
+	$sys.api.get = function (selector) {
 		if (document.querySelector) {
 			// noinspection JSUnusedGlobalSymbols
 			return document.querySelector(selector);
@@ -1210,7 +1173,7 @@ if (typeof console === 'undefined') {
 		}
 	};
 
-	$sys.on = function (el, eventName, eventHandler) {
+	$sys.api.on = function (el, eventName, eventHandler) {
 		if (el) {
 			if (el.addEventListener) {
 				el.addEventListener(eventName, eventHandler, false);
@@ -1228,30 +1191,30 @@ if (typeof console === 'undefined') {
 	// region Init
 
 	if (!$sys.feature.SYSTEM_FEATURE_ES6 && !$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-		$sys.import('js/polyfills/es7-babel-polyfill-7.7.0.min.js', function() {
-			$sys.import('js/libraries/babel-standalone-7.7.1.min.js', function() {
-				$sys.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
-					$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
+		$sys.api.import('js/polyfills/es7-babel-polyfill-7.7.0.min.js', function() {
+			$sys.api.import('js/libraries/babel-standalone-7.7.1.min.js', function() {
+				$sys.api.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
+					$sys.api.import('js/libraries/hybrids-4.0.2.min.js', function() {
 						window.define = hybrids.define;
 						window.html = hybrids.html;
-						$sys.import('js/components/main.js');
+						$sys.api.import('js/components/main.js');
 					});
 				});
 			});
 		});
 	} else if (!$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
-		$sys.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
-			$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
+		$sys.api.import('js/polyfills/es6-web-components-2.3.0.min.js', function() {
+			$sys.api.import('js/libraries/hybrids-4.0.2.min.js', function() {
 				window.define = hybrids.define;
 				window.html = hybrids.html;
-				$sys.import('js/components/main.js');
+				$sys.api.import('js/components/main.js');
 			});
 		});
 	} else {
-		$sys.import('js/libraries/hybrids-4.0.2.min.js', function() {
+		$sys.api.import('js/libraries/hybrids-4.0.2.min.js', function() {
 			window.define = hybrids.define;
 			window.html = hybrids.html;
-			$sys.import('js/components/main.js');
+			$sys.api.import('js/components/main.js');
 		});
 	}
 
