@@ -1,6 +1,8 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
+	console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n' +
+				'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
+				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
 	// noinspection JSUnusedLocalSymbols
 	define('optional', [], {
