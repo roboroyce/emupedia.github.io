@@ -8,7 +8,6 @@ url: "https://emupedia.net" # the base hostname & protocol for your site
 markdown: kramdown
 # Exclude these files from production site
 exclude:
-  - node_modules
   - .editorconfig
   - .gitignore
   - .gitpod.yml
