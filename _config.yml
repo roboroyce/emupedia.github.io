@@ -1,21 +1,24 @@
 # Site settings
 title: Emupedia
 email: contact@emupedia.net
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://emupedia.net" # the base hostname & protocol for your site
 # Build settings
 markdown: kramdown
 # Exclude these files from production site
 exclude:
+  - node_modules
+  - .editorconfig
   - .gitignore
+  - .gitpod.yml
+  - build-styl.cmd
   - CNAME
-  - beta/hooks
-  - beta/node_modules
-  - beta/package.json
+  - Dockerfile
+  - LICENSE
+  - package.json
+  - package-lock.json
+  - beta/emuos/**/README.md
 whitelist:
   - jekyll-watch
   - jekyll-textile-converter
