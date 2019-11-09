@@ -56,8 +56,8 @@
 				height: 713
 			} , {
 				name: 'Visual Studio Code',
-				icon: 'vfat/apps/monaco-editor/favicon.ico',
-				link: 'vfat/apps/monaco-editor/index.html',
+				icon: 'vfat/apps/vscode/favicon.ico',
+				link: 'vfat/apps/vscode/index.html',
 				width: 900,
 				height: 480
 			} , {
