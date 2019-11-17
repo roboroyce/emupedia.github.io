@@ -18,6 +18,7 @@ exclude:
   - package.json
   - package-lock.json
   - beta/emuos/**/*.md
+  - beta/emuos/**/*.markdown
 whitelist:
   - jekyll-watch
   - jekyll-textile-converter
