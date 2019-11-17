@@ -74,10 +74,5 @@
 		"src": "../../images/emupedia-logo-xmas-256.png",
 		"sizes": "256x256",
 		"type": "image/png"
-	}],
-	"screenshots": [{
-		"src": "../../images/emupedia-logo-xmas.png",
-		"sizes": "1280x720",
-		"type": "image/png"
 	}]
 }
