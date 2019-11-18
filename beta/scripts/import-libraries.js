@@ -3562,12 +3562,23 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/src/animation.xml', install_directory + libraries_directory + 'esheep-animations-' + version + '.xml', copy_options, (error) => {
+							// noinspection JSValidateTypes
+							replace({
+								files: install_directory + libraries_directory + 'esheep-' + version + '.min.js',
+								from: 'z-index:2000;',
+								to: 'z-index:20000;'
+							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
-									log.log(dependency + ' version ' + version + ' installed!');
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/src/animation.xml', install_directory + libraries_directory + 'esheep-animations-' + version + '.xml', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
 								}
 							});
 						}
