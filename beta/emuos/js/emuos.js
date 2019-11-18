@@ -436,7 +436,7 @@
 
 										// Animate randomly
 										setInterval(function() {
-											agent.animate()
+											agent.animate();
 										}, 3000 + (Math.random() * 4000));
 
 										// Move randomly
