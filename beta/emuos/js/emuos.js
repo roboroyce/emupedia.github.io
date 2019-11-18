@@ -395,10 +395,6 @@
 								'Hello'
 							];
 
-							var randPos = function () {
-								return .2 + Math.random() * .6;
-							};
-
 							var agentName = agents[~~(Math.random() * agents.length)];
 							if (!agentName) break;
 
@@ -406,6 +402,10 @@
 								if (typeof  clippy.load === 'function') {
 									clippy.load(agentName, function(agent) {
 										window[agentName] = agent;
+
+										var randPos = function () {
+											return .2 + Math.random() * .6;
+										};
 
 										var move = function() {
 											agent.moveTo($(document).width() * randPos(), $(document).height() * randPos());
