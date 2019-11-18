@@ -647,12 +647,12 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'clmtrackr':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
 					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
@@ -669,6 +669,34 @@ function install(install_directory, dependency, version) {
 											log.log(dependency + ' version ' + version + ' installed!');
 										}
 									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'clippyjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/clippy.js', install_directory + libraries_directory + 'clippy-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'clippy-' + version + '.js',
+						from: '//# sourceMappingURL=clippy.js.map',
+						to: '//# sourceMappingURL=clippy-' + version + '.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/clippy.js.map', install_directory + libraries_directory + 'clippy-' + version + '.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
 								}
 							});
 						}

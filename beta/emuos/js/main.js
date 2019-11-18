@@ -216,7 +216,15 @@
 		waitSeconds: 300,
 		paths: {
 			browserfs: 'libraries/browserfs-1.4.3.min',
+			clippy: 'libraries/clippy-0.0.3',
+			desktop: 'desktop',
 			dropbox: 'libraries/dropbox-4.0.30.min',
+			emuos: 'emuos',
+			es3base64: 'polyfills/es3-base64-1.0.1.min',
+			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
+			es6fetch: 'polyfills/es6-fetch-3.0.0',
+			esheep: 'libraries/esheep-0.7.2.min',
+			filesystem: 'filesystem',
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
@@ -224,23 +232,32 @@
 			jqueryuitree: 'libraries/jquery-ui-tree-3.0.0.min',
 			jquerycustomscrollbar: 'libraries/jquery-customscrollbar-3.1.5.min',
 			jqyeryajaxretry: 'libraries/jquery-ajax-retry-0.2.8.min',
-			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
-			es3base64: 'polyfills/es3-base64-1.0.1.min',
-			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
-			es6fetch: 'polyfills/es6-fetch-3.0.0',
-			esheep: 'libraries/esheep-0.7.2.min',
-			octokat: 'libraries/octokat-0.10.0',
 			json: 'libraries/requirejs-json-1.0.3',
+			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
+			lang: 'lang-en',
 			noext: 'libraries/requirejs-noext-1.0.3',
-			text: 'libraries/requirejs-text-2.0.15',
-			emuos: 'emuos',
-			filesystem: 'filesystem',
-			desktop: 'desktop',
+			octokat: 'libraries/octokat-0.10.0',
 			taskbar: 'taskbar',
-			window: 'window',
-			lang: 'lang-en'
+			text: 'libraries/requirejs-text-2.0.15',
+			window: 'window'
 		},
 		shim: {
+			clippy: {
+				exports: 'clippy',
+				deps: ['jquery']
+			},
+			desktop: {
+				deps: ['window', 'lang', 'jqueryuicontextmenu']
+			},
+			emuos: {
+				deps: ['desktop', 'filesystem']
+			},
+			esheep: {
+				exports: 'eSheep'
+			},
+			filesystem: {
+				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
+			},
 			jquerymousewheel: {
 				deps: ['jquery']
 			},
@@ -259,28 +276,16 @@
 			jsrsasign: {
 				exports: 'KJUR'
 			},
+			lang: {
+				deps: ['taskbar']
+			},
 			octokat: {
 				deps: ['es6promise', 'es6fetch', 'es3base64']
-			},
-			emuos: {
-				deps: ['desktop', 'filesystem']
-			},
-			filesystem: {
-				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
-			},
-			desktop: {
-				deps: ['window', 'lang', 'jqueryuicontextmenu']
-			},
-			esheep: {
-				exports: 'eSheep'
 			},
 			taskbar: {
 				deps: ['jqueryui']
 			},
 			window: {
-				deps: ['taskbar']
-			},
-			lang: {
 				deps: ['taskbar']
 			}
 		}
@@ -292,7 +297,6 @@
 		'filesystem',
 		'emuos'
 	], function($, FileSystem, EmuOS) {
-
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {

@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!octokat', 'optional!esheep'], factory);
+		define(['jquery', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, Octokat, eSheep) {
+} (function ($, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -96,6 +96,9 @@
 				link: 'vfat/games/super-blob-blaster/index.html',
 				width: 720,
 				height: 480
+			} , {
+				name: 'Clippy',
+				icon: 'vfat/apps/clippy/favicon.png'
 			} , {
 				name: 'eSheep',
 				icon: 'vfat/apps/esheep/favicon.png'
@@ -319,10 +322,10 @@
 			var icon_options = self.options.icons[j];
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = $('<a class="icon" href="javascript:">' +
-							'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
-							'<span>' + icon_options['name'] + '</span>' +
-						'</a>');
+			var $icon = 	$('<a class="icon" href="javascript:">' +
+								'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
+								'<span>' + icon_options['name'] + '</span>' +
+							'</a>');
 
 			// noinspection JSUnfilteredForInLoop
 			$icon.data('name', icon_options['name']);
@@ -378,6 +381,62 @@
 										allowPets: 'all',
 										allowPopup: 'no'
 									}).Start();
+								}
+							}
+							break;
+						case 'Clippy':
+							var agents = ['Bonzi', 'Clippy', 'F1', 'Genie', 'Genius', 'Links', 'Merlin', 'Peedy', 'Rocky', 'Rover'];
+
+							var phrases = [
+								'How can i help you?',
+								'Nice day!',
+								'Glad to meet you.',
+								'At your service',
+								'Hello'
+							];
+
+							var randPos = function () {
+								return .2 + Math.random() * .6;
+							};
+
+							var agentName = agents[~~(Math.random() * agents.length)];
+							if (!agentName) break;
+
+							if (typeof clippy !== 'undefined') {
+								if (typeof  clippy.load === 'function') {
+									clippy.load(agentName, function(agent) {
+										window[agentName] = agent;
+
+										var move = function() {
+											agent.moveTo($(document).width() * randPos(), $(document).height() * randPos());
+										};
+
+										move();
+
+										agent.show();
+
+										// Speak on click and start
+										var speak = function() {
+											agent.speak('I am ' + agentName + ', ' + phrases[~~(Math.random() * phrases.length)]);
+											agent.animate();
+										};
+
+										$(agent._el).click(function() {
+											speak();
+										});
+
+										speak();
+
+										// Animate randomly
+										setInterval(function() {
+											agent.animate()
+										}, 3000 + (Math.random() * 4000));
+
+										// Move randomly
+										/*setInterval(function() {
+											move();
+										}, 3000 + (Math.random() * 4000));*/
+									}, undefined, 'js/libraries/clippy/');
 								}
 							}
 							break;

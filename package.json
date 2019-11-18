@@ -21,6 +21,7 @@
   "main": "./beta/app/index.js",
   "dependencies": {
     "auto-launch": "^5.0.5",
+    "clippyjs": "0.0.3",
     "electron-log": "^3.0.9",
     "electron-settings": "^3.2.0",
     "jquery1.x": "npm:jquery@^1.12.4",
