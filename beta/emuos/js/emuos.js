@@ -436,7 +436,7 @@
 										/*setInterval(function() {
 											move();
 										}, 3000 + (Math.random() * 4000));*/
-									}, undefined, 'js/libraries/clippy/');
+									}, undefined, 'vfat/apps/clippy/assets/');
 								}
 							}
 							break;
