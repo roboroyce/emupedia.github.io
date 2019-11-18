@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'octokat', 'esheep'], factory);
+		define(['jquery', 'optional!octokat', 'optional!esheep'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {

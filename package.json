@@ -125,6 +125,7 @@
     "css_dir": "css/libraries",
     "pug_dir": "pug",
     "js_dir": "js",
+    "config_dir": "js/config",
     "library_dir": "js/libraries",
     "polyfill_dir": "js/polyfills"
   },

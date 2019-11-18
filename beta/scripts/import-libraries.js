@@ -10,6 +10,7 @@ const fonts_directory		= `${packages.config.fonts_dir}/`;
 const scss_directory		= `${packages.config.scss_dir}/`;
 const css_directory			= `${packages.config.css_dir}/`;
 // const pug_directory			= `${packages.config.pug_dir}/`;
+const config_directory		= `${packages.config.config_dir}/`;
 const libraries_directory	= `${packages.config.library_dir}/`;
 const polyfills_directory	= `${packages.config.polyfill_dir}/`;
 const nodemodules_directory	= `${__dirname}/../../node_modules/`;
@@ -2091,8 +2092,8 @@ function install(install_directory, dependency, version) {
 							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
-								from: 'this.instantiateWasm=t,',
-								to: 'this.instantiateWasm=t,e = e || window.WDOSBOX,'
+								from: 'this.instantiateWasm=t,this',
+								to: 'this.instantiateWasm=t,e = e || window.WDOSBOX,this'
 							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
@@ -3565,18 +3566,36 @@ function install(install_directory, dependency, version) {
 							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + libraries_directory + 'esheep-' + version + '.min.js',
-								from: 'z-index:2000;',
-								to: 'z-index:20000;'
+								from: 'https://adrianotiger.github.io/desktopPet/Pets/pets.json',
+								to: config_directory + 'esheep-pets-' + version + '.json'
 							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
-									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/src/animation.xml', install_directory + libraries_directory + 'esheep-animations-' + version + '.xml', copy_options, (error) => {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + libraries_directory + 'esheep-' + version + '.min.js',
+										from: 'z-index:2000;',
+										to: 'z-index:20000;'
+									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
-											log.log(dependency + ' version ' + version + ' installed!');
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/pets/pets.json', install_directory + config_directory + 'esheep-pets-' + version + '.json', copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/src/animation.xml', install_directory + config_directory + 'esheep-animations-' + version + '.xml', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
 										}
 									});
 								}
