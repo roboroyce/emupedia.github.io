@@ -374,10 +374,10 @@
 						case 'eSheep':
 							if (typeof eSheep !== 'undefined') {
 								if (typeof eSheep.prototype.Start === 'function') {
-									new eSheep().Start({
+									new eSheep({
 										allowPets: 'all',
 										allowPopup: 'no'
-									});
+									}).Start();
 								}
 							}
 							break;
