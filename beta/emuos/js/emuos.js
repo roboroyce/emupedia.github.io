@@ -401,17 +401,17 @@
 			parent: '.emuos-taskbar-windows-containment'
 		});
 
-		self.$desktop.prepend('<div class="snowflakes" aria-hidden="true">' +
-								'<div class="snowflake">❅</div>' +
-								'<div class="snowflake">❅</div>' +
-								'<div class="snowflake">❆</div>' +
-								'<div class="snowflake">❄</div>' +
-								'<div class="snowflake">❅</div>' +
-								'<div class="snowflake">❆</div>' +
-								'<div class="snowflake">❄</div>' +
-								'<div class="snowflake">❅</div>' +
-								'<div class="snowflake">❆</div>' +
-								'<div class="snowflake">❄</div>' +
+		self.$desktop.prepend('<div class="snow" aria-hidden="true">' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
 							'</div>');
 
 		self.$desktop.find('[data-autostart="true"]').first().trigger('dblclick');
