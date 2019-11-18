@@ -3639,7 +3639,7 @@ function install(install_directory, dependency, version) {
 					replace({
 						files: install_directory + libraries_directory + 'esheep-' + version + '.min.js',
 						from: 'https://adrianotiger.github.io/desktopPet/Pets/esheep64/animations.xml',
-						to: libraries_directory + 'esheep-animations-' + version + '.xml'
+						to: config_directory + 'esheep-animations-' + version + '.xml'
 					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
