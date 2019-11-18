@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'octokat'], factory);
+		define(['jquery', 'octokat', 'esheep'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, Octokat) {
+} (function ($, Octokat, eSheep) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -52,6 +52,12 @@
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
 				link: 'https://v1.windows93.net/',
+				width: 960,
+				height: 713
+			} , {
+				name: '98.js',
+				icon: 'vfat/apps/98.js/favicon.ico',
+				link: 'https://98.js.org/',
 				width: 960,
 				height: 713
 			} , {
@@ -90,6 +96,9 @@
 				link: 'vfat/games/super-blob-blaster/index.html',
 				width: 720,
 				height: 480
+			} , {
+				name: 'eSheep',
+				icon: 'vfat/apps/esheep/favicon.png'
 			} , {
 				name: 'ASCIICKER',
 				icon: 'vfat/games/asciicker/favicon.ico',
@@ -306,39 +315,42 @@
 		self.$taskbar = $('.taskbar').first();
 
 		for (var j in self.options.icons) {
+			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
+			var icon_options = self.options.icons[j];
+
 			// noinspection JSUnfilteredForInLoop
 			var $icon = $('<a class="icon" href="javascript:">' +
-							'<img src="' + self.options.icons[j]['icon'] + '" alt="' + self.options.icons[j]['name'] + '" />' +
-							'<span>' + self.options.icons[j]['name'] + '</span>' +
+							'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
+							'<span>' + icon_options['name'] + '</span>' +
 						'</a>');
 
 			// noinspection JSUnfilteredForInLoop
-			$icon.data('name', self.options.icons[j]['name']);
+			$icon.data('name', icon_options['name']);
 			// noinspection JSUnfilteredForInLoop
-			$icon.data('icon', self.options.icons[j]['icon']);
+			$icon.data('icon', icon_options['icon']);
 
 			// noinspection JSUnfilteredForInLoop
-			if (typeof self.options.icons[j]['link'] !== 'undefined') {
+			if (typeof icon_options['link'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
-				$icon.data('link', self.options.icons[j]['link']);
+				$icon.data('link', icon_options['link']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
-			if (typeof self.options.icons[j]['width'] !== 'undefined') {
+			if (typeof icon_options['width'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
-				$icon.data('width', self.options.icons[j]['width']);
+				$icon.data('width', icon_options['width']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
-			if (typeof self.options.icons[j]['height'] !== 'undefined') {
+			if (typeof icon_options['height'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
-				$icon.data('height', self.options.icons[j]['height']);
+				$icon.data('height', icon_options['height']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
-			if (typeof self.options.icons[j]['autostart'] !== 'undefined') {
+			if (typeof icon_options['autostart'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
-				$icon.attr('data-autostart', self.options.icons[j]['autostart'] ? 'true' : 'false').data('autostart', self.options.icons[j]['autostart']);
+				$icon.attr('data-autostart', icon_options['autostart'] ? 'true' : 'false').data('autostart', icon_options['autostart']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -358,8 +370,14 @@
 						height: $(this).data('height')
 					});
 				} else {
-					// noinspection JSRedundantSwitchStatement
 					switch ($(this).data('name')) {
+						case 'eSheep':
+							if (typeof eSheep !== 'undefined') {
+								if (typeof eSheep.prototype.Start === 'function') {
+									new eSheep().Start();
+								}
+							}
+							break;
 						case 'Webamp Classic':
 							// noinspection JSUnresolvedFunction
 							var webamp_content = self.options.apps.webamp.render();

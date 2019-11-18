@@ -3547,6 +3547,34 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'web-esheep':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/esheep.min.js', install_directory + libraries_directory + 'esheep-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'esheep-' + version + '.min.js',
+						from: 'https://adrianotiger.github.io/desktopPet/Pets/esheep64/animations.xml',
+						to: libraries_directory + 'esheep-animations-' + version + '.xml'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/src/animation.xml', install_directory + libraries_directory + 'esheep-animations-' + version + '.xml', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'xterm':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/lib/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {

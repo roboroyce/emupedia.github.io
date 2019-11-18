@@ -25,7 +25,8 @@
     "electron-settings": "^3.2.0",
     "jquery1.x": "npm:jquery@^1.12.4",
     "jquery2.x": "npm:jquery@^2.2.4",
-    "jquery3.x": "npm:jquery@^3.4.1"
+    "jquery3.x": "npm:jquery@^3.4.1",
+    "web-esheep": "github:Adrianotiger/web-esheep"
   },
   "devDependencies": {
     "@allmarkedup/purl": "github:allmarkedup/purl",

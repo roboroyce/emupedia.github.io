@@ -228,6 +228,7 @@
 			es3base64: 'polyfills/es3-base64-1.0.1.min',
 			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',
 			es6fetch: 'polyfills/es6-fetch-3.0.0',
+			esheep: 'libraries/esheep-0.7.2.min',
 			octokat: 'libraries/octokat-0.10.0',
 			json: 'libraries/requirejs-json-1.0.3',
 			noext: 'libraries/requirejs-noext-1.0.3',
@@ -270,6 +271,9 @@
 			desktop: {
 				deps: ['window', 'lang', 'jqueryuicontextmenu']
 			},
+			esheep: {
+				exports: 'eSheep'
+			},
 			taskbar: {
 				deps: ['jqueryui']
 			},
@@ -288,6 +292,7 @@
 		'filesystem',
 		'emuos'
 	], function($, FileSystem, EmuOS) {
+
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
