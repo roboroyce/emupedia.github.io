@@ -3236,6 +3236,59 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'socket.io-client':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/socket.io.slim.js', install_directory + libraries_directory + 'socket.io-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'socket.io-' + version + '.min.js',
+						from: '//# sourceMappingURL=socket.io.slim.js.map',
+						to: '//# sourceMappingURL=socket.io-' + version + '.min.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/socket.io.slim.js.map', install_directory + libraries_directory + 'socket.io-' + version + '.min.js.map', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/socket.io.slim.dev.js', install_directory + libraries_directory + 'socket.io-' + version + '.js', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											// noinspection JSValidateTypes
+											replace({
+												files: install_directory + libraries_directory + 'socket.io-' + version + '.js',
+												from: '//# sourceMappingURL=socket.io.slim.dev.js.map',
+												to: '//# sourceMappingURL=socket.io-' + version + '.js.map'
+											}, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/socket.io.slim.dev.js.map', install_directory + libraries_directory + 'socket.io-' + version + '.js.map', copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'summernote':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
