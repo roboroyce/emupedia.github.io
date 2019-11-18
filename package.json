@@ -26,6 +26,7 @@
     "jquery1.x": "npm:jquery@^1.12.4",
     "jquery2.x": "npm:jquery@^2.2.4",
     "jquery3.x": "npm:jquery@^3.4.1",
+    "socket.io-client": "^2.3.0",
     "web-esheep": "github:Adrianotiger/web-esheep"
   },
   "devDependencies": {
