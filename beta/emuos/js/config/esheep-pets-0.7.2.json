@@ -1,15 +1,39 @@
 {
-  "pets" : 
-  [
+  "pets" : [
     {
-      "name" : "eSheep",
-      "file" : "original.xml",
-      "author" : "Adriano Petrucci"
+      "folder" : "esheep64",
+      "author" : "Adriano",
+      "lastupdate" : "2019-02-21"
     },
     {
-      "name" : "Green Sheep",
-      "file" : "green_sheep.xml",
-      "author" : "Zyt"
+      "folder" : "bbunny",
+      "author" : "Adriano",
+      "lastupdate" : "2019-02-25"
+    },
+    {
+      "folder" : "ssj-goku",
+      "author" : "RedSparr0w",
+      "lastupdate" : "2019-03-04"
+    },
+    {
+      "folder" : "gsheep-green",
+      "author" : "Oliver B.",
+      "lastupdate" : "2019-04-23"
+    },
+    {
+      "folder" : "neko",
+      "author" : "Adriano",
+      "lastupdate" : "2019-06-28"
+    },
+    {
+      "folder" : "pingus",
+      "author" : "Adriano",
+      "lastupdate" : "2019-07-08"
+    },
+    {
+      "folder" : "negima",
+      "author" : "Adriano",
+      "lastupdate" : "2019-10-16"
     }
   ]
 }

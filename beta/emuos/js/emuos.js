@@ -377,10 +377,16 @@
 						case 'eSheep':
 							if (typeof eSheep !== 'undefined') {
 								if (typeof eSheep.prototype.Start === 'function') {
+									var pets = ['esheep64', 'gsheep-green', 'neko', 'pingus', 'ssj-goku'];
+									var pet = pets[~~(Math.random() * pets.length)];
+									var path = 'vfat/apps/esheep/assets/' + pet + '/animations.xml';
+
+									if (!path) break;
+
 									new eSheep({
 										allowPets: 'all',
 										allowPopup: 'no'
-									}).Start();
+									}).Start(path);
 								}
 							}
 							break;
@@ -396,6 +402,7 @@
 							];
 
 							var agentName = agents[~~(Math.random() * agents.length)];
+
 							if (!agentName) break;
 
 							if (typeof clippy !== 'undefined') {
