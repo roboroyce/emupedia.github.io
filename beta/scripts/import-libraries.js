@@ -2508,14 +2508,18 @@ function install(install_directory, dependency, version) {
 										from: /\.\.\/img\//gi,
 										to: '../../images/' + dependency + '/'
 									}, (error) => {
-										//noinspection JSUnresolvedFunction
-										fs.copy(nodemodules_directory + dependency + '/dist/img/', install_directory + images_directory + dependency, copy_options, (error) => {
-											if (error) {
-												log.error('Error occurred:', error);
-											} else {
-												log.log(dependency + ' version ' + version + ' installed!');
-											}
-										});
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/img/', install_directory + images_directory + dependency, copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													log.log(dependency + ' version ' + version + ' installed!');
+												}
+											});
+										}
 									});
 								}
 							});
@@ -2689,6 +2693,16 @@ function install(install_directory, dependency, version) {
 							log.log(dependency + ' version ' + version + ' installed!');
 						}
 					});
+				}
+			});
+			break;
+		case 'moment-holiday':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/build/' + dependency + '-pkg.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
 				}
 			});
 			break;
