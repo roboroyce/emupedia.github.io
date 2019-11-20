@@ -54,7 +54,8 @@
 			].join('');
 
 			txt = time_stamp + txt;
-			net.output_div.append('<div ' + color + '>' + txt + '</div>');
+			// noinspection HtmlDeprecatedTag
+			net.output_div.append('<div ' + color + '><xmp>' + txt + '</xmp></div>');
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
 		};
 
