@@ -44,6 +44,15 @@
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+#client_console xmp {
+	display: inline;
+	color: rgba(180, 173, 173, 0.973);
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
 #client_room_users {
 	overflow-y: auto;
 	margin: -4px;
