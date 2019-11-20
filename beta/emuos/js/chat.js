@@ -133,7 +133,7 @@
 			}
 
 			net.client_room_users.html(r_users);
-			net.text_input.attr('placeholder', 'You are Typing as "' + data.me + '" on "' + data.name + '"');
+			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
 		});
@@ -170,6 +170,7 @@
 			if (net.config.debug) console.log('net.socket.on.room.msg()');
 			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span>' + data.msg;
 			net.log(msg);
+			net.show();
 		});
 
 		net.socket.on('server.msg', function (data) {
@@ -191,22 +192,18 @@
 			net.socket.on('room.data', function (data) {
 				net.log(data);
 			});
-
 			net.socket.on('room.user_data', function (data) {
 				net.log(data);
 			});
-
 			net.socket.on('room.user_join', function (data) {
 				net.log(data);
 			});
-
 			net.socket.on('room.user_leave', function (data) {
 				net.log(data);
 			});
 			net.socket.on('room.user_reconnect', function (data) {
 				net.log(data);
 			});
-
 			net.socket.on('room.user_disconnect', function (data) {
 				net.log(data);
 			});
