@@ -318,7 +318,6 @@
 		'network',
 		'emuos'
 	], function($, Chat, FileSystem, Network, EmuOS) {
-
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
@@ -339,12 +338,6 @@
 			// noinspection JSUnusedLocalSymbols
 			var desktop = new EmuOS({
 				filesystem: null,
-				network: typeof Network !== 'undefined' ? (typeof Network.start === 'function' ? Network.start({
-					servers: ['https://ws.emupedia.net:4000'],
-					server: 0,
-					mode: 2,
-					debug: false
-				}) : null) : null,
 				theme: 'theme-win9x'
 			});
 
