@@ -155,7 +155,7 @@
 
 			for (var n in data) {
 				// noinspection JSUnfilteredForInLoop
-				msg += '<a class="do_cmd" style="cursor: pointer; color: ' + net.colors[2] + ';">' + data[n] + '</a>';
+				msg += '<a class="do_cmd" style="cursor: pointer; color: ' + net.colors[2] + ';">/' + data[n] + ' </a> ';
 			}
 
 			net.log(msg);
