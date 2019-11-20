@@ -168,7 +168,7 @@
 		net.socket.on('room.msg', function (data) {
 			if (net.config.debug) console.log('net.socket.on.room.msg()');
 			// noinspection HtmlDeprecatedTag
-			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span><xmp>' + data.msg + '</xmp>';
+			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span><xmp>' + $('<div/>').html(data.msg).text() + '</xmp>';
 			net.log(msg);
 			net.show();
 		});
