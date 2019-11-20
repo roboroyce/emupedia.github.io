@@ -42,7 +42,7 @@
 	net.console = $('#client_console');
 	net.text_input = $('#client_command');
 	net.text_input_button = $('#client_command_send');
-	net.output_div = $('#client_output');
+	net.output_div = document.getElementById('client_output');
 	net.client_room_users = $('#client_room_users');
 	net.client_room = $('#client_room');
 
