@@ -15,6 +15,47 @@
 
 	var fingerprint = new Fingerprint().get();
 
+	net.config.mode = 3;
+
+	var network_ui = '<div id="client_console" class="client_decoration">' +
+						'<div id="client_output" class="client_decoration client_left"></div>' +
+						'<div class="client_decoration client_right">' +
+							'<div id="client_room" class="client_decoration"></div>' +
+							'<div id="client_room_users" class="client_decoration"></div>' +
+							'</div>' +
+						'<div id="client_input" class="client_decoration">' +
+							'<input type="text" id="client_command" />' +
+							'<button id="client_command_send">Send</button>' +
+						'</div>' +
+					'</div>';
+
+	$body.append(network_ui);
+	$body.keydown(function (e) {
+		// noinspection JSRedundantSwitchStatement
+		switch (e.keyCode) {
+			case 192:
+				net.toggle();
+				return false;
+		}
+	});
+
+	net.console = $('#client_console');
+	net.text_input = $('#client_command');
+	net.text_input_button = $('#client_command_send');
+	net.output_div = $('#client_output');
+	net.client_room_users = $('#client_room_users');
+	net.client_room = $('#client_room');
+
+	net.text_input.off('keypress').on('keypress', function (e) {
+		if (e.which === 13) {
+			net.send_input();
+		}
+	});
+
+	net.text_input_button.off('click').on('click', function() {
+		net.send_input();
+	});
+
 	net.socket.on('connect', function() {
 		$(function() {
 			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
@@ -54,7 +95,7 @@
 
 		for (var n in data) {
 			// noinspection JSUnfilteredForInLoop
-			msg += "<a class='do_cmd' style='cursor:pointer;color:" + net.colors[2] + ";'>/" + data[n] + " </a> "
+			msg += '<a class="do_cmd" style="cursor: pointer; color: ' + net.colors[2] + ';">' + data[n] + '</a>';
 		}
 
 		net.log(msg);
@@ -194,58 +235,20 @@
 
 			if ((data.data.charAt(0) === '[') || (data.data.charAt(0) === '{')) {
 				try {
-					eval('var json_data =' + data.data);
+					eval('var json_data=' + data.data);
 				} catch (e) {
 					var json_data = data.data;
 				}
 
 				data.data = json_data;
 			}
-
+			console.log(data);
 			net.send_cmd(data.cmd, data.data);
 		} else {
+			console.log(msg);
 			net.send_cmd('room_msg', msg);
 		}
 
 		net.text_input.val('');
 	};
-
-	var network_ui = '<div id="client_console" class="client_decoration">' +
-						'<div id="client_output" class="client_decoration client_left"></div>' +
-						'<div class="client_decoration client_right">' +
-							'<div id="client_room" class="client_decoration"></div>' +
-							'<div id="client_room_users" class="client_decoration"></div>' +
-						'</div>' +
-						'<div id="client_input" class="client_decoration">' +
-							'<input type="text" id="client_command" />' +
-							'<button id="client_command_send">Send</button>' +
-						'</div>' +
-					'</div>';
-
-	$body.append(network_ui);
-	$body.keydown(function (e) {
-		// noinspection JSRedundantSwitchStatement
-		switch (e.keyCode) {
-			case 192:
-				net.toggle();
-				return false;
-		}
-	});
-
-	net.console = $('#client_console');
-	net.text_input = $('#client_command');
-	net.text_input_button = $('#client_command_send');
-	net.output_div = $('#client_output');
-	net.client_room_users = $('#client_room_users');
-	net.client_room = $('#client_room');
-
-	net.text_input.off('keypress').on('keypress', function (e) {
-		if (e.which === 13) {
-			net.send_input();
-		}
-	});
-
-	net.text_input_button.off('click').on('click', function() {
-		net.send_input();
-	});
 }));
