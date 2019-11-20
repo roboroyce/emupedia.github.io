@@ -53,8 +53,7 @@
 				']&nbsp;</span>'
 			].join('');
 
-			// noinspection HtmlDeprecatedTag
-			net.output_div.append('<div ' + color + '>' + time_stamp + '<xmp>' + txt + '</xmp></div>');
+			net.output_div.append('<div ' + color + '>' + time_stamp + txt + '</div>');
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
 		};
 
@@ -168,7 +167,8 @@
 
 		net.socket.on('room.msg', function (data) {
 			if (net.config.debug) console.log('net.socket.on.room.msg()');
-			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span>' + data.msg;
+			// noinspection HtmlDeprecatedTag
+			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span><xmp>' + data.msg + '</xmp>';
 			net.log(msg);
 			net.show();
 		});
