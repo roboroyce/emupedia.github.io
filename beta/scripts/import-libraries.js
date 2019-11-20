@@ -1450,6 +1450,16 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'fingerprintjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/fingerprint.js', install_directory + libraries_directory + 'fingerprint-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
 		case 'firebug-lite-ie':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/build/firebug-lite-debug.js', install_directory + libraries_directory + 'firebug-lite-' + version + '.js', copy_options, (error) => {

@@ -225,6 +225,7 @@
 			es6fetch: 'polyfills/es6-fetch-3.0.0',
 			esheep: 'libraries/esheep-0.7.2.min',
 			filesystem: 'filesystem',
+			fingerprint: 'libraries/fingerprint-0.5.3',
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
@@ -235,8 +236,11 @@
 			json: 'libraries/requirejs-json-1.0.3',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
 			lang: 'lang-en',
+			network: 'network',
+			chat: 'chat',
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
+			socketio: 'libraries/socket.io-2.3.0.min',
 			taskbar: 'taskbar',
 			text: 'libraries/requirejs-text-2.0.15',
 			window: 'window'
@@ -249,6 +253,9 @@
 			desktop: {
 				deps: ['window', 'lang', 'jqueryuicontextmenu']
 			},
+			chat: {
+				deps: ['jquery', 'fingerprint', 'network']
+			},
 			emuos: {
 				deps: ['desktop', 'filesystem']
 			},
@@ -257,6 +264,9 @@
 			},
 			filesystem: {
 				deps: ['jqyeryajaxretry', 'jsrsasign', 'octokat']
+			},
+			fingerprint: {
+				exports: 'Fingerprint'
 			},
 			jquerymousewheel: {
 				deps: ['jquery']
@@ -279,6 +289,9 @@
 			lang: {
 				deps: ['taskbar']
 			},
+			network: {
+				deps: ['socketio']
+			},
 			octokat: {
 				deps: ['es6promise', 'es6fetch', 'es3base64']
 			},
@@ -288,15 +301,24 @@
 			window: {
 				deps: ['taskbar']
 			}
+		},
+		map: {
+			'*': {
+				io: 'socketio',
+				'socket.io': 'socketio'
+			}
 		}
 	});
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
+		'chat',
 		'filesystem',
+		'network',
 		'emuos'
-	], function($, FileSystem, EmuOS) {
+	], function($, Chat, FileSystem, Network, EmuOS) {
+
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
@@ -317,6 +339,12 @@
 			// noinspection JSUnusedLocalSymbols
 			var desktop = new EmuOS({
 				filesystem: null,
+				network: typeof Network !== 'undefined' ? (typeof Network.start === 'function' ? Network.start({
+					servers: ['https://ws.emupedia.net:4000'],
+					server: 0,
+					mode: 2,
+					debug: false
+				}) : null) : null,
 				theme: 'theme-win9x'
 			});
 
