@@ -4,7 +4,7 @@
 				'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
 				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
-	// noinspection JSUnusedLocalSymbols
+	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
 		load: function(name, req, onload, config) {
 			var onLoadSuccess = function(moduleInstance) {
