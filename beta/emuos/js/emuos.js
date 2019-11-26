@@ -139,6 +139,30 @@
 				width: 640,
 				height: 422
 			} , {
+				// name: 'Street Fighter Alpha: Warriors\' Dreams',
+				name: 'Street Fighter Alpha',
+				icon: 'vfat/games/sfa/images/icons/' + function() {
+					var icons = [
+						'akuma',
+						'balrog',
+						'blanka',
+						'chunli',
+						'dhalsim',
+						'evilryu',
+						'ken',
+						'makoto',
+						'ryu',
+						'sagat',
+						'sakura',
+						'zangief'
+					];
+
+					return icons[Math.floor(Math.random() * icons.length)];
+				}() + '.ico',
+				link: 'vfat/games/sfa/index.html',
+				width: 1068,
+				height: 576
+			} , {
 				name: 'Wolfenstein 3D',
 				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
 				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html',
