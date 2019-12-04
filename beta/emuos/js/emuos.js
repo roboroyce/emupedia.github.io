@@ -73,6 +73,24 @@
 				width: 900,
 				height: 480
 			} , {
+				name: 'Microsoft Solitaire Collection',
+				icon: 'https://zone.msn.com/images/v9/en-us/game/msso/Solitaire_GameLogo_350x210_v1.png',
+				link: 'https://cdn.zone.msn.com/assets/games/microsoftsolitairecollection/2019/20190729T121300_1.5.4.1_release_v0001_9af64392_msn/solitaire/index.html?hostingEnvironment=zone',
+				width: 960,
+				height: 540
+			} , {
+				name: 'Microsoft Mahjong',
+				icon: 'https://zone.msn.com/images/v9/en-us/game/msmj/Mahjong_GameLogo_250_150.png',
+				link: 'https://cdn.zone.msn.com/assets/games/microsoftmahjong/2019/20190805T180800_1.0.2_release_2019_002_e5886ede_msn/game.html?hostingEnvironment=zone',
+				width: 960,
+				height: 540
+			} , {
+				name: 'Microsoft Ultimate Word Games',
+				icon: 'https://zone.msn.com/images/v9/en-us/game/mscw/350x210_mscw.png',
+				link: 'https://cdn.zone.msn.com/assets/games/microsoftultimatewordgames/2019/20190821T095404_1.0.5_features_2019_NameChangeToWordTwister_f7862a8_msn/word-games/game.html?game=crossword&hostingEnvironment=zone',
+				width: 960,
+				height: 552
+			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
