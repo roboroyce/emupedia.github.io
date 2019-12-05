@@ -91,6 +91,12 @@
 				width: 960,
 				height: 552
 			} , {
+				name: 'Geometry Dash',
+				icon: 'vfat/games/geometry-dash/favicon.png',
+				link: 'https://scratch.mit.edu/projects/105500895/embed',
+				width: 912,
+				height: 600
+			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
