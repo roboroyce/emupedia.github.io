@@ -94,7 +94,13 @@
 				name: 'Geometry Dash',
 				icon: 'vfat/games/geometry-dash/favicon.png',
 				link: 'https://scratch.mit.edu/projects/105500895/embed',
-				width: 912,
+				width: 900,
+				height: 600
+			} , {
+				name: 'slither.io',
+				icon: 'vfat/games/slither.io/favicon.png',
+				link: 'https://slither.io/',
+				width: 900,
 				height: 600
 			} , {
 				name: 'Wing 2.0',
