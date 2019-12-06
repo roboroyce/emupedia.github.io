@@ -103,6 +103,12 @@
 				width: 900,
 				height: 600
 			} , {
+				name: 'flappybird.io',
+				icon: 'vfat/games/flappybird.io/favicon.png',
+				link: 'https://flappybird.io/',
+				width: 547,
+				height: 800
+			} , {
 				name: 'Wing 2.0',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
