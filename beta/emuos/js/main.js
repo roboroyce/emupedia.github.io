@@ -236,6 +236,8 @@
 			json: 'libraries/requirejs-json-1.0.3',
 			jsrsasign: 'libraries/jsrsasign-all-8.0.12.min',
 			lang: 'lang-en',
+			moment: 'libraries/moment-2.24.0.min',
+			'moment-timezone': 'libraries/moment-timezone-0.5.27.min',
 			network: 'network',
 			chat: 'chat',
 			noext: 'libraries/requirejs-noext-1.0.3',
@@ -291,6 +293,10 @@
 			},
 			network: {
 				deps: ['socketio']
+			},
+			'moment-timezone': {
+				exports: 'moment',
+				deps: ['moment']
 			},
 			octokat: {
 				deps: ['es6promise', 'es6fetch', 'es3base64']

@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, Octokat, eSheep, clippy) {
+} (function ($, moment, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -38,12 +38,14 @@
 			},
 			icons: [{
 				name: 'EmuOS v2.0',
+				title: 'Under Development',
 				icon: 'favicon.ico',
 				link: 'boot.html',
 				width: 824,
 				height: 624
 			} , {
 				name: 'ÐeKaÐeNcE',
+				title: 'Under Development',
 				icon: 'https://launcher.dekadence.ro/favicon.ico',
 				link: 'https://launcher.dekadence.ro',
 				width: 900,
@@ -62,12 +64,14 @@
 				height: 713
 			} , {
 				name: 'Visual Studio Code',
+				title: 'Under Development',
 				icon: 'vfat/apps/vscode/favicon.ico',
 				link: 'vfat/apps/vscode/index.html',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Sandbox',
+				title: 'Under Development',
 				icon: 'vfat/apps/sandbox/favicon.ico',
 				link: 'vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E',
 				width: 900,
@@ -110,12 +114,14 @@
 				height: 800
 			} , {
 				name: 'Wing 2.0',
+				title: 'Under Development',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
 				width: 900,
 				height: 480
 			} , {
 				name: 'Worms 2',
+				title: 'Under Development',
 				icon: 'vfat/games/worms2/favicon.ico',
 				link: 'vfat/games/worms2/index.html',
 				width: 900,
@@ -140,6 +146,7 @@
 				icon: 'vfat/apps/esheep/favicon.png'
 			} , {
 				name: 'ASCIICKER',
+				title: 'Under Development',
 				icon: 'vfat/games/asciicker/favicon.ico',
 				link: 'vfat/games/asciicker/index.html',
 				width: 640,
@@ -164,12 +171,14 @@
 				height: 550
 			} , {
 				name: 'RomCenter',
+				title: 'Under Development',
 				icon: 'vfat/apps/romcenter/favicon.ico',
 				link: 'vfat/apps/romcenter/index.html',
 				width: 900,
 				height: 480
 			} , {
 				name: 'DOSBox',
+				title: 'Under Development',
 				icon: 'vfat/apps/dosbox/favicon.ico',
 				link: 'vfat/apps/dosbox/index.html',
 				width: 640,
@@ -177,6 +186,7 @@
 			} , {
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
 				name: 'Street Fighter Alpha',
+				title: 'Under Development',
 				icon: 'vfat/games/sfa/images/icons/' + function() {
 					var icons = [
 						'akuma',
@@ -236,12 +246,14 @@
 				height: 480
 			} , {
 				name: 'Diablo 1',
+				title: 'Under Development',
 				icon: 'vfat/games/diablo1/favicon.ico',
 				link: 'vfat/games/diablo1/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Dark Reign: The Future of War',
+				title: 'Under Development',
 				icon: 'vfat/games/darkreign/favicon.ico',
 				link: 'vfat/games/darkreign/index.html',
 				width: 640,
@@ -254,6 +266,7 @@
 				height: 535
 			} , {
 				name: 'Minecraft',
+				title: 'Under Development',
 				icon: 'vfat/games/minecraft/favicon.ico',
 				link: 'vfat/games/minecraft/index.html',
 				width: 900,
@@ -382,13 +395,14 @@
 			var icon_options = self.options.icons[j];
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = 	$('<a class="icon" href="javascript:">' +
+			var $icon = 	$('<a class="icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
 								'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
 								'<span>' + icon_options['name'] + '</span>' +
 							'</a>');
 
 			// noinspection JSUnfilteredForInLoop
 			$icon.data('name', icon_options['name']);
+
 			// noinspection JSUnfilteredForInLoop
 			$icon.data('icon', icon_options['icon']);
 
@@ -548,18 +562,35 @@
 			parent: '.emuos-taskbar-windows-containment'
 		});
 
-		self.$desktop.prepend('<div class="snow" aria-hidden="true">' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
+		if (typeof moment === 'function') {
+			if (moment().month() === 11) {
+				var xmas =	'<div class="snow" aria-hidden="true">' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
-								'<div class="snowflakes"><div class="snowflake">❄</div></div>' +
-							'</div>');
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">❆</div></div>';
+				if (moment().day() >= 23 && moment().day() <= 25) {
+					xmas +=		'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">⛄</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
+								'<div class="snowflakes"><div class="snowflake">⛄</div></div>';
+				}
+				xmas +=		'</div>';
+
+				self.$desktop.prepend(xmas);
+			}
+		}
 
 		self.$desktop.find('[data-autostart="true"]').first().trigger('dblclick');
 
@@ -636,6 +667,14 @@
 
 				return true;
 			}
+		});
+
+		self.$html.on('mousemove', function (e) {
+			var parentOffset = $(e.target).offset();
+			var relX = e.pageX - parentOffset.left;
+			var relY = e.pageY - parentOffset.top;
+			self.$html.get(0).style.setProperty('--mouse-x', relX + 'px');
+			self.$html.get(0).style.setProperty('--mouse-y', relY + 'px');
 		});
 	};
 
