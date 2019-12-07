@@ -30,3 +30,7 @@
 	opacity: 1;
 	visibility: visible;
 }
+
+.iframe[data-title]:after {
+	display: none;
+}
