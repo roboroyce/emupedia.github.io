@@ -101,14 +101,14 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'agar.io BETA',
+				name: 'agar.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
 				link: 'https://proxy.emupedia.net/https://agar.io/',
 				width: 900,
 				height: 600
 			} , {
-				name: 'slither.io BETA',
+				name: 'slither.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/slither.io/favicon.png',
 				link: 'https://proxy.emupedia.net/https://slither.io/',
@@ -121,14 +121,14 @@
 				width: 547,
 				height: 800
 			} , {
-				name: 'Wing 2.0',
+				name: 'Wing 2.0<br/>Prototype',
 				title: 'Under Development',
 				icon: 'vfat/games/wing2/favicon.ico',
 				link: 'vfat/games/wing2/index.html',
 				width: 900,
 				height: 480
 			} , {
-				name: 'Worms 2',
+				name: 'Worms 2<br/>Prototype',
 				title: 'Under Development',
 				icon: 'vfat/games/worms2/favicon.ico',
 				link: 'vfat/games/worms2/index.html',
@@ -193,7 +193,7 @@
 				height: 422
 			} , {
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
-				name: 'Street Fighter Alpha',
+				name: 'Street Fighter Alpha (Demo)',
 				title: 'Under Development',
 				icon: 'vfat/games/sfa/images/icons/' + function() {
 					var icons = [
@@ -305,7 +305,7 @@
 				width: 900,
 				height: 480
 			} , {
-				name: 'YouTube BETA',
+				name: 'YouTube<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
 				link: 'https://proxy.emupedia.net/https://youtube.com',
