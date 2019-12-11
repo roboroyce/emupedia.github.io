@@ -297,6 +297,12 @@
 				width: 900,
 				height: 480
 			} , {
+				name: 'YouTube BETA',
+				icon: 'vfat/apps/youtube/favicon.png',
+				link: 'https://proxy.emupedia.net/https://youtube.com',
+				width: 900,
+				height: 582
+			} , {
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.ico',
 				link: 'https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/',
