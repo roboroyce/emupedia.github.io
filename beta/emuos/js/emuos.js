@@ -101,14 +101,14 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'agar.io',
+				name: 'agar.io BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
 				link: 'https://proxy.emupedia.net/https://agar.io/',
 				width: 900,
 				height: 600
 			} , {
-				name: 'slither.io',
+				name: 'slither.io BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/slither.io/favicon.png',
 				link: 'https://proxy.emupedia.net/https://slither.io/',
