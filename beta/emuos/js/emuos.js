@@ -117,7 +117,7 @@
 			} , {
 				name: 'flappybird.io',
 				icon: 'vfat/games/flappybird.io/favicon.png',
-				link: 'https://flappybird.io/',
+				link: 'https://proxy.emupedia.net/https://flappybird.io/',
 				width: 547,
 				height: 800
 			} , {
