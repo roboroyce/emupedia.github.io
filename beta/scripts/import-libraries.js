@@ -1729,16 +1729,6 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
-		case 'inobounce':
-			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
-				if (error) {
-					log.error('Error occurred:', error);
-				} else {
-					log.log(dependency + ' version ' + version + ' installed!');
-				}
-			});
-			break;
 		case 'i18next':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/umd/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
@@ -1751,6 +1741,69 @@ function install(install_directory, dependency, version) {
 							log.error('Error occurred:', error);
 						} else {
 							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case 'inobounce':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'ionicons':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.min.css', install_directory + css_directory + dependency + '-' + version + '.min.css', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + css_directory + dependency + '-' + version + '.min.css',
+						from: /"\.\.\/fonts\//gi,
+						to: '"../../fonts/'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/css/' + dependency + '.css', install_directory + css_directory + dependency + '-' + version + '.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + css_directory + dependency + '-' + version + '.css',
+										from: /"\.\.\/fonts\//gi,
+										to: '"../../fonts/'
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											//noinspection JSUnresolvedFunction
+											fs.copy(nodemodules_directory + dependency + '/dist/fonts', install_directory + fonts_directory, copy_options, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													//noinspection JSUnresolvedFunction
+													fs.copy(nodemodules_directory + dependency + '/dist/scss', install_directory + scss_directory + dependency + '-' + version, copy_options, (error) => {
+														if (error) {
+															log.error('Error occurred:', error);
+														} else {
+															log.log(dependency + ' version ' + version + ' installed!');
+														}
+													});
+												}
+											});
+										}
+									});
+								}
+							});
 						}
 					});
 				}

@@ -104,7 +104,7 @@
 				name: 'agar.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
-				link: 'https://proxy.emupedia.net/https://agar.io/',
+				link: 'https://proxy.emupedia.net/https://demo.os-js.org/',
 				width: 900,
 				height: 600
 			} , {
@@ -610,7 +610,7 @@
 								'<div class="countdown"></div>' +
 							'</div>';
 
-				xmas +=		'<div class="snow" aria-hidden="true">' +
+				xmas +=		'<div class="xmas-snow" aria-hidden="true">' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
