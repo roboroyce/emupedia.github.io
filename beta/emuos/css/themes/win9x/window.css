@@ -33,6 +33,7 @@
 	padding-left: 19px;
 	height: 18px;
 	color: #d4d0c8;
+	overflow: hidden;
 }
 
 .theme-win9x .emuos-window .ui-dialog-titlebar.ui-state-active {

@@ -3439,7 +3439,7 @@
 				if (!this._cache.realTitle) {
 					$title.html('&#160;');
 				} else {
-					$title.text(this._cache.realTitle);
+					$title.html(this._cache.realTitle);
 				}
 			}
 
