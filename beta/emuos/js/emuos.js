@@ -115,7 +115,7 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'flappybird.io',
+				name: 'Flappy Bird',
 				icon: 'vfat/games/flappybird.io/favicon.png',
 				link: 'https://playcanv.as/p/2OlkUaxF/',
 				width: 547,
