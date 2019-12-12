@@ -308,7 +308,7 @@
 				name: 'YouTube<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
-				link: 'https://explorer.emupedia.net/https://youtube.com',
+				link: 'https://explorer.emupedia.net/https%3A%2F%2Fyoutube.com%2F',
 				width: 900,
 				height: 582
 			} , {
