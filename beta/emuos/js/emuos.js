@@ -117,7 +117,7 @@
 			} , {
 				name: 'Flappy Bird',
 				icon: 'vfat/games/flappybird.io/favicon.png',
-				link: 'https://playcanv.as/p/2OlkUaxF/',
+				link: 'https://proxy.emupedia.net/https://playcanv.as/p/2OlkUaxF/',
 				width: 547,
 				height: 800
 			} , {
