@@ -95,6 +95,19 @@
 				width: 960,
 				height: 552
 			} , {
+				name: 'Cookie Clicker<br/>BETA',
+				title: 'Under Development',
+				icon: 'vfat/games/cookie-clicker/favicon.png',
+				link: 'https://explorer.emupedia.net/aHR0cHM6Ly9vcnRlaWwuZGFzaG5ldC5vcmcvY29va2llY2xpY2tlci8=',
+				width: 900,
+				height: 600
+			} , {
+				name: 'Flappy Bird',
+				icon: 'vfat/games/flappy-bird/favicon.png',
+				link: 'https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/TAhlQLDa/index.html',
+				width: 432,
+				height: 600
+			} , {
 				name: 'Geometry Dash',
 				icon: 'vfat/games/geometry-dash/favicon.png',
 				link: 'https://scratch.mit.edu/projects/105500895/embed',
@@ -105,6 +118,7 @@
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
 				link: 'https://agasio.herokuapp.com/',
+				//link: 'https://explorer.emupedia.net/aHR0cHM6Ly9hZ2FyLmlv',
 				width: 900,
 				height: 600
 			} , {
@@ -113,12 +127,6 @@
 				icon: 'vfat/games/slither.io/favicon.png',
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG',
 				width: 900,
-				height: 600
-			} , {
-				name: 'Flappy Bird',
-				icon: 'vfat/games/flappybird/favicon.png',
-				link: 'https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/TAhlQLDa/index.html',
-				width: 432,
 				height: 600
 			} , {
 				name: 'Wing 2.0<br/>Prototype',
