@@ -24,6 +24,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 Live Demo
+![This is currently under active development, and you probably shouldn't use it unless you understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you probably shouldn't use it unless you understand that some features are not finished.")
 
 [EmuOS](https://emupedia.net/beta/emuos)
 
