@@ -36,6 +36,7 @@
 
 	// noinspection JSFileReferences
 	requirejs.config({
+		urlArgs: 'rand=' + (new Date()).getTime(),
 		waitSeconds: 300,
 		paths: {
 			browserfs: 'libraries/browserfs-1.4.3.min',
