@@ -104,7 +104,7 @@
 			} , {
 				name: 'Flappy Bird',
 				icon: 'vfat/games/flappy-bird/favicon.png',
-				link: 'https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/TAhlQLDa/index.html',
+				link: 'vfat/games/flappy-bird/index.html',
 				width: 432,
 				height: 600
 			} , {
@@ -118,7 +118,7 @@
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
 				link: 'https://agasio.herokuapp.com/',
-				//link: 'https://explorer.emupedia.net/aHR0cHM6Ly9hZ2FyLmlv',
+				// link: 'https://explorer.emupedia.net/aHR0cHM6Ly9hZ2FyLmlv',
 				width: 900,
 				height: 600
 			} , {
