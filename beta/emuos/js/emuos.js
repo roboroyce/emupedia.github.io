@@ -116,10 +116,10 @@
 				height: 600
 			} , {
 				name: 'Flappy Bird',
-				icon: 'vfat/games/flappybird.io/favicon.png',
+				icon: 'vfat/games/flappybird/favicon.png',
 				link: 'https://proxy.emupedia.net/https://playcanv.as/p/2OlkUaxF/',
-				width: 547,
-				height: 800
+				width: 432,
+				height: 600
 			} , {
 				name: 'Wing 2.0<br/>Prototype',
 				title: 'Under Development',
