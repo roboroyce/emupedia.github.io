@@ -111,7 +111,7 @@
 				name: 'slither.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/slither.io/favicon.png',
-				link: 'https://explorer.emupedia.net/https%3A%2F%2Fslither.io%2F',
+				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG',
 				width: 900,
 				height: 600
 			} , {
@@ -308,7 +308,7 @@
 				name: 'YouTube<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
-				link: 'https://explorer.emupedia.net/https%3A%2F%2Fyoutube.com%2F',
+				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
 				width: 900,
 				height: 582
 			} , {
