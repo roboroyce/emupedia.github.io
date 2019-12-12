@@ -111,7 +111,7 @@
 				name: 'slither.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/slither.io/favicon.png',
-				link: 'https://proxy.emupedia.net/https://slither.io/',
+				link: 'https://explorer.emupedia.net/https://slither.io/',
 				width: 900,
 				height: 600
 			} , {
@@ -308,7 +308,7 @@
 				name: 'YouTube<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
-				link: 'https://proxy.emupedia.net/https://youtube.com',
+				link: 'https://explorer.emupedia.net/https://youtube.com',
 				width: 900,
 				height: 582
 			} , {
