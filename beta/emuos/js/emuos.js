@@ -111,7 +111,7 @@
 				name: 'slither.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/slither.io/favicon.png',
-				link: 'https://explorer.emupedia.net/https://slither.io/',
+				link: 'https://explorer.emupedia.net/https%3A%2F%2Fslither.io%2F',
 				width: 900,
 				height: 600
 			} , {
