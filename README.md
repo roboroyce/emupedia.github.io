@@ -24,7 +24,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 Live Demo
-![This is currently under active development, and you probably shouldn't use it unless you understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you probably shouldn't use it unless you understand that some features are not finished.")
+![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
 
 [EmuOS](https://emupedia.net/beta/emuos)
 
@@ -37,7 +37,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | IE11+   | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
 ## 📦 Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
-<details><summary>Click to reveal</summary>
+<details>
+<summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                   |
 | :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                      |
@@ -51,7 +52,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 </details>
 
 ## 📚 Libraries used
-<details><summary>Click to reveal</summary>
+<details>
+<summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                   |
 | :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                      |
