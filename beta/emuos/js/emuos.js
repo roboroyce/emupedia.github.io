@@ -104,7 +104,7 @@
 				name: 'agar.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/agar.io/favicon.png',
-				link: 'https://proxy.emupedia.net/https://agar.io/',
+				link: 'https://agasio.herokuapp.com/',
 				width: 900,
 				height: 600
 			} , {
