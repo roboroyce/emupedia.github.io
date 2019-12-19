@@ -261,6 +261,13 @@
 				width: 640,
 				height: 480
 			} , {
+				name: 'Half-Life<br/>BETA',
+				title: 'Under Development',
+				icon: 'vfat/games/half-life/favicon.ico',
+				link: 'vfat/games/half-life/index.html',
+				width: 640,
+				height: 480
+			} , {
 				name: 'Diablo 1',
 				title: 'Under Development',
 				icon: 'vfat/games/diablo1/favicon.ico',
