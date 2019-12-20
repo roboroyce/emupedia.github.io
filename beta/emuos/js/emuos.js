@@ -261,7 +261,7 @@
 				width: 640,
 				height: 480
 			} , {
-				name: 'Half-Life 1<br/>BETA',
+				name: 'Half-Life 1',
 				title: 'Under Development',
 				icon: 'vfat/games/half-life/favicon.ico',
 				link: 'vfat/games/half-life/index.html',
