@@ -18,6 +18,17 @@ const nodemodules_directory	= `${__dirname}/../../node_modules/`;
 // noinspection JSUnusedGlobalSymbols
 const copy_options			= {
 	overwrite: false,
+	preserveTimestamps: true,
+	transform: (readStream, writeStream, file) => {
+		writeStream.on('open', () => {
+			file.mode = process.platform === 'win32' && (file.mode & 146) === 0 ? file.mode | 146 : 664;
+			readStream.pipe(writeStream);
+		});
+	}
+};
+
+const copy_options_overwrite = {
+	overwrite: true,
 	preserveTimestamps: false,
 	transform: (readStream, writeStream, file) => {
 		writeStream.on('open', () => {
@@ -2195,47 +2206,47 @@ function install(install_directory, dependency, version) {
 											log.error('Error occurred:', error);
 										} else {
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.js', copy_options, (error) => {
+											fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.js', copy_options_overwrite, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
 													//noinspection JSUnresolvedFunction
-													fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.wasm.js', copy_options, (error) => {
+													fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.wasm.js', copy_options_overwrite, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
 															//noinspection JSUnresolvedFunction
-															fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.js', copy_options, (error) => {
+															fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.js', copy_options_overwrite, (error) => {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
 																	//noinspection JSUnresolvedFunction
-																	fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.wasm.js', copy_options, (error) => {
+																	fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-emterp.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-emterp.wasm.js', copy_options_overwrite, (error) => {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
 																			//noinspection JSUnresolvedFunction
-																			fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.js', copy_options, (error) => {
+																			fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.js', copy_options_overwrite, (error) => {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
 																					//noinspection JSUnresolvedFunction
-																					fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.wasm.js', copy_options, (error) => {
+																					fs.copy(nodemodules_directory + dependency + '/dist/wdosbox-nosync.wasm.js', install_directory + 'vfat/apps/dosbox/js/wdosbox-nosync.wasm.js', copy_options_overwrite, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
 																							//noinspection JSUnresolvedFunction
-																							fs.copy(nodemodules_directory + dependency + '/dist/dosbox.js', install_directory + 'vfat/apps/dosbox/js/dosbox.js', copy_options, (error) => {
+																							fs.copy(nodemodules_directory + dependency + '/dist/dosbox.js', install_directory + 'vfat/apps/dosbox/js/dosbox.js', copy_options_overwrite, (error) => {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
 																									//noinspection JSUnresolvedFunction
-																									fs.copy(nodemodules_directory + dependency + '/dist/dosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/dosbox-emterp.js', copy_options, (error) => {
+																									fs.copy(nodemodules_directory + dependency + '/dist/dosbox-emterp.js', install_directory + 'vfat/apps/dosbox/js/dosbox-emterp.js', copy_options_overwrite, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
 																										} else {
 																											//noinspection JSUnresolvedFunction
-																											fs.copy(nodemodules_directory + dependency + '/dist/dosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/dosbox-nosync.js', copy_options, (error) => {
+																											fs.copy(nodemodules_directory + dependency + '/dist/dosbox-nosync.js', install_directory + 'vfat/apps/dosbox/js/dosbox-nosync.js', copy_options_overwrite, (error) => {
 																												if (error) {
 																													log.error('Error occurred:', error);
 																												} else {

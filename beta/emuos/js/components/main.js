@@ -4,9 +4,9 @@
 
 		// noinspection JSUnresolvedVariable
 		if (typeof Babel !== 'undefined') {
-			// noinspection JSUnresolvedVariable
+			// noinspection JSUnresolvedVariable,ES6ModulesDependencies
 			if (typeof Babel.transformScriptTags === 'function') {
-				// noinspection JSUnresolvedVariable
+				// noinspection JSUnresolvedVariable,ES6ModulesDependencies
 				Babel.transformScriptTags();
 			}
 		}

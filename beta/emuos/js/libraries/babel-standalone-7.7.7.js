@@ -29655,6 +29655,10 @@
 
 
   var stdoutColor = browser$3.stdout;
+
+
+
+  var isSimpleWindowsTerm = process.platform === 'win32' && !(process.env.TERM || '').toLowerCase().startsWith('xterm');
   var levelMapping = ['ansi', 'ansi', 'ansi256', 'ansi16m'];
   var skipModels = new Set(['gray']);
   var styles = Object.create(null);
@@ -29683,6 +29687,10 @@
     }
 
     applyOptions(this, options);
+  }
+
+  if (isSimpleWindowsTerm) {
+    ansiStyles.blue.open = "\x1B[94m";
   }
 
   var _loop = function _loop() {
@@ -29821,6 +29829,10 @@
     }
 
     var originalDim = ansiStyles.dim.open;
+
+    if (isSimpleWindowsTerm && this.hasGrey) {
+      ansiStyles.dim.open = '';
+    }
 
     for (var _iterator = this._styles.slice().reverse(), _isArray = Array.isArray(_iterator), _i4 = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
       var _ref;
@@ -30431,6 +30443,13 @@
         return node;
       };
 
+      _proto.estreeParseBigIntLiteral = function estreeParseBigIntLiteral(value) {
+        var bigInt = typeof BigInt !== "undefined" ? BigInt(value) : null;
+        var node = this.estreeParseLiteral(bigInt);
+        node.bigint = String(node.value || value);
+        return node;
+      };
+
       _proto.estreeParseLiteral = function estreeParseLiteral(value) {
         return this.parseLiteral(value, "Literal");
       };
@@ -30568,12 +30587,15 @@
 
       _proto.parseExprAtom = function parseExprAtom(refShorthandDefaultPos) {
         switch (this.state.type) {
-          case types.regexp:
-            return this.estreeParseRegExpLiteral(this.state.value);
-
           case types.num:
           case types.string:
             return this.estreeParseLiteral(this.state.value);
+
+          case types.regexp:
+            return this.estreeParseRegExpLiteral(this.state.value);
+
+          case types.bigint:
+            return this.estreeParseBigIntLiteral(this.state.value);
 
           case types._null:
             return this.estreeParseLiteral(null);
@@ -30662,6 +30684,27 @@
         } else {
           _superClass.prototype.toAssignableObjectExpressionProp.call(this, prop, isBinding, isLast);
         }
+      };
+
+      _proto.finishCallExpression = function finishCallExpression(node, optional) {
+        _superClass.prototype.finishCallExpression.call(this, node, optional);
+
+        if (node.callee.type === "Import") {
+          node.type = "ImportExpression";
+          node.source = node.arguments[0];
+          delete node.arguments;
+          delete node.callee;
+        }
+
+        return node;
+      };
+
+      _proto.toReferencedListDeep = function toReferencedListDeep(exprList, isParenthesizedExpr) {
+        if (!exprList) {
+          return;
+        }
+
+        _superClass.prototype.toReferencedListDeep.call(this, exprList, isParenthesizedExpr);
       };
 
       return _class;
@@ -31622,8 +31665,6 @@
 
             nodeStart.callProperties.push(this.flowParseObjectTypeCallProperty(node, isStatic));
           } else {
-            var _allowInexact;
-
             var kind = "init";
 
             if (this.isContextual("get") || this.isContextual("set")) {
@@ -31635,7 +31676,7 @@
               }
             }
 
-            var propOrInexact = this.flowParseObjectTypeProperty(node, isStatic, protoStart, variance, kind, allowSpread, (_allowInexact = allowInexact) != null ? _allowInexact : !exact);
+            var propOrInexact = this.flowParseObjectTypeProperty(node, isStatic, protoStart, variance, kind, allowSpread, allowInexact != null ? allowInexact : !exact);
 
             if (propOrInexact === null) {
               inexact = true;
@@ -39087,6 +39128,10 @@
     return NodeUtils;
   }(UtilParser);
 
+  var unwrapParenthesizedExpression = function unwrapParenthesizedExpression(node) {
+    return node.type === "ParenthesizedExpression" ? unwrapParenthesizedExpression(node.expression) : node;
+  };
+
   var LValParser = function (_NodeUtils) {
     _inheritsLoose(LValParser, _NodeUtils);
 
@@ -39097,9 +39142,19 @@
     var _proto = LValParser.prototype;
 
     _proto.toAssignable = function toAssignable(node, isBinding, contextDescription) {
-      var _node$extra2;
+      var _node$extra3;
 
       if (node) {
+        var _node$extra;
+
+        if (this.options.createParenthesizedExpressions && node.type === "ParenthesizedExpression" || ((_node$extra = node.extra) == null ? void 0 : _node$extra.parenthesized)) {
+          var parenthesized = unwrapParenthesizedExpression(node);
+
+          if (parenthesized.type !== "Identifier" && parenthesized.type !== "MemberExpression") {
+            this.raise(node.start, "Invalid parenthesized assignment pattern");
+          }
+        }
+
         switch (node.type) {
           case "Identifier":
           case "ObjectPattern":
@@ -39111,13 +39166,13 @@
             node.type = "ObjectPattern";
 
             for (var i = 0, length = node.properties.length, last = length - 1; i < length; i++) {
-              var _node$extra;
+              var _node$extra2;
 
               var prop = node.properties[i];
               var isLast = i === last;
               this.toAssignableObjectExpressionProp(prop, isBinding, isLast);
 
-              if (isLast && prop.type === "RestElement" && ((_node$extra = node.extra) == null ? void 0 : _node$extra.trailingComma)) {
+              if (isLast && prop.type === "RestElement" && ((_node$extra2 = node.extra) == null ? void 0 : _node$extra2.trailingComma)) {
                 this.raiseRestNotLast(node.extra.trailingComma);
               }
             }
@@ -39139,7 +39194,7 @@
 
           case "ArrayExpression":
             node.type = "ArrayPattern";
-            this.toAssignableList(node.elements, isBinding, contextDescription, (_node$extra2 = node.extra) == null ? void 0 : _node$extra2.trailingComma);
+            this.toAssignableList(node.elements, isBinding, contextDescription, (_node$extra3 = node.extra) == null ? void 0 : _node$extra3.trailingComma);
             break;
 
           case "AssignmentExpression":
@@ -39226,8 +39281,6 @@
           this.toReferencedListDeep(expr.elements);
         }
       }
-
-      return exprList;
     };
 
     _proto.parseSpread = function parseSpread(refShorthandDefaultPos, refNeedsArrowPos) {
@@ -39435,10 +39488,6 @@
     return LValParser;
   }(NodeUtils);
 
-  var unwrapParenthesizedExpression = function unwrapParenthesizedExpression(node) {
-    return node.type === "ParenthesizedExpression" ? unwrapParenthesizedExpression(node.expression) : node;
-  };
-
   var ExpressionParser = function (_LValParser) {
     _inheritsLoose(ExpressionParser, _LValParser);
 
@@ -39561,19 +39610,6 @@
         }
 
         this.checkLVal(left, undefined, undefined, "assignment expression");
-        var maybePattern = unwrapParenthesizedExpression(left);
-        var patternErrorMsg;
-
-        if (maybePattern.type === "ObjectPattern") {
-          patternErrorMsg = "`({a}) = 0` use `({a} = 0)`";
-        } else if (maybePattern.type === "ArrayPattern") {
-          patternErrorMsg = "`([a]) = 0` use `([a] = 0)`";
-        }
-
-        if (patternErrorMsg && (left.extra && left.extra.parenthesized || left.type === "ParenthesizedExpression")) {
-          this.raise(maybePattern.start, "You're trying to assign to a parenthesized expression, eg. instead of " + patternErrorMsg);
-        }
-
         this.next();
         _node2.right = this.parseMaybeAssign(noIn);
         return this.finishNode(_node2, "AssignmentExpression");
@@ -49852,14 +49888,14 @@
     throw new Error("Cannot load preset " + name + " relative to " + dirname + " in a browser");
   }
 
-  var version$1 = "7.7.5";
+  var version$1 = "7.7.7";
 
   function getEnv(defaultValue) {
     if (defaultValue === void 0) {
       defaultValue = "development";
     }
 
-    return  defaultValue;
+    return process.env.BABEL_ENV || undefined || defaultValue;
   }
 
   function normalizeArray(parts, allowAboveRoot) {
@@ -53536,6 +53572,8 @@
     return options;
   }
 
+  var fs = {};
+
   var CLONE_DEEP_FLAG$1 = 1,
       CLONE_SYMBOLS_FLAG$2 = 4;
 
@@ -53620,7 +53658,7 @@
   });
   var safeBuffer_1 = safeBuffer.Buffer;
 
-  var fs = getCjsExportFromNamespace(_nodeResolve_empty$1);
+  var fs$1 = getCjsExportFromNamespace(_nodeResolve_empty$1);
 
   var convertSourceMap = createCommonjsModule(function (module, exports) {
 
@@ -53655,7 +53693,7 @@
     var filepath = path$1.resolve(dir, filename);
 
     try {
-      return fs.readFileSync(filepath, 'utf8');
+      return fs$1.readFileSync(filepath, 'utf8');
     } catch (e) {
       throw new Error('An error occurred while trying to read the map file at ' + filepath + '\n' + e);
     }
@@ -54003,6 +54041,7 @@
   }
 
   var debug$1 = browser$4("babel:transform:file");
+  var LARGE_INPUT_SOURCEMAP_THRESHOLD = 1000000;
   function normalizeFile(pluginPasses, options, code, ast) {
     code = "" + (code || "");
 
@@ -54042,7 +54081,14 @@
 
         if (typeof options.filename === "string" && _lastComment) {
           try {
-            inputMap = convertSourceMap.fromMapFileComment("//" + _lastComment, path$1.dirname(options.filename));
+            var match = EXTERNAL_SOURCEMAP_REGEX.exec(_lastComment);
+            var inputMapContent = fs.readFileSync(path$1.resolve(path$1.dirname(options.filename), match[1]));
+
+            if (inputMapContent.length > LARGE_INPUT_SOURCEMAP_THRESHOLD) {
+              debug$1("skip merging input map > 1 MB");
+            } else {
+              inputMap = convertSourceMap.fromJSON(inputMapContent);
+            }
           } catch (err) {
             debug$1("discarding unknown file input sourcemap", err);
           }
@@ -54148,7 +54194,7 @@
   }
 
   var INLINE_SOURCEMAP_REGEX = /^[@#]\s+sourceMappingURL=data:(?:application|text)\/json;(?:charset[:=]\S+?;)?base64,(?:.*)$/;
-  var EXTERNAL_SOURCEMAP_REGEX = /^[@#][ \t]+sourceMappingURL=(?:[^\s'"`]+?)[ \t]*$/;
+  var EXTERNAL_SOURCEMAP_REGEX = /^[@#][ \t]+sourceMappingURL=([^\s'"`]+)[ \t]*$/;
 
   function extractCommentsFromList(regex, comments, lastComment) {
     if (comments) {
@@ -57739,10 +57785,10 @@
       };
     }
 
-    function replaceImpureComputedKeys(path) {
+    function replaceImpureComputedKeys(properties, scope) {
       var impureComputedPropertyDeclarators = [];
 
-      for (var _iterator3 = path.get("properties"), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+      for (var _iterator3 = properties, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
         var _ref3;
 
         if (_isArray3) {
@@ -57758,7 +57804,7 @@
         var key = propPath.get("key");
 
         if (propPath.node.computed && !key.isPure()) {
-          var name = path.scope.generateUidBasedOnNode(key.node);
+          var name = scope.generateUidBasedOnNode(key.node);
           var declarator = VariableDeclarator(Identifier(name), key.node);
           impureComputedPropertyDeclarators.push(declarator);
           key.replaceWith(Identifier(name));
@@ -57787,7 +57833,7 @@
       assertRestElement(last.node);
       var restElement = cloneNode(last.node);
       last.remove();
-      var impureComputedPropertyDeclarators = replaceImpureComputedKeys(path);
+      var impureComputedPropertyDeclarators = replaceImpureComputedKeys(path.get("properties"), path.scope);
 
       var _extractNormalizedKey = extractNormalizedKeys(path),
           keys = _extractNormalizedKey.keys,
@@ -57866,19 +57912,17 @@
             var kind;
             path.findParent(function (path) {
               if (path.isObjectProperty()) {
-                refPropertyPath.unshift(path.node.key.name);
+                refPropertyPath.unshift(path);
               } else if (path.isVariableDeclarator()) {
                 kind = path.parentPath.node.kind;
                 return true;
               }
             });
-
-            if (refPropertyPath.length) {
-              refPropertyPath.forEach(function (prop) {
-                ref = MemberExpression(ref, Identifier(prop));
-              });
-            }
-
+            var impureObjRefComputedDeclarators = replaceImpureComputedKeys(refPropertyPath, path.scope);
+            refPropertyPath.forEach(function (prop) {
+              var node = prop.node;
+              ref = MemberExpression(ref, cloneNode(node.key), node.computed);
+            });
             var objectPatternPath = path.findParent(function (path) {
               return path.isObjectPattern();
             });
@@ -57894,6 +57938,7 @@
 
             assertIdentifier(argument);
             insertionPath.insertBefore(impureComputedPropertyDeclarators);
+            insertionPath.insertBefore(impureObjRefComputedDeclarators);
             insertionPath.insertAfter(VariableDeclarator(argument, callExpression));
             insertionPath = insertionPath.getSibling(insertionPath.key + 1);
             path.scope.registerBinding(kind, insertionPath);
@@ -58347,8 +58392,8 @@
       'object': true
     };
     var root = objectTypes[typeof window] && window || this;
-    var freeExports =  exports && !exports.nodeType && exports;
-    var hasFreeModule =  module && !module.nodeType;
+    var freeExports = objectTypes['object'] && exports && !exports.nodeType && exports;
+    var hasFreeModule = objectTypes['object'] && module && !module.nodeType;
     var freeGlobal = freeExports && hasFreeModule && typeof commonjsGlobal == 'object' && commonjsGlobal;
 
     if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
@@ -59355,8 +59400,13 @@
 
       function parseIdentityEscape() {
         var tmp;
+        var l = lookahead();
 
-        if (lookahead() !== 'c') {
+        if (hasUnicodeFlag && /[\^\$\.\*\+\?\(\)\\\[\]\{\}\|\/]/.test(l) || !hasUnicodeFlag && l !== "c") {
+          if (l === "k" && features.lookbehind) {
+            return null;
+          }
+
           tmp = incr();
           return createEscaped('identifier', tmp.charCodeAt(0), tmp, 1);
         }
@@ -61240,11 +61290,19 @@
       };
     }
 
+    if (process.noDeprecation === true) {
+      return fn;
+    }
+
     var warned = false;
 
     function deprecated() {
       if (!warned) {
-        {
+        if (process.throwDeprecation) {
+          throw new Error(msg);
+        } else if (process.traceDeprecation) {
+          console.trace(msg);
+        } else {
           console.error(msg);
         }
 
@@ -61259,7 +61317,7 @@
   var debugs = {};
   var debugEnviron;
   function debuglog(set) {
-    if (isUndefined(debugEnviron)) debugEnviron =  '';
+    if (isUndefined(debugEnviron)) debugEnviron = process.env.NODE_DEBUG || '';
     set = set.toUpperCase();
 
     if (!debugs[set]) {
@@ -70047,7 +70105,7 @@
       var scope = path.scope,
           node = path.node;
 
-      if (node.name === "eval" || !isSafeBinding(scope, node)) {
+      if (node.name === "eval" || !isSafeBinding(scope, node) || !isSafeBinding(state.scope, node)) {
         state.iife = true;
         path.stop();
       }
@@ -70805,7 +70863,7 @@
         var _value$extra;
 
         value.value = value.value.replace(/\n\s+/g, " ");
-        (_value$extra = value.extra) == null ? void 0 : delete _value$extra.raw;
+        (_value$extra = value.extra) == null ? true : delete _value$extra.raw;
       }
 
       if (isJSXNamespacedName(node.name)) {
@@ -71080,7 +71138,7 @@
       },
       exit: function exit(path, state) {
         if (state.get("pragmaSet") && state.get("usedFragment") && !state.get("pragmaFragSet")) {
-          throw new Error("transform-react-jsx: pragma has been set but " + "pragmafrag has not been set");
+          throw new Error("transform-react-jsx: pragma has been set but " + "pragmaFrag has not been set");
         }
       }
     };
@@ -72938,8 +72996,6 @@
     };
   });
 
-  var fs$1 = {};
-
   var caller = function () {
     var origPrepareStackTrace = Error.prepareStackTrace;
 
@@ -72953,6 +73009,8 @@
   };
 
   var pathParse = createCommonjsModule(function (module) {
+
+  var isWindows = process.platform === 'win32';
   var splitDeviceRe = /^([a-zA-Z]:|[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/]+)?([\\\/])?([\s\S]*?)$/;
   var splitTailRe = /^([\s\S]*?)((?:\.{1,2}|[^\\\/]+?|)(\.[^.\/\\]*|))(?:[\\\/]*)$/;
   var win32 = {};
@@ -73018,14 +73076,14 @@
     };
   };
 
-  module.exports = posix.parse;
+  if (isWindows) module.exports = win32.parse;else module.exports = posix.parse;
   module.exports.posix = posix.parse;
   module.exports.win32 = win32.parse;
   });
   var pathParse_1 = pathParse.posix;
   var pathParse_2 = pathParse.win32;
 
-  var parse$5 =  pathParse;
+  var parse$5 = path$1.parse || pathParse;
 
   var getNodeModulesDirs = function getNodeModulesDirs(absoluteStart, modules) {
     var prefix = '/';
@@ -73127,6 +73185,7 @@
   var util$2 = true;
   var v8 = ">= 1";
   var vm = true;
+  var wasi = ">= 13.4";
   var worker_threads = ">= 11.7";
   var zlib = true;
   var core = {
@@ -73218,6 +73277,7 @@
   ],
   	v8: v8,
   	vm: vm,
+  	wasi: wasi,
   	worker_threads: worker_threads,
   	zlib: zlib
   };
@@ -73283,6 +73343,7 @@
     util: util$2,
     v8: v8,
     vm: vm,
+    wasi: wasi,
     worker_threads: worker_threads,
     zlib: zlib,
     'default': core
@@ -73368,7 +73429,7 @@
   };
 
   var defaultIsFile = function isFile(file, cb) {
-    fs$1.stat(file, function (err, stat) {
+    fs.stat(file, function (err, stat) {
       if (!err) {
         return cb(null, stat.isFile() || stat.isFIFO());
       }
@@ -73379,7 +73440,7 @@
   };
 
   var defaultIsDir = function isDirectory(dir, cb) {
-    fs$1.stat(dir, function (err, stat) {
+    fs.stat(dir, function (err, stat) {
       if (!err) {
         return cb(null, stat.isDirectory());
       }
@@ -73391,7 +73452,7 @@
 
   var maybeUnwrapSymlink = function maybeUnwrapSymlink(x, opts, cb) {
     if (opts && opts.preserveSymlinks === false) {
-      fs$1.realpath(x, function (realPathErr, realPath) {
+      fs.realpath(x, function (realPathErr, realPath) {
         if (realPathErr && realPathErr.code !== 'ENOENT') cb(realPathErr);else cb(null, realPathErr ? x : realPath);
       });
     } else {
@@ -73418,7 +73479,7 @@
     opts = normalizeOptions$3(x, opts);
     var isFile = opts.isFile || defaultIsFile;
     var isDirectory = opts.isDirectory || defaultIsDir;
-    var readFile = opts.readFile || fs$1.readFile;
+    var readFile = opts.readFile || fs.readFile;
     var extensions = opts.extensions || ['.js'];
     var basedir = opts.basedir || path$1.dirname(caller());
     var parent = opts.filename || basedir;
@@ -73514,6 +73575,10 @@
 
     function loadpkg(dir, cb) {
       if (dir === '' || dir === '/') return cb(null);
+
+      if (process.platform === 'win32' && /^\w:[/\\]*$/.test(dir)) {
+        return cb(null);
+      }
 
       if (/[/\\]node_modules[/\\]*$/.test(dir)) return cb(null);
       maybeUnwrapSymlink(dir, opts, function (unwrapErr, pkgdir) {
@@ -73627,7 +73692,7 @@
 
   var defaultIsFile$1 = function isFile(file) {
     try {
-      var stat = fs$1.statSync(file);
+      var stat = fs.statSync(file);
     } catch (e) {
       if (e && (e.code === 'ENOENT' || e.code === 'ENOTDIR')) return false;
       throw e;
@@ -73638,7 +73703,7 @@
 
   var defaultIsDir$1 = function isDirectory(dir) {
     try {
-      var stat = fs$1.statSync(dir);
+      var stat = fs.statSync(dir);
     } catch (e) {
       if (e && (e.code === 'ENOENT' || e.code === 'ENOTDIR')) return false;
       throw e;
@@ -73650,7 +73715,7 @@
   var maybeUnwrapSymlink$1 = function maybeUnwrapSymlink(x, opts) {
     if (opts && opts.preserveSymlinks === false) {
       try {
-        return fs$1.realpathSync(x);
+        return fs.realpathSync(x);
       } catch (realPathErr) {
         if (realPathErr.code !== 'ENOENT') {
           throw realPathErr;
@@ -73668,7 +73733,7 @@
 
     var opts = normalizeOptions$3(x, options);
     var isFile = opts.isFile || defaultIsFile$1;
-    var readFileSync = opts.readFileSync || fs$1.readFileSync;
+    var readFileSync = opts.readFileSync || fs.readFileSync;
     var isDirectory = opts.isDirectory || defaultIsDir$1;
     var extensions = opts.extensions || ['.js'];
     var basedir = opts.basedir || path$1.dirname(caller());
@@ -73720,6 +73785,10 @@
 
     function loadpkg(dir) {
       if (dir === '' || dir === '/') return;
+
+      if (process.platform === 'win32' && /^\w:[/\\]*$/.test(dir)) {
+        return;
+      }
 
       if (/[/\\]node_modules[/\\]*$/.test(dir)) return;
       var pkgfile = path$1.join(maybeUnwrapSymlink$1(dir, opts), 'package.json');
@@ -76959,7 +77028,7 @@
     typescript: presetTypescript,
     flow: presetFlow
   });
-  var version$6 = "7.7.5";
+  var version$6 = "7.7.7";
 
   function onDOMContentLoaded() {
     transformScriptTags();

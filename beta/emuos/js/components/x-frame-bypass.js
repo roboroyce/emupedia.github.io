@@ -6,6 +6,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	connectedCallback() {
 		this.load(this.src);
 		this.src = '';
+		// noinspection JSValidateTypes
 		this.sandbox = '' + this.sandbox || 'allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation'; // all except allow-top-navigation
 	}
 
@@ -20,7 +21,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		this.srcdoc = `<html lang="en">
 	<head>
 		<style>
-	
+
 		.loader {
 			position: absolute;
 			top: calc(50% - 25px);
@@ -28,10 +29,10 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 			width: 50px;
 			height: 50px;
 			background-color: #333;
-			border-radius: 50%;  
+			border-radius: 50%;
 			animation: loader 1s infinite ease-in-out;
 		}
-	
+
 		@keyframes loader {
 			0% {
 				transform: scale(0);
@@ -59,7 +60,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	document.addEventListener('click', function(e) {
 		if (frameElement && document.activeElement && document.activeElement.href) {
 			e.preventDefault();
-			
+
 			frameElement.load(document.activeElement.href)
 		}
 	});
@@ -67,7 +68,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	document.addEventListener('submit', function(e) {
 		if (frameElement && document.activeElement && document.activeElement.form && document.activeElement.form.action) {
 			e.preventDefault();
-			
+
 			if (document.activeElement.form.method === 'post') {
 				frameElement.load(document.activeElement.form.action, {method: 'post', body: new FormData(document.activeElement.form)});
 			} else {
