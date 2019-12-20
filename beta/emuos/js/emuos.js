@@ -636,7 +636,7 @@
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>';
-				if (moment().day() >= 23 && moment().day() <= 25) {
+				if (moment().date() >= 23 && moment().date() <= 25) {
 					xmas +=		'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
