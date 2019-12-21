@@ -702,6 +702,10 @@
 		}
 	};
 
+	if (window.location.hostname === 'localhost') {
+		window.dumpsystem();
+	}
+
 	// endregion
 
 	onerror = function(message, url, lineNumber) {
