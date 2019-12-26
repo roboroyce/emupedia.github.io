@@ -165,7 +165,7 @@
 	window.SYSTEM_FEATURE_POINTER_EVENTS		= !!window.PointerEvent ? true : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent;
 	// noinspection JSUnresolvedVariable
 	window.SYSTEM_FEATURE_GAMEPADS				= !!navigator.getGamepads ? true : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads;
-	// noinspection JSUnresolvedVariable
+	// noinspection JSUnresolvedVariable,DuplicatedCode
 	window.SYSTEM_FEATURE_WEBSOCKETS			= (function() {
 		var protocol = 'https:' === location.protocol ? 'wss' : 'ws';
 
@@ -245,6 +245,7 @@
 	window.SYSTEM_FEATURE_ES5_STRICT_MODE		= (function() {'use strict'; return !this; })();
 	window.SYSTEM_FEATURE_ES5_XHR				= 'XMLHttpRequest' in window && 'prototype' in window.XMLHttpRequest && 'addEventListener' in window.XMLHttpRequest.prototype;
 	window.SYSTEM_FEATURE_ES5_JSON				= 'JSON' in window && 'parse' in JSON && 'stringify' in JSON;
+	// noinspection DuplicatedCode
 	window.SYSTEM_FEATURE_ES5_SYNTAX			= (function() {
 		var value, obj, stringAccess, getter, setter, reservedWords;//, zeroWidthChars;
 
@@ -311,7 +312,7 @@
 
 	// noinspection JSUnresolvedVariable,DuplicatedCode,JSValidateTypes
 	window.SYSTEM_FEATURE_ES6_NUMBER			= !!(Number.isFinite && Number.isInteger && Number.isSafeInteger && Number.isNaN && Number.parseInt && Number.parseFloat && Number.isInteger(Number.MAX_SAFE_INTEGER) && Number.isInteger(Number.MIN_SAFE_INTEGER) && Number.isFinite(Number.EPSILON));
-	// noinspection JSUnresolvedVariable
+	// noinspection JSUnresolvedVariable,DuplicatedCode
 	window.SYSTEM_FEATURE_ES6_MATH				= !!(Math && Math.clz32 && Math.cbrt && Math.imul && Math.sign && Math.log10 && Math.log2 && Math.log1p && Math.expm1 && Math.cosh && Math.sinh && Math.tanh && Math.acosh && Math.asinh && Math.atanh && Math.hypot && Math.trunc && Math.fround);
 	window.SYSTEM_FEATURE_ES6_ARRAY				= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
 	window.SYSTEM_FEATURE_ES6_FUNCTION			= (function() {
@@ -345,6 +346,7 @@
 		}
 		return true;
 	})();
+	// noinspection DuplicatedCode
 	window.SYSTEM_FEATURE_ES6_PROMISES			= (function() {
 		return 'Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise && (function() {
 			var resolve;
@@ -405,7 +407,7 @@
 	window.SYSTEM_INFO_RAM						= !navigator.deviceMemory ? '≤ 1GB' : '≥' + navigator.deviceMemory + 'GB';
 	// noinspection JSUnusedGlobalSymbols
 	window.SYSTEM_INFO_VIDEO_ACCELERATION		= SYSTEM_FEATURE_WEBGL || SYSTEM_FEATURE_WEBGL2 ? '3D' : (SYSTEM_FEATURE_CANVAS ? '2D' : false);
-	// noinspection JSUnusedGlobalSymbols
+	// noinspection JSUnusedGlobalSymbols,DuplicatedCode
 	window.SYSTEM_INFO_GPU						= (function() {
 		if (contextWEBGL) {
 			if (typeof contextWEBGL.getSupportedExtensions === 'function') {
