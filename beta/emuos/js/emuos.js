@@ -602,6 +602,7 @@
 		if (typeof moment === 'function') {
 			if (moment().month() === 11) {
 				var xmas = '';
+				var newyear = '';
 
 				if (moment().date() >= 23 && moment().date() <= 25) {
 					xmas 	=	'<div class="xmas-countdown">' +
@@ -689,6 +690,15 @@
 
 					getRemaining('12/25/' + currentYear, 'countdown', timer);
 				}
+
+				if (moment().date() === 31) {
+					newyear += 	'<div class="fireworks">' +
+									'<div class="fireworks-before"></div>' +
+									'<div class="fireworks-after"></div>' +
+								'</div>'
+				}
+
+				self.$desktop.prepend(newyear);
 			}
 		}
 
