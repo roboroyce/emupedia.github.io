@@ -155,6 +155,12 @@
 				width: 720,
 				height: 480
 			} , {
+				name: 'Pac-Man',
+				icon: 'vfat/games/pac-man/favicon.ico',
+				link: 'vfat/games/pac-man/index.html',
+				width: 1025,
+				height: 715
+			} , {
 				name: 'Clippy',
 				icon: 'vfat/apps/clippy/favicon.png'
 			} , {
@@ -283,6 +289,7 @@
 				height: 480
 			} , {
 				name: 'Command and Conquer',
+				title: 'Under Development',
 				icon: 'vfat/games/command-and-conquer/favicon.ico',
 				link: 'vfat/games/command-and-conquer/index.html',
 				width: 640,
