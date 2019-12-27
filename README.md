@@ -1,3 +1,7 @@
+<style type="text/css">
+table {width: 100%;}
+</style>
+
 ## <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-xmas-48.png" /></sub> Emupedia [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/Emupedia/emupedia.github.io/pulls) [![Discord](https://img.shields.io/discord/510149138491506688.svg?logo=discord)](https://discord.gg/wXtGQ4p) [![Gitpod - Code Now](https://img.shields.io/badge/gitpod-code%20now-blue.svg)](https://gitpod.io#https://github.com/Emupedia/emupedia.github.io) ![GitHub last commit](https://img.shields.io/github/last-commit/Emupedia/emupedia.github.io.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/Emupedia/emupedia.github.io.svg)
 
 The purpose of Emupedia is to serve as a [nonprofit](https://en.wikipedia.org/wiki/Nonprofit_organization) meta-resource hub and community for those interested mainly in [video game preservation](https://en.wikipedia.org/wiki/Video_game_preservation) and computer history which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly [UI](https://en.wikipedia.org/wiki/User_interface) that [simulates](https://difference.guru/difference-between-simulator-and-emulator) several retro operating systems for educational purposes.
@@ -35,7 +39,6 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="IE" /></br>IE | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /></br>Opera |
 | :---:   | :---:    | :---: | :---: | :---:  | :---: |
 | IE11+   | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
-
 
 ## 🖥️ Emulators used
 <details>
