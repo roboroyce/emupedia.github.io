@@ -639,6 +639,23 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'buzz':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
 		case 'chart.js':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/Chart.min.js', install_directory + libraries_directory + 'chart-' + version + '.min.js', copy_options, (error) => {
@@ -2799,7 +2816,7 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'monaco-editor':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/min/vs', install_directory + libraries_directory + 'vs', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/min/vs', install_directory + libraries_directory + 'vs', copy_options_overwrite, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
