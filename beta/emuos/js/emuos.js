@@ -691,14 +691,94 @@
 					getRemaining('12/25/' + currentYear, 'countdown', timer);
 				}
 
+				if (moment().date() >= 26) {
+					newyear += '<div class="newyear-countdown">' +
+									'<div class="newyear-box">' +
+										'<div id="days" class="num">00</div>' +
+										'<div id="days-text" class="text">Days</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="hours" class="num">00</div>' +
+										'<div id="hours-text" class="text">Hours</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="mins" class="num">00</div>' +
+										'<div id="mins-text" class="text">Minutes</div>' +
+									'</div>' +
+									'<div class="newyear-box">' +
+										'<div id="secs" class="num">00</div>' +
+										'<div id="secs-text" class="text">Seconds</div>' +
+									'</div>' +
+								'</div>';
+				}
+
 				if (moment().date() === 31) {
-					newyear += 	'<div class="fireworks">' +
+					newyear +=	'<div class="fireworks">' +
 									'<div class="fireworks-before"></div>' +
 									'<div class="fireworks-after"></div>' +
-								'</div>'
+								'</div>';
 				}
 
 				self.$desktop.prepend(newyear);
+
+				if (moment().date() >= 26) {
+					function timeLeft(endtime) {
+						// noinspection JSCheckFunctionSignatures
+						var t = Date.parse(endtime) - Date.parse(new Date());
+						var seconds = Math.floor( (t / 1000) % 60 );
+						var minutes = Math.floor( (t / 1000 / 60) % 60 );
+						var hours = Math.floor( (t / (1000 * 60 * 60)) % 24 );
+						var days = Math.floor( t / (1000 *60 * 60* 24) );
+
+						return {
+							total: t,
+							days: days,
+							hours: hours,
+							minutes: minutes,
+							seconds: seconds
+						};
+					}
+
+					function setClock(newyear) {
+						var timeinterval = setInterval(function() {
+							var t = timeLeft(newyear);
+
+							// noinspection JSJQueryEfficiency
+							$('#days').text(t.days);
+							// noinspection JSJQueryEfficiency
+							$('#hours').text(t.hours);
+							// noinspection JSJQueryEfficiency
+							$('#mins').text(('0' + t.minutes).slice(-2));
+							// noinspection JSJQueryEfficiency
+							$('#secs').text(('0' + t.seconds).slice(-2));
+
+							if (t.total <= 0) {
+								clearInterval(timeinterval);
+
+								var now = new Date();
+								var yearStr = now.getFullYear().toString();
+
+								$('#days').text(yearStr[0]);
+								$('#days-text').text('Happy');
+								$('#hours').text(yearStr[1]);
+								$('#hours-text').text('New');
+								$('#mins').text(yearStr[2]);
+								$('#mins-text').text('Year');
+								$('#secs').text(yearStr[3]);
+								$('#secs-text').text('!!!');
+							}
+						},1000);
+					}
+
+					var today = new Date();
+					var deadline = 'January 1 ' + (today.getFullYear() + 1) + ' 00:00:00';
+
+					if (today.getMonth() === 0 && today.getDate() === 1) {
+						deadline = 'January 1 ' + (today.getFullYear()) + ' 00:00:00';
+					}
+
+					setClock(deadline);
+				}
 			}
 		}
 
