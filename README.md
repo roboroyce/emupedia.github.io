@@ -190,7 +190,7 @@ You will receive a confirmation once your request has been processed.
 
 ## 📝 License
 
-Copyright (c) 2016 - 2019, Emupedia
+Copyright (c) 2016 - 2020, Emupedia
 
 The source code provided by Emupedia are for non-commercial testing and evaluation
 purposes only. Emupedia reserves all rights not expressly granted.
