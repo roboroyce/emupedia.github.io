@@ -331,8 +331,8 @@
 				title: 'Under Development',
 				icon: 'vfat/apps/youtube/favicon.png',
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
-				width: 900,
-				height: 582
+				width: 1020,
+				height: 630
 			} , {
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.ico',
