@@ -98,7 +98,7 @@
 				name: 'Cookie Clicker<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/cookie-clicker/favicon.png',
-				link: 'https://explorer.emupedia.net/aHR0cHM6Ly9vcnRlaWwuZGFzaG5ldC5vcmcvY29va2llY2xpY2tlci8=',
+				link: 'http://orteil.dashnet.org/cookieclicker/',
 				width: 900,
 				height: 600
 			} , {
