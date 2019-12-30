@@ -6,7 +6,7 @@
 } (function ($, network, Fingerprint) {
 	$(function() {
 		var net = network.start({
-			servers: ['https://ws.emupedia.net:4000'],
+			servers: ['https://ws.emupedia.net/'],
 			server: 0,
 			mode: 0,
 			debug: false
