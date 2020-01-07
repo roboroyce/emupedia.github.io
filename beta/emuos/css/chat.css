@@ -87,6 +87,10 @@
 	overflow-y: auto;
 }
 
+#client_output {
+	overflow-x: hidden;
+}
+
 #client_input {
 	float: left;
 	padding: 5px;

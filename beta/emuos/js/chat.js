@@ -175,7 +175,7 @@
 			// noinspection HtmlDeprecatedTag
 			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user + '] </span>' + $('<div/>').text(data.msg).html();
 			net.log(msg);
-			net.show();
+			//net.show();
 		});
 
 		net.socket.on('server.msg', function (data) {
