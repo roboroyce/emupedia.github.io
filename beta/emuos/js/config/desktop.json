@@ -260,7 +260,7 @@
 		"link": "vfat/apps/notepad/index.html",
 		"width": 900,
 		"height": 480,
-		"autostart": true
+		"runonce": true
 	} , {
 		"name": "Paint",
 		"icon": "vfat/apps/paint/favicon.ico",

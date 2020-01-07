@@ -1248,8 +1248,7 @@
 			$sys.api.import('js/libraries/babel-standalone-7.7.7.min.js', function() {
 				$sys.api.import('js/polyfills/es6-web-components-2.4.0.min.js', function() {
 					$sys.api.import('js/libraries/hybrids-4.0.3.min.js', function() {
-						window.define = hybrids.define;
-						window.html = hybrids.html;
+						$sys.api.hybrids = hybrids;
 						$sys.api.import('js/components/main.js');
 					});
 				});
@@ -1258,15 +1257,13 @@
 	} else if (!$sys.feature.SYSTEM_FEATURE_WEBCOMPONENTS_V1) {
 		$sys.api.import('js/polyfills/es6-web-components-2.4.0.min.js', function() {
 			$sys.api.import('js/libraries/hybrids-4.0.3.min.js', function() {
-				window.define = hybrids.define;
-				window.html = hybrids.html;
+				$sys.api.hybrids = hybrids;
 				$sys.api.import('js/components/main.js');
 			});
 		});
 	} else {
 		$sys.api.import('js/libraries/hybrids-4.0.3.min.js', function() {
-			window.define = hybrids.define;
-			window.html = hybrids.html;
+			$sys.api.hybrids = hybrids;
 			$sys.api.import('js/components/main.js');
 		});
 	}
