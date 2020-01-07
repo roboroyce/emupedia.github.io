@@ -66,6 +66,7 @@
 			chat: 'chat',
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
+			simplestorage: 'libraries/simplestorage-0.2.1.min',
 			socketio: 'libraries/socket.io-2.3.0.min',
 			taskbar: 'taskbar',
 			text: 'libraries/requirejs-text-2.0.15',
@@ -143,11 +144,13 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
+		'json!config/desktop.json',
 		'chat',
 		'filesystem',
 		'network',
 		'emuos'
-	], function($, Chat, FileSystem, Network, EmuOS) {
+	], function($, desktop, Chat, FileSystem, Network, EmuOS) {
+		console.log(desktop.icons);
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
@@ -166,9 +169,15 @@
 			// var webamp = new Webamp({template: webamp_template});
 
 			// noinspection JSUnusedLocalSymbols
-			var desktop = new EmuOS({
+			new EmuOS({
 				filesystem: null,
-				theme: 'theme-win9x'
+				themes: {
+					basic: 'theme-basic',
+					win3x: 'theme-win3x',
+					win9x: 'theme-win9x'
+				},
+				theme: 'theme-win9x',
+				icons: desktop.icons
 			});
 
 			// noinspection JSUnresolvedFunction

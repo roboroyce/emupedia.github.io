@@ -1,0 +1,290 @@
+{
+	"format": {
+		"version": "1.0"
+	},
+	"icons": [{
+		"name": "EmuOS v2.0",
+		"title": "Under Development",
+		"icon": "favicon.ico",
+		"link": "boot.html",
+		"width": 824,
+		"height": 624
+	} , {
+		"name": "ÐeKaÐeNcE",
+		"title": "Under Development",
+		"icon": "https://launcher.dekadence.ro/favicon.ico",
+		"link": "https://launcher.dekadence.ro",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Windows 93",
+		"icon": "vfat/apps/windows93/favicon.ico",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG",
+		"width": 960,
+		"height": 713
+	} , {
+		"name": "98.js",
+		"icon": "vfat/apps/98.js/favicon.ico",
+		"link": "https://98.js.org/",
+		"width": 960,
+		"height": 713
+	} , {
+		"name": "Visual Studio Code",
+		"title": "Under Development",
+		"icon": "vfat/apps/vscode/favicon.ico",
+		"link": "vfat/apps/vscode/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Sandbox",
+		"title": "Under Development",
+		"icon": "vfat/apps/sandbox/favicon.ico",
+		"link": "vfat/apps/sandbox/index.html?repo=Emupedia/emupedia.github.io/contents/beta/emuos/vfat/apps/sandbox/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Microsoft Solitaire Collection",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/msso/Solitaire_GameLogo_350x210_v1.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnRzb2xpdGFpcmVjb2xsZWN0aW9uJTJGMjAxOSUyRjIwMTkwNzI5VDEyMTMwMF8xLjUuNC4xX3JlbGVhc2VfdjAwMDFfOWFmNjQzOTJfbXNuJTJGc29saXRhaXJlJTJGaW5kZXguaHRtbCUzRmhvc3RpbmdFbnZpcm9ubWVudCUzRHpvbmU=",
+		"width": 960,
+		"height": 540
+	} , {
+		"name": "Microsoft Mahjong",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/msmj/Mahjong_GameLogo_250_150.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnRtYWhqb25nJTJGMjAxOSUyRjIwMTkwODA1VDE4MDgwMF8xLjAuMl9yZWxlYXNlXzIwMTlfMDAyX2U1ODg2ZWRlX21zbiUyRmdhbWUuaHRtbCUzRmhvc3RpbmdFbnZpcm9ubWVudCUzRHpvbmU=",
+		"width": 960,
+		"height": 540
+	} , {
+		"name": "Microsoft Ultimate Word Games",
+		"icon": "https://zone.msn.com/images/v9/en-us/game/mscw/350x210_mscw.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZjZG4uem9uZS5tc24uY29tJTJGYXNzZXRzJTJGZ2FtZXMlMkZtaWNyb3NvZnR1bHRpbWF0ZXdvcmRnYW1lcyUyRjIwMTklMkYyMDE5MDgyMVQwOTU0MDRfMS4wLjVfZmVhdHVyZXNfMjAxOV9OYW1lQ2hhbmdlVG9Xb3JkVHdpc3Rlcl9mNzg2MmE4X21zbiUyRndvcmQtZ2FtZXMlMkZnYW1lLmh0bWwlM0ZnYW1lJTNEY3Jvc3N3b3JkJTI2aG9zdGluZ0Vudmlyb25tZW50JTNEem9uZQ==",
+		"width": 960,
+		"height": 552
+	} , {
+		"name": "Cookie Clicker<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/cookie-clicker/favicon.png",
+		"link": "https://orteil.dashnet.org/cookieclicker/",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "Flappy Bird",
+		"icon": "vfat/games/flappy-bird/favicon.png",
+		"link": "vfat/games/flappy-bird/index.html",
+		"width": 432,
+		"height": 600
+	} , {
+		"name": "Geometry Dash",
+		"icon": "vfat/games/geometry-dash/favicon.png",
+		"link": "https://scratch.mit.edu/projects/105500895/embed",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "agar.io<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/agar.io/favicon.png",
+		"link": "https://agasio.herokuapp.com/",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "slither.io<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/games/slither.io/favicon.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG",
+		"width": 900,
+		"height": 600
+	} , {
+		"name": "Wing 2.0<br/>Prototype",
+		"title": "Under Development",
+		"icon": "vfat/games/wing2/favicon.ico",
+		"link": "vfat/games/wing2/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Worms 2<br/>Prototype",
+		"title": "Under Development",
+		"icon": "vfat/games/worms2/favicon.ico",
+		"link": "vfat/games/worms2/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Biolab Disaster",
+		"icon": "vfat/games/biolab-disaster/favicon.png",
+		"link": "vfat/games/biolab-disaster/index.html",
+		"width": 720,
+		"height": 480
+	} , {
+		"name": "Super Blob Blaster",
+		"icon": "vfat/games/super-blob-blaster/favicon.png",
+		"link": "vfat/games/super-blob-blaster/index.html",
+		"width": 720,
+		"height": 480
+	} , {
+		"name": "Pac-Man",
+		"icon": "vfat/games/pac-man/favicon.ico",
+		"link": "vfat/games/pac-man/index.html",
+		"width": 1025,
+		"height": 715
+	} , {
+		"name": "Clippy",
+		"icon": "vfat/apps/clippy/favicon.png"
+	} , {
+		"name": "eSheep",
+		"icon": "vfat/apps/esheep/favicon.png"
+	} , {
+		"name": "ASCIICKER",
+		"title": "Under Development",
+		"icon": "vfat/games/asciicker/favicon.ico",
+		"link": "vfat/games/asciicker/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Spatial Audio (Demo)",
+		"icon": "vfat/games/spatial-audio/favicon.ico",
+		"link": "vfat/games/spatial-audio/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Voxel Space (Demo)",
+		"icon": "vfat/games/voxel-space/favicon.ico",
+		"link": "vfat/games/voxel-space/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "8-bit Palette Color Cycling (Demo)",
+		"icon": "vfat/apps/palette/favicon.ico",
+		"link": "vfat/apps/palette/index.html",
+		"width": 900,
+		"height": 550
+	} , {
+		"name": "RomCenter",
+		"title": "Under Development",
+		"icon": "vfat/apps/romcenter/favicon.ico",
+		"link": "vfat/apps/romcenter/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "DOSBox",
+		"title": "Under Development",
+		"icon": "vfat/apps/dosbox/favicon.ico",
+		"link": "vfat/apps/dosbox/index.html",
+		"width": 640,
+		"height": 422
+	} , {
+		"name": "Street Fighter Alpha (Demo)",
+		"title": "Under Development",
+		"icon": ["akuma", "balrog", "blanka", "chunli", "dhalsim", "evilryu", "ken", "makoto", "ryu", "sagat", "sakura", "zangief"],
+		"link": "vfat/games/sfa/index.html",
+		"width": 1068,
+		"height": 576
+	} , {
+		"name": "Wolfenstein 3D",
+		"icon": "vfat/games/wolf3d-canvas/favicon.gif",
+		"link": "vfat/games/wolf3d-canvas/index.html",
+		"width": 960,
+		"height": 600
+	} , {
+		"name": "Doom 1",
+		"icon": "vfat/games/doom1/favicon.gif",
+		"link": "vfat/games/doom1/index.html",
+		"width": 640,
+		"height": 400
+	} , {
+		"name": "Doom 2: Hell on Earth",
+		"icon": "vfat/games/doom2/favicon.gif",
+		"link": "vfat/games/doom2/index.html",
+		"width": 640,
+		"height": 400
+	} , {
+		"name": "Doom 3",
+		"icon": "vfat/games/doom3/favicon.ico",
+		"link": "vfat/games/doom3/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Quake 1",
+		"icon": "vfat/games/quake1/favicon.ico",
+		"link": "vfat/games/quake1/async.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Quake 2",
+		"icon": "vfat/games/quake2/favicon.ico",
+		"link": "vfat/games/quake2/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Half-Life 1",
+		"title": "Under Development",
+		"icon": "vfat/games/half-life/favicon.ico",
+		"link": "vfat/games/half-life/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Diablo 1",
+		"title": "Under Development",
+		"icon": "vfat/games/diablo1/favicon.ico",
+		"link": "vfat/games/diablo1/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Dark Reign: The Future of War",
+		"title": "Under Development",
+		"icon": "vfat/games/darkreign/favicon.ico",
+		"link": "vfat/games/darkreign/index.html",
+		"width": 640,
+		"height": 480
+	} , {
+		"name": "Command and Conquer",
+		"title": "Under Development",
+		"icon": "vfat/games/command-and-conquer/favicon.ico",
+		"link": "vfat/games/command-and-conquer/index.html",
+		"width": 640,
+		"height": 535
+	} , {
+		"name": "Minecraft",
+		"title": "Under Development",
+		"icon": "vfat/games/minecraft/favicon.ico",
+		"link": "vfat/games/minecraft/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Winamp",
+		"icon": "vfat/apps/webamp/favicon.ico",
+		"link": "vfat/apps/webamp/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "Notepad",
+		"icon": "vfat/apps/notepad/favicon.ico",
+		"link": "vfat/apps/notepad/index.html",
+		"width": 900,
+		"height": 480,
+		"autostart": true
+	} , {
+		"name": "Paint",
+		"icon": "vfat/apps/paint/favicon.ico",
+		"link": "vfat/apps/paint/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "SVG Editor",
+		"icon": "vfat/apps/svg-editor/favicon.ico",
+		"link": "vfat/apps/svg-editor/index.html",
+		"width": 900,
+		"height": 480
+	} , {
+		"name": "YouTube<br/>BETA",
+		"title": "Under Development",
+		"icon": "vfat/apps/youtube/favicon.png",
+		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==",
+		"width": 1020,
+		"height": 630
+	} , {
+		"name": "Discord",
+		"icon": "vfat/apps/discord/favicon.ico",
+		"link": "https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/",
+		"width": 900,
+		"height": 480
+	}]
+}

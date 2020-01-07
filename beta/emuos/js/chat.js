@@ -1,9 +1,9 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'network', 'fingerprint'], factory);
+		define(['jquery', 'simplestorage', 'network', 'fingerprint'], factory);
 	}
-} (function ($, network, Fingerprint) {
+} (function ($, simplestorage, network, Fingerprint) {
 	$(function() {
 		var net = network.start({
 			servers: ['https://ws.emupedia.net/'],
@@ -117,9 +117,14 @@
 
 		net.socket.on('connect', function() {
 			if (net.config.debug) console.log('net.socket.on.connect()');
-			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
+			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? simplestorage.get('nickname') : 'EMU-' + fingerprint;
+			net.send_cmd('auth', {user: nickname, room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + net.socket.id + '] </span>';
 			net.log('[connected][' + net.server + '] [id][' + net.socket.id + ']', 0);
+		});
+
+		net.socket.on('auth.info', function (data) {
+			simplestorage.set('nickname', data.info.user);
 		});
 
 		net.socket.on('room.info', function (data) {
