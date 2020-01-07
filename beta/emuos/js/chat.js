@@ -12,6 +12,10 @@
 			debug: false
 		});
 
+		if (window.top === window) {
+			//net.register_iframe('chat_frame');
+		}
+
 		var fingerprint = new Fingerprint().get();
 
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];

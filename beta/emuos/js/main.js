@@ -81,7 +81,7 @@
 				deps: ['window', 'lang', 'jqueryuicontextmenu']
 			},
 			chat: {
-				deps: ['jquery', 'fingerprint', 'network']
+				deps: ['jquery', 'simplestorage', 'fingerprint', 'network']
 			},
 			emuos: {
 				deps: ['desktop', 'filesystem']
@@ -150,7 +150,6 @@
 		'network',
 		'emuos'
 	], function($, desktop, Chat, FileSystem, Network, EmuOS) {
-		console.log(desktop.icons);
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
