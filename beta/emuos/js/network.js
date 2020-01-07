@@ -68,7 +68,11 @@
 			return client;
 		},
 		init_server: function(client, iframe_id) {
-			this.iframe = document.getElementById(iframe_id).contentWindow;
+			if (document.getElementById(iframe_id)) {
+				this.iframe = document.getElementById(iframe_id).contentWindow;
+			} else {
+				return;
+			}
 
 			var cmds = [
 				'auth.info',
