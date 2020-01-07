@@ -120,6 +120,7 @@
 
 	client_loader.init_client = function (config) {
 		if (window.top !== window) {
+			// noinspection JSPotentiallyInvalidConstructorUsage
 			client = new iframe_network();
 		} else {
 			if (typeof config !== 'object') {
@@ -142,6 +143,7 @@
 		}
 
 		client.register_iframe = function (iframe_id) {
+			// noinspection JSPotentiallyInvalidConstructorUsage
 			return new iframe_network(client, iframe_id);
 		}
 	};
