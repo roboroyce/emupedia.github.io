@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, moment, Octokat, eSheep, clippy) {
+} (function ($, simplestorage, moment, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -313,7 +313,7 @@
 				link: 'vfat/apps/notepad/index.html',
 				width: 900,
 				height: 480,
-				autostart: true
+				runonce: true
 			} , {
 				name: 'Paint',
 				icon: 'vfat/apps/paint/favicon.ico',
@@ -465,6 +465,12 @@
 			if (typeof icon_options['autostart'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.attr('data-autostart', icon_options['autostart'] ? 'true' : 'false').data('autostart', icon_options['autostart']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['runonce'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-runonce', icon_options['runonce'] ? 'true' : 'false').data('runonce', icon_options['runonce']);
 			}
 
 			// noinspection JSUnfilteredForInLoop
@@ -782,7 +788,20 @@
 			}
 		}
 
-		self.$desktop.find('[data-autostart="true"]').first().trigger('dblclick');
+		self.$desktop.find('[data-autostart="true"]').trigger('dblclick');
+
+		self.$desktop.find('[data-runonce="true"]').each(function() {
+			if (typeof simplestorage !== 'undefined') {
+				if (typeof simplestorage.get === 'function') {
+					if (typeof simplestorage.get($(this).data('name')) === 'undefined') {
+						if (typeof simplestorage.set === 'function') {
+							simplestorage.set($(this).data('name'), true);
+							$(this).trigger('dblclick');
+						}
+					}
+				}
+			}
+		});
 
 		self.$html.contextmenu({
 			delegate: 'body, .emuos-taskbar',
