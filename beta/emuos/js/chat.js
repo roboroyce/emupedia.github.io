@@ -124,7 +124,7 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
-			simplestorage.set('nickname', data.info.user.substring(0, 30));
+			simplestorage.set('nickname', data.info.user.substring(0, 20));
 		});
 
 		net.socket.on('room.info', function (data) {
@@ -134,23 +134,23 @@
 			for (var n in data.users) {
 				var color = (n !== data.me) ? net.colors[3] : net.colors[1];
 				// noinspection JSUnfilteredForInLoop
-				r_users += '<div id="room_user_' + n.substring(0, 30) + '" style="color: ' + color + ';">' + n.substring(0, 30) + '</div>';
+				r_users += '<div id="room_user_' + n.substring(0, 20) + '" style="color: ' + color + ';">' + n.substring(0, 20) + '</div>';
 			}
 
 			net.client_room_users.html(r_users);
-			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me.substring(0, 30) + '" on "' + data.name + '"');
+			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me.substring(0, 20) + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
 		});
 
 		net.socket.on('room.user_join', function (data) {
 			if (net.config.debug) console.log('net.socket.on.room.user_join()');
-			net.client_room_users.append('<div id="room_user_' + data.user.substring(0, 30) + '" style="color: ' + net.colors[3] + ';">' + data.user.substring(0, 30) + '</div>');
+			net.client_room_users.append('<div id="room_user_' + data.user.substring(0, 20) + '" style="color: ' + net.colors[3] + ';">' + data.user.substring(0, 20) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
 			if (net.config.debug) console.log('net.socket.on.room.user_leave()');
-			$('#room_user_' + data.user.substring(0, 30)).remove();
+			$('#room_user_' + data.user.substring(0, 20)).remove();
 		});
 
 		net.socket.on('server.help', function (data) {
@@ -174,7 +174,7 @@
 		net.socket.on('room.msg', function (data) {
 			if (net.config.debug) console.log('net.socket.on.room.msg()');
 			// noinspection HtmlDeprecatedTag
-			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user.substring(0, 30) + '] </span>' + $('<div/>').text(data.msg).html();
+			var msg = '<span style="color: ' + net.colors[3] + ';">[' + data.user.substring(0, 20) + '] </span>' + $('<div/>').text(data.msg).html();
 			net.log(msg);
 			//net.show();
 		});
