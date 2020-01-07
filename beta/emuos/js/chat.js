@@ -6,20 +6,14 @@
 } (function ($, simplestorage, network, Fingerprint) {
 	// noinspection DuplicatedCode
 	$(function() {
-		var net = network.start({
+		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws.emupedia.net/'],
 			server: 0,
 			mode: 0,
 			debug: false
 		});
 
-		if (window.top === window) {
-			if (typeof net !== 'undefined') {
-				if (typeof net.register_iframe === 'function') {
-					net.register_iframe('EmuChat');
-				}
-			}
-		}
+		var net = window['NETWORK_CONNECTION'];
 
 		var fingerprint = new Fingerprint().get();
 

@@ -13,6 +13,8 @@
 		this.buffer = [];
 		this.iframe_rdy = false;
 
+		console.log(iframe_id);
+
 		if (!net) {
 			return this.init_client();
 		} else {
@@ -40,6 +42,8 @@
 			window.parent.postMessage({cmd: cmd, data: data}, '*');
 		},
 		init_client: function() {
+			console.log('init_client()');
+
 			var self = this;
 
 			var client = {
@@ -53,14 +57,16 @@
 					mode: 0
 				},
 				server: 'iframe',
-				send_cmd: this.send_cmd
+				send_cmd: self.send_cmd
 			};
 
 			window.addEventListener('message', function(e) {
-				if (this.events[e.data.cmd]) {
-					for (var func in this.events[e.data.cmd]) {
+				console.log('message client');
+
+				if (self.events[e.data.cmd]) {
+					for (var func in self.events[e.data.cmd]) {
 						// noinspection JSUnfilteredForInLoop
-						this.events[e.data.cmd][func](e.data.data);
+						self.events[e.data.cmd][func](e.data.data);
 					}
 				}
 			});
@@ -70,8 +76,12 @@
 			return client;
 		},
 		init_server: function(client, iframe_id) {
+			console.log('init_server()');
+
+			var self = this;
+
 			if (document.getElementById(iframe_id)) {
-				this.iframe = document.getElementById(iframe_id).contentWindow;
+				self.iframe = document.getElementById(iframe_id).contentWindow;
 			} else {
 				return;
 			}
@@ -101,31 +111,34 @@
 
 				client.socket.on(command, function(data) {
 					// noinspection JSReferencingMutableVariableFromClosure
-					this.cmd(command, data);
+					self.cmd(command, data);
 				});
 			}
 
 			window.addEventListener('message', function(e) {
-				if (e.data.cmd === 'iframe_rdy') {
-					this.iframe_rdy = true;
+				console.log('message server');
+				console.log(e.data);
 
-					for (var data in this.buffer) {
+				if (e.data.cmd === 'iframe_rdy') {
+					self.iframe_rdy = true;
+
+					for (var data in self.buffer) {
 						// noinspection JSUnfilteredForInLoop
-						console.log(this.buffer[data]);
+						console.log(self.buffer[data]);
 						// noinspection JSUnfilteredForInLoop
 						//this.cmd(this.buffer[data]);
 					}
 
-					this.buffer = [];
+					self.buffer = [];
 				} else {
-					this.net.send_cmd(e.data.cmd, e.data.data);
+					self.net.send_cmd(e.data.cmd, e.data.data);
 
 					if (client.auth_info) {
-						this.cmd('auth.info',client.auth_info);
+						self.cmd('auth.info', client.auth_info);
 					}
 
-					if (client.room_info){
-						this.cmd('room.info',client.room_info);
+					if (client.room_info) {
+						self.cmd('room.info', client.room_info);
 					}
 				}
 			});
@@ -134,6 +147,7 @@
 
 	client_loader.init_client = function (config) {
 		if (window.top !== window) {
+			console.log('i am an iframe');
 			// noinspection JSPotentiallyInvalidConstructorUsage
 			client = new iframe_network();
 		} else {
@@ -163,6 +177,7 @@
 		}
 
 		client.register_iframe = function (iframe_id) {
+			console.log(iframe_id);
 			// noinspection JSPotentiallyInvalidConstructorUsage
 			return new iframe_network(client, iframe_id);
 		};

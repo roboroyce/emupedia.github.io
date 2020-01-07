@@ -915,12 +915,12 @@
 		var icon	= typeof options.icon		!== 'undefined'	? options.icon		: '';
 		var content	= typeof options.content	!== 'undefined'	? options.content	: '';
 
-		var window	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
+		var win	= $('<div class="window" data-title="'+ title +'">' + content + '</div>');
 
-		self.$body.append(window);
+		self.$body.append(win);
 
 		// noinspection JSValidateTypes
-		window.window({
+		win.window({
 			icons: {
 				main: self.$html.hasClass('theme-basic') || self.$html.hasClass('theme-win9x') ? (icon !== '' ? icon : null) : ''
 			}
@@ -979,7 +979,7 @@
 		});
 
 		// noinspection JSValidateTypes
-		return window.window('instance');
+		return win.window('instance');
 	};
 
 	// noinspection DuplicatedCode
@@ -991,15 +991,27 @@
 		var src			= typeof options.src	!== 'undefined' ? options.src		: '';
 		var width		= typeof options.width	!== 'undefined' ? options.width		: 0;
 		var height		= typeof options.height	!== 'undefined' ? options.height	: 0;
+		var timestamp	= Math.floor(Date.now() / 1000);
 
 		// noinspection HtmlDeprecatedAttribute
-		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
+		var win	= $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '-' + timestamp + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
-		self.$body.append(window);
+		self.$body.append(win);
+
+		if (title === 'EmuChat') {
+			if (window.top === window) {
+				if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+					if (typeof window['NETWORK_CONNECTION']['register_iframe'] === 'function') {
+						window['NETWORK_CONNECTION']['register_iframe'](title + '-' + timestamp);
+					}
+				}
+			}
+		}
+
 		self.$body.find('iframe').first().focus();
 
 		// noinspection JSValidateTypes
-		window.window({
+		win.window({
 			embeddedContent: true,
 			width: width !== 0 ? width : 640,
 			height: height !== 0 ? height : 400,
@@ -1067,7 +1079,7 @@
 		});
 
 		// noinspection JSValidateTypes
-		return window.window('instance');
+		return win.window('instance');
 	};
 
 	return EmuOS;
