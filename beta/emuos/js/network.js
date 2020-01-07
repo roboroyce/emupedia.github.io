@@ -139,12 +139,12 @@
 				client.socket.send({cmd: cmd, data: data});
 			};
 
-			return client;
-		}
+			client.register_iframe = function (iframe_id) {
+				// noinspection JSPotentiallyInvalidConstructorUsage
+				return new iframe_network(client, iframe_id);
+			};
 
-		client.register_iframe = function (iframe_id) {
-			// noinspection JSPotentiallyInvalidConstructorUsage
-			return new iframe_network(client, iframe_id);
+			return client;
 		}
 	};
 
