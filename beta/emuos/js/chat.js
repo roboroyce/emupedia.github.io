@@ -75,7 +75,37 @@
 		};
 
 		net.send_input = function() {
-			if (net.config.debug) console.log('net.send_input()');
+			if (net.config.debug) {
+				console.log('net.send_input()');
+			}
+
+			var timestamp = Math.floor(Date.now() / 1000);
+
+			if (!net.last_send) {
+				net.last_send = 0;
+			}
+
+			if (!net.spam_cap) {
+				net.spam_cap = 0;
+			}
+
+			if (timestamp - net.last_send < 2) {
+				net.spam_cap++;
+			} else {
+				if (net.spam_cap > 10) {
+					if (timestamp - net.last_send < 10) {
+						return false;
+					}
+				}
+
+				net.spam_cap = 0;
+			}
+
+			if (net.spam_cap > 10) {
+				return false;
+			}
+
+			net.last_send = timestamp;
 
 			var msg = net.text_input.val();
 
@@ -228,8 +258,7 @@
 								'<div id="client_room_users" class="client_decoration"></div>' +
 							'</div>' +
 							'<div id="client_input" class="client_decoration">' +
-								'<input id="client_command" type="text" spellcheck="false" autocomplete="off" />' +
-								'<button id="client_command_send">Send</button>' +
+								'<input id="client_command" type="text" spellcheck="false" autocomplete="off" /><button id="client_command_send">Send</button>' +
 							'</div>' +
 						'</div>';
 
