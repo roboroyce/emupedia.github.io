@@ -40,10 +40,12 @@
 			window.parent.postMessage({cmd: cmd, data: data}, '*');
 		},
 		init_client: function() {
+			var self = this;
+
 			var client = {
 				socket: {
 					on: function(cmd, func) {
-						this.on(cmd, func)
+						self.on(cmd, func)
 					},
 					id: 'iframe'
 				},
@@ -117,6 +119,14 @@
 					this.buffer = [];
 				} else {
 					this.net.send_cmd(e.data.cmd, e.data.data);
+
+					if (client.auth_info) {
+						this.cmd('auth.info',client.auth_info);
+					}
+
+					if (client.room_info){
+						this.cmd('room.info',client.room_info);
+					}
 				}
 			});
 		}
@@ -139,17 +149,25 @@
 				server: server
 			};
 
+			client.socket.on('room.info', function(data) {
+				client.room_info = data;
+			});
+
+			client.socket.on('auth.info', function (data) {
+				client.auth_info = data;
+			});
+
 			client.send_cmd = function (cmd, data) {
 				client.socket.send({cmd: cmd, data: data});
 			};
-
-			client.register_iframe = function (iframe_id) {
-				// noinspection JSPotentiallyInvalidConstructorUsage
-				return new iframe_network(client, iframe_id);
-			};
-
-			return client;
 		}
+
+		client.register_iframe = function (iframe_id) {
+			// noinspection JSPotentiallyInvalidConstructorUsage
+			return new iframe_network(client, iframe_id);
+		};
+
+		return client;
 	};
 
 	return {

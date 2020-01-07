@@ -147,9 +147,8 @@
 		'json!config/desktop.json',
 		'chat',
 		'filesystem',
-		'network',
 		'emuos'
-	], function($, desktop, Chat, FileSystem, Network, EmuOS) {
+	], function($, desktop, Chat, FileSystem, EmuOS) {
 		$(function() {
 			/*var filesystem = new FileSystem({
 				github: {
