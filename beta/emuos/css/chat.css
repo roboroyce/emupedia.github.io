@@ -54,10 +54,11 @@
 }
 
 #client_room_users {
-	overflow-y: auto;
 	margin: -4px;
 	height: calc(100% - 20px);
 	padding: 2px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 #client_room {
