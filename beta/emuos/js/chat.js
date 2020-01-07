@@ -227,7 +227,7 @@
 								'<div id="client_room_users" class="client_decoration"></div>' +
 							'</div>' +
 							'<div id="client_input" class="client_decoration">' +
-								'<input id="client_command" type="text" spellcheck="false" />' +
+								'<input id="client_command" type="text" spellcheck="false" autocomplete="off" />' +
 								'<button id="client_command_send">Send</button>' +
 							'</div>' +
 						'</div>';
