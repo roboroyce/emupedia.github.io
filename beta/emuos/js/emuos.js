@@ -986,7 +986,6 @@
 	EmuOS.prototype.iframe = function (options) {
 		var self = this;
 
-		var name		= typeof options.name	!== 'undefined' ? options.name		: '';
 		var title		= typeof options.title	!== 'undefined' ? options.title		: '';
 		var icon		= typeof options.icon	!== 'undefined' ? options.icon		: '';
 		var src			= typeof options.src	!== 'undefined' ? options.src		: '';
@@ -994,7 +993,7 @@
 		var height		= typeof options.height	!== 'undefined' ? options.height	: 0;
 
 		// noinspection HtmlDeprecatedAttribute
-		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe id="' + name + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
+		var window	= $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
 		self.$body.append(window);
 		self.$body.find('iframe').first().focus();
