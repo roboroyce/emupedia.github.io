@@ -11,9 +11,8 @@
 		this.events = {};
 		this.net = net;
 		this.buffer = [];
+		this.iframe_id = null;
 		this.iframe_rdy = false;
-
-		console.log(iframe_id);
 
 		if (!net) {
 			return this.init_client();
@@ -25,6 +24,7 @@
 	// noinspection JSPotentiallyInvalidConstructorUsage
 	iframe_network.prototype = {
 		on: function(event, func) {
+			console.log('on()');
 			if (!this.events[event]) {
 				this.events[event] = [];
 			}
@@ -32,13 +32,18 @@
 			this.events[event].push(func);
 		},
 		cmd: function(cmd, data) {
+			console.log('cmd()');
+
 			if (this.iframe_rdy) {
-				this.iframe.postMessage({cmd: cmd, data: data}, '*');
+				console.log({cmd: cmd, data: data});
+				document.getElementById(this.iframe_id).contentWindow.postMessage({cmd: cmd, data: data}, '*');
 			} else {
+				console.log('buffer_push');
 				this.buffer.push([cmd, data]);
 			}
 		},
 		send_cmd: function(cmd, data) {
+			console.log('send_cmd()');
 			window.parent.postMessage({cmd: cmd, data: data}, '*');
 		},
 		init_client: function() {
@@ -49,7 +54,7 @@
 			var client = {
 				socket: {
 					on: function(cmd, func) {
-						self.on(cmd, func)
+						self.on(cmd, func);
 					},
 					id: 'iframe'
 				},
@@ -60,8 +65,10 @@
 				send_cmd: self.send_cmd
 			};
 
+			console.log(window);
 			window.addEventListener('message', function(e) {
 				console.log('message client');
+				console.log(e.data);
 
 				if (self.events[e.data.cmd]) {
 					for (var func in self.events[e.data.cmd]) {
@@ -80,11 +87,7 @@
 
 			var self = this;
 
-			if (document.getElementById(iframe_id)) {
-				self.iframe = document.getElementById(iframe_id).contentWindow;
-			} else {
-				return;
-			}
+			self.iframe_id = iframe_id;
 
 			var cmds = [
 				'auth.info',
@@ -115,18 +118,16 @@
 				});
 			}
 
+			console.log(window);
 			window.addEventListener('message', function(e) {
 				console.log('message server');
-				console.log(e.data);
 
 				if (e.data.cmd === 'iframe_rdy') {
 					self.iframe_rdy = true;
 
 					for (var data in self.buffer) {
 						// noinspection JSUnfilteredForInLoop
-						console.log(self.buffer[data]);
-						// noinspection JSUnfilteredForInLoop
-						//this.cmd(this.buffer[data]);
+						self.cmd.apply(self, self.buffer[data]);
 					}
 
 					self.buffer = [];
@@ -142,12 +143,19 @@
 					}
 				}
 			});
+
+			if (client.auth_info) {
+				self.cmd('auth.info', client.auth_info);
+			}
+
+			if (client.room_info) {
+				self.cmd('room.info', client.room_info);
+			}
 		}
 	};
 
 	client_loader.init_client = function (config) {
 		if (window.top !== window) {
-			console.log('i am an iframe');
 			// noinspection JSPotentiallyInvalidConstructorUsage
 			client = new iframe_network();
 		} else {
@@ -177,7 +185,6 @@
 		}
 
 		client.register_iframe = function (iframe_id) {
-			console.log(iframe_id);
 			// noinspection JSPotentiallyInvalidConstructorUsage
 			return new iframe_network(client, iframe_id);
 		};
