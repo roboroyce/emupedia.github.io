@@ -110,9 +110,9 @@
 				}
 			});
 
-			if (client.server && client.socket.id) {
+			/*if (client.server && client.socket.id) {
 				self.cmd('connect', {server: client.server, socket_id: client.socket.id});
-			}
+			}*/
 
 			if (client.preload.auth_info) {
 				self.cmd('auth.info', client.preload.auth_info);
