@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 	border: 1px rgba(128, 128, 128, 0.973) solid;
 	outline: none;
-	background-color: #2b2a2ad8;
+	background-color: rgba(43, 42, 42, 0.85);
 	color: rgba(180, 173, 173, 0.973);
 }
 
@@ -24,7 +24,7 @@
 }
 
 .client_decoration {
-	background-color: #302f2fd8;
+	background-color: rgba(48, 47, 47, 0.85);
 	border: 1px rgba(128, 128, 128, 0.35) solid;
 }
 
@@ -105,13 +105,13 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: #222121f1;
+	background: rgba(34, 33, 33, 0.95);
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #00000062;
+	background: rgba(0, 0, 0, 0.38);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #000000a2;
+	background: rgba(0, 0, 0, 0.64);
 }
