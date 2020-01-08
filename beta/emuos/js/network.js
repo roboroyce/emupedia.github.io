@@ -24,7 +24,6 @@
 	// noinspection JSPotentiallyInvalidConstructorUsage
 	iframe_network.prototype = {
 		on: function(event, func) {
-			console.log('on()');
 			if (!this.events[event]) {
 				this.events[event] = [];
 			}
@@ -32,25 +31,19 @@
 			this.events[event].push(func);
 		},
 		cmd: function(cmd, data) {
-			console.log('cmd()');
-
-			if (this.iframe_rdy) {
-				console.log({cmd: cmd, data: data});
-				document.getElementById(this.iframe_id).contentWindow.postMessage({cmd: cmd, data: data}, '*');
+			if (this.iframe_rdy && this.iframe_id) {
+				if (document.getElementById(this.iframe_id)) {
+					document.getElementById(this.iframe_id).contentWindow.postMessage({cmd: cmd, data: data}, '*');
+				}
 			} else {
-				console.log('buffer_push');
 				this.buffer.push([cmd, data]);
 			}
 		},
 		send_cmd: function(cmd, data) {
-			console.log('send_cmd()');
 			window.parent.postMessage({cmd: cmd, data: data}, '*');
 		},
 		init_client: function() {
-			console.log('init_client()');
-
 			var self = this;
-
 			var client = {
 				socket: {
 					on: function(cmd, func) {
@@ -65,11 +58,7 @@
 				send_cmd: self.send_cmd
 			};
 
-			console.log(window);
 			window.addEventListener('message', function(e) {
-				console.log('message client');
-				console.log(e.data);
-
 				if (self.events[e.data.cmd]) {
 					for (var func in self.events[e.data.cmd]) {
 						// noinspection JSUnfilteredForInLoop
@@ -83,45 +72,30 @@
 			return client;
 		},
 		init_server: function(client, iframe_id) {
-			console.log('init_server()');
-
 			var self = this;
-
 			self.iframe_id = iframe_id;
 
 			var cmds = [
+				'connect',
+				'disconnect',
 				'auth.info',
-				'room.msg',
 				'room.info',
-				'room.host',
-				'room_users',
 				'room.user_join',
 				'room.user_leave',
-				'room.data',
-				'room.user_data',
-				'room.user_reconnect',
-				'room.user_disconnect',
-				'my.info',
-				'server.help',
-				'server.msg',
+				'room.msg',
 				'silent.msg',
-				'connect',
-				'disconnect'
+				'server.msg',
+				'server.help'
 			];
 
-			for (var cmd in cmds) {
-				var command = cmds[cmd];
-
-				client.socket.on(command, function(data) {
+			cmds.forEach(function (value) {
+				client.socket.on(value, function(data) {
 					// noinspection JSReferencingMutableVariableFromClosure
-					self.cmd(command, data);
+					self.cmd(value, data);
 				});
-			}
+			});
 
-			console.log(window);
 			window.addEventListener('message', function(e) {
-				console.log('message server');
-
 				if (e.data.cmd === 'iframe_rdy') {
 					self.iframe_rdy = true;
 
@@ -133,23 +107,19 @@
 					self.buffer = [];
 				} else {
 					self.net.send_cmd(e.data.cmd, e.data.data);
-
-					if (client.auth_info) {
-						self.cmd('auth.info', client.auth_info);
-					}
-
-					if (client.room_info) {
-						self.cmd('room.info', client.room_info);
-					}
 				}
 			});
 
-			if (client.auth_info) {
-				self.cmd('auth.info', client.auth_info);
+			if (client.server && client.socket.id) {
+				self.cmd('connect', {server: client.server, socket_id: client.socket.id});
 			}
 
-			if (client.room_info) {
-				self.cmd('room.info', client.room_info);
+			if (client.preload.auth_info) {
+				self.cmd('auth.info', client.preload.auth_info);
+			}
+
+			if (client.preload.room_info) {
+				self.cmd('room.info', client.preload.room_info);
 			}
 		}
 	};
@@ -168,15 +138,16 @@
 			client = {
 				socket: io(server),
 				config: config,
-				server: server
+				server: server,
+				preload: {}
 			};
 
 			client.socket.on('room.info', function(data) {
-				client.room_info = data;
+				client.preload.room_info = data;
 			});
 
 			client.socket.on('auth.info', function (data) {
-				client.auth_info = data;
+				client.preload.auth_info = data;
 			});
 
 			client.send_cmd = function (cmd, data) {
