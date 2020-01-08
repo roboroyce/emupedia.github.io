@@ -338,13 +338,15 @@
 				icon: 'vfat/apps/emuchat/favicon.ico',
 				link: 'vfat/apps/emuchat/index.html',
 				width: 900,
-				height: 480
+				height: 480,
+				singleinstance: true
 			} , {
 				name: 'Discord',
 				icon: 'vfat/apps/discord/favicon.ico',
 				link: 'https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/',
 				width: 900,
-				height: 480
+				height: 480,
+				singleinstance: true
 			}]
 		};
 
