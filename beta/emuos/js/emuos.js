@@ -46,7 +46,7 @@
 			} , {
 				name: 'ÐeKaÐeNcE',
 				title: 'Under Development',
-				icon: 'https://launcher.dekadence.ro/favicon.ico',
+				icon: 'vfat/apps/dekadence/favicon.ico',
 				link: 'https://launcher.dekadence.ro',
 				width: 900,
 				height: 480
