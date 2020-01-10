@@ -23,7 +23,7 @@
 
 			if (typeof String.prototype.normalize === 'function') {
 				try {
-					result = str.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '');
+					result = str.normalize('NFKD').replace(/[^\w\s.-/`~!@#$%^&*()-_=+\[\]{}'"|\/]/gi, '');
 				} catch (e) {}
 			}
 
