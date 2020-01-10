@@ -19,15 +19,7 @@
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
 		net.normalize = function(str) {
-			var result = str;
-
-			if (typeof String.prototype.normalize === 'function') {
-				try {
-					result = str.normalize('NFKD').replace(/[^\w\s.-/`~!@#$%^&*()-_=+\[\]{}'"|\/]/gi, '');
-				} catch (e) {}
-			}
-
-			return $('<div />').text(result).html();
+			return $('<div />').text(str.replace(/[^\w\s.-/`~!@#$%^&*()-_=+\[\]{}'"|\/]/gi, '')).html();
 		};
 
 		// noinspection DuplicatedCode
@@ -151,8 +143,9 @@
 			net.text_input.val('');
 		};
 
+		// noinspection DuplicatedCode
 		net.socket.on('connect', function(data) {
-			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? $('<div />').text(simplestorage.get('nickname')).html() : 'EMU-' + fingerprint;
+			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? net.normalize(simplestorage.get('nickname')) : 'EMU-' + fingerprint;
 			var server = typeof data !== 'undefined' ? data.server : net.server;
 			// noinspection JSUnresolvedVariable
 			var socket_id = typeof data !== 'undefined' ? data.socket_id : net.socket.id;
@@ -167,8 +160,7 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
-			var name = $('<div />').text(data.info.user).html();
-			simplestorage.set('nickname', name);
+			simplestorage.set('nickname', net.normalize(data.info.user));
 		});
 
 		// noinspection DuplicatedCode
@@ -177,6 +169,7 @@
 
 			for (var n in data.users) {
 				var color = (n !== data.me) ? net.colors[3] : net.colors[1];
+				// noinspection JSUnfilteredForInLoop
 				var name = net.normalize(n);
 				// noinspection JSUnfilteredForInLoop
 				r_users += '<div id="room_user_' + name + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
