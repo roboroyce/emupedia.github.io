@@ -15,7 +15,7 @@
 	cursor: pointer;
 	color: rgba(128, 128, 128, 0.973);
 	border: 1px rgba(128, 128, 128, 0.973) solid;
-	background-color: #302f2fd8;
+	background-color: rgba(48, 47, 47, 0.85);
 }
 
 #client_command_send:active {
