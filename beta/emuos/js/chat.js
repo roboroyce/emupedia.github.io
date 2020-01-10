@@ -153,6 +153,10 @@
 			net.send_cmd('auth', {user: nickname, room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
+
+			if (~nickname.indexOf('EMU-')) {
+				net.log('Type /nick <nickname> to set your name', 0);
+			}
 		});
 
 		net.socket.on('disconnect', function() {
