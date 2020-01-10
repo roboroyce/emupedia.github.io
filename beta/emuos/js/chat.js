@@ -182,7 +182,8 @@
 		});
 
 		net.socket.on('room.user_join', function (data) {
-			net.client_room_users.append('<div id="room_user_' + net.normalize(data.user) + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
+			var name = net.normalize(data.user);
+			net.client_room_users.append('<div id="room_user_' + name + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
@@ -190,9 +191,7 @@
 		});
 
 		net.socket.on('room.msg', function (data) {
-			// noinspection HtmlDeprecatedTag
-			var message = '<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg);
-			net.log(message);
+			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg));
 		});
 
 		net.socket.on('server.msg', function (data) {
