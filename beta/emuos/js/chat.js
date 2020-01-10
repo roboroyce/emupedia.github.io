@@ -18,6 +18,18 @@
 
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
+		net.normalize = function(str) {
+			var result = str;
+
+			if (typeof String.prototype.normalize === 'function') {
+				try {
+					result = str.normalize('NFKD').replace(/[^\w\s.-_\/]/g, '');
+				} catch (e) {}
+			}
+
+			return $('<div />').text(result).html();
+		};
+
 		// noinspection DuplicatedCode
 		net.log = function (txt, color) {
 			if (typeof color === 'undefined') {
@@ -159,39 +171,34 @@
 			simplestorage.set('nickname', name);
 		});
 
+		// noinspection DuplicatedCode
 		net.socket.on('room.info', function (data) {
 			var r_users = '';
 
 			for (var n in data.users) {
 				var color = (n !== data.me) ? net.colors[3] : net.colors[1];
+				var name = net.normalize(n);
 				// noinspection JSUnfilteredForInLoop
-				var name = $('<div />').text(n).html();
-				// noinspection JSUnfilteredForInLoop
-				r_users += '<div id="room_user_' + name + '" style="color: ' + color + ';">' + name + '</div>';
+				r_users += '<div id="room_user_' + name + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
-			var me = $('<div />').text(data.me).html();
 			net.client_room_users.html(r_users);
-			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + me + '" on "' + data.name + '"');
+			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + net.normalize(data.me) + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
 		});
 
 		net.socket.on('room.user_join', function (data) {
-			var name = $('<div />').text(data.user).html();
-			net.client_room_users.append('<div id="room_user_' + name + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
+			net.client_room_users.append('<div id="room_user_' + net.normalize(data.user) + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
-			var name = $('<div />').text(data.user).html();
-			$('#room_user_' + name).remove();
+			$('#room_user_' + net.normalize(data.user)).remove();
 		});
 
 		net.socket.on('room.msg', function (data) {
-			var name = $('<div />').text(data.user).html();
-			var msg = $('<div/>').text(data.msg).html();
 			// noinspection HtmlDeprecatedTag
-			var message = '<span style="color: ' + net.colors[3] + ';">[' + name + '] </span>' + msg;
+			var message = '<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg);
 			net.log(message);
 		});
 
