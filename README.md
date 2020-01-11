@@ -21,12 +21,12 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ## 💬 Join us on Discord
 
-<sub><sup><sub><sup><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/apps/discord/discord-logo-48.png" /></sup></sub></sup></sub> [Discord](https://discord.gg/wXtGQ4p)
+<sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/apps/discord/discord-logo-48.png" /></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub> [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 View a Live Demo
 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)
 
-<sub><sup><sub><sup><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sup></sub></sup></sub> [EmuOS](https://emupedia.net/beta/emuos)
+<sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub> [EmuOS](https://emupedia.net/beta/emuos)
 
 ## 🌍 Browser support
 
