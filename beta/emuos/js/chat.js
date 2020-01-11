@@ -208,7 +208,7 @@
 			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
 			var badge = '';
 
-			if (net.console.is(':hidden')) {
+			if (net.console.is(':hidden') && $body.find('[data-title="EmuChat"]').length === 0) {
 				net.badge++;
 
 				if (net.badge >= 10) {
