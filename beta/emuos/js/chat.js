@@ -12,10 +12,11 @@
 			mode: 0
 		});
 
+		var $body = $('body');
 		var net = window['NETWORK_CONNECTION'];
-
 		var fingerprint = new Fingerprint().get();
 
+		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
 		net.normalize = function(str) {
@@ -64,6 +65,9 @@
 		net.show = function() {
 			net.console.slideDown(300);
 			net.text_input.focus();
+			net.badge = 0;
+			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+			$icon.attr('class', 'icon badge');
 		};
 
 		net.hide = function() {
@@ -71,6 +75,12 @@
 		};
 
 		net.toggle = function() {
+			if (net.console.is(':hidden')) {
+				net.badge = 0;
+				var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+				$icon.attr('class', 'icon badge');
+			}
+
 			net.console.slideToggle(300);
 			net.text_input.focus();
 		};
@@ -195,6 +205,24 @@
 		});
 
 		net.socket.on('room.msg', function (data) {
+			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+			var badge = '';
+
+			if (net.console.is(':hidden')) {
+				net.badge++;
+
+				if (net.badge >= 10) {
+					badge = '-9-plus';
+				} else {
+					badge = '-' + net.badge;
+				}
+
+				$icon.attr('class', 'icon badge badge' + badge);
+			} else {
+				net.badge = 0;
+				$icon.attr('class', 'icon badge');
+			}
+
 			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg));
 		});
 
@@ -233,8 +261,6 @@
 								'<input id="client_command" type="text" spellcheck="false" autocomplete="off" /><button id="client_command_send">Send</button>' +
 							'</div>' +
 						'</div>';
-
-		var $body = $('body');
 
 		$body.append(network_ui);
 		$body.keydown(function (e) {

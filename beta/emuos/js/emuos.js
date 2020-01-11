@@ -440,8 +440,8 @@
 			var icon_options = self.options.icons[j];
 
 			// noinspection JSUnfilteredForInLoop
-			var $icon = 	$('<a class="icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
-								'<img src="' + icon_options['icon'] + '" alt="' + icon_options['name'] + '" />' +
+			var $icon = 	$('<a class="emuos-desktop-icon" href="javascript:"' + (icon_options['title'] ? 'data-title="' + icon_options['title'] + '"' : '') + '>' +
+								'<i class="icon badge" style="background-image: url(' + icon_options['icon'] + ');"></i>' +
 								'<span>' + icon_options['name'] + '</span>' +
 							'</a>');
 
@@ -1010,7 +1010,7 @@
 			}
 		}
 
-		self.$body.find('iframe').first().focus();
+		self.$body.find('iframe').first().focus().get(0).contentWindow.focus();
 
 		// noinspection JSValidateTypes
 		win.window({
