@@ -19,16 +19,16 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 * 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
-## 💬 Join us on Discord
+## 💬 <sub>Join us on Discord</sub>
 
 <sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/apps/discord/discord-logo-48.png" /></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub> [Discord](https://discord.gg/wXtGQ4p)
 
-## 👀 View a Live Demo
+## 👀 <sub>View a Live Demo</sub>
 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)
 
 <sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub> [EmuOS](https://emupedia.net/beta/emuos)
 
-## 🌍 Browser support
+## 🌍 <sub>Browser support</sub>
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="IE" /></br>IE | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /></br>Opera |
 | :---:              | :---:    | :---: | :---: | :---:  | :---: |
@@ -36,7 +36,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ![* application support could vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)
 
-## 🤖 Emulators used
+## 🤖 <sub>Emulators used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -49,7 +49,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | JS-DOS                   | [js-dos.com](https://js-dos.com/)                                                                      | [github.com/caiiiycuk/js-dos](https://github.com/caiiiycuk/js-dos)                                           | [GPLv2](https://github.com/caiiiycuk/js-dos/blob/6.22/LICENSE)                            |
 </details>
 
-## ⚙ Apps used
+## ⚙ <sub>Apps used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -65,7 +65,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Method Draw              | [editor.method.ac](https://editor.method.ac)                                                           | [github.com/methodofaction/Method-Draw](https://github.com/methodofaction/Method-Draw)                       | [MIT](https://github.com/methodofaction/Method-Draw/blob/master/LICENSE)                  |
 </details>
 
-## 🕹️ Games used
+## 🕹️ <sub>Games used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -85,7 +85,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Wolfenstein 3D (Canvas)  | [users.atw.hu/wolf3d](http://users.atw.hu/wolf3d)                                                      | ❌                                                                                                           | [GPLv2](http://users.atw.hu/wolf3d/COPYING.txt)                                           |
 </details>
 
-## 🔫 Demos used
+## 🔫 <sub>Demos used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -97,7 +97,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Voxel Space              | [s-macke.github.io/VoxelSpace](https://s-macke.github.io/VoxelSpace/VoxelSpace.html)                   | [github.com/s-macke/VoxelSpace](https://github.com/s-macke/VoxelSpace)                                       | [MIT](https://github.com/s-macke/VoxelSpace/blob/master/LICENSE)                          |
 </details>
 
-## 📚 Libraries used
+## 📚 <sub>Libraries used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -150,7 +150,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | HTML5 Pacman             | ❌                                                                                                     | [github.com/daleharvey/pacman](https://github.com/daleharvey/pacman)                                          | [WTFPL](https://github.com/daleharvey/pacman/blob/master/LICENSE)                        |
 </details>
 
-## ⭐ Similar projects <sub><sup>(from which this project is heavily inspired)</sup></sub>
+## ⭐ <sub>Similar projects</sub> <sub><sup>(from which this project is heavily inspired)</sup></sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -167,7 +167,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | ZineOS                   | [whimsy.space](https://whimsy.space/)                                                                  | [github.com/STRd6/zine](https://github.com/STRd6/zine)                                                       | [MIT](https://github.com/STRd6/zine/blob/master/LICENSE)                                  |
 </details>
 
-## 📑 Legal issues
+## 📑 <sub>Legal issues</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -180,7 +180,7 @@ Through the Library of Congress, some key exemptions to the DMCA have been grant
 * In the 2018 exemptions, the Library allowed for preservation and fair use of server-based games like MMos, permitting preservationists to offer such games where they have legally obtained the game's code within museums and libraries.
 </details>
 
-## 📄 DMCA Takedown notices & Removal Requests
+## 📄 <sub>DMCA Takedown notices & Removal Requests</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -202,7 +202,7 @@ You may send an email to **dmca [at] emupedia.net** for all **DMCA Takedown noti
 You will receive a confirmation once your request has been processed.
 </details>
 
-## 📝 License
+## 📝 <sub>License</sub>
 
 Copyright ©️ 2016 - 2020 Emupedia or its affiliates. All rights reserved.
 
