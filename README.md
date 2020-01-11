@@ -21,10 +21,10 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ## 💬 Join us on Discord
 
-<sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/discord/favicon.ico" /></sub> [Discord](https://discord.gg/wXtGQ4p)
+<sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/discord/discord-logo-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 Live Demo
-![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
+![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)
 
 <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub> [EmuOS](https://emupedia.net/beta/emuos)
 
@@ -34,9 +34,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | :---:              | :---:    | :---: | :---: | :---:  | :---: |
 | <sub>*</sub>IE11+  | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
-```diff
-- * application support could vary
-```
+![* application support could vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)
 
 ## 🤖 Emulators used
 <details>
