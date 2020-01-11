@@ -23,7 +23,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/discord/discord-logo-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
-## 👀 Live Demo
+## 👀 View a Live Demo
 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)
 
 <sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub> [EmuOS](https://emupedia.net/beta/emuos)
@@ -32,7 +32,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="IE" /></br>IE | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /></br>Opera |
 | :---:              | :---:    | :---: | :---: | :---:  | :---: |
-| <sub>*</sub>IE11+  | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
+| <sup>*</sup>IE11+  | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
 ![* application support could vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)
 
