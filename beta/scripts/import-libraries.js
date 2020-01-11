@@ -645,12 +645,34 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: /\["catch"]\(function\(\){}\)/g,
+						to: ''
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									// noinspection JSValidateTypes
+									replace({
+										files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+										from: /\.catch\(function\(\) {}\)/g,
+										to: ''
+									}, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
 						}
 					});
 				}
