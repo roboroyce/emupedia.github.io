@@ -26,7 +26,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 👀 <sub>View a Live Demo</sub>
 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/under-development.svg)
 
-<sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub></sub> [EmuOS](https://emupedia.net/beta/emuos)
+<sub><sub><sup><sub><sub><sup><sub><sub><sup><sub><sub><sup><sub><sub><sup><sub><sub><sup><sub><sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub></sub></sup></sub></sub></sup></sub></sub></sup></sub></sub></sup></sub></sub></sub></sup></sub></sub></sup></sub><sub> [EmuOS](https://emupedia.net/beta/emuos)
 
 ## 🌍 <sub>Browser support</sub>
 
