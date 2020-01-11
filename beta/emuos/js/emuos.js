@@ -54,7 +54,7 @@
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
 				// link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG',
-				link: 'https://v1.windwos93.net',
+				link: 'https://v1.windows93.net',
 				width: 960,
 				height: 734
 			} , {
