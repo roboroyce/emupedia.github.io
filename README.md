@@ -24,7 +24,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 Live Demo
-![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
+🚧 🚨 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
 
 [EmuOS](https://emupedia.net/beta/emuos)
 
@@ -150,7 +150,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | HTML5 Pacman             | ❌                                                                                                     | [github.com/daleharvey/pacman](https://github.com/daleharvey/pacman)                                          | [WTFPL](https://github.com/daleharvey/pacman/blob/master/LICENSE)                        |
 </details>
 
-## 📦 Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
+## ⭐ Similar projects <sub><sup><sub><sup>(from which this project is heavily inspired)</sup></sub></sup></sub>
 <details>
 <summary>Click to reveal</summary>
 
