@@ -36,13 +36,12 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | :---:   | :---:    | :---: | :---: | :---:  | :---: |
 | IE11+   | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
-## 🖥️ Emulators used
+## 🤖 Emulators used
 <details>
 <summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                   |
 | :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                      |
-| **Emulators**            |                                                                                                        |                                                                                                              |                                                                                           |
 | MAME                     | [mamedev.org](https://www.mamedev.org)                                                                 | [github.com/mamedev/mame](https://github.com/mamedev/mame)                                                   | [GPLv2](https://github.com/mamedev/mame/blob/master/LICENSE.md)                           |
 | DOSBox                   | [dosbox.com](https://www.dosbox.com)                                                                   | [sourceforge.net/projects/dosbox](https://sourceforge.net/projects/dosbox)                                   | [GPLv2](https://sourceforge.net/projects/dosbox)                                          |
 | Em-DOSBox                | ❌                                                                                                     | [github.com/dreamlayers/em-dosbox](https://github.com/dreamlayers/em-dosbox)                                 | [GPLv2](https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING)         |
@@ -50,7 +49,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | JS-DOS                   | [js-dos.com](https://js-dos.com/)                                                                      | [github.com/caiiiycuk/js-dos](https://github.com/caiiiycuk/js-dos)                                           | [GPLv2](https://github.com/caiiiycuk/js-dos/blob/6.22/LICENSE)                            |
 </details>
 
-## 🧩 Apps used
+## ⚙ Apps used
 <details>
 <summary>Click to reveal</summary>
 
@@ -86,17 +85,24 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Wolfenstein 3D (Canvas)  | [users.atw.hu/wolf3d](http://users.atw.hu/wolf3d)                                                      | ❌                                                                                                           | [GPLv2](http://users.atw.hu/wolf3d/COPYING.txt)                                           |
 </details>
 
+## 🔫 Demos used
+<details>
+<summary>Click to reveal</summary>
+
+| Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                   |
+| :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                      |
+| Biolab Disaster          | [playbiolab.com](https://playbiolab.com)                                                               | ❌                                                                                                           | 😁 Permission granted from the author(s) 👍                                                |
+| Super Blob Blaster       | [phoboslab.org/twopointfive](https://phoboslab.org/twopointfive)                                       | [github.com/phoboslab/TwoPointFive](https://github.com/phoboslab/twopointfive)                               | [MIT](https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE)                      |
+| Spatial Audio            | [howlerjs.com/#spatial](https://howlerjs.com/#spatial)                                                 | [github.com/goldfire/howler.js](https://github.com/goldfire/howler.js/tree/master/examples/3d)               | [MIT](https://github.com/goldfire/howler.js/blob/master/LICENSE.md)                       |
+| Voxel Space              | [s-macke.github.io/VoxelSpace](https://s-macke.github.io/VoxelSpace/VoxelSpace.html)                   | [github.com/s-macke/VoxelSpace](https://github.com/s-macke/VoxelSpace)                                       | [MIT](https://github.com/s-macke/VoxelSpace/blob/master/LICENSE)                          |
+</details>
+
 ## 📚 Libraries used
 <details>
 <summary>Click to reveal</summary>
 
 | Name                     | Website                                                                                                | Repository                                                                                                   | License                                                                                   |
 | :---                     | :---                                                                                                   | :---                                                                                                         | :---                                                                                      |
-| **Demos**                |                                                                                                        |                                                                                                              |                                                                                           |
-| Biolab Disaster          | [playbiolab.com](https://playbiolab.com)                                                               | ❌                                                                                                           | 😁 Permission granted from the author(s) 👍                                                |
-| Super Blob Blaster       | [phoboslab.org/twopointfive](https://phoboslab.org/twopointfive)                                       | [github.com/phoboslab/TwoPointFive](https://github.com/phoboslab/twopointfive)                               | [MIT](https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE)                      |
-| Spatial Audio            | [howlerjs.com/#spatial](https://howlerjs.com/#spatial)                                                 | [github.com/goldfire/howler.js](https://github.com/goldfire/howler.js/tree/master/examples/3d)               | [MIT](https://github.com/goldfire/howler.js/blob/master/LICENSE.md)                       |
-| Voxel Space              | [s-macke.github.io/VoxelSpace](https://s-macke.github.io/VoxelSpace/VoxelSpace.html)                   | [github.com/s-macke/VoxelSpace](https://github.com/s-macke/VoxelSpace)                                       | [MIT](https://github.com/s-macke/VoxelSpace/blob/master/LICENSE)                          |
 | **Frontend**             |                                                                                                        |                                                                                                              |                                                                                           |
 | Bootstrap                | [getbootstrap.com](https://getbootstrap.com/)                                                          | [github.com/twbs/bootstrap](https://github.com/twbs/bootstrap)                                               | [MIT](https://github.com/twbs/bootstrap/blob/master/LICENSE)                              |
 | Datatables               | [datatables.net](https://datatables.net/)                                                              | [github.com/DataTables/DataTables](https://github.com/DataTables/DataTables)                                 | [MIT](https://github.com/DataTables/DataTables/blob/master/license.txt)                   |
