@@ -21,20 +21,22 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ## 💬 Join us on Discord
 
-[Discord](https://discord.gg/wXtGQ4p)
+<sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/vfat/discord/favicon.ico" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 Live Demo
-🚧 🚨 ![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
+![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/images/icons/alert.svg "This is currently under active development, and you must understand that some features are not finished.")
 
-[EmuOS](https://emupedia.net/beta/emuos)
+<sub><img width="38" height="38" alt="" src="https://emupedia.net/beta/emuos/images/emupedia-logo-48.png" /></sub> [EmuOS](https://emupedia.net/beta/emuos)
 
 ## 🌍 Browser support
 
-##### 🖥 Simulated desktop environment
-
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="IE" /></br>IE | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /></br>Opera |
-| :---:   | :---:    | :---: | :---: | :---:  | :---: |
-| IE11+   | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
+| :---:              | :---:    | :---: | :---: | :---:  | :---: |
+| <sub>*</sub>IE11+  | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
+
+```diff
+- * application support could vary
+```
 
 ## 🤖 Emulators used
 <details>
@@ -168,6 +170,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 </details>
 
 ## 📑 Legal issues
+<details>
+<summary>Click to reveal</summary>
 
 In general, the copying and distribution of video games that are under copyright without authorization is considered a copyright violation (often called as software piracy).
 
@@ -176,8 +180,11 @@ Through the Library of Congress, some key exemptions to the DMCA have been grant
 * In the 2003 set of exemptions, the Library disallowed enforcement of the DMCA for "computer programs protected by dongles that prevent access due to malfunction or damage and which are obsolete" and for "computer programs and video games distributed in formats that have become obsolete and which require the original media or hardware as a condition of access".
 * In the 2015 exemptions, the Library granted permission for preservationists to work around copy-protection in games which required an authentication step with an external server that was no longer online prior to playing the game which otherwise did not require online connectivity; this specifically did not cover games that were based on a server-client mode like most massively-multiplayer online games (MMOs).
 * In the 2018 exemptions, the Library allowed for preservation and fair use of server-based games like MMos, permitting preservationists to offer such games where they have legally obtained the game's code within museums and libraries.
+</details>
 
-#### 📄 DMCA Takedown notices & Removal Requests
+## 📄 DMCA Takedown notices & Removal Requests
+<details>
+<summary>Click to reveal</summary>
 
 Emupedia is aware of intellectual property rights and other proprietary rights of others.
 
@@ -195,10 +202,11 @@ Please include the following information in your claim request:
 You may send an email to **dmca [at] emupedia.net** for all **DMCA Takedown notices / Removal Requests**.
 
 You will receive a confirmation once your request has been processed.
+</details>
 
 ## 📝 License
 
-Copyright (c) 2016 - 2020, Emupedia
+Copyright ©️ 2016 - 2020 Emupedia or its affiliates. All rights reserved.
 
 The source code provided by Emupedia are for non-commercial testing and evaluation
 purposes only. Emupedia reserves all rights not expressly granted.
