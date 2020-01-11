@@ -19,9 +19,9 @@
 	} , {
 		"name": "Windows 93",
 		"icon": "vfat/apps/windows93/favicon.ico",
-		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG",
+		"link": "https://v1.windows93.net",
 		"width": 960,
-		"height": 713
+		"height": 734
 	} , {
 		"name": "98.js",
 		"icon": "vfat/apps/98.js/favicon.ico",

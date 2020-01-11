@@ -53,9 +53,10 @@
 			} , {
 				name: 'Windows 93',
 				icon: 'vfat/apps/windows93/favicon.ico',
-				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG',
+				// link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG',
+				link: 'https://v1.windwos93.net',
 				width: 960,
-				height: 713
+				height: 734
 			} , {
 				name: '98.js',
 				icon: 'vfat/apps/98.js/favicon.ico',
@@ -98,7 +99,7 @@
 				name: 'Cookie Clicker<br/>BETA',
 				title: 'Under Development',
 				icon: 'vfat/games/cookie-clicker/favicon.png',
-				link: 'http://orteil.dashnet.org/cookieclicker/',
+				link: 'https://orteil.dashnet.org/cookieclicker/',
 				width: 900,
 				height: 600
 			} , {
