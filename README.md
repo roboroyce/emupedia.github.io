@@ -34,7 +34,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | :---:              | :---:    | :---: | :---: | :---:  | :---: |
 | <sup>*</sup>IE11+  | Edge 20+ | 4+    | 26+   | 5+     | 12+   |
 
-[![* application support could vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)](#-browser-support)
+[![* application support may vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)](#-browser-support)
 
 ## 🤖 <sub>Emulators used</sub>
 <details>
