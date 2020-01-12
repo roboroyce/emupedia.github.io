@@ -166,6 +166,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | vue-win-3.1              | [disjfa.github.io/vue-win-3.1](https://disjfa.github.io/vue-win-3.1/) | [github.com/disjfa/vue-win-3.1](https://github.com/disjfa/vue-win-3.1)                         | ❓                                                                                |
 | windows93                | [windows93.net](https://windows93.net)                                | ❌                                                                                             | [CC BY-NC 4.0](https://windows93.net/#!/c/TOS.html)                               |
 | winXP                    | [winxp.now.sh](https://winxp.now.sh/)                                 | [github.com/ShizukuIchi/winXP](https://github.com/ShizukuIchi/winXP)                           | [MIT](https://github.com/ShizukuIchi/winXP/blob/master/LICENSE)                   |
+| X-WebDesktop-Vue         | [oxoyo.co/X-WebDesktop-Vue](https://oxoyo.co/X-WebDesktop-Vue/)       | [github.com/OXOYO/X-WebDesktop-Vue](https://github.com/OXOYO/X-WebDesktop-Vue)                 | [MIT](https://github.com/OXOYO/X-WebDesktop-Vue/blob/master/LICENSE)              |
 | ZineOS                   | [whimsy.space](https://whimsy.space/)                                 | [github.com/STRd6/zine](https://github.com/STRd6/zine)                                         | [MIT](https://github.com/STRd6/zine/blob/master/LICENSE)                          |
 </details>
 
