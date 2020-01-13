@@ -77,8 +77,9 @@
 	overflow-y: auto;
 }
 
-#client_room_users img {
+#client_room_users .emoji {
 	width: 14px;
+	vertical-align: middle;
 }
 
 #client_room {
@@ -113,7 +114,8 @@
 }
 
 #client_output .emoji {
-	width: 20px;
+	width: 14px;
+	vertical-align: middle;
 }
 
 #client_input {
