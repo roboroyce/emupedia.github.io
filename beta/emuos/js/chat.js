@@ -283,7 +283,7 @@
 		});
 
 		net.socket.on('server.msg', function (data) {
-			net.log(data, 2);
+			net.log(net.normalize(data), 2);
 		});
 
 		net.socket.on('silent.msg', function (data) {
