@@ -77,7 +77,10 @@
 		};
 
 		net.normalize = function(str) {
-			return twemoji.parse(net.str_replace(search, replace, $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html()));
+			return twemoji.parse(net.str_replace(search, replace, $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html()), {
+				folder: 'svg',
+				ext: '.svg'
+			});
 		};
 
 		// noinspection DuplicatedCode
@@ -96,7 +99,7 @@
 
 			var colors = net.colors;
 
-			color = typeof colors[color] !== 'undefined' ? 'style="color:' + colors[color] + '"' : '';
+			color = typeof colors[color] !== 'undefined' ? 'color:' + colors[color] + '; ' : '';
 
 			if (typeof txt === 'object') {
 				// noinspection HtmlDeprecatedTag
@@ -116,14 +119,14 @@
 			].join('');
 
 			if (typeof hide !== 'undefined') {
-				var $el = $('<div ' + color + '>' + time_stamp + txt + '</div>');
+				var $el = $('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
 				$el.fadeOut(hide, function() {
 					$(this).remove();
 				});
 			} else {
-				net.output_div.append('<div ' + color + '>' + time_stamp + txt + '</div>');
+				net.output_div.append('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
 			}
 
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;

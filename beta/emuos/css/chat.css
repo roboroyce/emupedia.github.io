@@ -79,9 +79,7 @@
 
 #client_room_users .emoji {
 	width: 14px;
-	vertical-align: middle;
-	margin-left: 3px;
-	margin-right: 3px;
+	vertical-align: bottom;
 }
 
 #client_room {
@@ -115,11 +113,40 @@
 	overflow-x: hidden;
 }
 
+/*noinspection DuplicatedCode*/
 #client_output .emoji {
 	width: 14px;
-	vertical-align: middle;
-	margin-left: 3px;
-	margin-right: 3px;
+	vertical-align: bottom;
+
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+
+	-webkit-animation-iteration-count: 1;
+	-moz-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	-o-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+
+	-webkit-animation-duration: 1.5s;
+	-moz-animation-duration: 1.5s;
+	-ms-animation-duration: 1.5s;
+	-o-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+
+	-webkit-animation-name: ZoomOut;
+	-moz-animation-name: ZoomOut;
+	-ms-animation-name: ZoomOut;
+	-o-animation-name: ZoomOut;
+	animation-name: ZoomOut;
+}
+
+#client_output .emoji:hover {
+	transform: scale(6);
+	position: relative;
+	z-index: 1;
 }
 
 #client_input {
@@ -141,4 +168,59 @@
 	padding: 0;
 	overflow: hidden;
 	vertical-align: top;
+}
+
+/*noinspection DuplicatedCode*/
+@-webkit-keyframes ZoomOut {
+	0% {
+		width: 84px;
+	}
+
+	100% {
+		width: 14px;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-moz-keyframes ZoomOut {
+	0% {
+		width: 84px;
+	}
+
+	100% {
+		width: 14px;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-ms-keyframes ZoomOut {
+	0% {
+		width: 84px;
+	}
+
+	100% {
+		width: 14px;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@-o-keyframes ZoomOut {
+	0% {
+		width: 84px;
+	}
+
+	100% {
+		width: 14px;
+	}
+}
+
+/*noinspection DuplicatedCode*/
+@keyframes ZoomOut {
+	0% {
+		width: 84px;
+	}
+
+	100% {
+		width: 14px;
+	}
 }
