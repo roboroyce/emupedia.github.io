@@ -243,7 +243,7 @@
 				// noinspection JSUnfilteredForInLoop
 				var name = net.normalize(n);
 				// noinspection JSUnfilteredForInLoop
-				r_users += '<div id="room_user_' + name + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
+				r_users += '<div id="room_user_' + n + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
 			net.client_room_users.html(r_users);
@@ -254,11 +254,11 @@
 
 		net.socket.on('room.user_join', function (data) {
 			var name = net.normalize(data.user);
-			net.client_room_users.append('<div id="room_user_' + name + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
+			net.client_room_users.append('<div id="room_user_' + data.user + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
-			$('#room_user_' + net.normalize(data.user)).remove();
+			$('#room_user_' + data.user).remove();
 		});
 
 		net.socket.on('room.msg', function (data) {
