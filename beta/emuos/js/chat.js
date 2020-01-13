@@ -119,7 +119,7 @@
 				var $el = $('<div ' + color + '>' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
-				$el.fadeOut(4000, function() {
+				$el.fadeOut(10000, function() {
 					$(this).remove();
 				});
 			} else {
