@@ -282,10 +282,6 @@
 			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg));
 		});
 
-		net.socket.on('server.msg', function (data) {
-			net.log(data, 2);
-		});
-
 		net.socket.on('silent.msg', function (data) {
 			net.log(net.normalize(data), 1);
 		});

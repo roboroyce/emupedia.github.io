@@ -84,7 +84,6 @@
 				'room.user_leave',
 				'room.msg',
 				'silent.msg',
-				'server.msg',
 				'server.help'
 			];
 
