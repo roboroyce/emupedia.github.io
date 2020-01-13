@@ -20,8 +20,12 @@
     get traverse () { return traverse$1; },
     get template () { return template; },
     get createConfigItem () { return createConfigItem; },
-    get loadPartialConfig () { return loadPartialConfig; },
+    get loadPartialConfig () { return loadPartialConfig$1; },
+    get loadPartialConfigSync () { return loadPartialConfigSync; },
+    get loadPartialConfigAsync () { return loadPartialConfigAsync; },
     get loadOptions () { return loadOptions; },
+    get loadOptionsSync () { return loadOptionsSync; },
+    get loadOptionsAsync () { return loadOptionsAsync; },
     get transform () { return transform; },
     get transformSync () { return transformSync; },
     get transformAsync () { return transformAsync; },
@@ -874,11 +878,11 @@
 
     return false;
   }
-  function isClassDeclaration(node, opts) {
+  function isClassExpression(node, opts) {
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "ClassDeclaration") {
+    if (nodeType === "ClassExpression") {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -888,11 +892,11 @@
 
     return false;
   }
-  function isClassExpression(node, opts) {
+  function isClassDeclaration(node, opts) {
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "ClassExpression") {
+    if (nodeType === "ClassDeclaration") {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -3412,7 +3416,7 @@
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "Scopable" || "BlockStatement" === nodeType || "CatchClause" === nodeType || "DoWhileStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "Program" === nodeType || "ObjectMethod" === nodeType || "SwitchStatement" === nodeType || "WhileStatement" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassDeclaration" === nodeType || "ClassExpression" === nodeType || "ForOfStatement" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType || "TSModuleBlock" === nodeType || nodeType === "Placeholder" && "BlockStatement" === node.expectedNode) {
+    if (nodeType === "Scopable" || "BlockStatement" === nodeType || "CatchClause" === nodeType || "DoWhileStatement" === nodeType || "ForInStatement" === nodeType || "ForStatement" === nodeType || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "Program" === nodeType || "ObjectMethod" === nodeType || "SwitchStatement" === nodeType || "WhileStatement" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassExpression" === nodeType || "ClassDeclaration" === nodeType || "ForOfStatement" === nodeType || "ClassMethod" === nodeType || "ClassPrivateMethod" === nodeType || "TSModuleBlock" === nodeType || nodeType === "Placeholder" && "BlockStatement" === node.expectedNode) {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -3608,7 +3612,7 @@
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "Pureish" || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassDeclaration" === nodeType || "ClassExpression" === nodeType || "BigIntLiteral" === nodeType || nodeType === "Placeholder" && "StringLiteral" === node.expectedNode) {
+    if (nodeType === "Pureish" || "FunctionDeclaration" === nodeType || "FunctionExpression" === nodeType || "StringLiteral" === nodeType || "NumericLiteral" === nodeType || "NullLiteral" === nodeType || "BooleanLiteral" === nodeType || "ArrowFunctionExpression" === nodeType || "ClassExpression" === nodeType || "ClassDeclaration" === nodeType || "BigIntLiteral" === nodeType || nodeType === "Placeholder" && "StringLiteral" === node.expectedNode) {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -3622,7 +3626,7 @@
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "Declaration" || "FunctionDeclaration" === nodeType || "VariableDeclaration" === nodeType || "ClassDeclaration" === nodeType || "ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType || "ImportDeclaration" === nodeType || "DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "InterfaceDeclaration" === nodeType || "OpaqueType" === nodeType || "TypeAlias" === nodeType || "TSDeclareFunction" === nodeType || "TSInterfaceDeclaration" === nodeType || "TSTypeAliasDeclaration" === nodeType || "TSEnumDeclaration" === nodeType || "TSModuleDeclaration" === nodeType || nodeType === "Placeholder" && "Declaration" === node.expectedNode) {
+    if (nodeType === "Declaration" || "FunctionDeclaration" === nodeType || "VariableDeclaration" === nodeType || "ClassDeclaration" === nodeType || "ExportAllDeclaration" === nodeType || "ExportDefaultDeclaration" === nodeType || "ExportNamedDeclaration" === nodeType || "ImportDeclaration" === nodeType || "DeclareClass" === nodeType || "DeclareFunction" === nodeType || "DeclareInterface" === nodeType || "DeclareModule" === nodeType || "DeclareModuleExports" === nodeType || "DeclareTypeAlias" === nodeType || "DeclareOpaqueType" === nodeType || "DeclareVariable" === nodeType || "DeclareExportDeclaration" === nodeType || "DeclareExportAllDeclaration" === nodeType || "InterfaceDeclaration" === nodeType || "OpaqueType" === nodeType || "TypeAlias" === nodeType || "EnumDeclaration" === nodeType || "TSDeclareFunction" === nodeType || "TSInterfaceDeclaration" === nodeType || "TSTypeAliasDeclaration" === nodeType || "TSEnumDeclaration" === nodeType || "TSModuleDeclaration" === nodeType || nodeType === "Placeholder" && "Declaration" === node.expectedNode) {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -3776,7 +3780,7 @@
     if (!node) return false;
     var nodeType = node.type;
 
-    if (nodeType === "Class" || "ClassDeclaration" === nodeType || "ClassExpression" === nodeType) {
+    if (nodeType === "Class" || "ClassExpression" === nodeType || "ClassDeclaration" === nodeType) {
       if (typeof opts === "undefined") {
         return true;
       } else {
@@ -5436,6 +5440,231 @@
     return FastObject(o);
   };
 
+  var global$1 = typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};
+
+  function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+  }
+
+  function defaultClearTimeout() {
+    throw new Error('clearTimeout has not been defined');
+  }
+
+  var cachedSetTimeout = defaultSetTimout;
+  var cachedClearTimeout = defaultClearTimeout;
+
+  if (typeof global$1.setTimeout === 'function') {
+    cachedSetTimeout = setTimeout;
+  }
+
+  if (typeof global$1.clearTimeout === 'function') {
+    cachedClearTimeout = clearTimeout;
+  }
+
+  function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+      return setTimeout(fun, 0);
+    }
+
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+      cachedSetTimeout = setTimeout;
+      return setTimeout(fun, 0);
+    }
+
+    try {
+      return cachedSetTimeout(fun, 0);
+    } catch (e) {
+      try {
+        return cachedSetTimeout.call(null, fun, 0);
+      } catch (e) {
+        return cachedSetTimeout.call(this, fun, 0);
+      }
+    }
+  }
+
+  function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+      return clearTimeout(marker);
+    }
+
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+      cachedClearTimeout = clearTimeout;
+      return clearTimeout(marker);
+    }
+
+    try {
+      return cachedClearTimeout(marker);
+    } catch (e) {
+      try {
+        return cachedClearTimeout.call(null, marker);
+      } catch (e) {
+        return cachedClearTimeout.call(this, marker);
+      }
+    }
+  }
+
+  var queue = [];
+  var draining = false;
+  var currentQueue;
+  var queueIndex = -1;
+
+  function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+      return;
+    }
+
+    draining = false;
+
+    if (currentQueue.length) {
+      queue = currentQueue.concat(queue);
+    } else {
+      queueIndex = -1;
+    }
+
+    if (queue.length) {
+      drainQueue();
+    }
+  }
+
+  function drainQueue() {
+    if (draining) {
+      return;
+    }
+
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+    var len = queue.length;
+
+    while (len) {
+      currentQueue = queue;
+      queue = [];
+
+      while (++queueIndex < len) {
+        if (currentQueue) {
+          currentQueue[queueIndex].run();
+        }
+      }
+
+      queueIndex = -1;
+      len = queue.length;
+    }
+
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+  }
+
+  function nextTick(fun) {
+    var args = new Array(arguments.length - 1);
+
+    if (arguments.length > 1) {
+      for (var i = 1; i < arguments.length; i++) {
+        args[i - 1] = arguments[i];
+      }
+    }
+
+    queue.push(new Item(fun, args));
+
+    if (queue.length === 1 && !draining) {
+      runTimeout(drainQueue);
+    }
+  }
+
+  function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+  }
+
+  Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+  };
+
+  var title = 'browser';
+  var platform = 'browser';
+  var browser = true;
+  var env = {};
+  var argv = [];
+  var version = '';
+  var versions = {};
+  var release = {};
+  var config = {};
+
+  function noop() {}
+
+  var on = noop;
+  var addListener = noop;
+  var once = noop;
+  var off = noop;
+  var removeListener = noop;
+  var removeAllListeners = noop;
+  var emit = noop;
+  function binding(name) {
+    throw new Error('process.binding is not supported');
+  }
+  function cwd() {
+    return '/';
+  }
+  function chdir(dir) {
+    throw new Error('process.chdir is not supported');
+  }
+  function umask() {
+    return 0;
+  }
+  var performance = global$1.performance || {};
+
+  var performanceNow = performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {
+    return new Date().getTime();
+  };
+
+  function hrtime(previousTimestamp) {
+    var clocktime = performanceNow.call(performance) * 1e-3;
+    var seconds = Math.floor(clocktime);
+    var nanoseconds = Math.floor(clocktime % 1 * 1e9);
+
+    if (previousTimestamp) {
+      seconds = seconds - previousTimestamp[0];
+      nanoseconds = nanoseconds - previousTimestamp[1];
+
+      if (nanoseconds < 0) {
+        seconds--;
+        nanoseconds += 1e9;
+      }
+    }
+
+    return [seconds, nanoseconds];
+  }
+  var startTime = new Date();
+  function uptime() {
+    var currentTime = new Date();
+    var dif = currentTime - startTime;
+    return dif / 1000;
+  }
+  var process = {
+    nextTick: nextTick,
+    title: title,
+    browser: browser,
+    env: env,
+    argv: argv,
+    version: version,
+    versions: versions,
+    on: on,
+    addListener: addListener,
+    once: once,
+    off: off,
+    removeListener: removeListener,
+    removeAllListeners: removeAllListeners,
+    emit: emit,
+    binding: binding,
+    cwd: cwd,
+    chdir: chdir,
+    umask: umask,
+    hrtime: hrtime,
+    platform: platform,
+    release: release,
+    config: config,
+    uptime: uptime
+  };
+
   var ast = createCommonjsModule(function (module) {
   (function () {
 
@@ -5862,39 +6091,6 @@
   var utils_2 = utils.code;
   var utils_3 = utils.keyword;
 
-  function isValidIdentifier(name) {
-    if (typeof name !== "string" || utils.keyword.isReservedWordES6(name, true)) {
-      return false;
-    } else if (name === "await") {
-      return false;
-    } else {
-      return utils.keyword.isIdentifierNameES6(name);
-    }
-  }
-
-  var STATEMENT_OR_BLOCK_KEYS = ["consequent", "body", "alternate"];
-  var FLATTENABLE_KEYS = ["body", "expressions"];
-  var FOR_INIT_KEYS = ["left", "init"];
-  var COMMENT_KEYS = ["leadingComments", "trailingComments", "innerComments"];
-  var LOGICAL_OPERATORS = ["||", "&&", "??"];
-  var UPDATE_OPERATORS = ["++", "--"];
-  var BOOLEAN_NUMBER_BINARY_OPERATORS = [">", "<", ">=", "<="];
-  var EQUALITY_BINARY_OPERATORS = ["==", "===", "!=", "!=="];
-  var COMPARISON_BINARY_OPERATORS = [].concat(EQUALITY_BINARY_OPERATORS, ["in", "instanceof"]);
-  var BOOLEAN_BINARY_OPERATORS = [].concat(COMPARISON_BINARY_OPERATORS, BOOLEAN_NUMBER_BINARY_OPERATORS);
-  var NUMBER_BINARY_OPERATORS = ["-", "/", "%", "*", "**", "&", "|", ">>", ">>>", "<<", "^"];
-  var BINARY_OPERATORS = ["+"].concat(NUMBER_BINARY_OPERATORS, BOOLEAN_BINARY_OPERATORS);
-  var BOOLEAN_UNARY_OPERATORS = ["delete", "!"];
-  var NUMBER_UNARY_OPERATORS = ["+", "-", "~"];
-  var STRING_UNARY_OPERATORS = ["typeof"];
-  var UNARY_OPERATORS = ["void", "throw"].concat(BOOLEAN_UNARY_OPERATORS, NUMBER_UNARY_OPERATORS, STRING_UNARY_OPERATORS);
-  var INHERIT_KEYS = {
-    optional: ["typeAnnotation", "typeParameters", "returnType"],
-    force: ["start", "loc", "end"]
-  };
-  var BLOCK_SCOPED_SYMBOL = Symbol["for"]("var used to be block scoped");
-  var NOT_LOCAL_BINDING = Symbol["for"]("should not be considered a local binding");
-
   function isType(nodeType, targetType) {
     if (nodeType === targetType) return true;
     if (ALIAS_KEYS[targetType]) return false;
@@ -5967,17 +6163,50 @@
     }
   }
 
+  var STATEMENT_OR_BLOCK_KEYS = ["consequent", "body", "alternate"];
+  var FLATTENABLE_KEYS = ["body", "expressions"];
+  var FOR_INIT_KEYS = ["left", "init"];
+  var COMMENT_KEYS = ["leadingComments", "trailingComments", "innerComments"];
+  var LOGICAL_OPERATORS = ["||", "&&", "??"];
+  var UPDATE_OPERATORS = ["++", "--"];
+  var BOOLEAN_NUMBER_BINARY_OPERATORS = [">", "<", ">=", "<="];
+  var EQUALITY_BINARY_OPERATORS = ["==", "===", "!=", "!=="];
+  var COMPARISON_BINARY_OPERATORS = [].concat(EQUALITY_BINARY_OPERATORS, ["in", "instanceof"]);
+  var BOOLEAN_BINARY_OPERATORS = [].concat(COMPARISON_BINARY_OPERATORS, BOOLEAN_NUMBER_BINARY_OPERATORS);
+  var NUMBER_BINARY_OPERATORS = ["-", "/", "%", "*", "**", "&", "|", ">>", ">>>", "<<", "^"];
+  var BINARY_OPERATORS = ["+"].concat(NUMBER_BINARY_OPERATORS, BOOLEAN_BINARY_OPERATORS);
+  var ASSIGNMENT_OPERATORS = ["=", "+="].concat(NUMBER_BINARY_OPERATORS.map(function (op) {
+    return op + "=";
+  }));
+  var BOOLEAN_UNARY_OPERATORS = ["delete", "!"];
+  var NUMBER_UNARY_OPERATORS = ["+", "-", "~"];
+  var STRING_UNARY_OPERATORS = ["typeof"];
+  var UNARY_OPERATORS = ["void", "throw"].concat(BOOLEAN_UNARY_OPERATORS, NUMBER_UNARY_OPERATORS, STRING_UNARY_OPERATORS);
+  var INHERIT_KEYS = {
+    optional: ["typeAnnotation", "typeParameters", "returnType"],
+    force: ["start", "loc", "end"]
+  };
+  var BLOCK_SCOPED_SYMBOL = Symbol["for"]("var used to be block scoped");
+  var NOT_LOCAL_BINDING = Symbol["for"]("should not be considered a local binding");
+
   function validate(node, key, val) {
     if (!node) return;
     var fields = NODE_FIELDS[node.type];
     if (!fields) return;
     var field = fields[key];
     validateField(node, key, val, field);
+    validateChild(node, key, val);
   }
   function validateField(node, key, val, field) {
     if (!field || !field.validate) return;
     if (field.optional && val == null) return;
     field.validate(node, key, val);
+  }
+  function validateChild(node, key, val) {
+    if (val == null) return;
+    var validate = NODE_PARENT_VALIDATIONS[val.type];
+    if (!validate) return;
+    validate(node, key, val);
   }
 
   var VISITOR_KEYS = {};
@@ -5986,14 +6215,13 @@
   var NODE_FIELDS = {};
   var BUILDER_KEYS = {};
   var DEPRECATED_KEYS = {};
+  var NODE_PARENT_VALIDATIONS = {};
 
   function getType(val) {
     if (Array.isArray(val)) {
       return "array";
     } else if (val === null) {
       return "null";
-    } else if (val === undefined) {
-      return "undefined";
     } else {
       return typeof val;
     }
@@ -6036,7 +6264,10 @@
       if (!Array.isArray(val)) return;
 
       for (var i = 0; i < val.length; i++) {
-        callback(node, key + "[" + i + "]", val[i]);
+        var subkey = key + "[" + i + "]";
+        var v = val[i];
+        callback(node, subkey, v);
+        if (process.env.BABEL_TYPES_8_BREAKING) validateChild(node, subkey, v);
       }
     }
 
@@ -6063,8 +6294,6 @@
     }
 
     function validate(node, key, val) {
-      var valid = false;
-
       for (var _iterator = types, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
         var _ref;
 
@@ -6080,14 +6309,12 @@
         var type = _ref;
 
         if (is(type, val)) {
-          valid = true;
-          break;
+          validateChild(node, key, val);
+          return;
         }
       }
 
-      if (!valid) {
-        throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " " + ("but instead got " + JSON.stringify(val && val.type)));
-      }
+      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val && val.type));
     }
 
     validate.oneOfNodeTypes = types;
@@ -6099,8 +6326,6 @@
     }
 
     function validate(node, key, val) {
-      var valid = false;
-
       for (var _iterator2 = types, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
         var _ref2;
 
@@ -6116,14 +6341,12 @@
         var type = _ref2;
 
         if (getType(val) === type || is(type, val)) {
-          valid = true;
-          break;
+          validateChild(node, key, val);
+          return;
         }
       }
 
-      if (!valid) {
-        throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " " + ("but instead got " + JSON.stringify(val && val.type)));
-      }
+      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val && val.type));
     }
 
     validate.oneOfNodeOrValueTypes = types;
@@ -6194,38 +6417,75 @@
     validate.chainOf = fns;
     return validate;
   }
+  var validTypeOpts = ["aliases", "builder", "deprecatedAlias", "fields", "inherits", "visitor", "validate"];
+  var validFieldKeys = ["default", "optional", "validate"];
   function defineType(type, opts) {
     if (opts === void 0) {
       opts = {};
     }
 
     var inherits = opts.inherits && store[opts.inherits] || {};
-    var fields = opts.fields || inherits.fields || {};
+    var fields = opts.fields;
+
+    if (!fields) {
+      fields = {};
+
+      if (inherits.fields) {
+        var keys = Object.getOwnPropertyNames(inherits.fields);
+
+        for (var _i5 = 0, _arr = keys; _i5 < _arr.length; _i5++) {
+          var key = _arr[_i5];
+          var field = inherits.fields[key];
+          fields[key] = {
+            "default": field["default"],
+            optional: field.optional,
+            validate: field.validate
+          };
+        }
+      }
+    }
+
     var visitor = opts.visitor || inherits.visitor || [];
     var aliases = opts.aliases || inherits.aliases || [];
     var builder = opts.builder || inherits.builder || opts.visitor || [];
+
+    for (var _i6 = 0, _arr2 = Object.keys(opts); _i6 < _arr2.length; _i6++) {
+      var k = _arr2[_i6];
+
+      if (validTypeOpts.indexOf(k) === -1) {
+        throw new Error("Unknown type option \"" + k + "\" on " + type);
+      }
+    }
 
     if (opts.deprecatedAlias) {
       DEPRECATED_KEYS[opts.deprecatedAlias] = type;
     }
 
-    for (var _i5 = 0, _arr = visitor.concat(builder); _i5 < _arr.length; _i5++) {
-      var key = _arr[_i5];
-      fields[key] = fields[key] || {};
+    for (var _i7 = 0, _arr3 = visitor.concat(builder); _i7 < _arr3.length; _i7++) {
+      var _key5 = _arr3[_i7];
+      fields[_key5] = fields[_key5] || {};
     }
 
-    for (var _i6 = 0, _Object$keys2 = Object.keys(fields); _i6 < _Object$keys2.length; _i6++) {
-      var _key5 = _Object$keys2[_i6];
-      var field = fields[_key5];
+    for (var _i8 = 0, _Object$keys2 = Object.keys(fields); _i8 < _Object$keys2.length; _i8++) {
+      var _key6 = _Object$keys2[_i8];
+      var _field = fields[_key6];
 
-      if (builder.indexOf(_key5) === -1) {
-        field.optional = true;
+      if (_field["default"] !== undefined && builder.indexOf(_key6) === -1) {
+        _field.optional = true;
       }
 
-      if (field["default"] === undefined) {
-        field["default"] = null;
-      } else if (!field.validate) {
-        field.validate = assertValueType(getType(field["default"]));
+      if (_field["default"] === undefined) {
+        _field["default"] = null;
+      } else if (!_field.validate && _field["default"] != null) {
+        _field.validate = assertValueType(getType(_field["default"]));
+      }
+
+      for (var _i9 = 0, _arr4 = Object.keys(_field); _i9 < _arr4.length; _i9++) {
+        var _k = _arr4[_i9];
+
+        if (validFieldKeys.indexOf(_k) === -1) {
+          throw new Error("Unknown field key \"" + _k + "\" on " + type + "." + _key6);
+        }
       }
     }
 
@@ -6237,6 +6497,11 @@
       FLIPPED_ALIAS_KEYS[alias] = FLIPPED_ALIAS_KEYS[alias] || [];
       FLIPPED_ALIAS_KEYS[alias].push(type);
     });
+
+    if (opts.validate) {
+      NODE_PARENT_VALIDATIONS[type] = opts.validate;
+    }
+
     store[type] = opts;
   }
   var store = {};
@@ -6245,7 +6510,7 @@
     fields: {
       elements: {
         validate: chain(assertValueType("array"), assertEach(assertNodeOrValueType("null", "Expression", "SpreadElement"))),
-        "default": []
+        "default": !process.env.BABEL_TYPES_8_BREAKING ? [] : undefined
       }
     },
     visitor: ["elements"],
@@ -6254,10 +6519,21 @@
   defineType("AssignmentExpression", {
     fields: {
       operator: {
-        validate: assertValueType("string")
+        validate: function () {
+          if (!process.env.BABEL_TYPES_8_BREAKING) {
+            return assertValueType("string");
+          }
+
+          var identifier = assertOneOf.apply(void 0, ASSIGNMENT_OPERATORS);
+          var pattern = assertOneOf("=");
+          return function (node, key, val) {
+            var validator = is("Pattern", node.left) ? pattern : identifier;
+            validator(node, key, val);
+          };
+        }()
       },
       left: {
-        validate: assertNodeType("LVal")
+        validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("LVal") : assertNodeType("Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern")
       },
       right: {
         validate: assertNodeType("Expression")
@@ -6335,17 +6611,19 @@
     visitor: ["callee", "arguments", "typeParameters", "typeArguments"],
     builder: ["callee", "arguments"],
     aliases: ["Expression"],
-    fields: {
+    fields: Object.assign({
       callee: {
         validate: assertNodeType("Expression", "V8IntrinsicIdentifier")
       },
       arguments: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("Expression", "SpreadElement", "JSXNamespacedName", "ArgumentPlaceholder")))
-      },
+      }
+    }, !process.env.BABEL_TYPES_8_BREAKING ? {
       optional: {
         validate: assertOneOf(true, false),
         optional: true
-      },
+      }
+    } : {}, {
       typeArguments: {
         validate: assertNodeType("TypeParameterInstantiation"),
         optional: true
@@ -6354,13 +6632,13 @@
         validate: assertNodeType("TSTypeParameterInstantiation"),
         optional: true
       }
-    }
+    })
   });
   defineType("CatchClause", {
     visitor: ["param", "body"],
     fields: {
       param: {
-        validate: assertNodeType("Identifier"),
+        validate: assertNodeType("Identifier", "ArrayPattern", "ObjectPattern"),
         optional: true
       },
       body: {
@@ -6435,7 +6713,7 @@
     aliases: ["Scopable", "Statement", "For", "BlockParent", "Loop", "ForXStatement"],
     fields: {
       left: {
-        validate: assertNodeType("VariableDeclaration", "LVal")
+        validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("VariableDeclaration", "LVal") : assertNodeType("VariableDeclaration", "Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern")
       },
       right: {
         validate: assertNodeType("Expression")
@@ -6471,11 +6749,9 @@
       validate: chain(assertValueType("array"), assertEach(assertNodeType("Identifier", "Pattern", "RestElement", "TSParameterProperty")))
     },
     generator: {
-      "default": false,
-      validate: assertValueType("boolean")
+      "default": false
     },
     async: {
-      validate: assertValueType("boolean"),
       "default": false
     }
   };
@@ -6507,7 +6783,16 @@
         validate: assertNodeType("BlockStatement")
       }
     }),
-    aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Statement", "Pureish", "Declaration"]
+    aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Statement", "Pureish", "Declaration"],
+    validate: function () {
+      if (!process.env.BABEL_TYPES_8_BREAKING) return function () {};
+      var identifier = assertNodeType("Identifier");
+      return function (parent, key, node) {
+        if (!is("ExportDefaultDeclaration", parent)) {
+          identifier(node, "id", node.id);
+        }
+      };
+    }()
   });
   defineType("FunctionExpression", {
     inherits: "FunctionDeclaration",
@@ -6537,15 +6822,50 @@
     aliases: ["Expression", "PatternLike", "LVal", "TSEntityName"],
     fields: Object.assign({}, patternLikeCommon, {
       name: {
-        validate: chain(function (node, key, val) {
-          if (!isValidIdentifier(val)) ;
-        }, assertValueType("string"))
+        validate: chain(assertValueType("string"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (!utils.keyword.isIdentifierNameES6(val)) {
+            throw new TypeError("\"" + val + "\" is not a valid identifier name");
+          }
+        })
       },
       optional: {
         validate: assertValueType("boolean"),
         optional: true
       }
-    })
+    }),
+    validate: function validate(parent, key, node) {
+      if (!process.env.BABEL_TYPES_8_BREAKING) return;
+      var match = /\.(\w+)$/.exec(key);
+      if (!match) return;
+      var parentKey = match[1];
+      var nonComp = {
+        computed: false
+      };
+
+      if (parentKey === "property") {
+        if (is("MemberExpression", parent, nonComp)) return;
+        if (is("OptionalMemberExpression", parent, nonComp)) return;
+      } else if (parentKey === "key") {
+        if (is("Property", parent, nonComp)) return;
+        if (is("Method", parent, nonComp)) return;
+      } else if (parentKey === "exported") {
+        if (is("ExportSpecifier", parent)) return;
+      } else if (parentKey === "imported") {
+        if (is("ImportSpecifier", parent, {
+          imported: node
+        })) return;
+      } else if (parentKey === "meta") {
+        if (is("MetaProperty", parent, {
+          meta: node
+        })) return;
+      }
+
+      if (utils.keyword.isReservedWordES6(node.name, false) && node.name !== "this") {
+        throw new TypeError("\"" + node.name + "\" is not a valid identifer");
+      }
+    }
   });
   defineType("IfStatement", {
     visitor: ["test", "consequent", "alternate"],
@@ -6615,7 +6935,14 @@
         validate: assertValueType("string")
       },
       flags: {
-        validate: assertValueType("string"),
+        validate: chain(assertValueType("string"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+          var invalid = /[^gimsuy]/.exec(val);
+
+          if (invalid) {
+            throw new TypeError("\"" + invalid[0] + "\" is not a valid RegExp flag");
+          }
+        }),
         "default": ""
       }
     }
@@ -6640,7 +6967,7 @@
     builder: ["object", "property", "computed", "optional"],
     visitor: ["object", "property"],
     aliases: ["Expression", "LVal"],
-    fields: {
+    fields: Object.assign({
       object: {
         validate: assertNodeType("Expression")
       },
@@ -6656,12 +6983,13 @@
       },
       computed: {
         "default": false
-      },
+      }
+    }, !process.env.BABEL_TYPES_8_BREAKING ? {
       optional: {
         validate: assertOneOf(true, false),
         optional: true
       }
-    }
+    } : {})
   });
   defineType("NewExpression", {
     inherits: "CallExpression"
@@ -6702,14 +7030,14 @@
     }
   });
   defineType("ObjectMethod", {
-    builder: ["kind", "key", "params", "body", "computed"],
+    builder: ["kind", "key", "params", "body", "computed", "generator", "async"],
     fields: Object.assign({}, functionCommon, {}, functionTypeAnnotationCommon, {
-      kind: {
-        validate: chain(assertValueType("string"), assertOneOf("method", "get", "set")),
+      kind: Object.assign({
+        validate: assertOneOf("method", "get", "set")
+      }, !process.env.BABEL_TYPES_8_BREAKING ? {
         "default": "method"
-      },
+      } : {}),
       computed: {
-        validate: assertValueType("boolean"),
         "default": false
       },
       key: {
@@ -6723,7 +7051,8 @@
         }()
       },
       decorators: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator")))
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
+        optional: true
       },
       body: {
         validate: assertNodeType("BlockStatement")
@@ -6733,10 +7062,9 @@
     aliases: ["UserWhitespacable", "Function", "Scopable", "BlockParent", "FunctionParent", "Method", "ObjectMember"]
   });
   defineType("ObjectProperty", {
-    builder: ["key", "value", "computed", "shorthand", "decorators"],
+    builder: ["key", "value", "computed", "shorthand"].concat(!process.env.BABEL_TYPES_8_BREAKING ? ["decorators"] : []),
     fields: {
       computed: {
-        validate: assertValueType("boolean"),
         "default": false
       },
       key: {
@@ -6753,7 +7081,19 @@
         validate: assertNodeType("Expression", "PatternLike")
       },
       shorthand: {
-        validate: assertValueType("boolean"),
+        validate: chain(assertValueType("boolean"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (val && node.computed) {
+            throw new TypeError("Property shorthand of ObjectProperty cannot be true if computed is true");
+          }
+        }, function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (val && !is("Identifier", node.key)) {
+            throw new TypeError("Property shorthand of ObjectProperty cannot be true if key is not an Identifier");
+          }
+        }),
         "default": false
       },
       decorators: {
@@ -6762,7 +7102,16 @@
       }
     },
     visitor: ["key", "value", "decorators"],
-    aliases: ["UserWhitespacable", "Property", "ObjectMember"]
+    aliases: ["UserWhitespacable", "Property", "ObjectMember"],
+    validate: function () {
+      var pattern = assertNodeType("Identifier", "Pattern");
+      var expression = assertNodeType("Expression");
+      return function (parent, key, node) {
+        if (!process.env.BABEL_TYPES_8_BREAKING) return;
+        var validator = is("ObjectPattern", parent) ? pattern : expression;
+        validator(node, "value", node.value);
+      };
+    }()
   });
   defineType("RestElement", {
     visitor: ["argument", "typeAnnotation"],
@@ -6771,9 +7120,20 @@
     deprecatedAlias: "RestProperty",
     fields: Object.assign({}, patternLikeCommon, {
       argument: {
-        validate: assertNodeType("LVal")
+        validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("LVal") : assertNodeType("Identifier", "Pattern", "MemberExpression")
       }
-    })
+    }),
+    validate: function validate(parent, key) {
+      if (!process.env.BABEL_TYPES_8_BREAKING) return;
+      var match = /(\w+)\[(\d+)\]/.exec(key);
+      if (!match) throw new Error("Internal Babel error: malformed key.");
+      var listKey = match[1],
+          index = match[2];
+
+      if (parent[listKey].length > index + 1) {
+        throw new TypeError("RestElement must be last element of " + listKey);
+      }
+    }
   });
   defineType("ReturnStatement", {
     visitor: ["argument"],
@@ -6844,7 +7204,13 @@
     aliases: ["Statement"],
     fields: {
       block: {
-        validate: assertNodeType("BlockStatement")
+        validate: chain(assertNodeType("BlockStatement"), function (node) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (!node.handler && !node.finalizer) {
+            throw new TypeError("TryStatement expects either a handler or finalizer, or both");
+          }
+        })
       },
       handler: {
         optional: true,
@@ -6879,7 +7245,7 @@
         "default": false
       },
       argument: {
-        validate: assertNodeType("Expression")
+        validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("Expression") : assertNodeType("Identifier", "MemberExpression")
       },
       operator: {
         validate: assertOneOf.apply(void 0, UPDATE_OPERATORS)
@@ -6898,10 +7264,20 @@
         optional: true
       },
       kind: {
-        validate: chain(assertValueType("string"), assertOneOf("var", "let", "const"))
+        validate: assertOneOf("var", "let", "const")
       },
       declarations: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("VariableDeclarator")))
+      }
+    },
+    validate: function validate(parent, key, node) {
+      if (!process.env.BABEL_TYPES_8_BREAKING) return;
+      if (!is("ForXStatement", parent, {
+        left: node
+      })) return;
+
+      if (node.declarations.length !== 1) {
+        throw new TypeError("Exactly one VariableDeclarator is required in the VariableDeclaration of a " + parent.type);
       }
     }
   });
@@ -6909,7 +7285,18 @@
     visitor: ["id", "init"],
     fields: {
       id: {
-        validate: assertNodeType("LVal")
+        validate: function () {
+          if (!process.env.BABEL_TYPES_8_BREAKING) {
+            return assertNodeType("LVal");
+          }
+
+          var normal = assertNodeType("Identifier", "ArrayPattern", "ObjectPattern");
+          var without = assertNodeType("Identifier");
+          return function (node, key, val) {
+            var validator = node.init ? normal : without;
+            validator(node, key, val);
+          };
+        }()
       },
       definite: {
         optional: true,
@@ -6929,7 +7316,7 @@
         validate: assertNodeType("Expression")
       },
       body: {
-        validate: assertNodeType("BlockStatement", "Statement")
+        validate: assertNodeType("Statement")
       }
     }
   });
@@ -6941,7 +7328,7 @@
         validate: assertNodeType("Expression")
       },
       body: {
-        validate: assertNodeType("BlockStatement", "Statement")
+        validate: assertNodeType("Statement")
       }
     }
   });
@@ -6958,7 +7345,8 @@
         validate: assertNodeType("Expression")
       },
       decorators: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator")))
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
+        optional: true
       }
     })
   });
@@ -6968,10 +7356,11 @@
     aliases: ["Pattern", "PatternLike", "LVal"],
     fields: Object.assign({}, patternLikeCommon, {
       elements: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("PatternLike")))
+        validate: chain(assertValueType("array"), assertEach(assertNodeOrValueType("null", "PatternLike")))
       },
       decorators: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator")))
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
+        optional: true
       }
     })
   });
@@ -6996,57 +7385,18 @@
       }
     }
   });
-  var classCommon = {
-    typeParameters: {
-      validate: assertNodeType("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
-      optional: true
-    },
-    body: {
-      validate: assertNodeType("ClassBody")
-    },
-    superClass: {
-      optional: true,
-      validate: assertNodeType("Expression")
-    },
-    superTypeParameters: {
-      validate: assertNodeType("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
-      optional: true
-    },
-    "implements": {
-      validate: chain(assertValueType("array"), assertEach(assertNodeType("TSExpressionWithTypeArguments", "ClassImplements"))),
-      optional: true
-    }
-  };
-  defineType("ClassDeclaration", {
+  defineType("ClassExpression", {
     builder: ["id", "superClass", "body", "decorators"],
     visitor: ["id", "body", "superClass", "mixins", "typeParameters", "superTypeParameters", "implements", "decorators"],
-    aliases: ["Scopable", "Class", "Statement", "Declaration", "Pureish"],
-    fields: Object.assign({}, classCommon, {
-      declare: {
-        validate: assertValueType("boolean"),
-        optional: true
-      },
-      "abstract": {
-        validate: assertValueType("boolean"),
-        optional: true
-      },
+    aliases: ["Scopable", "Class", "Expression", "Pureish"],
+    fields: {
       id: {
         validate: assertNodeType("Identifier"),
         optional: true
       },
-      decorators: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
+      typeParameters: {
+        validate: assertNodeType("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
         optional: true
-      }
-    })
-  });
-  defineType("ClassExpression", {
-    inherits: "ClassDeclaration",
-    aliases: ["Scopable", "Class", "Expression", "Pureish"],
-    fields: Object.assign({}, classCommon, {
-      id: {
-        optional: true,
-        validate: assertNodeType("Identifier")
       },
       body: {
         validate: assertNodeType("ClassBody")
@@ -7055,11 +7405,43 @@
         optional: true,
         validate: assertNodeType("Expression")
       },
+      superTypeParameters: {
+        validate: assertNodeType("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
+        optional: true
+      },
+      "implements": {
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("TSExpressionWithTypeArguments", "ClassImplements"))),
+        optional: true
+      },
       decorators: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
         optional: true
       }
-    })
+    }
+  });
+  defineType("ClassDeclaration", {
+    inherits: "ClassExpression",
+    aliases: ["Scopable", "Class", "Statement", "Declaration", "Pureish"],
+    fields: {
+      declare: {
+        validate: assertValueType("boolean"),
+        optional: true
+      },
+      "abstract": {
+        validate: assertValueType("boolean"),
+        optional: true
+      }
+    },
+    validate: function () {
+      var identifier = assertNodeType("Identifier");
+      return function (parent, key, node) {
+        if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+        if (!is("ExportDefaultDeclaration", parent)) {
+          identifier(node, "id", node.id);
+        }
+      };
+    }()
   });
   defineType("ExportAllDeclaration", {
     visitor: ["source"],
@@ -7084,11 +7466,32 @@
     aliases: ["Statement", "Declaration", "ModuleDeclaration", "ExportDeclaration"],
     fields: {
       declaration: {
-        validate: assertNodeType("Declaration"),
-        optional: true
+        optional: true,
+        validate: chain(assertNodeType("Declaration"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (val && node.specifiers.length) {
+            throw new TypeError("Only declaration or specifiers is allowed on ExportNamedDeclaration");
+          }
+        }, function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (val && node.source) {
+            throw new TypeError("Cannot export a declaration from a source");
+          }
+        })
       },
       specifiers: {
-        validate: chain(assertValueType("array"), assertEach(assertNodeType("ExportSpecifier", "ExportDefaultSpecifier", "ExportNamespaceSpecifier")))
+        "default": [],
+        validate: chain(assertValueType("array"), assertEach(function () {
+          var sourced = assertNodeType("ExportSpecifier", "ExportDefaultSpecifier", "ExportNamespaceSpecifier");
+          var sourceless = assertNodeType("ExportSpecifier");
+          if (!process.env.BABEL_TYPES_8_BREAKING) return sourced;
+          return function (node, key, val) {
+            var validator = node.source ? sourced : sourceless;
+            validator(node, key, val);
+          };
+        }()))
       },
       source: {
         validate: assertNodeType("StringLiteral"),
@@ -7111,10 +7514,25 @@
   });
   defineType("ForOfStatement", {
     visitor: ["left", "right", "body"],
+    builder: ["left", "right", "body", "await"],
     aliases: ["Scopable", "Statement", "For", "BlockParent", "Loop", "ForXStatement"],
     fields: {
       left: {
-        validate: assertNodeType("VariableDeclaration", "LVal")
+        validate: function () {
+          if (!process.env.BABEL_TYPES_8_BREAKING) {
+            return assertNodeType("VariableDeclaration", "LVal");
+          }
+
+          var declaration = assertNodeType("VariableDeclaration");
+          var lval = assertNodeType("Identifier", "MemberExpression", "ArrayPattern", "ObjectPattern");
+          return function (node, key, val) {
+            if (is("VariableDeclaration", val)) {
+              declaration(node, key, val);
+            } else {
+              lval(node, key, val);
+            }
+          };
+        }()
       },
       right: {
         validate: assertNodeType("Expression")
@@ -7123,8 +7541,7 @@
         validate: assertNodeType("Statement")
       },
       "await": {
-        "default": false,
-        validate: assertValueType("boolean")
+        "default": false
       }
     }
   });
@@ -7183,7 +7600,30 @@
     aliases: ["Expression"],
     fields: {
       meta: {
-        validate: assertNodeType("Identifier")
+        validate: chain(assertNodeType("Identifier"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+          var property;
+
+          switch (val.name) {
+            case "function":
+              property = "sent";
+              break;
+
+            case "new":
+              property = "target";
+              break;
+
+            case "import":
+              property = "meta";
+              break;
+          }
+
+          if (!is("Identifier", node.property, {
+            name: property
+          })) {
+            throw new TypeError("Unrecognised MetaProperty");
+          }
+        })
       },
       property: {
         validate: assertNodeType("Identifier")
@@ -7196,16 +7636,14 @@
       optional: true
     },
     accessibility: {
-      validate: chain(assertValueType("string"), assertOneOf("public", "private", "protected")),
+      validate: assertOneOf("public", "private", "protected"),
       optional: true
     },
     "static": {
-      "default": false,
-      validate: assertValueType("boolean")
+      "default": false
     },
     computed: {
-      "default": false,
-      validate: assertValueType("boolean")
+      "default": false
     },
     optional: {
       validate: assertValueType("boolean"),
@@ -7224,7 +7662,7 @@
   };
   var classMethodOrDeclareMethodCommon = Object.assign({}, functionCommon, {}, classMethodOrPropertyCommon, {
     kind: {
-      validate: chain(assertValueType("string"), assertOneOf("get", "set", "method", "constructor")),
+      validate: assertOneOf("get", "set", "method", "constructor"),
       "default": "method"
     },
     access: {
@@ -7238,7 +7676,7 @@
   });
   defineType("ClassMethod", {
     aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"],
-    builder: ["kind", "key", "params", "body", "computed", "static"],
+    builder: ["kind", "key", "params", "body", "computed", "static", "generator", "async"],
     visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
     fields: Object.assign({}, classMethodOrDeclareMethodCommon, {}, functionTypeAnnotationCommon, {
       body: {
@@ -7300,7 +7738,6 @@
         })
       },
       tail: {
-        validate: assertValueType("boolean"),
         "default": false
       }
     }
@@ -7327,7 +7764,13 @@
     aliases: ["Expression", "Terminatorless"],
     fields: {
       delegate: {
-        validate: assertValueType("boolean"),
+        validate: chain(assertValueType("boolean"), function (node, key, val) {
+          if (!process.env.BABEL_TYPES_8_BREAKING) return;
+
+          if (val && !node.argument) {
+            throw new TypeError("Property delegate of YieldExpression cannot be true if there is no argument");
+          }
+        }),
         "default": false
       },
       argument: {
@@ -7722,7 +8165,7 @@
     aliases: ["Flow", "FlowType", "FlowBaseAnnotation"]
   });
   defineType("EnumDeclaration", {
-    alises: ["Declaration"],
+    aliases: ["Declaration"],
     visitor: ["id", "body"],
     fields: {
       id: validateType("Identifier"),
@@ -7894,8 +8337,7 @@
         validate: assertNodeType("JSXIdentifier", "JSXMemberExpression", "JSXNamespacedName")
       },
       selfClosing: {
-        "default": false,
-        validate: assertValueType("boolean")
+        "default": false
       },
       attributes: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("JSXAttribute", "JSXSpreadAttribute")))
@@ -8008,7 +8450,14 @@
   defineType("BindExpression", {
     visitor: ["object", "callee"],
     aliases: ["Expression"],
-    fields: {}
+    fields: !process.env.BABEL_TYPES_8_BREAKING ? {} : {
+      object: {
+        validate: assertNodeType("Expression")
+      },
+      callee: {
+        validate: assertNodeType("Expression")
+      }
+    }
   });
   defineType("ClassProperty", {
     visitor: ["key", "value", "typeAnnotation", "decorators"],
@@ -9035,19 +9484,19 @@
 
     return builder.apply(void 0, ["ClassBody"].concat(args));
   }
-  function ClassDeclaration() {
+  function ClassExpression() {
     for (var _len56 = arguments.length, args = new Array(_len56), _key56 = 0; _key56 < _len56; _key56++) {
       args[_key56] = arguments[_key56];
     }
 
-    return builder.apply(void 0, ["ClassDeclaration"].concat(args));
+    return builder.apply(void 0, ["ClassExpression"].concat(args));
   }
-  function ClassExpression() {
+  function ClassDeclaration() {
     for (var _len57 = arguments.length, args = new Array(_len57), _key57 = 0; _key57 < _len57; _key57++) {
       args[_key57] = arguments[_key57];
     }
 
-    return builder.apply(void 0, ["ClassExpression"].concat(args));
+    return builder.apply(void 0, ["ClassDeclaration"].concat(args));
   }
   function ExportAllDeclaration() {
     for (var _len58 = arguments.length, args = new Array(_len58), _key58 = 0; _key58 < _len58; _key58++) {
@@ -10785,19 +11234,19 @@
 
     assert("ClassBody", node, opts);
   }
-  function assertClassDeclaration(node, opts) {
-    if (opts === void 0) {
-      opts = {};
-    }
-
-    assert("ClassDeclaration", node, opts);
-  }
   function assertClassExpression(node, opts) {
     if (opts === void 0) {
       opts = {};
     }
 
     assert("ClassExpression", node, opts);
+  }
+  function assertClassDeclaration(node, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+
+    assert("ClassDeclaration", node, opts);
   }
   function assertExportAllDeclaration(node, opts) {
     if (opts === void 0) {
@@ -12675,9 +13124,9 @@
 
   var _cacheHas = cacheHas;
 
-  function noop() {}
+  function noop$1() {}
 
-  var noop_1 = noop;
+  var noop_1 = noop$1;
 
   function setToArray(set) {
     var index = -1,
@@ -12869,6 +13318,24 @@
     }
 
     return node[key] = toBlock(node[key], node);
+  }
+
+  function isValidIdentifier(name, reserved) {
+    if (reserved === void 0) {
+      reserved = true;
+    }
+
+    if (typeof name !== "string") return false;
+
+    if (reserved) {
+      if (utils.keyword.isReservedWordES6(name, true)) {
+        return false;
+      } else if (name === "await") {
+        return false;
+      }
+    }
+
+    return utils.keyword.isIdentifierNameES6(name);
   }
 
   function toIdentifier(name) {
@@ -13710,6 +14177,10 @@
       return false;
     }
 
+    if (isPattern(node) && isFunction(parent)) {
+      return true;
+    }
+
     return isScopable(node);
   }
 
@@ -13847,8 +14318,8 @@
     assertArrayPattern: assertArrayPattern,
     assertArrowFunctionExpression: assertArrowFunctionExpression,
     assertClassBody: assertClassBody,
-    assertClassDeclaration: assertClassDeclaration,
     assertClassExpression: assertClassExpression,
+    assertClassDeclaration: assertClassDeclaration,
     assertExportAllDeclaration: assertExportAllDeclaration,
     assertExportDefaultDeclaration: assertExportDefaultDeclaration,
     assertExportNamedDeclaration: assertExportNamedDeclaration,
@@ -14184,10 +14655,10 @@
     arrowFunctionExpression: ArrowFunctionExpression,
     ClassBody: ClassBody,
     classBody: ClassBody,
-    ClassDeclaration: ClassDeclaration,
-    classDeclaration: ClassDeclaration,
     ClassExpression: ClassExpression,
     classExpression: ClassExpression,
+    ClassDeclaration: ClassDeclaration,
+    classDeclaration: ClassDeclaration,
     ExportAllDeclaration: ExportAllDeclaration,
     exportAllDeclaration: ExportAllDeclaration,
     ExportDefaultDeclaration: ExportDefaultDeclaration,
@@ -14682,6 +15153,7 @@
     BOOLEAN_BINARY_OPERATORS: BOOLEAN_BINARY_OPERATORS,
     NUMBER_BINARY_OPERATORS: NUMBER_BINARY_OPERATORS,
     BINARY_OPERATORS: BINARY_OPERATORS,
+    ASSIGNMENT_OPERATORS: ASSIGNMENT_OPERATORS,
     BOOLEAN_UNARY_OPERATORS: BOOLEAN_UNARY_OPERATORS,
     NUMBER_UNARY_OPERATORS: NUMBER_UNARY_OPERATORS,
     STRING_UNARY_OPERATORS: STRING_UNARY_OPERATORS,
@@ -14695,6 +15167,7 @@
     NODE_FIELDS: NODE_FIELDS,
     BUILDER_KEYS: BUILDER_KEYS,
     DEPRECATED_KEYS: DEPRECATED_KEYS,
+    NODE_PARENT_VALIDATIONS: NODE_PARENT_VALIDATIONS,
     PLACEHOLDERS: PLACEHOLDERS,
     PLACEHOLDERS_ALIAS: PLACEHOLDERS_ALIAS,
     PLACEHOLDERS_FLIPPED_ALIAS: PLACEHOLDERS_FLIPPED_ALIAS,
@@ -14754,8 +15227,8 @@
     isArrayPattern: isArrayPattern,
     isArrowFunctionExpression: isArrowFunctionExpression,
     isClassBody: isClassBody,
-    isClassDeclaration: isClassDeclaration,
     isClassExpression: isClassExpression,
+    isClassDeclaration: isClassDeclaration,
     isExportAllDeclaration: isExportAllDeclaration,
     isExportDefaultDeclaration: isExportDefaultDeclaration,
     isExportNamedDeclaration: isExportNamedDeclaration,
@@ -15049,7 +15522,7 @@
     }
   };
   var Scope = {
-    types: ["Scopable"],
+    types: ["Scopable", "Pattern"],
     checkPath: function checkPath(path) {
       return isScope(path.node, path.parent);
     }
@@ -15150,231 +15623,6 @@
     NumericLiteralTypeAnnotation: NumericLiteralTypeAnnotation,
     ForAwaitStatement: ForAwaitStatement
   });
-
-  var global$1 = typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};
-
-  function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-  }
-
-  function defaultClearTimeout() {
-    throw new Error('clearTimeout has not been defined');
-  }
-
-  var cachedSetTimeout = defaultSetTimout;
-  var cachedClearTimeout = defaultClearTimeout;
-
-  if (typeof global$1.setTimeout === 'function') {
-    cachedSetTimeout = setTimeout;
-  }
-
-  if (typeof global$1.clearTimeout === 'function') {
-    cachedClearTimeout = clearTimeout;
-  }
-
-  function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-      return setTimeout(fun, 0);
-    }
-
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-      cachedSetTimeout = setTimeout;
-      return setTimeout(fun, 0);
-    }
-
-    try {
-      return cachedSetTimeout(fun, 0);
-    } catch (e) {
-      try {
-        return cachedSetTimeout.call(null, fun, 0);
-      } catch (e) {
-        return cachedSetTimeout.call(this, fun, 0);
-      }
-    }
-  }
-
-  function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-      return clearTimeout(marker);
-    }
-
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-      cachedClearTimeout = clearTimeout;
-      return clearTimeout(marker);
-    }
-
-    try {
-      return cachedClearTimeout(marker);
-    } catch (e) {
-      try {
-        return cachedClearTimeout.call(null, marker);
-      } catch (e) {
-        return cachedClearTimeout.call(this, marker);
-      }
-    }
-  }
-
-  var queue = [];
-  var draining = false;
-  var currentQueue;
-  var queueIndex = -1;
-
-  function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-      return;
-    }
-
-    draining = false;
-
-    if (currentQueue.length) {
-      queue = currentQueue.concat(queue);
-    } else {
-      queueIndex = -1;
-    }
-
-    if (queue.length) {
-      drainQueue();
-    }
-  }
-
-  function drainQueue() {
-    if (draining) {
-      return;
-    }
-
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-    var len = queue.length;
-
-    while (len) {
-      currentQueue = queue;
-      queue = [];
-
-      while (++queueIndex < len) {
-        if (currentQueue) {
-          currentQueue[queueIndex].run();
-        }
-      }
-
-      queueIndex = -1;
-      len = queue.length;
-    }
-
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-  }
-
-  function nextTick(fun) {
-    var args = new Array(arguments.length - 1);
-
-    if (arguments.length > 1) {
-      for (var i = 1; i < arguments.length; i++) {
-        args[i - 1] = arguments[i];
-      }
-    }
-
-    queue.push(new Item(fun, args));
-
-    if (queue.length === 1 && !draining) {
-      runTimeout(drainQueue);
-    }
-  }
-
-  function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-  }
-
-  Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-  };
-
-  var title = 'browser';
-  var platform = 'browser';
-  var browser = true;
-  var env = {};
-  var argv = [];
-  var version = '';
-  var versions = {};
-  var release = {};
-  var config = {};
-
-  function noop$1() {}
-
-  var on = noop$1;
-  var addListener = noop$1;
-  var once = noop$1;
-  var off = noop$1;
-  var removeListener = noop$1;
-  var removeAllListeners = noop$1;
-  var emit = noop$1;
-  function binding(name) {
-    throw new Error('process.binding is not supported');
-  }
-  function cwd() {
-    return '/';
-  }
-  function chdir(dir) {
-    throw new Error('process.chdir is not supported');
-  }
-  function umask() {
-    return 0;
-  }
-  var performance = global$1.performance || {};
-
-  var performanceNow = performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {
-    return new Date().getTime();
-  };
-
-  function hrtime(previousTimestamp) {
-    var clocktime = performanceNow.call(performance) * 1e-3;
-    var seconds = Math.floor(clocktime);
-    var nanoseconds = Math.floor(clocktime % 1 * 1e9);
-
-    if (previousTimestamp) {
-      seconds = seconds - previousTimestamp[0];
-      nanoseconds = nanoseconds - previousTimestamp[1];
-
-      if (nanoseconds < 0) {
-        seconds--;
-        nanoseconds += 1e9;
-      }
-    }
-
-    return [seconds, nanoseconds];
-  }
-  var startTime = new Date();
-  function uptime() {
-    var currentTime = new Date();
-    var dif = currentTime - startTime;
-    return dif / 1000;
-  }
-  var process = {
-    nextTick: nextTick,
-    title: title,
-    browser: browser,
-    env: env,
-    argv: argv,
-    version: version,
-    versions: versions,
-    on: on,
-    addListener: addListener,
-    once: once,
-    off: off,
-    removeListener: removeListener,
-    removeAllListeners: removeAllListeners,
-    emit: emit,
-    binding: binding,
-    cwd: cwd,
-    chdir: chdir,
-    umask: umask,
-    hrtime: hrtime,
-    platform: platform,
-    release: release,
-    config: config,
-    uptime: uptime
-  };
 
   var s = 1000;
   var m = s * 60;
@@ -18831,10 +19079,18 @@
 
     _proto.getBinding = function getBinding(name) {
       var scope = this;
+      var previousPath;
 
       do {
         var binding = scope.getOwnBinding(name);
-        if (binding) return binding;
+
+        if (binding) {
+          if (previousPath && previousPath.isPattern() && previousPath.parentPath.isFunction() && binding.kind !== "param") ; else {
+            return binding;
+          }
+        }
+
+        previousPath = scope.path;
       } while (scope = scope.parent);
     };
 
@@ -30411,6 +30667,15 @@
       BIND_OUTSIDE = BIND_KIND_VALUE | 0 | 0 | BIND_FLAGS_NONE,
       BIND_TS_CONST_ENUM = BIND_TS_ENUM | BIND_FLAGS_TS_CONST_ENUM,
       BIND_TS_NAMESPACE = 0 | 0 | 0 | BIND_FLAGS_TS_EXPORT_ONLY;
+  var CLASS_ELEMENT_FLAG_STATIC = 4,
+      CLASS_ELEMENT_KIND_GETTER = 2,
+      CLASS_ELEMENT_KIND_SETTER = 1,
+      CLASS_ELEMENT_KIND_ACCESSOR = CLASS_ELEMENT_KIND_GETTER | CLASS_ELEMENT_KIND_SETTER;
+  var CLASS_ELEMENT_STATIC_GETTER = CLASS_ELEMENT_KIND_GETTER | CLASS_ELEMENT_FLAG_STATIC,
+      CLASS_ELEMENT_STATIC_SETTER = CLASS_ELEMENT_KIND_SETTER | CLASS_ELEMENT_FLAG_STATIC,
+      CLASS_ELEMENT_INSTANCE_GETTER = CLASS_ELEMENT_KIND_GETTER,
+      CLASS_ELEMENT_INSTANCE_SETTER = CLASS_ELEMENT_KIND_SETTER,
+      CLASS_ELEMENT_OTHER = 0;
 
   function isSimpleProperty(node) {
     return node != null && node.type === "Property" && node.kind === "init" && node.method === false;
@@ -30530,24 +30795,6 @@
 
           protoRef.used = true;
         }
-      };
-
-      _proto.isStrictBody = function isStrictBody(node) {
-        var isBlockStatement = node.body.type === "BlockStatement";
-
-        if (isBlockStatement && node.body.body.length > 0) {
-          for (var _i2 = 0, _node$body$body2 = node.body.body; _i2 < _node$body$body2.length; _i2++) {
-            var directive = _node$body$body2[_i2];
-
-            if (directive.type === "ExpressionStatement" && directive.expression.type === "Literal") {
-              if (directive.expression.value === "use strict") return true;
-            } else {
-              break;
-            }
-          }
-        }
-
-        return false;
       };
 
       _proto.isValidDirective = function isValidDirective(stmt) {
@@ -32764,10 +33011,10 @@
         }
       };
 
-      _proto.parsePropertyName = function parsePropertyName(node) {
+      _proto.parsePropertyName = function parsePropertyName(node, isPrivateNameAllowed) {
         var variance = this.flowParseVariance();
 
-        var key = _superClass.prototype.parsePropertyName.call(this, node);
+        var key = _superClass.prototype.parsePropertyName.call(this, node, isPrivateNameAllowed);
 
         node.variance = variance;
         return key;
@@ -33105,7 +33352,6 @@
         var _this10 = this;
 
         if (this.match(types.questionDot) && this.isLookaheadRelational("<")) {
-          this.expectPlugin("optionalChaining");
           subscriptState.optionalChainMember = true;
 
           if (noCalls) {
@@ -34463,6 +34709,7 @@
     function ScopeHandler(raise, inModule) {
       this.scopeStack = [];
       this.undefinedExports = new Map();
+      this.undefinedPrivateNames = new Map();
       this.raise = raise;
       this.inModule = inModule;
     }
@@ -34584,7 +34831,17 @@
     }, {
       key: "inAsync",
       get: function get() {
-        return (this.currentVarScope().flags & SCOPE_ASYNC) > 0;
+        for (var i = this.scopeStack.length - 1;; i--) {
+          var scope = this.scopeStack[i];
+          var isVarScope = scope.flags & SCOPE_VAR;
+          var isClassScope = scope.flags & SCOPE_CLASS;
+
+          if (isClassScope && !isVarScope) {
+            return false;
+          } else if (isVarScope) {
+            return (scope.flags & SCOPE_ASYNC) > 0;
+          }
+        }
       }
     }, {
       key: "allowSuper",
@@ -35119,7 +35376,7 @@
           return idx;
         }
 
-        this.parsePropertyName(node);
+        this.parsePropertyName(node, false);
         return this.tsParsePropertyOrMethodSignature(node, readonly);
       };
 
@@ -36850,7 +37107,7 @@
         for (var i = 0; i < exprList.length; i++) {
           var expr = exprList[i];
 
-          if (expr && expr._exprListItem && expr.type === "TsTypeCastExpression") {
+          if (expr && expr.type === "TSTypeCastExpression") {
             this.raise(expr.start, "Did not expect a type annotation here.");
           }
         }
@@ -37391,7 +37648,7 @@
             break;
         }
       } else if (this.state.commentPreviousNode && (this.state.commentPreviousNode.type === "ImportSpecifier" && node.type !== "ImportSpecifier" || this.state.commentPreviousNode.type === "ExportSpecifier" && node.type !== "ExportSpecifier")) {
-        this.adjustCommentsAfterTrailingComma(node, [this.state.commentPreviousNode], true);
+        this.adjustCommentsAfterTrailingComma(node, [this.state.commentPreviousNode]);
       }
 
       if (lastChild) {
@@ -37517,7 +37774,6 @@
       this.inType = false;
       this.noAnonFunctionType = false;
       this.inPropertyName = false;
-      this.inClassProperty = false;
       this.hasFlowComment = false;
       this.isIterator = false;
       this.topicContext = {
@@ -37526,7 +37782,6 @@
       };
       this.soloAwait = false;
       this.inFSharpPipelineDirectBody = false;
-      this.classLevel = 0;
       this.labels = [];
       this.decoratorStack = [[]];
       this.yieldPos = -1;
@@ -37553,7 +37808,6 @@
       this.containsOctal = false;
       this.octalPosition = null;
       this.exportedIdentifiers = [];
-      this.invalidTemplateEscapePosition = null;
     }
 
     var _proto = State.prototype;
@@ -37835,11 +38089,7 @@
         throw this.raise(this.state.pos, "Unexpected digit after hash token");
       }
 
-      if ((this.hasPlugin("classPrivateProperties") || this.hasPlugin("classPrivateMethods")) && this.state.classLevel > 0) {
-        ++this.state.pos;
-        this.finishToken(types.hash);
-        return;
-      } else if (this.getPluginOption("pipelineOperator", "proposal") === "smart") {
+      if (this.hasPlugin("classPrivateProperties") || this.hasPlugin("classPrivateMethods") || this.getPluginOption("pipelineOperator", "proposal") === "smart") {
         this.finishOp(types.hash, 1);
       } else {
         throw this.raise(this.state.pos, "Unexpected character '#'");
@@ -38455,13 +38705,10 @@
         code = this.readHexChar(this.input.indexOf("}", this.state.pos) - this.state.pos, true, throwOnInvalid);
         ++this.state.pos;
 
-        if (code === null) {
-          --this.state.invalidTemplateEscapePosition;
-        } else if (code > 0x10ffff) {
+        if (code !== null && code > 0x10ffff) {
           if (throwOnInvalid) {
             this.raise(codePos, "Code point out of bounds");
           } else {
-            this.state.invalidTemplateEscapePosition = codePos - 2;
             return null;
           }
         }
@@ -38491,6 +38738,7 @@
         } else if (ch === 8232 || ch === 8233) {
           ++this.state.pos;
           ++this.state.curLine;
+          this.state.lineStart = this.state.pos;
         } else if (isNewLine(ch)) {
           throw this.raise(this.state.start, "Unterminated string constant");
         } else {
@@ -38624,15 +38872,12 @@
         case 56:
         case 57:
           if (inTemplate) {
-            var codePos = this.state.pos - 1;
-            this.state.invalidTemplateEscapePosition = codePos;
             return null;
           }
 
         default:
           if (ch >= 48 && ch <= 55) {
-            var _codePos = this.state.pos - 1;
-
+            var codePos = this.state.pos - 1;
             var octalStr = this.input.substr(this.state.pos - 1, 3).match(/^[0-7]+/)[0];
             var octal = parseInt(octalStr, 8);
 
@@ -38646,13 +38891,12 @@
 
             if (octalStr !== "0" || next === 56 || next === 57) {
               if (inTemplate) {
-                this.state.invalidTemplateEscapePosition = _codePos;
                 return null;
               } else if (this.state.strict) {
-                this.raise(_codePos, "Octal literal in strict mode");
+                this.raise(codePos, "Octal literal in strict mode");
               } else if (!this.state.containsOctal) {
                 this.state.containsOctal = true;
-                this.state.octalPosition = _codePos;
+                this.state.octalPosition = codePos;
               }
             }
 
@@ -38672,7 +38916,6 @@
           this.raise(codePos, "Bad character escape sequence");
         } else {
           this.state.pos = codePos - 1;
-          this.state.invalidTemplateEscapePosition = codePos - 1;
         }
       }
 
@@ -38838,15 +39081,6 @@
       } else {
         this.unexpected(null, types.relational);
       }
-    };
-
-    _proto.eatRelational = function eatRelational(op) {
-      if (this.isRelational(op)) {
-        this.next();
-        return true;
-      }
-
-      return false;
     };
 
     _proto.isContextual = function isContextual(name) {
@@ -39515,7 +39749,13 @@
     };
 
     _proto.getExpression = function getExpression() {
-      this.scope.enter(SCOPE_PROGRAM);
+      var scopeFlags = SCOPE_PROGRAM;
+
+      if (this.hasPlugin("topLevelAwait") && this.inModule) {
+        scopeFlags |= SCOPE_ASYNC;
+      }
+
+      this.scope.enter(scopeFlags);
       this.nextToken();
       var expr = this.parseExpression();
 
@@ -39595,7 +39835,6 @@
         _node2.operator = operator;
 
         if (operator === "??=") {
-          this.expectPlugin("nullishCoalescingOperator");
           this.expectPlugin("logicalAssignment");
         }
 
@@ -39691,8 +39930,6 @@
             this.expectPlugin("pipelineOperator");
             this.state.inPipeline = true;
             this.checkPipelineAtInfixOperator(left, leftStartPos);
-          } else if (op === types.nullishCoalescing) {
-            this.expectPlugin("nullishCoalescingOperator");
           }
 
           this.next();
@@ -39847,9 +40084,12 @@
         _node7.callee = this.parseNoCallExpr();
         state.stop = true;
         return this.parseSubscripts(this.finishNode(_node7, "BindExpression"), startPos, startLoc, noCalls);
-      } else if (this.match(types.questionDot)) {
-        this.expectPlugin("optionalChaining");
-        state.optionalChainMember = true;
+      }
+
+      var optional = false;
+
+      if (this.match(types.questionDot)) {
+        state.optionalChainMember = optional = true;
 
         if (noCalls && this.lookaheadCharCode() === 40) {
           state.stop = true;
@@ -39857,59 +40097,35 @@
         }
 
         this.next();
+      }
 
+      var computed = this.eat(types.bracketL);
+
+      if (optional && !this.match(types.parenL) && !this.match(types.backQuote) || computed || this.eat(types.dot)) {
         var _node8 = this.startNodeAt(startPos, startLoc);
 
-        if (this.eat(types.bracketL)) {
-          _node8.object = base;
-          _node8.property = this.parseExpression();
-          _node8.computed = true;
-          _node8.optional = true;
+        _node8.object = base;
+        _node8.property = computed ? this.parseExpression() : optional ? this.parseIdentifier(true) : this.parseMaybePrivateName(true);
+        _node8.computed = computed;
+
+        if (_node8.property.type === "PrivateName") {
+          if (_node8.object.type === "Super") {
+            this.raise(startPos, "Private fields can't be accessed on super");
+          }
+
+          this.classScope.usePrivateName(_node8.property.id.name, _node8.property.start);
+        }
+
+        if (computed) {
           this.expect(types.bracketR);
+        }
+
+        if (state.optionalChainMember) {
+          _node8.optional = optional;
           return this.finishNode(_node8, "OptionalMemberExpression");
-        } else if (this.eat(types.parenL)) {
-          _node8.callee = base;
-          _node8.arguments = this.parseCallExpressionArguments(types.parenR, false);
-          _node8.optional = true;
-          return this.finishCallExpression(_node8, true);
         } else {
-          _node8.object = base;
-          _node8.property = this.parseIdentifier(true);
-          _node8.computed = false;
-          _node8.optional = true;
-          return this.finishNode(_node8, "OptionalMemberExpression");
+          return this.finishNode(_node8, "MemberExpression");
         }
-      } else if (this.eat(types.dot)) {
-        var _node9 = this.startNodeAt(startPos, startLoc);
-
-        _node9.object = base;
-        _node9.property = this.parseMaybePrivateName();
-        _node9.computed = false;
-
-        if (_node9.property.type === "PrivateName" && _node9.object.type === "Super") {
-          this.raise(startPos, "Private fields can't be accessed on super");
-        }
-
-        if (state.optionalChainMember) {
-          _node9.optional = false;
-          return this.finishNode(_node9, "OptionalMemberExpression");
-        }
-
-        return this.finishNode(_node9, "MemberExpression");
-      } else if (this.eat(types.bracketL)) {
-        var _node10 = this.startNodeAt(startPos, startLoc);
-
-        _node10.object = base;
-        _node10.property = this.parseExpression();
-        _node10.computed = true;
-        this.expect(types.bracketR);
-
-        if (state.optionalChainMember) {
-          _node10.optional = false;
-          return this.finishNode(_node10, "OptionalMemberExpression");
-        }
-
-        return this.finishNode(_node10, "MemberExpression");
       } else if (!noCalls && this.match(types.parenL)) {
         var oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
         var oldYieldPos = this.state.yieldPos;
@@ -39919,20 +40135,27 @@
         this.state.awaitPos = -1;
         this.next();
 
-        var _node11 = this.startNodeAt(startPos, startLoc);
+        var _node9 = this.startNodeAt(startPos, startLoc);
 
-        _node11.callee = base;
-        _node11.arguments = this.parseCallExpressionArguments(types.parenR, state.maybeAsyncArrow, base.type === "Import", base.type !== "Super", _node11);
-        this.finishCallExpression(_node11, state.optionalChainMember);
+        _node9.callee = base;
 
-        if (state.maybeAsyncArrow && this.shouldParseAsyncArrow()) {
+        if (optional) {
+          _node9.optional = true;
+          _node9.arguments = this.parseCallExpressionArguments(types.parenR, false);
+        } else {
+          _node9.arguments = this.parseCallExpressionArguments(types.parenR, state.maybeAsyncArrow, base.type === "Import", base.type !== "Super", _node9);
+        }
+
+        this.finishCallExpression(_node9, state.optionalChainMember);
+
+        if (state.maybeAsyncArrow && this.shouldParseAsyncArrow() && !optional) {
           state.stop = true;
-          _node11 = this.parseAsyncArrowFromCallExpression(this.startNodeAt(startPos, startLoc), _node11);
+          _node9 = this.parseAsyncArrowFromCallExpression(this.startNodeAt(startPos, startLoc), _node9);
           this.checkYieldAwaitInDefaultParams();
           this.state.yieldPos = oldYieldPos;
           this.state.awaitPos = oldAwaitPos;
         } else {
-          this.toReferencedListDeep(_node11.arguments);
+          this.toReferencedListDeep(_node9.arguments);
           if (oldYieldPos !== -1) this.state.yieldPos = oldYieldPos;
 
           if (!this.isAwaitAllowed() && !oldMaybeInArrowParameters || oldAwaitPos !== -1) {
@@ -39941,7 +40164,7 @@
         }
 
         this.state.maybeInArrowParameters = oldMaybeInArrowParameters;
-        return _node11;
+        return _node9;
       } else if (this.match(types.backQuote)) {
         return this.parseTaggedTemplateExpression(startPos, startLoc, base, state);
       } else {
@@ -40077,10 +40300,8 @@
             return this.parseImportMetaProperty(node);
           }
 
-          this.expectPlugin("dynamicImport", node.start);
-
           if (!this.match(types.parenL)) {
-            this.unexpected(null, types.parenL);
+            this.raise(this.state.lastTokStart, "import can only be used in import() or import.meta");
           }
 
           return this.finishNode(node, "Import");
@@ -40107,8 +40328,18 @@
               this.next();
               return this.parseFunction(node, undefined, true);
             } else if (canBeArrow && !containsEsc && id.name === "async" && this.match(types.name) && !this.canInsertSemicolon()) {
+              var oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
+              var oldYieldPos = this.state.yieldPos;
+              var oldAwaitPos = this.state.awaitPos;
+              this.state.maybeInArrowParameters = true;
+              this.state.yieldPos = -1;
+              this.state.awaitPos = -1;
               var params = [this.parseIdentifier()];
               this.expect(types.arrow);
+              this.checkYieldAwaitInDefaultParams();
+              this.state.maybeInArrowParameters = oldMaybeInArrowParameters;
+              this.state.yieldPos = oldYieldPos;
+              this.state.awaitPos = oldAwaitPos;
               this.parseArrowExpression(node, params, true);
               return node;
             }
@@ -40126,14 +40357,14 @@
           {
             this.expectPlugin("doExpressions");
 
-            var _node12 = this.startNode();
+            var _node10 = this.startNode();
 
             this.next();
             var oldLabels = this.state.labels;
             this.state.labels = [];
-            _node12.body = this.parseBlock();
+            _node10.body = this.parseBlock();
             this.state.labels = oldLabels;
-            return this.finishNode(_node12, "DoExpression");
+            return this.finishNode(_node10, "DoExpression");
           }
 
         case types.regexp:
@@ -40254,18 +40485,22 @@
       return this.finishNode(node, "BooleanLiteral");
     };
 
-    _proto.parseMaybePrivateName = function parseMaybePrivateName() {
+    _proto.parseMaybePrivateName = function parseMaybePrivateName(isPrivateNameAllowed) {
       var isPrivate = this.match(types.hash);
 
       if (isPrivate) {
         this.expectOnePlugin(["classPrivateProperties", "classPrivateMethods"]);
 
-        var _node13 = this.startNode();
+        if (!isPrivateNameAllowed) {
+          this.raise(this.state.pos, "Private names can only be used as the name of a class element (i.e. class C { #p = 42; #m() {} } )\n or a property of member expression (i.e. this.#p).");
+        }
+
+        var _node11 = this.startNode();
 
         this.next();
         this.assertNoSpace("Unexpected space between # and identifier");
-        _node13.id = this.parseIdentifier(true);
-        return this.finishNode(_node13, "PrivateName");
+        _node11.id = this.parseIdentifier(true);
+        return this.finishNode(_node11, "PrivateName");
       } else {
         return this.parseIdentifier(true);
       }
@@ -40471,7 +40706,7 @@
       if (this.eat(types.dot)) {
         var metaProp = this.parseMetaProperty(node, meta, "target");
 
-        if (!this.scope.inNonArrowFunction && !this.state.inClassProperty) {
+        if (!this.scope.inNonArrowFunction && !this.scope.inClass) {
           var error = "new.target can only be used in functions";
 
           if (this.hasPlugin("classProperties")) {
@@ -40513,9 +40748,7 @@
 
       if (this.state.value === null) {
         if (!isTagged) {
-          this.raise(this.state.invalidTemplateEscapePosition || 0, "Invalid escape sequence in template");
-        } else {
-          this.state.invalidTemplateEscapePosition = null;
+          this.raise(this.state.start + 1, "Invalid escape sequence in template");
         }
       }
 
@@ -40636,12 +40869,12 @@
       }
 
       var containsEsc = this.state.containsEsc;
-      this.parsePropertyName(prop);
+      this.parsePropertyName(prop, false);
 
       if (!isPattern && !containsEsc && !isGenerator && this.isAsyncProp(prop)) {
         isAsync = true;
         isGenerator = this.eat(types.star);
-        this.parsePropertyName(prop);
+        this.parsePropertyName(prop, false);
       } else {
         isAsync = false;
       }
@@ -40686,7 +40919,7 @@
       if (!containsEsc && this.isGetterOrSetterMethod(prop, isPattern)) {
         if (isGenerator || isAsync) this.unexpected();
         prop.kind = prop.key.name;
-        this.parsePropertyName(prop);
+        this.parsePropertyName(prop, false);
         this.parseMethod(prop, false, false, false, false, "ObjectMethod");
         this.checkGetterSetterParams(prop);
         return prop;
@@ -40727,7 +40960,7 @@
       return node;
     };
 
-    _proto.parsePropertyName = function parsePropertyName(prop) {
+    _proto.parsePropertyName = function parsePropertyName(prop, isPrivateNameAllowed) {
       if (this.eat(types.bracketL)) {
         prop.computed = true;
         prop.key = this.parseMaybeAssign();
@@ -40735,7 +40968,7 @@
       } else {
         var oldInPropertyName = this.state.inPropertyName;
         this.state.inPropertyName = true;
-        prop.key = this.match(types.num) || this.match(types.string) ? this.parseExprAtom() : this.parseMaybePrivateName();
+        prop.key = this.match(types.num) || this.match(types.string) || this.match(types.bigint) ? this.parseExprAtom() : this.parseMaybePrivateName(isPrivateNameAllowed);
 
         if (prop.key.type !== "PrivateName") {
           prop.computed = false;
@@ -40767,7 +41000,6 @@
       var allowModifiers = isConstructor;
       this.scope.enter(functionFlags(isAsync, node.generator) | SCOPE_SUPER | (inClassScope ? SCOPE_CLASS : 0) | (allowDirectSuper ? SCOPE_DIRECT_SUPER : 0));
       this.parseFunctionParams(node, allowModifiers);
-      this.checkYieldAwaitInDefaultParams();
       this.parseFunctionBodyAndFinish(node, type, true);
       this.scope.exit();
       this.state.yieldPos = oldYieldPos;
@@ -40795,22 +41027,6 @@
 
     _proto.setArrowFunctionParameters = function setArrowFunctionParameters(node, params, trailingCommaPos) {
       node.params = this.toAssignableList(params, true, "arrow function parameters", trailingCommaPos);
-    };
-
-    _proto.isStrictBody = function isStrictBody(node) {
-      var isBlockStatement = node.body.type === "BlockStatement";
-
-      if (isBlockStatement && node.body.directives.length) {
-        for (var _i4 = 0, _node$body$directives2 = node.body.directives; _i4 < _node$body$directives2.length; _i4++) {
-          var directive = _node$body$directives2[_i4];
-
-          if (directive.value.value === "use strict") {
-            return true;
-          }
-        }
-      }
-
-      return false;
     };
 
     _proto.parseFunctionBodyAndFinish = function parseFunctionBodyAndFinish(node, type, isMethod) {
@@ -40927,10 +41143,10 @@
           this.raise(this.state.start, "Unexpected argument placeholder");
         }
 
-        var _node14 = this.startNode();
+        var _node12 = this.startNode();
 
         this.next();
-        elt = this.finishNode(_node14, "ArgumentPlaceholder");
+        elt = this.finishNode(_node12, "ArgumentPlaceholder");
       } else {
         elt = this.parseMaybeAssign(false, refShorthandDefaultPos, this.parseParenItem, refNeedsArrowPos);
       }
@@ -41016,7 +41232,11 @@
     _proto.isAwaitAllowed = function isAwaitAllowed() {
       if (this.scope.inFunction) return this.scope.inAsync;
       if (this.options.allowAwaitOutsideFunction) return true;
-      if (this.hasPlugin("topLevelAwait")) return this.inModule;
+
+      if (this.hasPlugin("topLevelAwait")) {
+        return this.inModule && this.scope.inAsync;
+      }
+
       return false;
     };
 
@@ -42039,11 +42259,9 @@
       }
 
       var oldMaybeInArrowParameters = this.state.maybeInArrowParameters;
-      var oldInClassProperty = this.state.inClassProperty;
       var oldYieldPos = this.state.yieldPos;
       var oldAwaitPos = this.state.awaitPos;
       this.state.maybeInArrowParameters = false;
-      this.state.inClassProperty = false;
       this.state.yieldPos = -1;
       this.state.awaitPos = -1;
       this.scope.enter(functionFlags(node.async, node.generator));
@@ -42063,7 +42281,6 @@
       }
 
       this.state.maybeInArrowParameters = oldMaybeInArrowParameters;
-      this.state.inClassProperty = oldInClassProperty;
       this.state.yieldPos = oldYieldPos;
       this.state.awaitPos = oldAwaitPos;
       return node;
@@ -42114,7 +42331,7 @@
     _proto.parseClassBody = function parseClassBody(constructorAllowsSuper) {
       var _this8 = this;
 
-      this.state.classLevel++;
+      this.classScope.enter();
       var state = {
         hadConstructor: false
       };
@@ -42159,7 +42376,7 @@
         throw this.raise(this.state.start, "You have trailing decorators with no method");
       }
 
-      this.state.classLevel--;
+      this.classScope.exit();
       return this.finishNode(classBody, "ClassBody");
     };
 
@@ -42304,7 +42521,7 @@
     };
 
     _proto.parseClassPropertyName = function parseClassPropertyName(member) {
-      var key = this.parsePropertyName(member);
+      var key = this.parsePropertyName(member, true);
 
       if (!member.computed && member["static"] && (key.name === "prototype" || key.value === "prototype")) {
         this.raise(key.start, "Classes may not have static property named prototype");
@@ -42327,7 +42544,9 @@
 
     _proto.pushClassPrivateProperty = function pushClassPrivateProperty(classBody, prop) {
       this.expectPlugin("classPrivateProperties", prop.key.start);
-      classBody.body.push(this.parseClassPrivateProperty(prop));
+      var node = this.parseClassPrivateProperty(prop);
+      classBody.body.push(node);
+      this.classScope.declarePrivateName(node.key.id.name, CLASS_ELEMENT_OTHER, node.key.start);
     };
 
     _proto.pushClassMethod = function pushClassMethod(classBody, method, isGenerator, isAsync, isConstructor, allowsDirectSuper) {
@@ -42336,7 +42555,10 @@
 
     _proto.pushClassPrivateMethod = function pushClassPrivateMethod(classBody, method, isGenerator, isAsync) {
       this.expectPlugin("classPrivateMethods", method.key.start);
-      classBody.body.push(this.parseMethod(method, isGenerator, isAsync, false, false, "ClassPrivateMethod", true));
+      var node = this.parseMethod(method, isGenerator, isAsync, false, false, "ClassPrivateMethod", true);
+      classBody.body.push(node);
+      var kind = node.kind === "get" ? node["static"] ? CLASS_ELEMENT_STATIC_GETTER : CLASS_ELEMENT_INSTANCE_GETTER : node.kind === "set" ? node["static"] ? CLASS_ELEMENT_STATIC_SETTER : CLASS_ELEMENT_INSTANCE_SETTER : CLASS_ELEMENT_OTHER;
+      this.classScope.declarePrivateName(node.key.id.name, kind, node.key.start);
     };
 
     _proto.parsePostMemberNameModifiers = function parsePostMemberNameModifiers(methodOrProp) {};
@@ -42346,11 +42568,9 @@
     };
 
     _proto.parseClassPrivateProperty = function parseClassPrivateProperty(node) {
-      this.state.inClassProperty = true;
       this.scope.enter(SCOPE_CLASS | SCOPE_SUPER);
       node.value = this.eat(types.eq) ? this.parseMaybeAssign() : null;
       this.semicolon();
-      this.state.inClassProperty = false;
       this.scope.exit();
       return this.finishNode(node, "ClassPrivateProperty");
     };
@@ -42360,7 +42580,6 @@
         this.expectPlugin("classProperties");
       }
 
-      this.state.inClassProperty = true;
       this.scope.enter(SCOPE_CLASS | SCOPE_SUPER);
 
       if (this.match(types.eq)) {
@@ -42372,7 +42591,6 @@
       }
 
       this.semicolon();
-      this.state.inClassProperty = false;
       this.scope.exit();
       return this.finishNode(node, "ClassProperty");
     };
@@ -42778,6 +42996,97 @@
     return StatementParser;
   }(ExpressionParser);
 
+  var ClassScope = function ClassScope() {
+    this.privateNames = new Set();
+    this.loneAccessors = new Map();
+    this.undefinedPrivateNames = new Map();
+  };
+
+  var ClassScopeHandler = function () {
+    function ClassScopeHandler(raise) {
+      this.stack = [];
+      this.undefinedPrivateNames = new Map();
+      this.raise = raise;
+    }
+
+    var _proto = ClassScopeHandler.prototype;
+
+    _proto.current = function current() {
+      return this.stack[this.stack.length - 1];
+    };
+
+    _proto.enter = function enter() {
+      this.stack.push(new ClassScope());
+    };
+
+    _proto.exit = function exit() {
+      var oldClassScope = this.stack.pop();
+      var current = this.current();
+
+      for (var _i2 = 0, _Array$from2 = Array.from(oldClassScope.undefinedPrivateNames); _i2 < _Array$from2.length; _i2++) {
+        var _Array$from2$_i = _Array$from2[_i2],
+            name = _Array$from2$_i[0],
+            pos = _Array$from2$_i[1];
+
+        if (current) {
+          if (!current.undefinedPrivateNames.has(name)) {
+            current.undefinedPrivateNames.set(name, pos);
+          }
+        } else {
+          this.raiseUndeclaredPrivateName(name, pos);
+        }
+      }
+    };
+
+    _proto.declarePrivateName = function declarePrivateName(name, elementType, pos) {
+      var classScope = this.current();
+      var redefined = classScope.privateNames.has(name);
+
+      if (elementType & CLASS_ELEMENT_KIND_ACCESSOR) {
+        var accessor = redefined && classScope.loneAccessors.get(name);
+
+        if (accessor) {
+          var oldStatic = accessor & CLASS_ELEMENT_FLAG_STATIC;
+          var newStatic = elementType & CLASS_ELEMENT_FLAG_STATIC;
+          var oldKind = accessor & CLASS_ELEMENT_KIND_ACCESSOR;
+          var newKind = elementType & CLASS_ELEMENT_KIND_ACCESSOR;
+          redefined = oldKind === newKind || oldStatic !== newStatic;
+          if (!redefined) classScope.loneAccessors["delete"](name);
+        } else if (!redefined) {
+          classScope.loneAccessors.set(name, elementType);
+        }
+      }
+
+      if (redefined) {
+        this.raise(pos, "Duplicate private name #" + name);
+      }
+
+      classScope.privateNames.add(name);
+      classScope.undefinedPrivateNames["delete"](name);
+    };
+
+    _proto.usePrivateName = function usePrivateName(name, pos) {
+      var classScope;
+
+      for (var _i4 = 0, _this$stack2 = this.stack; _i4 < _this$stack2.length; _i4++) {
+        classScope = _this$stack2[_i4];
+        if (classScope.privateNames.has(name)) return;
+      }
+
+      if (classScope) {
+        classScope.undefinedPrivateNames.set(name, pos);
+      } else {
+        this.raiseUndeclaredPrivateName(name, pos);
+      }
+    };
+
+    _proto.raiseUndeclaredPrivateName = function raiseUndeclaredPrivateName(name, pos) {
+      this.raise(pos, "Private name #" + name + " is not defined");
+    };
+
+    return ClassScopeHandler;
+  }();
+
   var Parser = function (_StatementParser) {
     _inheritsLoose(Parser, _StatementParser);
 
@@ -42792,6 +43101,7 @@
       _this.options = options;
       _this.inModule = _this.options.sourceType === "module";
       _this.scope = new ScopeHandler(_this.raise.bind(_assertThisInitialized(_this)), _this.inModule);
+      _this.classScope = new ClassScopeHandler(_this.raise.bind(_assertThisInitialized(_this)));
       _this.plugins = pluginsMap(_this.options.plugins);
       _this.filename = options.sourceFilename;
       return _this;
@@ -42804,7 +43114,13 @@
     };
 
     _proto.parse = function parse() {
-      this.scope.enter(SCOPE_PROGRAM);
+      var scopeFlags = SCOPE_PROGRAM;
+
+      if (this.hasPlugin("topLevelAwait") && this.inModule) {
+        scopeFlags |= SCOPE_ASYNC;
+      }
+
+      this.scope.enter(scopeFlags);
       var file = this.startNode();
       var program = this.startNode();
       this.nextToken();
@@ -46847,6 +47163,12 @@
           newFn = wrapper(state.key, key, newFn);
         }
 
+        if (newFn !== fn) {
+          newFn.toString = function () {
+            return fn.toString();
+          };
+        }
+
         return newFn;
       });
       newVisitor[key] = fns;
@@ -47572,7 +47894,7 @@
   }
 
   function _templateObject16() {
-    var data = _taggedTemplateLiteralLoose(["\n  import defineProperty from \"defineProperty\";\n\n  export default function _objectSpread(target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = (arguments[i] != null) ? arguments[i] : {};\n      var ownKeys = Object.keys(Object(source));\n      if (typeof Object.getOwnPropertySymbols === 'function') {\n        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {\n          return Object.getOwnPropertyDescriptor(source, sym).enumerable;\n        }));\n      }\n      ownKeys.forEach(function(key) {\n        defineProperty(target, key, source[key]);\n      });\n    }\n    return target;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import defineProperty from \"defineProperty\";\n\n  export default function _objectSpread(target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = (arguments[i] != null) ? Object(arguments[i]) : {};\n      var ownKeys = Object.keys(source);\n      if (typeof Object.getOwnPropertySymbols === 'function') {\n        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {\n          return Object.getOwnPropertyDescriptor(source, sym).enumerable;\n        }));\n      }\n      ownKeys.forEach(function(key) {\n        defineProperty(target, key, source[key]);\n      });\n    }\n    return target;\n  }\n"]);
 
     _templateObject16 = function _templateObject16() {
       return data;
@@ -49850,29 +50172,664 @@
     return generateCode(tree).code;
   }
 
+  var runtime_1 = createCommonjsModule(function (module) {
+  var runtime = function (exports) {
+
+    var Op = Object.prototype;
+    var hasOwn = Op.hasOwnProperty;
+    var undefined$1;
+    var $Symbol = typeof Symbol === "function" ? Symbol : {};
+    var iteratorSymbol = $Symbol.iterator || "@@iterator";
+    var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+    var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+    function wrap(innerFn, outerFn, self, tryLocsList) {
+      var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+      var generator = Object.create(protoGenerator.prototype);
+      var context = new Context(tryLocsList || []);
+      generator._invoke = makeInvokeMethod(innerFn, self, context);
+      return generator;
+    }
+
+    exports.wrap = wrap;
+
+    function tryCatch(fn, obj, arg) {
+      try {
+        return {
+          type: "normal",
+          arg: fn.call(obj, arg)
+        };
+      } catch (err) {
+        return {
+          type: "throw",
+          arg: err
+        };
+      }
+    }
+
+    var GenStateSuspendedStart = "suspendedStart";
+    var GenStateSuspendedYield = "suspendedYield";
+    var GenStateExecuting = "executing";
+    var GenStateCompleted = "completed";
+    var ContinueSentinel = {};
+
+    function Generator() {}
+
+    function GeneratorFunction() {}
+
+    function GeneratorFunctionPrototype() {}
+
+    var IteratorPrototype = {};
+
+    IteratorPrototype[iteratorSymbol] = function () {
+      return this;
+    };
+
+    var getProto = Object.getPrototypeOf;
+    var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+
+    if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+      IteratorPrototype = NativeIteratorPrototype;
+    }
+
+    var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+    GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+    GeneratorFunctionPrototype.constructor = GeneratorFunction;
+    GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction";
+
+    function defineIteratorMethods(prototype) {
+      ["next", "throw", "return"].forEach(function (method) {
+        prototype[method] = function (arg) {
+          return this._invoke(method, arg);
+        };
+      });
+    }
+
+    exports.isGeneratorFunction = function (genFun) {
+      var ctor = typeof genFun === "function" && genFun.constructor;
+      return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+    };
+
+    exports.mark = function (genFun) {
+      if (Object.setPrototypeOf) {
+        Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+      } else {
+        genFun.__proto__ = GeneratorFunctionPrototype;
+
+        if (!(toStringTagSymbol in genFun)) {
+          genFun[toStringTagSymbol] = "GeneratorFunction";
+        }
+      }
+
+      genFun.prototype = Object.create(Gp);
+      return genFun;
+    };
+
+    exports.awrap = function (arg) {
+      return {
+        __await: arg
+      };
+    };
+
+    function AsyncIterator(generator) {
+      function invoke(method, arg, resolve, reject) {
+        var record = tryCatch(generator[method], generator, arg);
+
+        if (record.type === "throw") {
+          reject(record.arg);
+        } else {
+          var result = record.arg;
+          var value = result.value;
+
+          if (value && typeof value === "object" && hasOwn.call(value, "__await")) {
+            return Promise.resolve(value.__await).then(function (value) {
+              invoke("next", value, resolve, reject);
+            }, function (err) {
+              invoke("throw", err, resolve, reject);
+            });
+          }
+
+          return Promise.resolve(value).then(function (unwrapped) {
+            result.value = unwrapped;
+            resolve(result);
+          }, function (error) {
+            return invoke("throw", error, resolve, reject);
+          });
+        }
+      }
+
+      var previousPromise;
+
+      function enqueue(method, arg) {
+        function callInvokeWithMethodAndArg() {
+          return new Promise(function (resolve, reject) {
+            invoke(method, arg, resolve, reject);
+          });
+        }
+
+        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+
+      this._invoke = enqueue;
+    }
+
+    defineIteratorMethods(AsyncIterator.prototype);
+
+    AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+      return this;
+    };
+
+    exports.AsyncIterator = AsyncIterator;
+
+    exports.async = function (innerFn, outerFn, self, tryLocsList) {
+      var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
+      return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+        return result.done ? result.value : iter.next();
+      });
+    };
+
+    function makeInvokeMethod(innerFn, self, context) {
+      var state = GenStateSuspendedStart;
+      return function invoke(method, arg) {
+        if (state === GenStateExecuting) {
+          throw new Error("Generator is already running");
+        }
+
+        if (state === GenStateCompleted) {
+          if (method === "throw") {
+            throw arg;
+          }
+
+          return doneResult();
+        }
+
+        context.method = method;
+        context.arg = arg;
+
+        while (true) {
+          var delegate = context.delegate;
+
+          if (delegate) {
+            var delegateResult = maybeInvokeDelegate(delegate, context);
+
+            if (delegateResult) {
+              if (delegateResult === ContinueSentinel) continue;
+              return delegateResult;
+            }
+          }
+
+          if (context.method === "next") {
+            context.sent = context._sent = context.arg;
+          } else if (context.method === "throw") {
+            if (state === GenStateSuspendedStart) {
+              state = GenStateCompleted;
+              throw context.arg;
+            }
+
+            context.dispatchException(context.arg);
+          } else if (context.method === "return") {
+            context.abrupt("return", context.arg);
+          }
+
+          state = GenStateExecuting;
+          var record = tryCatch(innerFn, self, context);
+
+          if (record.type === "normal") {
+            state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+
+            if (record.arg === ContinueSentinel) {
+              continue;
+            }
+
+            return {
+              value: record.arg,
+              done: context.done
+            };
+          } else if (record.type === "throw") {
+            state = GenStateCompleted;
+            context.method = "throw";
+            context.arg = record.arg;
+          }
+        }
+      };
+    }
+
+    function maybeInvokeDelegate(delegate, context) {
+      var method = delegate.iterator[context.method];
+
+      if (method === undefined$1) {
+        context.delegate = null;
+
+        if (context.method === "throw") {
+          if (delegate.iterator["return"]) {
+            context.method = "return";
+            context.arg = undefined$1;
+            maybeInvokeDelegate(delegate, context);
+
+            if (context.method === "throw") {
+              return ContinueSentinel;
+            }
+          }
+
+          context.method = "throw";
+          context.arg = new TypeError("The iterator does not provide a 'throw' method");
+        }
+
+        return ContinueSentinel;
+      }
+
+      var record = tryCatch(method, delegate.iterator, context.arg);
+
+      if (record.type === "throw") {
+        context.method = "throw";
+        context.arg = record.arg;
+        context.delegate = null;
+        return ContinueSentinel;
+      }
+
+      var info = record.arg;
+
+      if (!info) {
+        context.method = "throw";
+        context.arg = new TypeError("iterator result is not an object");
+        context.delegate = null;
+        return ContinueSentinel;
+      }
+
+      if (info.done) {
+        context[delegate.resultName] = info.value;
+        context.next = delegate.nextLoc;
+
+        if (context.method !== "return") {
+          context.method = "next";
+          context.arg = undefined$1;
+        }
+      } else {
+        return info;
+      }
+
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    defineIteratorMethods(Gp);
+    Gp[toStringTagSymbol] = "Generator";
+
+    Gp[iteratorSymbol] = function () {
+      return this;
+    };
+
+    Gp.toString = function () {
+      return "[object Generator]";
+    };
+
+    function pushTryEntry(locs) {
+      var entry = {
+        tryLoc: locs[0]
+      };
+
+      if (1 in locs) {
+        entry.catchLoc = locs[1];
+      }
+
+      if (2 in locs) {
+        entry.finallyLoc = locs[2];
+        entry.afterLoc = locs[3];
+      }
+
+      this.tryEntries.push(entry);
+    }
+
+    function resetTryEntry(entry) {
+      var record = entry.completion || {};
+      record.type = "normal";
+      delete record.arg;
+      entry.completion = record;
+    }
+
+    function Context(tryLocsList) {
+      this.tryEntries = [{
+        tryLoc: "root"
+      }];
+      tryLocsList.forEach(pushTryEntry, this);
+      this.reset(true);
+    }
+
+    exports.keys = function (object) {
+      var keys = [];
+
+      for (var key in object) {
+        keys.push(key);
+      }
+
+      keys.reverse();
+      return function next() {
+        while (keys.length) {
+          var key = keys.pop();
+
+          if (key in object) {
+            next.value = key;
+            next.done = false;
+            return next;
+          }
+        }
+
+        next.done = true;
+        return next;
+      };
+    };
+
+    function values(iterable) {
+      if (iterable) {
+        var iteratorMethod = iterable[iteratorSymbol];
+
+        if (iteratorMethod) {
+          return iteratorMethod.call(iterable);
+        }
+
+        if (typeof iterable.next === "function") {
+          return iterable;
+        }
+
+        if (!isNaN(iterable.length)) {
+          var i = -1,
+              next = function next() {
+            while (++i < iterable.length) {
+              if (hasOwn.call(iterable, i)) {
+                next.value = iterable[i];
+                next.done = false;
+                return next;
+              }
+            }
+
+            next.value = undefined$1;
+            next.done = true;
+            return next;
+          };
+
+          return next.next = next;
+        }
+      }
+
+      return {
+        next: doneResult
+      };
+    }
+
+    exports.values = values;
+
+    function doneResult() {
+      return {
+        value: undefined$1,
+        done: true
+      };
+    }
+
+    Context.prototype = {
+      constructor: Context,
+      reset: function reset(skipTempReset) {
+        this.prev = 0;
+        this.next = 0;
+        this.sent = this._sent = undefined$1;
+        this.done = false;
+        this.delegate = null;
+        this.method = "next";
+        this.arg = undefined$1;
+        this.tryEntries.forEach(resetTryEntry);
+
+        if (!skipTempReset) {
+          for (var name in this) {
+            if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+              this[name] = undefined$1;
+            }
+          }
+        }
+      },
+      stop: function stop() {
+        this.done = true;
+        var rootEntry = this.tryEntries[0];
+        var rootRecord = rootEntry.completion;
+
+        if (rootRecord.type === "throw") {
+          throw rootRecord.arg;
+        }
+
+        return this.rval;
+      },
+      dispatchException: function dispatchException(exception) {
+        if (this.done) {
+          throw exception;
+        }
+
+        var context = this;
+
+        function handle(loc, caught) {
+          record.type = "throw";
+          record.arg = exception;
+          context.next = loc;
+
+          if (caught) {
+            context.method = "next";
+            context.arg = undefined$1;
+          }
+
+          return !!caught;
+        }
+
+        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+          var entry = this.tryEntries[i];
+          var record = entry.completion;
+
+          if (entry.tryLoc === "root") {
+            return handle("end");
+          }
+
+          if (entry.tryLoc <= this.prev) {
+            var hasCatch = hasOwn.call(entry, "catchLoc");
+            var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+            if (hasCatch && hasFinally) {
+              if (this.prev < entry.catchLoc) {
+                return handle(entry.catchLoc, true);
+              } else if (this.prev < entry.finallyLoc) {
+                return handle(entry.finallyLoc);
+              }
+            } else if (hasCatch) {
+              if (this.prev < entry.catchLoc) {
+                return handle(entry.catchLoc, true);
+              }
+            } else if (hasFinally) {
+              if (this.prev < entry.finallyLoc) {
+                return handle(entry.finallyLoc);
+              }
+            } else {
+              throw new Error("try statement without catch or finally");
+            }
+          }
+        }
+      },
+      abrupt: function abrupt(type, arg) {
+        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+          var entry = this.tryEntries[i];
+
+          if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+            var finallyEntry = entry;
+            break;
+          }
+        }
+
+        if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+          finallyEntry = null;
+        }
+
+        var record = finallyEntry ? finallyEntry.completion : {};
+        record.type = type;
+        record.arg = arg;
+
+        if (finallyEntry) {
+          this.method = "next";
+          this.next = finallyEntry.finallyLoc;
+          return ContinueSentinel;
+        }
+
+        return this.complete(record);
+      },
+      complete: function complete(record, afterLoc) {
+        if (record.type === "throw") {
+          throw record.arg;
+        }
+
+        if (record.type === "break" || record.type === "continue") {
+          this.next = record.arg;
+        } else if (record.type === "return") {
+          this.rval = this.arg = record.arg;
+          this.method = "return";
+          this.next = "end";
+        } else if (record.type === "normal" && afterLoc) {
+          this.next = afterLoc;
+        }
+
+        return ContinueSentinel;
+      },
+      finish: function finish(finallyLoc) {
+        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+          var entry = this.tryEntries[i];
+
+          if (entry.finallyLoc === finallyLoc) {
+            this.complete(entry.completion, entry.afterLoc);
+            resetTryEntry(entry);
+            return ContinueSentinel;
+          }
+        }
+      },
+      "catch": function _catch(tryLoc) {
+        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+          var entry = this.tryEntries[i];
+
+          if (entry.tryLoc === tryLoc) {
+            var record = entry.completion;
+
+            if (record.type === "throw") {
+              var thrown = record.arg;
+              resetTryEntry(entry);
+            }
+
+            return thrown;
+          }
+        }
+
+        throw new Error("illegal catch attempt");
+      },
+      delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+        this.delegate = {
+          iterator: values(iterable),
+          resultName: resultName,
+          nextLoc: nextLoc
+        };
+
+        if (this.method === "next") {
+          this.arg = undefined$1;
+        }
+
+        return ContinueSentinel;
+      }
+    };
+    return exports;
+  }( module.exports );
+
+  try {
+    regeneratorRuntime = runtime;
+  } catch (accidentalStrictMode) {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
+  });
+
+  var regenerator = runtime_1;
+
+  var _marked = regenerator.mark(findConfigUpwards),
+      _marked2 = regenerator.mark(findPackageData),
+      _marked3 = regenerator.mark(findRelativeConfig),
+      _marked4 = regenerator.mark(findRootConfig),
+      _marked5 = regenerator.mark(loadConfig);
+
   function findConfigUpwards(rootDir) {
-    return null;
+    return regenerator.wrap(function findConfigUpwards$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", null);
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _marked);
   }
   function findPackageData(filepath) {
-    return {
-      filepath: filepath,
-      directories: [],
-      pkg: null,
-      isPackage: false
-    };
+    return regenerator.wrap(function findPackageData$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            return _context2.abrupt("return", {
+              filepath: filepath,
+              directories: [],
+              pkg: null,
+              isPackage: false
+            });
+
+          case 1:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _marked2);
   }
   function findRelativeConfig(pkgData, envName, caller) {
-    return {
-      pkg: null,
-      config: null,
-      ignore: null
-    };
+    return regenerator.wrap(function findRelativeConfig$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            return _context3.abrupt("return", {
+              pkg: null,
+              config: null,
+              ignore: null
+            });
+
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _marked3);
   }
   function findRootConfig(dirname, envName, caller) {
-    return null;
+    return regenerator.wrap(function findRootConfig$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            return _context4.abrupt("return", null);
+
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _marked4);
   }
   function loadConfig(name, dirname, envName, caller) {
-    throw new Error("Cannot load " + name + " relative to " + dirname + " in a browser");
+    return regenerator.wrap(function loadConfig$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            throw new Error("Cannot load " + name + " relative to " + dirname + " in a browser");
+
+          case 1:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _marked5);
   }
   var ROOT_CONFIG_FILENAMES = [];
   function resolvePlugin(name, dirname) {
@@ -49888,7 +50845,7 @@
     throw new Error("Cannot load preset " + name + " relative to " + dirname + " in a browser");
   }
 
-  var version$1 = "7.7.7";
+  var version$1 = "7.8.0";
 
   function getEnv(defaultValue) {
     if (defaultValue === void 0) {
@@ -50084,79 +51041,800 @@
     return str.substr(start, len);
   };
 
-  function makeStrongCache(handler) {
-    return makeCachedFunction(new Map(), handler);
-  }
-  function makeWeakCache(handler) {
-    return makeCachedFunction(new WeakMap(), handler);
-  }
+  var GENSYNC_START = Symbol["for"]("gensync:v1:start");
+  var GENSYNC_SUSPEND = Symbol["for"]("gensync:v1:suspend");
+  var GENSYNC_EXPECTED_START = "GENSYNC_EXPECTED_START";
+  var GENSYNC_EXPECTED_SUSPEND = "GENSYNC_EXPECTED_SUSPEND";
+  var GENSYNC_OPTIONS_ERROR = "GENSYNC_OPTIONS_ERROR";
+  var GENSYNC_RACE_NONEMPTY = "GENSYNC_RACE_NONEMPTY";
+  var GENSYNC_ERRBACK_NO_CALLBACK = "GENSYNC_ERRBACK_NO_CALLBACK";
+  var gensync = Object.assign(function gensync(optsOrFn) {
+    var genFn = optsOrFn;
 
-  function makeCachedFunction(callCache, handler) {
-    return function cachedFunction(arg, data) {
-      var cachedValue = callCache.get(arg);
+    if (typeof optsOrFn !== "function") {
+      genFn = newGenerator(optsOrFn);
+    } else {
+      genFn = wrapGenerator(optsOrFn);
+    }
 
-      if (cachedValue) {
-        for (var _iterator = cachedValue, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-          var _ref;
+    return Object.assign(genFn, makeFunctionAPI(genFn));
+  }, {
+    all: buildOperation({
+      name: "all",
+      arity: 1,
+      sync: function sync(args) {
+        var items = Array.from(args[0]);
+        return items.map(function (item) {
+          return evaluateSync(item);
+        });
+      },
+      async: function async(args, resolve, reject) {
+        var items = Array.from(args[0]);
+        var count = 0;
+        var results = items.map(function () {
+          return undefined;
+        });
+        items.forEach(function (item, i) {
+          evaluateAsync(item, function (val) {
+            results[i] = val;
+            count += 1;
+            if (count === results.length) resolve(results);
+          }, reject);
+        });
+      }
+    }),
+    race: buildOperation({
+      name: "race",
+      arity: 1,
+      sync: function sync(args) {
+        var items = Array.from(args[0]);
 
-          if (_isArray) {
-            if (_i >= _iterator.length) break;
-            _ref = _iterator[_i++];
-          } else {
-            _i = _iterator.next();
-            if (_i.done) break;
-            _ref = _i.value;
-          }
+        if (items.length === 0) {
+          throw makeError("Must race at least 1 item", GENSYNC_RACE_NONEMPTY);
+        }
 
-          var _ref2 = _ref,
-              _value = _ref2.value,
-              valid = _ref2.valid;
-          if (valid(data)) return _value;
+        return evaluateSync(items[0]);
+      },
+      async: function async(args, resolve, reject) {
+        var items = Array.from(args[0]);
+
+        if (items.length === 0) {
+          throw makeError("Must race at least 1 item", GENSYNC_RACE_NONEMPTY);
+        }
+
+        for (var _i = 0, _items = items; _i < _items.length; _i++) {
+          var item = _items[_i];
+          evaluateAsync(item, resolve, reject);
         }
       }
+    })
+  });
 
-      var cache = new CacheConfigurator(data);
-      var value = handler(arg, cache);
-      if (!cache.configured()) cache.forever();
-      cache.deactivate();
+  function makeFunctionAPI(genFn) {
+    var fns = {
+      sync: function sync() {
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
 
-      switch (cache.mode()) {
-        case "forever":
-          cachedValue = [{
-            value: value,
-            valid: function valid() {
-              return true;
-            }
-          }];
-          callCache.set(arg, cachedValue);
-          break;
+        return evaluateSync(genFn.apply(this, args));
+      },
+      async: function async() {
+        var _this = this;
 
-        case "invalidate":
-          cachedValue = [{
-            value: value,
-            valid: cache.validator()
-          }];
-          callCache.set(arg, cachedValue);
-          break;
+        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+          args[_key2] = arguments[_key2];
+        }
 
-        case "valid":
-          if (cachedValue) {
-            cachedValue.push({
-              value: value,
-              valid: cache.validator()
-            });
-          } else {
-            cachedValue = [{
-              value: value,
-              valid: cache.validator()
-            }];
-            callCache.set(arg, cachedValue);
-          }
+        return new Promise(function (resolve, reject) {
+          evaluateAsync(genFn.apply(_this, args), resolve, reject);
+        });
+      },
+      errback: function errback() {
+        for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+          args[_key3] = arguments[_key3];
+        }
 
+        var cb = args.pop();
+
+        if (typeof cb !== "function") {
+          throw makeError("Asynchronous function called without callback", GENSYNC_ERRBACK_NO_CALLBACK);
+        }
+
+        var gen;
+
+        try {
+          gen = genFn.apply(this, args);
+        } catch (err) {
+          cb(err);
+          return;
+        }
+
+        evaluateAsync(gen, function (val) {
+          return cb(undefined, val);
+        }, function (err) {
+          return cb(err);
+        });
+      }
+    };
+    return fns;
+  }
+
+  function assertTypeof(type, name, value, allowUndefined) {
+    if (typeof value === type || allowUndefined && typeof value === "undefined") {
+      return;
+    }
+
+    var msg;
+
+    if (allowUndefined) {
+      msg = "Expected opts." + name + " to be either a " + type + ", or undefined.";
+    } else {
+      msg = "Expected opts." + name + " to be a " + type + ".";
+    }
+
+    throw makeError(msg, GENSYNC_OPTIONS_ERROR);
+  }
+
+  function makeError(msg, code) {
+    return Object.assign(new Error(msg), {
+      code: code
+    });
+  }
+
+  function newGenerator(_ref) {
+    var name = _ref.name,
+        arity = _ref.arity,
+        _sync = _ref.sync,
+        _async = _ref.async,
+        errback = _ref.errback;
+    assertTypeof("string", "name", name, true);
+    assertTypeof("number", "arity", arity, true);
+    assertTypeof("function", "sync", _sync);
+    assertTypeof("function", "async", _async, true);
+    assertTypeof("function", "errback", errback, true);
+
+    if (_async && errback) {
+      throw makeError("Expected one of either opts.async or opts.errback, but got _both_.", GENSYNC_OPTIONS_ERROR);
+    }
+
+    if (typeof name !== "string") {
+      var fnName;
+
+      if (errback && errback.name && errback.name !== "errback") {
+        fnName = errback.name;
       }
 
-      return value;
-    };
+      if (_async && _async.name && _async.name !== "async") {
+        fnName = _async.name.replace(/Async$/, "");
+      }
+
+      if (_sync && _sync.name && _sync.name !== "sync") {
+        fnName = _sync.name.replace(/Sync$/, "");
+      }
+
+      if (typeof fnName === "string") {
+        name = fnName;
+      }
+    }
+
+    if (typeof arity !== "number") {
+      arity = _sync.length;
+    }
+
+    return buildOperation({
+      name: name,
+      arity: arity,
+      sync: function sync(args) {
+        return _sync.apply(this, args);
+      },
+      async: function async(args, resolve, reject) {
+        if (_async) {
+          _async.apply(this, args).then(resolve, reject);
+        } else if (errback) {
+          errback.call.apply(errback, [this].concat(args, [function (err, value) {
+            if (err == null) resolve(value);else reject(err);
+          }]));
+        } else {
+          resolve(_sync.apply(this, args));
+        }
+      }
+    });
+  }
+
+  function wrapGenerator(genFn) {
+    return setFunctionMetadata(genFn.name, genFn.length, function () {
+      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
+      }
+
+      return genFn.apply(this, args);
+    });
+  }
+
+  function buildOperation(_ref2) {
+    var name = _ref2.name,
+        arity = _ref2.arity,
+        sync = _ref2.sync,
+        async = _ref2.async;
+    return setFunctionMetadata(name, arity, regenerator.mark(function _callee() {
+      var resume,
+          _len5,
+          args,
+          _key5,
+          result,
+          _args = arguments;
+
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return GENSYNC_START;
+
+            case 2:
+              resume = _context.sent;
+
+              for (_len5 = _args.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+                args[_key5] = _args[_key5];
+              }
+
+              if (resume) {
+                _context.next = 6;
+                break;
+              }
+
+              return _context.abrupt("return", sync.call(this, args));
+
+            case 6:
+              try {
+                async.call(this, args, function (value) {
+                  if (result) return;
+                  result = {
+                    value: value
+                  };
+                  resume();
+                }, function (err) {
+                  if (result) return;
+                  result = {
+                    err: err
+                  };
+                  resume();
+                });
+              } catch (err) {
+                result = {
+                  err: err
+                };
+                resume();
+              }
+
+              _context.next = 9;
+              return GENSYNC_SUSPEND;
+
+            case 9:
+              if (!result.hasOwnProperty("err")) {
+                _context.next = 11;
+                break;
+              }
+
+              throw result.err;
+
+            case 11:
+              return _context.abrupt("return", result.value);
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+  }
+
+  function evaluateSync(gen) {
+    var value;
+
+    while (!(_gen$next = gen.next(), value = _gen$next.value, _gen$next).done) {
+      var _gen$next;
+
+      assertStart(value, gen);
+    }
+
+    return value;
+  }
+
+  function evaluateAsync(gen, resolve, reject) {
+    (function step() {
+      try {
+        var value;
+
+        var _loop = function _loop() {
+          assertStart(value, gen);
+          var sync = true;
+          var didSyncResume = false;
+          var out = gen.next(function () {
+            if (sync) {
+              didSyncResume = true;
+            } else {
+              step();
+            }
+          });
+          sync = false;
+          assertSuspend(out, gen);
+
+          if (!didSyncResume) {
+            return {
+              v: void 0
+            };
+          }
+        };
+
+        while (!(_gen$next2 = gen.next(), value = _gen$next2.value, _gen$next2).done) {
+          var _gen$next2;
+
+          var _ret = _loop();
+
+          if (typeof _ret === "object") return _ret.v;
+        }
+
+        return resolve(value);
+      } catch (err) {
+        return reject(err);
+      }
+    })();
+  }
+
+  function assertStart(value, gen) {
+    if (value === GENSYNC_START) return;
+    throwError(gen, makeError("Got unexpected yielded value in gensync generator: " + JSON.stringify(value) + ". Did you perhaps mean to use 'yield*' instead of 'yield'?", GENSYNC_EXPECTED_START));
+  }
+
+  function assertSuspend(_ref3, gen) {
+    var value = _ref3.value,
+        done = _ref3.done;
+    if (!done && value === GENSYNC_SUSPEND) return;
+    throwError(gen, makeError(done ? "Unexpected generator completion. If you get this, it is probably a gensync bug." : "Expected GENSYNC_SUSPEND, got " + JSON.stringify(value) + ". If you get this, it is probably a gensync bug.", GENSYNC_EXPECTED_SUSPEND));
+  }
+
+  function throwError(gen, err) {
+    if (gen["throw"]) gen["throw"](err);
+    throw err;
+  }
+
+  function setFunctionMetadata(name, arity, fn) {
+    if (typeof name === "string") {
+      var nameDesc = Object.getOwnPropertyDescriptor(fn, "name");
+
+      if (!nameDesc || nameDesc.configurable) {
+        Object.defineProperty(fn, "name", Object.assign(nameDesc || {}, {
+          configurable: true,
+          value: name
+        }));
+      }
+    }
+
+    if (typeof arity === "number") {
+      var lengthDesc = Object.getOwnPropertyDescriptor(fn, "length");
+
+      if (!lengthDesc || lengthDesc.configurable) {
+        Object.defineProperty(fn, "length", Object.assign(lengthDesc || {}, {
+          configurable: true,
+          value: arity
+        }));
+      }
+    }
+
+    return fn;
+  }
+
+  var id = function id(x) {
+    return x;
+  };
+
+  var runGenerator = gensync(regenerator.mark(function _callee(item) {
+    return regenerator.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(item, "t0", 1);
+
+          case 1:
+            return _context.abrupt("return", _context.t0);
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  var isAsync = gensync({
+    sync: function sync() {
+      return false;
+    },
+    errback: function errback(cb) {
+      return cb(null, true);
+    }
+  });
+  function maybeAsync(fn, message) {
+    return gensync({
+      sync: function sync() {
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        var result = fn.apply(this, args);
+        if (isThenable(result)) throw new Error(message);
+        return result;
+      },
+      async: function async() {
+        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+          args[_key2] = arguments[_key2];
+        }
+
+        return Promise.resolve(fn.apply(this, args));
+      }
+    });
+  }
+  var withKind = gensync({
+    sync: function sync(cb) {
+      return cb("sync");
+    },
+    async: function async(cb) {
+      return cb("async");
+    }
+  });
+  function forwardAsync(action, cb) {
+    var g = gensync(action);
+    return withKind(function (kind) {
+      var adapted = g[kind];
+      return cb(adapted);
+    });
+  }
+  var onFirstPause = gensync({
+    name: "onFirstPause",
+    arity: 2,
+    sync: function sync(item) {
+      return runGenerator.sync(item);
+    },
+    errback: function errback(item, firstPause, cb) {
+      var completed = false;
+      runGenerator.errback(item, function (err, value) {
+        completed = true;
+        cb(err, value);
+      });
+
+      if (!completed) {
+        firstPause();
+      }
+    }
+  });
+  var waitFor = gensync({
+    sync: id,
+    async: id
+  });
+  function isThenable(val) {
+    return !!val && (typeof val === "object" || typeof val === "function") && !!val.then && typeof val.then === "function";
+  }
+
+  function mergeOptions(target, source) {
+    for (var _i = 0, _Object$keys = Object.keys(source); _i < _Object$keys.length; _i++) {
+      var k = _Object$keys[_i];
+
+      if (k === "parserOpts" && source.parserOpts) {
+        var parserOpts = source.parserOpts;
+        var targetObj = target.parserOpts = target.parserOpts || {};
+        mergeDefaultFields(targetObj, parserOpts);
+      } else if (k === "generatorOpts" && source.generatorOpts) {
+        var generatorOpts = source.generatorOpts;
+
+        var _targetObj = target.generatorOpts = target.generatorOpts || {};
+
+        mergeDefaultFields(_targetObj, generatorOpts);
+      } else {
+        var val = source[k];
+        if (val !== undefined) target[k] = val;
+      }
+    }
+  }
+
+  function mergeDefaultFields(target, source) {
+    for (var _i2 = 0, _Object$keys2 = Object.keys(source); _i2 < _Object$keys2.length; _i2++) {
+      var k = _Object$keys2[_i2];
+      var val = source[k];
+      if (val !== undefined) target[k] = val;
+    }
+  }
+
+  function isIterableIterator(value) {
+    return !!value && typeof value.next === "function" && typeof value[Symbol.iterator] === "function";
+  }
+
+  var _marked$1 = regenerator.mark(genTrue),
+      _marked2$1 = regenerator.mark(getCachedValue),
+      _marked3$1 = regenerator.mark(getCachedValueOrWait);
+
+  var synchronize = function synchronize(gen) {
+    return gensync(gen).sync;
+  };
+
+  function genTrue(data) {
+    return regenerator.wrap(function genTrue$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt("return", true);
+
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _marked$1);
+  }
+
+  function makeWeakCache(handler) {
+    return makeCachedFunction(WeakMap, handler);
+  }
+  function makeWeakCacheSync(handler) {
+    return synchronize(makeWeakCache(handler));
+  }
+  function makeStrongCache(handler) {
+    return makeCachedFunction(Map, handler);
+  }
+  function makeStrongCacheSync(handler) {
+    return synchronize(makeStrongCache(handler));
+  }
+
+  function makeCachedFunction(CallCache, handler) {
+    var callCacheSync = new CallCache();
+    var callCacheAsync = new CallCache();
+    var futureCache = new CallCache();
+    return regenerator.mark(function cachedFunction(arg, data) {
+      var asyncContext, callCache, cached, cache, handlerResult, finishLock, value, gen;
+      return regenerator.wrap(function cachedFunction$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              return _context2.delegateYield(isAsync(), "t0", 1);
+
+            case 1:
+              asyncContext = _context2.t0;
+              callCache = asyncContext ? callCacheAsync : callCacheSync;
+              return _context2.delegateYield(getCachedValueOrWait(asyncContext, callCache, futureCache, arg, data), "t1", 4);
+
+            case 4:
+              cached = _context2.t1;
+
+              if (!cached.valid) {
+                _context2.next = 7;
+                break;
+              }
+
+              return _context2.abrupt("return", cached.value);
+
+            case 7:
+              cache = new CacheConfigurator(data);
+              handlerResult = handler(arg, cache);
+
+              if (!isIterableIterator(handlerResult)) {
+                _context2.next = 15;
+                break;
+              }
+
+              gen = handlerResult;
+              return _context2.delegateYield(onFirstPause(gen, function () {
+                finishLock = setupAsyncLocks(cache, futureCache, arg);
+              }), "t2", 12);
+
+            case 12:
+              value = _context2.t2;
+              _context2.next = 16;
+              break;
+
+            case 15:
+              value = handlerResult;
+
+            case 16:
+              updateFunctionCache(callCache, cache, arg, value);
+
+              if (finishLock) {
+                futureCache["delete"](arg);
+                finishLock.release(value);
+              }
+
+              return _context2.abrupt("return", value);
+
+            case 19:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, cachedFunction);
+    });
+  }
+
+  function getCachedValue(cache, arg, data) {
+    var cachedValue, _iterator, _isArray, _i, _ref, _ref2, _value, valid;
+
+    return regenerator.wrap(function getCachedValue$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            cachedValue = cache.get(arg);
+
+            if (!cachedValue) {
+              _context3.next = 19;
+              break;
+            }
+
+            _iterator = cachedValue, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
+
+          case 3:
+            if (!_isArray) {
+              _context3.next = 9;
+              break;
+            }
+
+            if (!(_i >= _iterator.length)) {
+              _context3.next = 6;
+              break;
+            }
+
+            return _context3.abrupt("break", 19);
+
+          case 6:
+            _ref = _iterator[_i++];
+            _context3.next = 13;
+            break;
+
+          case 9:
+            _i = _iterator.next();
+
+            if (!_i.done) {
+              _context3.next = 12;
+              break;
+            }
+
+            return _context3.abrupt("break", 19);
+
+          case 12:
+            _ref = _i.value;
+
+          case 13:
+            _ref2 = _ref, _value = _ref2.value, valid = _ref2.valid;
+            return _context3.delegateYield(valid(data), "t0", 15);
+
+          case 15:
+            if (!_context3.t0) {
+              _context3.next = 17;
+              break;
+            }
+
+            return _context3.abrupt("return", {
+              valid: true,
+              value: _value
+            });
+
+          case 17:
+            _context3.next = 3;
+            break;
+
+          case 19:
+            return _context3.abrupt("return", {
+              valid: false,
+              value: null
+            });
+
+          case 20:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _marked2$1);
+  }
+
+  function getCachedValueOrWait(asyncContext, callCache, futureCache, arg, data) {
+    var cached, _cached, _value2;
+
+    return regenerator.wrap(function getCachedValueOrWait$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            return _context4.delegateYield(getCachedValue(callCache, arg, data), "t0", 1);
+
+          case 1:
+            cached = _context4.t0;
+
+            if (!cached.valid) {
+              _context4.next = 4;
+              break;
+            }
+
+            return _context4.abrupt("return", cached);
+
+          case 4:
+            if (!asyncContext) {
+              _context4.next = 11;
+              break;
+            }
+
+            return _context4.delegateYield(getCachedValue(futureCache, arg, data), "t1", 6);
+
+          case 6:
+            _cached = _context4.t1;
+
+            if (!_cached.valid) {
+              _context4.next = 11;
+              break;
+            }
+
+            return _context4.delegateYield(waitFor(_cached.value.promise), "t2", 9);
+
+          case 9:
+            _value2 = _context4.t2;
+            return _context4.abrupt("return", {
+              valid: true,
+              value: _value2
+            });
+
+          case 11:
+            return _context4.abrupt("return", {
+              valid: false,
+              value: null
+            });
+
+          case 12:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _marked3$1);
+  }
+
+  function setupAsyncLocks(config, futureCache, arg) {
+    var finishLock = new Lock();
+    updateFunctionCache(futureCache, config, arg, finishLock);
+    return finishLock;
+  }
+
+  function updateFunctionCache(cache, config, arg, value) {
+    if (!config.configured()) config.forever();
+    var cachedValue = cache.get(arg);
+    config.deactivate();
+
+    switch (config.mode()) {
+      case "forever":
+        cachedValue = [{
+          value: value,
+          valid: genTrue
+        }];
+        cache.set(arg, cachedValue);
+        break;
+
+      case "invalidate":
+        cachedValue = [{
+          value: value,
+          valid: config.validator()
+        }];
+        cache.set(arg, cachedValue);
+        break;
+
+      case "valid":
+        if (cachedValue) {
+          cachedValue.push({
+            value: value,
+            valid: config.validator()
+          });
+        } else {
+          cachedValue = [{
+            value: value,
+            valid: config.validator()
+          }];
+          cache.set(arg, cachedValue);
+        }
+
+    }
   }
 
   var CacheConfigurator = function () {
@@ -50210,6 +51888,8 @@
     };
 
     _proto.using = function using(handler) {
+      var _this = this;
+
       if (!this._active) {
         throw new Error("Cannot change caching after evaluation has completed.");
       }
@@ -50220,39 +51900,97 @@
 
       this._configured = true;
       var key = handler(this._data);
+      var fn = maybeAsync(handler, "You appear to be using an async cache handler, but Babel has been called synchronously");
 
-      this._pairs.push([key, handler]);
+      if (isThenable(key)) {
+        return key.then(function (key) {
+          _this._pairs.push([key, fn]);
+
+          return key;
+        });
+      }
+
+      this._pairs.push([key, fn]);
 
       return key;
     };
 
     _proto.invalidate = function invalidate(handler) {
-      if (!this._active) {
-        throw new Error("Cannot change caching after evaluation has completed.");
-      }
-
-      if (this._never || this._forever) {
-        throw new Error("Caching has already been configured with .never or .forever()");
-      }
-
       this._invalidate = true;
-      this._configured = true;
-      var key = handler(this._data);
-
-      this._pairs.push([key, handler]);
-
-      return key;
+      return this.using(handler);
     };
 
     _proto.validator = function validator() {
       var pairs = this._pairs;
-      return function (data) {
-        return pairs.every(function (_ref3) {
-          var key = _ref3[0],
-              fn = _ref3[1];
-          return key === fn(data);
-        });
-      };
+      return regenerator.mark(function _callee(data) {
+        var _iterator2, _isArray2, _i2, _ref3, _ref4, key, fn;
+
+        return regenerator.wrap(function _callee$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _iterator2 = pairs, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
+
+              case 1:
+                if (!_isArray2) {
+                  _context5.next = 7;
+                  break;
+                }
+
+                if (!(_i2 >= _iterator2.length)) {
+                  _context5.next = 4;
+                  break;
+                }
+
+                return _context5.abrupt("break", 19);
+
+              case 4:
+                _ref3 = _iterator2[_i2++];
+                _context5.next = 11;
+                break;
+
+              case 7:
+                _i2 = _iterator2.next();
+
+                if (!_i2.done) {
+                  _context5.next = 10;
+                  break;
+                }
+
+                return _context5.abrupt("break", 19);
+
+              case 10:
+                _ref3 = _i2.value;
+
+              case 11:
+                _ref4 = _ref3, key = _ref4[0], fn = _ref4[1];
+                _context5.t0 = key;
+                return _context5.delegateYield(fn(data), "t1", 14);
+
+              case 14:
+                _context5.t2 = _context5.t1;
+
+                if (!(_context5.t0 !== _context5.t2)) {
+                  _context5.next = 17;
+                  break;
+                }
+
+                return _context5.abrupt("return", false);
+
+              case 17:
+                _context5.next = 1;
+                break;
+
+              case 19:
+                return _context5.abrupt("return", true);
+
+              case 20:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee);
+      });
     };
 
     _proto.deactivate = function deactivate() {
@@ -50302,12 +52040,37 @@
   }
 
   function assertSimpleType(value) {
+    if (isThenable(value)) {
+      throw new Error("You appear to be using an async cache handler, " + "which your current version of Babel does not support. " + "We may add support for this in the future, " + "but if you're on the most recent version of @babel/core and still " + "seeing this error, then you'll need to synchronously handle your caching logic.");
+    }
+
     if (value != null && typeof value !== "string" && typeof value !== "boolean" && typeof value !== "number") {
       throw new Error("Cache keys must be either string, boolean, number, null, or undefined.");
     }
 
     return value;
   }
+
+  var Lock = function () {
+    function Lock() {
+      var _this2 = this;
+
+      this.released = false;
+      this.promise = new Promise(function (resolve) {
+        _this2._resolve = resolve;
+      });
+    }
+
+    var _proto2 = Lock.prototype;
+
+    _proto2.release = function release(value) {
+      this.released = true;
+
+      this._resolve(value);
+    };
+
+    return Lock;
+  }();
 
   function isEqualDescriptor(a, b) {
     return a.name === b.name && a.value === b.value && a.options === b.options && a.dirname === b.dirname && a.alias === b.alias && a.ownPass === b.ownPass && (a.file && a.file.request) === (b.file && b.file.request) && (a.file && a.file.resolved) === (b.file && b.file.resolved);
@@ -50355,12 +52118,12 @@
     };
   }
   var PRESET_DESCRIPTOR_CACHE = new WeakMap();
-  var createCachedPresetDescriptors = makeWeakCache(function (items, cache) {
+  var createCachedPresetDescriptors = makeWeakCacheSync(function (items, cache) {
     var dirname = cache.using(function (dir) {
       return dir;
     });
-    return makeStrongCache(function (alias) {
-      return makeStrongCache(function (passPerPreset) {
+    return makeStrongCacheSync(function (alias) {
+      return makeStrongCacheSync(function (passPerPreset) {
         return createPresetDescriptors(items, dirname, alias, passPerPreset).map(function (desc) {
           return loadCachedDescriptor(PRESET_DESCRIPTOR_CACHE, desc);
         });
@@ -50368,11 +52131,11 @@
     });
   });
   var PLUGIN_DESCRIPTOR_CACHE = new WeakMap();
-  var createCachedPluginDescriptors = makeWeakCache(function (items, cache) {
+  var createCachedPluginDescriptors = makeWeakCacheSync(function (items, cache) {
     var dirname = cache.using(function (dir) {
       return dir;
     });
-    return makeStrongCache(function (alias) {
+    return makeStrongCacheSync(function (alias) {
       return createPluginDescriptors(items, dirname, alias).map(function (desc) {
         return loadCachedDescriptor(PLUGIN_DESCRIPTOR_CACHE, desc);
       });
@@ -50600,35 +52363,6 @@
   };
 
   Object.freeze(ConfigItem.prototype);
-
-  function mergeOptions(target, source) {
-    for (var _i = 0, _Object$keys = Object.keys(source); _i < _Object$keys.length; _i++) {
-      var k = _Object$keys[_i];
-
-      if (k === "parserOpts" && source.parserOpts) {
-        var parserOpts = source.parserOpts;
-        var targetObj = target.parserOpts = target.parserOpts || {};
-        mergeDefaultFields(targetObj, parserOpts);
-      } else if (k === "generatorOpts" && source.generatorOpts) {
-        var generatorOpts = source.generatorOpts;
-
-        var _targetObj = target.generatorOpts = target.generatorOpts || {};
-
-        mergeDefaultFields(_targetObj, generatorOpts);
-      } else {
-        var val = source[k];
-        if (val !== undefined) target[k] = val;
-      }
-    }
-  }
-
-  function mergeDefaultFields(target, source) {
-    for (var _i2 = 0, _Object$keys2 = Object.keys(source); _i2 < _Object$keys2.length; _i2++) {
-      var k = _Object$keys2[_i2];
-      var val = source[k];
-      if (val !== undefined) target[k] = val;
-    }
-  }
 
   var Plugin = function Plugin(plugin, options, key) {
     this.key = plugin.name || key;
@@ -51580,17 +53314,43 @@
     })).join(""));
   }
 
+  var _marked$2 = regenerator.mark(buildPresetChain),
+      _marked2$2 = regenerator.mark(buildRootChain),
+      _marked3$2 = regenerator.mark(mergeExtendsChain);
   var debug = browser$4("babel:config:config-chain");
   function buildPresetChain(arg, context) {
-    var chain = buildPresetChainWalker(arg, context);
-    if (!chain) return null;
-    return {
-      plugins: dedupDescriptors(chain.plugins),
-      presets: dedupDescriptors(chain.presets),
-      options: chain.options.map(function (o) {
-        return normalizeOptions$1(o);
-      })
-    };
+    var chain;
+    return regenerator.wrap(function buildPresetChain$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(buildPresetChainWalker(arg, context), "t0", 1);
+
+          case 1:
+            chain = _context.t0;
+
+            if (chain) {
+              _context.next = 4;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 4:
+            return _context.abrupt("return", {
+              plugins: dedupDescriptors(chain.plugins),
+              presets: dedupDescriptors(chain.presets),
+              options: chain.options.map(function (o) {
+                return normalizeOptions$1(o);
+              })
+            });
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _marked$2);
   }
   var buildPresetChainWalker = makeChainWalker({
     init: function init(arg) {
@@ -51609,95 +53369,186 @@
       return loadPresetOverridesEnvDescriptors(preset)(index)(envName);
     }
   });
-  var loadPresetDescriptors = makeWeakCache(function (preset) {
+  var loadPresetDescriptors = makeWeakCacheSync(function (preset) {
     return buildRootDescriptors(preset, preset.alias, createUncachedDescriptors);
   });
-  var loadPresetEnvDescriptors = makeWeakCache(function (preset) {
-    return makeStrongCache(function (envName) {
+  var loadPresetEnvDescriptors = makeWeakCacheSync(function (preset) {
+    return makeStrongCacheSync(function (envName) {
       return buildEnvDescriptors(preset, preset.alias, createUncachedDescriptors, envName);
     });
   });
-  var loadPresetOverridesDescriptors = makeWeakCache(function (preset) {
-    return makeStrongCache(function (index) {
+  var loadPresetOverridesDescriptors = makeWeakCacheSync(function (preset) {
+    return makeStrongCacheSync(function (index) {
       return buildOverrideDescriptors(preset, preset.alias, createUncachedDescriptors, index);
     });
   });
-  var loadPresetOverridesEnvDescriptors = makeWeakCache(function (preset) {
-    return makeStrongCache(function (index) {
-      return makeStrongCache(function (envName) {
+  var loadPresetOverridesEnvDescriptors = makeWeakCacheSync(function (preset) {
+    return makeStrongCacheSync(function (index) {
+      return makeStrongCacheSync(function (envName) {
         return buildOverrideEnvDescriptors(preset, preset.alias, createUncachedDescriptors, index, envName);
       });
     });
   });
   function buildRootChain(opts, context) {
-    var programmaticChain = loadProgrammaticChain({
-      options: opts,
-      dirname: context.cwd
-    }, context);
-    if (!programmaticChain) return null;
-    var configFile;
+    var programmaticChain, configFile, babelrc, babelrcRoots, babelrcRootsDirectory, configFileChain, validatedFile, result, pkgData, ignoreFile, babelrcFile, fileChain, _ref, _result, chain;
 
-    if (typeof opts.configFile === "string") {
-      configFile = loadConfig(opts.configFile, context.cwd, context.envName, context.caller);
-    } else if (opts.configFile !== false) {
-      configFile = findRootConfig(context.root, context.envName, context.caller);
-    }
+    return regenerator.wrap(function buildRootChain$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            return _context2.delegateYield(loadProgrammaticChain({
+              options: opts,
+              dirname: context.cwd
+            }, context), "t0", 1);
 
-    var babelrc = opts.babelrc,
-        babelrcRoots = opts.babelrcRoots;
-    var babelrcRootsDirectory = context.cwd;
-    var configFileChain = emptyChain();
+          case 1:
+            programmaticChain = _context2.t0;
 
-    if (configFile) {
-      var validatedFile = validateConfigFile(configFile);
-      var result = loadFileChain(validatedFile, context);
-      if (!result) return null;
+            if (programmaticChain) {
+              _context2.next = 4;
+              break;
+            }
 
-      if (babelrc === undefined) {
-        babelrc = validatedFile.options.babelrc;
+            return _context2.abrupt("return", null);
+
+          case 4:
+            if (!(typeof opts.configFile === "string")) {
+              _context2.next = 9;
+              break;
+            }
+
+            return _context2.delegateYield(loadConfig(opts.configFile, context.cwd, context.envName, context.caller), "t1", 6);
+
+          case 6:
+            configFile = _context2.t1;
+            _context2.next = 12;
+            break;
+
+          case 9:
+            if (!(opts.configFile !== false)) {
+              _context2.next = 12;
+              break;
+            }
+
+            return _context2.delegateYield(findRootConfig(context.root, context.envName, context.caller), "t2", 11);
+
+          case 11:
+            configFile = _context2.t2;
+
+          case 12:
+            babelrc = opts.babelrc, babelrcRoots = opts.babelrcRoots;
+            babelrcRootsDirectory = context.cwd;
+            configFileChain = emptyChain();
+
+            if (!configFile) {
+              _context2.next = 24;
+              break;
+            }
+
+            validatedFile = validateConfigFile(configFile);
+            return _context2.delegateYield(loadFileChain(validatedFile, context), "t3", 18);
+
+          case 18:
+            result = _context2.t3;
+
+            if (result) {
+              _context2.next = 21;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 21:
+            if (babelrc === undefined) {
+              babelrc = validatedFile.options.babelrc;
+            }
+
+            if (babelrcRoots === undefined) {
+              babelrcRootsDirectory = validatedFile.dirname;
+              babelrcRoots = validatedFile.options.babelrcRoots;
+            }
+
+            mergeChain(configFileChain, result);
+
+          case 24:
+            if (!(typeof context.filename === "string")) {
+              _context2.next = 29;
+              break;
+            }
+
+            return _context2.delegateYield(findPackageData(context.filename), "t5", 26);
+
+          case 26:
+            _context2.t4 = _context2.t5;
+            _context2.next = 30;
+            break;
+
+          case 29:
+            _context2.t4 = null;
+
+          case 30:
+            pkgData = _context2.t4;
+            fileChain = emptyChain();
+
+            if (!((babelrc === true || babelrc === undefined) && pkgData && babelrcLoadEnabled(context, pkgData, babelrcRoots, babelrcRootsDirectory))) {
+              _context2.next = 45;
+              break;
+            }
+
+            return _context2.delegateYield(findRelativeConfig(pkgData, context.envName, context.caller), "t6", 34);
+
+          case 34:
+            _ref = _context2.t6;
+            ignoreFile = _ref.ignore;
+            babelrcFile = _ref.config;
+
+            if (!(ignoreFile && shouldIgnore(context, ignoreFile.ignore, null, ignoreFile.dirname))) {
+              _context2.next = 39;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 39:
+            if (!babelrcFile) {
+              _context2.next = 45;
+              break;
+            }
+
+            return _context2.delegateYield(loadFileChain(validateBabelrcFile(babelrcFile), context), "t7", 41);
+
+          case 41:
+            _result = _context2.t7;
+
+            if (_result) {
+              _context2.next = 44;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 44:
+            mergeChain(fileChain, _result);
+
+          case 45:
+            chain = mergeChain(mergeChain(mergeChain(emptyChain(), configFileChain), fileChain), programmaticChain);
+            return _context2.abrupt("return", {
+              plugins: dedupDescriptors(chain.plugins),
+              presets: dedupDescriptors(chain.presets),
+              options: chain.options.map(function (o) {
+                return normalizeOptions$1(o);
+              }),
+              ignore: ignoreFile || undefined,
+              babelrc: babelrcFile || undefined,
+              config: configFile || undefined
+            });
+
+          case 47:
+          case "end":
+            return _context2.stop();
+        }
       }
-
-      if (babelrcRoots === undefined) {
-        babelrcRootsDirectory = validatedFile.dirname;
-        babelrcRoots = validatedFile.options.babelrcRoots;
-      }
-
-      mergeChain(configFileChain, result);
-    }
-
-    var pkgData = typeof context.filename === "string" ? findPackageData(context.filename) : null;
-    var ignoreFile, babelrcFile;
-    var fileChain = emptyChain();
-
-    if ((babelrc === true || babelrc === undefined) && pkgData && babelrcLoadEnabled(context, pkgData, babelrcRoots, babelrcRootsDirectory)) {
-      var _findRelativeConfig = findRelativeConfig(pkgData, context.envName, context.caller);
-
-      ignoreFile = _findRelativeConfig.ignore;
-      babelrcFile = _findRelativeConfig.config;
-
-      if (ignoreFile && shouldIgnore(context, ignoreFile.ignore, null, ignoreFile.dirname)) {
-        return null;
-      }
-
-      if (babelrcFile) {
-        var _result = loadFileChain(validateBabelrcFile(babelrcFile), context);
-
-        if (!_result) return null;
-        mergeChain(fileChain, _result);
-      }
-    }
-
-    var chain = mergeChain(mergeChain(mergeChain(emptyChain(), configFileChain), fileChain), programmaticChain);
-    return {
-      plugins: dedupDescriptors(chain.plugins),
-      presets: dedupDescriptors(chain.presets),
-      options: chain.options.map(function (o) {
-        return normalizeOptions$1(o);
-      }),
-      ignore: ignoreFile || undefined,
-      babelrc: babelrcFile || undefined,
-      config: configFile || undefined
-    };
+    }, _marked2$2);
   }
 
   function babelrcLoadEnabled(context, pkgData, babelrcRoots, babelrcRootsDirectory) {
@@ -51729,21 +53580,21 @@
     });
   }
 
-  var validateConfigFile = makeWeakCache(function (file) {
+  var validateConfigFile = makeWeakCacheSync(function (file) {
     return {
       filepath: file.filepath,
       dirname: file.dirname,
       options: validate$3("configfile", file.options)
     };
   });
-  var validateBabelrcFile = makeWeakCache(function (file) {
+  var validateBabelrcFile = makeWeakCacheSync(function (file) {
     return {
       filepath: file.filepath,
       dirname: file.dirname,
       options: validate$3("babelrcfile", file.options)
     };
   });
-  var validateExtendFile = makeWeakCache(function (file) {
+  var validateExtendFile = makeWeakCacheSync(function (file) {
     return {
       filepath: file.filepath,
       dirname: file.dirname,
@@ -51778,134 +53629,205 @@
       return loadFileOverridesEnvDescriptors(file)(index)(envName);
     }
   });
-  var loadFileDescriptors = makeWeakCache(function (file) {
+  var loadFileDescriptors = makeWeakCacheSync(function (file) {
     return buildRootDescriptors(file, file.filepath, createUncachedDescriptors);
   });
-  var loadFileEnvDescriptors = makeWeakCache(function (file) {
-    return makeStrongCache(function (envName) {
+  var loadFileEnvDescriptors = makeWeakCacheSync(function (file) {
+    return makeStrongCacheSync(function (envName) {
       return buildEnvDescriptors(file, file.filepath, createUncachedDescriptors, envName);
     });
   });
-  var loadFileOverridesDescriptors = makeWeakCache(function (file) {
-    return makeStrongCache(function (index) {
+  var loadFileOverridesDescriptors = makeWeakCacheSync(function (file) {
+    return makeStrongCacheSync(function (index) {
       return buildOverrideDescriptors(file, file.filepath, createUncachedDescriptors, index);
     });
   });
-  var loadFileOverridesEnvDescriptors = makeWeakCache(function (file) {
-    return makeStrongCache(function (index) {
-      return makeStrongCache(function (envName) {
+  var loadFileOverridesEnvDescriptors = makeWeakCacheSync(function (file) {
+    return makeStrongCacheSync(function (index) {
+      return makeStrongCacheSync(function (envName) {
         return buildOverrideEnvDescriptors(file, file.filepath, createUncachedDescriptors, index, envName);
       });
     });
   });
 
-  function buildRootDescriptors(_ref, alias, descriptors) {
-    var dirname = _ref.dirname,
-        options = _ref.options;
+  function buildRootDescriptors(_ref2, alias, descriptors) {
+    var dirname = _ref2.dirname,
+        options = _ref2.options;
     return descriptors(dirname, options, alias);
   }
 
-  function buildEnvDescriptors(_ref2, alias, descriptors, envName) {
-    var dirname = _ref2.dirname,
-        options = _ref2.options;
+  function buildEnvDescriptors(_ref3, alias, descriptors, envName) {
+    var dirname = _ref3.dirname,
+        options = _ref3.options;
     var opts = options.env && options.env[envName];
     return opts ? descriptors(dirname, opts, alias + ".env[\"" + envName + "\"]") : null;
   }
 
-  function buildOverrideDescriptors(_ref3, alias, descriptors, index) {
-    var dirname = _ref3.dirname,
-        options = _ref3.options;
+  function buildOverrideDescriptors(_ref4, alias, descriptors, index) {
+    var dirname = _ref4.dirname,
+        options = _ref4.options;
     var opts = options.overrides && options.overrides[index];
     if (!opts) throw new Error("Assertion failure - missing override");
     return descriptors(dirname, opts, alias + ".overrides[" + index + "]");
   }
 
-  function buildOverrideEnvDescriptors(_ref4, alias, descriptors, index, envName) {
-    var dirname = _ref4.dirname,
-        options = _ref4.options;
+  function buildOverrideEnvDescriptors(_ref5, alias, descriptors, index, envName) {
+    var dirname = _ref5.dirname,
+        options = _ref5.options;
     var override = options.overrides && options.overrides[index];
     if (!override) throw new Error("Assertion failure - missing override");
     var opts = override.env && override.env[envName];
     return opts ? descriptors(dirname, opts, alias + ".overrides[" + index + "].env[\"" + envName + "\"]") : null;
   }
 
-  function makeChainWalker(_ref5) {
-    var root = _ref5.root,
-        env = _ref5.env,
-        overrides = _ref5.overrides,
-        overridesEnv = _ref5.overridesEnv;
-    return function (input, context, files) {
-      if (files === void 0) {
-        files = new Set();
-      }
+  function makeChainWalker(_ref6) {
+    var root = _ref6.root,
+        env = _ref6.env,
+        overrides = _ref6.overrides,
+        overridesEnv = _ref6.overridesEnv;
+    return regenerator.mark(function _callee(input, context, files) {
+      var dirname, flattenedConfigs, rootOpts, envOpts, chain, _i, _flattenedConfigs, op;
 
-      var dirname = input.dirname;
-      var flattenedConfigs = [];
-      var rootOpts = root(input);
+      return regenerator.wrap(function _callee$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              if (files === void 0) {
+                files = new Set();
+              }
 
-      if (configIsApplicable(rootOpts, dirname, context)) {
-        flattenedConfigs.push(rootOpts);
-        var envOpts = env(input, context.envName);
+              dirname = input.dirname;
+              flattenedConfigs = [];
+              rootOpts = root(input);
 
-        if (envOpts && configIsApplicable(envOpts, dirname, context)) {
-          flattenedConfigs.push(envOpts);
-        }
+              if (configIsApplicable(rootOpts, dirname, context)) {
+                flattenedConfigs.push(rootOpts);
+                envOpts = env(input, context.envName);
 
-        (rootOpts.options.overrides || []).forEach(function (_, index) {
-          var overrideOps = overrides(input, index);
+                if (envOpts && configIsApplicable(envOpts, dirname, context)) {
+                  flattenedConfigs.push(envOpts);
+                }
 
-          if (configIsApplicable(overrideOps, dirname, context)) {
-            flattenedConfigs.push(overrideOps);
-            var overrideEnvOpts = overridesEnv(input, index, context.envName);
+                (rootOpts.options.overrides || []).forEach(function (_, index) {
+                  var overrideOps = overrides(input, index);
 
-            if (overrideEnvOpts && configIsApplicable(overrideEnvOpts, dirname, context)) {
-              flattenedConfigs.push(overrideEnvOpts);
-            }
+                  if (configIsApplicable(overrideOps, dirname, context)) {
+                    flattenedConfigs.push(overrideOps);
+                    var overrideEnvOpts = overridesEnv(input, index, context.envName);
+
+                    if (overrideEnvOpts && configIsApplicable(overrideEnvOpts, dirname, context)) {
+                      flattenedConfigs.push(overrideEnvOpts);
+                    }
+                  }
+                });
+              }
+
+              if (!flattenedConfigs.some(function (_ref7) {
+                var _ref7$options = _ref7.options,
+                    ignore = _ref7$options.ignore,
+                    only = _ref7$options.only;
+                return shouldIgnore(context, ignore, only, dirname);
+              })) {
+                _context3.next = 7;
+                break;
+              }
+
+              return _context3.abrupt("return", null);
+
+            case 7:
+              chain = emptyChain();
+              _i = 0, _flattenedConfigs = flattenedConfigs;
+
+            case 9:
+              if (!(_i < _flattenedConfigs.length)) {
+                _context3.next = 18;
+                break;
+              }
+
+              op = _flattenedConfigs[_i];
+              return _context3.delegateYield(mergeExtendsChain(chain, op.options, dirname, context, files), "t0", 12);
+
+            case 12:
+              if (_context3.t0) {
+                _context3.next = 14;
+                break;
+              }
+
+              return _context3.abrupt("return", null);
+
+            case 14:
+              mergeChainOpts(chain, op);
+
+            case 15:
+              _i++;
+              _context3.next = 9;
+              break;
+
+            case 18:
+              return _context3.abrupt("return", chain);
+
+            case 19:
+            case "end":
+              return _context3.stop();
           }
-        });
-      }
-
-      if (flattenedConfigs.some(function (_ref6) {
-        var _ref6$options = _ref6.options,
-            ignore = _ref6$options.ignore,
-            only = _ref6$options.only;
-        return shouldIgnore(context, ignore, only, dirname);
-      })) {
-        return null;
-      }
-
-      var chain = emptyChain();
-
-      for (var _i = 0, _flattenedConfigs = flattenedConfigs; _i < _flattenedConfigs.length; _i++) {
-        var op = _flattenedConfigs[_i];
-
-        if (!mergeExtendsChain(chain, op.options, dirname, context, files)) {
-          return null;
         }
-
-        mergeChainOpts(chain, op);
-      }
-
-      return chain;
-    };
+      }, _callee);
+    });
   }
 
   function mergeExtendsChain(chain, opts, dirname, context, files) {
-    if (opts["extends"] === undefined) return true;
-    var file = loadConfig(opts["extends"], dirname, context.envName, context.caller);
+    var file, fileChain;
+    return regenerator.wrap(function mergeExtendsChain$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            if (!(opts["extends"] === undefined)) {
+              _context4.next = 2;
+              break;
+            }
 
-    if (files.has(file)) {
-      throw new Error("Configuration cycle detected loading " + file.filepath + ".\n" + "File already loaded following the config chain:\n" + Array.from(files, function (file) {
-        return " - " + file.filepath;
-      }).join("\n"));
-    }
+            return _context4.abrupt("return", true);
 
-    files.add(file);
-    var fileChain = loadFileChain(validateExtendFile(file), context, files);
-    files["delete"](file);
-    if (!fileChain) return false;
-    mergeChain(chain, fileChain);
-    return true;
+          case 2:
+            return _context4.delegateYield(loadConfig(opts["extends"], dirname, context.envName, context.caller), "t0", 3);
+
+          case 3:
+            file = _context4.t0;
+
+            if (!files.has(file)) {
+              _context4.next = 6;
+              break;
+            }
+
+            throw new Error("Configuration cycle detected loading " + file.filepath + ".\n" + "File already loaded following the config chain:\n" + Array.from(files, function (file) {
+              return " - " + file.filepath;
+            }).join("\n"));
+
+          case 6:
+            files.add(file);
+            return _context4.delegateYield(loadFileChain(validateExtendFile(file), context, files), "t1", 8);
+
+          case 8:
+            fileChain = _context4.t1;
+            files["delete"](file);
+
+            if (fileChain) {
+              _context4.next = 12;
+              break;
+            }
+
+            return _context4.abrupt("return", false);
+
+          case 12:
+            mergeChain(chain, fileChain);
+            return _context4.abrupt("return", true);
+
+          case 14:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _marked3$2);
   }
 
   function mergeChain(target, source) {
@@ -51920,12 +53842,12 @@
     return target;
   }
 
-  function mergeChainOpts(target, _ref7) {
+  function mergeChainOpts(target, _ref8) {
     var _target$plugins2, _target$presets2;
 
-    var options = _ref7.options,
-        plugins = _ref7.plugins,
-        presets = _ref7.presets;
+    var options = _ref8.options,
+        plugins = _ref8.plugins,
+        presets = _ref8.presets;
     target.options.push(options);
 
     (_target$plugins2 = target.plugins).push.apply(_target$plugins2, plugins());
@@ -51970,18 +53892,18 @@
     var descriptors = [];
 
     for (var _iterator = items, _isArray = Array.isArray(_iterator), _i2 = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref8;
+      var _ref9;
 
       if (_isArray) {
         if (_i2 >= _iterator.length) break;
-        _ref8 = _iterator[_i2++];
+        _ref9 = _iterator[_i2++];
       } else {
         _i2 = _iterator.next();
         if (_i2.done) break;
-        _ref8 = _i2.value;
+        _ref9 = _i2.value;
       }
 
-      var item = _ref8;
+      var item = _ref9;
 
       if (typeof item.value === "function") {
         var fnKey = item.value;
@@ -52016,8 +53938,8 @@
     }, []);
   }
 
-  function configIsApplicable(_ref9, dirname, context) {
-    var options = _ref9.options;
+  function configIsApplicable(_ref10, dirname, context) {
+    var options = _ref10.options;
     return (options.test === undefined || configFieldIsApplicable(context, options.test, dirname)) && (options.include === undefined || configFieldIsApplicable(context, options.include, dirname)) && (options.exclude === undefined || !configFieldIsApplicable(context, options.exclude, dirname));
   }
 
@@ -52196,98 +54118,168 @@
     });
   }
 
+  var _marked$3 = regenerator.mark(resolveRootMode),
+      _marked2$3 = regenerator.mark(loadPrivatePartialConfig);
+
   function resolveRootMode(rootDir, rootMode) {
-    switch (rootMode) {
-      case "root":
-        return rootDir;
+    var upwardRootDir, _upwardRootDir;
 
-      case "upward-optional":
-        {
-          var upwardRootDir = findConfigUpwards();
-          return upwardRootDir === null ? rootDir : upwardRootDir;
+    return regenerator.wrap(function resolveRootMode$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.t0 = rootMode;
+            _context.next = _context.t0 === "root" ? 3 : _context.t0 === "upward-optional" ? 4 : _context.t0 === "upward" ? 7 : 12;
+            break;
+
+          case 3:
+            return _context.abrupt("return", rootDir);
+
+          case 4:
+            return _context.delegateYield(findConfigUpwards(), "t1", 5);
+
+          case 5:
+            upwardRootDir = _context.t1;
+            return _context.abrupt("return", upwardRootDir === null ? rootDir : upwardRootDir);
+
+          case 7:
+            return _context.delegateYield(findConfigUpwards(), "t2", 8);
+
+          case 8:
+            _upwardRootDir = _context.t2;
+
+            if (!(_upwardRootDir !== null)) {
+              _context.next = 11;
+              break;
+            }
+
+            return _context.abrupt("return", _upwardRootDir);
+
+          case 11:
+            throw Object.assign(new Error("Babel was run with rootMode:\"upward\" but a root could not " + ("be found when searching upward from \"" + rootDir + "\".\n") + "One of the following config files must be in the directory tree: " + ("\"" + ROOT_CONFIG_FILENAMES.join(", ") + "\".")), {
+              code: "BABEL_ROOT_NOT_FOUND",
+              dirname: rootDir
+            });
+
+          case 12:
+            throw new Error("Assertion failure - unknown rootMode value.");
+
+          case 13:
+          case "end":
+            return _context.stop();
         }
-
-      case "upward":
-        {
-          var _upwardRootDir = findConfigUpwards();
-
-          if (_upwardRootDir !== null) return _upwardRootDir;
-          throw Object.assign(new Error("Babel was run with rootMode:\"upward\" but a root could not " + ("be found when searching upward from \"" + rootDir + "\".\n") + "One of the following config files must be in the directory tree: " + ("\"" + ROOT_CONFIG_FILENAMES.join(", ") + "\".")), {
-            code: "BABEL_ROOT_NOT_FOUND",
-            dirname: rootDir
-          });
-        }
-
-      default:
-        throw new Error("Assertion failure - unknown rootMode value.");
-    }
+      }
+    }, _marked$3);
   }
 
   function loadPrivatePartialConfig(inputOpts) {
-    if (inputOpts != null && (typeof inputOpts !== "object" || Array.isArray(inputOpts))) {
-      throw new Error("Babel options must be an object, null, or undefined");
-    }
+    var args, _args$envName, envName, _args$cwd, cwd, _args$root, rootDir, _args$rootMode, rootMode, caller, absoluteCwd, absoluteRootDir, context, configChain, options;
 
-    var args = inputOpts ? validate$3("arguments", inputOpts) : {};
-    var _args$envName = args.envName,
-        envName = _args$envName === void 0 ? getEnv() : _args$envName,
-        _args$cwd = args.cwd,
-        cwd = _args$cwd === void 0 ? "." : _args$cwd,
-        _args$root = args.root,
-        rootDir = _args$root === void 0 ? "." : _args$root,
-        _args$rootMode = args.rootMode,
-        rootMode = _args$rootMode === void 0 ? "root" : _args$rootMode,
-        caller = args.caller;
-    var absoluteCwd = path$1.resolve(cwd);
-    var absoluteRootDir = resolveRootMode(path$1.resolve(absoluteCwd, rootDir), rootMode);
-    var context = {
-      filename: typeof args.filename === "string" ? path$1.resolve(cwd, args.filename) : undefined,
-      cwd: absoluteCwd,
-      root: absoluteRootDir,
-      envName: envName,
-      caller: caller
-    };
-    var configChain = buildRootChain(args, context);
-    if (!configChain) return null;
-    var options = {};
-    configChain.options.forEach(function (opts) {
-      mergeOptions(options, opts);
-    });
-    options.babelrc = false;
-    options.configFile = false;
-    options.passPerPreset = false;
-    options.envName = context.envName;
-    options.cwd = context.cwd;
-    options.root = context.root;
-    options.filename = typeof context.filename === "string" ? context.filename : undefined;
-    options.plugins = configChain.plugins.map(function (descriptor) {
-      return createItemFromDescriptor(descriptor);
-    });
-    options.presets = configChain.presets.map(function (descriptor) {
-      return createItemFromDescriptor(descriptor);
-    });
-    return {
-      options: options,
-      context: context,
-      ignore: configChain.ignore,
-      babelrc: configChain.babelrc,
-      config: configChain.config
-    };
-  }
-  function loadPartialConfig(inputOpts) {
-    var result = loadPrivatePartialConfig(inputOpts);
-    if (!result) return null;
-    var options = result.options,
-        babelrc = result.babelrc,
-        ignore = result.ignore,
-        config = result.config;
-    (options.plugins || []).forEach(function (item) {
-      if (item.value instanceof Plugin) {
-        throw new Error("Passing cached plugin instances is not supported in " + "babel.loadPartialConfig()");
+    return regenerator.wrap(function loadPrivatePartialConfig$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            if (!(inputOpts != null && (typeof inputOpts !== "object" || Array.isArray(inputOpts)))) {
+              _context2.next = 2;
+              break;
+            }
+
+            throw new Error("Babel options must be an object, null, or undefined");
+
+          case 2:
+            args = inputOpts ? validate$3("arguments", inputOpts) : {};
+            _args$envName = args.envName, envName = _args$envName === void 0 ? getEnv() : _args$envName, _args$cwd = args.cwd, cwd = _args$cwd === void 0 ? "." : _args$cwd, _args$root = args.root, rootDir = _args$root === void 0 ? "." : _args$root, _args$rootMode = args.rootMode, rootMode = _args$rootMode === void 0 ? "root" : _args$rootMode, caller = args.caller;
+            absoluteCwd = path$1.resolve(cwd);
+            return _context2.delegateYield(resolveRootMode(path$1.resolve(absoluteCwd, rootDir), rootMode), "t0", 6);
+
+          case 6:
+            absoluteRootDir = _context2.t0;
+            context = {
+              filename: typeof args.filename === "string" ? path$1.resolve(cwd, args.filename) : undefined,
+              cwd: absoluteCwd,
+              root: absoluteRootDir,
+              envName: envName,
+              caller: caller
+            };
+            return _context2.delegateYield(buildRootChain(args, context), "t1", 9);
+
+          case 9:
+            configChain = _context2.t1;
+
+            if (configChain) {
+              _context2.next = 12;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 12:
+            options = {};
+            configChain.options.forEach(function (opts) {
+              mergeOptions(options, opts);
+            });
+            options.babelrc = false;
+            options.configFile = false;
+            options.passPerPreset = false;
+            options.envName = context.envName;
+            options.cwd = context.cwd;
+            options.root = context.root;
+            options.filename = typeof context.filename === "string" ? context.filename : undefined;
+            options.plugins = configChain.plugins.map(function (descriptor) {
+              return createItemFromDescriptor(descriptor);
+            });
+            options.presets = configChain.presets.map(function (descriptor) {
+              return createItemFromDescriptor(descriptor);
+            });
+            return _context2.abrupt("return", {
+              options: options,
+              context: context,
+              ignore: configChain.ignore,
+              babelrc: configChain.babelrc,
+              config: configChain.config
+            });
+
+          case 24:
+          case "end":
+            return _context2.stop();
+        }
       }
-    });
-    return new PartialConfig(options, babelrc ? babelrc.filepath : undefined, ignore ? ignore.filepath : undefined, config ? config.filepath : undefined);
+    }, _marked2$3);
   }
+  var loadPartialConfig = gensync(regenerator.mark(function _callee(inputOpts) {
+    var result, options, babelrc, ignore, config;
+    return regenerator.wrap(function _callee$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            return _context3.delegateYield(loadPrivatePartialConfig(inputOpts), "t0", 1);
+
+          case 1:
+            result = _context3.t0;
+
+            if (result) {
+              _context3.next = 4;
+              break;
+            }
+
+            return _context3.abrupt("return", null);
+
+          case 4:
+            options = result.options, babelrc = result.babelrc, ignore = result.ignore, config = result.config;
+            (options.plugins || []).forEach(function (item) {
+              if (item.value instanceof Plugin) {
+                throw new Error("Passing cached plugin instances is not supported in " + "babel.loadPartialConfig()");
+              }
+            });
+            return _context3.abrupt("return", new PartialConfig(options, babelrc ? babelrc.filepath : undefined, ignore ? ignore.filepath : undefined, config ? config.filepath : undefined));
+
+          case 7:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee);
+  }));
 
   var PartialConfig = function () {
     function PartialConfig(options, babelrc, ignore, config) {
@@ -52309,212 +54301,485 @@
 
   Object.freeze(PartialConfig.prototype);
 
-  function loadFullConfig(inputOpts) {
-    var result = loadPrivatePartialConfig(inputOpts);
+  var _marked$4 = regenerator.mark(loadPluginDescriptor),
+      _marked2$4 = regenerator.mark(loadPresetDescriptor);
+  var loadConfig$1 = gensync(regenerator.mark(function loadFullConfig(inputOpts) {
+    var result, options, context, optionDefaults, passes, plugins, presets, ignored, opts;
+    return regenerator.wrap(function loadFullConfig$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            return _context2.delegateYield(loadPrivatePartialConfig(inputOpts), "t0", 1);
 
-    if (!result) {
-      return null;
-    }
+          case 1:
+            result = _context2.t0;
 
-    var options = result.options,
-        context = result.context;
-    var optionDefaults = {};
-    var passes = [[]];
-
-    try {
-      var plugins = options.plugins,
-          presets = options.presets;
-
-      if (!plugins || !presets) {
-        throw new Error("Assertion failure - plugins and presets exist");
-      }
-
-      var ignored = function recurseDescriptors(config, pass) {
-        var plugins = config.plugins.reduce(function (acc, descriptor) {
-          if (descriptor.options !== false) {
-            acc.push(loadPluginDescriptor(descriptor, context));
-          }
-
-          return acc;
-        }, []);
-        var presets = config.presets.reduce(function (acc, descriptor) {
-          if (descriptor.options !== false) {
-            acc.push({
-              preset: loadPresetDescriptor(descriptor, context),
-              pass: descriptor.ownPass ? [] : pass
-            });
-          }
-
-          return acc;
-        }, []);
-
-        if (presets.length > 0) {
-          passes.splice.apply(passes, [1, 0].concat(presets.map(function (o) {
-            return o.pass;
-          }).filter(function (p) {
-            return p !== pass;
-          })));
-
-          for (var _iterator = presets, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-            var _ref;
-
-            if (_isArray) {
-              if (_i >= _iterator.length) break;
-              _ref = _iterator[_i++];
-            } else {
-              _i = _iterator.next();
-              if (_i.done) break;
-              _ref = _i.value;
+            if (result) {
+              _context2.next = 4;
+              break;
             }
 
-            var _ref2 = _ref,
-                preset = _ref2.preset,
-                _pass = _ref2.pass;
-            if (!preset) return true;
+            return _context2.abrupt("return", null);
 
-            var _ignored = recurseDescriptors({
-              plugins: preset.plugins,
-              presets: preset.presets
-            }, _pass);
+          case 4:
+            options = result.options, context = result.context;
+            optionDefaults = {};
+            passes = [[]];
+            _context2.prev = 7;
+            plugins = options.plugins, presets = options.presets;
 
-            if (_ignored) return true;
-            preset.options.forEach(function (opts) {
-              mergeOptions(optionDefaults, opts);
+            if (!(!plugins || !presets)) {
+              _context2.next = 11;
+              break;
+            }
+
+            throw new Error("Assertion failure - plugins and presets exist");
+
+          case 11:
+            return _context2.delegateYield(regenerator.mark(function recurseDescriptors(config, pass) {
+              var plugins, _iterator, _isArray, _i, _ref, descriptor, presets, _iterator2, _isArray2, _i2, _ref2, _descriptor, _iterator3, _isArray3, _i3, _ref3, _ref4, preset, _pass, _ignored;
+
+              return regenerator.wrap(function recurseDescriptors$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      plugins = [];
+                      _iterator = config.plugins, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
+
+                    case 2:
+                      if (!_isArray) {
+                        _context.next = 8;
+                        break;
+                      }
+
+                      if (!(_i >= _iterator.length)) {
+                        _context.next = 5;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 20);
+
+                    case 5:
+                      _ref = _iterator[_i++];
+                      _context.next = 12;
+                      break;
+
+                    case 8:
+                      _i = _iterator.next();
+
+                      if (!_i.done) {
+                        _context.next = 11;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 20);
+
+                    case 11:
+                      _ref = _i.value;
+
+                    case 12:
+                      descriptor = _ref;
+
+                      if (!(descriptor.options !== false)) {
+                        _context.next = 18;
+                        break;
+                      }
+
+                      _context.t0 = plugins;
+                      return _context.delegateYield(loadPluginDescriptor(descriptor, context), "t1", 16);
+
+                    case 16:
+                      _context.t2 = _context.t1;
+
+                      _context.t0.push.call(_context.t0, _context.t2);
+
+                    case 18:
+                      _context.next = 2;
+                      break;
+
+                    case 20:
+                      presets = [];
+                      _iterator2 = config.presets, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
+
+                    case 22:
+                      if (!_isArray2) {
+                        _context.next = 28;
+                        break;
+                      }
+
+                      if (!(_i2 >= _iterator2.length)) {
+                        _context.next = 25;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 42);
+
+                    case 25:
+                      _ref2 = _iterator2[_i2++];
+                      _context.next = 32;
+                      break;
+
+                    case 28:
+                      _i2 = _iterator2.next();
+
+                      if (!_i2.done) {
+                        _context.next = 31;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 42);
+
+                    case 31:
+                      _ref2 = _i2.value;
+
+                    case 32:
+                      _descriptor = _ref2;
+
+                      if (!(_descriptor.options !== false)) {
+                        _context.next = 40;
+                        break;
+                      }
+
+                      _context.t3 = presets;
+                      return _context.delegateYield(loadPresetDescriptor(_descriptor, context), "t4", 36);
+
+                    case 36:
+                      _context.t5 = _context.t4;
+                      _context.t6 = _descriptor.ownPass ? [] : pass;
+                      _context.t7 = {
+                        preset: _context.t5,
+                        pass: _context.t6
+                      };
+
+                      _context.t3.push.call(_context.t3, _context.t7);
+
+                    case 40:
+                      _context.next = 22;
+                      break;
+
+                    case 42:
+                      if (!(presets.length > 0)) {
+                        _context.next = 65;
+                        break;
+                      }
+
+                      passes.splice.apply(passes, [1, 0].concat(presets.map(function (o) {
+                        return o.pass;
+                      }).filter(function (p) {
+                        return p !== pass;
+                      })));
+                      _iterator3 = presets, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();
+
+                    case 45:
+                      if (!_isArray3) {
+                        _context.next = 51;
+                        break;
+                      }
+
+                      if (!(_i3 >= _iterator3.length)) {
+                        _context.next = 48;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 65);
+
+                    case 48:
+                      _ref3 = _iterator3[_i3++];
+                      _context.next = 55;
+                      break;
+
+                    case 51:
+                      _i3 = _iterator3.next();
+
+                      if (!_i3.done) {
+                        _context.next = 54;
+                        break;
+                      }
+
+                      return _context.abrupt("break", 65);
+
+                    case 54:
+                      _ref3 = _i3.value;
+
+                    case 55:
+                      _ref4 = _ref3, preset = _ref4.preset, _pass = _ref4.pass;
+
+                      if (preset) {
+                        _context.next = 58;
+                        break;
+                      }
+
+                      return _context.abrupt("return", true);
+
+                    case 58:
+                      return _context.delegateYield(recurseDescriptors({
+                        plugins: preset.plugins,
+                        presets: preset.presets
+                      }, _pass), "t8", 59);
+
+                    case 59:
+                      _ignored = _context.t8;
+
+                      if (!_ignored) {
+                        _context.next = 62;
+                        break;
+                      }
+
+                      return _context.abrupt("return", true);
+
+                    case 62:
+                      preset.options.forEach(function (opts) {
+                        mergeOptions(optionDefaults, opts);
+                      });
+
+                    case 63:
+                      _context.next = 45;
+                      break;
+
+                    case 65:
+                      if (plugins.length > 0) {
+                        pass.unshift.apply(pass, plugins);
+                      }
+
+                    case 66:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, recurseDescriptors);
+            })({
+              plugins: plugins.map(function (item) {
+                var desc = getItemDescriptor(item);
+
+                if (!desc) {
+                  throw new Error("Assertion failure - must be config item");
+                }
+
+                return desc;
+              }),
+              presets: presets.map(function (item) {
+                var desc = getItemDescriptor(item);
+
+                if (!desc) {
+                  throw new Error("Assertion failure - must be config item");
+                }
+
+                return desc;
+              })
+            }, passes[0]), "t1", 12);
+
+          case 12:
+            ignored = _context2.t1;
+
+            if (!ignored) {
+              _context2.next = 15;
+              break;
+            }
+
+            return _context2.abrupt("return", null);
+
+          case 15:
+            _context2.next = 21;
+            break;
+
+          case 17:
+            _context2.prev = 17;
+            _context2.t2 = _context2["catch"](7);
+
+            if (!/^\[BABEL\]/.test(_context2.t2.message)) {
+              _context2.t2.message = "[BABEL] " + (context.filename || "unknown") + ": " + _context2.t2.message;
+            }
+
+            throw _context2.t2;
+
+          case 21:
+            opts = optionDefaults;
+            mergeOptions(opts, options);
+            opts.plugins = passes[0];
+            opts.presets = passes.slice(1).filter(function (plugins) {
+              return plugins.length > 0;
+            }).map(function (plugins) {
+              return {
+                plugins: plugins
+              };
             });
-          }
+            opts.passPerPreset = opts.presets.length > 0;
+            return _context2.abrupt("return", {
+              options: opts,
+              passes: passes
+            });
+
+          case 27:
+          case "end":
+            return _context2.stop();
         }
-
-        if (plugins.length > 0) {
-          pass.unshift.apply(pass, plugins);
-        }
-      }({
-        plugins: plugins.map(function (item) {
-          var desc = getItemDescriptor(item);
-
-          if (!desc) {
-            throw new Error("Assertion failure - must be config item");
-          }
-
-          return desc;
-        }),
-        presets: presets.map(function (item) {
-          var desc = getItemDescriptor(item);
-
-          if (!desc) {
-            throw new Error("Assertion failure - must be config item");
-          }
-
-          return desc;
-        })
-      }, passes[0]);
-
-      if (ignored) return null;
-    } catch (e) {
-      if (!/^\[BABEL\]/.test(e.message)) {
-        e.message = "[BABEL] " + (context.filename || "unknown") + ": " + e.message;
       }
+    }, loadFullConfig, null, [[7, 17]]);
+  }));
+  var loadDescriptor = makeWeakCache(regenerator.mark(function _callee(_ref5, cache) {
+    var value, options, dirname, alias, item, api;
+    return regenerator.wrap(function _callee$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            value = _ref5.value, options = _ref5.options, dirname = _ref5.dirname, alias = _ref5.alias;
 
-      throw e;
-    }
+            if (!(options === false)) {
+              _context3.next = 3;
+              break;
+            }
 
-    var opts = optionDefaults;
-    mergeOptions(opts, options);
-    opts.plugins = passes[0];
-    opts.presets = passes.slice(1).filter(function (plugins) {
-      return plugins.length > 0;
-    }).map(function (plugins) {
-      return {
-        plugins: plugins
-      };
-    });
-    opts.passPerPreset = opts.presets.length > 0;
-    return {
-      options: opts,
-      passes: passes
-    };
-  }
-  var loadDescriptor = makeWeakCache(function (_ref3, cache) {
-    var value = _ref3.value,
-        options = _ref3.options,
-        dirname = _ref3.dirname,
-        alias = _ref3.alias;
-    if (options === false) throw new Error("Assertion failure");
-    options = options || {};
-    var item = value;
+            throw new Error("Assertion failure");
 
-    if (typeof value === "function") {
-      var api = Object.assign({}, context, {}, makeAPI(cache));
+          case 3:
+            options = options || {};
+            item = value;
 
-      try {
-        item = value(api, options, dirname);
-      } catch (e) {
-        if (alias) {
-          e.message += " (While processing: " + JSON.stringify(alias) + ")";
+            if (!(typeof value === "function")) {
+              _context3.next = 15;
+              break;
+            }
+
+            api = Object.assign({}, context, {}, makeAPI(cache));
+            _context3.prev = 7;
+            item = value(api, options, dirname);
+            _context3.next = 15;
+            break;
+
+          case 11:
+            _context3.prev = 11;
+            _context3.t0 = _context3["catch"](7);
+
+            if (alias) {
+              _context3.t0.message += " (While processing: " + JSON.stringify(alias) + ")";
+            }
+
+            throw _context3.t0;
+
+          case 15:
+            if (!(!item || typeof item !== "object")) {
+              _context3.next = 17;
+              break;
+            }
+
+            throw new Error("Plugin/Preset did not return an object.");
+
+          case 17:
+            if (!(typeof item.then === "function")) {
+              _context3.next = 20;
+              break;
+            }
+
+            return _context3.delegateYield([], "t1", 19);
+
+          case 19:
+            throw new Error("You appear to be using an async plugin, " + "which your current version of Babel does not support. " + "If you're using a published plugin, " + "you may need to upgrade your @babel/core version.");
+
+          case 20:
+            return _context3.abrupt("return", {
+              value: item,
+              options: options,
+              dirname: dirname,
+              alias: alias
+            });
+
+          case 21:
+          case "end":
+            return _context3.stop();
         }
-
-        throw e;
       }
-    }
-
-    if (!item || typeof item !== "object") {
-      throw new Error("Plugin/Preset did not return an object.");
-    }
-
-    if (typeof item.then === "function") {
-      throw new Error("You appear to be using an async plugin, " + "which your current version of Babel does not support. " + "If you're using a published plugin, " + "you may need to upgrade your @babel/core version.");
-    }
-
-    return {
-      value: item,
-      options: options,
-      dirname: dirname,
-      alias: alias
-    };
-  });
+    }, _callee, null, [[7, 11]]);
+  }));
 
   function loadPluginDescriptor(descriptor, context) {
-    if (descriptor.value instanceof Plugin) {
-      if (descriptor.options) {
-        throw new Error("Passed options to an existing Plugin instance will not work.");
+    return regenerator.wrap(function loadPluginDescriptor$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            if (!(descriptor.value instanceof Plugin)) {
+              _context4.next = 4;
+              break;
+            }
+
+            if (!descriptor.options) {
+              _context4.next = 3;
+              break;
+            }
+
+            throw new Error("Passed options to an existing Plugin instance will not work.");
+
+          case 3:
+            return _context4.abrupt("return", descriptor.value);
+
+          case 4:
+            _context4.t0 = instantiatePlugin;
+            return _context4.delegateYield(loadDescriptor(descriptor, context), "t1", 6);
+
+          case 6:
+            _context4.t2 = _context4.t1;
+            _context4.t3 = context;
+            return _context4.delegateYield((0, _context4.t0)(_context4.t2, _context4.t3), "t4", 9);
+
+          case 9:
+            return _context4.abrupt("return", _context4.t4);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
       }
-
-      return descriptor.value;
-    }
-
-    return instantiatePlugin(loadDescriptor(descriptor, context), context);
+    }, _marked$4);
   }
 
-  var instantiatePlugin = makeWeakCache(function (_ref4, cache) {
-    var value = _ref4.value,
-        options = _ref4.options,
-        dirname = _ref4.dirname,
-        alias = _ref4.alias;
-    var pluginObj = validatePluginObject(value);
-    var plugin = Object.assign({}, pluginObj);
+  var instantiatePlugin = makeWeakCache(regenerator.mark(function _callee2(_ref6, cache) {
+    var value, options, dirname, alias, pluginObj, plugin, inheritsDescriptor, inherits;
+    return regenerator.wrap(function _callee2$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            value = _ref6.value, options = _ref6.options, dirname = _ref6.dirname, alias = _ref6.alias;
+            pluginObj = validatePluginObject(value);
+            plugin = Object.assign({}, pluginObj);
 
-    if (plugin.visitor) {
-      plugin.visitor = traverse$1.explode(Object.assign({}, plugin.visitor));
-    }
+            if (plugin.visitor) {
+              plugin.visitor = traverse$1.explode(Object.assign({}, plugin.visitor));
+            }
 
-    if (plugin.inherits) {
-      var inheritsDescriptor = {
-        name: undefined,
-        alias: alias + "$inherits",
-        value: plugin.inherits,
-        options: options,
-        dirname: dirname
-      };
-      var inherits = cache.invalidate(function (data) {
-        return loadPluginDescriptor(inheritsDescriptor, data);
-      });
-      plugin.pre = chain$1(inherits.pre, plugin.pre);
-      plugin.post = chain$1(inherits.post, plugin.post);
-      plugin.manipulateOptions = chain$1(inherits.manipulateOptions, plugin.manipulateOptions);
-      plugin.visitor = traverse$1.visitors.merge([inherits.visitor || {}, plugin.visitor || {}]);
-    }
+            if (!plugin.inherits) {
+              _context5.next = 12;
+              break;
+            }
 
-    return new Plugin(plugin, options, alias);
-  });
+            inheritsDescriptor = {
+              name: undefined,
+              alias: alias + "$inherits",
+              value: plugin.inherits,
+              options: options,
+              dirname: dirname
+            };
+            return _context5.delegateYield(forwardAsync(loadPluginDescriptor, function (run) {
+              return cache.invalidate(function (data) {
+                return run(inheritsDescriptor, data);
+              });
+            }), "t0", 7);
+
+          case 7:
+            inherits = _context5.t0;
+            plugin.pre = chain$1(inherits.pre, plugin.pre);
+            plugin.post = chain$1(inherits.post, plugin.post);
+            plugin.manipulateOptions = chain$1(inherits.manipulateOptions, plugin.manipulateOptions);
+            plugin.visitor = traverse$1.visitors.merge([inherits.visitor || {}, plugin.visitor || {}]);
+
+          case 12:
+            return _context5.abrupt("return", new Plugin(plugin, options, alias));
+
+          case 13:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee2);
+  }));
 
   var validateIfOptionNeedsFilename = function validateIfOptionNeedsFilename(options, descriptor) {
     if (options.test || options.include || options.exclude) {
@@ -52536,16 +54801,36 @@
     }
   };
 
-  var loadPresetDescriptor = function loadPresetDescriptor(descriptor, context) {
-    var preset = instantiatePreset(loadDescriptor(descriptor, context));
-    validatePreset(preset, context, descriptor);
-    return buildPresetChain(preset, context);
-  };
+  function loadPresetDescriptor(descriptor, context) {
+    var preset;
+    return regenerator.wrap(function loadPresetDescriptor$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.t0 = instantiatePreset;
+            return _context6.delegateYield(loadDescriptor(descriptor, context), "t1", 2);
 
-  var instantiatePreset = makeWeakCache(function (_ref5) {
-    var value = _ref5.value,
-        dirname = _ref5.dirname,
-        alias = _ref5.alias;
+          case 2:
+            _context6.t2 = _context6.t1;
+            preset = (0, _context6.t0)(_context6.t2);
+            validatePreset(preset, context, descriptor);
+            return _context6.delegateYield(buildPresetChain(preset, context), "t3", 6);
+
+          case 6:
+            return _context6.abrupt("return", _context6.t3);
+
+          case 7:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _marked2$4);
+  }
+
+  var instantiatePreset = makeWeakCacheSync(function (_ref7) {
+    var value = _ref7.value,
+        dirname = _ref7.dirname,
+        alias = _ref7.alias;
     return {
       options: validate$3("preset", value),
       alias: alias,
@@ -52561,28 +54846,61 @@
         args[_key] = arguments[_key];
       }
 
-      for (var _iterator2 = fns, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-        var _ref6;
+      for (var _iterator4 = fns, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+        var _ref8;
 
-        if (_isArray2) {
-          if (_i2 >= _iterator2.length) break;
-          _ref6 = _iterator2[_i2++];
+        if (_isArray4) {
+          if (_i4 >= _iterator4.length) break;
+          _ref8 = _iterator4[_i4++];
         } else {
-          _i2 = _iterator2.next();
-          if (_i2.done) break;
-          _ref6 = _i2.value;
+          _i4 = _iterator4.next();
+          if (_i4.done) break;
+          _ref8 = _i4.value;
         }
 
-        var fn = _ref6;
+        var fn = _ref8;
         fn.apply(this, args);
       }
     };
   }
 
-  function loadOptions(opts) {
-    var config = loadFullConfig(opts);
-    return config ? config.options : null;
-  }
+  var loadOptionsRunner = gensync(regenerator.mark(function _callee(opts) {
+    var config;
+    return regenerator.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(loadConfig$1(opts), "t0", 1);
+
+          case 1:
+            config = _context.t0;
+            return _context.abrupt("return", config ? config.options : null);
+
+          case 3:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  var maybeErrback = function maybeErrback(runner) {
+    return function (opts, callback) {
+      if (callback === undefined && typeof opts === "function") {
+        callback = opts;
+        opts = undefined;
+      }
+
+      return callback ? runner.errback(opts, callback) : runner.sync(opts);
+    };
+  };
+
+  var loadPartialConfig$1 = maybeErrback(loadPartialConfig);
+  var loadPartialConfigSync = loadPartialConfig.sync;
+  var loadPartialConfigAsync = loadPartialConfig.async;
+  var loadOptions = maybeErrback(loadOptionsRunner);
+  var loadOptionsSync = loadOptionsRunner.sync;
+  var loadOptionsAsync = loadOptionsRunner.async;
 
   var PluginPass = function () {
     function PluginPass(file, key, options) {
@@ -53453,7 +55771,7 @@
   var LOADED_PLUGIN;
   function loadBlockHoistPlugin() {
     if (!LOADED_PLUGIN) {
-      var config = loadFullConfig({
+      var config = loadConfig$1.sync({
         babelrc: false,
         configFile: false,
         plugins: [blockHoistPlugin]
@@ -53658,7 +55976,7 @@
   });
   var safeBuffer_1 = safeBuffer.Buffer;
 
-  var fs$1 = getCjsExportFromNamespace(_nodeResolve_empty$1);
+  var path$2 = getCjsExportFromNamespace(_nodeResolve_empty$1);
 
   var convertSourceMap = createCommonjsModule(function (module, exports) {
 
@@ -53693,7 +56011,7 @@
     var filepath = path$1.resolve(dir, filename);
 
     try {
-      return fs$1.readFileSync(filepath, 'utf8');
+      return path$2.readFileSync(filepath, 'utf8');
     } catch (e) {
       throw new Error('An error occurred while trying to read the map file at ' + filepath + '\n' + e);
     }
@@ -53920,16 +56238,6 @@
         url: "https://git.io/vAlRe"
       }
     },
-    nullishCoalescingOperator: {
-      syntax: {
-        name: "@babel/plugin-syntax-nullish-coalescing-operator",
-        url: "https://git.io/vb4yx"
-      },
-      transform: {
-        name: "@babel/plugin-proposal-nullish-coalescing-operator",
-        url: "https://git.io/vb4Se"
-      }
-    },
     numericSeparator: {
       syntax: {
         name: "@babel/plugin-syntax-numeric-separator",
@@ -53990,6 +56298,16 @@
         url: "https://git.io/vb4yp"
       }
     },
+    nullishCoalescingOperator: {
+      syntax: {
+        name: "@babel/plugin-syntax-nullish-coalescing-operator",
+        url: "https://git.io/vb4yx"
+      },
+      transform: {
+        name: "@babel/plugin-proposal-nullish-coalescing-operator",
+        url: "https://git.io/vb4Se"
+      }
+    },
     objectRestSpread: {
       syntax: {
         name: "@babel/plugin-syntax-object-rest-spread",
@@ -54040,166 +56358,278 @@
     return helpMessage;
   }
 
+  var _marked$5 = regenerator.mark(parser);
+  function parser(pluginPasses, _ref, code) {
+    var parserOpts, _ref$highlightCode, highlightCode, _ref$filename, filename, results, _iterator, _isArray, _i, _ref2, plugins, _iterator2, _isArray2, _i2, _ref3, plugin, parserOverride, ast, loc, missingPlugin, codeFrame;
+
+    return regenerator.wrap(function parser$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            parserOpts = _ref.parserOpts, _ref$highlightCode = _ref.highlightCode, highlightCode = _ref$highlightCode === void 0 ? true : _ref$highlightCode, _ref$filename = _ref.filename, filename = _ref$filename === void 0 ? "unknown" : _ref$filename;
+            _context.prev = 1;
+            results = [];
+            _iterator = pluginPasses, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
+
+          case 4:
+            if (!_isArray) {
+              _context.next = 10;
+              break;
+            }
+
+            if (!(_i >= _iterator.length)) {
+              _context.next = 7;
+              break;
+            }
+
+            return _context.abrupt("break", 33);
+
+          case 7:
+            _ref2 = _iterator[_i++];
+            _context.next = 14;
+            break;
+
+          case 10:
+            _i = _iterator.next();
+
+            if (!_i.done) {
+              _context.next = 13;
+              break;
+            }
+
+            return _context.abrupt("break", 33);
+
+          case 13:
+            _ref2 = _i.value;
+
+          case 14:
+            plugins = _ref2;
+            _iterator2 = plugins, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
+
+          case 16:
+            if (!_isArray2) {
+              _context.next = 22;
+              break;
+            }
+
+            if (!(_i2 >= _iterator2.length)) {
+              _context.next = 19;
+              break;
+            }
+
+            return _context.abrupt("break", 31);
+
+          case 19:
+            _ref3 = _iterator2[_i2++];
+            _context.next = 26;
+            break;
+
+          case 22:
+            _i2 = _iterator2.next();
+
+            if (!_i2.done) {
+              _context.next = 25;
+              break;
+            }
+
+            return _context.abrupt("break", 31);
+
+          case 25:
+            _ref3 = _i2.value;
+
+          case 26:
+            plugin = _ref3;
+            parserOverride = plugin.parserOverride;
+
+            if (parserOverride) {
+              ast = parserOverride(code, parserOpts, parse$1);
+              if (ast !== undefined) results.push(ast);
+            }
+
+          case 29:
+            _context.next = 16;
+            break;
+
+          case 31:
+            _context.next = 4;
+            break;
+
+          case 33:
+            if (!(results.length === 0)) {
+              _context.next = 37;
+              break;
+            }
+
+            return _context.abrupt("return", parse$1(code, parserOpts));
+
+          case 37:
+            if (!(results.length === 1)) {
+              _context.next = 42;
+              break;
+            }
+
+            return _context.delegateYield([], "t0", 39);
+
+          case 39:
+            if (!(typeof results[0].then === "function")) {
+              _context.next = 41;
+              break;
+            }
+
+            throw new Error("You appear to be using an async parser plugin, " + "which your current version of Babel does not support. " + "If you're using a published plugin, you may need to upgrade " + "your @babel/core version.");
+
+          case 41:
+            return _context.abrupt("return", results[0]);
+
+          case 42:
+            throw new Error("More than one plugin attempted to override parsing.");
+
+          case 45:
+            _context.prev = 45;
+            _context.t1 = _context["catch"](1);
+
+            if (_context.t1.code === "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED") {
+              _context.t1.message += "\nConsider renaming the file to '.mjs', or setting sourceType:module " + "or sourceType:unambiguous in your Babel config for this file.";
+            }
+
+            loc = _context.t1.loc, missingPlugin = _context.t1.missingPlugin;
+
+            if (loc) {
+              codeFrame = codeFrameColumns(code, {
+                start: {
+                  line: loc.line,
+                  column: loc.column + 1
+                }
+              }, {
+                highlightCode: highlightCode
+              });
+
+              if (missingPlugin) {
+                _context.t1.message = filename + ": " + generateMissingPluginMessage(missingPlugin[0], loc, codeFrame);
+              } else {
+                _context.t1.message = filename + ": " + _context.t1.message + "\n\n" + codeFrame;
+              }
+
+              _context.t1.code = "BABEL_PARSE_ERROR";
+            }
+
+            throw _context.t1;
+
+          case 51:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _marked$5, null, [[1, 45]]);
+  }
+
+  var _marked$6 = regenerator.mark(normalizeFile);
   var debug$1 = browser$4("babel:transform:file");
   var LARGE_INPUT_SOURCEMAP_THRESHOLD = 1000000;
   function normalizeFile(pluginPasses, options, code, ast) {
-    code = "" + (code || "");
+    var inputMap, lastComment, _lastComment, match, inputMapContent;
 
-    if (ast) {
-      if (ast.type === "Program") {
-        ast = File(ast, [], []);
-      } else if (ast.type !== "File") {
-        throw new Error("AST root must be a Program or File node");
-      }
+    return regenerator.wrap(function normalizeFile$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            code = "" + (code || "");
 
-      ast = cloneDeep_1(ast);
-    } else {
-      ast = parser(pluginPasses, options, code);
-    }
-
-    var inputMap = null;
-
-    if (options.inputSourceMap !== false) {
-      if (typeof options.inputSourceMap === "object") {
-        inputMap = convertSourceMap.fromObject(options.inputSourceMap);
-      }
-
-      if (!inputMap) {
-        var lastComment = extractComments(INLINE_SOURCEMAP_REGEX, ast);
-
-        if (lastComment) {
-          try {
-            inputMap = convertSourceMap.fromComment(lastComment);
-          } catch (err) {
-            debug$1("discarding unknown inline input sourcemap", err);
-          }
-        }
-      }
-
-      if (!inputMap) {
-        var _lastComment = extractComments(EXTERNAL_SOURCEMAP_REGEX, ast);
-
-        if (typeof options.filename === "string" && _lastComment) {
-          try {
-            var match = EXTERNAL_SOURCEMAP_REGEX.exec(_lastComment);
-            var inputMapContent = fs.readFileSync(path$1.resolve(path$1.dirname(options.filename), match[1]));
-
-            if (inputMapContent.length > LARGE_INPUT_SOURCEMAP_THRESHOLD) {
-              debug$1("skip merging input map > 1 MB");
-            } else {
-              inputMap = convertSourceMap.fromJSON(inputMapContent);
+            if (!ast) {
+              _context.next = 11;
+              break;
             }
-          } catch (err) {
-            debug$1("discarding unknown file input sourcemap", err);
-          }
-        } else if (_lastComment) {
-          debug$1("discarding un-loadable file input sourcemap");
+
+            if (!(ast.type === "Program")) {
+              _context.next = 6;
+              break;
+            }
+
+            ast = File(ast, [], []);
+            _context.next = 8;
+            break;
+
+          case 6:
+            if (!(ast.type !== "File")) {
+              _context.next = 8;
+              break;
+            }
+
+            throw new Error("AST root must be a Program or File node");
+
+          case 8:
+            ast = cloneDeep_1(ast);
+            _context.next = 13;
+            break;
+
+          case 11:
+            return _context.delegateYield(parser(pluginPasses, options, code), "t0", 12);
+
+          case 12:
+            ast = _context.t0;
+
+          case 13:
+            inputMap = null;
+
+            if (options.inputSourceMap !== false) {
+              if (typeof options.inputSourceMap === "object") {
+                inputMap = convertSourceMap.fromObject(options.inputSourceMap);
+              }
+
+              if (!inputMap) {
+                lastComment = extractComments(INLINE_SOURCEMAP_REGEX, ast);
+
+                if (lastComment) {
+                  try {
+                    inputMap = convertSourceMap.fromComment(lastComment);
+                  } catch (err) {
+                    debug$1("discarding unknown inline input sourcemap", err);
+                  }
+                }
+              }
+
+              if (!inputMap) {
+                _lastComment = extractComments(EXTERNAL_SOURCEMAP_REGEX, ast);
+
+                if (typeof options.filename === "string" && _lastComment) {
+                  try {
+                    match = EXTERNAL_SOURCEMAP_REGEX.exec(_lastComment);
+                    inputMapContent = fs.readFileSync(path$1.resolve(path$1.dirname(options.filename), match[1]));
+
+                    if (inputMapContent.length > LARGE_INPUT_SOURCEMAP_THRESHOLD) {
+                      debug$1("skip merging input map > 1 MB");
+                    } else {
+                      inputMap = convertSourceMap.fromJSON(inputMapContent);
+                    }
+                  } catch (err) {
+                    debug$1("discarding unknown file input sourcemap", err);
+                  }
+                } else if (_lastComment) {
+                  debug$1("discarding un-loadable file input sourcemap");
+                }
+              }
+            }
+
+            return _context.abrupt("return", new File$2(options, {
+              code: code,
+              ast: ast,
+              inputMap: inputMap
+            }));
+
+          case 16:
+          case "end":
+            return _context.stop();
         }
       }
-    }
-
-    return new File$2(options, {
-      code: code,
-      ast: ast,
-      inputMap: inputMap
-    });
+    }, _marked$6);
   }
-
-  function parser(pluginPasses, _ref, code) {
-    var parserOpts = _ref.parserOpts,
-        _ref$highlightCode = _ref.highlightCode,
-        highlightCode = _ref$highlightCode === void 0 ? true : _ref$highlightCode,
-        _ref$filename = _ref.filename,
-        filename = _ref$filename === void 0 ? "unknown" : _ref$filename;
-
-    try {
-      var results = [];
-
-      for (var _iterator = pluginPasses, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-        var _ref2;
-
-        if (_isArray) {
-          if (_i >= _iterator.length) break;
-          _ref2 = _iterator[_i++];
-        } else {
-          _i = _iterator.next();
-          if (_i.done) break;
-          _ref2 = _i.value;
-        }
-
-        var plugins = _ref2;
-
-        for (var _iterator2 = plugins, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-          var _ref3;
-
-          if (_isArray2) {
-            if (_i2 >= _iterator2.length) break;
-            _ref3 = _iterator2[_i2++];
-          } else {
-            _i2 = _iterator2.next();
-            if (_i2.done) break;
-            _ref3 = _i2.value;
-          }
-
-          var plugin = _ref3;
-          var parserOverride = plugin.parserOverride;
-
-          if (parserOverride) {
-            var ast = parserOverride(code, parserOpts, parse$1);
-            if (ast !== undefined) results.push(ast);
-          }
-        }
-      }
-
-      if (results.length === 0) {
-        return parse$1(code, parserOpts);
-      } else if (results.length === 1) {
-        if (typeof results[0].then === "function") {
-          throw new Error("You appear to be using an async parser plugin, " + "which your current version of Babel does not support. " + "If you're using a published plugin, you may need to upgrade " + "your @babel/core version.");
-        }
-
-        return results[0];
-      }
-
-      throw new Error("More than one plugin attempted to override parsing.");
-    } catch (err) {
-      if (err.code === "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED") {
-        err.message += "\nConsider renaming the file to '.mjs', or setting sourceType:module " + "or sourceType:unambiguous in your Babel config for this file.";
-      }
-
-      var loc = err.loc,
-          missingPlugin = err.missingPlugin;
-
-      if (loc) {
-        var codeFrame = codeFrameColumns(code, {
-          start: {
-            line: loc.line,
-            column: loc.column + 1
-          }
-        }, {
-          highlightCode: highlightCode
-        });
-
-        if (missingPlugin) {
-          err.message = filename + ": " + generateMissingPluginMessage(missingPlugin[0], loc, codeFrame);
-        } else {
-          err.message = filename + ": " + err.message + "\n\n" + codeFrame;
-        }
-
-        err.code = "BABEL_PARSE_ERROR";
-      }
-
-      throw err;
-    }
-  }
-
   var INLINE_SOURCEMAP_REGEX = /^[@#]\s+sourceMappingURL=data:(?:application|text)\/json;(?:charset[:=]\S+?;)?base64,(?:.*)$/;
   var EXTERNAL_SOURCEMAP_REGEX = /^[@#][ \t]+sourceMappingURL=([^\s'"`]+)[ \t]*$/;
 
   function extractCommentsFromList(regex, comments, lastComment) {
     if (comments) {
-      comments = comments.filter(function (_ref4) {
-        var value = _ref4.value;
+      comments = comments.filter(function (_ref) {
+        var value = _ref.value;
 
         if (regex.test(value)) {
           lastComment = value;
@@ -54627,175 +57057,294 @@
     };
   }
 
-  function runAsync(config, code, ast, callback) {
-    var result;
+  var _marked$7 = regenerator.mark(run),
+      _marked2$5 = regenerator.mark(transformFile);
+  function run(config, code, ast) {
+    var file, opts, _opts$filename, outputCode, outputMap, _generateCode, _opts$filename2;
 
-    try {
-      result = runSync(config, code, ast);
-    } catch (err) {
-      return callback(err);
-    }
+    return regenerator.wrap(function run$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(normalizeFile(config.passes, normalizeOptions$2(config), code, ast), "t0", 1);
 
-    return callback(null, result);
-  }
-  function runSync(config, code, ast) {
-    var file = normalizeFile(config.passes, normalizeOptions$2(config), code, ast);
-    var opts = file.opts;
+          case 1:
+            file = _context.t0;
+            opts = file.opts;
+            _context.prev = 3;
+            return _context.delegateYield(transformFile(file, config.passes), "t1", 5);
 
-    try {
-      transformFile(file, config.passes);
-    } catch (e) {
-      var _opts$filename;
+          case 5:
+            _context.next = 12;
+            break;
 
-      e.message = ((_opts$filename = opts.filename) != null ? _opts$filename : "unknown") + ": " + e.message;
+          case 7:
+            _context.prev = 7;
+            _context.t2 = _context["catch"](3);
+            _context.t2.message = ((_opts$filename = opts.filename) != null ? _opts$filename : "unknown") + ": " + _context.t2.message;
 
-      if (!e.code) {
-        e.code = "BABEL_TRANSFORM_ERROR";
+            if (!_context.t2.code) {
+              _context.t2.code = "BABEL_TRANSFORM_ERROR";
+            }
+
+            throw _context.t2;
+
+          case 12:
+            _context.prev = 12;
+
+            if (opts.code !== false) {
+              _generateCode = generateCode$1(config.passes, file);
+              outputCode = _generateCode.outputCode;
+              outputMap = _generateCode.outputMap;
+            }
+
+            _context.next = 21;
+            break;
+
+          case 16:
+            _context.prev = 16;
+            _context.t3 = _context["catch"](12);
+            _context.t3.message = ((_opts$filename2 = opts.filename) != null ? _opts$filename2 : "unknown") + ": " + _context.t3.message;
+
+            if (!_context.t3.code) {
+              _context.t3.code = "BABEL_GENERATE_ERROR";
+            }
+
+            throw _context.t3;
+
+          case 21:
+            return _context.abrupt("return", {
+              metadata: file.metadata,
+              options: opts,
+              ast: opts.ast === true ? file.ast : null,
+              code: outputCode === undefined ? null : outputCode,
+              map: outputMap === undefined ? null : outputMap,
+              sourceType: file.ast.program.sourceType
+            });
+
+          case 22:
+          case "end":
+            return _context.stop();
+        }
       }
-
-      throw e;
-    }
-
-    var outputCode, outputMap;
-
-    try {
-      if (opts.code !== false) {
-        var _generateCode = generateCode$1(config.passes, file);
-
-        outputCode = _generateCode.outputCode;
-        outputMap = _generateCode.outputMap;
-      }
-    } catch (e) {
-      var _opts$filename2;
-
-      e.message = ((_opts$filename2 = opts.filename) != null ? _opts$filename2 : "unknown") + ": " + e.message;
-
-      if (!e.code) {
-        e.code = "BABEL_GENERATE_ERROR";
-      }
-
-      throw e;
-    }
-
-    return {
-      metadata: file.metadata,
-      options: opts,
-      ast: opts.ast === true ? file.ast : null,
-      code: outputCode === undefined ? null : outputCode,
-      map: outputMap === undefined ? null : outputMap,
-      sourceType: file.ast.program.sourceType
-    };
+    }, _marked$7, null, [[3, 7], [12, 16]]);
   }
 
   function transformFile(file, pluginPasses) {
-    for (var _iterator = pluginPasses, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref;
+    var _iterator, _isArray, _i, _ref, pluginPairs, passPairs, passes, visitors, _iterator2, _isArray2, _i2, _ref2, plugin, pass, _i3, _passPairs, _passPairs$_i, _plugin, _pass, fn, result, visitor, _i4, _passPairs2, _passPairs2$_i, _plugin2, _pass2, _fn, _result;
 
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        _ref = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        _ref = _i.value;
-      }
+    return regenerator.wrap(function transformFile$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _iterator = pluginPasses, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
 
-      var pluginPairs = _ref;
-      var passPairs = [];
-      var passes = [];
-      var visitors = [];
+          case 1:
+            if (!_isArray) {
+              _context2.next = 7;
+              break;
+            }
 
-      for (var _iterator2 = pluginPairs.concat([loadBlockHoistPlugin()]), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-        var _ref2;
+            if (!(_i >= _iterator.length)) {
+              _context2.next = 4;
+              break;
+            }
 
-        if (_isArray2) {
-          if (_i2 >= _iterator2.length) break;
-          _ref2 = _iterator2[_i2++];
-        } else {
-          _i2 = _iterator2.next();
-          if (_i2.done) break;
-          _ref2 = _i2.value;
-        }
+            return _context2.abrupt("break", 61);
 
-        var plugin = _ref2;
-        var pass = new PluginPass(file, plugin.key, plugin.options);
-        passPairs.push([plugin, pass]);
-        passes.push(pass);
-        visitors.push(plugin.visitor);
-      }
+          case 4:
+            _ref = _iterator[_i++];
+            _context2.next = 11;
+            break;
 
-      for (var _i3 = 0, _passPairs = passPairs; _i3 < _passPairs.length; _i3++) {
-        var _passPairs$_i = _passPairs[_i3],
-            _plugin = _passPairs$_i[0],
-            _pass = _passPairs$_i[1];
-        var fn = _plugin.pre;
+          case 7:
+            _i = _iterator.next();
 
-        if (fn) {
-          var result = fn.call(_pass, file);
+            if (!_i.done) {
+              _context2.next = 10;
+              break;
+            }
 
-          if (isThenable(result)) {
+            return _context2.abrupt("break", 61);
+
+          case 10:
+            _ref = _i.value;
+
+          case 11:
+            pluginPairs = _ref;
+            passPairs = [];
+            passes = [];
+            visitors = [];
+            _iterator2 = pluginPairs.concat([loadBlockHoistPlugin()]), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();
+
+          case 16:
+            if (!_isArray2) {
+              _context2.next = 22;
+              break;
+            }
+
+            if (!(_i2 >= _iterator2.length)) {
+              _context2.next = 19;
+              break;
+            }
+
+            return _context2.abrupt("break", 33);
+
+          case 19:
+            _ref2 = _iterator2[_i2++];
+            _context2.next = 26;
+            break;
+
+          case 22:
+            _i2 = _iterator2.next();
+
+            if (!_i2.done) {
+              _context2.next = 25;
+              break;
+            }
+
+            return _context2.abrupt("break", 33);
+
+          case 25:
+            _ref2 = _i2.value;
+
+          case 26:
+            plugin = _ref2;
+            pass = new PluginPass(file, plugin.key, plugin.options);
+            passPairs.push([plugin, pass]);
+            passes.push(pass);
+            visitors.push(plugin.visitor);
+
+          case 31:
+            _context2.next = 16;
+            break;
+
+          case 33:
+            _i3 = 0, _passPairs = passPairs;
+
+          case 34:
+            if (!(_i3 < _passPairs.length)) {
+              _context2.next = 45;
+              break;
+            }
+
+            _passPairs$_i = _passPairs[_i3], _plugin = _passPairs$_i[0], _pass = _passPairs$_i[1];
+            fn = _plugin.pre;
+
+            if (!fn) {
+              _context2.next = 42;
+              break;
+            }
+
+            result = fn.call(_pass, file);
+            return _context2.delegateYield([], "t0", 40);
+
+          case 40:
+            if (!isThenable$1(result)) {
+              _context2.next = 42;
+              break;
+            }
+
             throw new Error("You appear to be using an plugin with an async .pre, " + "which your current version of Babel does not support. " + "If you're using a published plugin, you may need to upgrade " + "your @babel/core version.");
-          }
-        }
-      }
 
-      var visitor = traverse$1.visitors.merge(visitors, passes, file.opts.wrapPluginVisitorMethod);
-      traverse$1(file.ast, visitor, file.scope);
+          case 42:
+            _i3++;
+            _context2.next = 34;
+            break;
 
-      for (var _i4 = 0, _passPairs2 = passPairs; _i4 < _passPairs2.length; _i4++) {
-        var _passPairs2$_i = _passPairs2[_i4],
-            _plugin2 = _passPairs2$_i[0],
-            _pass2 = _passPairs2$_i[1];
-        var _fn = _plugin2.post;
+          case 45:
+            visitor = traverse$1.visitors.merge(visitors, passes, file.opts.wrapPluginVisitorMethod);
+            traverse$1(file.ast, visitor, file.scope);
+            _i4 = 0, _passPairs2 = passPairs;
 
-        if (_fn) {
-          var _result = _fn.call(_pass2, file);
+          case 48:
+            if (!(_i4 < _passPairs2.length)) {
+              _context2.next = 59;
+              break;
+            }
 
-          if (isThenable(_result)) {
+            _passPairs2$_i = _passPairs2[_i4], _plugin2 = _passPairs2$_i[0], _pass2 = _passPairs2$_i[1];
+            _fn = _plugin2.post;
+
+            if (!_fn) {
+              _context2.next = 56;
+              break;
+            }
+
+            _result = _fn.call(_pass2, file);
+            return _context2.delegateYield([], "t1", 54);
+
+          case 54:
+            if (!isThenable$1(_result)) {
+              _context2.next = 56;
+              break;
+            }
+
             throw new Error("You appear to be using an plugin with an async .post, " + "which your current version of Babel does not support. " + "If you're using a published plugin, you may need to upgrade " + "your @babel/core version.");
-          }
+
+          case 56:
+            _i4++;
+            _context2.next = 48;
+            break;
+
+          case 59:
+            _context2.next = 1;
+            break;
+
+          case 61:
+          case "end":
+            return _context2.stop();
         }
       }
-    }
+    }, _marked2$5);
   }
 
-  function isThenable(val) {
+  function isThenable$1(val) {
     return !!val && (typeof val === "object" || typeof val === "function") && !!val.then && typeof val.then === "function";
   }
 
+  var transformRunner = gensync(regenerator.mark(function transform(code, opts) {
+    var config;
+    return regenerator.wrap(function transform$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(loadConfig$1(opts), "t0", 1);
+
+          case 1:
+            config = _context.t0;
+
+            if (!(config === null)) {
+              _context.next = 4;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 4:
+            return _context.delegateYield(run(config, code), "t1", 5);
+
+          case 5:
+            return _context.abrupt("return", _context.t1);
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, transform);
+  }));
   var transform = function transform(code, opts, callback) {
     if (typeof opts === "function") {
       callback = opts;
       opts = undefined;
     }
 
-    if (callback === undefined) return transformSync(code, opts);
-    var cb = callback;
-    nextTick(function () {
-      var cfg;
-
-      try {
-        cfg = loadFullConfig(opts);
-        if (cfg === null) return cb(null, null);
-      } catch (err) {
-        return cb(err);
-      }
-
-      runAsync(cfg, code, null, cb);
-    });
+    if (callback === undefined) return transformRunner.sync(code, opts);
+    transformRunner.errback(code, opts, callback);
   };
-  function transformSync(code, opts) {
-    var config = loadFullConfig(opts);
-    if (config === null) return null;
-    return runSync(config, code);
-  }
-  function transformAsync(code, opts) {
-    return new Promise(function (res, rej) {
-      transform(code, opts, function (err, result) {
-        if (err == null) res(result);else rej(err);
-      });
-    });
-  }
+  var transformSync = transformRunner.sync;
+  var transformAsync = transformRunner.async;
 
   var transformFile$1 = function transformFile(filename, opts, callback) {
     if (typeof opts === "function") {
@@ -54811,86 +57360,102 @@
     return Promise.reject(new Error("Transforming files is not supported in browsers"));
   }
 
+  var transformFromAstRunner = gensync(regenerator.mark(function _callee(ast, code, opts) {
+    var config;
+    return regenerator.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(loadConfig$1(opts), "t0", 1);
+
+          case 1:
+            config = _context.t0;
+
+            if (!(config === null)) {
+              _context.next = 4;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 4:
+            if (ast) {
+              _context.next = 6;
+              break;
+            }
+
+            throw new Error("No AST given");
+
+          case 6:
+            return _context.delegateYield(run(config, code, ast), "t1", 7);
+
+          case 7:
+            return _context.abrupt("return", _context.t1);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
   var transformFromAst = function transformFromAst(ast, code, opts, callback) {
     if (typeof opts === "function") {
       callback = opts;
       opts = undefined;
     }
 
-    if (callback === undefined) return transformFromAstSync(ast, code, opts);
-    var cb = callback;
-    nextTick(function () {
-      var cfg;
+    if (callback === undefined) {
+      return transformFromAstRunner.sync(ast, code, opts);
+    }
 
-      try {
-        cfg = loadFullConfig(opts);
-        if (cfg === null) return cb(null, null);
-      } catch (err) {
-        return cb(err);
-      }
-
-      if (!ast) return cb(new Error("No AST given"));
-      runAsync(cfg, code, ast, cb);
-    });
+    transformFromAstRunner.errback(ast, code, opts, callback);
   };
-  function transformFromAstSync(ast, code, opts) {
-    var config = loadFullConfig(opts);
-    if (config === null) return null;
-    if (!ast) throw new Error("No AST given");
-    return runSync(config, code, ast);
-  }
-  function transformFromAstAsync(ast, code, opts) {
-    return new Promise(function (res, rej) {
-      transformFromAst(ast, code, opts, function (err, result) {
-        if (err == null) res(result);else rej(err);
-      });
-    });
-  }
+  var transformFromAstSync = transformFromAstRunner.sync;
+  var transformFromAstAsync = transformFromAstRunner.async;
 
+  var parseRunner = gensync(regenerator.mark(function parse(code, opts) {
+    var config;
+    return regenerator.wrap(function parse$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.delegateYield(loadConfig$1(opts), "t0", 1);
+
+          case 1:
+            config = _context.t0;
+
+            if (!(config === null)) {
+              _context.next = 4;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 4:
+            return _context.delegateYield(parser(config.passes, normalizeOptions$2(config), code), "t1", 5);
+
+          case 5:
+            return _context.abrupt("return", _context.t1);
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, parse);
+  }));
   var parse$3 = function parse(code, opts, callback) {
     if (typeof opts === "function") {
       callback = opts;
       opts = undefined;
     }
 
-    if (callback === undefined) return parseSync(code, opts);
-    var config = loadFullConfig(opts);
-
-    if (config === null) {
-      return null;
-    }
-
-    var cb = callback;
-    nextTick(function () {
-      var ast = null;
-
-      try {
-        var cfg = loadFullConfig(opts);
-        if (cfg === null) return cb(null, null);
-        ast = normalizeFile(cfg.passes, normalizeOptions$2(cfg), code).ast;
-      } catch (err) {
-        return cb(err);
-      }
-
-      cb(null, ast);
-    });
+    if (callback === undefined) return parseRunner.sync(code, opts);
+    parseRunner.errback(code, opts, callback);
   };
-  function parseSync(code, opts) {
-    var config = loadFullConfig(opts);
-
-    if (config === null) {
-      return null;
-    }
-
-    return normalizeFile(config.passes, normalizeOptions$2(config), code).ast;
-  }
-  function parseAsync(code, opts) {
-    return new Promise(function (res, rej) {
-      parse$3(code, opts, function (err, result) {
-        if (err == null) res(result);else rej(err);
-      });
-    });
-  }
+  var parseSync = parseRunner.sync;
+  var parseAsync = parseRunner.async;
 
   var DEFAULT_EXTENSIONS = Object.freeze([".js", ".jsx", ".es6", ".es", ".mjs"]);
   var OptionManager = function () {
@@ -55213,6 +57778,16 @@
         parserOpts.plugins.push(["pipelineOperator", {
           proposal: proposal
         }]);
+      }
+    };
+  });
+
+  var syntaxTopLevelAwait = declare(function (api) {
+    api.assertVersion(7);
+    return {
+      name: "syntax-top-level-await",
+      manipulateOptions: function manipulateOptions(opts, parserOpts) {
+        parserOpts.plugins.push("topLevelAwait");
       }
     };
   });
@@ -56860,9 +59435,10 @@
   }
 
   var name = "@babel/helper-create-class-features-plugin";
-  var version$2 = "7.7.4";
+  var version$2 = "7.8.0";
   var author = "The Babel Team (https://babeljs.io/team)";
   var license = "MIT";
+  var type$2 = "commonjs";
   var description = "Compile class public and private fields, private methods and decorators to ES6";
   var repository = "https://github.com/babel/babel/tree/master/packages/babel-helper-create-class-features-plugin";
   var main = "lib/index.js";
@@ -56874,25 +59450,26 @@
   	"babel-plugin"
   ];
   var dependencies = {
-  	"@babel/helper-function-name": "^7.7.4",
-  	"@babel/helper-member-expression-to-functions": "^7.7.4",
-  	"@babel/helper-optimise-call-expression": "^7.7.4",
-  	"@babel/helper-plugin-utils": "^7.0.0",
-  	"@babel/helper-replace-supers": "^7.7.4",
-  	"@babel/helper-split-export-declaration": "^7.7.4"
+  	"@babel/helper-function-name": "^7.8.0",
+  	"@babel/helper-member-expression-to-functions": "^7.8.0",
+  	"@babel/helper-optimise-call-expression": "^7.8.0",
+  	"@babel/helper-plugin-utils": "^7.8.0",
+  	"@babel/helper-replace-supers": "^7.8.0",
+  	"@babel/helper-split-export-declaration": "^7.8.0"
   };
   var peerDependencies = {
   	"@babel/core": "^7.0.0"
   };
   var devDependencies = {
-  	"@babel/core": "^7.7.4",
-  	"@babel/helper-plugin-test-runner": "^7.7.4"
+  	"@babel/core": "^7.8.0",
+  	"@babel/helper-plugin-test-runner": "^7.8.0"
   };
   var pkg = {
   	name: name,
   	version: version$2,
   	author: author,
   	license: license,
+  	type: type$2,
   	description: description,
   	repository: repository,
   	main: main,
@@ -57319,6 +59896,30 @@
     };
   });
 
+  var version$4 = "7.8.0";
+
+  var SUPPORTED_MODULES = ["commonjs", "amd", "systemjs"];
+  var MODULES_NOT_FOUND = "@babel/plugin-proposal-dynamic-import depends on a modules\ntransform plugin. Supported plugins are:\n - @babel/plugin-transform-modules-commonjs ^7.4.0\n - @babel/plugin-transform-modules-amd ^7.4.0\n - @babel/plugin-transform-modules-systemjs ^7.4.0\n\nIf you are using Webpack or Rollup and thus don't want\nBabel to transpile your imports and exports, you can use\nthe @babel/plugin-syntax-dynamic-import plugin and let your\nbundler handle dynamic imports.\n";
+  var proposalDynamicImport = declare(function (api) {
+    api.assertVersion(7);
+    return {
+      name: "proposal-dynamic-import",
+      inherits: syntaxDynamicImport,
+      pre: function pre() {
+        this.file.set("@babel/plugin-proposal-dynamic-import", version$4);
+      },
+      visitor: {
+        Program: function Program() {
+          var modules = this.file.get("@babel/plugin-transform-modules-*");
+
+          if (!SUPPORTED_MODULES.includes(modules)) {
+            throw new Error(MODULES_NOT_FOUND);
+          }
+        }
+      }
+    };
+  });
+
   var proposalExportDefaultFrom = declare(function (api) {
     api.assertVersion(7);
     return {
@@ -57635,31 +60236,12 @@
 
   var proposalNumericSeparator = declare(function (api) {
     api.assertVersion(7);
-
-    function replaceNumberArg(_ref) {
-      var node = _ref.node;
-
-      if (node.callee.name !== "Number") {
-        return;
-      }
-
-      var arg = node.arguments[0];
-
-      if (!isStringLiteral(arg)) {
-        return;
-      }
-
-      arg.value = arg.value.replace(/_/g, "");
-    }
-
     return {
       name: "proposal-numeric-separator",
       inherits: syntaxNumericSeparator,
       visitor: {
-        CallExpression: replaceNumberArg,
-        NewExpression: replaceNumberArg,
-        NumericLiteral: function NumericLiteral(_ref2) {
-          var node = _ref2.node;
+        NumericLiteral: function NumericLiteral(_ref) {
+          var node = _ref.node;
           var extra = node.extra;
 
           if (extra && /_/.test(extra.raw)) {
@@ -59222,6 +61804,10 @@
             bail('\\B not possible inside of CharacterClass', '', from);
           } else if (!hasUnicodeFlag && (res = matchReg(/^c([0-9])/))) {
             return createEscaped('controlLetter', res[1] + 16, res[1], 2);
+          }
+
+          if (match('-') && hasUnicodeFlag) {
+            return createEscaped('singleEscape', 0x002d, '\\-');
           }
         }
 
@@ -60990,9 +63576,10 @@
   }
 
   var name$1 = "@babel/helper-create-regexp-features-plugin";
-  var version$4 = "7.7.4";
+  var version$5 = "7.8.0";
   var author$1 = "The Babel Team (https://babeljs.io/team)";
   var license$1 = "MIT";
+  var type$3 = "commonjs";
   var description$1 = "Compile ESNext Regular Expressions to ES5";
   var repository$1 = {
   	type: "git",
@@ -61008,21 +63595,22 @@
   	"babel-plugin"
   ];
   var dependencies$1 = {
-  	"@babel/helper-regex": "^7.4.4",
+  	"@babel/helper-regex": "^7.8.0",
   	"regexpu-core": "^4.6.0"
   };
   var peerDependencies$1 = {
   	"@babel/core": "^7.0.0"
   };
   var devDependencies$1 = {
-  	"@babel/core": "^7.7.4",
-  	"@babel/helper-plugin-test-runner": "^7.7.4"
+  	"@babel/core": "^7.8.0",
+  	"@babel/helper-plugin-test-runner": "^7.8.0"
   };
   var pkg$1 = {
   	name: name$1,
-  	version: version$4,
+  	version: version$5,
   	author: author$1,
   	license: license$1,
+  	type: type$3,
   	description: description$1,
   	repository: repository$1,
   	main: main$1,
@@ -61103,7 +63691,7 @@
     node.flags = flags.join("");
   }
 
-  var version$5 = pkg$1.version.split(".").reduce(function (v, x) {
+  var version$6 = pkg$1.version.split(".").reduce(function (v, x) {
     return v * 1e5 + +x;
   }, 0);
   var versionKey$1 = "@babel/plugin-regexp-features/version";
@@ -61136,8 +63724,8 @@
           file.set(runtimeKey, false);
         }
 
-        if (!file.has(versionKey$1) || file.get(versionKey$1) < version$5) {
-          file.set(versionKey$1, version$5);
+        if (!file.has(versionKey$1) || file.get(versionKey$1) < version$6) {
+          file.set(versionKey$1, version$6);
         }
       },
       visitor: {
@@ -62509,6 +65097,9 @@
   }
   function addNamed(path, name, importedSource, opts) {
     return new ImportInjector(path).addNamed(name, importedSource, opts);
+  }
+  function addSideEffect(path, importedSource, opts) {
+    return new ImportInjector(path).addSideEffect(importedSource, opts);
   }
 
   var transformAsyncToGenerator = declare(function (api, options) {
@@ -66781,7 +69372,7 @@
     };
   }
 
-  var transformExponentiationOperator = declare(function (api) {
+  var transformExponentialOperator = declare(function (api) {
     api.assertVersion(7);
     return {
       name: "transform-exponentiation-operator",
@@ -67844,9 +70435,13 @@
         var ref = buildImportReference(importData, path.node);
         ref.loc = path.node.loc;
 
-        if (path.parentPath.isCallExpression({
+        if ((path.parentPath.isCallExpression({
           callee: path.node
-        }) && isMemberExpression(ref)) {
+        }) || path.parentPath.isOptionalCallExpression({
+          callee: path.node
+        }) || path.parentPath.isTaggedTemplateExpression({
+          tag: path.node
+        })) && isMemberExpression(ref)) {
           path.replaceWith(SequenceExpression([NumericLiteral(0), ref]));
         } else if (path.isJSXIdentifier() && isMemberExpression(ref)) {
           var object = ref.object,
@@ -69349,7 +71944,9 @@
   var transformModulesSystemjs = declare(function (api, options) {
     api.assertVersion(7);
     var _options$systemGlobal = options.systemGlobal,
-        systemGlobal = _options$systemGlobal === void 0 ? "System" : _options$systemGlobal;
+        systemGlobal = _options$systemGlobal === void 0 ? "System" : _options$systemGlobal,
+        _options$allowTopLeve = options.allowTopLevelThis,
+        allowTopLevelThis = _options$allowTopLeve === void 0 ? false : _options$allowTopLeve;
     var IGNORE_REASSIGNMENT_SYMBOL = Symbol();
     var reassignmentVisitor = {
       "AssignmentExpression|UpdateExpression": function AssignmentExpressionUpdateExpression(path) {
@@ -69456,6 +72053,10 @@
         Program: {
           enter: function enter(path, state) {
             state.contextIdent = path.scope.generateUid("context");
+
+            if (!allowTopLevelThis) {
+              rewriteThis(path);
+            }
           },
           exit: function exit(path, state) {
             var undefinedIdent = path.scope.buildUndefinedNode();
@@ -69905,6 +72506,23 @@
       }
     };
   });
+
+  function transformNamedCapturingGroupsRegex (core, options) {
+    var _options$runtime = options.runtime,
+        runtime = _options$runtime === void 0 ? true : _options$runtime;
+
+    if (typeof runtime !== "boolean") {
+      throw new Error("The 'runtime' option must be boolean");
+    }
+
+    return createRegExpFeaturePlugin({
+      name: "transform-named-capturing-groups-regex",
+      feature: "namedCaptureGroups",
+      options: {
+        runtime: runtime
+      }
+    });
+  }
 
   var transformNewTarget = declare(function (api) {
     api.assertVersion(7);
@@ -73142,7 +75760,7 @@
   var domain = true;
   var events = true;
   var freelist = "< 6";
-  var fs$2 = true;
+  var fs$1 = true;
   var _http_agent = ">= 0.11.1";
   var _http_client = ">= 0.11.1";
   var _http_common = ">= 0.11.1";
@@ -73157,7 +75775,7 @@
   var module = true;
   var net = true;
   var os = true;
-  var path$2 = true;
+  var path$3 = true;
   var perf_hooks = ">= 8.5";
   var process$1 = ">= 1";
   var punycode = true;
@@ -73185,7 +75803,7 @@
   var util$2 = true;
   var v8 = ">= 1";
   var vm = true;
-  var wasi = ">= 13.4";
+  var wasi = ">= 13.4 && < 13.5";
   var worker_threads = ">= 11.7";
   var zlib = true;
   var core = {
@@ -73205,7 +75823,7 @@
   	domain: domain,
   	events: events,
   	freelist: freelist,
-  	fs: fs$2,
+  	fs: fs$1,
   	"fs/promises": ">= 10 && < 10.1",
   	_http_agent: _http_agent,
   	_http_client: _http_client,
@@ -73224,7 +75842,7 @@
   	"node-inspect/lib/internal/inspect_client": ">= 7.6.0 && < 12",
   	"node-inspect/lib/internal/inspect_repl": ">= 7.6.0 && < 12",
   	os: os,
-  	path: path$2,
+  	path: path$3,
   	perf_hooks: perf_hooks,
   	process: process$1,
   	punycode: punycode,
@@ -73300,7 +75918,7 @@
     domain: domain,
     events: events,
     freelist: freelist,
-    fs: fs$2,
+    fs: fs$1,
     _http_agent: _http_agent,
     _http_client: _http_client,
     _http_common: _http_common,
@@ -73315,7 +75933,7 @@
     module: module,
     net: net,
     os: os,
-    path: path$2,
+    path: path$3,
     perf_hooks: perf_hooks,
     process: process$1,
     punycode: punycode,
@@ -73498,8 +76116,10 @@
         if (/\/$/.test(x) && res === basedir) {
           loadAsDirectory(res, opts["package"], onfile);
         } else loadAsFile(res, opts["package"], onfile);
+      } else if (isCore(x)) {
+        return cb(null, x);
       } else loadNodeModules(x, basedir, function (err, n, pkg) {
-        if (err) cb(err);else if (isCore(x)) return cb(null, x);else if (n) {
+        if (err) cb(err);else if (n) {
           return maybeUnwrapSymlink(n, opts, function (err, realN) {
             if (err) {
               cb(err);
@@ -73753,7 +76373,6 @@
       if (n) return maybeUnwrapSymlink$1(n, opts);
     }
 
-    if (isCore(x)) return x;
     var err = new Error("Cannot find module '" + x + "' from '" + parent + "'");
     err.code = 'MODULE_NOT_FOUND';
     throw err;
@@ -76484,11 +79103,13 @@
     "syntax-object-rest-spread": syntaxObjectRestSpread,
     "syntax-optional-catch-binding": syntaxOptionalCatchBinding,
     "syntax-pipeline-operator": syntaxPipelineOperator,
+    "syntax-top-level-await": syntaxTopLevelAwait,
     "syntax-typescript": syntaxTypescript,
     "proposal-async-generator-functions": proposalAsyncGeneratorFunctions,
     "proposal-class-properties": proposalClassProperties,
     "proposal-decorators": proposalDecorators,
     "proposal-do-expressions": proposalDoExpressions,
+    "proposal-dynamic-import": proposalDynamicImport,
     "proposal-export-default-from": proposalExportDefaultFrom,
     "proposal-export-namespace-from": proposalExportNamespaceFrom,
     "proposal-function-bind": proposalFunctionBind,
@@ -76513,7 +79134,7 @@
     "transform-destructuring": transformDestructuring,
     "transform-dotall-regex": transformDotallRegex,
     "transform-duplicate-keys": transformDuplicateKeys,
-    "transform-exponentiation-operator": transformExponentiationOperator,
+    "transform-exponentiation-operator": transformExponentialOperator,
     "transform-flow-comments": transformFlowComments,
     "transform-flow-strip-types": transformFlowStripTypes,
     "transform-for-of": transformForOf,
@@ -76526,6 +79147,7 @@
     "transform-modules-commonjs": transformModulesCommonjs,
     "transform-modules-systemjs": transformModulesSystemjs,
     "transform-modules-umd": transformModulesUmd,
+    "transform-named-capturing-groups-regex": transformNamedCapturingGroupsRegex,
     "transform-new-target": transformNewTarget,
     "transform-object-assign": transformObjectAssign,
     "transform-object-super": transformObjectSuper,
@@ -76681,6 +79303,20541 @@
     };
   });
 
+  var envs = [
+  	{
+  		name: "nodejs",
+  		version: "0.2.0",
+  		date: "2011-08-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.3.0",
+  		date: "2011-08-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.4.0",
+  		date: "2011-08-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.5.0",
+  		date: "2011-08-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.6.0",
+  		date: "2011-11-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.7.0",
+  		date: "2012-01-17",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.8.0",
+  		date: "2012-06-22",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.9.0",
+  		date: "2012-07-20",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.10.0",
+  		date: "2013-03-11",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.11.0",
+  		date: "2013-03-28",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "0.12.0",
+  		date: "2015-02-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.0.0",
+  		date: "2015-01-14"
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.1.0",
+  		date: "2015-02-03"
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.2.0",
+  		date: "2015-02-11"
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.3.0",
+  		date: "2015-02-20"
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.5.0",
+  		date: "2015-03-06"
+  	},
+  	{
+  		name: "iojs",
+  		version: "1.6.0",
+  		date: "2015-03-20"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.0.0",
+  		date: "2015-05-04"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.1.0",
+  		date: "2015-05-24"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.2.0",
+  		date: "2015-06-01"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.3.0",
+  		date: "2015-06-13"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.4.0",
+  		date: "2015-07-17"
+  	},
+  	{
+  		name: "iojs",
+  		version: "2.5.0",
+  		date: "2015-07-28"
+  	},
+  	{
+  		name: "iojs",
+  		version: "3.0.0",
+  		date: "2015-08-04"
+  	},
+  	{
+  		name: "iojs",
+  		version: "3.1.0",
+  		date: "2015-08-19"
+  	},
+  	{
+  		name: "iojs",
+  		version: "3.2.0",
+  		date: "2015-08-25"
+  	},
+  	{
+  		name: "iojs",
+  		version: "3.3.0",
+  		date: "2015-09-02"
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.0.0",
+  		date: "2015-09-08",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.1.0",
+  		date: "2015-09-17",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.2.0",
+  		date: "2015-10-12",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.3.0",
+  		date: "2016-02-09",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.4.0",
+  		date: "2016-03-08",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.5.0",
+  		date: "2016-08-16",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.6.0",
+  		date: "2016-09-27",
+  		lts: "Argon",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.7.0",
+  		date: "2016-12-06",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.8.0",
+  		date: "2017-02-21",
+  		lts: "Argon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "4.9.0",
+  		date: "2018-03-28",
+  		lts: "Argon",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.0.0",
+  		date: "2015-10-29",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.1.0",
+  		date: "2015-11-17",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.2.0",
+  		date: "2015-12-09",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.3.0",
+  		date: "2015-12-15",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.4.0",
+  		date: "2016-01-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.5.0",
+  		date: "2016-01-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.6.0",
+  		date: "2016-02-09",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.7.0",
+  		date: "2016-02-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.8.0",
+  		date: "2016-03-09",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.9.0",
+  		date: "2016-03-16",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.10.0",
+  		date: "2016-04-01",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.11.0",
+  		date: "2016-04-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "5.12.0",
+  		date: "2016-06-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.0.0",
+  		date: "2016-04-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.1.0",
+  		date: "2016-05-05",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.2.0",
+  		date: "2016-05-17",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.3.0",
+  		date: "2016-07-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.4.0",
+  		date: "2016-08-12",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.5.0",
+  		date: "2016-08-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.6.0",
+  		date: "2016-09-14",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.7.0",
+  		date: "2016-09-27",
+  		lts: false,
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.8.0",
+  		date: "2016-10-12",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.9.0",
+  		date: "2016-10-18",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.10.0",
+  		date: "2017-02-21",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.11.0",
+  		date: "2017-06-06",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.12.0",
+  		date: "2017-11-06",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.13.0",
+  		date: "2018-02-10",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.14.0",
+  		date: "2018-03-28",
+  		lts: "Boron",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.15.0",
+  		date: "2018-11-27",
+  		lts: "Boron",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.16.0",
+  		date: "2018-12-26",
+  		lts: "Boron",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "6.17.0",
+  		date: "2019-02-28",
+  		lts: "Boron",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.0.0",
+  		date: "2016-10-25",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.1.0",
+  		date: "2016-11-08",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.2.0",
+  		date: "2016-11-22",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.3.0",
+  		date: "2016-12-20",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.4.0",
+  		date: "2017-01-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.5.0",
+  		date: "2017-01-31",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.6.0",
+  		date: "2017-02-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.7.0",
+  		date: "2017-02-28",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.8.0",
+  		date: "2017-03-29",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.9.0",
+  		date: "2017-04-11",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "7.10.0",
+  		date: "2017-05-02",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.0.0",
+  		date: "2017-05-30",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.1.0",
+  		date: "2017-06-08",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.2.0",
+  		date: "2017-07-19",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.3.0",
+  		date: "2017-08-08",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.4.0",
+  		date: "2017-08-15",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.5.0",
+  		date: "2017-09-12",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.6.0",
+  		date: "2017-09-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.7.0",
+  		date: "2017-10-11",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.8.0",
+  		date: "2017-10-24",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.9.0",
+  		date: "2017-10-31",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.10.0",
+  		date: "2018-03-06",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.11.0",
+  		date: "2018-03-28",
+  		lts: "Carbon",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.12.0",
+  		date: "2018-09-10",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.13.0",
+  		date: "2018-11-20",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.14.0",
+  		date: "2018-11-27",
+  		lts: "Carbon",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.15.0",
+  		date: "2018-12-26",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.16.0",
+  		date: "2019-04-16",
+  		lts: "Carbon",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "8.17.0",
+  		date: "2019-12-17",
+  		lts: "Carbon",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.0.0",
+  		date: "2017-10-31",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.1.0",
+  		date: "2017-11-07",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.2.0",
+  		date: "2017-11-14",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.3.0",
+  		date: "2017-12-12",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.4.0",
+  		date: "2018-01-10",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.5.0",
+  		date: "2018-01-31",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.6.0",
+  		date: "2018-02-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.7.0",
+  		date: "2018-03-01",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.8.0",
+  		date: "2018-03-07",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.9.0",
+  		date: "2018-03-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.10.0",
+  		date: "2018-03-28",
+  		lts: false,
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "9.11.0",
+  		date: "2018-04-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.0.0",
+  		date: "2018-04-24",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.1.0",
+  		date: "2018-05-08",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.2.0",
+  		date: "2018-05-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.3.0",
+  		date: "2018-05-29",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.4.0",
+  		date: "2018-06-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.5.0",
+  		date: "2018-06-20",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.6.0",
+  		date: "2018-07-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.7.0",
+  		date: "2018-07-18",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.8.0",
+  		date: "2018-08-01",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.9.0",
+  		date: "2018-08-15",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.10.0",
+  		date: "2018-09-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.11.0",
+  		date: "2018-09-19",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.12.0",
+  		date: "2018-10-10",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.13.0",
+  		date: "2018-10-30",
+  		lts: "Dubnium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.14.0",
+  		date: "2018-11-27",
+  		lts: "Dubnium",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.15.0",
+  		date: "2018-12-26",
+  		lts: "Dubnium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.16.0",
+  		date: "2019-05-28",
+  		lts: "Dubnium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.17.0",
+  		date: "2019-10-21",
+  		lts: "Dubnium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "10.18.0",
+  		date: "2019-12-16",
+  		lts: "Dubnium",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.0.0",
+  		date: "2018-10-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.1.0",
+  		date: "2018-10-30",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.2.0",
+  		date: "2018-11-15",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.3.0",
+  		date: "2018-11-27",
+  		lts: false,
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.4.0",
+  		date: "2018-12-07",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.5.0",
+  		date: "2018-12-18",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.6.0",
+  		date: "2018-12-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.7.0",
+  		date: "2019-01-17",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.8.0",
+  		date: "2019-01-24",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.9.0",
+  		date: "2019-01-30",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.10.0",
+  		date: "2019-02-14",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.11.0",
+  		date: "2019-03-05",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.12.0",
+  		date: "2019-03-14",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.13.0",
+  		date: "2019-03-28",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.14.0",
+  		date: "2019-04-10",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "11.15.0",
+  		date: "2019-04-30",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.0.0",
+  		date: "2019-04-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.1.0",
+  		date: "2019-04-29",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.2.0",
+  		date: "2019-05-07",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.3.0",
+  		date: "2019-05-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.4.0",
+  		date: "2019-06-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.5.0",
+  		date: "2019-06-26",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.6.0",
+  		date: "2019-07-03",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.7.0",
+  		date: "2019-07-23",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.8.0",
+  		date: "2019-08-06",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.9.0",
+  		date: "2019-08-20",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.10.0",
+  		date: "2019-09-04",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.11.0",
+  		date: "2019-09-25",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.12.0",
+  		date: "2019-10-11",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.13.0",
+  		date: "2019-10-21",
+  		lts: "Erbium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "12.14.0",
+  		date: "2019-12-16",
+  		lts: "Erbium",
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.0.0",
+  		date: "2019-10-10",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.1.0",
+  		date: "2019-11-05",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.2.0",
+  		date: "2019-11-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.3.0",
+  		date: "2019-12-03",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.4.0",
+  		date: "2019-12-17",
+  		lts: false,
+  		security: true
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.5.0",
+  		date: "2019-12-18",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.6.0",
+  		date: "2020-01-07",
+  		lts: false,
+  		security: false
+  	}
+  ];
+
+  var envs$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': envs
+  });
+
+  var browsers = {
+    A: "ie",
+    B: "edge",
+    C: "firefox",
+    D: "chrome",
+    E: "safari",
+    F: "opera",
+    G: "ios_saf",
+    H: "op_mini",
+    I: "android",
+    J: "bb",
+    K: "op_mob",
+    L: "and_chr",
+    M: "and_ff",
+    N: "ie_mob",
+    O: "and_uc",
+    P: "samsung",
+    Q: "and_qq",
+    R: "baidu",
+    S: "kaios"
+  };
+
+  var browsers_1 = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var browsers$1 = exports.browsers = browsers;
+  });
+
+  unwrapExports(browsers_1);
+  var browsers_2 = browsers_1.browsers;
+
+  var browserVersions = {
+    "0": "56",
+    "1": "57",
+    "2": "58",
+    "3": "60",
+    "4": "62",
+    "5": "63",
+    "6": "64",
+    "7": "11.1",
+    "8": "68",
+    "9": "12.1",
+    A: "10",
+    B: "11",
+    C: "12",
+    D: "7",
+    E: "9",
+    F: "4",
+    G: "8",
+    H: "6",
+    I: "17",
+    J: "18",
+    K: "13",
+    L: "15",
+    M: "46",
+    N: "16",
+    O: "5",
+    P: "19",
+    Q: "20",
+    R: "21",
+    S: "22",
+    T: "23",
+    U: "24",
+    V: "25",
+    W: "26",
+    X: "27",
+    Y: "28",
+    Z: "29",
+    a: "30",
+    b: "31",
+    c: "32",
+    d: "33",
+    e: "34",
+    f: "14",
+    g: "36",
+    h: "37",
+    i: "38",
+    j: "39",
+    k: "40",
+    l: "41",
+    m: "42",
+    n: "43",
+    o: "44",
+    p: "45",
+    q: "76",
+    r: "47",
+    s: "48",
+    t: "49",
+    u: "50",
+    v: "51",
+    w: "52",
+    x: "53",
+    y: "54",
+    z: "55",
+    AB: "35",
+    BB: "66",
+    CB: "4.2-4.3",
+    DB: "65",
+    EB: "59",
+    FB: "67",
+    GB: "11.5",
+    HB: "69",
+    IB: "70",
+    JB: "71",
+    KB: "72",
+    LB: "73",
+    MB: "61",
+    NB: "3",
+    OB: "10.1",
+    PB: "3.2",
+    QB: "78",
+    RB: "9.0-9.2",
+    SB: "77",
+    TB: "80",
+    UB: "81",
+    VB: "3.1",
+    WB: "75",
+    XB: "5.1",
+    YB: "6.1",
+    ZB: "7.1",
+    aB: "9.1",
+    bB: "74",
+    cB: "3.6",
+    dB: "3.5",
+    eB: "TP",
+    fB: "9.5-9.6",
+    gB: "10.0-10.1",
+    hB: "10.5",
+    iB: "10.6",
+    jB: "2",
+    kB: "11.6",
+    lB: "4.0-4.1",
+    mB: "5.5",
+    nB: "5.0-5.1",
+    oB: "6.0-6.1",
+    pB: "7.0-7.1",
+    qB: "8.1-8.4",
+    rB: "79",
+    sB: "9.3",
+    tB: "10.0-10.2",
+    uB: "10.3",
+    vB: "11.0-11.2",
+    wB: "11.3-11.4",
+    xB: "12.0-12.1",
+    yB: "12.2-12.4",
+    zB: "13.0-13.1",
+    "0B": "13.2",
+    "1B": "13.3",
+    "2B": "all",
+    "3B": "2.1",
+    "4B": "2.2",
+    "5B": "2.3",
+    "6B": "4.1",
+    "7B": "4.4",
+    "8B": "4.4.3-4.4.4",
+    "9B": "12.12",
+    AC: "5.0-5.4",
+    BC: "6.2-6.4",
+    CC: "7.2-7.4",
+    DC: "8.2",
+    EC: "9.2",
+    FC: "1.2",
+    GC: "7.12",
+    HC: "2.5"
+  };
+
+  var browserVersions_1 = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var browserVersions$1 = exports.browserVersions = browserVersions;
+  });
+
+  unwrapExports(browserVersions_1);
+  var browserVersions_2 = browserVersions_1.browserVersions;
+
+  var agents = {
+    A: {
+      A: {
+        H: 0.0092277,
+        D: 0.0092277,
+        G: 0.110732,
+        E: 0.0415246,
+        A: 0.0369108,
+        B: 1.43029,
+        mB: 0.009298
+      },
+      B: "ms",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "mB", "H", "D", "G", "E", "A", "B", "", "", ""],
+      E: "IE",
+      F: {
+        mB: 962323200,
+        H: 998870400,
+        D: 1161129600,
+        G: 1237420800,
+        E: 1300060800,
+        A: 1346716800,
+        B: 1381968000
+      }
+    },
+    B: {
+      A: {
+        C: 0.008806,
+        K: 0.008806,
+        f: 0.017612,
+        L: 0.017612,
+        N: 0.039627,
+        I: 0.149702,
+        J: 1.79642,
+        q: 0
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "C", "K", "f", "L", "N", "I", "J", "q", "", ""],
+      E: "Edge",
+      F: {
+        C: 1438128000,
+        K: 1447286400,
+        f: 1470096000,
+        L: 1491868800,
+        N: 1508198400,
+        I: 1525046400,
+        J: 1542067200,
+        q: null
+      },
+      D: {
+        C: "ms",
+        K: "ms",
+        f: "ms",
+        L: "ms",
+        N: "ms",
+        I: "ms",
+        J: "ms"
+      }
+    },
+    C: {
+      A: {
+        "0": 0.026418,
+        "1": 0.013209,
+        "2": 0.008806,
+        "3": 0.039627,
+        "4": 0.008806,
+        "5": 0.017612,
+        "6": 0.026418,
+        "8": 0.13209,
+        jB: 0.004827,
+        NB: 0.00487,
+        F: 0.00974,
+        O: 0.004879,
+        H: 0.020136,
+        D: 0.005725,
+        G: 0.004525,
+        E: 0.00533,
+        A: 0.004283,
+        B: 0.009042,
+        C: 0.004471,
+        K: 0.004486,
+        f: 0.00453,
+        L: 0.004465,
+        N: 0.004417,
+        I: 0.008922,
+        J: 0.004393,
+        P: 0.004443,
+        Q: 0.004283,
+        R: 0.008806,
+        S: 0.004393,
+        T: 0.004525,
+        U: 0.008786,
+        V: 0.004403,
+        W: 0.004317,
+        X: 0.004393,
+        Y: 0.004418,
+        Z: 0.008834,
+        a: 0.004403,
+        b: 0.008928,
+        c: 0.004471,
+        d: 0.008922,
+        e: 0.004707,
+        AB: 0.022015,
+        g: 0.004465,
+        h: 0.004783,
+        i: 0.008806,
+        j: 0.004783,
+        k: 0.00487,
+        l: 0.005029,
+        m: 0.0047,
+        n: 0.008806,
+        o: 0.008806,
+        p: 0.013209,
+        M: 0.004525,
+        r: 0.022015,
+        s: 0.030821,
+        t: 0.004403,
+        u: 0.013209,
+        v: 0.008806,
+        w: 0.145299,
+        x: 0.008806,
+        y: 0.013209,
+        z: 0.008806,
+        EB: 0.008806,
+        MB: 0.013209,
+        DB: 0.052836,
+        BB: 0.04403,
+        FB: 0.026418,
+        HB: 0.074851,
+        IB: 0.761719,
+        JB: 2.42605,
+        KB: 0.057239,
+        LB: 0,
+        dB: 0.008786,
+        cB: 0.00487
+      },
+      B: "moz",
+      C: ["", "", "", "jB", "NB", "dB", "cB", "F", "O", "H", "D", "G", "E", "A", "B", "C", "K", "f", "L", "N", "I", "J", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "AB", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "M", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "EB", "3", "MB", "4", "5", "6", "DB", "BB", "FB", "8", "HB", "IB", "JB", "KB", "LB", ""],
+      E: "Firefox",
+      F: {
+        "0": 1506556800,
+        "1": 1510617600,
+        "2": 1516665600,
+        "3": 1525824000,
+        "4": 1536105600,
+        "5": 1540252800,
+        "6": 1544486400,
+        "8": 1562630400,
+        jB: 1161648000,
+        NB: 1213660800,
+        dB: 1246320000,
+        cB: 1264032000,
+        F: 1300752000,
+        O: 1308614400,
+        H: 1313452800,
+        D: 1317081600,
+        G: 1317081600,
+        E: 1320710400,
+        A: 1324339200,
+        B: 1327968000,
+        C: 1331596800,
+        K: 1335225600,
+        f: 1338854400,
+        L: 1342483200,
+        N: 1346112000,
+        I: 1349740800,
+        J: 1353628800,
+        P: 1357603200,
+        Q: 1361232000,
+        R: 1364860800,
+        S: 1368489600,
+        T: 1372118400,
+        U: 1375747200,
+        V: 1379376000,
+        W: 1386633600,
+        X: 1391472000,
+        Y: 1395100800,
+        Z: 1398729600,
+        a: 1402358400,
+        b: 1405987200,
+        c: 1409616000,
+        d: 1413244800,
+        e: 1417392000,
+        AB: 1421107200,
+        g: 1424736000,
+        h: 1428278400,
+        i: 1431475200,
+        j: 1435881600,
+        k: 1439251200,
+        l: 1442880000,
+        m: 1446508800,
+        n: 1450137600,
+        o: 1453852800,
+        p: 1457395200,
+        M: 1461628800,
+        r: 1465257600,
+        s: 1470096000,
+        t: 1474329600,
+        u: 1479168000,
+        v: 1485216000,
+        w: 1488844800,
+        x: 1492560000,
+        y: 1497312000,
+        z: 1502150400,
+        EB: 1520985600,
+        MB: 1529971200,
+        DB: 1548720000,
+        BB: 1552953600,
+        FB: 1558396800,
+        HB: 1567468800,
+        IB: 1571788800,
+        JB: 1575331200,
+        KB: null,
+        LB: null
+      }
+    },
+    D: {
+      A: {
+        "0": 0.035224,
+        "1": 0.066045,
+        "2": 0.030821,
+        "3": 0.030821,
+        "4": 0.030821,
+        "5": 0.277389,
+        "6": 0.017612,
+        "8": 0.061642,
+        F: 0.004706,
+        O: 0.004879,
+        H: 0.004879,
+        D: 0.005591,
+        G: 0.005591,
+        E: 0.005591,
+        A: 0.004534,
+        B: 0.004464,
+        C: 0.010424,
+        K: 0.004403,
+        f: 0.004706,
+        L: 0.015087,
+        N: 0.004393,
+        I: 0.004393,
+        J: 0.008652,
+        P: 0.004418,
+        Q: 0.004393,
+        R: 0.004317,
+        S: 0.004465,
+        T: 0.008786,
+        U: 0.008806,
+        V: 0.004461,
+        W: 0.004403,
+        X: 0.004326,
+        Y: 0.0047,
+        Z: 0.004461,
+        a: 0.004403,
+        b: 0.013209,
+        c: 0.004465,
+        d: 0.013209,
+        e: 0.008806,
+        AB: 0.008806,
+        g: 0.008806,
+        h: 0.004464,
+        i: 0.022015,
+        j: 0.004464,
+        k: 0.013209,
+        l: 0.008806,
+        m: 0.004403,
+        n: 0.017612,
+        o: 0.004465,
+        p: 0.004403,
+        M: 0.004403,
+        r: 0.008806,
+        s: 0.035224,
+        t: 0.515151,
+        u: 0.008806,
+        v: 0.013209,
+        w: 0.004403,
+        x: 0.022015,
+        y: 0.026418,
+        z: 0.04403,
+        EB: 0.017612,
+        MB: 0.035224,
+        DB: 0.052836,
+        BB: 0.035224,
+        FB: 0.066045,
+        HB: 0.184926,
+        IB: 0.149702,
+        JB: 0.198135,
+        KB: 0.206941,
+        LB: 0.184926,
+        bB: 0.224553,
+        WB: 0.268583,
+        q: 0.281792,
+        SB: 0.409479,
+        QB: 13.9971,
+        rB: 11.5006,
+        TB: 0.039627,
+        UB: 0.017612
+      },
+      B: "webkit",
+      C: ["F", "O", "H", "D", "G", "E", "A", "B", "C", "K", "f", "L", "N", "I", "J", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "AB", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "M", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "EB", "3", "MB", "4", "5", "6", "DB", "BB", "FB", "8", "HB", "IB", "JB", "KB", "LB", "bB", "WB", "q", "SB", "QB", "rB", "TB", "UB"],
+      E: "Chrome",
+      F: {
+        "0": 1485302400,
+        "1": 1489017600,
+        "2": 1492560000,
+        "3": 1500940800,
+        "4": 1508198400,
+        "5": 1512518400,
+        "6": 1516752000,
+        "8": 1532390400,
+        F: 1264377600,
+        O: 1274745600,
+        H: 1283385600,
+        D: 1287619200,
+        G: 1291248000,
+        E: 1296777600,
+        A: 1299542400,
+        B: 1303862400,
+        C: 1307404800,
+        K: 1312243200,
+        f: 1316131200,
+        L: 1316131200,
+        N: 1319500800,
+        I: 1323734400,
+        J: 1328659200,
+        P: 1332892800,
+        Q: 1337040000,
+        R: 1340668800,
+        S: 1343692800,
+        T: 1348531200,
+        U: 1352246400,
+        V: 1357862400,
+        W: 1361404800,
+        X: 1364428800,
+        Y: 1369094400,
+        Z: 1374105600,
+        a: 1376956800,
+        b: 1384214400,
+        c: 1389657600,
+        d: 1392940800,
+        e: 1397001600,
+        AB: 1400544000,
+        g: 1405468800,
+        h: 1409011200,
+        i: 1412640000,
+        j: 1416268800,
+        k: 1421798400,
+        l: 1425513600,
+        m: 1429401600,
+        n: 1432080000,
+        o: 1437523200,
+        p: 1441152000,
+        M: 1444780800,
+        r: 1449014400,
+        s: 1453248000,
+        t: 1456963200,
+        u: 1460592000,
+        v: 1464134400,
+        w: 1469059200,
+        x: 1472601600,
+        y: 1476230400,
+        z: 1480550400,
+        EB: 1496707200,
+        MB: 1504569600,
+        DB: 1520294400,
+        BB: 1523923200,
+        FB: 1527552000,
+        HB: 1536019200,
+        IB: 1539648000,
+        JB: 1543968000,
+        KB: 1548720000,
+        LB: 1552348800,
+        bB: 1555977600,
+        WB: 1559606400,
+        q: 1564444800,
+        SB: 1568073600,
+        QB: 1571702400,
+        rB: null,
+        TB: null,
+        UB: null
+      }
+    },
+    E: {
+      A: {
+        "7": 0.184926,
+        "9": 0.435897,
+        F: 0,
+        O: 0.004403,
+        H: 0.004349,
+        D: 0.004465,
+        G: 0.026418,
+        E: 0.013209,
+        A: 0.017612,
+        B: 0.039627,
+        C: 0.136493,
+        K: 2.29396,
+        VB: 0,
+        PB: 0.008692,
+        XB: 0.66045,
+        YB: 0.00456,
+        ZB: 0.004283,
+        aB: 0.035224,
+        OB: 0.096866,
+        eB: 0
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "VB", "PB", "F", "O", "XB", "H", "YB", "D", "ZB", "G", "E", "aB", "A", "OB", "B", "7", "C", "9", "K", "eB", "", ""],
+      E: "Safari",
+      F: {
+        "7": 1522281600,
+        "9": 1553472000,
+        VB: 1205798400,
+        PB: 1226534400,
+        F: 1244419200,
+        O: 1275868800,
+        XB: 1311120000,
+        H: 1343174400,
+        YB: 1382400000,
+        D: 1382400000,
+        ZB: 1410998400,
+        G: 1413417600,
+        E: 1443657600,
+        aB: 1458518400,
+        A: 1474329600,
+        OB: 1490572800,
+        B: 1505779200,
+        C: 1537142400,
+        K: 1568851200,
+        eB: null
+      }
+    },
+    F: {
+      A: {
+        "0": 0.008806,
+        "1": 0.008806,
+        "2": 0.013209,
+        "3": 0.004403,
+        "4": 0.004403,
+        "5": 0.013209,
+        "6": 0.070448,
+        "7": 0.006229,
+        "9": 0.008806,
+        E: 0.0082,
+        B: 0.016581,
+        C: 0.004317,
+        L: 0.00685,
+        N: 0.00685,
+        I: 0.00685,
+        J: 0.005014,
+        P: 0.006015,
+        Q: 0.004879,
+        R: 0.006597,
+        S: 0.006597,
+        T: 0.013434,
+        U: 0.006702,
+        V: 0.006015,
+        W: 0.005595,
+        X: 0.004393,
+        Y: 0.008652,
+        Z: 0.004879,
+        a: 0.004879,
+        b: 0.008806,
+        c: 0.005152,
+        d: 0.005014,
+        e: 0.009758,
+        AB: 0.004879,
+        g: 0.013209,
+        h: 0.004283,
+        i: 0.004367,
+        j: 0.004534,
+        k: 0.004367,
+        l: 0.004227,
+        m: 0.004418,
+        n: 0.009042,
+        o: 0.004227,
+        p: 0.004725,
+        M: 0.004417,
+        r: 0.008942,
+        s: 0.004707,
+        t: 0.004827,
+        u: 0.004707,
+        v: 0.004707,
+        w: 0.004326,
+        x: 0.008922,
+        y: 0.014349,
+        z: 0.004725,
+        fB: 0.00685,
+        gB: 0,
+        hB: 0.008392,
+        iB: 0.004706,
+        GB: 0.004879,
+        kB: 0.008786
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "E", "fB", "gB", "hB", "iB", "B", "7", "GB", "kB", "C", "9", "L", "N", "I", "J", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "AB", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "M", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "", "", ""],
+      E: "Opera",
+      F: {
+        "0": 1537833600,
+        "1": 1543363200,
+        "2": 1548201600,
+        "3": 1554768000,
+        "4": 1561593600,
+        "5": 1566259200,
+        "6": 1570406400,
+        "7": 1302566400,
+        "9": 1352073600,
+        E: 1150761600,
+        fB: 1223424000,
+        gB: 1251763200,
+        hB: 1267488000,
+        iB: 1277942400,
+        B: 1292457600,
+        GB: 1309219200,
+        kB: 1323129600,
+        C: 1323129600,
+        L: 1372723200,
+        N: 1377561600,
+        I: 1381104000,
+        J: 1386288000,
+        P: 1390867200,
+        Q: 1393891200,
+        R: 1399334400,
+        S: 1401753600,
+        T: 1405987200,
+        U: 1409616000,
+        V: 1413331200,
+        W: 1417132800,
+        X: 1422316800,
+        Y: 1425945600,
+        Z: 1430179200,
+        a: 1433808000,
+        b: 1438646400,
+        c: 1442448000,
+        d: 1445904000,
+        e: 1449100800,
+        AB: 1454371200,
+        g: 1457308800,
+        h: 1462320000,
+        i: 1465344000,
+        j: 1470096000,
+        k: 1474329600,
+        l: 1477267200,
+        m: 1481587200,
+        n: 1486425600,
+        o: 1490054400,
+        p: 1494374400,
+        M: 1498003200,
+        r: 1502236800,
+        s: 1506470400,
+        t: 1510099200,
+        u: 1515024000,
+        v: 1517961600,
+        w: 1521676800,
+        x: 1525910400,
+        y: 1530144000,
+        z: 1534982400
+      },
+      D: {
+        "7": "o",
+        "9": "o",
+        E: "o",
+        B: "o",
+        C: "o",
+        fB: "o",
+        gB: "o",
+        hB: "o",
+        iB: "o",
+        GB: "o",
+        kB: "o"
+      }
+    },
+    G: {
+      A: {
+        G: 0.00128072,
+        PB: 0.00512289,
+        lB: 0.00256144,
+        CB: 0,
+        nB: 0.00768433,
+        oB: 0.00256144,
+        pB: 0.00896505,
+        qB: 0.0166494,
+        RB: 0.0153687,
+        sB: 0.162652,
+        tB: 0.0563518,
+        uB: 0.181862,
+        vB: 0.153687,
+        wB: 0.274074,
+        xB: 0.391901,
+        yB: 2.77404,
+        zB: 4.02787,
+        "0B": 1.83399,
+        "1B": 2.88931
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "PB", "lB", "CB", "nB", "oB", "pB", "G", "qB", "RB", "sB", "tB", "uB", "vB", "wB", "xB", "yB", "zB", "0B", "1B", "", ""],
+      E: "iOS Safari",
+      F: {
+        PB: 1270252800,
+        lB: 1283904000,
+        CB: 1299628800,
+        nB: 1331078400,
+        oB: 1359331200,
+        pB: 1394409600,
+        G: 1410912000,
+        qB: 1413763200,
+        RB: 1442361600,
+        sB: 1458518400,
+        tB: 1473724800,
+        uB: 1490572800,
+        vB: 1505779200,
+        wB: 1522281600,
+        xB: 1537142400,
+        yB: 1553472000,
+        zB: 1568851200,
+        "0B": 1572220800,
+        "1B": null
+      }
+    },
+    H: {
+      A: {
+        "2B": 1.16575
+      },
+      B: "o",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "2B", "", "", ""],
+      E: "Opera Mini",
+      F: {
+        "2B": 1426464000
+      }
+    },
+    I: {
+      A: {
+        NB: 0.000748894,
+        F: 0.00324521,
+        q: 0,
+        "3B": 0,
+        "4B": 0.000499263,
+        "5B": 0.000499263,
+        "6B": 0.00574152,
+        CB: 0.125565,
+        "7B": 0,
+        "8B": 0.0763872
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "3B", "4B", "5B", "NB", "F", "6B", "CB", "7B", "8B", "q", "", "", ""],
+      E: "Android Browser",
+      F: {
+        "3B": 1256515200,
+        "4B": 1274313600,
+        "5B": 1291593600,
+        NB: 1298332800,
+        F: 1318896000,
+        "6B": 1341792000,
+        CB: 1374624000,
+        "7B": 1386547200,
+        "8B": 1401667200,
+        q: 1566777600
+      }
+    },
+    J: {
+      A: {
+        D: 0,
+        A: 0.011194
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "D", "A", "", "", ""],
+      E: "Blackberry Browser",
+      F: {
+        D: 1325376000,
+        A: 1359504000
+      }
+    },
+    K: {
+      A: {
+        "7": 0,
+        "9": 0,
+        A: 0,
+        B: 0,
+        C: 0,
+        M: 0.0111391,
+        GB: 0
+      },
+      B: "o",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "B", "7", "GB", "C", "9", "M", "", "", ""],
+      E: "Opera Mobile",
+      F: {
+        "7": 1314835200,
+        "9": 1349740800,
+        A: 1287100800,
+        B: 1300752000,
+        GB: 1318291200,
+        C: 1330300800,
+        M: 1474588800
+      },
+      D: {
+        M: "webkit"
+      }
+    },
+    L: {
+      A: {
+        QB: 35.1619
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "QB", "", "", ""],
+      E: "Chrome for Android",
+      F: {
+        QB: 1571702400
+      }
+    },
+    M: {
+      A: {
+        "8": 0.229477
+      },
+      B: "moz",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "8", "", "", ""],
+      E: "Firefox for Android",
+      F: {
+        "8": 1567468800
+      }
+    },
+    N: {
+      A: {
+        A: 0.0115934,
+        B: 0.050373
+      },
+      B: "ms",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "A", "B", "", "", ""],
+      E: "IE Mobile",
+      F: {
+        A: 1340150400,
+        B: 1353456000
+      }
+    },
+    O: {
+      A: {
+        "9B": 2.88246
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "9B", "", "", ""],
+      E: "UC Browser for Android",
+      F: {
+        "9B": 1471392000
+      },
+      D: {
+        "9B": "webkit"
+      }
+    },
+    P: {
+      A: {
+        F: 0.33211,
+        AC: 0.0311353,
+        BC: 0.0207569,
+        CC: 0.114163,
+        DC: 0.0415137,
+        EC: 0.321732,
+        OB: 2.72953
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "F", "AC", "BC", "CC", "DC", "EC", "OB", "", "", ""],
+      E: "Samsung Internet",
+      F: {
+        F: 1461024000,
+        AC: 1481846400,
+        BC: 1509408000,
+        CC: 1528329600,
+        DC: 1546128000,
+        EC: 1554163200,
+        OB: 1567900800
+      }
+    },
+    Q: {
+      A: {
+        FC: 0.201492
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "FC", "", "", ""],
+      E: "QQ Browser",
+      F: {
+        FC: 1483228800
+      }
+    },
+    R: {
+      A: {
+        GC: 0
+      },
+      B: "webkit",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "GC", "", "", ""],
+      E: "Baidu Browser",
+      F: {
+        GC: 1491004800
+      }
+    },
+    S: {
+      A: {
+        HC: 0.195895
+      },
+      B: "moz",
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "HC", "", "", ""],
+      E: "KaiOS Browser",
+      F: {
+        HC: 1527811200
+      }
+    }
+  };
+
+  var agents_1 = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.agents = undefined;
+
+
+
+
+
+
+
+  function unpackBrowserVersions(versionsData) {
+    return Object.keys(versionsData).reduce(function (usage, version) {
+      usage[browserVersions_1.browserVersions[version]] = versionsData[version];
+      return usage;
+    }, {});
+  }
+
+  var agents$1 = exports.agents = Object.keys(agents).reduce(function (map, key) {
+    var versionsData = agents[key];
+    map[browsers_1.browsers[key]] = Object.keys(versionsData).reduce(function (data, entry) {
+      if (entry === 'A') {
+        data.usage_global = unpackBrowserVersions(versionsData[entry]);
+      } else if (entry === 'C') {
+        data.versions = versionsData[entry].reduce(function (list, version) {
+          if (version === '') {
+            list.push(null);
+          } else {
+            list.push(browserVersions_1.browserVersions[version]);
+          }
+
+          return list;
+        }, []);
+      } else if (entry === 'D') {
+        data.prefix_exceptions = unpackBrowserVersions(versionsData[entry]);
+      } else if (entry === 'E') {
+        data.browser = versionsData[entry];
+      } else if (entry === 'F') {
+        data.release_date = Object.keys(versionsData[entry]).reduce(function (map, key) {
+          map[browserVersions_1.browserVersions[key]] = versionsData[entry][key];
+          return map;
+        }, {});
+      } else {
+        data.prefix = versionsData[entry];
+      }
+
+      return data;
+    }, {});
+    return map;
+  }, {});
+  });
+
+  unwrapExports(agents_1);
+  var agents_2 = agents_1.agents;
+
+  var v4 = {
+  	start: "2015-09-08",
+  	lts: "2015-10-12",
+  	maintenance: "2017-04-01",
+  	end: "2018-04-30",
+  	codename: "Argon"
+  };
+  var v5 = {
+  	start: "2015-10-29",
+  	maintenance: "2016-04-30",
+  	end: "2016-06-30"
+  };
+  var v6 = {
+  	start: "2016-04-26",
+  	lts: "2016-10-18",
+  	maintenance: "2018-04-30",
+  	end: "2019-04-30",
+  	codename: "Boron"
+  };
+  var v7 = {
+  	start: "2016-10-25",
+  	maintenance: "2017-04-30",
+  	end: "2017-06-30"
+  };
+  var v8$1 = {
+  	start: "2017-05-30",
+  	lts: "2017-10-31",
+  	maintenance: "2019-01-01",
+  	end: "2019-12-31",
+  	codename: "Carbon"
+  };
+  var v9 = {
+  	start: "2017-10-01",
+  	maintenance: "2018-04-01",
+  	end: "2018-06-30"
+  };
+  var v10 = {
+  	start: "2018-04-24",
+  	lts: "2018-10-30",
+  	maintenance: "2020-04-01",
+  	end: "2021-04-30",
+  	codename: "Dubnium"
+  };
+  var v11 = {
+  	start: "2018-10-23",
+  	maintenance: "2019-04-22",
+  	end: "2019-06-01"
+  };
+  var v12 = {
+  	start: "2019-04-23",
+  	lts: "2019-10-21",
+  	maintenance: "2020-10-21",
+  	end: "2022-04-30",
+  	codename: "Erbium"
+  };
+  var v13 = {
+  	start: "2019-10-22",
+  	maintenance: "2020-04-01",
+  	end: "2020-06-01"
+  };
+  var v14 = {
+  	start: "2020-04-21",
+  	lts: "2020-10-20",
+  	maintenance: "2021-10-20",
+  	end: "2023-04-30",
+  	codename: ""
+  };
+  var releaseSchedule = {
+  	"v0.10": {
+  	start: "2013-03-11",
+  	end: "2016-10-31"
+  },
+  	"v0.12": {
+  	start: "2015-02-06",
+  	end: "2016-12-31"
+  },
+  	v4: v4,
+  	v5: v5,
+  	v6: v6,
+  	v7: v7,
+  	v8: v8$1,
+  	v9: v9,
+  	v10: v10,
+  	v11: v11,
+  	v12: v12,
+  	v13: v13,
+  	v14: v14
+  };
+
+  var releaseSchedule$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    v4: v4,
+    v5: v5,
+    v6: v6,
+    v7: v7,
+    v8: v8$1,
+    v9: v9,
+    v10: v10,
+    v11: v11,
+    v12: v12,
+    v13: v13,
+    v14: v14,
+    'default': releaseSchedule
+  });
+
+  var versions$1 = {
+    "8.0": "79",
+    "7.1": "78",
+    "7.0": "78",
+    "6.1": "76",
+    "6.0": "76",
+    "5.0": "72",
+    "4.2": "69",
+    "4.1": "69",
+    "4.0": "69",
+    "3.1": "66",
+    "3.0": "66",
+    "2.1": "61",
+    "2.0": "61",
+    "1.8": "59",
+    "1.7": "58",
+    "1.6": "56",
+    "1.5": "54",
+    "1.4": "53",
+    "1.3": "52",
+    "1.2": "51",
+    "1.1": "50",
+    "1.0": "49",
+    "0.37": "49",
+    "0.36": "47",
+    "0.35": "45",
+    "0.34": "45",
+    "0.33": "45",
+    "0.32": "45",
+    "0.31": "44",
+    "0.30": "44",
+    "0.29": "43",
+    "0.28": "43",
+    "0.27": "42",
+    "0.26": "42",
+    "0.25": "42",
+    "0.24": "41",
+    "0.23": "41",
+    "0.22": "41",
+    "0.21": "40",
+    "0.20": "39"
+  };
+
+  function BrowserslistError(message) {
+    this.name = 'BrowserslistError';
+    this.message = message;
+    this.browserslist = true;
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, BrowserslistError);
+    }
+  }
+
+  BrowserslistError.prototype = Error.prototype;
+  var error = BrowserslistError;
+
+  function noop$2() {}
+
+  var browser$6 = {
+    loadQueries: function loadQueries() {
+      throw new error('Sharable configs are not supported in client-side build of Browserslist');
+    },
+    getStat: function getStat(opts) {
+      return opts.stats;
+    },
+    loadConfig: function loadConfig(opts) {
+      if (opts.config) {
+        throw new error('Browserslist config are not supported in client-side build');
+      }
+    },
+    loadCountry: function loadCountry() {
+      throw new error('Country statistics is not supported ' + 'in client-side build of Browserslist');
+    },
+    currentNode: function currentNode(resolve, context) {
+      return resolve(['maintained node versions'], context)[0];
+    },
+    parseConfig: noop$2,
+    readConfig: noop$2,
+    findConfig: noop$2,
+    clearCaches: noop$2,
+    oldDataWarning: noop$2
+  };
+
+  var jsReleases = getCjsExportFromNamespace(envs$1);
+
+  var jsEOL = getCjsExportFromNamespace(releaseSchedule$1);
+
+  var agents$1 = agents_1.agents;
+
+
+
+
+
+
+
+
+
+
+
+  var YEAR = 365.259641 * 24 * 60 * 60 * 1000;
+  var ANDROID_EVERGREEN_FIRST = 37;
+  var QUERY_OR = 1;
+  var QUERY_AND = 2;
+
+  function isVersionsMatch(versionA, versionB) {
+    return (versionA + '.').indexOf(versionB + '.') === 0;
+  }
+
+  function isEolReleased(name) {
+    var version = name.slice(1);
+    return jsReleases.some(function (i) {
+      return isVersionsMatch(i.version, version);
+    });
+  }
+
+  function normalize$1(versions) {
+    return versions.filter(function (version) {
+      return typeof version === 'string';
+    });
+  }
+
+  function normalizeElectron(version) {
+    var versionToUse = version;
+
+    if (version.split('.').length === 3) {
+      versionToUse = version.split('.').slice(0, -1).join('.');
+    }
+
+    return versionToUse;
+  }
+
+  function nameMapper(name) {
+    return function mapName(version) {
+      return name + ' ' + version;
+    };
+  }
+
+  function getMajor(version) {
+    return parseInt(version.split('.')[0]);
+  }
+
+  function getMajorVersions(released, number) {
+    if (released.length === 0) return [];
+    var minimum = getMajor(released[released.length - 1]) - parseInt(number) + 1;
+    var selected = [];
+
+    for (var i = released.length - 1; i >= 0; i--) {
+      if (minimum > getMajor(released[i])) break;
+      selected.unshift(released[i]);
+    }
+
+    return selected;
+  }
+
+  function uniq$1(array) {
+    var filtered = [];
+
+    for (var i = 0; i < array.length; i++) {
+      if (filtered.indexOf(array[i]) === -1) filtered.push(array[i]);
+    }
+
+    return filtered;
+  }
+
+  function fillUsage(result, name, data) {
+    for (var i in data) {
+      result[name + ' ' + i] = data[i];
+    }
+  }
+
+  function generateFilter(sign, version) {
+    version = parseFloat(version);
+
+    if (sign === '>') {
+      return function (v) {
+        return parseFloat(v) > version;
+      };
+    } else if (sign === '>=') {
+      return function (v) {
+        return parseFloat(v) >= version;
+      };
+    } else if (sign === '<') {
+      return function (v) {
+        return parseFloat(v) < version;
+      };
+    } else {
+      return function (v) {
+        return parseFloat(v) <= version;
+      };
+    }
+  }
+
+  function generateSemverFilter(sign, version) {
+    version = version.split('.').map(parseSimpleInt);
+    version[1] = version[1] || 0;
+    version[2] = version[2] || 0;
+
+    if (sign === '>') {
+      return function (v) {
+        v = v.split('.').map(parseSimpleInt);
+        return compareSemver(v, version) > 0;
+      };
+    } else if (sign === '>=') {
+      return function (v) {
+        v = v.split('.').map(parseSimpleInt);
+        return compareSemver(v, version) >= 0;
+      };
+    } else if (sign === '<') {
+      return function (v) {
+        v = v.split('.').map(parseSimpleInt);
+        return compareSemver(version, v) > 0;
+      };
+    } else {
+      return function (v) {
+        v = v.split('.').map(parseSimpleInt);
+        return compareSemver(version, v) >= 0;
+      };
+    }
+  }
+
+  function parseSimpleInt(x) {
+    return parseInt(x);
+  }
+
+  function compare$1(a, b) {
+    if (a < b) return -1;
+    if (a > b) return +1;
+    return 0;
+  }
+
+  function compareSemver(a, b) {
+    return compare$1(parseInt(a[0]), parseInt(b[0])) || compare$1(parseInt(a[1] || '0'), parseInt(b[1] || '0')) || compare$1(parseInt(a[2] || '0'), parseInt(b[2] || '0'));
+  }
+
+  function resolveVersion(data, version) {
+    if (data.versions.indexOf(version) !== -1) {
+      return version;
+    } else if (browserslist.versionAliases[data.name][version]) {
+      return browserslist.versionAliases[data.name][version];
+    } else {
+      return false;
+    }
+  }
+
+  function normalizeVersion(data, version) {
+    var resolved = resolveVersion(data, version);
+
+    if (resolved) {
+      return resolved;
+    } else if (data.versions.length === 1) {
+      return data.versions[0];
+    } else {
+      return false;
+    }
+  }
+
+  function filterByYear(since, context) {
+    since = since / 1000;
+    return Object.keys(agents$1).reduce(function (selected, name) {
+      var data = byName(name, context);
+      if (!data) return selected;
+      var versions = Object.keys(data.releaseDate).filter(function (v) {
+        return data.releaseDate[v] >= since;
+      });
+      return selected.concat(versions.map(nameMapper(data.name)));
+    }, []);
+  }
+
+  function cloneData(data) {
+    return {
+      name: data.name,
+      versions: data.versions,
+      released: data.released,
+      releaseDate: data.releaseDate
+    };
+  }
+
+  function byName(name, context) {
+    name = name.toLowerCase();
+    name = browserslist.aliases[name] || name;
+
+    if (context.mobileToDesktop && browserslist.desktopNames[name]) {
+      var desktop = browserslist.data[browserslist.desktopNames[name]];
+
+      if (name === 'android') {
+        return normalizeAndroidData(cloneData(browserslist.data[name]), desktop);
+      } else {
+        var cloned = cloneData(desktop);
+        cloned.name = name;
+        return cloned;
+      }
+    }
+
+    return browserslist.data[name];
+  }
+
+  function normalizeAndroidVersions(androidVersions, chromeVersions) {
+    var firstEvergreen = ANDROID_EVERGREEN_FIRST;
+    var last = chromeVersions[chromeVersions.length - 1];
+    return androidVersions.filter(function (version) {
+      return /^(?:[2-4]\.|[34]$)/.test(version);
+    }).concat(chromeVersions.slice(firstEvergreen - last - 1));
+  }
+
+  function normalizeAndroidData(android, chrome) {
+    android.released = normalizeAndroidVersions(android.released, chrome.released);
+    android.versions = normalizeAndroidVersions(android.versions, chrome.versions);
+    return android;
+  }
+
+  function checkName(name, context) {
+    var data = byName(name, context);
+    if (!data) throw new error('Unknown browser ' + name);
+    return data;
+  }
+
+  function unknownQuery(query) {
+    return new error('Unknown browser query `' + query + '`. ' + 'Maybe you are using old Browserslist or made typo in query.');
+  }
+
+  function filterAndroid(list, versions, context) {
+    if (context.mobileToDesktop) return list;
+    var released = browserslist.data.android.released;
+    var last = released[released.length - 1];
+    var diff = last - ANDROID_EVERGREEN_FIRST - versions;
+
+    if (diff > 0) {
+      return list.slice(-1);
+    } else {
+      return list.slice(diff - 1);
+    }
+  }
+
+  function resolve$3(queries, context) {
+    if (Array.isArray(queries)) {
+      queries = flatten(queries.map(parse$6));
+    } else {
+      queries = parse$6(queries);
+    }
+
+    return queries.reduce(function (result, query, index) {
+      var selection = query.queryString;
+      var isExclude = selection.indexOf('not ') === 0;
+
+      if (isExclude) {
+        if (index === 0) {
+          throw new error('Write any browsers query (for instance, `defaults`) ' + 'before `' + selection + '`');
+        }
+
+        selection = selection.slice(4);
+      }
+
+      for (var i = 0; i < QUERIES.length; i++) {
+        var type = QUERIES[i];
+        var match = selection.match(type.regexp);
+
+        if (match) {
+          var args = [context].concat(match.slice(1));
+          var array = type.select.apply(browserslist, args).map(function (j) {
+            var parts = j.split(' ');
+
+            if (parts[1] === '0') {
+              return parts[0] + ' ' + byName(parts[0], context).versions[0];
+            } else {
+              return j;
+            }
+          });
+
+          switch (query.type) {
+            case QUERY_AND:
+              if (isExclude) {
+                return result.filter(function (j) {
+                  return array.indexOf(j) === -1;
+                });
+              } else {
+                return result.filter(function (j) {
+                  return array.indexOf(j) !== -1;
+                });
+              }
+
+            case QUERY_OR:
+            default:
+              if (isExclude) {
+                var filter = {};
+                array.forEach(function (j) {
+                  filter[j] = true;
+                });
+                return result.filter(function (j) {
+                  return !filter[j];
+                });
+              }
+
+              return result.concat(array);
+          }
+        }
+      }
+
+      throw unknownQuery(selection);
+    }, []);
+  }
+
+  var cache$1 = {};
+
+  function browserslist(queries, opts) {
+    if (typeof opts === 'undefined') opts = {};
+
+    if (typeof opts.path === 'undefined') {
+      opts.path = path$2.resolve ? path$2.resolve('.') : '.';
+    }
+
+    if (typeof queries === 'undefined' || queries === null) {
+      var config = browserslist.loadConfig(opts);
+
+      if (config) {
+        queries = config;
+      } else {
+        queries = browserslist.defaults;
+      }
+    }
+
+    if (!(typeof queries === 'string' || Array.isArray(queries))) {
+      throw new error('Browser queries must be an array or string. Got ' + typeof queries + '.');
+    }
+
+    var context = {
+      ignoreUnknownVersions: opts.ignoreUnknownVersions,
+      dangerousExtend: opts.dangerousExtend,
+      mobileToDesktop: opts.mobileToDesktop
+    };
+    browser$6.oldDataWarning(browserslist.data);
+    var stats = browser$6.getStat(opts, browserslist.data);
+
+    if (stats) {
+      context.customUsage = {};
+
+      for (var browser in stats) {
+        fillUsage(context.customUsage, browser, stats[browser]);
+      }
+    }
+
+    var cacheKey = JSON.stringify([queries, context]);
+    if (cache$1[cacheKey]) return cache$1[cacheKey];
+    var result = uniq$1(resolve$3(queries, context)).sort(function (name1, name2) {
+      name1 = name1.split(' ');
+      name2 = name2.split(' ');
+
+      if (name1[0] === name2[0]) {
+        var version1 = name1[1].split('-')[0];
+        var version2 = name2[1].split('-')[0];
+        return compareSemver(version2.split('.'), version1.split('.'));
+      } else {
+        return compare$1(name1[0], name2[0]);
+      }
+    });
+
+    if (!process.env.BROWSERSLIST_DISABLE_CACHE) {
+      cache$1[cacheKey] = result;
+    }
+
+    return result;
+  }
+
+  function parse$6(queries) {
+    var qs = [];
+
+    do {
+      queries = doMatch(queries, qs);
+    } while (queries);
+
+    return qs;
+  }
+
+  function doMatch(string, qs) {
+    var or = /^(?:,\s*|\s+or\s+)(.*)/i;
+    var and = /^\s+and\s+(.*)/i;
+    return find$2(string, function (parsed, n, max) {
+      if (and.test(parsed)) {
+        qs.unshift({
+          type: QUERY_AND,
+          queryString: parsed.match(and)[1]
+        });
+        return true;
+      } else if (or.test(parsed)) {
+        qs.unshift({
+          type: QUERY_OR,
+          queryString: parsed.match(or)[1]
+        });
+        return true;
+      } else if (n === max) {
+        qs.unshift({
+          type: QUERY_OR,
+          queryString: parsed.trim()
+        });
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  function find$2(string, predicate) {
+    for (var n = 1, max = string.length; n <= max; n++) {
+      var parsed = string.substr(-n, n);
+
+      if (predicate(parsed, n, max)) {
+        return string.slice(0, -n);
+      }
+    }
+
+    return '';
+  }
+
+  function flatten(array) {
+    if (!Array.isArray(array)) return [array];
+    return array.reduce(function (a, b) {
+      return a.concat(flatten(b));
+    }, []);
+  }
+
+  browserslist.data = {};
+  browserslist.usage = {
+    global: {},
+    custom: null
+  };
+  browserslist.defaults = ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'not dead'];
+  browserslist.aliases = {
+    fx: 'firefox',
+    ff: 'firefox',
+    ios: 'ios_saf',
+    explorer: 'ie',
+    blackberry: 'bb',
+    explorermobile: 'ie_mob',
+    operamini: 'op_mini',
+    operamobile: 'op_mob',
+    chromeandroid: 'and_chr',
+    firefoxandroid: 'and_ff',
+    ucandroid: 'and_uc',
+    qqandroid: 'and_qq'
+  };
+  browserslist.desktopNames = {
+    and_chr: 'chrome',
+    and_ff: 'firefox',
+    ie_mob: 'ie',
+    op_mob: 'opera',
+    android: 'chrome'
+  };
+  browserslist.versionAliases = {};
+  browserslist.clearCaches = browser$6.clearCaches;
+  browserslist.parseConfig = browser$6.parseConfig;
+  browserslist.readConfig = browser$6.readConfig;
+  browserslist.findConfig = browser$6.findConfig;
+  browserslist.loadConfig = browser$6.loadConfig;
+
+  browserslist.coverage = function (browsers, stats) {
+    var data;
+
+    if (typeof stats === 'undefined') {
+      data = browserslist.usage.global;
+    } else if (stats === 'my stats') {
+      var opts = {};
+      opts.path = path$2.resolve ? path$2.resolve('.') : '.';
+      var customStats = browser$6.getStat(opts);
+
+      if (!customStats) {
+        throw new error('Custom usage statistics was not provided');
+      }
+
+      data = {};
+
+      for (var browser in customStats) {
+        fillUsage(data, browser, customStats[browser]);
+      }
+    } else if (typeof stats === 'string') {
+      if (stats.length > 2) {
+        stats = stats.toLowerCase();
+      } else {
+        stats = stats.toUpperCase();
+      }
+
+      browser$6.loadCountry(browserslist.usage, stats);
+      data = browserslist.usage[stats];
+    } else {
+      if ('dataByBrowser' in stats) {
+        stats = stats.dataByBrowser;
+      }
+
+      data = {};
+
+      for (var name in stats) {
+        for (var version in stats[name]) {
+          data[name + ' ' + version] = stats[name][version];
+        }
+      }
+    }
+
+    return browsers.reduce(function (all, i) {
+      var usage = data[i];
+
+      if (usage === undefined) {
+        usage = data[i.replace(/ \S+$/, ' 0')];
+      }
+
+      return all + (usage || 0);
+    }, 0);
+  };
+
+  var QUERIES = [{
+    regexp: /^last\s+(\d+)\s+major\s+versions?$/i,
+    select: function select(context, versions) {
+      return Object.keys(agents$1).reduce(function (selected, name) {
+        var data = byName(name, context);
+        if (!data) return selected;
+        var list = getMajorVersions(data.released, versions);
+        list = list.map(nameMapper(data.name));
+
+        if (data.name === 'android') {
+          list = filterAndroid(list, versions, context);
+        }
+
+        return selected.concat(list);
+      }, []);
+    }
+  }, {
+    regexp: /^last\s+(\d+)\s+versions?$/i,
+    select: function select(context, versions) {
+      return Object.keys(agents$1).reduce(function (selected, name) {
+        var data = byName(name, context);
+        if (!data) return selected;
+        var list = data.released.slice(-versions);
+        list = list.map(nameMapper(data.name));
+
+        if (data.name === 'android') {
+          list = filterAndroid(list, versions, context);
+        }
+
+        return selected.concat(list);
+      }, []);
+    }
+  }, {
+    regexp: /^last\s+(\d+)\s+electron\s+major\s+versions?$/i,
+    select: function select(context, versions) {
+      var validVersions = getMajorVersions(Object.keys(versions$1).reverse(), versions);
+      return validVersions.map(function (i) {
+        return 'chrome ' + versions$1[i];
+      });
+    }
+  }, {
+    regexp: /^last\s+(\d+)\s+(\w+)\s+major\s+versions?$/i,
+    select: function select(context, versions, name) {
+      var data = checkName(name, context);
+      var validVersions = getMajorVersions(data.released, versions);
+      var list = validVersions.map(nameMapper(data.name));
+
+      if (data.name === 'android') {
+        list = filterAndroid(list, versions, context);
+      }
+
+      return list;
+    }
+  }, {
+    regexp: /^last\s+(\d+)\s+electron\s+versions?$/i,
+    select: function select(context, versions) {
+      return Object.keys(versions$1).reverse().slice(-versions).map(function (i) {
+        return 'chrome ' + versions$1[i];
+      });
+    }
+  }, {
+    regexp: /^last\s+(\d+)\s+(\w+)\s+versions?$/i,
+    select: function select(context, versions, name) {
+      var data = checkName(name, context);
+      var list = data.released.slice(-versions).map(nameMapper(data.name));
+
+      if (data.name === 'android') {
+        list = filterAndroid(list, versions, context);
+      }
+
+      return list;
+    }
+  }, {
+    regexp: /^unreleased\s+versions$/i,
+    select: function select(context) {
+      return Object.keys(agents$1).reduce(function (selected, name) {
+        var data = byName(name, context);
+        if (!data) return selected;
+        var list = data.versions.filter(function (v) {
+          return data.released.indexOf(v) === -1;
+        });
+        list = list.map(nameMapper(data.name));
+        return selected.concat(list);
+      }, []);
+    }
+  }, {
+    regexp: /^unreleased\s+electron\s+versions?$/i,
+    select: function select() {
+      return [];
+    }
+  }, {
+    regexp: /^unreleased\s+(\w+)\s+versions?$/i,
+    select: function select(context, name) {
+      var data = checkName(name, context);
+      return data.versions.filter(function (v) {
+        return data.released.indexOf(v) === -1;
+      }).map(nameMapper(data.name));
+    }
+  }, {
+    regexp: /^last\s+(\d*.?\d+)\s+years?$/i,
+    select: function select(context, years) {
+      return filterByYear(Date.now() - YEAR * years, context);
+    }
+  }, {
+    regexp: /^since (\d+)(?:-(\d+))?(?:-(\d+))?$/i,
+    select: function select(context, year, month, date) {
+      year = parseInt(year);
+      month = parseInt(month || '01') - 1;
+      date = parseInt(date || '01');
+      return filterByYear(Date.UTC(year, month, date, 0, 0, 0), context);
+    }
+  }, {
+    regexp: /^(>=?|<=?)\s*(\d*\.?\d+)%$/,
+    select: function select(context, sign, popularity) {
+      popularity = parseFloat(popularity);
+      var usage = browserslist.usage.global;
+      return Object.keys(usage).reduce(function (result, version) {
+        if (sign === '>') {
+          if (usage[version] > popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<') {
+          if (usage[version] < popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<=') {
+          if (usage[version] <= popularity) {
+            result.push(version);
+          }
+        } else if (usage[version] >= popularity) {
+          result.push(version);
+        }
+
+        return result;
+      }, []);
+    }
+  }, {
+    regexp: /^(>=?|<=?)\s*(\d*\.?\d+)%\s+in\s+my\s+stats$/,
+    select: function select(context, sign, popularity) {
+      popularity = parseFloat(popularity);
+
+      if (!context.customUsage) {
+        throw new error('Custom usage statistics was not provided');
+      }
+
+      var usage = context.customUsage;
+      return Object.keys(usage).reduce(function (result, version) {
+        if (sign === '>') {
+          if (usage[version] > popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<') {
+          if (usage[version] < popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<=') {
+          if (usage[version] <= popularity) {
+            result.push(version);
+          }
+        } else if (usage[version] >= popularity) {
+          result.push(version);
+        }
+
+        return result;
+      }, []);
+    }
+  }, {
+    regexp: /^(>=?|<=?)\s*(\d*\.?\d+)%\s+in\s+(\S+)\s+stats$/,
+    select: function select(context, sign, popularity, name) {
+      popularity = parseFloat(popularity);
+      var stats = browser$6.loadStat(context, name, browserslist.data);
+
+      if (stats) {
+        context.customUsage = {};
+
+        for (var browser in stats) {
+          fillUsage(context.customUsage, browser, stats[browser]);
+        }
+      }
+
+      if (!context.customUsage) {
+        throw new error('Custom usage statistics was not provided');
+      }
+
+      var usage = context.customUsage;
+      return Object.keys(usage).reduce(function (result, version) {
+        if (sign === '>') {
+          if (usage[version] > popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<') {
+          if (usage[version] < popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<=') {
+          if (usage[version] <= popularity) {
+            result.push(version);
+          }
+        } else if (usage[version] >= popularity) {
+          result.push(version);
+        }
+
+        return result;
+      }, []);
+    }
+  }, {
+    regexp: /^(>=?|<=?)\s*(\d*\.?\d+)%\s+in\s+((alt-)?\w\w)$/,
+    select: function select(context, sign, popularity, place) {
+      popularity = parseFloat(popularity);
+
+      if (place.length === 2) {
+        place = place.toUpperCase();
+      } else {
+        place = place.toLowerCase();
+      }
+
+      browser$6.loadCountry(browserslist.usage, place);
+      var usage = browserslist.usage[place];
+      return Object.keys(usage).reduce(function (result, version) {
+        if (sign === '>') {
+          if (usage[version] > popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<') {
+          if (usage[version] < popularity) {
+            result.push(version);
+          }
+        } else if (sign === '<=') {
+          if (usage[version] <= popularity) {
+            result.push(version);
+          }
+        } else if (usage[version] >= popularity) {
+          result.push(version);
+        }
+
+        return result;
+      }, []);
+    }
+  }, {
+    regexp: /^cover\s+(\d*\.?\d+)%(\s+in\s+(my\s+stats|(alt-)?\w\w))?$/,
+    select: function select(context, coverage, statMode) {
+      coverage = parseFloat(coverage);
+      var usage = browserslist.usage.global;
+
+      if (statMode) {
+        if (statMode.match(/^\s+in\s+my\s+stats$/)) {
+          if (!context.customUsage) {
+            throw new error('Custom usage statistics was not provided');
+          }
+
+          usage = context.customUsage;
+        } else {
+          var match = statMode.match(/\s+in\s+((alt-)?\w\w)/);
+          var place = match[1];
+
+          if (place.length === 2) {
+            place = place.toUpperCase();
+          } else {
+            place = place.toLowerCase();
+          }
+
+          browser$6.loadCountry(browserslist.usage, place);
+          usage = browserslist.usage[place];
+        }
+      }
+
+      var versions = Object.keys(usage).sort(function (a, b) {
+        return usage[b] - usage[a];
+      });
+      var coveraged = 0;
+      var result = [];
+      var version;
+
+      for (var i = 0; i <= versions.length; i++) {
+        version = versions[i];
+        if (usage[version] === 0) break;
+        coveraged += usage[version];
+        result.push(version);
+        if (coveraged >= coverage) break;
+      }
+
+      return result;
+    }
+  }, {
+    regexp: /^electron\s+([\d.]+)\s*-\s*([\d.]+)$/i,
+    select: function select(context, from, to) {
+      var fromToUse = normalizeElectron(from);
+      var toToUse = normalizeElectron(to);
+
+      if (!versions$1[fromToUse]) {
+        throw new error('Unknown version ' + from + ' of electron');
+      }
+
+      if (!versions$1[toToUse]) {
+        throw new error('Unknown version ' + to + ' of electron');
+      }
+
+      from = parseFloat(from);
+      to = parseFloat(to);
+      return Object.keys(versions$1).filter(function (i) {
+        var parsed = parseFloat(i);
+        return parsed >= from && parsed <= to;
+      }).map(function (i) {
+        return 'chrome ' + versions$1[i];
+      });
+    }
+  }, {
+    regexp: /^(\w+)\s+([\d.]+)\s*-\s*([\d.]+)$/i,
+    select: function select(context, name, from, to) {
+      var data = checkName(name, context);
+      from = parseFloat(normalizeVersion(data, from) || from);
+      to = parseFloat(normalizeVersion(data, to) || to);
+
+      function filter(v) {
+        var parsed = parseFloat(v);
+        return parsed >= from && parsed <= to;
+      }
+
+      return data.released.filter(filter).map(nameMapper(data.name));
+    }
+  }, {
+    regexp: /^electron\s*(>=?|<=?)\s*([\d.]+)$/i,
+    select: function select(context, sign, version) {
+      var versionToUse = normalizeElectron(version);
+      return Object.keys(versions$1).filter(generateFilter(sign, versionToUse)).map(function (i) {
+        return 'chrome ' + versions$1[i];
+      });
+    }
+  }, {
+    regexp: /^node\s*(>=?|<=?)\s*([\d.]+)$/i,
+    select: function select(context, sign, version) {
+      var nodeVersions = jsReleases.filter(function (i) {
+        return i.name === 'nodejs';
+      }).map(function (i) {
+        return i.version;
+      });
+      return nodeVersions.filter(generateSemverFilter(sign, version)).map(function (v) {
+        return 'node ' + v;
+      });
+    }
+  }, {
+    regexp: /^(\w+)\s*(>=?|<=?)\s*([\d.]+)$/,
+    select: function select(context, name, sign, version) {
+      var data = checkName(name, context);
+      var alias = browserslist.versionAliases[data.name][version];
+
+      if (alias) {
+        version = alias;
+      }
+
+      return data.released.filter(generateFilter(sign, version)).map(function (v) {
+        return data.name + ' ' + v;
+      });
+    }
+  }, {
+    regexp: /^(firefox|ff|fx)\s+esr$/i,
+    select: function select() {
+      return ['firefox 68'];
+    }
+  }, {
+    regexp: /(operamini|op_mini)\s+all/i,
+    select: function select() {
+      return ['op_mini all'];
+    }
+  }, {
+    regexp: /^electron\s+([\d.]+)$/i,
+    select: function select(context, version) {
+      var versionToUse = normalizeElectron(version);
+      var chrome = versions$1[versionToUse];
+
+      if (!chrome) {
+        throw new error('Unknown version ' + version + ' of electron');
+      }
+
+      return ['chrome ' + chrome];
+    }
+  }, {
+    regexp: /^node\s+(\d+(\.\d+)?(\.\d+)?)$/i,
+    select: function select(context, version) {
+      var nodeReleases = jsReleases.filter(function (i) {
+        return i.name === 'nodejs';
+      });
+      var matched = nodeReleases.filter(function (i) {
+        return isVersionsMatch(i.version, version);
+      });
+
+      if (matched.length === 0) {
+        if (context.ignoreUnknownVersions) {
+          return [];
+        } else {
+          throw new error('Unknown version ' + version + ' of Node.js');
+        }
+      }
+
+      return ['node ' + matched[matched.length - 1].version];
+    }
+  }, {
+    regexp: /^current\s+node$/i,
+    select: function select(context) {
+      return [browser$6.currentNode(resolve$3, context)];
+    }
+  }, {
+    regexp: /^maintained\s+node\s+versions$/i,
+    select: function select(context) {
+      var now = Date.now();
+      var queries = Object.keys(jsEOL).filter(function (key) {
+        return now < Date.parse(jsEOL[key].end) && now > Date.parse(jsEOL[key].start) && isEolReleased(key);
+      }).map(function (key) {
+        return 'node ' + key.slice(1);
+      });
+      return resolve$3(queries, context);
+    }
+  }, {
+    regexp: /^phantomjs\s+1.9$/i,
+    select: function select() {
+      return ['safari 5'];
+    }
+  }, {
+    regexp: /^phantomjs\s+2.1$/i,
+    select: function select() {
+      return ['safari 6'];
+    }
+  }, {
+    regexp: /^(\w+)\s+(tp|[\d.]+)$/i,
+    select: function select(context, name, version) {
+      if (/^tp$/i.test(version)) version = 'TP';
+      var data = checkName(name, context);
+      var alias = normalizeVersion(data, version);
+
+      if (alias) {
+        version = alias;
+      } else {
+        if (version.indexOf('.') === -1) {
+          alias = version + '.0';
+        } else {
+          alias = version.replace(/\.0$/, '');
+        }
+
+        alias = normalizeVersion(data, alias);
+
+        if (alias) {
+          version = alias;
+        } else if (context.ignoreUnknownVersions) {
+          return [];
+        } else {
+          throw new error('Unknown version ' + version + ' of ' + name);
+        }
+      }
+
+      return [data.name + ' ' + version];
+    }
+  }, {
+    regexp: /^extends (.+)$/i,
+    select: function select(context, name) {
+      return resolve$3(browser$6.loadQueries(context, name), context);
+    }
+  }, {
+    regexp: /^defaults$/i,
+    select: function select(context) {
+      return resolve$3(browserslist.defaults, context);
+    }
+  }, {
+    regexp: /^dead$/i,
+    select: function select(context) {
+      var dead = ['ie <= 10', 'ie_mob <= 10', 'bb <= 10', 'op_mob <= 12.1', 'samsung 4'];
+      return resolve$3(dead, context);
+    }
+  }, {
+    regexp: /^(\w+)$/i,
+    select: function select(context, name) {
+      if (byName(name, context)) {
+        throw new error('Specify versions in Browserslist query for browser ' + name);
+      } else {
+        throw unknownQuery(name);
+      }
+    }
+  }];
+
+  (function () {
+    for (var name in agents$1) {
+      var browser = agents$1[name];
+      browserslist.data[name] = {
+        name: name,
+        versions: normalize$1(agents$1[name].versions),
+        released: normalize$1(agents$1[name].versions.slice(0, -3)),
+        releaseDate: agents$1[name].release_date
+      };
+      fillUsage(browserslist.usage.global, name, browser.usage_global);
+      browserslist.versionAliases[name] = {};
+
+      for (var i = 0; i < browser.versions.length; i++) {
+        var full = browser.versions[i];
+        if (!full) continue;
+
+        if (full.indexOf('-') !== -1) {
+          var interval = full.split('-');
+
+          for (var j = 0; j < interval.length; j++) {
+            browserslist.versionAliases[name][interval[j]] = full;
+          }
+        }
+      }
+    }
+  })();
+
+  var browserslist_1 = browserslist;
+
+  var leven_1 = createCommonjsModule(function (module) {
+
+  var array = [];
+  var charCodeCache = [];
+
+  var leven = function leven(left, right) {
+    if (left === right) {
+      return 0;
+    }
+
+    var swap = left;
+
+    if (left.length > right.length) {
+      left = right;
+      right = swap;
+    }
+
+    var leftLength = left.length;
+    var rightLength = right.length;
+
+    while (leftLength > 0 && left.charCodeAt(~-leftLength) === right.charCodeAt(~-rightLength)) {
+      leftLength--;
+      rightLength--;
+    }
+
+    var start = 0;
+
+    while (start < leftLength && left.charCodeAt(start) === right.charCodeAt(start)) {
+      start++;
+    }
+
+    leftLength -= start;
+    rightLength -= start;
+
+    if (leftLength === 0) {
+      return rightLength;
+    }
+
+    var bCharCode;
+    var result;
+    var temp;
+    var temp2;
+    var i = 0;
+    var j = 0;
+
+    while (i < leftLength) {
+      charCodeCache[i] = left.charCodeAt(start + i);
+      array[i] = ++i;
+    }
+
+    while (j < rightLength) {
+      bCharCode = right.charCodeAt(start + j);
+      temp = j++;
+      result = j;
+
+      for (i = 0; i < leftLength; i++) {
+        temp2 = bCharCode === charCodeCache[i] ? temp : temp + 1;
+        temp = array[i];
+        result = array[i] = temp > result ? temp2 > result ? result + 1 : temp2 : temp2 > temp ? temp + 1 : temp2;
+      }
+    }
+
+    return result;
+  };
+
+  module.exports = leven;
+  module.exports["default"] = leven;
+  });
+
+  function levenArray(str, array) {
+    var minLeven = Number.POSITIVE_INFINITY;
+    var result = undefined;
+
+    for (var _iterator = array, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var item = _ref;
+      var distance = leven_1(str, item);
+
+      if (distance < minLeven) {
+        minLeven = distance;
+        result = item;
+      }
+    }
+
+    return result;
+  }
+
+  var invariant = function invariant(condition, format, a, b, c, d, e, f) {
+    {
+      if (format === undefined) {
+        throw new Error('invariant requires an error message argument');
+      }
+    }
+
+    if (!condition) {
+      var error;
+
+      if (format === undefined) {
+        error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+      } else {
+        var args = [a, b, c, d, e, f];
+        var argIndex = 0;
+        error = new Error(format.replace(/%s/g, function () {
+          return args[argIndex++];
+        }));
+        error.name = 'Invariant Violation';
+      }
+
+      error.framesToPop = 1;
+      throw error;
+    }
+  };
+
+  var browser$7 = invariant;
+
+  var nativeModules = {
+  	"es6.module": {
+  	edge: "16",
+  	firefox: "60",
+  	chrome: "61",
+  	safari: "10.1",
+  	opera: "48",
+  	ios_saf: "10.3",
+  	and_chr: "74",
+  	and_ff: "66"
+  }
+  };
+
+  var nativeModules$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': nativeModules
+  });
+
+  var require$$0$2 = getCjsExportFromNamespace(nativeModules$1);
+
+  var nativeModules$2 = require$$0$2;
+
+  var unreleasedLabels = {
+    safari: "tp"
+  };
+  var browserNameMap = {
+    and_chr: "chrome",
+    and_ff: "firefox",
+    android: "android",
+    chrome: "chrome",
+    edge: "edge",
+    firefox: "firefox",
+    ie: "ie",
+    ie_mob: "ie",
+    ios_saf: "ios",
+    node: "node",
+    op_mob: "opera",
+    opera: "opera",
+    safari: "safari",
+    samsung: "samsung"
+  };
+
+  var versionRegExp = /^(\d+|\d+.\d+)$/;
+  function semverMin(first, second) {
+    return first && semver.lt(first, second) ? first : second;
+  }
+  function semverify(version) {
+    if (typeof version === "string" && semver.valid(version)) {
+      return version;
+    }
+
+    browser$7(typeof version === "number" || typeof version === "string" && versionRegExp.test(version), "'" + version + "' is not a valid version");
+    var split = version.toString().split(".");
+
+    while (split.length < 3) {
+      split.push("0");
+    }
+
+    return split.join(".");
+  }
+  function isUnreleasedVersion(version, env) {
+    var unreleasedLabel = unreleasedLabels[env];
+    return !!unreleasedLabel && unreleasedLabel === version.toString().toLowerCase();
+  }
+  function getLowestUnreleased(a, b, env) {
+    var unreleasedLabel = unreleasedLabels[env];
+    var hasUnreleased = [a, b].some(function (item) {
+      return item === unreleasedLabel;
+    });
+
+    if (hasUnreleased) {
+      return a === hasUnreleased ? b : a || b;
+    }
+
+    return semverMin(a, b);
+  }
+  function getLowestImplementedVersion(plugin, environment) {
+    var result = plugin[environment];
+
+    if (!result && environment === "android") {
+      return plugin.chrome;
+    }
+
+    return result;
+  }
+
+  var TargetNames = {
+    esmodules: "esmodules",
+    node: "node",
+    browsers: "browsers",
+    chrome: "chrome",
+    opera: "opera",
+    edge: "edge",
+    firefox: "firefox",
+    safari: "safari",
+    ie: "ie",
+    ios: "ios",
+    android: "android",
+    electron: "electron",
+    samsung: "samsung",
+    uglify: "uglify"
+  };
+
+  function prettifyVersion(version) {
+    if (typeof version !== "string") {
+      return version;
+    }
+
+    var parts = [semver.major(version)];
+    var minor = semver.minor(version);
+    var patch = semver.patch(version);
+
+    if (minor || patch) {
+      parts.push(minor);
+    }
+
+    if (patch) {
+      parts.push(patch);
+    }
+
+    return parts.join(".");
+  }
+  function prettifyTargets(targets) {
+    return Object.keys(targets).reduce(function (results, target) {
+      var value = targets[target];
+      var unreleasedLabel = unreleasedLabels[target];
+
+      if (typeof value === "string" && unreleasedLabel !== value) {
+        value = prettifyVersion(value);
+      }
+
+      results[target] = value;
+      return results;
+    }, {});
+  }
+
+  function getInclusionReasons(item, targetVersions, list) {
+    var minVersions = list[item] || {};
+    return Object.keys(targetVersions).reduce(function (result, env) {
+      var minVersion = getLowestImplementedVersion(minVersions, env);
+      var targetVersion = targetVersions[env];
+
+      if (!minVersion) {
+        result[env] = prettifyVersion(targetVersion);
+      } else {
+        var minIsUnreleased = isUnreleasedVersion(minVersion, env);
+        var targetIsUnreleased = isUnreleasedVersion(targetVersion, env);
+
+        if (!targetIsUnreleased && (minIsUnreleased || semver.lt(targetVersion.toString(), semverify(minVersion)))) {
+          result[env] = prettifyVersion(targetVersion);
+        }
+      }
+
+      return result;
+    }, {});
+  }
+
+  var plugins = {
+  	"transform-template-literals": {
+  	chrome: "41",
+  	edge: "13",
+  	firefox: "34",
+  	safari: "13",
+  	node: "4",
+  	ios: "13",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"transform-literals": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "53",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"transform-function-name": {
+  	chrome: "51",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"transform-arrow-functions": {
+  	chrome: "47",
+  	edge: "13",
+  	firefox: "45",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "34",
+  	electron: "0.36"
+  },
+  	"transform-block-scoped-functions": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "46",
+  	safari: "10",
+  	node: "4",
+  	ie: "11",
+  	ios: "10",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"transform-classes": {
+  	chrome: "46",
+  	edge: "13",
+  	firefox: "45",
+  	safari: "10",
+  	node: "5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "33",
+  	electron: "0.36"
+  },
+  	"transform-object-super": {
+  	chrome: "46",
+  	edge: "13",
+  	firefox: "45",
+  	safari: "10",
+  	node: "5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "33",
+  	electron: "0.36"
+  },
+  	"transform-shorthand-properties": {
+  	chrome: "43",
+  	edge: "12",
+  	firefox: "33",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "30",
+  	electron: "0.29"
+  },
+  	"transform-duplicate-keys": {
+  	chrome: "42",
+  	edge: "12",
+  	firefox: "34",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "29",
+  	electron: "0.27"
+  },
+  	"transform-computed-properties": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "34",
+  	safari: "7.1",
+  	node: "4",
+  	ios: "8",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"transform-for-of": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"transform-sticky-regex": {
+  	chrome: "49",
+  	edge: "13",
+  	firefox: "3",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"transform-dotall-regex": {
+  	chrome: "62",
+  	safari: "11.1",
+  	node: "8.10",
+  	ios: "11.3",
+  	samsung: "8.2",
+  	opera: "49",
+  	electron: "3.1"
+  },
+  	"transform-unicode-regex": {
+  	chrome: "50",
+  	edge: "13",
+  	firefox: "46",
+  	safari: "12",
+  	node: "6",
+  	ios: "12",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"transform-spread": {
+  	chrome: "46",
+  	edge: "13",
+  	firefox: "36",
+  	safari: "10",
+  	node: "5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "33",
+  	electron: "0.36"
+  },
+  	"transform-parameters": {
+  	chrome: "49",
+  	edge: "18",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"transform-destructuring": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"transform-block-scoping": {
+  	chrome: "49",
+  	edge: "14",
+  	firefox: "51",
+  	safari: "11",
+  	node: "6",
+  	ios: "11",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"transform-typeof-symbol": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "36",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"transform-new-target": {
+  	chrome: "46",
+  	edge: "14",
+  	firefox: "41",
+  	safari: "10",
+  	node: "5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "33",
+  	electron: "0.36"
+  },
+  	"transform-regenerator": {
+  	chrome: "50",
+  	edge: "13",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"transform-exponentiation-operator": {
+  	chrome: "52",
+  	edge: "14",
+  	firefox: "52",
+  	safari: "10.1",
+  	node: "7",
+  	ios: "10.3",
+  	samsung: "6.2",
+  	opera: "39",
+  	electron: "1.3"
+  },
+  	"transform-async-to-generator": {
+  	chrome: "55",
+  	edge: "15",
+  	firefox: "52",
+  	safari: "11",
+  	node: "7.6",
+  	ios: "11",
+  	samsung: "6.2",
+  	opera: "42",
+  	electron: "1.6"
+  },
+  	"proposal-async-generator-functions": {
+  	chrome: "63",
+  	firefox: "57",
+  	safari: "12",
+  	node: "10",
+  	ios: "12",
+  	samsung: "8.2",
+  	opera: "50",
+  	electron: "3.1"
+  },
+  	"proposal-object-rest-spread": {
+  	chrome: "60",
+  	firefox: "55",
+  	safari: "11.1",
+  	node: "8.3",
+  	ios: "11.3",
+  	samsung: "8.2",
+  	opera: "47",
+  	electron: "2.1"
+  },
+  	"proposal-unicode-property-regex": {
+  	chrome: "64",
+  	safari: "11.1",
+  	node: "10",
+  	ios: "11.3",
+  	samsung: "9.2",
+  	opera: "51",
+  	electron: "3.1"
+  },
+  	"proposal-json-strings": {
+  	chrome: "66",
+  	firefox: "62",
+  	safari: "12",
+  	node: "10",
+  	ios: "12",
+  	samsung: "9.2",
+  	opera: "53",
+  	electron: "3.1"
+  },
+  	"proposal-optional-catch-binding": {
+  	chrome: "66",
+  	firefox: "58",
+  	safari: "11.1",
+  	node: "10",
+  	ios: "11.3",
+  	samsung: "9.2",
+  	opera: "53",
+  	electron: "3.1"
+  },
+  	"proposal-optional-chaining": {
+  	chrome: "80",
+  	opera: "67"
+  },
+  	"transform-named-capturing-groups-regex": {
+  	chrome: "64",
+  	safari: "11.1",
+  	node: "10",
+  	ios: "11.3",
+  	samsung: "9.2",
+  	opera: "51",
+  	electron: "3.1"
+  },
+  	"transform-member-expression-literals": {
+  	chrome: "7",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "5.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "5"
+  },
+  	"transform-property-literals": {
+  	chrome: "7",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "5.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "5"
+  },
+  	"transform-reserved-words": {
+  	chrome: "13",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4.4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "0.2"
+  },
+  	"proposal-nullish-coalescing-operator": {
+  	chrome: "80",
+  	firefox: "72",
+  	opera: "67"
+  }
+  };
+
+  var plugins$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': plugins
+  });
+
+  var require$$0$3 = getCjsExportFromNamespace(plugins$1);
+
+  var plugins$2 = require$$0$3;
+
+  function targetsSupported(target, support) {
+    var targetEnvironments = Object.keys(target);
+
+    if (targetEnvironments.length === 0) {
+      return false;
+    }
+
+    var unsupportedEnvironments = targetEnvironments.filter(function (environment) {
+      var lowestImplementedVersion = getLowestImplementedVersion(support, environment);
+
+      if (!lowestImplementedVersion) {
+        return true;
+      }
+
+      var lowestTargetedVersion = target[environment];
+
+      if (isUnreleasedVersion(lowestTargetedVersion, environment)) {
+        return false;
+      }
+
+      if (isUnreleasedVersion(lowestImplementedVersion, environment)) {
+        return true;
+      }
+
+      if (!semver.valid(lowestTargetedVersion.toString())) {
+        throw new Error("Invalid version passed for target \"" + environment + "\": \"" + lowestTargetedVersion + "\". " + "Versions must be in semver format (major.minor.patch)");
+      }
+
+      return semver.gt(semverify(lowestImplementedVersion), lowestTargetedVersion.toString());
+    });
+    return unsupportedEnvironments.length === 0;
+  }
+  function isRequired(name, targets, _temp) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$compatData = _ref.compatData,
+        compatData = _ref$compatData === void 0 ? plugins$2 : _ref$compatData,
+        includes = _ref.includes,
+        excludes = _ref.excludes;
+
+    if (excludes && excludes.has(name)) return false;
+    if (includes && includes.has(name)) return true;
+    return !targetsSupported(targets, compatData[name]);
+  }
+  function filterItems(list, includes, excludes, targets, defaultIncludes, defaultExcludes, pluginSyntaxMap) {
+    var result = new Set();
+    var options = {
+      compatData: list,
+      includes: includes,
+      excludes: excludes
+    };
+
+    for (var item in list) {
+      if (isRequired(item, targets, options)) {
+        result.add(item);
+      } else if (pluginSyntaxMap) {
+        var shippedProposalsSyntax = pluginSyntaxMap.get(item);
+
+        if (shippedProposalsSyntax) {
+          result.add(shippedProposalsSyntax);
+        }
+      }
+    }
+
+    if (defaultIncludes) {
+      defaultIncludes.forEach(function (item) {
+        return !excludes.has(item) && result.add(item);
+      });
+    }
+
+    if (defaultExcludes) {
+      defaultExcludes.forEach(function (item) {
+        return !includes.has(item) && result["delete"](item);
+      });
+    }
+
+    return result;
+  }
+
+  var browserslistDefaults = browserslist_1.defaults;
+  var validBrowserslistTargets = [].concat(Object.keys(browserslist_1.data), Object.keys(browserslist_1.aliases));
+
+  function objectToBrowserslist(object) {
+    return Object.keys(object).reduce(function (list, targetName) {
+      if (validBrowserslistTargets.indexOf(targetName) >= 0) {
+        var targetVersion = object[targetName];
+        return list.concat(targetName + " " + targetVersion);
+      }
+
+      return list;
+    }, []);
+  }
+
+  function validateTargetNames(targets) {
+    var validTargets = Object.keys(TargetNames);
+
+    for (var target in targets) {
+      if (!TargetNames[target]) {
+        throw new Error("Invalid Option: '" + target + "' is not a valid target\n        Maybe you meant to use '" + levenArray(target, validTargets) + "'?");
+      }
+    }
+  }
+
+  function isBrowsersQueryValid(browsers) {
+    return typeof browsers === "string" || Array.isArray(browsers);
+  }
+
+  function validateBrowsers(browsers) {
+    browser$7(typeof browsers === "undefined" || isBrowsersQueryValid(browsers), "Invalid Option: '" + browsers + "' is not a valid browserslist query");
+    return browsers;
+  }
+
+  function mergeBrowsers(fromQuery, fromTarget) {
+    return Object.keys(fromTarget).reduce(function (queryObj, targKey) {
+      if (targKey !== TargetNames.browsers) {
+        queryObj[targKey] = fromTarget[targKey];
+      }
+
+      return queryObj;
+    }, fromQuery);
+  }
+
+  function getLowestVersions(browsers) {
+    return browsers.reduce(function (all, browser) {
+      var _browser$split = browser.split(" "),
+          browserName = _browser$split[0],
+          browserVersion = _browser$split[1];
+
+      var normalizedBrowserName = browserNameMap[browserName];
+
+      if (!normalizedBrowserName) {
+        return all;
+      }
+
+      try {
+        var splitVersion = browserVersion.split("-")[0].toLowerCase();
+        var isSplitUnreleased = isUnreleasedVersion(splitVersion, browserName);
+
+        if (!all[normalizedBrowserName]) {
+          all[normalizedBrowserName] = isSplitUnreleased ? splitVersion : semverify(splitVersion);
+          return all;
+        }
+
+        var version = all[normalizedBrowserName];
+        var isUnreleased = isUnreleasedVersion(version, browserName);
+
+        if (isUnreleased && isSplitUnreleased) {
+          all[normalizedBrowserName] = getLowestUnreleased(version, splitVersion, browserName);
+        } else if (isUnreleased) {
+          all[normalizedBrowserName] = semverify(splitVersion);
+        } else if (!isUnreleased && !isSplitUnreleased) {
+          var parsedBrowserVersion = semverify(splitVersion);
+          all[normalizedBrowserName] = semverMin(version, parsedBrowserVersion);
+        }
+      } catch (e) {}
+
+      return all;
+    }, {});
+  }
+
+  function outputDecimalWarning(decimalTargets) {
+    if (!decimalTargets || !decimalTargets.length) {
+      return;
+    }
+
+    console.log("Warning, the following targets are using a decimal version:");
+    console.log("");
+    decimalTargets.forEach(function (_ref) {
+      var target = _ref.target,
+          value = _ref.value;
+      return console.log("  " + target + ": " + value);
+    });
+    console.log("");
+    console.log("We recommend using a string for minor/patch versions to avoid numbers like 6.10");
+    console.log("getting parsed as 6.1, which can lead to unexpected behavior.");
+    console.log("");
+  }
+
+  function semverifyTarget(target, value) {
+    try {
+      return semverify(value);
+    } catch (error) {
+      throw new Error("Invalid Option: '" + value + "' is not a valid value for 'targets." + target + "'.");
+    }
+  }
+
+  var targetParserMap = {
+    __default: function __default(target, value) {
+      var version = isUnreleasedVersion(value, target) ? value.toLowerCase() : semverifyTarget(target, value);
+      return [target, version];
+    },
+    node: function node(target, value) {
+      var parsed = value === true || value === "current" ? process.versions.node : semverifyTarget(target, value);
+      return [target, parsed];
+    }
+  };
+  function getTargets(targets, options) {
+    if (targets === void 0) {
+      targets = {};
+    }
+
+    if (options === void 0) {
+      options = {};
+    }
+
+    var targetOpts = {};
+    validateTargetNames(targets);
+
+    if (targets.esmodules) {
+      var supportsESModules = nativeModules$2["es6.module"];
+      targets.browsers = Object.keys(supportsESModules).map(function (browser) {
+        return browser + " " + supportsESModules[browser];
+      }).join(", ");
+    }
+
+    var browsersquery = validateBrowsers(targets.browsers);
+    var hasTargets = Object.keys(targets).length > 0;
+    var shouldParseBrowsers = !!targets.browsers;
+    var shouldSearchForConfig = !options.ignoreBrowserslistConfig && !hasTargets;
+
+    if (shouldParseBrowsers || shouldSearchForConfig) {
+      if (!hasTargets) {
+        browserslist_1.defaults = objectToBrowserslist(targets);
+      }
+
+      var browsers = browserslist_1(browsersquery, {
+        path: options.configPath,
+        mobileToDesktop: true
+      });
+      var queryBrowsers = getLowestVersions(browsers);
+      targets = mergeBrowsers(queryBrowsers, targets);
+      browserslist_1.defaults = browserslistDefaults;
+    }
+
+    var parsed = Object.keys(targets).filter(function (value) {
+      return value !== TargetNames.esmodules;
+    }).sort().reduce(function (results, target) {
+      if (target !== TargetNames.browsers) {
+        var value = targets[target];
+
+        if (typeof value === "number" && value % 1 !== 0) {
+          results.decimalWarnings.push({
+            target: target,
+            value: value
+          });
+        }
+
+        var parser = targetParserMap[target] || targetParserMap.__default;
+
+        var _parser = parser(target, value),
+            parsedTarget = _parser[0],
+            parsedValue = _parser[1];
+
+        if (parsedValue) {
+          results.targets[parsedTarget] = parsedValue;
+        }
+      }
+
+      return results;
+    }, {
+      targets: targetOpts,
+      decimalWarnings: []
+    });
+    outputDecimalWarning(parsed.decimalWarnings);
+    return parsed.targets;
+  }
+
+  var wordEnds = function wordEnds(size) {
+    return size > 1 ? "s" : "";
+  };
+
+  var logPluginOrPolyfill = function logPluginOrPolyfill(item, targetVersions, list) {
+    var filteredList = getInclusionReasons(item, targetVersions, list);
+    var formattedTargets = JSON.stringify(filteredList).replace(/,/g, ", ").replace(/^\{"/, '{ "').replace(/"\}$/, '" }');
+    console.log("  " + item + " " + formattedTargets);
+  };
+  var logEntryPolyfills = function logEntryPolyfills(polyfillName, importPolyfillIncluded, polyfills, filename, polyfillTargets, allBuiltInsList) {
+    if (process.env.BABEL_ENV === "test") {
+      filename = filename.replace(/\\/g, "/");
+    }
+
+    if (!importPolyfillIncluded) {
+      console.log("\n[" + filename + "] Import of " + polyfillName + " was not found.");
+      return;
+    }
+
+    if (!polyfills.size) {
+      console.log("\n[" + filename + "] Based on your targets, polyfills were not added.");
+      return;
+    }
+
+    console.log("\n[" + filename + "] Replaced " + polyfillName + " entries with the following polyfill" + wordEnds(polyfills.size) + ":");
+
+    for (var _iterator = polyfills, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var polyfill = _ref;
+      logPluginOrPolyfill(polyfill, polyfillTargets, allBuiltInsList);
+    }
+  };
+  var logUsagePolyfills = function logUsagePolyfills(polyfills, filename, polyfillTargets, allBuiltInsList) {
+    if (process.env.BABEL_ENV === "test") {
+      filename = filename.replace(/\\/g, "/");
+    }
+
+    if (!polyfills.size) {
+      console.log("\n[" + filename + "] Based on your code and targets, core-js polyfills were not added.");
+      return;
+    }
+
+    console.log("\n[" + filename + "] Added following core-js polyfill" + wordEnds(polyfills.size) + ":");
+
+    for (var _iterator2 = polyfills, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+      var _ref2;
+
+      if (_isArray2) {
+        if (_i2 >= _iterator2.length) break;
+        _ref2 = _iterator2[_i2++];
+      } else {
+        _i2 = _iterator2.next();
+        if (_i2.done) break;
+        _ref2 = _i2.value;
+      }
+
+      var polyfill = _ref2;
+      logPluginOrPolyfill(polyfill, polyfillTargets, allBuiltInsList);
+    }
+  };
+
+  var defaultExcludesForLooseMode = ["transform-typeof-symbol"];
+  function getOptionSpecificExcludesFor (_ref) {
+    var loose = _ref.loose;
+    return loose ? defaultExcludesForLooseMode : null;
+  }
+
+  function removeUnnecessaryItems(items, overlapping) {
+    items.forEach(function (item) {
+      var _overlapping$item;
+
+      (_overlapping$item = overlapping[item]) == null ? void 0 : _overlapping$item.forEach(function (name) {
+        return items["delete"](name);
+      });
+    });
+  }
+
+  var moduleTransformations = {
+    auto: "transform-modules-commonjs",
+    amd: "transform-modules-amd",
+    commonjs: "transform-modules-commonjs",
+    cjs: "transform-modules-commonjs",
+    systemjs: "transform-modules-systemjs",
+    umd: "transform-modules-umd"
+  };
+
+  var corejs3Polyfills = {
+  	"es.symbol": {
+  	chrome: "49",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.description": {
+  	chrome: "70",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "63",
+  	ios: "12.2",
+  	node: "11.0",
+  	opera: "57",
+  	opera_mobile: "49",
+  	safari: "12.1",
+  	samsung: "10.0"
+  },
+  	"es.symbol.async-iterator": {
+  	chrome: "63",
+  	edge: "74",
+  	electron: "3.0",
+  	firefox: "55",
+  	ios: "12.0",
+  	node: "10.0",
+  	opera: "50",
+  	opera_mobile: "46",
+  	safari: "12.0",
+  	samsung: "8.0"
+  },
+  	"es.symbol.has-instance": {
+  	chrome: "50",
+  	edge: "15",
+  	electron: "1.1",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.is-concat-spreadable": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "48",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.iterator": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "36",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.symbol.match": {
+  	chrome: "50",
+  	edge: "74",
+  	electron: "1.1",
+  	firefox: "40",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.match-all": {
+  	chrome: "73",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "67",
+  	ios: "13.0",
+  	node: "12.0",
+  	opera: "60",
+  	opera_mobile: "52",
+  	safari: "13",
+  	samsung: "11.0"
+  },
+  	"es.symbol.replace": {
+  	chrome: "50",
+  	edge: "74",
+  	electron: "1.1",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.search": {
+  	chrome: "50",
+  	edge: "74",
+  	electron: "1.1",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.species": {
+  	chrome: "51",
+  	edge: "13",
+  	electron: "1.2",
+  	firefox: "41",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.split": {
+  	chrome: "50",
+  	edge: "74",
+  	electron: "1.1",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.to-primitive": {
+  	chrome: "47",
+  	edge: "15",
+  	electron: "0.36",
+  	firefox: "44",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "34",
+  	opera_mobile: "34",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.to-string-tag": {
+  	chrome: "49",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.symbol.unscopables": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "48",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.array.concat": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "48",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.array.copy-within": {
+  	chrome: "45",
+  	edge: "12",
+  	electron: "0.31",
+  	firefox: "48",
+  	ios: "9.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.every": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "50",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.fill": {
+  	chrome: "45",
+  	edge: "12",
+  	electron: "0.31",
+  	firefox: "48",
+  	ios: "9.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.filter": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "48",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.array.find": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "48",
+  	ios: "9.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.find-index": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "48",
+  	ios: "9.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.flat": {
+  	chrome: "69",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "62",
+  	ios: "12.0",
+  	node: "11.0",
+  	opera: "56",
+  	opera_mobile: "48",
+  	safari: "12.0",
+  	samsung: "10.0"
+  },
+  	"es.array.flat-map": {
+  	chrome: "69",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "62",
+  	ios: "12.0",
+  	node: "11.0",
+  	opera: "56",
+  	opera_mobile: "48",
+  	safari: "12.0",
+  	samsung: "10.0"
+  },
+  	"es.array.for-each": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "50",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.from": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "53",
+  	ios: "9.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.includes": {
+  	chrome: "53",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "48",
+  	ios: "10.0",
+  	node: "7.0",
+  	opera: "40",
+  	opera_mobile: "40",
+  	safari: "10.0",
+  	samsung: "6.0"
+  },
+  	"es.array.index-of": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "50",
+  	ios: "11.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "11.0",
+  	samsung: "5.0"
+  },
+  	"es.array.is-array": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "3.2",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "4.0",
+  	samsung: "1.0"
+  },
+  	"es.array.iterator": {
+  	chrome: "66",
+  	edge: "15",
+  	electron: "3.0",
+  	firefox: "60",
+  	ios: "10.0",
+  	node: "10.0",
+  	opera: "53",
+  	opera_mobile: "47",
+  	safari: "10.0",
+  	samsung: "9.0"
+  },
+  	"es.array.join": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "4",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.array.last-index-of": {
+  	chrome: "51",
+  	edge: "13",
+  	electron: "1.2",
+  	firefox: "50",
+  	ios: "11.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "11.0",
+  	samsung: "5.0"
+  },
+  	"es.array.map": {
+  	chrome: "51",
+  	edge: "13",
+  	electron: "1.2",
+  	firefox: "50",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.array.of": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "25",
+  	ios: "9.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.reduce": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "50",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.reduce-right": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "50",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.reverse": {
+  	android: "3.0",
+  	chrome: "1",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "1",
+  	ie: "5.5",
+  	ios: "12.2",
+  	node: "0.0.3",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	safari: "12.0.2",
+  	samsung: "1.0"
+  },
+  	"es.array.slice": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "48",
+  	ios: "11.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "11.0",
+  	samsung: "5.0"
+  },
+  	"es.array.some": {
+  	chrome: "48",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "50",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "35",
+  	opera_mobile: "35",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.array.sort": {
+  	chrome: "63",
+  	edge: "12",
+  	electron: "3.0",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "12.0",
+  	node: "10.0",
+  	opera: "50",
+  	opera_mobile: "46",
+  	safari: "12.0",
+  	samsung: "8.0"
+  },
+  	"es.array.species": {
+  	chrome: "51",
+  	edge: "13",
+  	electron: "1.2",
+  	firefox: "48",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.array.splice": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "49",
+  	ios: "11.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "11.0",
+  	samsung: "5.0"
+  },
+  	"es.array.unscopables.flat": {
+  	chrome: "73",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "67",
+  	ios: "13.0",
+  	node: "12.0",
+  	opera: "60",
+  	opera_mobile: "52",
+  	safari: "13",
+  	samsung: "11.0"
+  },
+  	"es.array.unscopables.flat-map": {
+  	chrome: "73",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "67",
+  	ios: "13.0",
+  	node: "12.0",
+  	opera: "60",
+  	opera_mobile: "52",
+  	safari: "13",
+  	samsung: "11.0"
+  },
+  	"es.array-buffer.constructor": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "14",
+  	electron: "0.20",
+  	firefox: "44",
+  	ios: "12.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "12.0",
+  	samsung: "1.5"
+  },
+  	"es.array-buffer.is-view": {
+  	android: "4.4.3",
+  	chrome: "32",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "29",
+  	ie: "11",
+  	ios: "8.0",
+  	node: "0.11.9",
+  	opera: "19",
+  	opera_mobile: "19",
+  	safari: "7.1",
+  	samsung: "2.0"
+  },
+  	"es.array-buffer.slice": {
+  	android: "4.4.3",
+  	chrome: "31",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "46",
+  	ie: "11",
+  	ios: "12.2",
+  	node: "0.11.8",
+  	opera: "18",
+  	opera_mobile: "18",
+  	safari: "12.1",
+  	samsung: "2.0"
+  },
+  	"es.data-view": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "15",
+  	ie: "10",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.date.now": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ie: "9",
+  	ios: "3.2",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "4.0",
+  	samsung: "1.0"
+  },
+  	"es.date.to-iso-string": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "7",
+  	ie: "9",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.date.to-json": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "10.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "10.0",
+  	samsung: "1.5"
+  },
+  	"es.date.to-primitive": {
+  	chrome: "47",
+  	edge: "15",
+  	electron: "0.36",
+  	firefox: "44",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "34",
+  	opera_mobile: "34",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.date.to-string": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ie: "9",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.function.bind": {
+  	android: "3.0",
+  	chrome: "7",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "5.1",
+  	node: "0.1.101",
+  	opera: "12",
+  	opera_mobile: "12",
+  	phantom: "2.0",
+  	safari: "5.1",
+  	samsung: "1.0"
+  },
+  	"es.function.has-instance": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "50",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.function.name": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "3.2",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "4.0",
+  	samsung: "1.0"
+  },
+  	"es.global-this": {
+  	chrome: "71",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "65",
+  	ios: "12.2",
+  	node: "12.0",
+  	opera: "58",
+  	opera_mobile: "50",
+  	safari: "12.1",
+  	samsung: "10.0"
+  },
+  	"es.json.stringify": {
+  	chrome: "72",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "64",
+  	ios: "12.2",
+  	node: "12.0",
+  	opera: "59",
+  	opera_mobile: "51",
+  	safari: "12.1",
+  	samsung: "11.0"
+  },
+  	"es.json.to-string-tag": {
+  	chrome: "50",
+  	edge: "15",
+  	electron: "1.1",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.map": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "53",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.math.acosh": {
+  	chrome: "54",
+  	edge: "13",
+  	electron: "1.4",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	safari: "7.1",
+  	samsung: "6.0"
+  },
+  	"es.math.asinh": {
+  	chrome: "38",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.atanh": {
+  	chrome: "38",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.cbrt": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.clz32": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "31",
+  	ios: "9.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "9.0",
+  	samsung: "3.0"
+  },
+  	"es.math.cosh": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "7.1",
+  	samsung: "3.4"
+  },
+  	"es.math.expm1": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "46",
+  	ios: "8.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "7.1",
+  	samsung: "3.4"
+  },
+  	"es.math.fround": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "26",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.hypot": {
+  	chrome: "78",
+  	edge: "12",
+  	electron: "7.0",
+  	firefox: "27",
+  	ios: "8.0",
+  	node: "13.0",
+  	opera: "65",
+  	safari: "7.1"
+  },
+  	"es.math.imul": {
+  	android: "4.4",
+  	chrome: "28",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "20",
+  	ios: "9.0",
+  	node: "0.11.1",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "9.0",
+  	samsung: "1.5"
+  },
+  	"es.math.log10": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.log1p": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.log2": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.sign": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "9.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "9.0",
+  	samsung: "3.0"
+  },
+  	"es.math.sinh": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "7.1",
+  	samsung: "3.4"
+  },
+  	"es.math.tanh": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.math.to-string-tag": {
+  	chrome: "50",
+  	edge: "15",
+  	electron: "1.1",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.math.trunc": {
+  	chrome: "38",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "8.0",
+  	node: "0.11.15",
+  	opera: "25",
+  	opera_mobile: "25",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.number.constructor": {
+  	chrome: "41",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "46",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "28",
+  	opera_mobile: "28",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.number.epsilon": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "25",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.number.is-finite": {
+  	android: "4.1",
+  	chrome: "19",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "16",
+  	ios: "9.0",
+  	node: "0.7.3",
+  	opera: "15",
+  	opera_mobile: "15",
+  	safari: "9.0",
+  	samsung: "1.5"
+  },
+  	"es.number.is-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "16",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.number.is-nan": {
+  	android: "4.1",
+  	chrome: "19",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "15",
+  	ios: "9.0",
+  	node: "0.7.3",
+  	opera: "15",
+  	opera_mobile: "15",
+  	safari: "9.0",
+  	samsung: "1.5"
+  },
+  	"es.number.is-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "32",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.number.max-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "31",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.number.min-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "31",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.number.parse-float": {
+  	chrome: "35",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "39",
+  	ios: "11.0",
+  	node: "0.11.13",
+  	opera: "22",
+  	opera_mobile: "22",
+  	safari: "11.0",
+  	samsung: "3.0"
+  },
+  	"es.number.parse-int": {
+  	chrome: "35",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "39",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "22",
+  	opera_mobile: "22",
+  	safari: "9.0",
+  	samsung: "3.0"
+  },
+  	"es.number.to-fixed": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "74",
+  	electron: "0.20",
+  	firefox: "4",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.number.to-precision": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "8",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.object.assign": {
+  	chrome: "49",
+  	edge: "74",
+  	electron: "0.37",
+  	firefox: "36",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.object.create": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "3.2",
+  	node: "0.1.27",
+  	opera: "12",
+  	opera_mobile: "12",
+  	phantom: "1.9",
+  	safari: "4.0",
+  	samsung: "1.0"
+  },
+  	"es.object.define-getter": {
+  	chrome: "62",
+  	edge: "16",
+  	electron: "3.0",
+  	firefox: "48",
+  	ios: "8.0",
+  	node: "8.10",
+  	opera: "49",
+  	opera_mobile: "46",
+  	safari: "7.1",
+  	samsung: "8.0"
+  },
+  	"es.object.define-properties": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "5.1",
+  	node: "0.1.27",
+  	opera: "12",
+  	opera_mobile: "12",
+  	phantom: "2.0",
+  	safari: "5.1",
+  	samsung: "1.0"
+  },
+  	"es.object.define-property": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "4",
+  	ie: "9",
+  	ios: "5.1",
+  	node: "0.1.27",
+  	opera: "12",
+  	opera_mobile: "12",
+  	phantom: "2.0",
+  	safari: "5.1",
+  	samsung: "1.0"
+  },
+  	"es.object.define-setter": {
+  	chrome: "62",
+  	edge: "16",
+  	electron: "3.0",
+  	firefox: "48",
+  	ios: "8.0",
+  	node: "8.10",
+  	opera: "49",
+  	opera_mobile: "46",
+  	safari: "7.1",
+  	samsung: "8.0"
+  },
+  	"es.object.entries": {
+  	chrome: "54",
+  	edge: "14",
+  	electron: "1.4",
+  	firefox: "47",
+  	ios: "10.3",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	safari: "10.1",
+  	samsung: "6.0"
+  },
+  	"es.object.freeze": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.from-entries": {
+  	chrome: "73",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "63",
+  	ios: "12.2",
+  	node: "12.0",
+  	opera: "60",
+  	opera_mobile: "52",
+  	safari: "12.1",
+  	samsung: "11.0"
+  },
+  	"es.object.get-own-property-descriptor": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.get-own-property-descriptors": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "50",
+  	ios: "10.0",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	safari: "10.0",
+  	samsung: "6.0"
+  },
+  	"es.object.get-own-property-names": {
+  	chrome: "40",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "34",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "27",
+  	opera_mobile: "27",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.object.get-prototype-of": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.is": {
+  	android: "4.1",
+  	chrome: "19",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "22",
+  	ios: "9.0",
+  	node: "0.7.3",
+  	opera: "15",
+  	opera_mobile: "15",
+  	safari: "9.0",
+  	samsung: "1.5"
+  },
+  	"es.object.is-extensible": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.is-frozen": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.is-sealed": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.keys": {
+  	chrome: "40",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "27",
+  	opera_mobile: "27",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.object.lookup-getter": {
+  	chrome: "62",
+  	edge: "16",
+  	electron: "3.0",
+  	firefox: "48",
+  	ios: "8.0",
+  	node: "8.10",
+  	opera: "49",
+  	opera_mobile: "46",
+  	safari: "7.1",
+  	samsung: "8.0"
+  },
+  	"es.object.lookup-setter": {
+  	chrome: "62",
+  	edge: "16",
+  	electron: "3.0",
+  	firefox: "48",
+  	ios: "8.0",
+  	node: "8.10",
+  	opera: "49",
+  	opera_mobile: "46",
+  	safari: "7.1",
+  	samsung: "8.0"
+  },
+  	"es.object.prevent-extensions": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.seal": {
+  	chrome: "44",
+  	edge: "13",
+  	electron: "0.30",
+  	firefox: "35",
+  	ios: "9.0",
+  	node: "3.0",
+  	opera: "31",
+  	opera_mobile: "31",
+  	safari: "9.0",
+  	samsung: "4.0"
+  },
+  	"es.object.set-prototype-of": {
+  	chrome: "34",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "31",
+  	ie: "11",
+  	ios: "9.0",
+  	node: "0.11.13",
+  	opera: "21",
+  	opera_mobile: "21",
+  	safari: "9.0",
+  	samsung: "2.0"
+  },
+  	"es.object.to-string": {
+  	chrome: "49",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.object.values": {
+  	chrome: "54",
+  	edge: "14",
+  	electron: "1.4",
+  	firefox: "47",
+  	ios: "10.3",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	safari: "10.1",
+  	samsung: "6.0"
+  },
+  	"es.parse-float": {
+  	chrome: "35",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "8",
+  	ie: "8",
+  	ios: "8.0",
+  	node: "0.11.13",
+  	opera: "22",
+  	opera_mobile: "22",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.parse-int": {
+  	chrome: "35",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "21",
+  	ie: "9",
+  	ios: "8.0",
+  	node: "0.11.13",
+  	opera: "22",
+  	opera_mobile: "22",
+  	safari: "7.1",
+  	samsung: "3.0"
+  },
+  	"es.promise": {
+  	chrome: "67",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "69",
+  	ios: "11.0",
+  	node: "10.4",
+  	opera: "54",
+  	opera_mobile: "48",
+  	safari: "11.0",
+  	samsung: "9.0"
+  },
+  	"es.promise.all-settled": {
+  	chrome: "76",
+  	edge: "76",
+  	electron: "6.0",
+  	firefox: "71",
+  	ios: "13.0",
+  	node: "12.9",
+  	opera: "63",
+  	opera_mobile: "54",
+  	safari: "13"
+  },
+  	"es.promise.finally": {
+  	chrome: "67",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "69",
+  	ios: "13.2.3",
+  	node: "10.4",
+  	opera: "54",
+  	opera_mobile: "48",
+  	safari: "13.0.3",
+  	samsung: "9.0"
+  },
+  	"es.reflect.apply": {
+  	chrome: "49",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.construct": {
+  	chrome: "49",
+  	edge: "15",
+  	electron: "0.37",
+  	firefox: "44",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.define-property": {
+  	chrome: "49",
+  	edge: "13",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.delete-property": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.get": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.get-own-property-descriptor": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.get-prototype-of": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.has": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.is-extensible": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.own-keys": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.prevent-extensions": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.set": {
+  	chrome: "49",
+  	edge: "74",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.reflect.set-prototype-of": {
+  	chrome: "49",
+  	edge: "12",
+  	electron: "0.37",
+  	firefox: "42",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.regexp.constructor": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.regexp.exec": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "44",
+  	ios: "10.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "10.0",
+  	samsung: "1.5"
+  },
+  	"es.regexp.flags": {
+  	chrome: "49",
+  	edge: "74",
+  	electron: "0.37",
+  	firefox: "37",
+  	ios: "9.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "9.0",
+  	samsung: "5.0"
+  },
+  	"es.regexp.sticky": {
+  	chrome: "49",
+  	edge: "13",
+  	electron: "0.37",
+  	firefox: "3",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.regexp.test": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "46",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.regexp.to-string": {
+  	chrome: "50",
+  	edge: "74",
+  	electron: "1.1",
+  	firefox: "46",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "37",
+  	opera_mobile: "37",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.set": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "53",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.code-point-at": {
+  	chrome: "41",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "29",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "28",
+  	opera_mobile: "28",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.string.ends-with": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "40",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.from-code-point": {
+  	chrome: "41",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "29",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "28",
+  	opera_mobile: "28",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.string.includes": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "40",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.iterator": {
+  	chrome: "39",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "36",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "26",
+  	opera_mobile: "26",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.string.match": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.match-all": {
+  	chrome: "80",
+  	edge: "80",
+  	electron: "8.0",
+  	firefox: "73",
+  	opera: "67",
+  	safari: "13.1"
+  },
+  	"es.string.pad-end": {
+  	chrome: "57",
+  	edge: "15",
+  	electron: "1.7",
+  	firefox: "48",
+  	ios: "11.0",
+  	node: "8.0",
+  	opera: "44",
+  	opera_mobile: "43",
+  	safari: "11.0",
+  	samsung: "7.0"
+  },
+  	"es.string.pad-start": {
+  	chrome: "57",
+  	edge: "15",
+  	electron: "1.7",
+  	firefox: "48",
+  	ios: "11.0",
+  	node: "8.0",
+  	opera: "44",
+  	opera_mobile: "43",
+  	safari: "11.0",
+  	samsung: "7.0"
+  },
+  	"es.string.raw": {
+  	chrome: "41",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "34",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "28",
+  	opera_mobile: "28",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.string.repeat": {
+  	chrome: "41",
+  	edge: "13",
+  	electron: "0.21",
+  	firefox: "24",
+  	ios: "9.0",
+  	node: "1.0",
+  	opera: "28",
+  	opera_mobile: "28",
+  	safari: "9.0",
+  	samsung: "3.4"
+  },
+  	"es.string.replace": {
+  	chrome: "64",
+  	edge: "74",
+  	electron: "3.0",
+  	node: "10.0",
+  	opera: "51",
+  	opera_mobile: "47",
+  	samsung: "9.0"
+  },
+  	"es.string.search": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.split": {
+  	chrome: "54",
+  	edge: "74",
+  	electron: "1.4",
+  	firefox: "49",
+  	ios: "10.0",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	safari: "10.0",
+  	samsung: "6.0"
+  },
+  	"es.string.starts-with": {
+  	chrome: "51",
+  	edge: "74",
+  	electron: "1.2",
+  	firefox: "40",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.string.trim": {
+  	chrome: "59",
+  	edge: "15",
+  	electron: "1.8",
+  	firefox: "52",
+  	ios: "12.2",
+  	node: "8.3",
+  	opera: "46",
+  	opera_mobile: "43",
+  	safari: "12.1",
+  	samsung: "7.0"
+  },
+  	"es.string.trim-end": {
+  	chrome: "66",
+  	edge: "74",
+  	electron: "3.0",
+  	firefox: "61",
+  	ios: "12.2",
+  	node: "10.0",
+  	opera: "53",
+  	opera_mobile: "47",
+  	safari: "12.1",
+  	samsung: "9.0"
+  },
+  	"es.string.trim-start": {
+  	chrome: "66",
+  	edge: "74",
+  	electron: "3.0",
+  	firefox: "61",
+  	ios: "12.0",
+  	node: "10.0",
+  	opera: "53",
+  	opera_mobile: "47",
+  	safari: "12.0",
+  	samsung: "9.0"
+  },
+  	"es.string.anchor": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "17",
+  	ios: "6.0",
+  	node: "0.1.27",
+  	opera: "15",
+  	opera_mobile: "15",
+  	phantom: "2.0",
+  	safari: "6.0",
+  	samsung: "1.0"
+  },
+  	"es.string.big": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.blink": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.bold": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.fixed": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.fontcolor": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "17",
+  	ios: "6.0",
+  	node: "0.1.27",
+  	opera: "15",
+  	opera_mobile: "15",
+  	phantom: "2.0",
+  	safari: "6.0",
+  	samsung: "1.0"
+  },
+  	"es.string.fontsize": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "17",
+  	ios: "6.0",
+  	node: "0.1.27",
+  	opera: "15",
+  	opera_mobile: "15",
+  	phantom: "2.0",
+  	safari: "6.0",
+  	samsung: "1.0"
+  },
+  	"es.string.italics": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.link": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "17",
+  	ios: "6.0",
+  	node: "0.1.27",
+  	opera: "15",
+  	opera_mobile: "15",
+  	phantom: "2.0",
+  	safari: "6.0",
+  	samsung: "1.0"
+  },
+  	"es.string.small": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.strike": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.sub": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.string.sup": {
+  	android: "3.0",
+  	chrome: "5",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "2",
+  	ios: "2.0",
+  	node: "0.1.27",
+  	opera: "10.50",
+  	opera_mobile: "10.50",
+  	phantom: "1.9",
+  	safari: "3.1",
+  	samsung: "1.0"
+  },
+  	"es.typed-array.float32-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.float64-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.int8-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.int16-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.int32-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.uint8-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.uint8-clamped-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.uint16-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.uint32-array": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.copy-within": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "34",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.every": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.fill": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.filter": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "38",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.find": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.find-index": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.for-each": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "38",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.from": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.includes": {
+  	chrome: "49",
+  	edge: "14",
+  	electron: "0.37",
+  	firefox: "43",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "36",
+  	opera_mobile: "36",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.index-of": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.iterator": {
+  	chrome: "47",
+  	edge: "13",
+  	electron: "0.36",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "6.0",
+  	opera: "34",
+  	opera_mobile: "34",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.join": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.last-index-of": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.map": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "38",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.of": {
+  	chrome: "54",
+  	edge: "15",
+  	electron: "1.4",
+  	firefox: "55",
+  	node: "7.0",
+  	opera: "41",
+  	opera_mobile: "41",
+  	samsung: "6.0"
+  },
+  	"es.typed-array.reduce": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.reduce-right": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.reverse": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.set": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "15",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.typed-array.slice": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "38",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.some": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "37",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.sort": {
+  	chrome: "45",
+  	edge: "13",
+  	electron: "0.31",
+  	firefox: "46",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.subarray": {
+  	android: "4.4",
+  	chrome: "26",
+  	edge: "13",
+  	electron: "0.20",
+  	firefox: "15",
+  	ios: "8.0",
+  	node: "0.11.0",
+  	opera: "16",
+  	opera_mobile: "16",
+  	safari: "7.1",
+  	samsung: "1.5"
+  },
+  	"es.typed-array.to-locale-string": {
+  	chrome: "45",
+  	edge: "74",
+  	electron: "0.31",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "4.0",
+  	opera: "32",
+  	opera_mobile: "32",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.typed-array.to-string": {
+  	chrome: "51",
+  	edge: "13",
+  	electron: "1.2",
+  	firefox: "51",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.weak-map": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "53",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"es.weak-set": {
+  	chrome: "51",
+  	edge: "15",
+  	electron: "1.2",
+  	firefox: "53",
+  	ios: "10.0",
+  	node: "6.5",
+  	opera: "38",
+  	opera_mobile: "38",
+  	safari: "10.0",
+  	samsung: "5.0"
+  },
+  	"esnext.aggregate-error": {
+  },
+  	"esnext.array.is-template-object": {
+  },
+  	"esnext.array.last-index": {
+  },
+  	"esnext.array.last-item": {
+  },
+  	"esnext.async-iterator.constructor": {
+  },
+  	"esnext.async-iterator.as-indexed-pairs": {
+  },
+  	"esnext.async-iterator.drop": {
+  },
+  	"esnext.async-iterator.every": {
+  },
+  	"esnext.async-iterator.filter": {
+  },
+  	"esnext.async-iterator.find": {
+  },
+  	"esnext.async-iterator.flat-map": {
+  },
+  	"esnext.async-iterator.for-each": {
+  },
+  	"esnext.async-iterator.from": {
+  },
+  	"esnext.async-iterator.map": {
+  },
+  	"esnext.async-iterator.reduce": {
+  },
+  	"esnext.async-iterator.some": {
+  },
+  	"esnext.async-iterator.take": {
+  },
+  	"esnext.async-iterator.to-array": {
+  },
+  	"esnext.composite-key": {
+  },
+  	"esnext.composite-symbol": {
+  },
+  	"esnext.global-this": {
+  	chrome: "71",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "65",
+  	ios: "12.2",
+  	node: "12.0",
+  	opera: "58",
+  	opera_mobile: "50",
+  	safari: "12.1",
+  	samsung: "10.0"
+  },
+  	"esnext.iterator.constructor": {
+  },
+  	"esnext.iterator.as-indexed-pairs": {
+  },
+  	"esnext.iterator.drop": {
+  },
+  	"esnext.iterator.every": {
+  },
+  	"esnext.iterator.filter": {
+  },
+  	"esnext.iterator.find": {
+  },
+  	"esnext.iterator.flat-map": {
+  },
+  	"esnext.iterator.for-each": {
+  },
+  	"esnext.iterator.from": {
+  },
+  	"esnext.iterator.map": {
+  },
+  	"esnext.iterator.reduce": {
+  },
+  	"esnext.iterator.some": {
+  },
+  	"esnext.iterator.take": {
+  },
+  	"esnext.iterator.to-array": {
+  },
+  	"esnext.map.delete-all": {
+  },
+  	"esnext.map.every": {
+  },
+  	"esnext.map.filter": {
+  },
+  	"esnext.map.find": {
+  },
+  	"esnext.map.find-key": {
+  },
+  	"esnext.map.from": {
+  },
+  	"esnext.map.group-by": {
+  },
+  	"esnext.map.includes": {
+  },
+  	"esnext.map.key-by": {
+  },
+  	"esnext.map.key-of": {
+  },
+  	"esnext.map.map-keys": {
+  },
+  	"esnext.map.map-values": {
+  },
+  	"esnext.map.merge": {
+  },
+  	"esnext.map.of": {
+  },
+  	"esnext.map.reduce": {
+  },
+  	"esnext.map.some": {
+  },
+  	"esnext.map.update": {
+  },
+  	"esnext.map.update-or-insert": {
+  },
+  	"esnext.map.upsert": {
+  },
+  	"esnext.math.clamp": {
+  },
+  	"esnext.math.deg-per-rad": {
+  },
+  	"esnext.math.degrees": {
+  },
+  	"esnext.math.fscale": {
+  },
+  	"esnext.math.iaddh": {
+  },
+  	"esnext.math.imulh": {
+  },
+  	"esnext.math.isubh": {
+  },
+  	"esnext.math.rad-per-deg": {
+  },
+  	"esnext.math.radians": {
+  },
+  	"esnext.math.scale": {
+  },
+  	"esnext.math.seeded-prng": {
+  },
+  	"esnext.math.signbit": {
+  },
+  	"esnext.math.umulh": {
+  },
+  	"esnext.number.from-string": {
+  },
+  	"esnext.object.iterate-entries": {
+  },
+  	"esnext.object.iterate-keys": {
+  },
+  	"esnext.object.iterate-values": {
+  },
+  	"esnext.observable": {
+  },
+  	"esnext.promise.all-settled": {
+  	chrome: "76",
+  	edge: "76",
+  	electron: "6.0",
+  	firefox: "71",
+  	ios: "13.0",
+  	node: "12.9",
+  	opera: "63",
+  	opera_mobile: "54",
+  	safari: "13"
+  },
+  	"esnext.promise.any": {
+  },
+  	"esnext.promise.try": {
+  },
+  	"esnext.reflect.define-metadata": {
+  },
+  	"esnext.reflect.delete-metadata": {
+  },
+  	"esnext.reflect.get-metadata": {
+  },
+  	"esnext.reflect.get-metadata-keys": {
+  },
+  	"esnext.reflect.get-own-metadata": {
+  },
+  	"esnext.reflect.get-own-metadata-keys": {
+  },
+  	"esnext.reflect.has-metadata": {
+  },
+  	"esnext.reflect.has-own-metadata": {
+  },
+  	"esnext.reflect.metadata": {
+  },
+  	"esnext.set.add-all": {
+  },
+  	"esnext.set.delete-all": {
+  },
+  	"esnext.set.difference": {
+  },
+  	"esnext.set.every": {
+  },
+  	"esnext.set.filter": {
+  },
+  	"esnext.set.find": {
+  },
+  	"esnext.set.from": {
+  },
+  	"esnext.set.intersection": {
+  },
+  	"esnext.set.is-disjoint-from": {
+  },
+  	"esnext.set.is-subset-of": {
+  },
+  	"esnext.set.is-superset-of": {
+  },
+  	"esnext.set.join": {
+  },
+  	"esnext.set.map": {
+  },
+  	"esnext.set.of": {
+  },
+  	"esnext.set.reduce": {
+  },
+  	"esnext.set.some": {
+  },
+  	"esnext.set.symmetric-difference": {
+  },
+  	"esnext.set.union": {
+  },
+  	"esnext.string.at": {
+  },
+  	"esnext.string.code-points": {
+  },
+  	"esnext.string.match-all": {
+  	chrome: "80",
+  	edge: "80",
+  	electron: "8.0",
+  	firefox: "73",
+  	opera: "67",
+  	safari: "13.1"
+  },
+  	"esnext.string.replace-all": {
+  },
+  	"esnext.symbol.async-dispose": {
+  },
+  	"esnext.symbol.dispose": {
+  },
+  	"esnext.symbol.observable": {
+  },
+  	"esnext.symbol.pattern-match": {
+  },
+  	"esnext.symbol.replace-all": {
+  },
+  	"esnext.weak-map.delete-all": {
+  },
+  	"esnext.weak-map.from": {
+  },
+  	"esnext.weak-map.of": {
+  },
+  	"esnext.weak-map.upsert": {
+  },
+  	"esnext.weak-set.add-all": {
+  },
+  	"esnext.weak-set.delete-all": {
+  },
+  	"esnext.weak-set.from": {
+  },
+  	"esnext.weak-set.of": {
+  },
+  	"web.dom-collections.for-each": {
+  	chrome: "58",
+  	edge: "16",
+  	electron: "1.7",
+  	firefox: "50",
+  	ios: "10.0",
+  	node: "0.0.1",
+  	opera: "45",
+  	opera_mobile: "43",
+  	safari: "10.0",
+  	samsung: "7.0"
+  },
+  	"web.dom-collections.iterator": {
+  	chrome: "66",
+  	edge: "74",
+  	electron: "3.0",
+  	firefox: "60",
+  	node: "0.0.1",
+  	opera: "53",
+  	opera_mobile: "47",
+  	safari: "13.1",
+  	samsung: "9.0"
+  },
+  	"web.immediate": {
+  	ie: "10",
+  	node: "0.9.1"
+  },
+  	"web.queue-microtask": {
+  	chrome: "71",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "69",
+  	ios: "12.2",
+  	node: "12.0",
+  	opera: "58",
+  	opera_mobile: "50",
+  	safari: "12.1",
+  	samsung: "10.0"
+  },
+  	"web.timers": {
+  	android: "1.5",
+  	chrome: "1",
+  	edge: "12",
+  	electron: "0.20",
+  	firefox: "1",
+  	ie: "10",
+  	ios: "1.0",
+  	node: "0.0.1",
+  	opera: "7",
+  	opera_mobile: "7",
+  	phantom: "1.9",
+  	safari: "1.0",
+  	samsung: "1.0"
+  },
+  	"web.url": {
+  	chrome: "67",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "57",
+  	node: "10.0",
+  	opera: "54",
+  	opera_mobile: "48",
+  	samsung: "9.0"
+  },
+  	"web.url.to-json": {
+  	chrome: "71",
+  	edge: "74",
+  	electron: "5.0",
+  	firefox: "57",
+  	node: "10.0",
+  	opera: "58",
+  	opera_mobile: "50",
+  	samsung: "10.0"
+  },
+  	"web.url-search-params": {
+  	chrome: "67",
+  	edge: "74",
+  	electron: "4.0",
+  	firefox: "57",
+  	node: "10.0",
+  	opera: "54",
+  	opera_mobile: "48",
+  	samsung: "9.0"
+  }
+  };
+
+  var leven_1$1 = createCommonjsModule(function (module) {
+
+  var array = [];
+  var charCodeCache = [];
+
+  var leven = function leven(left, right) {
+    if (left === right) {
+      return 0;
+    }
+
+    var swap = left;
+
+    if (left.length > right.length) {
+      left = right;
+      right = swap;
+    }
+
+    var leftLength = left.length;
+    var rightLength = right.length;
+
+    while (leftLength > 0 && left.charCodeAt(~-leftLength) === right.charCodeAt(~-rightLength)) {
+      leftLength--;
+      rightLength--;
+    }
+
+    var start = 0;
+
+    while (start < leftLength && left.charCodeAt(start) === right.charCodeAt(start)) {
+      start++;
+    }
+
+    leftLength -= start;
+    rightLength -= start;
+
+    if (leftLength === 0) {
+      return rightLength;
+    }
+
+    var bCharCode;
+    var result;
+    var temp;
+    var temp2;
+    var i = 0;
+    var j = 0;
+
+    while (i < leftLength) {
+      charCodeCache[i] = left.charCodeAt(start + i);
+      array[i] = ++i;
+    }
+
+    while (j < rightLength) {
+      bCharCode = right.charCodeAt(start + j);
+      temp = j++;
+      result = j;
+
+      for (i = 0; i < leftLength; i++) {
+        temp2 = bCharCode === charCodeCache[i] ? temp : temp + 1;
+        temp = array[i];
+        result = array[i] = temp > result ? temp2 > result ? result + 1 : temp2 : temp2 > temp ? temp + 1 : temp2;
+      }
+    }
+
+    return result;
+  };
+
+  module.exports = leven;
+  module.exports["default"] = leven;
+  });
+
+  function levenArray$1(str, array) {
+    var minLeven = Number.POSITIVE_INFINITY;
+    var result = undefined;
+
+    for (var _iterator = array, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var item = _ref;
+      var distance = leven_1$1(str, item);
+
+      if (distance < minLeven) {
+        minLeven = distance;
+        result = item;
+      }
+    }
+
+    return result;
+  }
+
+  var invariant$1 = function invariant(condition, format, a, b, c, d, e, f) {
+    {
+      if (format === undefined) {
+        throw new Error('invariant requires an error message argument');
+      }
+    }
+
+    if (!condition) {
+      var error;
+
+      if (format === undefined) {
+        error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+      } else {
+        var args = [a, b, c, d, e, f];
+        var argIndex = 0;
+        error = new Error(format.replace(/%s/g, function () {
+          return args[argIndex++];
+        }));
+        error.name = 'Invariant Violation';
+      }
+
+      error.framesToPop = 1;
+      throw error;
+    }
+  };
+
+  var browser$8 = invariant$1;
+
+  var corejs2BuiltIns = {
+  	"es6.array.copy-within": {
+  	chrome: "45",
+  	edge: "12",
+  	firefox: "32",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "5",
+  	opera: "32",
+  	electron: "0.35"
+  },
+  	"es6.array.every": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.fill": {
+  	chrome: "45",
+  	edge: "12",
+  	firefox: "31",
+  	safari: "7.1",
+  	node: "4",
+  	ios: "8",
+  	samsung: "5",
+  	opera: "32",
+  	electron: "0.35"
+  },
+  	"es6.array.filter": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.find": {
+  	chrome: "45",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "4",
+  	ios: "8",
+  	samsung: "5",
+  	opera: "32",
+  	electron: "0.35"
+  },
+  	"es6.array.find-index": {
+  	chrome: "45",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "4",
+  	ios: "8",
+  	samsung: "5",
+  	opera: "32",
+  	electron: "0.35"
+  },
+  	"es7.array.flat-map": {
+  	chrome: "69",
+  	firefox: "62",
+  	safari: "12",
+  	node: "11",
+  	ios: "12",
+  	samsung: "10.2",
+  	opera: "56",
+  	electron: "4"
+  },
+  	"es6.array.for-each": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.from": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "36",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es7.array.includes": {
+  	chrome: "47",
+  	edge: "14",
+  	firefox: "43",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "34",
+  	electron: "0.36"
+  },
+  	"es6.array.index-of": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.is-array": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.iterator": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "28",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.array.last-index-of": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.map": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.of": {
+  	chrome: "45",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "5",
+  	opera: "32",
+  	electron: "0.35"
+  },
+  	"es6.array.reduce": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "3",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.reduce-right": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "3",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.some": {
+  	chrome: "5",
+  	opera: "10.10",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.array.sort": {
+  	chrome: "63",
+  	opera: "50",
+  	edge: "12",
+  	firefox: "5",
+  	safari: "12",
+  	node: "10",
+  	ie: "9",
+  	ios: "12",
+  	samsung: "8.2",
+  	electron: "3.1"
+  },
+  	"es6.array.species": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.date.now": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.date.to-iso-string": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "3.5",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.date.to-json": {
+  	chrome: "5",
+  	opera: "12.10",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "10",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "10",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.date.to-primitive": {
+  	chrome: "47",
+  	edge: "15",
+  	firefox: "44",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "34",
+  	electron: "0.36"
+  },
+  	"es6.date.to-string": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "2",
+  	safari: "3.1",
+  	node: "0.10",
+  	ie: "10",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.function.bind": {
+  	chrome: "7",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "5.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "5"
+  },
+  	"es6.function.has-instance": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "50",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.function.name": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "14",
+  	firefox: "2",
+  	safari: "4",
+  	node: "0.10",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.map": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.math.acosh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.asinh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.atanh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.cbrt": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.clz32": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "31",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.cosh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.expm1": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.fround": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "26",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.hypot": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "27",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.imul": {
+  	chrome: "30",
+  	edge: "12",
+  	firefox: "23",
+  	safari: "7",
+  	node: "0.12",
+  	android: "4.4",
+  	ios: "7",
+  	samsung: "2.1",
+  	opera: "17",
+  	electron: "0.2"
+  },
+  	"es6.math.log1p": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.log10": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.log2": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.sign": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.sinh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.tanh": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.math.trunc": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "7.1",
+  	node: "0.12",
+  	ios: "8",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.number.constructor": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "36",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.number.epsilon": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.is-finite": {
+  	chrome: "19",
+  	edge: "12",
+  	firefox: "16",
+  	safari: "9",
+  	node: "0.12",
+  	android: "4.1",
+  	ios: "9",
+  	samsung: "2.1",
+  	electron: "0.2"
+  },
+  	"es6.number.is-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "16",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.is-nan": {
+  	chrome: "19",
+  	edge: "12",
+  	firefox: "15",
+  	safari: "9",
+  	node: "0.12",
+  	android: "4.1",
+  	ios: "9",
+  	samsung: "2.1",
+  	electron: "0.2"
+  },
+  	"es6.number.is-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "32",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.max-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "31",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.min-safe-integer": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "31",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.parse-float": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.number.parse-int": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "25",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es6.object.assign": {
+  	chrome: "49",
+  	edge: "13",
+  	firefox: "36",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.object.create": {
+  	chrome: "5",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es7.object.define-getter": {
+  	chrome: "62",
+  	edge: "16",
+  	firefox: "48",
+  	safari: "9",
+  	node: "8.10",
+  	ios: "9",
+  	samsung: "8.2",
+  	opera: "49",
+  	electron: "3.1"
+  },
+  	"es7.object.define-setter": {
+  	chrome: "62",
+  	edge: "16",
+  	firefox: "48",
+  	safari: "9",
+  	node: "8.10",
+  	ios: "9",
+  	samsung: "8.2",
+  	opera: "49",
+  	electron: "3.1"
+  },
+  	"es6.object.define-property": {
+  	chrome: "5",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "5.1",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.object.define-properties": {
+  	chrome: "5",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "4",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es7.object.entries": {
+  	chrome: "54",
+  	edge: "14",
+  	firefox: "47",
+  	safari: "10.1",
+  	node: "7",
+  	ios: "10.3",
+  	samsung: "6.2",
+  	opera: "41",
+  	electron: "1.5"
+  },
+  	"es6.object.freeze": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.get-own-property-descriptor": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es7.object.get-own-property-descriptors": {
+  	chrome: "54",
+  	edge: "15",
+  	firefox: "50",
+  	safari: "10.1",
+  	node: "7",
+  	ios: "10.3",
+  	samsung: "6.2",
+  	opera: "41",
+  	electron: "1.5"
+  },
+  	"es6.object.get-own-property-names": {
+  	chrome: "40",
+  	edge: "12",
+  	firefox: "33",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "27",
+  	electron: "0.21"
+  },
+  	"es6.object.get-prototype-of": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es7.object.lookup-getter": {
+  	chrome: "62",
+  	firefox: "36",
+  	safari: "9",
+  	node: "8.10",
+  	ios: "9",
+  	samsung: "8.2",
+  	opera: "49",
+  	electron: "3.1"
+  },
+  	"es7.object.lookup-setter": {
+  	chrome: "62",
+  	firefox: "36",
+  	safari: "9",
+  	node: "8.10",
+  	ios: "9",
+  	samsung: "8.2",
+  	opera: "49",
+  	electron: "3.1"
+  },
+  	"es6.object.prevent-extensions": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.to-string": {
+  	chrome: "57",
+  	edge: "15",
+  	firefox: "51",
+  	safari: "10",
+  	node: "8",
+  	ios: "10",
+  	samsung: "7.2",
+  	opera: "44",
+  	electron: "1.7"
+  },
+  	"es6.object.is": {
+  	chrome: "19",
+  	edge: "12",
+  	firefox: "22",
+  	safari: "9",
+  	node: "0.12",
+  	android: "4.1",
+  	ios: "9",
+  	samsung: "2.1",
+  	electron: "0.2"
+  },
+  	"es6.object.is-frozen": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.is-sealed": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.is-extensible": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.keys": {
+  	chrome: "40",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "27",
+  	electron: "0.21"
+  },
+  	"es6.object.seal": {
+  	chrome: "44",
+  	edge: "12",
+  	firefox: "35",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	opera: "31",
+  	electron: "0.31"
+  },
+  	"es6.object.set-prototype-of": {
+  	chrome: "34",
+  	edge: "12",
+  	firefox: "31",
+  	safari: "9",
+  	node: "0.12",
+  	ie: "11",
+  	ios: "9",
+  	samsung: "2.1",
+  	opera: "21",
+  	electron: "0.2"
+  },
+  	"es7.object.values": {
+  	chrome: "54",
+  	edge: "14",
+  	firefox: "47",
+  	safari: "10.1",
+  	node: "7",
+  	ios: "10.3",
+  	samsung: "6.2",
+  	opera: "41",
+  	electron: "1.5"
+  },
+  	"es6.promise": {
+  	chrome: "51",
+  	edge: "14",
+  	firefox: "45",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es7.promise.finally": {
+  	chrome: "63",
+  	edge: "18",
+  	firefox: "58",
+  	safari: "11.1",
+  	node: "10",
+  	ios: "11.3",
+  	samsung: "8.2",
+  	opera: "50",
+  	electron: "3.1"
+  },
+  	"es6.reflect.apply": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.construct": {
+  	chrome: "49",
+  	edge: "13",
+  	firefox: "49",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.define-property": {
+  	chrome: "49",
+  	edge: "13",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.delete-property": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.get": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.get-own-property-descriptor": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.get-prototype-of": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.has": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.is-extensible": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.own-keys": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.prevent-extensions": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.set": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.reflect.set-prototype-of": {
+  	chrome: "49",
+  	edge: "12",
+  	firefox: "42",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.regexp.constructor": {
+  	chrome: "50",
+  	firefox: "40",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.regexp.flags": {
+  	chrome: "49",
+  	firefox: "37",
+  	safari: "9",
+  	node: "6",
+  	ios: "9",
+  	samsung: "5",
+  	opera: "36",
+  	electron: "1"
+  },
+  	"es6.regexp.match": {
+  	chrome: "50",
+  	firefox: "49",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.regexp.replace": {
+  	chrome: "50",
+  	firefox: "49",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.regexp.split": {
+  	chrome: "50",
+  	firefox: "49",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.regexp.search": {
+  	chrome: "50",
+  	firefox: "49",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.regexp.to-string": {
+  	chrome: "50",
+  	firefox: "39",
+  	safari: "10",
+  	node: "6",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "37",
+  	electron: "1.1"
+  },
+  	"es6.set": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.symbol": {
+  	chrome: "51",
+  	firefox: "51",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es7.symbol.async-iterator": {
+  	chrome: "63",
+  	firefox: "57",
+  	safari: "12",
+  	node: "10",
+  	ios: "12",
+  	samsung: "8.2",
+  	opera: "50",
+  	electron: "3.1"
+  },
+  	"es6.string.anchor": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.big": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.blink": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.bold": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.code-point-at": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "29",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.ends-with": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "29",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.fixed": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.fontcolor": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.fontsize": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.from-code-point": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "29",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.includes": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "40",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.italics": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.iterator": {
+  	chrome: "38",
+  	edge: "12",
+  	firefox: "36",
+  	safari: "9",
+  	node: "0.12",
+  	ios: "9",
+  	samsung: "3",
+  	opera: "25",
+  	electron: "0.2"
+  },
+  	"es6.string.link": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es7.string.pad-start": {
+  	chrome: "57",
+  	edge: "15",
+  	firefox: "48",
+  	safari: "10",
+  	node: "8",
+  	ios: "10",
+  	samsung: "7.2",
+  	opera: "44",
+  	electron: "1.7"
+  },
+  	"es7.string.pad-end": {
+  	chrome: "57",
+  	edge: "15",
+  	firefox: "48",
+  	safari: "10",
+  	node: "8",
+  	ios: "10",
+  	samsung: "7.2",
+  	opera: "44",
+  	electron: "1.7"
+  },
+  	"es6.string.raw": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "34",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.repeat": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "24",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.small": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.starts-with": {
+  	chrome: "41",
+  	edge: "12",
+  	firefox: "29",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "3.4",
+  	opera: "28",
+  	electron: "0.24"
+  },
+  	"es6.string.strike": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.sub": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.sup": {
+  	chrome: "5",
+  	edge: "12",
+  	firefox: "17",
+  	safari: "6",
+  	node: "0.10",
+  	android: "4",
+  	ios: "7",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.string.trim": {
+  	chrome: "5",
+  	opera: "10.50",
+  	edge: "12",
+  	firefox: "3.5",
+  	safari: "4",
+  	node: "0.10",
+  	ie: "9",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es7.string.trim-left": {
+  	chrome: "66",
+  	firefox: "61",
+  	safari: "12",
+  	node: "10",
+  	ios: "12",
+  	samsung: "9.2",
+  	opera: "53",
+  	electron: "3.1"
+  },
+  	"es7.string.trim-right": {
+  	chrome: "66",
+  	firefox: "61",
+  	safari: "12",
+  	node: "10",
+  	ios: "12",
+  	samsung: "9.2",
+  	opera: "53",
+  	electron: "3.1"
+  },
+  	"es6.typed.array-buffer": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.data-view": {
+  	chrome: "5",
+  	opera: "12",
+  	edge: "12",
+  	firefox: "15",
+  	safari: "5.1",
+  	node: "0.10",
+  	ie: "10",
+  	android: "4",
+  	ios: "6",
+  	phantom: "2",
+  	samsung: "2.1",
+  	electron: "1.1"
+  },
+  	"es6.typed.int8-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.uint8-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.uint8-clamped-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.int16-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.uint16-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.int32-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.uint32-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.float32-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.typed.float64-array": {
+  	chrome: "51",
+  	edge: "13",
+  	firefox: "48",
+  	safari: "10",
+  	node: "6.5",
+  	ios: "10",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.weak-map": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "9",
+  	node: "6.5",
+  	ios: "9",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  },
+  	"es6.weak-set": {
+  	chrome: "51",
+  	edge: "15",
+  	firefox: "53",
+  	safari: "9",
+  	node: "6.5",
+  	ios: "9",
+  	samsung: "5",
+  	opera: "38",
+  	electron: "1.2"
+  }
+  };
+
+  var corejs2BuiltIns$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': corejs2BuiltIns
+  });
+
+  var require$$0$4 = getCjsExportFromNamespace(corejs2BuiltIns$1);
+
+  var corejs2BuiltIns$2 = require$$0$4;
+
+  var TopLevelOptions = {
+    configPath: "configPath",
+    corejs: "corejs",
+    debug: "debug",
+    exclude: "exclude",
+    forceAllTransforms: "forceAllTransforms",
+    ignoreBrowserslistConfig: "ignoreBrowserslistConfig",
+    include: "include",
+    loose: "loose",
+    modules: "modules",
+    shippedProposals: "shippedProposals",
+    spec: "spec",
+    targets: "targets",
+    useBuiltIns: "useBuiltIns"
+  };
+  var ModulesOption = {
+    "false": false,
+    auto: "auto",
+    amd: "amd",
+    commonjs: "commonjs",
+    cjs: "cjs",
+    systemjs: "systemjs",
+    umd: "umd"
+  };
+  var UseBuiltInsOption = {
+    "false": false,
+    entry: "entry",
+    usage: "usage"
+  };
+
+  var defaultWebIncludes = ["web.timers", "web.immediate", "web.dom.iterable"];
+  function getPlatformSpecificDefaultFor (targets) {
+    var targetNames = Object.keys(targets);
+    var isAnyTarget = !targetNames.length;
+    var isWebTarget = targetNames.some(function (name) {
+      return name !== "node";
+    });
+    return isAnyTarget || isWebTarget ? defaultWebIncludes : null;
+  }
+
+  var validateTopLevelOptions = function validateTopLevelOptions(options) {
+    var validOptions = Object.keys(TopLevelOptions);
+
+    for (var option in options) {
+      if (!TopLevelOptions[option]) {
+        throw new Error("Invalid Option: " + option + " is not a valid top-level option.\n        Maybe you meant to use '" + levenArray$1(option, validOptions) + "'?");
+      }
+    }
+  };
+
+  var allPluginsList = Object.keys(plugins$2);
+  var modulePlugins = ["proposal-dynamic-import"].concat(Object.keys(moduleTransformations).map(function (m) {
+    return moduleTransformations[m];
+  }));
+
+  var getValidIncludesAndExcludes = function getValidIncludesAndExcludes(type, corejs) {
+    return new Set([].concat(allPluginsList, type === "exclude" ? modulePlugins : [], corejs ? corejs == 2 ? [].concat(Object.keys(corejs2BuiltIns$2), defaultWebIncludes) : Object.keys(corejs3Polyfills) : []));
+  };
+
+  var pluginToRegExp = function pluginToRegExp(plugin) {
+    if (plugin instanceof RegExp) return plugin;
+
+    try {
+      return new RegExp("^" + normalizePluginName(plugin) + "$");
+    } catch (e) {
+      return null;
+    }
+  };
+
+  var selectPlugins = function selectPlugins(regexp, type, corejs) {
+    return Array.from(getValidIncludesAndExcludes(type, corejs)).filter(function (item) {
+      return regexp instanceof RegExp && regexp.test(item);
+    });
+  };
+
+  var flatten$1 = function flatten(array) {
+    var _ref;
+
+    return (_ref = []).concat.apply(_ref, array);
+  };
+
+  var expandIncludesAndExcludes = function expandIncludesAndExcludes(plugins, type, corejs) {
+    if (plugins === void 0) {
+      plugins = [];
+    }
+
+    if (plugins.length === 0) return [];
+    var selectedPlugins = plugins.map(function (plugin) {
+      return selectPlugins(pluginToRegExp(plugin), type, corejs);
+    });
+    var invalidRegExpList = plugins.filter(function (p, i) {
+      return selectedPlugins[i].length === 0;
+    });
+    browser$8(invalidRegExpList.length === 0, "Invalid Option: The plugins/built-ins '" + invalidRegExpList.join(", ") + "' passed to the '" + type + "' option are not\n    valid. Please check data/[plugin-features|built-in-features].js in babel-preset-env");
+    return flatten$1(selectedPlugins);
+  };
+
+  var normalizePluginName = function normalizePluginName(plugin) {
+    return plugin.replace(/^(@babel\/|babel-)(plugin-)?/, "");
+  };
+  var checkDuplicateIncludeExcludes = function checkDuplicateIncludeExcludes(include, exclude) {
+    if (include === void 0) {
+      include = [];
+    }
+
+    if (exclude === void 0) {
+      exclude = [];
+    }
+
+    var duplicates = include.filter(function (opt) {
+      return exclude.indexOf(opt) >= 0;
+    });
+    browser$8(duplicates.length === 0, "Invalid Option: The plugins/built-ins '" + duplicates.join(", ") + "' were found in both the \"include\" and\n    \"exclude\" options.");
+  };
+
+  var normalizeTargets = function normalizeTargets(targets) {
+    if (typeof targets === "string" || Array.isArray(targets)) {
+      return {
+        browsers: targets
+      };
+    }
+
+    return Object.assign({}, targets);
+  };
+
+  var validateConfigPathOption = function validateConfigPathOption(configPath) {
+    if (configPath === void 0) {
+      configPath = process.cwd();
+    }
+
+    browser$8(typeof configPath === "string", "Invalid Option: The configPath option '" + configPath + "' is invalid, only strings are allowed.");
+    return configPath;
+  };
+  var validateBoolOption = function validateBoolOption(name, value, defaultValue) {
+    if (typeof value === "undefined") {
+      value = defaultValue;
+    }
+
+    if (typeof value !== "boolean") {
+      throw new Error("Preset env: '" + name + "' option must be a boolean.");
+    }
+
+    return value;
+  };
+  var validateIgnoreBrowserslistConfig = function validateIgnoreBrowserslistConfig(ignoreBrowserslistConfig) {
+    return validateBoolOption(TopLevelOptions.ignoreBrowserslistConfig, ignoreBrowserslistConfig, false);
+  };
+  var validateModulesOption = function validateModulesOption(modulesOpt) {
+    if (modulesOpt === void 0) {
+      modulesOpt = ModulesOption.auto;
+    }
+
+    browser$8(ModulesOption[modulesOpt.toString()] || ModulesOption[modulesOpt.toString()] === ModulesOption["false"], "Invalid Option: The 'modules' option must be one of \n" + " - 'false' to indicate no module processing\n" + " - a specific module type: 'commonjs', 'amd', 'umd', 'systemjs'" + " - 'auto' (default) which will automatically select 'false' if the current\n" + "   process is known to support ES module syntax, or \"commonjs\" otherwise\n");
+    return modulesOpt;
+  };
+  var validateUseBuiltInsOption = function validateUseBuiltInsOption(builtInsOpt) {
+    if (builtInsOpt === void 0) {
+      builtInsOpt = false;
+    }
+
+    browser$8(UseBuiltInsOption[builtInsOpt.toString()] || UseBuiltInsOption[builtInsOpt.toString()] === UseBuiltInsOption["false"], "Invalid Option: The 'useBuiltIns' option must be either\n    'false' (default) to indicate no polyfill,\n    '\"entry\"' to indicate replacing the entry polyfill, or\n    '\"usage\"' to import only used polyfills per file");
+    return builtInsOpt;
+  };
+  function normalizeCoreJSOption(corejs, useBuiltIns) {
+    var proposals = false;
+    var rawVersion;
+
+    if (useBuiltIns && corejs === undefined) {
+      rawVersion = 2;
+      console.warn("\nWARNING: We noticed you're using the `useBuiltIns` option without declaring a " + "core-js version. Currently, we assume version 2.x when no version " + "is passed. Since this default version will likely change in future " + "versions of Babel, we recommend explicitly setting the core-js version " + "you are using via the `corejs` option.\n" + "\nYou should also be sure that the version you pass to the `corejs` " + "option matches the version specified in your `package.json`'s " + "`dependencies` section. If it doesn't, you need to run one of the " + "following commands:\n\n" + "  npm install --save core-js@2    npm install --save core-js@3\n" + "  yarn add core-js@2              yarn add core-js@3\n");
+    } else if (typeof corejs === "object" && corejs !== null) {
+      rawVersion = corejs.version;
+      proposals = Boolean(corejs.proposals);
+    } else {
+      rawVersion = corejs;
+    }
+
+    var version = rawVersion ? semver_42(String(rawVersion)) : false;
+
+    if (!useBuiltIns && version) {
+      console.log("\nThe `corejs` option only has an effect when the `useBuiltIns` option is not `false`\n");
+    }
+
+    if (useBuiltIns && (!version || version.major < 2 || version.major > 3)) {
+      throw new RangeError("Invalid Option: The version passed to `corejs` is invalid. Currently, " + "only core-js@2 and core-js@3 are supported.");
+    }
+
+    return {
+      version: version,
+      proposals: proposals
+    };
+  }
+  function normalizeOptions$4(opts) {
+    validateTopLevelOptions(opts);
+    var useBuiltIns = validateUseBuiltInsOption(opts.useBuiltIns);
+    var corejs = normalizeCoreJSOption(opts.corejs, useBuiltIns);
+    var include = expandIncludesAndExcludes(opts.include, TopLevelOptions.include, !!corejs.version && corejs.version.major);
+    var exclude = expandIncludesAndExcludes(opts.exclude, TopLevelOptions.exclude, !!corejs.version && corejs.version.major);
+    checkDuplicateIncludeExcludes(include, exclude);
+    var shippedProposals = validateBoolOption(TopLevelOptions.shippedProposals, opts.shippedProposals, false) || corejs.proposals;
+    return {
+      configPath: validateConfigPathOption(opts.configPath),
+      corejs: corejs,
+      debug: validateBoolOption(TopLevelOptions.debug, opts.debug, false),
+      include: include,
+      exclude: exclude,
+      forceAllTransforms: validateBoolOption(TopLevelOptions.forceAllTransforms, opts.forceAllTransforms, false),
+      ignoreBrowserslistConfig: validateIgnoreBrowserslistConfig(opts.ignoreBrowserslistConfig),
+      loose: validateBoolOption(TopLevelOptions.loose, opts.loose, false),
+      modules: validateModulesOption(opts.modules),
+      shippedProposals: shippedProposals,
+      spec: validateBoolOption(TopLevelOptions.spec, opts.spec, false),
+      targets: normalizeTargets(opts.targets),
+      useBuiltIns: useBuiltIns
+    };
+  }
+
+  var proposalPlugins = {};
+  var pluginSyntaxObject = {
+    "proposal-async-generator-functions": "syntax-async-generators",
+    "proposal-json-strings": "syntax-json-strings",
+    "proposal-nullish-coalescing-operator": "syntax-nullish-coalescing-operator",
+    "proposal-object-rest-spread": "syntax-object-rest-spread",
+    "proposal-optional-catch-binding": "syntax-optional-catch-binding",
+    "proposal-optional-chaining": "syntax-optional-chaining",
+    "proposal-unicode-property-regex": null
+  };
+  var pluginSyntaxEntries = Object.keys(pluginSyntaxObject).map(function (key) {
+    return [key, pluginSyntaxObject[key]];
+  });
+  var pluginSyntaxMap = new Map(pluginSyntaxEntries);
+  var shippedProposals = {
+    pluginSyntaxMap: pluginSyntaxMap,
+    proposalPlugins: proposalPlugins
+  };
+  var shippedProposals_1 = shippedProposals.pluginSyntaxMap;
+  var shippedProposals_2 = shippedProposals.proposalPlugins;
+
+  var overlappingPlugins = {
+  	"transform-regenerator": [
+  ]
+  };
+
+  var overlappingPlugins$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': overlappingPlugins
+  });
+
+  var require$$0$5 = getCjsExportFromNamespace(overlappingPlugins$1);
+
+  var overlappingPlugins$2 = require$$0$5;
+
+  var ArrayNatureIterators = ["es6.object.to-string", "es6.array.iterator", "web.dom.iterable"];
+  var CommonIterators = ["es6.string.iterator"].concat(ArrayNatureIterators);
+  var PromiseDependencies = ["es6.object.to-string", "es6.promise"];
+  var BuiltIns = {
+    DataView: "es6.typed.data-view",
+    Float32Array: "es6.typed.float32-array",
+    Float64Array: "es6.typed.float64-array",
+    Int8Array: "es6.typed.int8-array",
+    Int16Array: "es6.typed.int16-array",
+    Int32Array: "es6.typed.int32-array",
+    Map: ["es6.map"].concat(CommonIterators),
+    Number: "es6.number.constructor",
+    Promise: PromiseDependencies,
+    RegExp: ["es6.regexp.constructor"],
+    Set: ["es6.set"].concat(CommonIterators),
+    Symbol: ["es6.symbol", "es7.symbol.async-iterator"],
+    Uint8Array: "es6.typed.uint8-array",
+    Uint8ClampedArray: "es6.typed.uint8-clamped-array",
+    Uint16Array: "es6.typed.uint16-array",
+    Uint32Array: "es6.typed.uint32-array",
+    WeakMap: ["es6.weak-map"].concat(CommonIterators),
+    WeakSet: ["es6.weak-set"].concat(CommonIterators)
+  };
+  var InstanceProperties = {
+    __defineGetter__: ["es7.object.define-getter"],
+    __defineSetter__: ["es7.object.define-setter"],
+    __lookupGetter__: ["es7.object.lookup-getter"],
+    __lookupSetter__: ["es7.object.lookup-setter"],
+    anchor: ["es6.string.anchor"],
+    big: ["es6.string.big"],
+    bind: ["es6.function.bind"],
+    blink: ["es6.string.blink"],
+    bold: ["es6.string.bold"],
+    codePointAt: ["es6.string.code-point-at"],
+    copyWithin: ["es6.array.copy-within"],
+    endsWith: ["es6.string.ends-with"],
+    entries: ArrayNatureIterators,
+    every: ["es6.array.is-array"],
+    fill: ["es6.array.fill"],
+    filter: ["es6.array.filter"],
+    "finally": ["es7.promise.finally"].concat(PromiseDependencies),
+    find: ["es6.array.find"],
+    findIndex: ["es6.array.find-index"],
+    fixed: ["es6.string.fixed"],
+    flags: ["es6.regexp.flags"],
+    flatMap: ["es7.array.flat-map"],
+    fontcolor: ["es6.string.fontcolor"],
+    fontsize: ["es6.string.fontsize"],
+    forEach: ["es6.array.for-each"],
+    includes: ["es6.string.includes", "es7.array.includes"],
+    indexOf: ["es6.array.index-of"],
+    italics: ["es6.string.italics"],
+    keys: ArrayNatureIterators,
+    lastIndexOf: ["es6.array.last-index-of"],
+    link: ["es6.string.link"],
+    map: ["es6.array.map"],
+    match: ["es6.regexp.match"],
+    name: ["es6.function.name"],
+    padStart: ["es7.string.pad-start"],
+    padEnd: ["es7.string.pad-end"],
+    reduce: ["es6.array.reduce"],
+    reduceRight: ["es6.array.reduce-right"],
+    repeat: ["es6.string.repeat"],
+    replace: ["es6.regexp.replace"],
+    search: ["es6.regexp.search"],
+    slice: ["es6.array.slice"],
+    small: ["es6.string.small"],
+    some: ["es6.array.some"],
+    sort: ["es6.array.sort"],
+    split: ["es6.regexp.split"],
+    startsWith: ["es6.string.starts-with"],
+    strike: ["es6.string.strike"],
+    sub: ["es6.string.sub"],
+    sup: ["es6.string.sup"],
+    toISOString: ["es6.date.to-iso-string"],
+    toJSON: ["es6.date.to-json"],
+    toString: ["es6.object.to-string", "es6.date.to-string", "es6.regexp.to-string"],
+    trim: ["es6.string.trim"],
+    trimEnd: ["es7.string.trim-right"],
+    trimLeft: ["es7.string.trim-left"],
+    trimRight: ["es7.string.trim-right"],
+    trimStart: ["es7.string.trim-left"],
+    values: ArrayNatureIterators
+  };
+  var StaticProperties = {
+    Array: {
+      from: ["es6.array.from", "es6.string.iterator"],
+      isArray: "es6.array.is-array",
+      of: "es6.array.of"
+    },
+    Date: {
+      now: "es6.date.now"
+    },
+    Object: {
+      assign: "es6.object.assign",
+      create: "es6.object.create",
+      defineProperty: "es6.object.define-property",
+      defineProperties: "es6.object.define-properties",
+      entries: "es7.object.entries",
+      freeze: "es6.object.freeze",
+      getOwnPropertyDescriptors: "es7.object.get-own-property-descriptors",
+      getOwnPropertySymbols: "es6.symbol",
+      is: "es6.object.is",
+      isExtensible: "es6.object.is-extensible",
+      isFrozen: "es6.object.is-frozen",
+      isSealed: "es6.object.is-sealed",
+      keys: "es6.object.keys",
+      preventExtensions: "es6.object.prevent-extensions",
+      seal: "es6.object.seal",
+      setPrototypeOf: "es6.object.set-prototype-of",
+      values: "es7.object.values"
+    },
+    Math: {
+      acosh: "es6.math.acosh",
+      asinh: "es6.math.asinh",
+      atanh: "es6.math.atanh",
+      cbrt: "es6.math.cbrt",
+      clz32: "es6.math.clz32",
+      cosh: "es6.math.cosh",
+      expm1: "es6.math.expm1",
+      fround: "es6.math.fround",
+      hypot: "es6.math.hypot",
+      imul: "es6.math.imul",
+      log1p: "es6.math.log1p",
+      log10: "es6.math.log10",
+      log2: "es6.math.log2",
+      sign: "es6.math.sign",
+      sinh: "es6.math.sinh",
+      tanh: "es6.math.tanh",
+      trunc: "es6.math.trunc"
+    },
+    String: {
+      fromCodePoint: "es6.string.from-code-point",
+      raw: "es6.string.raw"
+    },
+    Number: {
+      EPSILON: "es6.number.epsilon",
+      MIN_SAFE_INTEGER: "es6.number.min-safe-integer",
+      MAX_SAFE_INTEGER: "es6.number.max-safe-integer",
+      isFinite: "es6.number.is-finite",
+      isInteger: "es6.number.is-integer",
+      isSafeInteger: "es6.number.is-safe-integer",
+      isNaN: "es6.number.is-nan",
+      parseFloat: "es6.number.parse-float",
+      parseInt: "es6.number.parse-int"
+    },
+    Promise: {
+      all: CommonIterators,
+      race: CommonIterators
+    },
+    Reflect: {
+      apply: "es6.reflect.apply",
+      construct: "es6.reflect.construct",
+      defineProperty: "es6.reflect.define-property",
+      deleteProperty: "es6.reflect.delete-property",
+      get: "es6.reflect.get",
+      getOwnPropertyDescriptor: "es6.reflect.get-own-property-descriptor",
+      getPrototypeOf: "es6.reflect.get-prototype-of",
+      has: "es6.reflect.has",
+      isExtensible: "es6.reflect.is-extensible",
+      ownKeys: "es6.reflect.own-keys",
+      preventExtensions: "es6.reflect.prevent-extensions",
+      set: "es6.reflect.set",
+      setPrototypeOf: "es6.reflect.set-prototype-of"
+    }
+  };
+
+  var has$6 = Object.hasOwnProperty.call.bind(Object.hasOwnProperty);
+  function getType$1(target) {
+    return Object.prototype.toString.call(target).slice(8, -1).toLowerCase();
+  }
+  function intersection(first, second, third) {
+    var result = new Set();
+
+    for (var _iterator = first, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var el = _ref;
+      if (second.has(el) && third.has(el)) result.add(el);
+    }
+
+    return result;
+  }
+  function filterStageFromList(list, stageList) {
+    return Object.keys(list).reduce(function (result, item) {
+      if (!stageList[item]) {
+        result[item] = list[item];
+      }
+
+      return result;
+    }, {});
+  }
+  function getImportSource(_ref2) {
+    var node = _ref2.node;
+    if (node.specifiers.length === 0) return node.source.value;
+  }
+  function getRequireSource(_ref3) {
+    var node = _ref3.node;
+    if (!isExpressionStatement(node)) return;
+    var expression = node.expression;
+    var isRequire = isCallExpression(expression) && isIdentifier(expression.callee) && expression.callee.name === "require" && expression.arguments.length === 1 && isStringLiteral(expression.arguments[0]);
+    if (isRequire) return expression.arguments[0].value;
+  }
+  function isPolyfillSource(source) {
+    return source === "@babel/polyfill" || source === "core-js";
+  }
+  var modulePathMap = {
+    "regenerator-runtime": "regenerator-runtime/runtime"
+  };
+  function getModulePath(mod) {
+    return modulePathMap[mod] || "core-js/modules/" + mod;
+  }
+  function createImport(path, mod) {
+    return addSideEffect(path, getModulePath(mod));
+  }
+  function isNamespaced(path) {
+    if (!path.node) return false;
+    var binding = path.scope.getBinding(path.node.name);
+    if (!binding) return false;
+    return binding.path.isImportNamespaceSpecifier();
+  }
+
+  var NO_DIRECT_POLYFILL_IMPORT = "\n  When setting `useBuiltIns: 'usage'`, polyfills are automatically imported when needed.\n  Please remove the `import '@babel/polyfill'` call or use `useBuiltIns: 'entry'` instead.";
+  function addCoreJS2UsagePlugin (_ref, _ref2) {
+    var t = _ref.types;
+    var include = _ref2.include,
+        exclude = _ref2.exclude,
+        polyfillTargets = _ref2.polyfillTargets,
+        debug = _ref2.debug;
+    var polyfills = filterItems(corejs2BuiltIns$2, include, exclude, polyfillTargets, getPlatformSpecificDefaultFor(polyfillTargets));
+    var addAndRemovePolyfillImports = {
+      ImportDeclaration: function ImportDeclaration(path) {
+        if (isPolyfillSource(getImportSource(path))) {
+          console.warn(NO_DIRECT_POLYFILL_IMPORT);
+          path.remove();
+        }
+      },
+      Program: function Program(path) {
+        path.get("body").forEach(function (bodyPath) {
+          if (isPolyfillSource(getRequireSource(bodyPath))) {
+            console.warn(NO_DIRECT_POLYFILL_IMPORT);
+            bodyPath.remove();
+          }
+        });
+      },
+      ReferencedIdentifier: function ReferencedIdentifier(_ref3) {
+        var name = _ref3.node.name,
+            parent = _ref3.parent,
+            scope = _ref3.scope;
+        if (t.isMemberExpression(parent)) return;
+        if (!has$6(BuiltIns, name)) return;
+        if (scope.getBindingIdentifier(name)) return;
+        var BuiltInDependencies = BuiltIns[name];
+        this.addUnsupported(BuiltInDependencies);
+      },
+      CallExpression: function CallExpression(path) {
+        if (path.node.arguments.length) return;
+        var callee = path.node.callee;
+        if (!t.isMemberExpression(callee)) return;
+        if (!callee.computed) return;
+
+        if (!path.get("callee.property").matchesPattern("Symbol.iterator")) {
+          return;
+        }
+
+        this.addImport("web.dom.iterable");
+      },
+      BinaryExpression: function BinaryExpression(path) {
+        if (path.node.operator !== "in") return;
+        if (!path.get("left").matchesPattern("Symbol.iterator")) return;
+        this.addImport("web.dom.iterable");
+      },
+      YieldExpression: function YieldExpression(path) {
+        if (path.node.delegate) {
+          this.addImport("web.dom.iterable");
+        }
+      },
+      MemberExpression: {
+        enter: function enter(path) {
+          var node = path.node;
+          var object = node.object,
+              property = node.property;
+          if (isNamespaced(path.get("object"))) return;
+          var evaluatedPropType = object.name;
+          var propertyName = "";
+          var instanceType = "";
+
+          if (node.computed) {
+            if (t.isStringLiteral(property)) {
+              propertyName = property.value;
+            } else {
+              var result = path.get("property").evaluate();
+
+              if (result.confident && result.value) {
+                propertyName = result.value;
+              }
+            }
+          } else {
+            propertyName = property.name;
+          }
+
+          if (path.scope.getBindingIdentifier(object.name)) {
+            var _result = path.get("object").evaluate();
+
+            if (_result.value) {
+              instanceType = getType$1(_result.value);
+            } else if (_result.deopt && _result.deopt.isIdentifier()) {
+              evaluatedPropType = _result.deopt.node.name;
+            }
+          }
+
+          if (has$6(StaticProperties, evaluatedPropType)) {
+            var BuiltInProperties = StaticProperties[evaluatedPropType];
+
+            if (has$6(BuiltInProperties, propertyName)) {
+              var StaticPropertyDependencies = BuiltInProperties[propertyName];
+              this.addUnsupported(StaticPropertyDependencies);
+            }
+          }
+
+          if (has$6(InstanceProperties, propertyName)) {
+            var InstancePropertyDependencies = InstanceProperties[propertyName];
+
+            if (instanceType) {
+              InstancePropertyDependencies = InstancePropertyDependencies.filter(function (module) {
+                return module.includes(instanceType);
+              });
+            }
+
+            this.addUnsupported(InstancePropertyDependencies);
+          }
+        },
+        exit: function exit(path) {
+          var name = path.node.object.name;
+          if (!has$6(BuiltIns, name)) return;
+          if (path.scope.getBindingIdentifier(name)) return;
+          var BuiltInDependencies = BuiltIns[name];
+          this.addUnsupported(BuiltInDependencies);
+        }
+      },
+      VariableDeclarator: function VariableDeclarator(path) {
+        var node = path.node;
+        var id = node.id,
+            init = node.init;
+        if (!t.isObjectPattern(id)) return;
+        if (init && path.scope.getBindingIdentifier(init.name)) return;
+
+        for (var _iterator = id.properties, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+          var _ref4;
+
+          if (_isArray) {
+            if (_i >= _iterator.length) break;
+            _ref4 = _iterator[_i++];
+          } else {
+            _i = _iterator.next();
+            if (_i.done) break;
+            _ref4 = _i.value;
+          }
+
+          var _ref5 = _ref4,
+              key = _ref5.key;
+
+          if (!node.computed && t.isIdentifier(key) && has$6(InstanceProperties, key.name)) {
+            var InstancePropertyDependencies = InstanceProperties[key.name];
+            this.addUnsupported(InstancePropertyDependencies);
+          }
+        }
+      }
+    };
+    return {
+      name: "corejs2-usage",
+      pre: function pre(_ref6) {
+        var path = _ref6.path;
+        this.polyfillsSet = new Set();
+
+        this.addImport = function (builtIn) {
+          if (!this.polyfillsSet.has(builtIn)) {
+            this.polyfillsSet.add(builtIn);
+            createImport(path, builtIn);
+          }
+        };
+
+        this.addUnsupported = function (builtIn) {
+          var modules = Array.isArray(builtIn) ? builtIn : [builtIn];
+
+          for (var _iterator2 = modules, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+            var _ref7;
+
+            if (_isArray2) {
+              if (_i2 >= _iterator2.length) break;
+              _ref7 = _iterator2[_i2++];
+            } else {
+              _i2 = _iterator2.next();
+              if (_i2.done) break;
+              _ref7 = _i2.value;
+            }
+
+            var module = _ref7;
+
+            if (polyfills.has(module)) {
+              this.addImport(module);
+            }
+          }
+        };
+      },
+      post: function post() {
+        if (debug) {
+          logUsagePolyfills(this.polyfillsSet, this.file.opts.filename, polyfillTargets, corejs2BuiltIns$2);
+        }
+      },
+      visitor: addAndRemovePolyfillImports
+    };
+  }
+
+  var corejs3ShippedProposalsList = ["esnext.global-this", "esnext.string.match-all"];
+
+  var debug$2 = typeof process === 'object' && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? function () {
+    var _console;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return (_console = console).error.apply(_console, ['SEMVER'].concat(args));
+  } : function () {};
+  var debug_1 = debug$2;
+
+  var SEMVER_SPEC_VERSION = '2.0.0';
+  var MAX_LENGTH = 256;
+  var MAX_SAFE_INTEGER$3 = Number.MAX_SAFE_INTEGER || 9007199254740991;
+  var MAX_SAFE_COMPONENT_LENGTH = 16;
+  var constants$1 = {
+    SEMVER_SPEC_VERSION: SEMVER_SPEC_VERSION,
+    MAX_LENGTH: MAX_LENGTH,
+    MAX_SAFE_INTEGER: MAX_SAFE_INTEGER$3,
+    MAX_SAFE_COMPONENT_LENGTH: MAX_SAFE_COMPONENT_LENGTH
+  };
+
+  var re_1 = createCommonjsModule(function (module, exports) {
+  var MAX_SAFE_COMPONENT_LENGTH = constants$1.MAX_SAFE_COMPONENT_LENGTH;
+
+
+
+  exports = module.exports = {};
+  var re = exports.re = [];
+  var src = exports.src = [];
+  var t = exports.t = {};
+  var R = 0;
+
+  var createToken = function createToken(name, value, isGlobal) {
+    var index = R++;
+    debug_1(index, value);
+    t[name] = index;
+    src[index] = value;
+    re[index] = new RegExp(value, isGlobal ? 'g' : undefined);
+  };
+
+  createToken('NUMERICIDENTIFIER', '0|[1-9]\\d*');
+  createToken('NUMERICIDENTIFIERLOOSE', '[0-9]+');
+  createToken('NONNUMERICIDENTIFIER', '\\d*[a-zA-Z-][a-zA-Z0-9-]*');
+  createToken('MAINVERSION', "(" + src[t.NUMERICIDENTIFIER] + ")\\." + ("(" + src[t.NUMERICIDENTIFIER] + ")\\.") + ("(" + src[t.NUMERICIDENTIFIER] + ")"));
+  createToken('MAINVERSIONLOOSE', "(" + src[t.NUMERICIDENTIFIERLOOSE] + ")\\." + ("(" + src[t.NUMERICIDENTIFIERLOOSE] + ")\\.") + ("(" + src[t.NUMERICIDENTIFIERLOOSE] + ")"));
+  createToken('PRERELEASEIDENTIFIER', "(?:" + src[t.NUMERICIDENTIFIER] + "|" + src[t.NONNUMERICIDENTIFIER] + ")");
+  createToken('PRERELEASEIDENTIFIERLOOSE', "(?:" + src[t.NUMERICIDENTIFIERLOOSE] + "|" + src[t.NONNUMERICIDENTIFIER] + ")");
+  createToken('PRERELEASE', "(?:-(" + src[t.PRERELEASEIDENTIFIER] + "(?:\\." + src[t.PRERELEASEIDENTIFIER] + ")*))");
+  createToken('PRERELEASELOOSE', "(?:-?(" + src[t.PRERELEASEIDENTIFIERLOOSE] + "(?:\\." + src[t.PRERELEASEIDENTIFIERLOOSE] + ")*))");
+  createToken('BUILDIDENTIFIER', '[0-9A-Za-z-]+');
+  createToken('BUILD', "(?:\\+(" + src[t.BUILDIDENTIFIER] + "(?:\\." + src[t.BUILDIDENTIFIER] + ")*))");
+  createToken('FULLPLAIN', "v?" + src[t.MAINVERSION] + src[t.PRERELEASE] + "?" + src[t.BUILD] + "?");
+  createToken('FULL', "^" + src[t.FULLPLAIN] + "$");
+  createToken('LOOSEPLAIN', "[v=\\s]*" + src[t.MAINVERSIONLOOSE] + src[t.PRERELEASELOOSE] + "?" + src[t.BUILD] + "?");
+  createToken('LOOSE', "^" + src[t.LOOSEPLAIN] + "$");
+  createToken('GTLT', '((?:<|>)?=?)');
+  createToken('XRANGEIDENTIFIERLOOSE', src[t.NUMERICIDENTIFIERLOOSE] + "|x|X|\\*");
+  createToken('XRANGEIDENTIFIER', src[t.NUMERICIDENTIFIER] + "|x|X|\\*");
+  createToken('XRANGEPLAIN', "[v=\\s]*(" + src[t.XRANGEIDENTIFIER] + ")" + ("(?:\\.(" + src[t.XRANGEIDENTIFIER] + ")") + ("(?:\\.(" + src[t.XRANGEIDENTIFIER] + ")") + ("(?:" + src[t.PRERELEASE] + ")?" + src[t.BUILD] + "?") + ")?)?");
+  createToken('XRANGEPLAINLOOSE', "[v=\\s]*(" + src[t.XRANGEIDENTIFIERLOOSE] + ")" + ("(?:\\.(" + src[t.XRANGEIDENTIFIERLOOSE] + ")") + ("(?:\\.(" + src[t.XRANGEIDENTIFIERLOOSE] + ")") + ("(?:" + src[t.PRERELEASELOOSE] + ")?" + src[t.BUILD] + "?") + ")?)?");
+  createToken('XRANGE', "^" + src[t.GTLT] + "\\s*" + src[t.XRANGEPLAIN] + "$");
+  createToken('XRANGELOOSE', "^" + src[t.GTLT] + "\\s*" + src[t.XRANGEPLAINLOOSE] + "$");
+  createToken('COERCE', "" + ('(^|[^\\d])' + '(\\d{1,') + MAX_SAFE_COMPONENT_LENGTH + "})" + ("(?:\\.(\\d{1," + MAX_SAFE_COMPONENT_LENGTH + "}))?") + ("(?:\\.(\\d{1," + MAX_SAFE_COMPONENT_LENGTH + "}))?") + "(?:$|[^\\d])");
+  createToken('COERCERTL', src[t.COERCE], true);
+  createToken('LONETILDE', '(?:~>?)');
+  createToken('TILDETRIM', "(\\s*)" + src[t.LONETILDE] + "\\s+", true);
+  exports.tildeTrimReplace = '$1~';
+  createToken('TILDE', "^" + src[t.LONETILDE] + src[t.XRANGEPLAIN] + "$");
+  createToken('TILDELOOSE', "^" + src[t.LONETILDE] + src[t.XRANGEPLAINLOOSE] + "$");
+  createToken('LONECARET', '(?:\\^)');
+  createToken('CARETTRIM', "(\\s*)" + src[t.LONECARET] + "\\s+", true);
+  exports.caretTrimReplace = '$1^';
+  createToken('CARET', "^" + src[t.LONECARET] + src[t.XRANGEPLAIN] + "$");
+  createToken('CARETLOOSE', "^" + src[t.LONECARET] + src[t.XRANGEPLAINLOOSE] + "$");
+  createToken('COMPARATORLOOSE', "^" + src[t.GTLT] + "\\s*(" + src[t.LOOSEPLAIN] + ")$|^$");
+  createToken('COMPARATOR', "^" + src[t.GTLT] + "\\s*(" + src[t.FULLPLAIN] + ")$|^$");
+  createToken('COMPARATORTRIM', "(\\s*)" + src[t.GTLT] + "\\s*(" + src[t.LOOSEPLAIN] + "|" + src[t.XRANGEPLAIN] + ")", true);
+  exports.comparatorTrimReplace = '$1$2$3';
+  createToken('HYPHENRANGE', "^\\s*(" + src[t.XRANGEPLAIN] + ")" + "\\s+-\\s+" + ("(" + src[t.XRANGEPLAIN] + ")") + "\\s*$");
+  createToken('HYPHENRANGELOOSE', "^\\s*(" + src[t.XRANGEPLAINLOOSE] + ")" + "\\s+-\\s+" + ("(" + src[t.XRANGEPLAINLOOSE] + ")") + "\\s*$");
+  createToken('STAR', '(<|>)?=?\\s*\\*');
+  });
+  var re_2 = re_1.re;
+  var re_3 = re_1.src;
+  var re_4 = re_1.t;
+  var re_5 = re_1.tildeTrimReplace;
+  var re_6 = re_1.caretTrimReplace;
+  var re_7 = re_1.comparatorTrimReplace;
+
+  var numeric = /^[0-9]+$/;
+
+  var compareIdentifiers = function compareIdentifiers(a, b) {
+    var anum = numeric.test(a);
+    var bnum = numeric.test(b);
+
+    if (anum && bnum) {
+      a = +a;
+      b = +b;
+    }
+
+    return a === b ? 0 : anum && !bnum ? -1 : bnum && !anum ? 1 : a < b ? -1 : 1;
+  };
+
+  var rcompareIdentifiers = function rcompareIdentifiers(a, b) {
+    return compareIdentifiers(b, a);
+  };
+
+  var identifiers = {
+    compareIdentifiers: compareIdentifiers,
+    rcompareIdentifiers: rcompareIdentifiers
+  };
+
+  var MAX_LENGTH$1 = constants$1.MAX_LENGTH,
+      MAX_SAFE_INTEGER$4 = constants$1.MAX_SAFE_INTEGER;
+
+  var re = re_1.re,
+      t$1 = re_1.t;
+
+  var compareIdentifiers$1 = identifiers.compareIdentifiers;
+
+  var SemVer = function () {
+
+    function SemVer(version, options) {
+      if (!options || typeof options !== 'object') {
+        options = {
+          loose: !!options,
+          includePrerelease: false
+        };
+      }
+
+      if (version instanceof SemVer) {
+        if (version.loose === !!options.loose && version.includePrerelease === !!options.includePrerelease) {
+          return version;
+        } else {
+          version = version.version;
+        }
+      } else if (typeof version !== 'string') {
+        throw new TypeError("Invalid Version: " + version);
+      }
+
+      if (version.length > MAX_LENGTH$1) {
+        throw new TypeError("version is longer than " + MAX_LENGTH$1 + " characters");
+      }
+
+      debug_1('SemVer', version, options);
+      this.options = options;
+      this.loose = !!options.loose;
+      this.includePrerelease = !!options.includePrerelease;
+      var m = version.trim().match(options.loose ? re[t$1.LOOSE] : re[t$1.FULL]);
+
+      if (!m) {
+        throw new TypeError("Invalid Version: " + version);
+      }
+
+      this.raw = version;
+      this.major = +m[1];
+      this.minor = +m[2];
+      this.patch = +m[3];
+
+      if (this.major > MAX_SAFE_INTEGER$4 || this.major < 0) {
+        throw new TypeError('Invalid major version');
+      }
+
+      if (this.minor > MAX_SAFE_INTEGER$4 || this.minor < 0) {
+        throw new TypeError('Invalid minor version');
+      }
+
+      if (this.patch > MAX_SAFE_INTEGER$4 || this.patch < 0) {
+        throw new TypeError('Invalid patch version');
+      }
+
+      if (!m[4]) {
+        this.prerelease = [];
+      } else {
+        this.prerelease = m[4].split('.').map(function (id) {
+          if (/^[0-9]+$/.test(id)) {
+            var num = +id;
+
+            if (num >= 0 && num < MAX_SAFE_INTEGER$4) {
+              return num;
+            }
+          }
+
+          return id;
+        });
+      }
+
+      this.build = m[5] ? m[5].split('.') : [];
+      this.format();
+    }
+
+    var _proto = SemVer.prototype;
+
+    _proto.format = function format() {
+      this.version = this.major + "." + this.minor + "." + this.patch;
+
+      if (this.prerelease.length) {
+        this.version += "-" + this.prerelease.join('.');
+      }
+
+      return this.version;
+    };
+
+    _proto.toString = function toString() {
+      return this.version;
+    };
+
+    _proto.compare = function compare(other) {
+      debug_1('SemVer.compare', this.version, this.options, other);
+
+      if (!(other instanceof SemVer)) {
+        if (typeof other === 'string' && other === this.version) {
+          return 0;
+        }
+
+        other = new SemVer(other, this.options);
+      }
+
+      if (other.version === this.version) {
+        return 0;
+      }
+
+      return this.compareMain(other) || this.comparePre(other);
+    };
+
+    _proto.compareMain = function compareMain(other) {
+      if (!(other instanceof SemVer)) {
+        other = new SemVer(other, this.options);
+      }
+
+      return compareIdentifiers$1(this.major, other.major) || compareIdentifiers$1(this.minor, other.minor) || compareIdentifiers$1(this.patch, other.patch);
+    };
+
+    _proto.comparePre = function comparePre(other) {
+      if (!(other instanceof SemVer)) {
+        other = new SemVer(other, this.options);
+      }
+
+      if (this.prerelease.length && !other.prerelease.length) {
+        return -1;
+      } else if (!this.prerelease.length && other.prerelease.length) {
+        return 1;
+      } else if (!this.prerelease.length && !other.prerelease.length) {
+        return 0;
+      }
+
+      var i = 0;
+
+      do {
+        var a = this.prerelease[i];
+        var b = other.prerelease[i];
+        debug_1('prerelease compare', i, a, b);
+
+        if (a === undefined && b === undefined) {
+          return 0;
+        } else if (b === undefined) {
+          return 1;
+        } else if (a === undefined) {
+          return -1;
+        } else if (a === b) {
+          continue;
+        } else {
+          return compareIdentifiers$1(a, b);
+        }
+      } while (++i);
+    };
+
+    _proto.compareBuild = function compareBuild(other) {
+      if (!(other instanceof SemVer)) {
+        other = new SemVer(other, this.options);
+      }
+
+      var i = 0;
+
+      do {
+        var a = this.build[i];
+        var b = other.build[i];
+        debug_1('prerelease compare', i, a, b);
+
+        if (a === undefined && b === undefined) {
+          return 0;
+        } else if (b === undefined) {
+          return 1;
+        } else if (a === undefined) {
+          return -1;
+        } else if (a === b) {
+          continue;
+        } else {
+          return compareIdentifiers$1(a, b);
+        }
+      } while (++i);
+    };
+
+    _proto.inc = function inc(release, identifier) {
+      switch (release) {
+        case 'premajor':
+          this.prerelease.length = 0;
+          this.patch = 0;
+          this.minor = 0;
+          this.major++;
+          this.inc('pre', identifier);
+          break;
+
+        case 'preminor':
+          this.prerelease.length = 0;
+          this.patch = 0;
+          this.minor++;
+          this.inc('pre', identifier);
+          break;
+
+        case 'prepatch':
+          this.prerelease.length = 0;
+          this.inc('patch', identifier);
+          this.inc('pre', identifier);
+          break;
+
+        case 'prerelease':
+          if (this.prerelease.length === 0) {
+            this.inc('patch', identifier);
+          }
+
+          this.inc('pre', identifier);
+          break;
+
+        case 'major':
+          if (this.minor !== 0 || this.patch !== 0 || this.prerelease.length === 0) {
+            this.major++;
+          }
+
+          this.minor = 0;
+          this.patch = 0;
+          this.prerelease = [];
+          break;
+
+        case 'minor':
+          if (this.patch !== 0 || this.prerelease.length === 0) {
+            this.minor++;
+          }
+
+          this.patch = 0;
+          this.prerelease = [];
+          break;
+
+        case 'patch':
+          if (this.prerelease.length === 0) {
+            this.patch++;
+          }
+
+          this.prerelease = [];
+          break;
+
+        case 'pre':
+          if (this.prerelease.length === 0) {
+            this.prerelease = [0];
+          } else {
+            var i = this.prerelease.length;
+
+            while (--i >= 0) {
+              if (typeof this.prerelease[i] === 'number') {
+                this.prerelease[i]++;
+                i = -2;
+              }
+            }
+
+            if (i === -1) {
+              this.prerelease.push(0);
+            }
+          }
+
+          if (identifier) {
+            if (this.prerelease[0] === identifier) {
+              if (isNaN(this.prerelease[1])) {
+                this.prerelease = [identifier, 0];
+              }
+            } else {
+              this.prerelease = [identifier, 0];
+            }
+          }
+
+          break;
+
+        default:
+          throw new Error("invalid increment argument: " + release);
+      }
+
+      this.format();
+      this.raw = this.version;
+      return this;
+    };
+
+    return SemVer;
+  }();
+
+  var semver$1 = SemVer;
+
+  var compare$2 = function compare(a, b, loose) {
+    return new semver$1(a, loose).compare(new semver$1(b, loose));
+  };
+
+  var compare_1 = compare$2;
+
+  var eq$1 = function eq(a, b, loose) {
+    return compare_1(a, b, loose) === 0;
+  };
+
+  var eq_1$1 = eq$1;
+
+  var neq = function neq(a, b, loose) {
+    return compare_1(a, b, loose) !== 0;
+  };
+
+  var neq_1 = neq;
+
+  var gt = function gt(a, b, loose) {
+    return compare_1(a, b, loose) > 0;
+  };
+
+  var gt_1 = gt;
+
+  var gte = function gte(a, b, loose) {
+    return compare_1(a, b, loose) >= 0;
+  };
+
+  var gte_1 = gte;
+
+  var lt = function lt(a, b, loose) {
+    return compare_1(a, b, loose) < 0;
+  };
+
+  var lt_1 = lt;
+
+  var lte = function lte(a, b, loose) {
+    return compare_1(a, b, loose) <= 0;
+  };
+
+  var lte_1 = lte;
+
+  var cmp = function cmp(a, op, b, loose) {
+    switch (op) {
+      case '===':
+        if (typeof a === 'object') a = a.version;
+        if (typeof b === 'object') b = b.version;
+        return a === b;
+
+      case '!==':
+        if (typeof a === 'object') a = a.version;
+        if (typeof b === 'object') b = b.version;
+        return a !== b;
+
+      case '':
+      case '=':
+      case '==':
+        return eq_1$1(a, b, loose);
+
+      case '!=':
+        return neq_1(a, b, loose);
+
+      case '>':
+        return gt_1(a, b, loose);
+
+      case '>=':
+        return gte_1(a, b, loose);
+
+      case '<':
+        return lt_1(a, b, loose);
+
+      case '<=':
+        return lte_1(a, b, loose);
+
+      default:
+        throw new TypeError("Invalid operator: " + op);
+    }
+  };
+
+  var cmp_1 = cmp;
+
+  var MAX_LENGTH$2 = constants$1.MAX_LENGTH;
+
+  var re$1 = re_1.re,
+      t$2 = re_1.t;
+
+
+
+  var parse$7 = function parse(version, options) {
+    if (!options || typeof options !== 'object') {
+      options = {
+        loose: !!options,
+        includePrerelease: false
+      };
+    }
+
+    if (version instanceof semver$1) {
+      return version;
+    }
+
+    if (typeof version !== 'string') {
+      return null;
+    }
+
+    if (version.length > MAX_LENGTH$2) {
+      return null;
+    }
+
+    var r = options.loose ? re$1[t$2.LOOSE] : re$1[t$2.FULL];
+
+    if (!r.test(version)) {
+      return null;
+    }
+
+    try {
+      return new semver$1(version, options);
+    } catch (er) {
+      return null;
+    }
+  };
+
+  var parse_1 = parse$7;
+
+  var re$2 = re_1.re,
+      t$3 = re_1.t;
+
+  var coerce = function coerce(version, options) {
+    if (version instanceof semver$1) {
+      return version;
+    }
+
+    if (typeof version === 'number') {
+      version = String(version);
+    }
+
+    if (typeof version !== 'string') {
+      return null;
+    }
+
+    options = options || {};
+    var match = null;
+
+    if (!options.rtl) {
+      match = version.match(re$2[t$3.COERCE]);
+    } else {
+      var next;
+
+      while ((next = re$2[t$3.COERCERTL].exec(version)) && (!match || match.index + match[0].length !== version.length)) {
+        if (!match || next.index + next[0].length !== match.index + match[0].length) {
+          match = next;
+        }
+
+        re$2[t$3.COERCERTL].lastIndex = next.index + next[1].length + next[2].length;
+      }
+
+      re$2[t$3.COERCERTL].lastIndex = -1;
+    }
+
+    if (match === null) return null;
+    return parse_1(match[2] + "." + (match[3] || '0') + "." + (match[4] || '0'), options);
+  };
+
+  var coerce_1 = coerce;
+
+  var has$7 = Function.call.bind({}.hasOwnProperty);
+
+  function compare$3(a, operator, b) {
+    return cmp_1(coerce_1(a), operator, coerce_1(b));
+  }
+
+  function intersection$1(list, order) {
+    var set = list instanceof Set ? list : new Set(list);
+    return order.filter(function (name) {
+      return set.has(name);
+    });
+  }
+
+  function sortObjectByKey(object, fn) {
+    return Object.keys(object).sort(fn).reduce(function (memo, key) {
+      memo[key] = object[key];
+      return memo;
+    }, {});
+  }
+
+  var helpers$1 = {
+    compare: compare$3,
+    has: has$7,
+    intersection: intersection$1,
+    semver: coerce_1,
+    sortObjectByKey: sortObjectByKey
+  };
+
+  var modulesByVersions = {
+  	"3.0": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set",
+  	"esnext.aggregate-error",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"3.1": [
+  	"es.string.match-all",
+  	"es.symbol.match-all",
+  	"esnext.symbol.replace-all"
+  ],
+  	"3.2": [
+  	"es.promise.all-settled",
+  	"esnext.array.is-template-object",
+  	"esnext.map.update-or-insert",
+  	"esnext.symbol.async-dispose"
+  ],
+  	"3.3": [
+  	"es.global-this",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.upsert",
+  	"esnext.weak-map.upsert"
+  ],
+  	"3.4": [
+  	"es.json.stringify"
+  ],
+  	"3.5": [
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values"
+  ],
+  	"3.6": [
+  	"es.regexp.sticky",
+  	"es.regexp.test"
+  ]
+  };
+
+  var modulesByVersions$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': modulesByVersions
+  });
+
+  var modules = [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.global-this",
+  	"es.json.stringify",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set",
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ];
+
+  var modules$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': modules
+  });
+
+  var modulesByVersions$2 = getCjsExportFromNamespace(modulesByVersions$1);
+
+  var modules$2 = getCjsExportFromNamespace(modules$1);
+
+  var compare$4 = helpers$1.compare,
+      intersection$2 = helpers$1.intersection,
+      semver$2 = helpers$1.semver;
+
+
+
+
+
+  var getModulesListForTargetVersion = function (raw) {
+    var corejs = semver$2(raw);
+
+    if (corejs.major !== 3) {
+      throw RangeError('This version of `core-js-compat` works only with `core-js@3`.');
+    }
+
+    var result = [];
+
+    for (var _i = 0, _Object$keys = Object.keys(modulesByVersions$2); _i < _Object$keys.length; _i++) {
+      var version = _Object$keys[_i];
+
+      if (compare$4(version, '<=', corejs)) {
+        result.push.apply(result, modulesByVersions$2[version]);
+      }
+    }
+
+    return intersection$2(result, modules$2);
+  };
+
+  var ArrayNatureIterators$1 = ["es.array.iterator", "web.dom-collections.iterator"];
+  var CommonIterators$1 = ["es.string.iterator"].concat(ArrayNatureIterators$1);
+  var ArrayNatureIteratorsWithTag = ["es.object.to-string"].concat(ArrayNatureIterators$1);
+  var CommonIteratorsWithTag = ["es.object.to-string"].concat(CommonIterators$1);
+  var TypedArrayDependencies = ["es.typed-array.copy-within", "es.typed-array.every", "es.typed-array.fill", "es.typed-array.filter", "es.typed-array.find", "es.typed-array.find-index", "es.typed-array.for-each", "es.typed-array.includes", "es.typed-array.index-of", "es.typed-array.iterator", "es.typed-array.join", "es.typed-array.last-index-of", "es.typed-array.map", "es.typed-array.reduce", "es.typed-array.reduce-right", "es.typed-array.reverse", "es.typed-array.set", "es.typed-array.slice", "es.typed-array.some", "es.typed-array.sort", "es.typed-array.subarray", "es.typed-array.to-locale-string", "es.typed-array.to-string", "es.object.to-string", "es.array.iterator", "es.array-buffer.slice"];
+  var TypedArrayStaticMethods = {
+    from: "es.typed-array.from",
+    of: "es.typed-array.of"
+  };
+  var PromiseDependencies$1 = ["es.promise", "es.object.to-string"];
+  var PromiseDependenciesWithIterators = [].concat(PromiseDependencies$1, CommonIterators$1);
+  var SymbolDependencies = ["es.symbol", "es.symbol.description", "es.object.to-string"];
+  var MapDependencies = ["es.map", "esnext.map.delete-all", "esnext.map.every", "esnext.map.filter", "esnext.map.find", "esnext.map.find-key", "esnext.map.includes", "esnext.map.key-of", "esnext.map.map-keys", "esnext.map.map-values", "esnext.map.merge", "esnext.map.reduce", "esnext.map.some", "esnext.map.update"].concat(CommonIteratorsWithTag);
+  var SetDependencies = ["es.set", "esnext.set.add-all", "esnext.set.delete-all", "esnext.set.difference", "esnext.set.every", "esnext.set.filter", "esnext.set.find", "esnext.set.intersection", "esnext.set.is-disjoint-from", "esnext.set.is-subset-of", "esnext.set.is-superset-of", "esnext.set.join", "esnext.set.map", "esnext.set.reduce", "esnext.set.some", "esnext.set.symmetric-difference", "esnext.set.union"].concat(CommonIteratorsWithTag);
+  var WeakMapDependencies = ["es.weak-map", "esnext.weak-map.delete-all"].concat(CommonIteratorsWithTag);
+  var WeakSetDependencies = ["es.weak-set", "esnext.weak-set.add-all", "esnext.weak-set.delete-all"].concat(CommonIteratorsWithTag);
+  var URLSearchParamsDependencies = ["web.url"].concat(CommonIteratorsWithTag);
+  var BuiltIns$1 = {
+    AggregateError: ["esnext.aggregate-error"].concat(CommonIterators$1),
+    ArrayBuffer: ["es.array-buffer.constructor", "es.array-buffer.slice", "es.object.to-string"],
+    DataView: ["es.data-view", "es.array-buffer.slice", "es.object.to-string"],
+    Date: ["es.date.to-string"],
+    Float32Array: ["es.typed-array.float32-array"].concat(TypedArrayDependencies),
+    Float64Array: ["es.typed-array.float64-array"].concat(TypedArrayDependencies),
+    Int8Array: ["es.typed-array.int8-array"].concat(TypedArrayDependencies),
+    Int16Array: ["es.typed-array.int16-array"].concat(TypedArrayDependencies),
+    Int32Array: ["es.typed-array.int32-array"].concat(TypedArrayDependencies),
+    Uint8Array: ["es.typed-array.uint8-array"].concat(TypedArrayDependencies),
+    Uint8ClampedArray: ["es.typed-array.uint8-clamped-array"].concat(TypedArrayDependencies),
+    Uint16Array: ["es.typed-array.uint16-array"].concat(TypedArrayDependencies),
+    Uint32Array: ["es.typed-array.uint32-array"].concat(TypedArrayDependencies),
+    Map: MapDependencies,
+    Number: ["es.number.constructor"],
+    Observable: ["esnext.observable", "esnext.symbol.observable", "es.object.to-string"].concat(CommonIteratorsWithTag),
+    Promise: PromiseDependencies$1,
+    RegExp: ["es.regexp.constructor", "es.regexp.exec", "es.regexp.to-string"],
+    Set: SetDependencies,
+    Symbol: SymbolDependencies,
+    URL: ["web.url"].concat(URLSearchParamsDependencies),
+    URLSearchParams: URLSearchParamsDependencies,
+    WeakMap: WeakMapDependencies,
+    WeakSet: WeakSetDependencies,
+    clearImmediate: ["web.immediate"],
+    compositeKey: ["esnext.composite-key"],
+    compositeSymbol: ["esnext.composite-symbol"].concat(SymbolDependencies),
+    fetch: PromiseDependencies$1,
+    globalThis: ["esnext.global-this"],
+    parseFloat: ["es.parse-float"],
+    parseInt: ["es.parse-int"],
+    queueMicrotask: ["web.queue-microtask"],
+    setTimeout: ["web.timers"],
+    setInterval: ["web.timers"],
+    setImmediate: ["web.immediate"]
+  };
+  var InstanceProperties$1 = {
+    at: ["esnext.string.at"],
+    anchor: ["es.string.anchor"],
+    big: ["es.string.big"],
+    bind: ["es.function.bind"],
+    blink: ["es.string.blink"],
+    bold: ["es.string.bold"],
+    codePointAt: ["es.string.code-point-at"],
+    codePoints: ["esnext.string.code-points"],
+    concat: ["es.array.concat"],
+    copyWithin: ["es.array.copy-within"],
+    description: ["es.symbol", "es.symbol.description"],
+    endsWith: ["es.string.ends-with"],
+    entries: ArrayNatureIteratorsWithTag,
+    every: ["es.array.every"],
+    exec: ["es.regexp.exec"],
+    fill: ["es.array.fill"],
+    filter: ["es.array.filter"],
+    "finally": ["es.promise.finally"].concat(PromiseDependencies$1),
+    find: ["es.array.find"],
+    findIndex: ["es.array.find-index"],
+    fixed: ["es.string.fixed"],
+    flags: ["es.regexp.flags"],
+    flat: ["es.array.flat", "es.array.unscopables.flat"],
+    flatMap: ["es.array.flat-map", "es.array.unscopables.flat-map"],
+    fontcolor: ["es.string.fontcolor"],
+    fontsize: ["es.string.fontsize"],
+    forEach: ["es.array.for-each", "web.dom-collections.for-each"],
+    includes: ["es.array.includes", "es.string.includes"],
+    indexOf: ["es.array.index-of"],
+    italics: ["es.string.italics"],
+    join: ["es.array.join"],
+    keys: ArrayNatureIteratorsWithTag,
+    lastIndex: ["esnext.array.last-index"],
+    lastIndexOf: ["es.array.last-index-of"],
+    lastItem: ["esnext.array.last-item"],
+    link: ["es.string.link"],
+    match: ["es.string.match", "es.regexp.exec"],
+    matchAll: ["esnext.string.match-all"],
+    map: ["es.array.map"],
+    name: ["es.function.name"],
+    padEnd: ["es.string.pad-end"],
+    padStart: ["es.string.pad-start"],
+    reduce: ["es.array.reduce"],
+    reduceRight: ["es.array.reduce-right"],
+    repeat: ["es.string.repeat"],
+    replace: ["es.string.replace", "es.regexp.exec"],
+    replaceAll: ["esnext.string.replace-all"],
+    reverse: ["es.array.reverse"],
+    search: ["es.string.search", "es.regexp.exec"],
+    slice: ["es.array.slice"],
+    small: ["es.string.small"],
+    some: ["es.array.some"],
+    sort: ["es.array.sort"],
+    splice: ["es.array.splice"],
+    split: ["es.string.split", "es.regexp.exec"],
+    startsWith: ["es.string.starts-with"],
+    strike: ["es.string.strike"],
+    sub: ["es.string.sub"],
+    sup: ["es.string.sup"],
+    toFixed: ["es.number.to-fixed"],
+    toISOString: ["es.date.to-iso-string"],
+    toJSON: ["es.date.to-json", "web.url.to-json"],
+    toPrecision: ["es.number.to-precision"],
+    toString: ["es.object.to-string", "es.regexp.to-string", "es.date.to-string"],
+    trim: ["es.string.trim"],
+    trimEnd: ["es.string.trim-end"],
+    trimLeft: ["es.string.trim-start"],
+    trimRight: ["es.string.trim-end"],
+    trimStart: ["es.string.trim-start"],
+    values: ArrayNatureIteratorsWithTag,
+    __defineGetter__: ["es.object.define-getter"],
+    __defineSetter__: ["es.object.define-setter"],
+    __lookupGetter__: ["es.object.lookup-getter"],
+    __lookupSetter__: ["es.object.lookup-setter"]
+  };
+  var StaticProperties$1 = {
+    Array: {
+      from: ["es.array.from", "es.string.iterator"],
+      isArray: ["es.array.is-array"],
+      of: ["es.array.of"]
+    },
+    Date: {
+      now: "es.date.now"
+    },
+    Object: {
+      assign: "es.object.assign",
+      create: "es.object.create",
+      defineProperty: "es.object.define-property",
+      defineProperties: "es.object.define-properties",
+      entries: "es.object.entries",
+      freeze: "es.object.freeze",
+      fromEntries: ["es.object.from-entries", "es.array.iterator"],
+      getOwnPropertyDescriptor: "es.object.get-own-property-descriptor",
+      getOwnPropertyDescriptors: "es.object.get-own-property-descriptors",
+      getOwnPropertyNames: "es.object.get-own-property-names",
+      getOwnPropertySymbols: "es.symbol",
+      getPrototypeOf: "es.object.get-prototype-of",
+      is: "es.object.is",
+      isExtensible: "es.object.is-extensible",
+      isFrozen: "es.object.is-frozen",
+      isSealed: "es.object.is-sealed",
+      keys: "es.object.keys",
+      preventExtensions: "es.object.prevent-extensions",
+      seal: "es.object.seal",
+      setPrototypeOf: "es.object.set-prototype-of",
+      values: "es.object.values"
+    },
+    Math: {
+      DEG_PER_RAD: "esnext.math.deg-per-rad",
+      RAD_PER_DEG: "esnext.math.rad-per-deg",
+      acosh: "es.math.acosh",
+      asinh: "es.math.asinh",
+      atanh: "es.math.atanh",
+      cbrt: "es.math.cbrt",
+      clamp: "esnext.math.clamp",
+      clz32: "es.math.clz32",
+      cosh: "es.math.cosh",
+      degrees: "esnext.math.degrees",
+      expm1: "es.math.expm1",
+      fround: "es.math.fround",
+      fscale: "esnext.math.fscale",
+      hypot: "es.math.hypot",
+      iaddh: "esnext.math.iaddh",
+      imul: "es.math.imul",
+      imulh: "esnext.math.imulh",
+      isubh: "esnext.math.isubh",
+      log1p: "es.math.log1p",
+      log10: "es.math.log10",
+      log2: "es.math.log2",
+      radians: "esnext.math.radians",
+      scale: "esnext.math.scale",
+      seededPRNG: "esnext.math.seeded-prng",
+      sign: "es.math.sign",
+      signbit: "esnext.math.signbit",
+      sinh: "es.math.sinh",
+      tanh: "es.math.tanh",
+      trunc: "es.math.trunc",
+      umulh: "esnext.math.umulh"
+    },
+    String: {
+      fromCodePoint: "es.string.from-code-point",
+      raw: "es.string.raw"
+    },
+    Number: {
+      EPSILON: "es.number.epsilon",
+      MIN_SAFE_INTEGER: "es.number.min-safe-integer",
+      MAX_SAFE_INTEGER: "es.number.max-safe-integer",
+      fromString: "esnext.number.from-string",
+      isFinite: "es.number.is-finite",
+      isInteger: "es.number.is-integer",
+      isSafeInteger: "es.number.is-safe-integer",
+      isNaN: "es.number.is-nan",
+      parseFloat: "es.number.parse-float",
+      parseInt: "es.number.parse-int"
+    },
+    Map: {
+      from: ["esnext.map.from"].concat(MapDependencies),
+      groupBy: ["esnext.map.group-by"].concat(MapDependencies),
+      keyBy: ["esnext.map.key-by"].concat(MapDependencies),
+      of: ["esnext.map.of"].concat(MapDependencies)
+    },
+    Set: {
+      from: ["esnext.set.from"].concat(SetDependencies),
+      of: ["esnext.set.of"].concat(SetDependencies)
+    },
+    WeakMap: {
+      from: ["esnext.weak-map.from"].concat(WeakMapDependencies),
+      of: ["esnext.weak-map.of"].concat(WeakMapDependencies)
+    },
+    WeakSet: {
+      from: ["esnext.weak-set.from"].concat(WeakSetDependencies),
+      of: ["esnext.weak-set.of"].concat(WeakSetDependencies)
+    },
+    Promise: {
+      all: PromiseDependenciesWithIterators,
+      allSettled: ["esnext.promise.all-settled"].concat(PromiseDependenciesWithIterators),
+      any: ["esnext.promise.any", "esnext.aggregate-error"].concat(PromiseDependenciesWithIterators),
+      race: PromiseDependenciesWithIterators,
+      "try": ["esnext.promise.try"].concat(PromiseDependenciesWithIterators)
+    },
+    Reflect: {
+      apply: "es.reflect.apply",
+      construct: "es.reflect.construct",
+      defineMetadata: "esnext.reflect.define-metadata",
+      defineProperty: "es.reflect.define-property",
+      deleteMetadata: "esnext.reflect.delete-metadata",
+      deleteProperty: "es.reflect.delete-property",
+      get: "es.reflect.get",
+      getMetadata: "esnext.reflect.get-metadata",
+      getMetadataKeys: "esnext.reflect.get-metadata-keys",
+      getOwnMetadata: "esnext.reflect.get-own-metadata",
+      getOwnMetadataKeys: "esnext.reflect.get-own-metadata-keys",
+      getOwnPropertyDescriptor: "es.reflect.get-own-property-descriptor",
+      getPrototypeOf: "es.reflect.get-prototype-of",
+      has: "es.reflect.has",
+      hasMetadata: "esnext.reflect.has-metadata",
+      hasOwnMetadata: "esnext.reflect.has-own-metadata",
+      isExtensible: "es.reflect.is-extensible",
+      metadata: "esnext.reflect.metadata",
+      ownKeys: "es.reflect.own-keys",
+      preventExtensions: "es.reflect.prevent-extensions",
+      set: "es.reflect.set",
+      setPrototypeOf: "es.reflect.set-prototype-of"
+    },
+    Symbol: {
+      asyncIterator: ["es.symbol.async-iterator"],
+      dispose: ["esnext.symbol.dispose"],
+      hasInstance: ["es.symbol.has-instance", "es.function.has-instance"],
+      isConcatSpreadable: ["es.symbol.is-concat-spreadable", "es.array.concat"],
+      iterator: ["es.symbol.iterator"].concat(CommonIteratorsWithTag),
+      match: ["es.symbol.match", "es.string.match"],
+      observable: ["esnext.symbol.observable"],
+      patternMatch: ["esnext.symbol.pattern-match"],
+      replace: ["es.symbol.replace", "es.string.replace"],
+      search: ["es.symbol.search", "es.string.search"],
+      species: ["es.symbol.species", "es.array.species"],
+      split: ["es.symbol.split", "es.string.split"],
+      toPrimitive: ["es.symbol.to-primitive", "es.date.to-primitive"],
+      toStringTag: ["es.symbol.to-string-tag", "es.object.to-string", "es.math.to-string-tag", "es.json.to-string-tag"],
+      unscopables: ["es.symbol.unscopables"]
+    },
+    ArrayBuffer: {
+      isView: ["es.array-buffer.is-view"]
+    },
+    Int8Array: TypedArrayStaticMethods,
+    Uint8Array: TypedArrayStaticMethods,
+    Uint8ClampedArray: TypedArrayStaticMethods,
+    Int16Array: TypedArrayStaticMethods,
+    Uint16Array: TypedArrayStaticMethods,
+    Int32Array: TypedArrayStaticMethods,
+    Uint32Array: TypedArrayStaticMethods,
+    Float32Array: TypedArrayStaticMethods,
+    Float64Array: TypedArrayStaticMethods
+  };
+  var CommonInstanceDependencies = new Set(["es.object.to-string", "es.object.define-getter", "es.object.define-setter", "es.object.lookup-getter", "es.object.lookup-setter", "es.regexp.exec"]);
+  var PossibleGlobalObjects = new Set(["global", "globalThis", "self", "window"]);
+
+  var NO_DIRECT_POLYFILL_IMPORT$1 = "\n  When setting `useBuiltIns: 'usage'`, polyfills are automatically imported when needed.\n  Please remove the direct import of `core-js` or use `useBuiltIns: 'entry'` instead.";
+  var corejs3PolyfillsWithoutProposals = Object.keys(corejs3Polyfills).filter(function (name) {
+    return !name.startsWith("esnext.");
+  }).reduce(function (memo, key) {
+    memo[key] = corejs3Polyfills[key];
+    return memo;
+  }, {});
+  var corejs3PolyfillsWithShippedProposals = corejs3ShippedProposalsList.reduce(function (memo, key) {
+    memo[key] = corejs3Polyfills[key];
+    return memo;
+  }, Object.assign({}, corejs3PolyfillsWithoutProposals));
+  function addCoreJS3UsagePlugin (_, _ref) {
+    var corejs = _ref.corejs,
+        include = _ref.include,
+        exclude = _ref.exclude,
+        polyfillTargets = _ref.polyfillTargets,
+        proposals = _ref.proposals,
+        shippedProposals = _ref.shippedProposals,
+        debug = _ref.debug;
+    var polyfills = filterItems(proposals ? corejs3Polyfills : shippedProposals ? corejs3PolyfillsWithShippedProposals : corejs3PolyfillsWithoutProposals, include, exclude, polyfillTargets, null);
+    var available = new Set(getModulesListForTargetVersion(corejs.version));
+
+    function resolveKey(path, computed) {
+      var node = path.node,
+          parent = path.parent,
+          scope = path.scope;
+      if (path.isStringLiteral()) return node.value;
+      var name = node.name;
+      var isIdentifier = path.isIdentifier();
+      if (isIdentifier && !(computed || parent.computed)) return name;
+
+      if (!isIdentifier || scope.getBindingIdentifier(name)) {
+        var _path$evaluate = path.evaluate(),
+            value = _path$evaluate.value;
+
+        if (typeof value === "string") return value;
+      }
+    }
+
+    function resolveSource(path) {
+      var node = path.node,
+          scope = path.scope;
+      var builtIn, instanceType;
+
+      if (node) {
+        builtIn = node.name;
+
+        if (!path.isIdentifier() || scope.getBindingIdentifier(builtIn)) {
+          var _path$evaluate2 = path.evaluate(),
+              deopt = _path$evaluate2.deopt,
+              value = _path$evaluate2.value;
+
+          if (value !== undefined) {
+            instanceType = getType$1(value);
+          } else if (deopt && deopt.isIdentifier()) {
+            builtIn = deopt.node.name;
+          }
+        }
+      }
+
+      return {
+        builtIn: builtIn,
+        instanceType: instanceType,
+        isNamespaced: isNamespaced(path)
+      };
+    }
+
+    var addAndRemovePolyfillImports = {
+      ImportDeclaration: function ImportDeclaration(path) {
+        if (isPolyfillSource(getImportSource(path))) {
+          console.warn(NO_DIRECT_POLYFILL_IMPORT$1);
+          path.remove();
+        }
+      },
+      Program: {
+        enter: function enter(path) {
+          path.get("body").forEach(function (bodyPath) {
+            if (isPolyfillSource(getRequireSource(bodyPath))) {
+              console.warn(NO_DIRECT_POLYFILL_IMPORT$1);
+              bodyPath.remove();
+            }
+          });
+        },
+        exit: function exit(path) {
+          var _this = this;
+
+          var filtered = intersection(polyfills, this.polyfillsSet, available);
+          var reversed = Array.from(filtered).reverse();
+
+          for (var _iterator = reversed, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref2;
+
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              _ref2 = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              _ref2 = _i.value;
+            }
+
+            var module = _ref2;
+
+            if (!this.injectedPolyfills.has(module)) {
+              createImport(path, module);
+            }
+          }
+
+          filtered.forEach(function (module) {
+            return _this.injectedPolyfills.add(module);
+          });
+        }
+      },
+      Import: function Import() {
+        this.addUnsupported(PromiseDependencies$1);
+      },
+      Function: function Function(_ref3) {
+        var node = _ref3.node;
+
+        if (node.async) {
+          this.addUnsupported(PromiseDependencies$1);
+        }
+      },
+      "ForOfStatement|ArrayPattern": function ForOfStatementArrayPattern() {
+        this.addUnsupported(CommonIterators$1);
+      },
+      SpreadElement: function SpreadElement(_ref4) {
+        var parentPath = _ref4.parentPath;
+
+        if (!parentPath.isObjectExpression()) {
+          this.addUnsupported(CommonIterators$1);
+        }
+      },
+      YieldExpression: function YieldExpression(_ref5) {
+        var node = _ref5.node;
+
+        if (node.delegate) {
+          this.addUnsupported(CommonIterators$1);
+        }
+      },
+      ReferencedIdentifier: function ReferencedIdentifier(_ref6) {
+        var name = _ref6.node.name,
+            scope = _ref6.scope;
+        if (scope.getBindingIdentifier(name)) return;
+        this.addBuiltInDependencies(name);
+      },
+      MemberExpression: function MemberExpression(path) {
+        var source = resolveSource(path.get("object"));
+        var key = resolveKey(path.get("property"));
+        this.addPropertyDependencies(source, key);
+      },
+      ObjectPattern: function ObjectPattern(path) {
+        var parentPath = path.parentPath,
+            parent = path.parent,
+            key = path.key;
+        var source;
+
+        if (parentPath.isVariableDeclarator()) {
+          source = resolveSource(parentPath.get("init"));
+        } else if (parentPath.isAssignmentExpression()) {
+          source = resolveSource(parentPath.get("right"));
+        } else if (parentPath.isFunctionExpression()) {
+          var grand = parentPath.parentPath;
+
+          if (grand.isCallExpression() || grand.isNewExpression()) {
+            if (grand.node.callee === parent) {
+              source = resolveSource(grand.get("arguments")[key]);
+            }
+          }
+        }
+
+        for (var _iterator2 = path.get("properties"), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+          var _ref7;
+
+          if (_isArray2) {
+            if (_i2 >= _iterator2.length) break;
+            _ref7 = _iterator2[_i2++];
+          } else {
+            _i2 = _iterator2.next();
+            if (_i2.done) break;
+            _ref7 = _i2.value;
+          }
+
+          var property = _ref7;
+
+          if (property.isObjectProperty()) {
+            var _key = resolveKey(property.get("key"));
+
+            this.addPropertyDependencies(source, _key);
+          }
+        }
+      },
+      BinaryExpression: function BinaryExpression(path) {
+        if (path.node.operator !== "in") return;
+        var source = resolveSource(path.get("right"));
+        var key = resolveKey(path.get("left"), true);
+        this.addPropertyDependencies(source, key);
+      }
+    };
+    return {
+      name: "corejs3-usage",
+      pre: function pre() {
+        this.injectedPolyfills = new Set();
+        this.polyfillsSet = new Set();
+
+        this.addUnsupported = function (builtIn) {
+          var modules = Array.isArray(builtIn) ? builtIn : [builtIn];
+
+          for (var _iterator3 = modules, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+            var _ref8;
+
+            if (_isArray3) {
+              if (_i3 >= _iterator3.length) break;
+              _ref8 = _iterator3[_i3++];
+            } else {
+              _i3 = _iterator3.next();
+              if (_i3.done) break;
+              _ref8 = _i3.value;
+            }
+
+            var module = _ref8;
+            this.polyfillsSet.add(module);
+          }
+        };
+
+        this.addBuiltInDependencies = function (builtIn) {
+          if (has$6(BuiltIns$1, builtIn)) {
+            var BuiltInDependencies = BuiltIns$1[builtIn];
+            this.addUnsupported(BuiltInDependencies);
+          }
+        };
+
+        this.addPropertyDependencies = function (source, key) {
+          if (source === void 0) {
+            source = {};
+          }
+
+          var _source = source,
+              builtIn = _source.builtIn,
+              instanceType = _source.instanceType,
+              isNamespaced = _source.isNamespaced;
+          if (isNamespaced) return;
+
+          if (PossibleGlobalObjects.has(builtIn)) {
+            this.addBuiltInDependencies(key);
+          } else if (has$6(StaticProperties$1, builtIn)) {
+            var BuiltInProperties = StaticProperties$1[builtIn];
+
+            if (has$6(BuiltInProperties, key)) {
+              var StaticPropertyDependencies = BuiltInProperties[key];
+              return this.addUnsupported(StaticPropertyDependencies);
+            }
+          }
+
+          if (!has$6(InstanceProperties$1, key)) return;
+          var InstancePropertyDependencies = InstanceProperties$1[key];
+
+          if (instanceType) {
+            InstancePropertyDependencies = InstancePropertyDependencies.filter(function (m) {
+              return m.includes(instanceType) || CommonInstanceDependencies.has(m);
+            });
+          }
+
+          this.addUnsupported(InstancePropertyDependencies);
+        };
+      },
+      post: function post() {
+        if (debug) {
+          logUsagePolyfills(this.injectedPolyfills, this.file.opts.filename, polyfillTargets, corejs3Polyfills);
+        }
+      },
+      visitor: addAndRemovePolyfillImports
+    };
+  }
+
+  function addRegeneratorUsagePlugin () {
+    return {
+      name: "regenerator-usage",
+      pre: function pre() {
+        this.usesRegenerator = false;
+      },
+      visitor: {
+        Function: function Function(path) {
+          var node = path.node;
+
+          if (!this.usesRegenerator && (node.generator || node.async)) {
+            this.usesRegenerator = true;
+            createImport(path, "regenerator-runtime");
+          }
+        }
+      },
+      post: function post() {
+        if (this.opts.debug && this.usesRegenerator) {
+          var filename = this.file.opts.filename;
+
+          if (process.env.BABEL_ENV === "test") {
+            filename = filename.replace(/\\/g, "/");
+          }
+
+          console.log("\n[" + filename + "] Based on your code and targets, added regenerator-runtime.");
+        }
+      }
+    };
+  }
+
+  function replaceCoreJS2EntryPlugin (_, _ref) {
+    var include = _ref.include,
+        exclude = _ref.exclude,
+        polyfillTargets = _ref.polyfillTargets,
+        regenerator = _ref.regenerator,
+        debug = _ref.debug;
+    var polyfills = filterItems(corejs2BuiltIns$2, include, exclude, polyfillTargets, getPlatformSpecificDefaultFor(polyfillTargets));
+    var isPolyfillImport = {
+      ImportDeclaration: function ImportDeclaration(path) {
+        if (isPolyfillSource(getImportSource(path))) {
+          this.replaceBySeparateModulesImport(path);
+        }
+      },
+      Program: function Program(path) {
+        var _this = this;
+
+        path.get("body").forEach(function (bodyPath) {
+          if (isPolyfillSource(getRequireSource(bodyPath))) {
+            _this.replaceBySeparateModulesImport(bodyPath);
+          }
+        });
+      }
+    };
+    return {
+      name: "corejs2-entry",
+      visitor: isPolyfillImport,
+      pre: function pre() {
+        this.importPolyfillIncluded = false;
+
+        this.replaceBySeparateModulesImport = function (path) {
+          this.importPolyfillIncluded = true;
+
+          if (regenerator) {
+            createImport(path, "regenerator-runtime");
+          }
+
+          var modules = Array.from(polyfills).reverse();
+
+          for (var _iterator = modules, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref2;
+
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              _ref2 = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              _ref2 = _i.value;
+            }
+
+            var module = _ref2;
+            createImport(path, module);
+          }
+
+          path.remove();
+        };
+      },
+      post: function post() {
+        if (debug) {
+          logEntryPolyfills("@babel/polyfill", this.importPolyfillIncluded, polyfills, this.file.opts.filename, polyfillTargets, corejs2BuiltIns$2);
+        }
+      }
+    };
+  }
+
+  var corejsEntries = {
+  	"core-js": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.global-this",
+  	"es.json.stringify",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set",
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/es": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.global-this",
+  	"es.json.stringify",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set"
+  ],
+  	"core-js/es/array": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.string.iterator"
+  ],
+  	"core-js/es/array-buffer": [
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/array-buffer/constructor": [
+  	"es.array-buffer.constructor",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/array-buffer/is-view": [
+  	"es.array-buffer.is-view"
+  ],
+  	"core-js/es/array-buffer/slice": [
+  	"es.array-buffer.slice"
+  ],
+  	"core-js/es/array/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/es/array/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/es/array/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/every": [
+  	"es.array.every"
+  ],
+  	"core-js/es/array/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/es/array/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/es/array/find": [
+  	"es.array.find"
+  ],
+  	"core-js/es/array/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/es/array/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/es/array/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/es/array/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/es/array/from": [
+  	"es.array.from",
+  	"es.string.iterator"
+  ],
+  	"core-js/es/array/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/es/array/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/es/array/is-array": [
+  	"es.array.is-array"
+  ],
+  	"core-js/es/array/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/join": [
+  	"es.array.join"
+  ],
+  	"core-js/es/array/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/es/array/map": [
+  	"es.array.map"
+  ],
+  	"core-js/es/array/of": [
+  	"es.array.of"
+  ],
+  	"core-js/es/array/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/es/array/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/es/array/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/es/array/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/es/array/some": [
+  	"es.array.some"
+  ],
+  	"core-js/es/array/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/es/array/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/es/array/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/virtual": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/es/array/virtual/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/es/array/virtual/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/es/array/virtual/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/virtual/every": [
+  	"es.array.every"
+  ],
+  	"core-js/es/array/virtual/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/es/array/virtual/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/es/array/virtual/find": [
+  	"es.array.find"
+  ],
+  	"core-js/es/array/virtual/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/es/array/virtual/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/es/array/virtual/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/es/array/virtual/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/es/array/virtual/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/es/array/virtual/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/es/array/virtual/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/virtual/join": [
+  	"es.array.join"
+  ],
+  	"core-js/es/array/virtual/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/array/virtual/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/es/array/virtual/map": [
+  	"es.array.map"
+  ],
+  	"core-js/es/array/virtual/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/es/array/virtual/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/es/array/virtual/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/es/array/virtual/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/es/array/virtual/some": [
+  	"es.array.some"
+  ],
+  	"core-js/es/array/virtual/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/es/array/virtual/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/es/array/virtual/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/data-view": [
+  	"es.data-view",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/date": [
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string"
+  ],
+  	"core-js/es/date/now": [
+  	"es.date.now"
+  ],
+  	"core-js/es/date/to-iso-string": [
+  	"es.date.to-iso-string",
+  	"es.date.to-json"
+  ],
+  	"core-js/es/date/to-json": [
+  	"es.date.to-json"
+  ],
+  	"core-js/es/date/to-primitive": [
+  	"es.date.to-primitive"
+  ],
+  	"core-js/es/date/to-string": [
+  	"es.date.to-string"
+  ],
+  	"core-js/es/function": [
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name"
+  ],
+  	"core-js/es/function/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/es/function/has-instance": [
+  	"es.function.has-instance"
+  ],
+  	"core-js/es/function/name": [
+  	"es.function.name"
+  ],
+  	"core-js/es/function/virtual": [
+  	"es.function.bind"
+  ],
+  	"core-js/es/function/virtual/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/es/global-this": [
+  	"es.global-this"
+  ],
+  	"core-js/es/instance/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/es/instance/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/es/instance/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/es/instance/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/es/instance/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/es/instance/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/instance/every": [
+  	"es.array.every"
+  ],
+  	"core-js/es/instance/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/es/instance/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/es/instance/find": [
+  	"es.array.find"
+  ],
+  	"core-js/es/instance/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/es/instance/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/es/instance/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/es/instance/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/es/instance/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/es/instance/includes": [
+  	"es.array.includes",
+  	"es.string.includes"
+  ],
+  	"core-js/es/instance/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/es/instance/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/instance/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/es/instance/map": [
+  	"es.array.map"
+  ],
+  	"core-js/es/instance/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/es/instance/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/es/instance/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/es/instance/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/es/instance/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/es/instance/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/es/instance/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/es/instance/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/es/instance/some": [
+  	"es.array.some"
+  ],
+  	"core-js/es/instance/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/es/instance/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/es/instance/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/es/instance/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/es/instance/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/instance/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/instance/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/instance/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/instance/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/es/json": [
+  	"es.json.stringify",
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/es/json/stringify": [
+  	"es.json.stringify"
+  ],
+  	"core-js/es/json/to-string-tag": [
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/es/map": [
+  	"es.map",
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/es/math": [
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc"
+  ],
+  	"core-js/es/math/acosh": [
+  	"es.math.acosh"
+  ],
+  	"core-js/es/math/asinh": [
+  	"es.math.asinh"
+  ],
+  	"core-js/es/math/atanh": [
+  	"es.math.atanh"
+  ],
+  	"core-js/es/math/cbrt": [
+  	"es.math.cbrt"
+  ],
+  	"core-js/es/math/clz32": [
+  	"es.math.clz32"
+  ],
+  	"core-js/es/math/cosh": [
+  	"es.math.cosh"
+  ],
+  	"core-js/es/math/expm1": [
+  	"es.math.expm1"
+  ],
+  	"core-js/es/math/fround": [
+  	"es.math.fround"
+  ],
+  	"core-js/es/math/hypot": [
+  	"es.math.hypot"
+  ],
+  	"core-js/es/math/imul": [
+  	"es.math.imul"
+  ],
+  	"core-js/es/math/log10": [
+  	"es.math.log10"
+  ],
+  	"core-js/es/math/log1p": [
+  	"es.math.log1p"
+  ],
+  	"core-js/es/math/log2": [
+  	"es.math.log2"
+  ],
+  	"core-js/es/math/sign": [
+  	"es.math.sign"
+  ],
+  	"core-js/es/math/sinh": [
+  	"es.math.sinh"
+  ],
+  	"core-js/es/math/tanh": [
+  	"es.math.tanh"
+  ],
+  	"core-js/es/math/to-string-tag": [
+  	"es.math.to-string-tag"
+  ],
+  	"core-js/es/math/trunc": [
+  	"es.math.trunc"
+  ],
+  	"core-js/es/number": [
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision"
+  ],
+  	"core-js/es/number/constructor": [
+  	"es.number.constructor"
+  ],
+  	"core-js/es/number/epsilon": [
+  	"es.number.epsilon"
+  ],
+  	"core-js/es/number/is-finite": [
+  	"es.number.is-finite"
+  ],
+  	"core-js/es/number/is-integer": [
+  	"es.number.is-integer"
+  ],
+  	"core-js/es/number/is-nan": [
+  	"es.number.is-nan"
+  ],
+  	"core-js/es/number/is-safe-integer": [
+  	"es.number.is-safe-integer"
+  ],
+  	"core-js/es/number/max-safe-integer": [
+  	"es.number.max-safe-integer"
+  ],
+  	"core-js/es/number/min-safe-integer": [
+  	"es.number.min-safe-integer"
+  ],
+  	"core-js/es/number/parse-float": [
+  	"es.number.parse-float"
+  ],
+  	"core-js/es/number/parse-int": [
+  	"es.number.parse-int"
+  ],
+  	"core-js/es/number/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/es/number/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/es/number/virtual": [
+  	"es.number.to-fixed",
+  	"es.number.to-precision"
+  ],
+  	"core-js/es/number/virtual/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/es/number/virtual/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/es/object": [
+  	"es.symbol",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values"
+  ],
+  	"core-js/es/object/assign": [
+  	"es.object.assign"
+  ],
+  	"core-js/es/object/create": [
+  	"es.object.create"
+  ],
+  	"core-js/es/object/define-getter": [
+  	"es.object.define-getter"
+  ],
+  	"core-js/es/object/define-properties": [
+  	"es.object.define-properties"
+  ],
+  	"core-js/es/object/define-property": [
+  	"es.object.define-property"
+  ],
+  	"core-js/es/object/define-setter": [
+  	"es.object.define-setter"
+  ],
+  	"core-js/es/object/entries": [
+  	"es.object.entries"
+  ],
+  	"core-js/es/object/freeze": [
+  	"es.object.freeze"
+  ],
+  	"core-js/es/object/from-entries": [
+  	"es.array.iterator",
+  	"es.object.from-entries"
+  ],
+  	"core-js/es/object/get-own-property-descriptor": [
+  	"es.object.get-own-property-descriptor"
+  ],
+  	"core-js/es/object/get-own-property-descriptors": [
+  	"es.object.get-own-property-descriptors"
+  ],
+  	"core-js/es/object/get-own-property-names": [
+  	"es.object.get-own-property-names"
+  ],
+  	"core-js/es/object/get-own-property-symbols": [
+  	"es.symbol"
+  ],
+  	"core-js/es/object/get-prototype-of": [
+  	"es.object.get-prototype-of"
+  ],
+  	"core-js/es/object/is": [
+  	"es.object.is"
+  ],
+  	"core-js/es/object/is-extensible": [
+  	"es.object.is-extensible"
+  ],
+  	"core-js/es/object/is-frozen": [
+  	"es.object.is-frozen"
+  ],
+  	"core-js/es/object/is-sealed": [
+  	"es.object.is-sealed"
+  ],
+  	"core-js/es/object/keys": [
+  	"es.object.keys"
+  ],
+  	"core-js/es/object/lookup-getter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/es/object/lookup-setter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/es/object/prevent-extensions": [
+  	"es.object.prevent-extensions"
+  ],
+  	"core-js/es/object/seal": [
+  	"es.object.seal"
+  ],
+  	"core-js/es/object/set-prototype-of": [
+  	"es.object.set-prototype-of"
+  ],
+  	"core-js/es/object/to-string": [
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/object/values": [
+  	"es.object.values"
+  ],
+  	"core-js/es/parse-float": [
+  	"es.parse-float"
+  ],
+  	"core-js/es/parse-int": [
+  	"es.parse-int"
+  ],
+  	"core-js/es/promise": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/es/promise/all-settled": [
+  	"es.promise",
+  	"es.promise.all-settled"
+  ],
+  	"core-js/es/promise/finally": [
+  	"es.promise",
+  	"es.promise.finally"
+  ],
+  	"core-js/es/reflect": [
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/es/reflect/apply": [
+  	"es.reflect.apply"
+  ],
+  	"core-js/es/reflect/construct": [
+  	"es.reflect.construct"
+  ],
+  	"core-js/es/reflect/define-property": [
+  	"es.reflect.define-property"
+  ],
+  	"core-js/es/reflect/delete-property": [
+  	"es.reflect.delete-property"
+  ],
+  	"core-js/es/reflect/get": [
+  	"es.reflect.get"
+  ],
+  	"core-js/es/reflect/get-own-property-descriptor": [
+  	"es.reflect.get-own-property-descriptor"
+  ],
+  	"core-js/es/reflect/get-prototype-of": [
+  	"es.reflect.get-prototype-of"
+  ],
+  	"core-js/es/reflect/has": [
+  	"es.reflect.has"
+  ],
+  	"core-js/es/reflect/is-extensible": [
+  	"es.reflect.is-extensible"
+  ],
+  	"core-js/es/reflect/own-keys": [
+  	"es.reflect.own-keys"
+  ],
+  	"core-js/es/reflect/prevent-extensions": [
+  	"es.reflect.prevent-extensions"
+  ],
+  	"core-js/es/reflect/set": [
+  	"es.reflect.set"
+  ],
+  	"core-js/es/reflect/set-prototype-of": [
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/es/regexp": [
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.string.match",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split"
+  ],
+  	"core-js/es/regexp/constructor": [
+  	"es.regexp.constructor"
+  ],
+  	"core-js/es/regexp/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/es/regexp/match": [
+  	"es.string.match"
+  ],
+  	"core-js/es/regexp/replace": [
+  	"es.string.replace"
+  ],
+  	"core-js/es/regexp/search": [
+  	"es.string.search"
+  ],
+  	"core-js/es/regexp/split": [
+  	"es.string.split"
+  ],
+  	"core-js/es/regexp/sticky": [
+  	"es.regexp.sticky"
+  ],
+  	"core-js/es/regexp/test": [
+  	"es.regexp.exec",
+  	"es.regexp.test"
+  ],
+  	"core-js/es/regexp/to-string": [
+  	"es.regexp.to-string"
+  ],
+  	"core-js/es/set": [
+  	"es.object.to-string",
+  	"es.set",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/es/string": [
+  	"es.regexp.exec",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup"
+  ],
+  	"core-js/es/string/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/es/string/big": [
+  	"es.string.big"
+  ],
+  	"core-js/es/string/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/es/string/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/es/string/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/es/string/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/es/string/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/es/string/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/es/string/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/es/string/from-code-point": [
+  	"es.string.from-code-point"
+  ],
+  	"core-js/es/string/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/es/string/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/es/string/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/es/string/link": [
+  	"es.string.link"
+  ],
+  	"core-js/es/string/match": [
+  	"es.regexp.exec",
+  	"es.string.match"
+  ],
+  	"core-js/es/string/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/es/string/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/es/string/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/es/string/raw": [
+  	"es.string.raw"
+  ],
+  	"core-js/es/string/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/es/string/replace": [
+  	"es.regexp.exec",
+  	"es.string.replace"
+  ],
+  	"core-js/es/string/search": [
+  	"es.regexp.exec",
+  	"es.string.search"
+  ],
+  	"core-js/es/string/small": [
+  	"es.string.small"
+  ],
+  	"core-js/es/string/split": [
+  	"es.regexp.exec",
+  	"es.string.split"
+  ],
+  	"core-js/es/string/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/es/string/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/es/string/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/es/string/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/es/string/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/es/string/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/string/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/string/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/string/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/string/virtual": [
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup"
+  ],
+  	"core-js/es/string/virtual/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/es/string/virtual/big": [
+  	"es.string.big"
+  ],
+  	"core-js/es/string/virtual/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/es/string/virtual/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/es/string/virtual/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/es/string/virtual/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/es/string/virtual/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/es/string/virtual/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/es/string/virtual/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/es/string/virtual/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/es/string/virtual/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/es/string/virtual/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/es/string/virtual/link": [
+  	"es.string.link"
+  ],
+  	"core-js/es/string/virtual/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/es/string/virtual/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/es/string/virtual/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/es/string/virtual/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/es/string/virtual/small": [
+  	"es.string.small"
+  ],
+  	"core-js/es/string/virtual/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/es/string/virtual/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/es/string/virtual/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/es/string/virtual/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/es/string/virtual/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/es/string/virtual/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/string/virtual/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/string/virtual/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/es/string/virtual/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/es/symbol": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/symbol/async-iterator": [
+  	"es.symbol.async-iterator"
+  ],
+  	"core-js/es/symbol/description": [
+  	"es.symbol.description"
+  ],
+  	"core-js/es/symbol/for": [
+  	"es.symbol"
+  ],
+  	"core-js/es/symbol/has-instance": [
+  	"es.symbol.has-instance",
+  	"es.function.has-instance"
+  ],
+  	"core-js/es/symbol/is-concat-spreadable": [
+  	"es.symbol.is-concat-spreadable",
+  	"es.array.concat"
+  ],
+  	"core-js/es/symbol/iterator": [
+  	"es.symbol.iterator",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/es/symbol/key-for": [
+  	"es.symbol"
+  ],
+  	"core-js/es/symbol/match": [
+  	"es.symbol.match",
+  	"es.string.match"
+  ],
+  	"core-js/es/symbol/match-all": [
+  	"es.symbol.match-all",
+  	"es.string.match-all"
+  ],
+  	"core-js/es/symbol/replace": [
+  	"es.symbol.replace",
+  	"es.string.replace"
+  ],
+  	"core-js/es/symbol/search": [
+  	"es.symbol.search",
+  	"es.string.search"
+  ],
+  	"core-js/es/symbol/species": [
+  	"es.symbol.species"
+  ],
+  	"core-js/es/symbol/split": [
+  	"es.symbol.split",
+  	"es.string.split"
+  ],
+  	"core-js/es/symbol/to-primitive": [
+  	"es.symbol.to-primitive"
+  ],
+  	"core-js/es/symbol/to-string-tag": [
+  	"es.symbol.to-string-tag",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/es/symbol/unscopables": [
+  	"es.symbol.unscopables"
+  ],
+  	"core-js/es/typed-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/copy-within": [
+  	"es.typed-array.copy-within"
+  ],
+  	"core-js/es/typed-array/entries": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/es/typed-array/every": [
+  	"es.typed-array.every"
+  ],
+  	"core-js/es/typed-array/fill": [
+  	"es.typed-array.fill"
+  ],
+  	"core-js/es/typed-array/filter": [
+  	"es.typed-array.filter"
+  ],
+  	"core-js/es/typed-array/find": [
+  	"es.typed-array.find"
+  ],
+  	"core-js/es/typed-array/find-index": [
+  	"es.typed-array.find-index"
+  ],
+  	"core-js/es/typed-array/float32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/float64-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/for-each": [
+  	"es.typed-array.for-each"
+  ],
+  	"core-js/es/typed-array/from": [
+  	"es.typed-array.from"
+  ],
+  	"core-js/es/typed-array/includes": [
+  	"es.typed-array.includes"
+  ],
+  	"core-js/es/typed-array/index-of": [
+  	"es.typed-array.index-of"
+  ],
+  	"core-js/es/typed-array/int16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/int32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/int8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/iterator": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/es/typed-array/join": [
+  	"es.typed-array.join"
+  ],
+  	"core-js/es/typed-array/keys": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/es/typed-array/last-index-of": [
+  	"es.typed-array.last-index-of"
+  ],
+  	"core-js/es/typed-array/map": [
+  	"es.typed-array.map"
+  ],
+  	"core-js/es/typed-array/methods": [
+  	"es.object.to-string",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/of": [
+  	"es.typed-array.of"
+  ],
+  	"core-js/es/typed-array/reduce": [
+  	"es.typed-array.reduce"
+  ],
+  	"core-js/es/typed-array/reduce-right": [
+  	"es.typed-array.reduce-right"
+  ],
+  	"core-js/es/typed-array/reverse": [
+  	"es.typed-array.reverse"
+  ],
+  	"core-js/es/typed-array/set": [
+  	"es.typed-array.set"
+  ],
+  	"core-js/es/typed-array/slice": [
+  	"es.typed-array.slice"
+  ],
+  	"core-js/es/typed-array/some": [
+  	"es.typed-array.some"
+  ],
+  	"core-js/es/typed-array/sort": [
+  	"es.typed-array.sort"
+  ],
+  	"core-js/es/typed-array/subarray": [
+  	"es.typed-array.subarray"
+  ],
+  	"core-js/es/typed-array/to-locale-string": [
+  	"es.typed-array.to-locale-string"
+  ],
+  	"core-js/es/typed-array/to-string": [
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/uint16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/uint32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/uint8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/uint8-clamped-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/es/typed-array/values": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/es/weak-map": [
+  	"es.object.to-string",
+  	"es.weak-map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/es/weak-set": [
+  	"es.object.to-string",
+  	"es.weak-set",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.global-this",
+  	"es.json.stringify",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set",
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/features/aggregate-error": [
+  	"es.string.iterator",
+  	"esnext.aggregate-error",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/array": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.string.iterator",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item"
+  ],
+  	"core-js/features/array-buffer": [
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.object.to-string"
+  ],
+  	"core-js/features/array-buffer/constructor": [
+  	"es.array-buffer.constructor",
+  	"es.object.to-string"
+  ],
+  	"core-js/features/array-buffer/is-view": [
+  	"es.array-buffer.is-view"
+  ],
+  	"core-js/features/array-buffer/slice": [
+  	"es.array-buffer.slice"
+  ],
+  	"core-js/features/array/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/features/array/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/features/array/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/every": [
+  	"es.array.every"
+  ],
+  	"core-js/features/array/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/features/array/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/features/array/find": [
+  	"es.array.find"
+  ],
+  	"core-js/features/array/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/features/array/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/features/array/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/features/array/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/features/array/from": [
+  	"es.array.from",
+  	"es.string.iterator"
+  ],
+  	"core-js/features/array/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/features/array/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/features/array/is-array": [
+  	"es.array.is-array"
+  ],
+  	"core-js/features/array/is-template-object": [
+  	"esnext.array.is-template-object"
+  ],
+  	"core-js/features/array/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/join": [
+  	"es.array.join"
+  ],
+  	"core-js/features/array/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/last-index": [
+  	"esnext.array.last-index"
+  ],
+  	"core-js/features/array/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/features/array/last-item": [
+  	"esnext.array.last-item"
+  ],
+  	"core-js/features/array/map": [
+  	"es.array.map"
+  ],
+  	"core-js/features/array/of": [
+  	"es.array.of"
+  ],
+  	"core-js/features/array/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/features/array/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/features/array/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/features/array/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/features/array/some": [
+  	"es.array.some"
+  ],
+  	"core-js/features/array/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/features/array/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/features/array/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/virtual": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/features/array/virtual/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/features/array/virtual/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/features/array/virtual/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/virtual/every": [
+  	"es.array.every"
+  ],
+  	"core-js/features/array/virtual/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/features/array/virtual/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/features/array/virtual/find": [
+  	"es.array.find"
+  ],
+  	"core-js/features/array/virtual/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/features/array/virtual/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/features/array/virtual/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/features/array/virtual/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/features/array/virtual/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/features/array/virtual/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/features/array/virtual/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/virtual/join": [
+  	"es.array.join"
+  ],
+  	"core-js/features/array/virtual/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/array/virtual/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/features/array/virtual/map": [
+  	"es.array.map"
+  ],
+  	"core-js/features/array/virtual/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/features/array/virtual/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/features/array/virtual/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/features/array/virtual/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/features/array/virtual/some": [
+  	"es.array.some"
+  ],
+  	"core-js/features/array/virtual/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/features/array/virtual/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/features/array/virtual/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/features/async-iterator": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/as-indexed-pairs": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/drop": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.drop",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/every": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.every",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/filter": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.filter",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/find": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.find",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/flat-map": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.flat-map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/for-each": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/from": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/map": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/reduce": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.reduce",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/some": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.some",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/take": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.take",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/async-iterator/to-array": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.string.iterator",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.to-array",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/clear-immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/features/composite-key": [
+  	"esnext.composite-key"
+  ],
+  	"core-js/features/composite-symbol": [
+  	"es.symbol",
+  	"esnext.composite-symbol"
+  ],
+  	"core-js/features/data-view": [
+  	"es.data-view",
+  	"es.object.to-string"
+  ],
+  	"core-js/features/date": [
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string"
+  ],
+  	"core-js/features/date/now": [
+  	"es.date.now"
+  ],
+  	"core-js/features/date/to-iso-string": [
+  	"es.date.to-iso-string",
+  	"es.date.to-json"
+  ],
+  	"core-js/features/date/to-json": [
+  	"es.date.to-json"
+  ],
+  	"core-js/features/date/to-primitive": [
+  	"es.date.to-primitive"
+  ],
+  	"core-js/features/date/to-string": [
+  	"es.date.to-string"
+  ],
+  	"core-js/features/dom-collections": [
+  	"es.array.iterator",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/dom-collections/for-each": [
+  	"web.dom-collections.for-each"
+  ],
+  	"core-js/features/dom-collections/iterator": [
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/function": [
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name"
+  ],
+  	"core-js/features/function/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/features/function/has-instance": [
+  	"es.function.has-instance"
+  ],
+  	"core-js/features/function/name": [
+  	"es.function.name"
+  ],
+  	"core-js/features/function/virtual": [
+  	"es.function.bind"
+  ],
+  	"core-js/features/function/virtual/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/features/get-iterator": [
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/get-iterator-method": [
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/global-this": [
+  	"es.global-this",
+  	"esnext.global-this"
+  ],
+  	"core-js/features/instance/at": [
+  	"esnext.string.at"
+  ],
+  	"core-js/features/instance/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/features/instance/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/features/instance/code-points": [
+  	"esnext.string.code-points"
+  ],
+  	"core-js/features/instance/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/features/instance/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/features/instance/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/features/instance/entries": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/instance/every": [
+  	"es.array.every"
+  ],
+  	"core-js/features/instance/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/features/instance/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/features/instance/find": [
+  	"es.array.find"
+  ],
+  	"core-js/features/instance/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/features/instance/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/features/instance/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/features/instance/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/features/instance/for-each": [
+  	"es.array.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/instance/includes": [
+  	"es.array.includes",
+  	"es.string.includes"
+  ],
+  	"core-js/features/instance/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/features/instance/keys": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/instance/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/features/instance/map": [
+  	"es.array.map"
+  ],
+  	"core-js/features/instance/match-all": [
+  	"es.string.match-all",
+  	"esnext.string.match-all"
+  ],
+  	"core-js/features/instance/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/features/instance/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/features/instance/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/features/instance/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/features/instance/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/features/instance/replace-all": [
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/features/instance/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/features/instance/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/features/instance/some": [
+  	"es.array.some"
+  ],
+  	"core-js/features/instance/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/features/instance/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/features/instance/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/features/instance/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/features/instance/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/instance/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/instance/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/instance/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/instance/values": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/is-iterable": [
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/as-indexed-pairs": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/drop": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.drop",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/every": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.every",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/filter": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.filter",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/find": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.find",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/flat-map": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.flat-map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/for-each": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/from": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/map": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/reduce": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.reduce",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/some": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.some",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/take": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.take",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/iterator/to-array": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.to-array",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/json": [
+  	"es.json.stringify",
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/features/json/stringify": [
+  	"es.json.stringify"
+  ],
+  	"core-js/features/json/to-string-tag": [
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/features/map": [
+  	"es.map",
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/map/delete-all": [
+  	"es.map",
+  	"esnext.map.delete-all"
+  ],
+  	"core-js/features/map/every": [
+  	"es.map",
+  	"esnext.map.every"
+  ],
+  	"core-js/features/map/filter": [
+  	"es.map",
+  	"esnext.map.filter"
+  ],
+  	"core-js/features/map/find": [
+  	"es.map",
+  	"esnext.map.find"
+  ],
+  	"core-js/features/map/find-key": [
+  	"es.map",
+  	"esnext.map.find-key"
+  ],
+  	"core-js/features/map/from": [
+  	"es.map",
+  	"es.string.iterator",
+  	"esnext.map.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/map/group-by": [
+  	"es.map",
+  	"esnext.map.group-by"
+  ],
+  	"core-js/features/map/includes": [
+  	"es.map",
+  	"esnext.map.includes"
+  ],
+  	"core-js/features/map/key-by": [
+  	"es.map",
+  	"esnext.map.key-by"
+  ],
+  	"core-js/features/map/key-of": [
+  	"es.map",
+  	"esnext.map.key-of"
+  ],
+  	"core-js/features/map/map-keys": [
+  	"es.map",
+  	"esnext.map.map-keys"
+  ],
+  	"core-js/features/map/map-values": [
+  	"es.map",
+  	"esnext.map.map-values"
+  ],
+  	"core-js/features/map/merge": [
+  	"es.map",
+  	"esnext.map.merge"
+  ],
+  	"core-js/features/map/of": [
+  	"es.map",
+  	"es.string.iterator",
+  	"esnext.map.of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/map/reduce": [
+  	"es.map",
+  	"esnext.map.reduce"
+  ],
+  	"core-js/features/map/some": [
+  	"es.map",
+  	"esnext.map.some"
+  ],
+  	"core-js/features/map/update": [
+  	"es.map",
+  	"esnext.map.update"
+  ],
+  	"core-js/features/map/update-or-insert": [
+  	"es.map",
+  	"esnext.map.update-or-insert"
+  ],
+  	"core-js/features/map/upsert": [
+  	"es.map",
+  	"esnext.map.upsert"
+  ],
+  	"core-js/features/math": [
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh"
+  ],
+  	"core-js/features/math/acosh": [
+  	"es.math.acosh"
+  ],
+  	"core-js/features/math/asinh": [
+  	"es.math.asinh"
+  ],
+  	"core-js/features/math/atanh": [
+  	"es.math.atanh"
+  ],
+  	"core-js/features/math/cbrt": [
+  	"es.math.cbrt"
+  ],
+  	"core-js/features/math/clamp": [
+  	"esnext.math.clamp"
+  ],
+  	"core-js/features/math/clz32": [
+  	"es.math.clz32"
+  ],
+  	"core-js/features/math/cosh": [
+  	"es.math.cosh"
+  ],
+  	"core-js/features/math/deg-per-rad": [
+  	"esnext.math.deg-per-rad"
+  ],
+  	"core-js/features/math/degrees": [
+  	"esnext.math.degrees"
+  ],
+  	"core-js/features/math/expm1": [
+  	"es.math.expm1"
+  ],
+  	"core-js/features/math/fround": [
+  	"es.math.fround"
+  ],
+  	"core-js/features/math/fscale": [
+  	"esnext.math.fscale"
+  ],
+  	"core-js/features/math/hypot": [
+  	"es.math.hypot"
+  ],
+  	"core-js/features/math/iaddh": [
+  	"esnext.math.iaddh"
+  ],
+  	"core-js/features/math/imul": [
+  	"es.math.imul"
+  ],
+  	"core-js/features/math/imulh": [
+  	"esnext.math.imulh"
+  ],
+  	"core-js/features/math/isubh": [
+  	"esnext.math.isubh"
+  ],
+  	"core-js/features/math/log10": [
+  	"es.math.log10"
+  ],
+  	"core-js/features/math/log1p": [
+  	"es.math.log1p"
+  ],
+  	"core-js/features/math/log2": [
+  	"es.math.log2"
+  ],
+  	"core-js/features/math/rad-per-deg": [
+  	"esnext.math.rad-per-deg"
+  ],
+  	"core-js/features/math/radians": [
+  	"esnext.math.radians"
+  ],
+  	"core-js/features/math/scale": [
+  	"esnext.math.scale"
+  ],
+  	"core-js/features/math/seeded-prng": [
+  	"esnext.math.seeded-prng"
+  ],
+  	"core-js/features/math/sign": [
+  	"es.math.sign"
+  ],
+  	"core-js/features/math/signbit": [
+  	"esnext.math.signbit"
+  ],
+  	"core-js/features/math/sinh": [
+  	"es.math.sinh"
+  ],
+  	"core-js/features/math/tanh": [
+  	"es.math.tanh"
+  ],
+  	"core-js/features/math/to-string-tag": [
+  	"es.math.to-string-tag"
+  ],
+  	"core-js/features/math/trunc": [
+  	"es.math.trunc"
+  ],
+  	"core-js/features/math/umulh": [
+  	"esnext.math.umulh"
+  ],
+  	"core-js/features/number": [
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"esnext.number.from-string"
+  ],
+  	"core-js/features/number/constructor": [
+  	"es.number.constructor"
+  ],
+  	"core-js/features/number/epsilon": [
+  	"es.number.epsilon"
+  ],
+  	"core-js/features/number/from-string": [
+  	"esnext.number.from-string"
+  ],
+  	"core-js/features/number/is-finite": [
+  	"es.number.is-finite"
+  ],
+  	"core-js/features/number/is-integer": [
+  	"es.number.is-integer"
+  ],
+  	"core-js/features/number/is-nan": [
+  	"es.number.is-nan"
+  ],
+  	"core-js/features/number/is-safe-integer": [
+  	"es.number.is-safe-integer"
+  ],
+  	"core-js/features/number/max-safe-integer": [
+  	"es.number.max-safe-integer"
+  ],
+  	"core-js/features/number/min-safe-integer": [
+  	"es.number.min-safe-integer"
+  ],
+  	"core-js/features/number/parse-float": [
+  	"es.number.parse-float"
+  ],
+  	"core-js/features/number/parse-int": [
+  	"es.number.parse-int"
+  ],
+  	"core-js/features/number/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/features/number/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/features/number/virtual": [
+  	"es.number.to-fixed",
+  	"es.number.to-precision"
+  ],
+  	"core-js/features/number/virtual/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/features/number/virtual/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/features/object": [
+  	"es.symbol",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values"
+  ],
+  	"core-js/features/object/assign": [
+  	"es.object.assign"
+  ],
+  	"core-js/features/object/create": [
+  	"es.object.create"
+  ],
+  	"core-js/features/object/define-getter": [
+  	"es.object.define-getter"
+  ],
+  	"core-js/features/object/define-properties": [
+  	"es.object.define-properties"
+  ],
+  	"core-js/features/object/define-property": [
+  	"es.object.define-property"
+  ],
+  	"core-js/features/object/define-setter": [
+  	"es.object.define-setter"
+  ],
+  	"core-js/features/object/entries": [
+  	"es.object.entries"
+  ],
+  	"core-js/features/object/freeze": [
+  	"es.object.freeze"
+  ],
+  	"core-js/features/object/from-entries": [
+  	"es.array.iterator",
+  	"es.object.from-entries"
+  ],
+  	"core-js/features/object/get-own-property-descriptor": [
+  	"es.object.get-own-property-descriptor"
+  ],
+  	"core-js/features/object/get-own-property-descriptors": [
+  	"es.object.get-own-property-descriptors"
+  ],
+  	"core-js/features/object/get-own-property-names": [
+  	"es.object.get-own-property-names"
+  ],
+  	"core-js/features/object/get-own-property-symbols": [
+  	"es.symbol"
+  ],
+  	"core-js/features/object/get-prototype-of": [
+  	"es.object.get-prototype-of"
+  ],
+  	"core-js/features/object/is": [
+  	"es.object.is"
+  ],
+  	"core-js/features/object/is-extensible": [
+  	"es.object.is-extensible"
+  ],
+  	"core-js/features/object/is-frozen": [
+  	"es.object.is-frozen"
+  ],
+  	"core-js/features/object/is-sealed": [
+  	"es.object.is-sealed"
+  ],
+  	"core-js/features/object/iterate-entries": [
+  	"esnext.object.iterate-entries"
+  ],
+  	"core-js/features/object/iterate-keys": [
+  	"esnext.object.iterate-keys"
+  ],
+  	"core-js/features/object/iterate-values": [
+  	"esnext.object.iterate-values"
+  ],
+  	"core-js/features/object/keys": [
+  	"es.object.keys"
+  ],
+  	"core-js/features/object/lookup-getter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/features/object/lookup-setter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/features/object/prevent-extensions": [
+  	"es.object.prevent-extensions"
+  ],
+  	"core-js/features/object/seal": [
+  	"es.object.seal"
+  ],
+  	"core-js/features/object/set-prototype-of": [
+  	"es.object.set-prototype-of"
+  ],
+  	"core-js/features/object/to-string": [
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/features/object/values": [
+  	"es.object.values"
+  ],
+  	"core-js/features/observable": [
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"esnext.observable",
+  	"esnext.symbol.observable",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/parse-float": [
+  	"es.parse-float"
+  ],
+  	"core-js/features/parse-int": [
+  	"es.parse-int"
+  ],
+  	"core-js/features/promise": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.string.iterator",
+  	"esnext.aggregate-error",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/promise/all-settled": [
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"esnext.promise.all-settled"
+  ],
+  	"core-js/features/promise/any": [
+  	"es.promise",
+  	"esnext.aggregate-error",
+  	"esnext.promise.any"
+  ],
+  	"core-js/features/promise/finally": [
+  	"es.promise",
+  	"es.promise.finally"
+  ],
+  	"core-js/features/promise/try": [
+  	"es.promise",
+  	"esnext.promise.try"
+  ],
+  	"core-js/features/queue-microtask": [
+  	"web.queue-microtask"
+  ],
+  	"core-js/features/reflect": [
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata"
+  ],
+  	"core-js/features/reflect/apply": [
+  	"es.reflect.apply"
+  ],
+  	"core-js/features/reflect/construct": [
+  	"es.reflect.construct"
+  ],
+  	"core-js/features/reflect/define-metadata": [
+  	"esnext.reflect.define-metadata"
+  ],
+  	"core-js/features/reflect/define-property": [
+  	"es.reflect.define-property"
+  ],
+  	"core-js/features/reflect/delete-metadata": [
+  	"esnext.reflect.delete-metadata"
+  ],
+  	"core-js/features/reflect/delete-property": [
+  	"es.reflect.delete-property"
+  ],
+  	"core-js/features/reflect/get": [
+  	"es.reflect.get"
+  ],
+  	"core-js/features/reflect/get-metadata": [
+  	"esnext.reflect.get-metadata"
+  ],
+  	"core-js/features/reflect/get-metadata-keys": [
+  	"esnext.reflect.get-metadata-keys"
+  ],
+  	"core-js/features/reflect/get-own-metadata": [
+  	"esnext.reflect.get-own-metadata"
+  ],
+  	"core-js/features/reflect/get-own-metadata-keys": [
+  	"esnext.reflect.get-own-metadata-keys"
+  ],
+  	"core-js/features/reflect/get-own-property-descriptor": [
+  	"es.reflect.get-own-property-descriptor"
+  ],
+  	"core-js/features/reflect/get-prototype-of": [
+  	"es.reflect.get-prototype-of"
+  ],
+  	"core-js/features/reflect/has": [
+  	"es.reflect.has"
+  ],
+  	"core-js/features/reflect/has-metadata": [
+  	"esnext.reflect.has-metadata"
+  ],
+  	"core-js/features/reflect/has-own-metadata": [
+  	"esnext.reflect.has-own-metadata"
+  ],
+  	"core-js/features/reflect/is-extensible": [
+  	"es.reflect.is-extensible"
+  ],
+  	"core-js/features/reflect/metadata": [
+  	"esnext.reflect.metadata"
+  ],
+  	"core-js/features/reflect/own-keys": [
+  	"es.reflect.own-keys"
+  ],
+  	"core-js/features/reflect/prevent-extensions": [
+  	"es.reflect.prevent-extensions"
+  ],
+  	"core-js/features/reflect/set": [
+  	"es.reflect.set"
+  ],
+  	"core-js/features/reflect/set-prototype-of": [
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/features/regexp": [
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.string.match",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split"
+  ],
+  	"core-js/features/regexp/constructor": [
+  	"es.regexp.constructor"
+  ],
+  	"core-js/features/regexp/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/features/regexp/match": [
+  	"es.string.match"
+  ],
+  	"core-js/features/regexp/replace": [
+  	"es.string.replace"
+  ],
+  	"core-js/features/regexp/search": [
+  	"es.string.search"
+  ],
+  	"core-js/features/regexp/split": [
+  	"es.string.split"
+  ],
+  	"core-js/features/regexp/sticky": [
+  	"es.regexp.sticky"
+  ],
+  	"core-js/features/regexp/test": [
+  	"es.regexp.exec",
+  	"es.regexp.test"
+  ],
+  	"core-js/features/regexp/to-string": [
+  	"es.regexp.to-string"
+  ],
+  	"core-js/features/set": [
+  	"es.object.to-string",
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set-immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/features/set-interval": [
+  	"web.timers"
+  ],
+  	"core-js/features/set-timeout": [
+  	"web.timers"
+  ],
+  	"core-js/features/set/add-all": [
+  	"es.set",
+  	"esnext.set.add-all"
+  ],
+  	"core-js/features/set/delete-all": [
+  	"es.set",
+  	"esnext.set.delete-all"
+  ],
+  	"core-js/features/set/difference": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.difference",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set/every": [
+  	"es.set",
+  	"esnext.set.every"
+  ],
+  	"core-js/features/set/filter": [
+  	"es.set",
+  	"esnext.set.filter"
+  ],
+  	"core-js/features/set/find": [
+  	"es.set",
+  	"esnext.set.find"
+  ],
+  	"core-js/features/set/from": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set/intersection": [
+  	"es.set",
+  	"esnext.set.intersection"
+  ],
+  	"core-js/features/set/is-disjoint-from": [
+  	"es.set",
+  	"esnext.set.is-disjoint-from"
+  ],
+  	"core-js/features/set/is-subset-of": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.is-subset-of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set/is-superset-of": [
+  	"es.set",
+  	"esnext.set.is-superset-of"
+  ],
+  	"core-js/features/set/join": [
+  	"es.set",
+  	"esnext.set.join"
+  ],
+  	"core-js/features/set/map": [
+  	"es.set",
+  	"esnext.set.map"
+  ],
+  	"core-js/features/set/of": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set/reduce": [
+  	"es.set",
+  	"esnext.set.reduce"
+  ],
+  	"core-js/features/set/some": [
+  	"es.set",
+  	"esnext.set.some"
+  ],
+  	"core-js/features/set/symmetric-difference": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.symmetric-difference",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/set/union": [
+  	"es.set",
+  	"es.string.iterator",
+  	"esnext.set.union",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/string": [
+  	"es.regexp.exec",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/features/string/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/features/string/at": [
+  	"esnext.string.at"
+  ],
+  	"core-js/features/string/big": [
+  	"es.string.big"
+  ],
+  	"core-js/features/string/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/features/string/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/features/string/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/features/string/code-points": [
+  	"esnext.string.code-points"
+  ],
+  	"core-js/features/string/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/features/string/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/features/string/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/features/string/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/features/string/from-code-point": [
+  	"es.string.from-code-point"
+  ],
+  	"core-js/features/string/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/features/string/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/features/string/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/features/string/link": [
+  	"es.string.link"
+  ],
+  	"core-js/features/string/match": [
+  	"es.regexp.exec",
+  	"es.string.match"
+  ],
+  	"core-js/features/string/match-all": [
+  	"es.string.match-all",
+  	"esnext.string.match-all"
+  ],
+  	"core-js/features/string/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/features/string/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/features/string/raw": [
+  	"es.string.raw"
+  ],
+  	"core-js/features/string/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/features/string/replace": [
+  	"es.regexp.exec",
+  	"es.string.replace"
+  ],
+  	"core-js/features/string/replace-all": [
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/features/string/search": [
+  	"es.regexp.exec",
+  	"es.string.search"
+  ],
+  	"core-js/features/string/small": [
+  	"es.string.small"
+  ],
+  	"core-js/features/string/split": [
+  	"es.regexp.exec",
+  	"es.string.split"
+  ],
+  	"core-js/features/string/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/features/string/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/features/string/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/features/string/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/features/string/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/features/string/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/string/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/string/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/string/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/string/virtual": [
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/features/string/virtual/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/features/string/virtual/at": [
+  	"esnext.string.at"
+  ],
+  	"core-js/features/string/virtual/big": [
+  	"es.string.big"
+  ],
+  	"core-js/features/string/virtual/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/features/string/virtual/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/features/string/virtual/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/features/string/virtual/code-points": [
+  	"esnext.string.code-points"
+  ],
+  	"core-js/features/string/virtual/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/features/string/virtual/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/features/string/virtual/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/features/string/virtual/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/features/string/virtual/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/features/string/virtual/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/features/string/virtual/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/features/string/virtual/link": [
+  	"es.string.link"
+  ],
+  	"core-js/features/string/virtual/match-all": [
+  	"es.string.match-all",
+  	"esnext.string.match-all"
+  ],
+  	"core-js/features/string/virtual/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/features/string/virtual/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/features/string/virtual/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/features/string/virtual/replace-all": [
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/features/string/virtual/small": [
+  	"es.string.small"
+  ],
+  	"core-js/features/string/virtual/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/features/string/virtual/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/features/string/virtual/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/features/string/virtual/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/features/string/virtual/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/features/string/virtual/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/string/virtual/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/string/virtual/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/features/string/virtual/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/features/symbol": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all"
+  ],
+  	"core-js/features/symbol/async-dispose": [
+  	"esnext.symbol.async-dispose"
+  ],
+  	"core-js/features/symbol/async-iterator": [
+  	"es.symbol.async-iterator"
+  ],
+  	"core-js/features/symbol/description": [
+  	"es.symbol.description"
+  ],
+  	"core-js/features/symbol/dispose": [
+  	"esnext.symbol.dispose"
+  ],
+  	"core-js/features/symbol/for": [
+  	"es.symbol"
+  ],
+  	"core-js/features/symbol/has-instance": [
+  	"es.symbol.has-instance",
+  	"es.function.has-instance"
+  ],
+  	"core-js/features/symbol/is-concat-spreadable": [
+  	"es.symbol.is-concat-spreadable",
+  	"es.array.concat"
+  ],
+  	"core-js/features/symbol/iterator": [
+  	"es.symbol.iterator",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/symbol/key-for": [
+  	"es.symbol"
+  ],
+  	"core-js/features/symbol/match": [
+  	"es.symbol.match",
+  	"es.string.match"
+  ],
+  	"core-js/features/symbol/match-all": [
+  	"es.symbol.match-all",
+  	"es.string.match-all"
+  ],
+  	"core-js/features/symbol/observable": [
+  	"esnext.symbol.observable"
+  ],
+  	"core-js/features/symbol/pattern-match": [
+  	"esnext.symbol.pattern-match"
+  ],
+  	"core-js/features/symbol/replace": [
+  	"es.symbol.replace",
+  	"es.string.replace"
+  ],
+  	"core-js/features/symbol/replace-all": [
+  	"esnext.symbol.replace-all"
+  ],
+  	"core-js/features/symbol/search": [
+  	"es.symbol.search",
+  	"es.string.search"
+  ],
+  	"core-js/features/symbol/species": [
+  	"es.symbol.species"
+  ],
+  	"core-js/features/symbol/split": [
+  	"es.symbol.split",
+  	"es.string.split"
+  ],
+  	"core-js/features/symbol/to-primitive": [
+  	"es.symbol.to-primitive"
+  ],
+  	"core-js/features/symbol/to-string-tag": [
+  	"es.symbol.to-string-tag",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/features/symbol/unscopables": [
+  	"es.symbol.unscopables"
+  ],
+  	"core-js/features/typed-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/copy-within": [
+  	"es.typed-array.copy-within"
+  ],
+  	"core-js/features/typed-array/entries": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/features/typed-array/every": [
+  	"es.typed-array.every"
+  ],
+  	"core-js/features/typed-array/fill": [
+  	"es.typed-array.fill"
+  ],
+  	"core-js/features/typed-array/filter": [
+  	"es.typed-array.filter"
+  ],
+  	"core-js/features/typed-array/find": [
+  	"es.typed-array.find"
+  ],
+  	"core-js/features/typed-array/find-index": [
+  	"es.typed-array.find-index"
+  ],
+  	"core-js/features/typed-array/float32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/float64-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/for-each": [
+  	"es.typed-array.for-each"
+  ],
+  	"core-js/features/typed-array/from": [
+  	"es.typed-array.from"
+  ],
+  	"core-js/features/typed-array/includes": [
+  	"es.typed-array.includes"
+  ],
+  	"core-js/features/typed-array/index-of": [
+  	"es.typed-array.index-of"
+  ],
+  	"core-js/features/typed-array/int16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/int32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/int8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/iterator": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/features/typed-array/join": [
+  	"es.typed-array.join"
+  ],
+  	"core-js/features/typed-array/keys": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/features/typed-array/last-index-of": [
+  	"es.typed-array.last-index-of"
+  ],
+  	"core-js/features/typed-array/map": [
+  	"es.typed-array.map"
+  ],
+  	"core-js/features/typed-array/of": [
+  	"es.typed-array.of"
+  ],
+  	"core-js/features/typed-array/reduce": [
+  	"es.typed-array.reduce"
+  ],
+  	"core-js/features/typed-array/reduce-right": [
+  	"es.typed-array.reduce-right"
+  ],
+  	"core-js/features/typed-array/reverse": [
+  	"es.typed-array.reverse"
+  ],
+  	"core-js/features/typed-array/set": [
+  	"es.typed-array.set"
+  ],
+  	"core-js/features/typed-array/slice": [
+  	"es.typed-array.slice"
+  ],
+  	"core-js/features/typed-array/some": [
+  	"es.typed-array.some"
+  ],
+  	"core-js/features/typed-array/sort": [
+  	"es.typed-array.sort"
+  ],
+  	"core-js/features/typed-array/subarray": [
+  	"es.typed-array.subarray"
+  ],
+  	"core-js/features/typed-array/to-locale-string": [
+  	"es.typed-array.to-locale-string"
+  ],
+  	"core-js/features/typed-array/to-string": [
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/uint16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/uint32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/uint8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/uint8-clamped-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/features/typed-array/values": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/features/url": [
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/features/url-search-params": [
+  	"web.url-search-params"
+  ],
+  	"core-js/features/url/to-json": [
+  	"web.url.to-json"
+  ],
+  	"core-js/features/weak-map": [
+  	"es.object.to-string",
+  	"es.weak-map",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/weak-map/delete-all": [
+  	"es.weak-map",
+  	"esnext.weak-map.delete-all"
+  ],
+  	"core-js/features/weak-map/from": [
+  	"es.string.iterator",
+  	"es.weak-map",
+  	"esnext.weak-map.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/weak-map/of": [
+  	"es.string.iterator",
+  	"es.weak-map",
+  	"esnext.weak-map.of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/weak-map/upsert": [
+  	"es.weak-map",
+  	"esnext.weak-map.upsert"
+  ],
+  	"core-js/features/weak-set": [
+  	"es.object.to-string",
+  	"es.weak-set",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/weak-set/add-all": [
+  	"es.weak-set",
+  	"esnext.weak-set.add-all"
+  ],
+  	"core-js/features/weak-set/delete-all": [
+  	"es.weak-set",
+  	"esnext.weak-set.delete-all"
+  ],
+  	"core-js/features/weak-set/from": [
+  	"es.string.iterator",
+  	"es.weak-set",
+  	"esnext.weak-set.from",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/features/weak-set/of": [
+  	"es.string.iterator",
+  	"es.weak-set",
+  	"esnext.weak-set.of",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/modules/es.array-buffer.constructor": [
+  	"es.array-buffer.constructor"
+  ],
+  	"core-js/modules/es.array-buffer.is-view": [
+  	"es.array-buffer.is-view"
+  ],
+  	"core-js/modules/es.array-buffer.slice": [
+  	"es.array-buffer.slice"
+  ],
+  	"core-js/modules/es.array.concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/modules/es.array.copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/modules/es.array.every": [
+  	"es.array.every"
+  ],
+  	"core-js/modules/es.array.fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/modules/es.array.filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/modules/es.array.find": [
+  	"es.array.find"
+  ],
+  	"core-js/modules/es.array.find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/modules/es.array.flat": [
+  	"es.array.flat"
+  ],
+  	"core-js/modules/es.array.flat-map": [
+  	"es.array.flat-map"
+  ],
+  	"core-js/modules/es.array.for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/modules/es.array.from": [
+  	"es.array.from"
+  ],
+  	"core-js/modules/es.array.includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/modules/es.array.index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/modules/es.array.is-array": [
+  	"es.array.is-array"
+  ],
+  	"core-js/modules/es.array.iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/modules/es.array.join": [
+  	"es.array.join"
+  ],
+  	"core-js/modules/es.array.last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/modules/es.array.map": [
+  	"es.array.map"
+  ],
+  	"core-js/modules/es.array.of": [
+  	"es.array.of"
+  ],
+  	"core-js/modules/es.array.reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/modules/es.array.reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/modules/es.array.reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/modules/es.array.slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/modules/es.array.some": [
+  	"es.array.some"
+  ],
+  	"core-js/modules/es.array.sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/modules/es.array.species": [
+  	"es.array.species"
+  ],
+  	"core-js/modules/es.array.splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/modules/es.array.unscopables.flat": [
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/modules/es.array.unscopables.flat-map": [
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/modules/es.data-view": [
+  	"es.data-view"
+  ],
+  	"core-js/modules/es.date.now": [
+  	"es.date.now"
+  ],
+  	"core-js/modules/es.date.to-iso-string": [
+  	"es.date.to-iso-string"
+  ],
+  	"core-js/modules/es.date.to-json": [
+  	"es.date.to-json"
+  ],
+  	"core-js/modules/es.date.to-primitive": [
+  	"es.date.to-primitive"
+  ],
+  	"core-js/modules/es.date.to-string": [
+  	"es.date.to-string"
+  ],
+  	"core-js/modules/es.function.bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/modules/es.function.has-instance": [
+  	"es.function.has-instance"
+  ],
+  	"core-js/modules/es.function.name": [
+  	"es.function.name"
+  ],
+  	"core-js/modules/es.global-this": [
+  	"es.global-this"
+  ],
+  	"core-js/modules/es.json.stringify": [
+  	"es.json.stringify"
+  ],
+  	"core-js/modules/es.json.to-string-tag": [
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/modules/es.map": [
+  	"es.map"
+  ],
+  	"core-js/modules/es.math.acosh": [
+  	"es.math.acosh"
+  ],
+  	"core-js/modules/es.math.asinh": [
+  	"es.math.asinh"
+  ],
+  	"core-js/modules/es.math.atanh": [
+  	"es.math.atanh"
+  ],
+  	"core-js/modules/es.math.cbrt": [
+  	"es.math.cbrt"
+  ],
+  	"core-js/modules/es.math.clz32": [
+  	"es.math.clz32"
+  ],
+  	"core-js/modules/es.math.cosh": [
+  	"es.math.cosh"
+  ],
+  	"core-js/modules/es.math.expm1": [
+  	"es.math.expm1"
+  ],
+  	"core-js/modules/es.math.fround": [
+  	"es.math.fround"
+  ],
+  	"core-js/modules/es.math.hypot": [
+  	"es.math.hypot"
+  ],
+  	"core-js/modules/es.math.imul": [
+  	"es.math.imul"
+  ],
+  	"core-js/modules/es.math.log10": [
+  	"es.math.log10"
+  ],
+  	"core-js/modules/es.math.log1p": [
+  	"es.math.log1p"
+  ],
+  	"core-js/modules/es.math.log2": [
+  	"es.math.log2"
+  ],
+  	"core-js/modules/es.math.sign": [
+  	"es.math.sign"
+  ],
+  	"core-js/modules/es.math.sinh": [
+  	"es.math.sinh"
+  ],
+  	"core-js/modules/es.math.tanh": [
+  	"es.math.tanh"
+  ],
+  	"core-js/modules/es.math.to-string-tag": [
+  	"es.math.to-string-tag"
+  ],
+  	"core-js/modules/es.math.trunc": [
+  	"es.math.trunc"
+  ],
+  	"core-js/modules/es.number.constructor": [
+  	"es.number.constructor"
+  ],
+  	"core-js/modules/es.number.epsilon": [
+  	"es.number.epsilon"
+  ],
+  	"core-js/modules/es.number.is-finite": [
+  	"es.number.is-finite"
+  ],
+  	"core-js/modules/es.number.is-integer": [
+  	"es.number.is-integer"
+  ],
+  	"core-js/modules/es.number.is-nan": [
+  	"es.number.is-nan"
+  ],
+  	"core-js/modules/es.number.is-safe-integer": [
+  	"es.number.is-safe-integer"
+  ],
+  	"core-js/modules/es.number.max-safe-integer": [
+  	"es.number.max-safe-integer"
+  ],
+  	"core-js/modules/es.number.min-safe-integer": [
+  	"es.number.min-safe-integer"
+  ],
+  	"core-js/modules/es.number.parse-float": [
+  	"es.number.parse-float"
+  ],
+  	"core-js/modules/es.number.parse-int": [
+  	"es.number.parse-int"
+  ],
+  	"core-js/modules/es.number.to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/modules/es.number.to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/modules/es.object.assign": [
+  	"es.object.assign"
+  ],
+  	"core-js/modules/es.object.create": [
+  	"es.object.create"
+  ],
+  	"core-js/modules/es.object.define-getter": [
+  	"es.object.define-getter"
+  ],
+  	"core-js/modules/es.object.define-properties": [
+  	"es.object.define-properties"
+  ],
+  	"core-js/modules/es.object.define-property": [
+  	"es.object.define-property"
+  ],
+  	"core-js/modules/es.object.define-setter": [
+  	"es.object.define-setter"
+  ],
+  	"core-js/modules/es.object.entries": [
+  	"es.object.entries"
+  ],
+  	"core-js/modules/es.object.freeze": [
+  	"es.object.freeze"
+  ],
+  	"core-js/modules/es.object.from-entries": [
+  	"es.object.from-entries"
+  ],
+  	"core-js/modules/es.object.get-own-property-descriptor": [
+  	"es.object.get-own-property-descriptor"
+  ],
+  	"core-js/modules/es.object.get-own-property-descriptors": [
+  	"es.object.get-own-property-descriptors"
+  ],
+  	"core-js/modules/es.object.get-own-property-names": [
+  	"es.object.get-own-property-names"
+  ],
+  	"core-js/modules/es.object.get-prototype-of": [
+  	"es.object.get-prototype-of"
+  ],
+  	"core-js/modules/es.object.is": [
+  	"es.object.is"
+  ],
+  	"core-js/modules/es.object.is-extensible": [
+  	"es.object.is-extensible"
+  ],
+  	"core-js/modules/es.object.is-frozen": [
+  	"es.object.is-frozen"
+  ],
+  	"core-js/modules/es.object.is-sealed": [
+  	"es.object.is-sealed"
+  ],
+  	"core-js/modules/es.object.keys": [
+  	"es.object.keys"
+  ],
+  	"core-js/modules/es.object.lookup-getter": [
+  	"es.object.lookup-getter"
+  ],
+  	"core-js/modules/es.object.lookup-setter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/modules/es.object.prevent-extensions": [
+  	"es.object.prevent-extensions"
+  ],
+  	"core-js/modules/es.object.seal": [
+  	"es.object.seal"
+  ],
+  	"core-js/modules/es.object.set-prototype-of": [
+  	"es.object.set-prototype-of"
+  ],
+  	"core-js/modules/es.object.to-string": [
+  	"es.object.to-string"
+  ],
+  	"core-js/modules/es.object.values": [
+  	"es.object.values"
+  ],
+  	"core-js/modules/es.parse-float": [
+  	"es.parse-float"
+  ],
+  	"core-js/modules/es.parse-int": [
+  	"es.parse-int"
+  ],
+  	"core-js/modules/es.promise": [
+  	"es.promise"
+  ],
+  	"core-js/modules/es.promise.all-settled": [
+  	"es.promise.all-settled"
+  ],
+  	"core-js/modules/es.promise.finally": [
+  	"es.promise.finally"
+  ],
+  	"core-js/modules/es.reflect.apply": [
+  	"es.reflect.apply"
+  ],
+  	"core-js/modules/es.reflect.construct": [
+  	"es.reflect.construct"
+  ],
+  	"core-js/modules/es.reflect.define-property": [
+  	"es.reflect.define-property"
+  ],
+  	"core-js/modules/es.reflect.delete-property": [
+  	"es.reflect.delete-property"
+  ],
+  	"core-js/modules/es.reflect.get": [
+  	"es.reflect.get"
+  ],
+  	"core-js/modules/es.reflect.get-own-property-descriptor": [
+  	"es.reflect.get-own-property-descriptor"
+  ],
+  	"core-js/modules/es.reflect.get-prototype-of": [
+  	"es.reflect.get-prototype-of"
+  ],
+  	"core-js/modules/es.reflect.has": [
+  	"es.reflect.has"
+  ],
+  	"core-js/modules/es.reflect.is-extensible": [
+  	"es.reflect.is-extensible"
+  ],
+  	"core-js/modules/es.reflect.own-keys": [
+  	"es.reflect.own-keys"
+  ],
+  	"core-js/modules/es.reflect.prevent-extensions": [
+  	"es.reflect.prevent-extensions"
+  ],
+  	"core-js/modules/es.reflect.set": [
+  	"es.reflect.set"
+  ],
+  	"core-js/modules/es.reflect.set-prototype-of": [
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/modules/es.regexp.constructor": [
+  	"es.regexp.constructor"
+  ],
+  	"core-js/modules/es.regexp.exec": [
+  	"es.regexp.exec"
+  ],
+  	"core-js/modules/es.regexp.flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/modules/es.regexp.sticky": [
+  	"es.regexp.sticky"
+  ],
+  	"core-js/modules/es.regexp.test": [
+  	"es.regexp.test"
+  ],
+  	"core-js/modules/es.regexp.to-string": [
+  	"es.regexp.to-string"
+  ],
+  	"core-js/modules/es.set": [
+  	"es.set"
+  ],
+  	"core-js/modules/es.string.anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/modules/es.string.big": [
+  	"es.string.big"
+  ],
+  	"core-js/modules/es.string.blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/modules/es.string.bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/modules/es.string.code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/modules/es.string.ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/modules/es.string.fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/modules/es.string.fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/modules/es.string.fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/modules/es.string.from-code-point": [
+  	"es.string.from-code-point"
+  ],
+  	"core-js/modules/es.string.includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/modules/es.string.italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/modules/es.string.iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/modules/es.string.link": [
+  	"es.string.link"
+  ],
+  	"core-js/modules/es.string.match": [
+  	"es.string.match"
+  ],
+  	"core-js/modules/es.string.match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/modules/es.string.pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/modules/es.string.pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/modules/es.string.raw": [
+  	"es.string.raw"
+  ],
+  	"core-js/modules/es.string.repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/modules/es.string.replace": [
+  	"es.string.replace"
+  ],
+  	"core-js/modules/es.string.search": [
+  	"es.string.search"
+  ],
+  	"core-js/modules/es.string.small": [
+  	"es.string.small"
+  ],
+  	"core-js/modules/es.string.split": [
+  	"es.string.split"
+  ],
+  	"core-js/modules/es.string.starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/modules/es.string.strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/modules/es.string.sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/modules/es.string.sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/modules/es.string.trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/modules/es.string.trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/modules/es.string.trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/modules/es.symbol": [
+  	"es.symbol"
+  ],
+  	"core-js/modules/es.symbol.async-iterator": [
+  	"es.symbol.async-iterator"
+  ],
+  	"core-js/modules/es.symbol.description": [
+  	"es.symbol.description"
+  ],
+  	"core-js/modules/es.symbol.has-instance": [
+  	"es.symbol.has-instance"
+  ],
+  	"core-js/modules/es.symbol.is-concat-spreadable": [
+  	"es.symbol.is-concat-spreadable"
+  ],
+  	"core-js/modules/es.symbol.iterator": [
+  	"es.symbol.iterator"
+  ],
+  	"core-js/modules/es.symbol.match": [
+  	"es.symbol.match"
+  ],
+  	"core-js/modules/es.symbol.match-all": [
+  	"es.symbol.match-all"
+  ],
+  	"core-js/modules/es.symbol.replace": [
+  	"es.symbol.replace"
+  ],
+  	"core-js/modules/es.symbol.search": [
+  	"es.symbol.search"
+  ],
+  	"core-js/modules/es.symbol.species": [
+  	"es.symbol.species"
+  ],
+  	"core-js/modules/es.symbol.split": [
+  	"es.symbol.split"
+  ],
+  	"core-js/modules/es.symbol.to-primitive": [
+  	"es.symbol.to-primitive"
+  ],
+  	"core-js/modules/es.symbol.to-string-tag": [
+  	"es.symbol.to-string-tag"
+  ],
+  	"core-js/modules/es.symbol.unscopables": [
+  	"es.symbol.unscopables"
+  ],
+  	"core-js/modules/es.typed-array.copy-within": [
+  	"es.typed-array.copy-within"
+  ],
+  	"core-js/modules/es.typed-array.every": [
+  	"es.typed-array.every"
+  ],
+  	"core-js/modules/es.typed-array.fill": [
+  	"es.typed-array.fill"
+  ],
+  	"core-js/modules/es.typed-array.filter": [
+  	"es.typed-array.filter"
+  ],
+  	"core-js/modules/es.typed-array.find": [
+  	"es.typed-array.find"
+  ],
+  	"core-js/modules/es.typed-array.find-index": [
+  	"es.typed-array.find-index"
+  ],
+  	"core-js/modules/es.typed-array.float32-array": [
+  	"es.typed-array.float32-array"
+  ],
+  	"core-js/modules/es.typed-array.float64-array": [
+  	"es.typed-array.float64-array"
+  ],
+  	"core-js/modules/es.typed-array.for-each": [
+  	"es.typed-array.for-each"
+  ],
+  	"core-js/modules/es.typed-array.from": [
+  	"es.typed-array.from"
+  ],
+  	"core-js/modules/es.typed-array.includes": [
+  	"es.typed-array.includes"
+  ],
+  	"core-js/modules/es.typed-array.index-of": [
+  	"es.typed-array.index-of"
+  ],
+  	"core-js/modules/es.typed-array.int16-array": [
+  	"es.typed-array.int16-array"
+  ],
+  	"core-js/modules/es.typed-array.int32-array": [
+  	"es.typed-array.int32-array"
+  ],
+  	"core-js/modules/es.typed-array.int8-array": [
+  	"es.typed-array.int8-array"
+  ],
+  	"core-js/modules/es.typed-array.iterator": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/modules/es.typed-array.join": [
+  	"es.typed-array.join"
+  ],
+  	"core-js/modules/es.typed-array.last-index-of": [
+  	"es.typed-array.last-index-of"
+  ],
+  	"core-js/modules/es.typed-array.map": [
+  	"es.typed-array.map"
+  ],
+  	"core-js/modules/es.typed-array.of": [
+  	"es.typed-array.of"
+  ],
+  	"core-js/modules/es.typed-array.reduce": [
+  	"es.typed-array.reduce"
+  ],
+  	"core-js/modules/es.typed-array.reduce-right": [
+  	"es.typed-array.reduce-right"
+  ],
+  	"core-js/modules/es.typed-array.reverse": [
+  	"es.typed-array.reverse"
+  ],
+  	"core-js/modules/es.typed-array.set": [
+  	"es.typed-array.set"
+  ],
+  	"core-js/modules/es.typed-array.slice": [
+  	"es.typed-array.slice"
+  ],
+  	"core-js/modules/es.typed-array.some": [
+  	"es.typed-array.some"
+  ],
+  	"core-js/modules/es.typed-array.sort": [
+  	"es.typed-array.sort"
+  ],
+  	"core-js/modules/es.typed-array.subarray": [
+  	"es.typed-array.subarray"
+  ],
+  	"core-js/modules/es.typed-array.to-locale-string": [
+  	"es.typed-array.to-locale-string"
+  ],
+  	"core-js/modules/es.typed-array.to-string": [
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/modules/es.typed-array.uint16-array": [
+  	"es.typed-array.uint16-array"
+  ],
+  	"core-js/modules/es.typed-array.uint32-array": [
+  	"es.typed-array.uint32-array"
+  ],
+  	"core-js/modules/es.typed-array.uint8-array": [
+  	"es.typed-array.uint8-array"
+  ],
+  	"core-js/modules/es.typed-array.uint8-clamped-array": [
+  	"es.typed-array.uint8-clamped-array"
+  ],
+  	"core-js/modules/es.weak-map": [
+  	"es.weak-map"
+  ],
+  	"core-js/modules/es.weak-set": [
+  	"es.weak-set"
+  ],
+  	"core-js/modules/esnext.aggregate-error": [
+  	"esnext.aggregate-error"
+  ],
+  	"core-js/modules/esnext.array.is-template-object": [
+  	"esnext.array.is-template-object"
+  ],
+  	"core-js/modules/esnext.array.last-index": [
+  	"esnext.array.last-index"
+  ],
+  	"core-js/modules/esnext.array.last-item": [
+  	"esnext.array.last-item"
+  ],
+  	"core-js/modules/esnext.async-iterator.as-indexed-pairs": [
+  	"esnext.async-iterator.as-indexed-pairs"
+  ],
+  	"core-js/modules/esnext.async-iterator.constructor": [
+  	"esnext.async-iterator.constructor"
+  ],
+  	"core-js/modules/esnext.async-iterator.drop": [
+  	"esnext.async-iterator.drop"
+  ],
+  	"core-js/modules/esnext.async-iterator.every": [
+  	"esnext.async-iterator.every"
+  ],
+  	"core-js/modules/esnext.async-iterator.filter": [
+  	"esnext.async-iterator.filter"
+  ],
+  	"core-js/modules/esnext.async-iterator.find": [
+  	"esnext.async-iterator.find"
+  ],
+  	"core-js/modules/esnext.async-iterator.flat-map": [
+  	"esnext.async-iterator.flat-map"
+  ],
+  	"core-js/modules/esnext.async-iterator.for-each": [
+  	"esnext.async-iterator.for-each"
+  ],
+  	"core-js/modules/esnext.async-iterator.from": [
+  	"esnext.async-iterator.from"
+  ],
+  	"core-js/modules/esnext.async-iterator.map": [
+  	"esnext.async-iterator.map"
+  ],
+  	"core-js/modules/esnext.async-iterator.reduce": [
+  	"esnext.async-iterator.reduce"
+  ],
+  	"core-js/modules/esnext.async-iterator.some": [
+  	"esnext.async-iterator.some"
+  ],
+  	"core-js/modules/esnext.async-iterator.take": [
+  	"esnext.async-iterator.take"
+  ],
+  	"core-js/modules/esnext.async-iterator.to-array": [
+  	"esnext.async-iterator.to-array"
+  ],
+  	"core-js/modules/esnext.composite-key": [
+  	"esnext.composite-key"
+  ],
+  	"core-js/modules/esnext.composite-symbol": [
+  	"esnext.composite-symbol"
+  ],
+  	"core-js/modules/esnext.global-this": [
+  	"esnext.global-this"
+  ],
+  	"core-js/modules/esnext.iterator.as-indexed-pairs": [
+  	"esnext.iterator.as-indexed-pairs"
+  ],
+  	"core-js/modules/esnext.iterator.constructor": [
+  	"esnext.iterator.constructor"
+  ],
+  	"core-js/modules/esnext.iterator.drop": [
+  	"esnext.iterator.drop"
+  ],
+  	"core-js/modules/esnext.iterator.every": [
+  	"esnext.iterator.every"
+  ],
+  	"core-js/modules/esnext.iterator.filter": [
+  	"esnext.iterator.filter"
+  ],
+  	"core-js/modules/esnext.iterator.find": [
+  	"esnext.iterator.find"
+  ],
+  	"core-js/modules/esnext.iterator.flat-map": [
+  	"esnext.iterator.flat-map"
+  ],
+  	"core-js/modules/esnext.iterator.for-each": [
+  	"esnext.iterator.for-each"
+  ],
+  	"core-js/modules/esnext.iterator.from": [
+  	"esnext.iterator.from"
+  ],
+  	"core-js/modules/esnext.iterator.map": [
+  	"esnext.iterator.map"
+  ],
+  	"core-js/modules/esnext.iterator.reduce": [
+  	"esnext.iterator.reduce"
+  ],
+  	"core-js/modules/esnext.iterator.some": [
+  	"esnext.iterator.some"
+  ],
+  	"core-js/modules/esnext.iterator.take": [
+  	"esnext.iterator.take"
+  ],
+  	"core-js/modules/esnext.iterator.to-array": [
+  	"esnext.iterator.to-array"
+  ],
+  	"core-js/modules/esnext.map.delete-all": [
+  	"esnext.map.delete-all"
+  ],
+  	"core-js/modules/esnext.map.every": [
+  	"esnext.map.every"
+  ],
+  	"core-js/modules/esnext.map.filter": [
+  	"esnext.map.filter"
+  ],
+  	"core-js/modules/esnext.map.find": [
+  	"esnext.map.find"
+  ],
+  	"core-js/modules/esnext.map.find-key": [
+  	"esnext.map.find-key"
+  ],
+  	"core-js/modules/esnext.map.from": [
+  	"esnext.map.from"
+  ],
+  	"core-js/modules/esnext.map.group-by": [
+  	"esnext.map.group-by"
+  ],
+  	"core-js/modules/esnext.map.includes": [
+  	"esnext.map.includes"
+  ],
+  	"core-js/modules/esnext.map.key-by": [
+  	"esnext.map.key-by"
+  ],
+  	"core-js/modules/esnext.map.key-of": [
+  	"esnext.map.key-of"
+  ],
+  	"core-js/modules/esnext.map.map-keys": [
+  	"esnext.map.map-keys"
+  ],
+  	"core-js/modules/esnext.map.map-values": [
+  	"esnext.map.map-values"
+  ],
+  	"core-js/modules/esnext.map.merge": [
+  	"esnext.map.merge"
+  ],
+  	"core-js/modules/esnext.map.of": [
+  	"esnext.map.of"
+  ],
+  	"core-js/modules/esnext.map.reduce": [
+  	"esnext.map.reduce"
+  ],
+  	"core-js/modules/esnext.map.some": [
+  	"esnext.map.some"
+  ],
+  	"core-js/modules/esnext.map.update": [
+  	"esnext.map.update"
+  ],
+  	"core-js/modules/esnext.map.update-or-insert": [
+  	"esnext.map.update-or-insert"
+  ],
+  	"core-js/modules/esnext.map.upsert": [
+  	"esnext.map.upsert"
+  ],
+  	"core-js/modules/esnext.math.clamp": [
+  	"esnext.math.clamp"
+  ],
+  	"core-js/modules/esnext.math.deg-per-rad": [
+  	"esnext.math.deg-per-rad"
+  ],
+  	"core-js/modules/esnext.math.degrees": [
+  	"esnext.math.degrees"
+  ],
+  	"core-js/modules/esnext.math.fscale": [
+  	"esnext.math.fscale"
+  ],
+  	"core-js/modules/esnext.math.iaddh": [
+  	"esnext.math.iaddh"
+  ],
+  	"core-js/modules/esnext.math.imulh": [
+  	"esnext.math.imulh"
+  ],
+  	"core-js/modules/esnext.math.isubh": [
+  	"esnext.math.isubh"
+  ],
+  	"core-js/modules/esnext.math.rad-per-deg": [
+  	"esnext.math.rad-per-deg"
+  ],
+  	"core-js/modules/esnext.math.radians": [
+  	"esnext.math.radians"
+  ],
+  	"core-js/modules/esnext.math.scale": [
+  	"esnext.math.scale"
+  ],
+  	"core-js/modules/esnext.math.seeded-prng": [
+  	"esnext.math.seeded-prng"
+  ],
+  	"core-js/modules/esnext.math.signbit": [
+  	"esnext.math.signbit"
+  ],
+  	"core-js/modules/esnext.math.umulh": [
+  	"esnext.math.umulh"
+  ],
+  	"core-js/modules/esnext.number.from-string": [
+  	"esnext.number.from-string"
+  ],
+  	"core-js/modules/esnext.object.iterate-entries": [
+  	"esnext.object.iterate-entries"
+  ],
+  	"core-js/modules/esnext.object.iterate-keys": [
+  	"esnext.object.iterate-keys"
+  ],
+  	"core-js/modules/esnext.object.iterate-values": [
+  	"esnext.object.iterate-values"
+  ],
+  	"core-js/modules/esnext.observable": [
+  	"esnext.observable"
+  ],
+  	"core-js/modules/esnext.promise.all-settled": [
+  	"esnext.promise.all-settled"
+  ],
+  	"core-js/modules/esnext.promise.any": [
+  	"esnext.promise.any"
+  ],
+  	"core-js/modules/esnext.promise.try": [
+  	"esnext.promise.try"
+  ],
+  	"core-js/modules/esnext.reflect.define-metadata": [
+  	"esnext.reflect.define-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.delete-metadata": [
+  	"esnext.reflect.delete-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.get-metadata": [
+  	"esnext.reflect.get-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.get-metadata-keys": [
+  	"esnext.reflect.get-metadata-keys"
+  ],
+  	"core-js/modules/esnext.reflect.get-own-metadata": [
+  	"esnext.reflect.get-own-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.get-own-metadata-keys": [
+  	"esnext.reflect.get-own-metadata-keys"
+  ],
+  	"core-js/modules/esnext.reflect.has-metadata": [
+  	"esnext.reflect.has-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.has-own-metadata": [
+  	"esnext.reflect.has-own-metadata"
+  ],
+  	"core-js/modules/esnext.reflect.metadata": [
+  	"esnext.reflect.metadata"
+  ],
+  	"core-js/modules/esnext.set.add-all": [
+  	"esnext.set.add-all"
+  ],
+  	"core-js/modules/esnext.set.delete-all": [
+  	"esnext.set.delete-all"
+  ],
+  	"core-js/modules/esnext.set.difference": [
+  	"esnext.set.difference"
+  ],
+  	"core-js/modules/esnext.set.every": [
+  	"esnext.set.every"
+  ],
+  	"core-js/modules/esnext.set.filter": [
+  	"esnext.set.filter"
+  ],
+  	"core-js/modules/esnext.set.find": [
+  	"esnext.set.find"
+  ],
+  	"core-js/modules/esnext.set.from": [
+  	"esnext.set.from"
+  ],
+  	"core-js/modules/esnext.set.intersection": [
+  	"esnext.set.intersection"
+  ],
+  	"core-js/modules/esnext.set.is-disjoint-from": [
+  	"esnext.set.is-disjoint-from"
+  ],
+  	"core-js/modules/esnext.set.is-subset-of": [
+  	"esnext.set.is-subset-of"
+  ],
+  	"core-js/modules/esnext.set.is-superset-of": [
+  	"esnext.set.is-superset-of"
+  ],
+  	"core-js/modules/esnext.set.join": [
+  	"esnext.set.join"
+  ],
+  	"core-js/modules/esnext.set.map": [
+  	"esnext.set.map"
+  ],
+  	"core-js/modules/esnext.set.of": [
+  	"esnext.set.of"
+  ],
+  	"core-js/modules/esnext.set.reduce": [
+  	"esnext.set.reduce"
+  ],
+  	"core-js/modules/esnext.set.some": [
+  	"esnext.set.some"
+  ],
+  	"core-js/modules/esnext.set.symmetric-difference": [
+  	"esnext.set.symmetric-difference"
+  ],
+  	"core-js/modules/esnext.set.union": [
+  	"esnext.set.union"
+  ],
+  	"core-js/modules/esnext.string.at": [
+  	"esnext.string.at"
+  ],
+  	"core-js/modules/esnext.string.code-points": [
+  	"esnext.string.code-points"
+  ],
+  	"core-js/modules/esnext.string.match-all": [
+  	"esnext.string.match-all"
+  ],
+  	"core-js/modules/esnext.string.replace-all": [
+  	"esnext.string.replace-all"
+  ],
+  	"core-js/modules/esnext.symbol.async-dispose": [
+  	"esnext.symbol.async-dispose"
+  ],
+  	"core-js/modules/esnext.symbol.dispose": [
+  	"esnext.symbol.dispose"
+  ],
+  	"core-js/modules/esnext.symbol.observable": [
+  	"esnext.symbol.observable"
+  ],
+  	"core-js/modules/esnext.symbol.pattern-match": [
+  	"esnext.symbol.pattern-match"
+  ],
+  	"core-js/modules/esnext.symbol.replace-all": [
+  	"esnext.symbol.replace-all"
+  ],
+  	"core-js/modules/esnext.weak-map.delete-all": [
+  	"esnext.weak-map.delete-all"
+  ],
+  	"core-js/modules/esnext.weak-map.from": [
+  	"esnext.weak-map.from"
+  ],
+  	"core-js/modules/esnext.weak-map.of": [
+  	"esnext.weak-map.of"
+  ],
+  	"core-js/modules/esnext.weak-map.upsert": [
+  	"esnext.weak-map.upsert"
+  ],
+  	"core-js/modules/esnext.weak-set.add-all": [
+  	"esnext.weak-set.add-all"
+  ],
+  	"core-js/modules/esnext.weak-set.delete-all": [
+  	"esnext.weak-set.delete-all"
+  ],
+  	"core-js/modules/esnext.weak-set.from": [
+  	"esnext.weak-set.from"
+  ],
+  	"core-js/modules/esnext.weak-set.of": [
+  	"esnext.weak-set.of"
+  ],
+  	"core-js/modules/web.dom-collections.for-each": [
+  	"web.dom-collections.for-each"
+  ],
+  	"core-js/modules/web.dom-collections.iterator": [
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/modules/web.immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/modules/web.queue-microtask": [
+  	"web.queue-microtask"
+  ],
+  	"core-js/modules/web.timers": [
+  	"web.timers"
+  ],
+  	"core-js/modules/web.url": [
+  	"web.url"
+  ],
+  	"core-js/modules/web.url-search-params": [
+  	"web.url-search-params"
+  ],
+  	"core-js/modules/web.url.to-json": [
+  	"web.url.to-json"
+  ],
+  	"core-js/proposals": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/proposals/array-is-template-object": [
+  	"esnext.array.is-template-object"
+  ],
+  	"core-js/proposals/array-last": [
+  	"esnext.array.last-index",
+  	"esnext.array.last-item"
+  ],
+  	"core-js/proposals/collection-methods": [
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all"
+  ],
+  	"core-js/proposals/collection-of-from": [
+  	"esnext.map.from",
+  	"esnext.map.of",
+  	"esnext.set.from",
+  	"esnext.set.of",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of"
+  ],
+  	"core-js/proposals/efficient-64-bit-arithmetic": [
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.umulh"
+  ],
+  	"core-js/proposals/global-this": [
+  	"esnext.global-this"
+  ],
+  	"core-js/proposals/iterator-helpers": [
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array"
+  ],
+  	"core-js/proposals/keys-composition": [
+  	"esnext.composite-key",
+  	"esnext.composite-symbol"
+  ],
+  	"core-js/proposals/map-update-or-insert": [
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.weak-map.upsert"
+  ],
+  	"core-js/proposals/map-upsert": [
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.weak-map.upsert"
+  ],
+  	"core-js/proposals/math-extensions": [
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale"
+  ],
+  	"core-js/proposals/math-signbit": [
+  	"esnext.math.signbit"
+  ],
+  	"core-js/proposals/number-from-string": [
+  	"esnext.number.from-string"
+  ],
+  	"core-js/proposals/object-iteration": [
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values"
+  ],
+  	"core-js/proposals/observable": [
+  	"esnext.observable",
+  	"esnext.symbol.observable"
+  ],
+  	"core-js/proposals/pattern-matching": [
+  	"esnext.symbol.pattern-match"
+  ],
+  	"core-js/proposals/promise-all-settled": [
+  	"esnext.promise.all-settled"
+  ],
+  	"core-js/proposals/promise-any": [
+  	"esnext.aggregate-error",
+  	"esnext.promise.any"
+  ],
+  	"core-js/proposals/promise-try": [
+  	"esnext.promise.try"
+  ],
+  	"core-js/proposals/reflect-metadata": [
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata"
+  ],
+  	"core-js/proposals/seeded-random": [
+  	"esnext.math.seeded-prng"
+  ],
+  	"core-js/proposals/set-methods": [
+  	"esnext.set.difference",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union"
+  ],
+  	"core-js/proposals/string-at": [
+  	"esnext.string.at"
+  ],
+  	"core-js/proposals/string-code-points": [
+  	"esnext.string.code-points"
+  ],
+  	"core-js/proposals/string-match-all": [
+  	"esnext.string.match-all"
+  ],
+  	"core-js/proposals/string-replace-all": [
+  	"esnext.string.replace-all",
+  	"esnext.symbol.replace-all"
+  ],
+  	"core-js/proposals/url": [
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/proposals/using-statement": [
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose"
+  ],
+  	"core-js/stable": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.data-view",
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string",
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name",
+  	"es.global-this",
+  	"es.json.stringify",
+  	"es.json.to-string-tag",
+  	"es.map",
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc",
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values",
+  	"es.parse-float",
+  	"es.parse-int",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of",
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.set",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string",
+  	"es.weak-map",
+  	"es.weak-set",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/stable/array": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.from",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.is-array",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.of",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map",
+  	"es.string.iterator"
+  ],
+  	"core-js/stable/array-buffer": [
+  	"es.array-buffer.constructor",
+  	"es.array-buffer.is-view",
+  	"es.array-buffer.slice",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/array-buffer/constructor": [
+  	"es.array-buffer.constructor",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/array-buffer/is-view": [
+  	"es.array-buffer.is-view"
+  ],
+  	"core-js/stable/array-buffer/slice": [
+  	"es.array-buffer.slice"
+  ],
+  	"core-js/stable/array/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/stable/array/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/stable/array/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/every": [
+  	"es.array.every"
+  ],
+  	"core-js/stable/array/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/stable/array/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/stable/array/find": [
+  	"es.array.find"
+  ],
+  	"core-js/stable/array/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/stable/array/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/stable/array/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/stable/array/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/stable/array/from": [
+  	"es.array.from",
+  	"es.string.iterator"
+  ],
+  	"core-js/stable/array/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/stable/array/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/stable/array/is-array": [
+  	"es.array.is-array"
+  ],
+  	"core-js/stable/array/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/join": [
+  	"es.array.join"
+  ],
+  	"core-js/stable/array/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/stable/array/map": [
+  	"es.array.map"
+  ],
+  	"core-js/stable/array/of": [
+  	"es.array.of"
+  ],
+  	"core-js/stable/array/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/stable/array/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/stable/array/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/stable/array/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/stable/array/some": [
+  	"es.array.some"
+  ],
+  	"core-js/stable/array/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/stable/array/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/stable/array/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/virtual": [
+  	"es.array.concat",
+  	"es.array.copy-within",
+  	"es.array.every",
+  	"es.array.fill",
+  	"es.array.filter",
+  	"es.array.find",
+  	"es.array.find-index",
+  	"es.array.flat",
+  	"es.array.flat-map",
+  	"es.array.for-each",
+  	"es.array.includes",
+  	"es.array.index-of",
+  	"es.array.iterator",
+  	"es.array.join",
+  	"es.array.last-index-of",
+  	"es.array.map",
+  	"es.array.reduce",
+  	"es.array.reduce-right",
+  	"es.array.reverse",
+  	"es.array.slice",
+  	"es.array.some",
+  	"es.array.sort",
+  	"es.array.species",
+  	"es.array.splice",
+  	"es.array.unscopables.flat",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/stable/array/virtual/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/stable/array/virtual/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/stable/array/virtual/entries": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/virtual/every": [
+  	"es.array.every"
+  ],
+  	"core-js/stable/array/virtual/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/stable/array/virtual/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/stable/array/virtual/find": [
+  	"es.array.find"
+  ],
+  	"core-js/stable/array/virtual/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/stable/array/virtual/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/stable/array/virtual/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/stable/array/virtual/for-each": [
+  	"es.array.for-each"
+  ],
+  	"core-js/stable/array/virtual/includes": [
+  	"es.array.includes"
+  ],
+  	"core-js/stable/array/virtual/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/stable/array/virtual/iterator": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/virtual/join": [
+  	"es.array.join"
+  ],
+  	"core-js/stable/array/virtual/keys": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/array/virtual/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/stable/array/virtual/map": [
+  	"es.array.map"
+  ],
+  	"core-js/stable/array/virtual/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/stable/array/virtual/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/stable/array/virtual/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/stable/array/virtual/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/stable/array/virtual/some": [
+  	"es.array.some"
+  ],
+  	"core-js/stable/array/virtual/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/stable/array/virtual/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/stable/array/virtual/values": [
+  	"es.array.iterator"
+  ],
+  	"core-js/stable/clear-immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/stable/data-view": [
+  	"es.data-view",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/date": [
+  	"es.date.now",
+  	"es.date.to-iso-string",
+  	"es.date.to-json",
+  	"es.date.to-primitive",
+  	"es.date.to-string"
+  ],
+  	"core-js/stable/date/now": [
+  	"es.date.now"
+  ],
+  	"core-js/stable/date/to-iso-string": [
+  	"es.date.to-iso-string",
+  	"es.date.to-json"
+  ],
+  	"core-js/stable/date/to-json": [
+  	"es.date.to-json"
+  ],
+  	"core-js/stable/date/to-primitive": [
+  	"es.date.to-primitive"
+  ],
+  	"core-js/stable/date/to-string": [
+  	"es.date.to-string"
+  ],
+  	"core-js/stable/dom-collections": [
+  	"es.array.iterator",
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/dom-collections/for-each": [
+  	"web.dom-collections.for-each"
+  ],
+  	"core-js/stable/dom-collections/iterator": [
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/function": [
+  	"es.function.bind",
+  	"es.function.has-instance",
+  	"es.function.name"
+  ],
+  	"core-js/stable/function/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/stable/function/has-instance": [
+  	"es.function.has-instance"
+  ],
+  	"core-js/stable/function/name": [
+  	"es.function.name"
+  ],
+  	"core-js/stable/function/virtual": [
+  	"es.function.bind"
+  ],
+  	"core-js/stable/function/virtual/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/stable/global-this": [
+  	"es.global-this"
+  ],
+  	"core-js/stable/instance/bind": [
+  	"es.function.bind"
+  ],
+  	"core-js/stable/instance/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/stable/instance/concat": [
+  	"es.array.concat"
+  ],
+  	"core-js/stable/instance/copy-within": [
+  	"es.array.copy-within"
+  ],
+  	"core-js/stable/instance/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/stable/instance/entries": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/instance/every": [
+  	"es.array.every"
+  ],
+  	"core-js/stable/instance/fill": [
+  	"es.array.fill"
+  ],
+  	"core-js/stable/instance/filter": [
+  	"es.array.filter"
+  ],
+  	"core-js/stable/instance/find": [
+  	"es.array.find"
+  ],
+  	"core-js/stable/instance/find-index": [
+  	"es.array.find-index"
+  ],
+  	"core-js/stable/instance/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/stable/instance/flat": [
+  	"es.array.flat",
+  	"es.array.unscopables.flat"
+  ],
+  	"core-js/stable/instance/flat-map": [
+  	"es.array.flat-map",
+  	"es.array.unscopables.flat-map"
+  ],
+  	"core-js/stable/instance/for-each": [
+  	"es.array.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/instance/includes": [
+  	"es.array.includes",
+  	"es.string.includes"
+  ],
+  	"core-js/stable/instance/index-of": [
+  	"es.array.index-of"
+  ],
+  	"core-js/stable/instance/keys": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/instance/last-index-of": [
+  	"es.array.last-index-of"
+  ],
+  	"core-js/stable/instance/map": [
+  	"es.array.map"
+  ],
+  	"core-js/stable/instance/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/stable/instance/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/stable/instance/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/stable/instance/reduce": [
+  	"es.array.reduce"
+  ],
+  	"core-js/stable/instance/reduce-right": [
+  	"es.array.reduce-right"
+  ],
+  	"core-js/stable/instance/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/stable/instance/reverse": [
+  	"es.array.reverse"
+  ],
+  	"core-js/stable/instance/slice": [
+  	"es.array.slice"
+  ],
+  	"core-js/stable/instance/some": [
+  	"es.array.some"
+  ],
+  	"core-js/stable/instance/sort": [
+  	"es.array.sort"
+  ],
+  	"core-js/stable/instance/splice": [
+  	"es.array.splice"
+  ],
+  	"core-js/stable/instance/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/stable/instance/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/stable/instance/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/instance/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/instance/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/instance/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/instance/values": [
+  	"es.array.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/json": [
+  	"es.json.stringify",
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/stable/json/stringify": [
+  	"es.json.stringify"
+  ],
+  	"core-js/stable/json/to-string-tag": [
+  	"es.json.to-string-tag"
+  ],
+  	"core-js/stable/map": [
+  	"es.map",
+  	"es.object.to-string",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/math": [
+  	"es.math.acosh",
+  	"es.math.asinh",
+  	"es.math.atanh",
+  	"es.math.cbrt",
+  	"es.math.clz32",
+  	"es.math.cosh",
+  	"es.math.expm1",
+  	"es.math.fround",
+  	"es.math.hypot",
+  	"es.math.imul",
+  	"es.math.log10",
+  	"es.math.log1p",
+  	"es.math.log2",
+  	"es.math.sign",
+  	"es.math.sinh",
+  	"es.math.tanh",
+  	"es.math.to-string-tag",
+  	"es.math.trunc"
+  ],
+  	"core-js/stable/math/acosh": [
+  	"es.math.acosh"
+  ],
+  	"core-js/stable/math/asinh": [
+  	"es.math.asinh"
+  ],
+  	"core-js/stable/math/atanh": [
+  	"es.math.atanh"
+  ],
+  	"core-js/stable/math/cbrt": [
+  	"es.math.cbrt"
+  ],
+  	"core-js/stable/math/clz32": [
+  	"es.math.clz32"
+  ],
+  	"core-js/stable/math/cosh": [
+  	"es.math.cosh"
+  ],
+  	"core-js/stable/math/expm1": [
+  	"es.math.expm1"
+  ],
+  	"core-js/stable/math/fround": [
+  	"es.math.fround"
+  ],
+  	"core-js/stable/math/hypot": [
+  	"es.math.hypot"
+  ],
+  	"core-js/stable/math/imul": [
+  	"es.math.imul"
+  ],
+  	"core-js/stable/math/log10": [
+  	"es.math.log10"
+  ],
+  	"core-js/stable/math/log1p": [
+  	"es.math.log1p"
+  ],
+  	"core-js/stable/math/log2": [
+  	"es.math.log2"
+  ],
+  	"core-js/stable/math/sign": [
+  	"es.math.sign"
+  ],
+  	"core-js/stable/math/sinh": [
+  	"es.math.sinh"
+  ],
+  	"core-js/stable/math/tanh": [
+  	"es.math.tanh"
+  ],
+  	"core-js/stable/math/to-string-tag": [
+  	"es.math.to-string-tag"
+  ],
+  	"core-js/stable/math/trunc": [
+  	"es.math.trunc"
+  ],
+  	"core-js/stable/number": [
+  	"es.number.constructor",
+  	"es.number.epsilon",
+  	"es.number.is-finite",
+  	"es.number.is-integer",
+  	"es.number.is-nan",
+  	"es.number.is-safe-integer",
+  	"es.number.max-safe-integer",
+  	"es.number.min-safe-integer",
+  	"es.number.parse-float",
+  	"es.number.parse-int",
+  	"es.number.to-fixed",
+  	"es.number.to-precision"
+  ],
+  	"core-js/stable/number/constructor": [
+  	"es.number.constructor"
+  ],
+  	"core-js/stable/number/epsilon": [
+  	"es.number.epsilon"
+  ],
+  	"core-js/stable/number/is-finite": [
+  	"es.number.is-finite"
+  ],
+  	"core-js/stable/number/is-integer": [
+  	"es.number.is-integer"
+  ],
+  	"core-js/stable/number/is-nan": [
+  	"es.number.is-nan"
+  ],
+  	"core-js/stable/number/is-safe-integer": [
+  	"es.number.is-safe-integer"
+  ],
+  	"core-js/stable/number/max-safe-integer": [
+  	"es.number.max-safe-integer"
+  ],
+  	"core-js/stable/number/min-safe-integer": [
+  	"es.number.min-safe-integer"
+  ],
+  	"core-js/stable/number/parse-float": [
+  	"es.number.parse-float"
+  ],
+  	"core-js/stable/number/parse-int": [
+  	"es.number.parse-int"
+  ],
+  	"core-js/stable/number/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/stable/number/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/stable/number/virtual": [
+  	"es.number.to-fixed",
+  	"es.number.to-precision"
+  ],
+  	"core-js/stable/number/virtual/to-fixed": [
+  	"es.number.to-fixed"
+  ],
+  	"core-js/stable/number/virtual/to-precision": [
+  	"es.number.to-precision"
+  ],
+  	"core-js/stable/object": [
+  	"es.symbol",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.assign",
+  	"es.object.create",
+  	"es.object.define-getter",
+  	"es.object.define-properties",
+  	"es.object.define-property",
+  	"es.object.define-setter",
+  	"es.object.entries",
+  	"es.object.freeze",
+  	"es.object.from-entries",
+  	"es.object.get-own-property-descriptor",
+  	"es.object.get-own-property-descriptors",
+  	"es.object.get-own-property-names",
+  	"es.object.get-prototype-of",
+  	"es.object.is",
+  	"es.object.is-extensible",
+  	"es.object.is-frozen",
+  	"es.object.is-sealed",
+  	"es.object.keys",
+  	"es.object.lookup-getter",
+  	"es.object.lookup-setter",
+  	"es.object.prevent-extensions",
+  	"es.object.seal",
+  	"es.object.set-prototype-of",
+  	"es.object.to-string",
+  	"es.object.values"
+  ],
+  	"core-js/stable/object/assign": [
+  	"es.object.assign"
+  ],
+  	"core-js/stable/object/create": [
+  	"es.object.create"
+  ],
+  	"core-js/stable/object/define-getter": [
+  	"es.object.define-getter"
+  ],
+  	"core-js/stable/object/define-properties": [
+  	"es.object.define-properties"
+  ],
+  	"core-js/stable/object/define-property": [
+  	"es.object.define-property"
+  ],
+  	"core-js/stable/object/define-setter": [
+  	"es.object.define-setter"
+  ],
+  	"core-js/stable/object/entries": [
+  	"es.object.entries"
+  ],
+  	"core-js/stable/object/freeze": [
+  	"es.object.freeze"
+  ],
+  	"core-js/stable/object/from-entries": [
+  	"es.array.iterator",
+  	"es.object.from-entries"
+  ],
+  	"core-js/stable/object/get-own-property-descriptor": [
+  	"es.object.get-own-property-descriptor"
+  ],
+  	"core-js/stable/object/get-own-property-descriptors": [
+  	"es.object.get-own-property-descriptors"
+  ],
+  	"core-js/stable/object/get-own-property-names": [
+  	"es.object.get-own-property-names"
+  ],
+  	"core-js/stable/object/get-own-property-symbols": [
+  	"es.symbol"
+  ],
+  	"core-js/stable/object/get-prototype-of": [
+  	"es.object.get-prototype-of"
+  ],
+  	"core-js/stable/object/is": [
+  	"es.object.is"
+  ],
+  	"core-js/stable/object/is-extensible": [
+  	"es.object.is-extensible"
+  ],
+  	"core-js/stable/object/is-frozen": [
+  	"es.object.is-frozen"
+  ],
+  	"core-js/stable/object/is-sealed": [
+  	"es.object.is-sealed"
+  ],
+  	"core-js/stable/object/keys": [
+  	"es.object.keys"
+  ],
+  	"core-js/stable/object/lookup-getter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/stable/object/lookup-setter": [
+  	"es.object.lookup-setter"
+  ],
+  	"core-js/stable/object/prevent-extensions": [
+  	"es.object.prevent-extensions"
+  ],
+  	"core-js/stable/object/seal": [
+  	"es.object.seal"
+  ],
+  	"core-js/stable/object/set-prototype-of": [
+  	"es.object.set-prototype-of"
+  ],
+  	"core-js/stable/object/to-string": [
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/object/values": [
+  	"es.object.values"
+  ],
+  	"core-js/stable/parse-float": [
+  	"es.parse-float"
+  ],
+  	"core-js/stable/parse-int": [
+  	"es.parse-int"
+  ],
+  	"core-js/stable/promise": [
+  	"es.object.to-string",
+  	"es.promise",
+  	"es.promise.all-settled",
+  	"es.promise.finally",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/promise/all-settled": [
+  	"es.promise",
+  	"es.promise.all-settled"
+  ],
+  	"core-js/stable/promise/finally": [
+  	"es.promise",
+  	"es.promise.finally"
+  ],
+  	"core-js/stable/queue-microtask": [
+  	"web.queue-microtask"
+  ],
+  	"core-js/stable/reflect": [
+  	"es.reflect.apply",
+  	"es.reflect.construct",
+  	"es.reflect.define-property",
+  	"es.reflect.delete-property",
+  	"es.reflect.get",
+  	"es.reflect.get-own-property-descriptor",
+  	"es.reflect.get-prototype-of",
+  	"es.reflect.has",
+  	"es.reflect.is-extensible",
+  	"es.reflect.own-keys",
+  	"es.reflect.prevent-extensions",
+  	"es.reflect.set",
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/stable/reflect/apply": [
+  	"es.reflect.apply"
+  ],
+  	"core-js/stable/reflect/construct": [
+  	"es.reflect.construct"
+  ],
+  	"core-js/stable/reflect/define-property": [
+  	"es.reflect.define-property"
+  ],
+  	"core-js/stable/reflect/delete-property": [
+  	"es.reflect.delete-property"
+  ],
+  	"core-js/stable/reflect/get": [
+  	"es.reflect.get"
+  ],
+  	"core-js/stable/reflect/get-own-property-descriptor": [
+  	"es.reflect.get-own-property-descriptor"
+  ],
+  	"core-js/stable/reflect/get-prototype-of": [
+  	"es.reflect.get-prototype-of"
+  ],
+  	"core-js/stable/reflect/has": [
+  	"es.reflect.has"
+  ],
+  	"core-js/stable/reflect/is-extensible": [
+  	"es.reflect.is-extensible"
+  ],
+  	"core-js/stable/reflect/own-keys": [
+  	"es.reflect.own-keys"
+  ],
+  	"core-js/stable/reflect/prevent-extensions": [
+  	"es.reflect.prevent-extensions"
+  ],
+  	"core-js/stable/reflect/set": [
+  	"es.reflect.set"
+  ],
+  	"core-js/stable/reflect/set-prototype-of": [
+  	"es.reflect.set-prototype-of"
+  ],
+  	"core-js/stable/regexp": [
+  	"es.regexp.constructor",
+  	"es.regexp.exec",
+  	"es.regexp.flags",
+  	"es.regexp.sticky",
+  	"es.regexp.test",
+  	"es.regexp.to-string",
+  	"es.string.match",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split"
+  ],
+  	"core-js/stable/regexp/constructor": [
+  	"es.regexp.constructor"
+  ],
+  	"core-js/stable/regexp/flags": [
+  	"es.regexp.flags"
+  ],
+  	"core-js/stable/regexp/match": [
+  	"es.string.match"
+  ],
+  	"core-js/stable/regexp/replace": [
+  	"es.string.replace"
+  ],
+  	"core-js/stable/regexp/search": [
+  	"es.string.search"
+  ],
+  	"core-js/stable/regexp/split": [
+  	"es.string.split"
+  ],
+  	"core-js/stable/regexp/sticky": [
+  	"es.regexp.sticky"
+  ],
+  	"core-js/stable/regexp/test": [
+  	"es.regexp.exec",
+  	"es.regexp.test"
+  ],
+  	"core-js/stable/regexp/to-string": [
+  	"es.regexp.to-string"
+  ],
+  	"core-js/stable/set": [
+  	"es.object.to-string",
+  	"es.set",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/set-immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/stable/set-interval": [
+  	"web.timers"
+  ],
+  	"core-js/stable/set-timeout": [
+  	"web.timers"
+  ],
+  	"core-js/stable/string": [
+  	"es.regexp.exec",
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.from-code-point",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.raw",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup"
+  ],
+  	"core-js/stable/string/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/stable/string/big": [
+  	"es.string.big"
+  ],
+  	"core-js/stable/string/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/stable/string/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/stable/string/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/stable/string/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/stable/string/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/stable/string/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/stable/string/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/stable/string/from-code-point": [
+  	"es.string.from-code-point"
+  ],
+  	"core-js/stable/string/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/stable/string/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/stable/string/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/stable/string/link": [
+  	"es.string.link"
+  ],
+  	"core-js/stable/string/match": [
+  	"es.regexp.exec",
+  	"es.string.match"
+  ],
+  	"core-js/stable/string/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/stable/string/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/stable/string/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/stable/string/raw": [
+  	"es.string.raw"
+  ],
+  	"core-js/stable/string/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/stable/string/replace": [
+  	"es.regexp.exec",
+  	"es.string.replace"
+  ],
+  	"core-js/stable/string/search": [
+  	"es.regexp.exec",
+  	"es.string.search"
+  ],
+  	"core-js/stable/string/small": [
+  	"es.string.small"
+  ],
+  	"core-js/stable/string/split": [
+  	"es.regexp.exec",
+  	"es.string.split"
+  ],
+  	"core-js/stable/string/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/stable/string/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/stable/string/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/stable/string/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/stable/string/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/stable/string/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/string/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/string/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/string/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/string/virtual": [
+  	"es.string.code-point-at",
+  	"es.string.ends-with",
+  	"es.string.includes",
+  	"es.string.iterator",
+  	"es.string.match",
+  	"es.string.match-all",
+  	"es.string.pad-end",
+  	"es.string.pad-start",
+  	"es.string.repeat",
+  	"es.string.replace",
+  	"es.string.search",
+  	"es.string.split",
+  	"es.string.starts-with",
+  	"es.string.trim",
+  	"es.string.trim-end",
+  	"es.string.trim-start",
+  	"es.string.anchor",
+  	"es.string.big",
+  	"es.string.blink",
+  	"es.string.bold",
+  	"es.string.fixed",
+  	"es.string.fontcolor",
+  	"es.string.fontsize",
+  	"es.string.italics",
+  	"es.string.link",
+  	"es.string.small",
+  	"es.string.strike",
+  	"es.string.sub",
+  	"es.string.sup"
+  ],
+  	"core-js/stable/string/virtual/anchor": [
+  	"es.string.anchor"
+  ],
+  	"core-js/stable/string/virtual/big": [
+  	"es.string.big"
+  ],
+  	"core-js/stable/string/virtual/blink": [
+  	"es.string.blink"
+  ],
+  	"core-js/stable/string/virtual/bold": [
+  	"es.string.bold"
+  ],
+  	"core-js/stable/string/virtual/code-point-at": [
+  	"es.string.code-point-at"
+  ],
+  	"core-js/stable/string/virtual/ends-with": [
+  	"es.string.ends-with"
+  ],
+  	"core-js/stable/string/virtual/fixed": [
+  	"es.string.fixed"
+  ],
+  	"core-js/stable/string/virtual/fontcolor": [
+  	"es.string.fontcolor"
+  ],
+  	"core-js/stable/string/virtual/fontsize": [
+  	"es.string.fontsize"
+  ],
+  	"core-js/stable/string/virtual/includes": [
+  	"es.string.includes"
+  ],
+  	"core-js/stable/string/virtual/italics": [
+  	"es.string.italics"
+  ],
+  	"core-js/stable/string/virtual/iterator": [
+  	"es.string.iterator"
+  ],
+  	"core-js/stable/string/virtual/link": [
+  	"es.string.link"
+  ],
+  	"core-js/stable/string/virtual/match-all": [
+  	"es.string.match-all"
+  ],
+  	"core-js/stable/string/virtual/pad-end": [
+  	"es.string.pad-end"
+  ],
+  	"core-js/stable/string/virtual/pad-start": [
+  	"es.string.pad-start"
+  ],
+  	"core-js/stable/string/virtual/repeat": [
+  	"es.string.repeat"
+  ],
+  	"core-js/stable/string/virtual/small": [
+  	"es.string.small"
+  ],
+  	"core-js/stable/string/virtual/starts-with": [
+  	"es.string.starts-with"
+  ],
+  	"core-js/stable/string/virtual/strike": [
+  	"es.string.strike"
+  ],
+  	"core-js/stable/string/virtual/sub": [
+  	"es.string.sub"
+  ],
+  	"core-js/stable/string/virtual/sup": [
+  	"es.string.sup"
+  ],
+  	"core-js/stable/string/virtual/trim": [
+  	"es.string.trim"
+  ],
+  	"core-js/stable/string/virtual/trim-end": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/string/virtual/trim-left": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/string/virtual/trim-right": [
+  	"es.string.trim-end"
+  ],
+  	"core-js/stable/string/virtual/trim-start": [
+  	"es.string.trim-start"
+  ],
+  	"core-js/stable/symbol": [
+  	"es.symbol",
+  	"es.symbol.description",
+  	"es.symbol.async-iterator",
+  	"es.symbol.has-instance",
+  	"es.symbol.is-concat-spreadable",
+  	"es.symbol.iterator",
+  	"es.symbol.match",
+  	"es.symbol.match-all",
+  	"es.symbol.replace",
+  	"es.symbol.search",
+  	"es.symbol.species",
+  	"es.symbol.split",
+  	"es.symbol.to-primitive",
+  	"es.symbol.to-string-tag",
+  	"es.symbol.unscopables",
+  	"es.array.concat",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/symbol/async-iterator": [
+  	"es.symbol.async-iterator"
+  ],
+  	"core-js/stable/symbol/description": [
+  	"es.symbol.description"
+  ],
+  	"core-js/stable/symbol/for": [
+  	"es.symbol"
+  ],
+  	"core-js/stable/symbol/has-instance": [
+  	"es.symbol.has-instance",
+  	"es.function.has-instance"
+  ],
+  	"core-js/stable/symbol/is-concat-spreadable": [
+  	"es.symbol.is-concat-spreadable",
+  	"es.array.concat"
+  ],
+  	"core-js/stable/symbol/iterator": [
+  	"es.symbol.iterator",
+  	"es.string.iterator",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/symbol/key-for": [
+  	"es.symbol"
+  ],
+  	"core-js/stable/symbol/match": [
+  	"es.symbol.match",
+  	"es.string.match"
+  ],
+  	"core-js/stable/symbol/match-all": [
+  	"es.symbol.match-all",
+  	"es.string.match-all"
+  ],
+  	"core-js/stable/symbol/replace": [
+  	"es.symbol.replace",
+  	"es.string.replace"
+  ],
+  	"core-js/stable/symbol/search": [
+  	"es.symbol.search",
+  	"es.string.search"
+  ],
+  	"core-js/stable/symbol/species": [
+  	"es.symbol.species"
+  ],
+  	"core-js/stable/symbol/split": [
+  	"es.symbol.split",
+  	"es.string.split"
+  ],
+  	"core-js/stable/symbol/to-primitive": [
+  	"es.symbol.to-primitive"
+  ],
+  	"core-js/stable/symbol/to-string-tag": [
+  	"es.symbol.to-string-tag",
+  	"es.json.to-string-tag",
+  	"es.math.to-string-tag",
+  	"es.object.to-string"
+  ],
+  	"core-js/stable/symbol/unscopables": [
+  	"es.symbol.unscopables"
+  ],
+  	"core-js/stable/typed-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/copy-within": [
+  	"es.typed-array.copy-within"
+  ],
+  	"core-js/stable/typed-array/entries": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/stable/typed-array/every": [
+  	"es.typed-array.every"
+  ],
+  	"core-js/stable/typed-array/fill": [
+  	"es.typed-array.fill"
+  ],
+  	"core-js/stable/typed-array/filter": [
+  	"es.typed-array.filter"
+  ],
+  	"core-js/stable/typed-array/find": [
+  	"es.typed-array.find"
+  ],
+  	"core-js/stable/typed-array/find-index": [
+  	"es.typed-array.find-index"
+  ],
+  	"core-js/stable/typed-array/float32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/float64-array": [
+  	"es.object.to-string",
+  	"es.typed-array.float64-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/for-each": [
+  	"es.typed-array.for-each"
+  ],
+  	"core-js/stable/typed-array/from": [
+  	"es.typed-array.from"
+  ],
+  	"core-js/stable/typed-array/includes": [
+  	"es.typed-array.includes"
+  ],
+  	"core-js/stable/typed-array/index-of": [
+  	"es.typed-array.index-of"
+  ],
+  	"core-js/stable/typed-array/int16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/int32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/int8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.int8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/iterator": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/stable/typed-array/join": [
+  	"es.typed-array.join"
+  ],
+  	"core-js/stable/typed-array/keys": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/stable/typed-array/last-index-of": [
+  	"es.typed-array.last-index-of"
+  ],
+  	"core-js/stable/typed-array/map": [
+  	"es.typed-array.map"
+  ],
+  	"core-js/stable/typed-array/of": [
+  	"es.typed-array.of"
+  ],
+  	"core-js/stable/typed-array/reduce": [
+  	"es.typed-array.reduce"
+  ],
+  	"core-js/stable/typed-array/reduce-right": [
+  	"es.typed-array.reduce-right"
+  ],
+  	"core-js/stable/typed-array/reverse": [
+  	"es.typed-array.reverse"
+  ],
+  	"core-js/stable/typed-array/set": [
+  	"es.typed-array.set"
+  ],
+  	"core-js/stable/typed-array/slice": [
+  	"es.typed-array.slice"
+  ],
+  	"core-js/stable/typed-array/some": [
+  	"es.typed-array.some"
+  ],
+  	"core-js/stable/typed-array/sort": [
+  	"es.typed-array.sort"
+  ],
+  	"core-js/stable/typed-array/subarray": [
+  	"es.typed-array.subarray"
+  ],
+  	"core-js/stable/typed-array/to-locale-string": [
+  	"es.typed-array.to-locale-string"
+  ],
+  	"core-js/stable/typed-array/to-string": [
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/uint16-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint16-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/uint32-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint32-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/uint8-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/uint8-clamped-array": [
+  	"es.object.to-string",
+  	"es.typed-array.uint8-clamped-array",
+  	"es.typed-array.copy-within",
+  	"es.typed-array.every",
+  	"es.typed-array.fill",
+  	"es.typed-array.filter",
+  	"es.typed-array.find",
+  	"es.typed-array.find-index",
+  	"es.typed-array.for-each",
+  	"es.typed-array.from",
+  	"es.typed-array.includes",
+  	"es.typed-array.index-of",
+  	"es.typed-array.iterator",
+  	"es.typed-array.join",
+  	"es.typed-array.last-index-of",
+  	"es.typed-array.map",
+  	"es.typed-array.of",
+  	"es.typed-array.reduce",
+  	"es.typed-array.reduce-right",
+  	"es.typed-array.reverse",
+  	"es.typed-array.set",
+  	"es.typed-array.slice",
+  	"es.typed-array.some",
+  	"es.typed-array.sort",
+  	"es.typed-array.subarray",
+  	"es.typed-array.to-locale-string",
+  	"es.typed-array.to-string"
+  ],
+  	"core-js/stable/typed-array/values": [
+  	"es.typed-array.iterator"
+  ],
+  	"core-js/stable/url": [
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/stable/url-search-params": [
+  	"web.url-search-params"
+  ],
+  	"core-js/stable/url/to-json": [
+  	"web.url.to-json"
+  ],
+  	"core-js/stable/weak-map": [
+  	"es.object.to-string",
+  	"es.weak-map",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stable/weak-set": [
+  	"es.object.to-string",
+  	"es.weak-set",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/stage": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/stage/0": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/stage/1": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of"
+  ],
+  	"core-js/stage/2": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.set.difference",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.upsert"
+  ],
+  	"core-js/stage/3": [
+  	"esnext.aggregate-error",
+  	"esnext.global-this",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.replace-all"
+  ],
+  	"core-js/stage/4": [
+  	"esnext.global-this",
+  	"esnext.promise.all-settled",
+  	"esnext.string.match-all"
+  ],
+  	"core-js/stage/pre": [
+  	"esnext.aggregate-error",
+  	"esnext.array.is-template-object",
+  	"esnext.array.last-index",
+  	"esnext.array.last-item",
+  	"esnext.async-iterator.constructor",
+  	"esnext.async-iterator.as-indexed-pairs",
+  	"esnext.async-iterator.drop",
+  	"esnext.async-iterator.every",
+  	"esnext.async-iterator.filter",
+  	"esnext.async-iterator.find",
+  	"esnext.async-iterator.flat-map",
+  	"esnext.async-iterator.for-each",
+  	"esnext.async-iterator.from",
+  	"esnext.async-iterator.map",
+  	"esnext.async-iterator.reduce",
+  	"esnext.async-iterator.some",
+  	"esnext.async-iterator.take",
+  	"esnext.async-iterator.to-array",
+  	"esnext.composite-key",
+  	"esnext.composite-symbol",
+  	"esnext.global-this",
+  	"esnext.iterator.constructor",
+  	"esnext.iterator.as-indexed-pairs",
+  	"esnext.iterator.drop",
+  	"esnext.iterator.every",
+  	"esnext.iterator.filter",
+  	"esnext.iterator.find",
+  	"esnext.iterator.flat-map",
+  	"esnext.iterator.for-each",
+  	"esnext.iterator.from",
+  	"esnext.iterator.map",
+  	"esnext.iterator.reduce",
+  	"esnext.iterator.some",
+  	"esnext.iterator.take",
+  	"esnext.iterator.to-array",
+  	"esnext.map.delete-all",
+  	"esnext.map.every",
+  	"esnext.map.filter",
+  	"esnext.map.find",
+  	"esnext.map.find-key",
+  	"esnext.map.from",
+  	"esnext.map.group-by",
+  	"esnext.map.includes",
+  	"esnext.map.key-by",
+  	"esnext.map.key-of",
+  	"esnext.map.map-keys",
+  	"esnext.map.map-values",
+  	"esnext.map.merge",
+  	"esnext.map.of",
+  	"esnext.map.reduce",
+  	"esnext.map.some",
+  	"esnext.map.update",
+  	"esnext.map.update-or-insert",
+  	"esnext.map.upsert",
+  	"esnext.math.clamp",
+  	"esnext.math.deg-per-rad",
+  	"esnext.math.degrees",
+  	"esnext.math.fscale",
+  	"esnext.math.iaddh",
+  	"esnext.math.imulh",
+  	"esnext.math.isubh",
+  	"esnext.math.rad-per-deg",
+  	"esnext.math.radians",
+  	"esnext.math.scale",
+  	"esnext.math.seeded-prng",
+  	"esnext.math.signbit",
+  	"esnext.math.umulh",
+  	"esnext.number.from-string",
+  	"esnext.object.iterate-entries",
+  	"esnext.object.iterate-keys",
+  	"esnext.object.iterate-values",
+  	"esnext.observable",
+  	"esnext.promise.all-settled",
+  	"esnext.promise.any",
+  	"esnext.promise.try",
+  	"esnext.reflect.define-metadata",
+  	"esnext.reflect.delete-metadata",
+  	"esnext.reflect.get-metadata",
+  	"esnext.reflect.get-metadata-keys",
+  	"esnext.reflect.get-own-metadata",
+  	"esnext.reflect.get-own-metadata-keys",
+  	"esnext.reflect.has-metadata",
+  	"esnext.reflect.has-own-metadata",
+  	"esnext.reflect.metadata",
+  	"esnext.set.add-all",
+  	"esnext.set.delete-all",
+  	"esnext.set.difference",
+  	"esnext.set.every",
+  	"esnext.set.filter",
+  	"esnext.set.find",
+  	"esnext.set.from",
+  	"esnext.set.intersection",
+  	"esnext.set.is-disjoint-from",
+  	"esnext.set.is-subset-of",
+  	"esnext.set.is-superset-of",
+  	"esnext.set.join",
+  	"esnext.set.map",
+  	"esnext.set.of",
+  	"esnext.set.reduce",
+  	"esnext.set.some",
+  	"esnext.set.symmetric-difference",
+  	"esnext.set.union",
+  	"esnext.string.at",
+  	"esnext.string.code-points",
+  	"esnext.string.match-all",
+  	"esnext.string.replace-all",
+  	"esnext.symbol.async-dispose",
+  	"esnext.symbol.dispose",
+  	"esnext.symbol.observable",
+  	"esnext.symbol.pattern-match",
+  	"esnext.symbol.replace-all",
+  	"esnext.weak-map.delete-all",
+  	"esnext.weak-map.from",
+  	"esnext.weak-map.of",
+  	"esnext.weak-map.upsert",
+  	"esnext.weak-set.add-all",
+  	"esnext.weak-set.delete-all",
+  	"esnext.weak-set.from",
+  	"esnext.weak-set.of",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/web": [
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator",
+  	"web.immediate",
+  	"web.queue-microtask",
+  	"web.timers",
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/web/dom-collections": [
+  	"web.dom-collections.for-each",
+  	"web.dom-collections.iterator"
+  ],
+  	"core-js/web/immediate": [
+  	"web.immediate"
+  ],
+  	"core-js/web/queue-microtask": [
+  	"web.queue-microtask"
+  ],
+  	"core-js/web/timers": [
+  	"web.timers"
+  ],
+  	"core-js/web/url": [
+  	"web.url",
+  	"web.url.to-json",
+  	"web.url-search-params"
+  ],
+  	"core-js/web/url-search-params": [
+  	"web.url-search-params"
+  ]
+  };
+
+  function isBabelPolyfillSource(source) {
+    return source === "@babel/polyfill" || source === "babel-polyfill";
+  }
+
+  function isCoreJSSource(source) {
+    if (typeof source === "string") {
+      source = source.replace(/\\/g, "/").replace(/(\/(index)?)?(\.js)?$/i, "").toLowerCase();
+    }
+
+    return has$6(corejsEntries, source) && corejsEntries[source];
+  }
+
+  var BABEL_POLYFILL_DEPRECATION = "\n  `@babel/polyfill` is deprecated. Please, use required parts of `core-js`\n  and `regenerator-runtime/runtime` separately";
+  function replaceCoreJS3EntryPlugin (_, _ref) {
+    var corejs = _ref.corejs,
+        include = _ref.include,
+        exclude = _ref.exclude,
+        polyfillTargets = _ref.polyfillTargets,
+        debug = _ref.debug;
+    var polyfills = filterItems(corejs3Polyfills, include, exclude, polyfillTargets, null);
+    var available = new Set(getModulesListForTargetVersion(corejs.version));
+
+    function shouldReplace(source, modules) {
+      if (!modules) return false;
+
+      if (modules.length === 1 && polyfills.has(modules[0]) && available.has(modules[0]) && getModulePath(modules[0]) === source) {
+        return false;
+      }
+
+      return true;
+    }
+
+    var isPolyfillImport = {
+      ImportDeclaration: function ImportDeclaration(path) {
+        var source = getImportSource(path);
+        if (!source) return;
+
+        if (isBabelPolyfillSource(source)) {
+          console.warn(BABEL_POLYFILL_DEPRECATION);
+        } else {
+          var modules = isCoreJSSource(source);
+
+          if (shouldReplace(source, modules)) {
+            this.replaceBySeparateModulesImport(path, modules);
+          }
+        }
+      },
+      Program: {
+        enter: function enter(path) {
+          var _this = this;
+
+          path.get("body").forEach(function (bodyPath) {
+            var source = getRequireSource(bodyPath);
+            if (!source) return;
+
+            if (isBabelPolyfillSource(source)) {
+              console.warn(BABEL_POLYFILL_DEPRECATION);
+            } else {
+              var modules = isCoreJSSource(source);
+
+              if (shouldReplace(source, modules)) {
+                _this.replaceBySeparateModulesImport(bodyPath, modules);
+              }
+            }
+          });
+        },
+        exit: function exit(path) {
+          var _this2 = this;
+
+          var filtered = intersection(polyfills, this.polyfillsSet, available);
+          var reversed = Array.from(filtered).reverse();
+
+          for (var _iterator = reversed, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref2;
+
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              _ref2 = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              _ref2 = _i.value;
+            }
+
+            var module = _ref2;
+
+            if (!this.injectedPolyfills.has(module)) {
+              createImport(path, module);
+            }
+          }
+
+          filtered.forEach(function (module) {
+            return _this2.injectedPolyfills.add(module);
+          });
+        }
+      }
+    };
+    return {
+      name: "corejs3-entry",
+      visitor: isPolyfillImport,
+      pre: function pre() {
+        this.injectedPolyfills = new Set();
+        this.polyfillsSet = new Set();
+
+        this.replaceBySeparateModulesImport = function (path, modules) {
+          for (var _iterator2 = modules, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+            var _ref3;
+
+            if (_isArray2) {
+              if (_i2 >= _iterator2.length) break;
+              _ref3 = _iterator2[_i2++];
+            } else {
+              _i2 = _iterator2.next();
+              if (_i2.done) break;
+              _ref3 = _i2.value;
+            }
+
+            var module = _ref3;
+            this.polyfillsSet.add(module);
+          }
+
+          path.remove();
+        };
+      },
+      post: function post() {
+        if (debug) {
+          logEntryPolyfills("core-js", this.injectedPolyfills.size > 0, this.injectedPolyfills, this.file.opts.filename, polyfillTargets, corejs3Polyfills);
+        }
+      }
+    };
+  }
+
+  function isRegeneratorSource(source) {
+    return source === "regenerator-runtime/runtime";
+  }
+
+  function removeRegeneratorEntryPlugin () {
+    var visitor = {
+      ImportDeclaration: function ImportDeclaration(path) {
+        if (isRegeneratorSource(getImportSource(path))) {
+          this.regeneratorImportExcluded = true;
+          path.remove();
+        }
+      },
+      Program: function Program(path) {
+        var _this = this;
+
+        path.get("body").forEach(function (bodyPath) {
+          if (isRegeneratorSource(getRequireSource(bodyPath))) {
+            _this.regeneratorImportExcluded = true;
+            bodyPath.remove();
+          }
+        });
+      }
+    };
+    return {
+      name: "regenerator-entry",
+      visitor: visitor,
+      pre: function pre() {
+        this.regeneratorImportExcluded = false;
+      },
+      post: function post() {
+        if (this.opts.debug && this.regeneratorImportExcluded) {
+          var filename = this.file.opts.filename;
+
+          if (process.env.BABEL_ENV === "test") {
+            filename = filename.replace(/\\/g, "/");
+          }
+
+          console.log("\n[" + filename + "] Based on your targets, regenerator-runtime import excluded.");
+        }
+      }
+    };
+  }
+
+  var availablePlugins = {
+    "proposal-async-generator-functions": proposalAsyncGeneratorFunctions,
+    "proposal-dynamic-import": proposalDynamicImport,
+    "proposal-json-strings": proposalJsonStrings,
+    "proposal-nullish-coalescing-operator": proposalNullishCoalescingOperator,
+    "proposal-object-rest-spread": proposalObjectRestSpread,
+    "proposal-optional-catch-binding": proposalOptionalCatchBinding,
+    "proposal-optional-chaining": proposalOptionalChaining,
+    "proposal-unicode-property-regex": proposalUnicodePropertyRegex,
+    "syntax-async-generators": syntaxAsyncGenerators,
+    "syntax-dynamic-import": syntaxDynamicImport,
+    "syntax-json-strings": syntaxJsonStrings,
+    "syntax-nullish-coalescing-operator": syntaxNullishCoalescingOperator,
+    "syntax-object-rest-spread": syntaxObjectRestSpread,
+    "syntax-optional-catch-binding": syntaxOptionalCatchBinding,
+    "syntax-optional-chaining": syntaxOptionalChaining,
+    "syntax-top-level-await": syntaxTopLevelAwait,
+    "transform-arrow-functions": transformArrowFunctions,
+    "transform-async-to-generator": transformAsyncToGenerator,
+    "transform-block-scoped-functions": transformBlockScopedFunctions,
+    "transform-block-scoping": transformBlockScoping,
+    "transform-classes": transformClasses,
+    "transform-computed-properties": transformComputedProperties,
+    "transform-destructuring": transformDestructuring,
+    "transform-dotall-regex": transformDotallRegex,
+    "transform-duplicate-keys": transformDuplicateKeys,
+    "transform-exponentiation-operator": transformExponentialOperator,
+    "transform-for-of": transformForOf,
+    "transform-function-name": transformFunctionName,
+    "transform-literals": transformLiterals,
+    "transform-member-expression-literals": transformMemberExpressionLiterals,
+    "transform-modules-amd": transformModulesAmd,
+    "transform-modules-commonjs": transformModulesCommonjs,
+    "transform-modules-systemjs": transformModulesSystemjs,
+    "transform-modules-umd": transformModulesUmd,
+    "transform-named-capturing-groups-regex": transformNamedCapturingGroupsRegex,
+    "transform-new-target": transformNewTarget,
+    "transform-object-super": transformObjectSuper,
+    "transform-parameters": transformParameters,
+    "transform-property-literals": transformPropertyLiterals,
+    "transform-regenerator": transformRegenerator,
+    "transform-reserved-words": transformReservedWords,
+    "transform-shorthand-properties": transformShorthandProperties,
+    "transform-spread": transformSpread,
+    "transform-sticky-regex": transformStickyRegex,
+    "transform-template-literals": transformTemplateLiterals,
+    "transform-typeof-symbol": transformTypeofSymbol,
+    "transform-unicode-regex": transformUnicodeRegex
+  };
+
+  var pluginListWithoutProposals = filterStageFromList(plugins$2, shippedProposals_2);
+
+  var getPlugin = function getPlugin(pluginName) {
+    var plugin = availablePlugins[pluginName];
+
+    if (!plugin) {
+      throw new Error("Could not find plugin \"" + pluginName + "\". Ensure there is an entry in ./available-plugins.js for it.");
+    }
+
+    return plugin;
+  };
+
+  var transformIncludesAndExcludes = function transformIncludesAndExcludes(opts) {
+    return opts.reduce(function (result, opt) {
+      var target = opt.match(/^(es|es6|es7|esnext|web)\./) ? "builtIns" : "plugins";
+      result[target].add(opt);
+      return result;
+    }, {
+      all: opts,
+      plugins: new Set(),
+      builtIns: new Set()
+    });
+  };
+  var getModulesPluginNames = function getModulesPluginNames(_ref) {
+    var modules = _ref.modules,
+        transformations = _ref.transformations,
+        shouldTransformESM = _ref.shouldTransformESM,
+        shouldTransformDynamicImport = _ref.shouldTransformDynamicImport,
+        shouldParseTopLevelAwait = _ref.shouldParseTopLevelAwait;
+    var modulesPluginNames = [];
+
+    if (modules !== false && transformations[modules]) {
+      if (shouldTransformESM) {
+        modulesPluginNames.push(transformations[modules]);
+      }
+
+      if (shouldTransformDynamicImport && shouldTransformESM && modules !== "umd") {
+        modulesPluginNames.push("proposal-dynamic-import");
+      } else {
+        if (shouldTransformDynamicImport) {
+          console.warn("Dynamic import can only be supported when transforming ES modules" + " to AMD, CommonJS or SystemJS. Only the parser plugin will be enabled.");
+        }
+
+        modulesPluginNames.push("syntax-dynamic-import");
+      }
+    } else {
+      modulesPluginNames.push("syntax-dynamic-import");
+    }
+
+    if (shouldParseTopLevelAwait) {
+      modulesPluginNames.push("syntax-top-level-await");
+    }
+
+    return modulesPluginNames;
+  };
+  var getPolyfillPlugins = function getPolyfillPlugins(_ref2) {
+    var useBuiltIns = _ref2.useBuiltIns,
+        corejs = _ref2.corejs,
+        polyfillTargets = _ref2.polyfillTargets,
+        include = _ref2.include,
+        exclude = _ref2.exclude,
+        proposals = _ref2.proposals,
+        shippedProposals = _ref2.shippedProposals,
+        regenerator = _ref2.regenerator,
+        debug = _ref2.debug;
+    var polyfillPlugins = [];
+
+    if (useBuiltIns === "usage" || useBuiltIns === "entry") {
+      var pluginOptions = {
+        corejs: corejs,
+        polyfillTargets: polyfillTargets,
+        include: include,
+        exclude: exclude,
+        proposals: proposals,
+        shippedProposals: shippedProposals,
+        regenerator: regenerator,
+        debug: debug
+      };
+
+      if (corejs) {
+        if (useBuiltIns === "usage") {
+          if (corejs.major === 2) {
+            polyfillPlugins.push([addCoreJS2UsagePlugin, pluginOptions]);
+          } else {
+            polyfillPlugins.push([addCoreJS3UsagePlugin, pluginOptions]);
+          }
+
+          if (regenerator) {
+            polyfillPlugins.push([addRegeneratorUsagePlugin, pluginOptions]);
+          }
+        } else {
+          if (corejs.major === 2) {
+            polyfillPlugins.push([replaceCoreJS2EntryPlugin, pluginOptions]);
+          } else {
+            polyfillPlugins.push([replaceCoreJS3EntryPlugin, pluginOptions]);
+
+            if (!regenerator) {
+              polyfillPlugins.push([removeRegeneratorEntryPlugin, pluginOptions]);
+            }
+          }
+        }
+      }
+    }
+
+    return polyfillPlugins;
+  };
+
+  function supportsStaticESM$1(caller) {
+    return !!(caller && caller.supportsStaticESM);
+  }
+
+  function supportsDynamicImport(caller) {
+    return !!(caller && caller.supportsDynamicImport);
+  }
+
+  function supportsTopLevelAwait(caller) {
+    return !!(caller && caller.supportsTopLevelAwait);
+  }
+
+  var presetEnv = declare(function (api, opts) {
+    api.assertVersion(7);
+
+    var _normalizeOptions = normalizeOptions$4(opts),
+        configPath = _normalizeOptions.configPath,
+        debug = _normalizeOptions.debug,
+        optionsExclude = _normalizeOptions.exclude,
+        forceAllTransforms = _normalizeOptions.forceAllTransforms,
+        ignoreBrowserslistConfig = _normalizeOptions.ignoreBrowserslistConfig,
+        optionsInclude = _normalizeOptions.include,
+        loose = _normalizeOptions.loose,
+        modules = _normalizeOptions.modules,
+        shippedProposals = _normalizeOptions.shippedProposals,
+        spec = _normalizeOptions.spec,
+        optionsTargets = _normalizeOptions.targets,
+        useBuiltIns = _normalizeOptions.useBuiltIns,
+        _normalizeOptions$cor = _normalizeOptions.corejs,
+        corejs = _normalizeOptions$cor.version,
+        proposals = _normalizeOptions$cor.proposals;
+
+    var hasUglifyTarget = false;
+
+    if (optionsTargets && optionsTargets.uglify) {
+      hasUglifyTarget = true;
+      delete optionsTargets.uglify;
+      console.log("");
+      console.log("The uglify target has been deprecated. Set the top level");
+      console.log("option `forceAllTransforms: true` instead.");
+      console.log("");
+    }
+
+    if (optionsTargets && optionsTargets.esmodules && optionsTargets.browsers) {
+      console.log("");
+      console.log("@babel/preset-env: esmodules and browsers targets have been specified together.");
+      console.log("`browsers` target, `" + optionsTargets.browsers + "` will be ignored.");
+      console.log("");
+    }
+
+    var targets = getTargets(optionsTargets, {
+      ignoreBrowserslistConfig: ignoreBrowserslistConfig,
+      configPath: configPath
+    });
+    var include = transformIncludesAndExcludes(optionsInclude);
+    var exclude = transformIncludesAndExcludes(optionsExclude);
+    var transformTargets = forceAllTransforms || hasUglifyTarget ? {} : targets;
+    var modulesPluginNames = getModulesPluginNames({
+      modules: modules,
+      transformations: moduleTransformations,
+      shouldTransformESM: modules !== "auto" || !api.caller || !api.caller(supportsStaticESM$1),
+      shouldTransformDynamicImport: modules !== "auto" || !api.caller || !api.caller(supportsDynamicImport),
+      shouldParseTopLevelAwait: !api.caller || api.caller(supportsTopLevelAwait)
+    });
+    var pluginNames = filterItems(shippedProposals ? plugins$2 : pluginListWithoutProposals, include.plugins, exclude.plugins, transformTargets, modulesPluginNames, getOptionSpecificExcludesFor({
+      loose: loose
+    }), shippedProposals_1);
+    removeUnnecessaryItems(pluginNames, overlappingPlugins$2);
+    var polyfillPlugins = getPolyfillPlugins({
+      useBuiltIns: useBuiltIns,
+      corejs: corejs,
+      polyfillTargets: targets,
+      include: include.builtIns,
+      exclude: exclude.builtIns,
+      proposals: proposals,
+      shippedProposals: shippedProposals,
+      regenerator: pluginNames.has("transform-regenerator"),
+      debug: debug
+    });
+    var pluginUseBuiltIns = useBuiltIns !== false;
+    var plugins = Array.from(pluginNames).map(function (pluginName) {
+      return [getPlugin(pluginName), {
+        spec: spec,
+        loose: loose,
+        useBuiltIns: pluginUseBuiltIns
+      }];
+    }).concat(polyfillPlugins);
+
+    if (debug) {
+      console.log("@babel/preset-env: `DEBUG` option");
+      console.log("\nUsing targets:");
+      console.log(JSON.stringify(prettifyTargets(targets), null, 2));
+      console.log("\nUsing modules transform: " + modules.toString());
+      console.log("\nUsing plugins:");
+      pluginNames.forEach(function (pluginName) {
+        logPluginOrPolyfill(pluginName, targets, plugins$2);
+      });
+
+      if (!useBuiltIns) {
+        console.log("\nUsing polyfills: No polyfills were added, since the `useBuiltIns` option was not set.");
+      } else {
+        console.log("\nUsing polyfills with `" + useBuiltIns + "` option:");
+      }
+    }
+
+    return {
+      plugins: plugins
+    };
+  });
+
+  var presetFlow = declare(function (api, _ref) {
+    var all = _ref.all;
+    api.assertVersion(7);
+    return {
+      plugins: [[transformFlowStripTypes, {
+        all: all
+      }]]
+    };
+  });
+
   var presetReact = declare(function (api, opts) {
     api.assertVersion(7);
     var pragma = opts.pragma || "React.createElement";
@@ -76702,16 +99859,6 @@
         useBuiltIns: useBuiltIns,
         useSpread: useSpread
       }], transformReactDisplayName, development && transformReactJSXSource, development && transformReactJSXSelf].filter(Boolean)
-    };
-  });
-
-  var presetFlow = declare(function (api, _ref) {
-    var all = _ref.all;
-    api.assertVersion(7);
-    return {
-      plugins: [[transformFlowStripTypes, {
-        all: all
-      }]]
     };
   });
 
@@ -76790,7 +99937,7 @@
     };
   }
 
-  function run(transformFn, script) {
+  function run$1(transformFn, script) {
     var scriptEl = document.createElement("script");
     scriptEl.text = transformCode(transformFn, script);
     headEl.appendChild(scriptEl);
@@ -76846,7 +99993,7 @@
 
         if (script.loaded && !script.executed) {
           script.executed = true;
-          run(transformFn, script);
+          run$1(transformFn, script);
         } else if (!script.loaded && !script.error && !script.async) {
           break;
         }
@@ -76948,7 +100095,7 @@
       return preset;
     });
     var plugins = (options.plugins || []).map(function (pluginName) {
-      var plugin = loadBuiltin(availablePlugins, pluginName);
+      var plugin = loadBuiltin(availablePlugins$1, pluginName);
 
       if (!plugin) {
         throw new Error("Invalid plugin specified in Babel options: \"" + pluginName + "\"");
@@ -76970,15 +100117,15 @@
   function transformFromAst$1(ast, code, options) {
     return transformFromAst(ast, code, processOptions(options));
   }
-  var availablePlugins = {};
+  var availablePlugins$1 = {};
   var availablePresets = {};
   var buildExternalHelpers = babelBuildExternalHelpers;
   function registerPlugin(name, plugin) {
-    if (Object.prototype.hasOwnProperty.call(availablePlugins, name)) {
+    if (Object.prototype.hasOwnProperty.call(availablePlugins$1, name)) {
       console.warn("A plugin named \"" + name + "\" is already registered, it will be overridden");
     }
 
-    availablePlugins[name] = plugin;
+    availablePlugins$1[name] = plugin;
   }
   function registerPlugins(newPlugins) {
     Object.keys(newPlugins).forEach(function (name) {
@@ -76987,7 +100134,11 @@
   }
   function registerPreset(name, preset) {
     if (Object.prototype.hasOwnProperty.call(availablePresets, name)) {
-      console.warn("A preset named \"" + name + "\" is already registered, it will be overridden");
+      if (name === "env") {
+        console.warn("@babel/preset-env is now included in @babel/standalone, please remove @babel/preset-env-standalone");
+      } else {
+        console.warn("A preset named \"" + name + "\" is already registered, it will be overridden");
+      }
     }
 
     availablePresets[name] = preset;
@@ -76999,15 +100150,16 @@
   }
   registerPlugins(all);
   registerPresets({
+    env: presetEnv,
     es2015: preset2015,
     es2016: function es2016() {
       return {
-        plugins: [availablePlugins["transform-exponentiation-operator"]]
+        plugins: [availablePlugins$1["transform-exponentiation-operator"]]
       };
     },
     es2017: function es2017() {
       return {
-        plugins: [availablePlugins["transform-async-to-generator"]]
+        plugins: [availablePlugins$1["transform-async-to-generator"]]
       };
     },
     react: presetReact,
@@ -77028,7 +100180,7 @@
     typescript: presetTypescript,
     flow: presetFlow
   });
-  var version$6 = "7.7.7";
+  var version$7 = "7.8.0";
 
   function onDOMContentLoaded() {
     transformScriptTags();
@@ -77045,7 +100197,7 @@
     window.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
   }
 
-  exports.availablePlugins = availablePlugins;
+  exports.availablePlugins = availablePlugins$1;
   exports.availablePresets = availablePresets;
   exports.buildExternalHelpers = buildExternalHelpers;
   exports.disableScriptTags = disableScriptTags;
@@ -77056,7 +100208,7 @@
   exports.transform = transform$1;
   exports.transformFromAst = transformFromAst$1;
   exports.transformScriptTags = transformScriptTags;
-  exports.version = version$6;
+  exports.version = version$7;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
