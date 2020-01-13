@@ -1,21 +1,25 @@
+/*noinspection DuplicatedCode*/
 #client_command {
 	height: 21px;
-	width: calc(100% - 48px);
+	width: calc(100% - 50px - 20px);
 	box-sizing: border-box;
 	border: 1px rgba(128, 128, 128, 0.973) solid;
 	outline: none;
 	background-color: rgba(43, 42, 42, 0.85);
 	color: rgba(180, 173, 173, 0.973);
+	vertical-align: top;
 }
 
 #client_command_send {
-	width: 44px;
+	width: 47px;
 	height: 21px;
 	outline: none;
 	cursor: pointer;
 	color: rgba(128, 128, 128, 0.973);
 	border: 1px rgba(128, 128, 128, 0.973) solid;
 	background-color: rgba(48, 47, 47, 0.85);
+	padding: 0;
+	vertical-align: top;
 }
 
 #client_command_send:active {
@@ -25,6 +29,7 @@
 
 .client_decoration {
 	background-color: rgba(48, 47, 47, 0.85);
+	background-color: #302f2f;
 	border: 1px rgba(128, 128, 128, 0.35) solid;
 }
 
@@ -38,6 +43,17 @@
 	position: fixed;
 	right: 0;
 	bottom: 28px;
+	text-align: left;
+	color: rgba(180, 173, 173, 0.973);
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#client_container {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
 	text-align: left;
 	color: rgba(180, 173, 173, 0.973);
 	font-size: 12px;
@@ -100,18 +116,15 @@
 	width: calc(100% - 16px);
 }
 
-::-webkit-scrollbar {
-	width: 7px;
-}
-
-::-webkit-scrollbar-track {
-	background: rgba(34, 33, 33, 0.95);
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.38);
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.64);
+#client_emoticons {
+	width: 21px;
+	height: 21px;
+	outline: none;
+	cursor: pointer;
+	color: rgba(128, 128, 128, 0.973);
+	border: 1px rgba(128, 128, 128, 0.973) solid;
+	background-color: rgba(48, 47, 47, 0.85);
+	padding: 0;
+	overflow: hidden;
+	vertical-align: top;
 }
