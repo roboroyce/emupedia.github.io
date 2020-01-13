@@ -80,6 +80,8 @@
 #client_room_users .emoji {
 	width: 14px;
 	vertical-align: middle;
+	margin-left: 3px;
+	margin-right: 3px;
 }
 
 #client_room {
@@ -116,6 +118,8 @@
 #client_output .emoji {
 	width: 14px;
 	vertical-align: middle;
+	margin-left: 3px;
+	margin-right: 3px;
 }
 
 #client_input {
