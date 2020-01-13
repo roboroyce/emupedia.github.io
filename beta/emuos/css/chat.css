@@ -108,6 +108,10 @@
 	overflow-x: hidden;
 }
 
+#client_output .emoji {
+	width: 20px;
+}
+
 #client_input {
 	float: left;
 	padding: 5px;
