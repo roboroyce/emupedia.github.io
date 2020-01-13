@@ -119,7 +119,7 @@
 				var $el = $('<div ' + color + '>' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
-				$el.fadeOut(10000, function() {
+				$el.fadeOut(hide, function() {
 					$(this).remove();
 				});
 			} else {
@@ -295,7 +295,7 @@
 		});
 
 		net.socket.on('silent.msg', function (data) {
-			net.log(net.normalize(data), 1, true);
+			net.log(net.normalize(data), 1, 10000);
 		});
 
 		// noinspection DuplicatedCode
