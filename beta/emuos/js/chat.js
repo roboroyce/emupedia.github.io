@@ -267,7 +267,9 @@
 		});
 
 		net.socket.on('room.user_leave', function (data) {
-			$('#room_user_' + data.user).remove();
+			$('#room_user_' + data.user).fadeOut(4000, function() {
+				$(this).remove();
+			});
 		});
 
 		net.socket.on('room.msg', function (data) {
