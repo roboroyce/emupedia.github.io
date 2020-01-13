@@ -117,7 +117,9 @@
 #client_output .emoji {
 	width: 14px;
 	vertical-align: bottom;
+}
 
+#client_output div > .emoji {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-ms-transition: all 0.5s;
@@ -141,11 +143,9 @@
 	-ms-animation-name: ZoomOut;
 	-o-animation-name: ZoomOut;
 	animation-name: ZoomOut;
-
-	z-index: 1;
 }
 
-#client_output .emoji:hover {
+#client_output div > .emoji:hover {
 	width: 84px;
 }
 
