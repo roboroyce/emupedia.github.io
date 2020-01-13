@@ -15,12 +15,69 @@
 		var $body = $('body');
 		var net = window['NETWORK_CONNECTION'];
 		var fingerprint = new Fingerprint().get();
+		var search = Object.keys(emoticons.mapping);
+		var replace = Object.values(emoticons.mapping);
 
 		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
+		net.str_replace = function(search, replace, subject, countObj) {
+			var i = 0;
+			var j = 0;
+			var temp = '';
+			var repl = '';
+			var sl = 0;
+			var fl = 0;
+			var f = [].concat(search);
+			var r = [].concat(replace);
+			var s = subject;
+			var ra = Object.prototype.toString.call(r) === '[object Array]';
+			var sa = Object.prototype.toString.call(s) === '[object Array]';
+			s = [].concat(s);
+
+			var $global = (typeof window !== 'undefined' ? window : global);
+			$global.$locutus = $global.$locutus || {};
+			var $locutus = $global.$locutus;
+			$locutus.php = $locutus.php || {};
+
+			if (typeof (search) === 'object' && typeof (replace) === 'string') {
+				temp = replace;
+				replace = [];
+
+				for (i = 0; i < search.length; i += 1) {
+					replace[i] = temp;
+				}
+
+				temp = '';
+				r = [].concat(replace);
+				ra = Object.prototype.toString.call(r) === '[object Array]';
+			}
+
+			if (typeof countObj !== 'undefined') {
+				countObj.value = 0;
+			}
+
+			for (i = 0, sl = s.length; i < sl; i++) {
+				if (s[i] === '') {
+					continue;
+				}
+
+				for (j = 0, fl = f.length; j < fl; j++) {
+					temp = s[i] + '';
+					repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+					s[i] = (temp).split(f[j]).join(repl);
+
+					if (typeof countObj !== 'undefined') {
+						countObj.value += ((temp.split(f[j])).length - 1);
+					}
+				}
+			}
+
+			return sa ? s : s[0];
+		};
+
 		net.normalize = function(str) {
-			return twemoji.parse($('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html());
+			return twemoji.parse(net.str_replace(search, replace, $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html()));
 		};
 
 		// noinspection DuplicatedCode
