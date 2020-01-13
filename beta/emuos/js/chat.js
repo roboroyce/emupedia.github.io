@@ -246,7 +246,7 @@
 				r_users += '<div id="room_user_' + n + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
-			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + net.normalize(data.me) + '" on "' + data.name + '"');
+			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
 		});
