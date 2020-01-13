@@ -115,6 +115,7 @@
 
 /*noinspection DuplicatedCode*/
 #client_output .emoji {
+	position: absolute;
 	width: 14px;
 	vertical-align: bottom;
 
@@ -141,12 +142,12 @@
 	-ms-animation-name: ZoomOut;
 	-o-animation-name: ZoomOut;
 	animation-name: ZoomOut;
+
+	z-index: 1;
 }
 
 #client_output .emoji:hover {
-	transform: scale(6);
-	position: relative;
-	z-index: 1;
+	width: 84px;
 }
 
 #client_input {

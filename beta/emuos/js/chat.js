@@ -129,14 +129,14 @@
 			].join('');
 
 			if (typeof hide !== 'undefined') {
-				var $el = $('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
+				var $el = $('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
 				$el.fadeOut(hide, function() {
 					$(this).remove();
 				});
 			} else {
-				net.output_div.append('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
+				net.output_div.append('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
 			}
 
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
