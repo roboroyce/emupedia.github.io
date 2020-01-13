@@ -117,15 +117,15 @@
 #client_output .emoji {
 	width: 14px;
 	vertical-align: bottom;
-}
 
-#client_output div > .emoji {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-ms-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
+}
 
+#client_container #client_output div > .emoji {
 	-webkit-animation-iteration-count: 1;
 	-moz-animation-iteration-count: 1;
 	-ms-animation-iteration-count: 1;
