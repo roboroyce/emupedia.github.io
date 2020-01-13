@@ -77,6 +77,10 @@
 	overflow-y: auto;
 }
 
+#client_room_users img {
+	width: 14px;
+}
+
 #client_room {
 	padding: 2px;
 	margin: -4px;
