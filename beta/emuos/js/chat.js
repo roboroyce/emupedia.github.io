@@ -81,7 +81,7 @@
 		};
 
 		// noinspection DuplicatedCode
-		net.log = function (txt, color) {
+		net.log = function (txt, color, hide) {
 			if (typeof color === 'undefined') {
 				color = 0;
 			}
@@ -115,7 +115,17 @@
 				']&nbsp;</span>'
 			].join('');
 
-			net.output_div.append('<div ' + color + '>' + time_stamp + txt + '</div>');
+			if (typeof hide !== 'undefined') {
+				var $el = $('<div ' + color + '>' + time_stamp + txt + '</div>');
+				net.output_div.append($el);
+
+				$el.fadeOut(1000, function() {
+					$(this).remove();
+				});
+			} else {
+				net.output_div.append('<div ' + color + '>' + time_stamp + txt + '</div>');
+			}
+
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
 		};
 
@@ -283,7 +293,7 @@
 		});
 
 		net.socket.on('silent.msg', function (data) {
-			net.log(net.normalize(data), 1);
+			net.log(net.normalize(data), 1, true);
 		});
 
 		// noinspection DuplicatedCode
