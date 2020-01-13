@@ -212,7 +212,7 @@
 
 		// noinspection DuplicatedCode
 		net.socket.on('connect', function(data) {
-			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? net.normalize(simplestorage.get('nickname')) : 'EMU-' + fingerprint;
+			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? simplestorage.get('nickname') : 'EMU-' + fingerprint;
 			var server = typeof data !== 'undefined' ? data.server : net.server;
 			// noinspection JSUnresolvedVariable
 			var socket_id = typeof data !== 'undefined' ? data.socket_id : net.socket.id;
@@ -222,7 +222,7 @@
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
 
 			if (~nickname.indexOf('EMU-')) {
-				net.log(net.normalize('Type /nick <nickname> to set your name'), 0);
+				net.log('Type /nick <nickname> to set your name', 0);
 			}
 		});
 
@@ -231,7 +231,7 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
-			simplestorage.set('nickname', net.normalize(data.info.user));
+			simplestorage.set('nickname', data.info.user);
 		});
 
 		// noinspection DuplicatedCode
@@ -246,7 +246,6 @@
 				r_users += '<div id="room_user_' + n + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
-			net.client_room_users.html(r_users);
 			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + net.normalize(data.me) + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
