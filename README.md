@@ -31,12 +31,15 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/images/logo/emupedia-logo-48.png" /></sub> [EmuOS](https://emupedia.net/beta/emuos)
 
 ## 🌍 <sub>Browser support</sub>
+<details>
+<summary>Click to reveal</summary>
 
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="Internet Explorer" /><br />Internet<br />Explorer<br />Trident | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /><br />Edge<br />EdgeHTML<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png" alt="Edge" /><br />Edge<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/firefox_3.5-22/firefox_3.5-22_24x24.png" alt="Firefox" /><br />Firefox<br />Gecko<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /><br />Firefox<br />Quantum<br />Gecko | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/pale-moon/pale-moon_24x24.png" alt="Pale Moon" /><br />Pale<br />Moon<br />Goanna | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/chrome_1-11/chrome_1-11_24x24.png" alt="Chrome" /><br />Chrome<br />WebKit<br /><br />  | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /><br />Chrome<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/opera_15-32/opera_15-32_24x24.png" alt="Opera" /><br />Opera<br />Presto<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /><br />Opera<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /><br />Safari<br />WebKit<br /><br /> |  <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave_24x24.png" alt="Brave" /><br />Brave<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_24x24.png" alt="Vivaldi" /><br />Vivaldi<br />Blink<br /><br /> |
 | :-------------: | :-------------: | :---: | :------------: | :---: | :------------: | :------------: | :---: | :-------------: | :---: | :---: | :---: | :---: |
 | <sup>*</sup>11+ | <sup>*</sup>12+ | 79+   | <sup>*</sup>4+ | 57+   | <sup>*</sup>4+ | <sup>*</sup>3+ | 28+   | <sup>*</sup>12+ | 15+   | 8+    | 1+    | 1+    |
 
 [![* application support may vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)](#-browser-support)
+</details>
 
 ## 🤖 <sub>Emulators used</sub>
 <details>
