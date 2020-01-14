@@ -31,24 +31,23 @@
 			return hash >>> 0;
 		};
 
-		net.str_replace = function(search, replace, subject, countObj) {
+		// noinspection DuplicatedCode
+		net.str_replace = function(search, replace, subject) {
 			var i = 0;
 			var j = 0;
+			var k = 0;
 			var temp = '';
 			var repl = '';
 			var sl = 0;
 			var fl = 0;
 			var f = [].concat(search);
+			var ff = [];
+			var ffl = 0;
 			var r = [].concat(replace);
 			var s = subject;
 			var ra = Object.prototype.toString.call(r) === '[object Array]';
 			var sa = Object.prototype.toString.call(s) === '[object Array]';
 			s = [].concat(s);
-
-			var $global = (typeof window !== 'undefined' ? window : global);
-			$global.$locutus = $global.$locutus || {};
-			var $locutus = $global.$locutus;
-			$locutus.php = $locutus.php || {};
 
 			if (typeof (search) === 'object' && typeof (replace) === 'string') {
 				temp = replace;
@@ -63,10 +62,6 @@
 				ra = Object.prototype.toString.call(r) === '[object Array]';
 			}
 
-			if (typeof countObj !== 'undefined') {
-				countObj.value = 0;
-			}
-
 			for (i = 0, sl = s.length; i < sl; i++) {
 				if (s[i] === '') {
 					continue;
@@ -74,12 +69,16 @@
 
 				for (j = 0, fl = f.length; j < fl; j++) {
 					temp = s[i] + '';
-					repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
-					s[i] = (temp).split(f[j]).join(repl);
+					repl = ra ? (typeof r[j] !== 'undefined' ? r[j] : '') : r[0];
+					ff = temp.split(' ');
 
-					if (typeof countObj !== 'undefined') {
-						countObj.value += ((temp.split(f[j])).length - 1);
+					for (k = 0, ffl = ff.length; k < ffl; k++) {
+						if (ff[k] === f[j]) {
+							ff[k] = repl;
+						}
 					}
+
+					s[i] = ff.join(' ');
 				}
 			}
 
@@ -87,7 +86,9 @@
 		};
 
 		net.normalize = function(str) {
-			return twemoji.parse(net.str_replace(search, replace, $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html()), {
+			var subject = $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html();
+
+			return twemoji.parse(net.str_replace(search, replace, subject), {
 				folder: 'svg',
 				ext: '.svg'
 			});
