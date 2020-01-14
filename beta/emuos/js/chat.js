@@ -132,9 +132,11 @@
 				var $el = $('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
-				$el.fadeOut(hide, function() {
-					$(this).remove();
-				});
+				setTimeout(function() {
+					$el.slideUp(200, function() {
+						$(this).remove();
+					});
+				}, hide);
 			} else {
 				net.output_div.append('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
 			}
@@ -280,9 +282,12 @@
 		});
 
 		net.socket.on('room.user_leave', function (data) {
-			$('#room_user_' + net.hash(data.user)).fadeOut(4000, function() {
-				$(this).remove();
-			});
+			var $el = $('#room_user_' + net.hash(data.user));
+			setTimeout(function() {
+				$el.slideUp(200, function() {
+					$(this).remove();
+				});
+			}, 1000);
 		});
 
 		net.socket.on('room.msg', function (data) {
