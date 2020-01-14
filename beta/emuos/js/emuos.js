@@ -157,8 +157,8 @@
 				height: 480
 			} , {
 				name: 'Pac-Man',
-				icon: 'vfat/games/pac-man/favicon.ico',
-				link: 'vfat/games/pac-man/index.html',
+				icon: 'https://emupedia.net/emupedia-game-pacman/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-pacman/index.html',
 				width: 1025,
 				height: 715
 			} , {
@@ -298,8 +298,8 @@
 			} , {
 				name: 'Minecraft',
 				title: 'Under Development',
-				icon: 'vfat/games/minecraft/favicon.ico',
-				link: 'vfat/games/minecraft/index.html',
+				icon: 'https://emupedia.net/emupedia-game-minecraft-classic/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-minecraft-classic/index.html',
 				width: 900,
 				height: 480
 			} , {

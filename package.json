@@ -121,6 +121,7 @@
     "tracekit": "^0.4.5",
     "twemoji": "^12.1.4",
     "ui-contextmenu": "^1.18.1",
+    "video.js": "^7.6.6",
     "web-esheep": "github:Adrianotiger/web-esheep",
     "whatwg-fetch": "^3.0.0",
     "xterm": "^4.3.0"
