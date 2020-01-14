@@ -43,6 +43,7 @@
 			clippy: 'libraries/clippy-0.0.3',
 			desktop: 'desktop',
 			dropbox: 'libraries/dropbox-4.0.30.min',
+			emoticons: 'emoticons',
 			emuos: 'emuos',
 			es3base64: 'polyfills/es3-base64-1.0.1.min',
 			es6promise: 'polyfills/es6-promise-auto-4.2.8.min',

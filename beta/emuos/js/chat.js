@@ -1,9 +1,9 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'json!config/emoticons.json', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
+		define(['jquery', 'json!config/emoticons.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
 	}
-} (function ($, emoticons, twemoji, simplestorage, network, Fingerprint) {
+} (function ($, emoticons_data, emoticons, twemoji, simplestorage, network, Fingerprint) {
 	// noinspection DuplicatedCode
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
@@ -15,8 +15,8 @@
 		var $body = $('body');
 		var net = window['NETWORK_CONNECTION'];
 		var fingerprint = new Fingerprint().get();
-		var search = Object.keys(emoticons.mapping);
-		var replace = Object.values(emoticons.mapping);
+		var search = Object.keys(emoticons_data.mapping);
+		var replace = Object.values(emoticons_data.mapping);
 
 		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
@@ -24,7 +24,7 @@
 		net.hash = function (str) {
 			var hash = 5381, i = str.length;
 
-			while(i) {
+			while (i) {
 				hash = (hash * 33) ^ str.charCodeAt(--i);
 			}
 
@@ -130,7 +130,7 @@
 			].join('');
 
 			if (typeof hide !== 'undefined') {
-				var $el = $('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
+				var $el = $('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
 				net.output_div.append($el);
 
 				setTimeout(function() {
@@ -139,7 +139,7 @@
 					});
 				}, hide);
 			} else {
-				net.output_div.append('<div style="' + color + 'word-break: break-word; position: relative;">' + time_stamp + txt + '</div>');
+				net.output_div.append('<div style="' + color + 'word-break: break-word;">' + time_stamp + txt + '</div>');
 			}
 
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
