@@ -64,7 +64,7 @@
 			esheep: 'libraries/esheep-0.7.2.min',
 			filesystem: 'filesystem',
 			fingerprint: 'libraries/fingerprint-0.5.3',
-			ga: '//www.google-analytics.com/analytics',
+			ga: ['//www.google-analytics.com/analytics', 'data:application/javascript,'],
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
