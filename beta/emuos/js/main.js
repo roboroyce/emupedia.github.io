@@ -5,10 +5,17 @@
 				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
 	window.GoogleAnalyticsObject = '__ga__';
-	window.__ga__ = {
-		q: [['create', 'UA-47896346-6', 'auto']],
-		l: Date.now()
+	window.__ga__ = function() {
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+
+			if (arg.constructor === Object && arg.hitCallback) {
+				arg.hitCallback();
+			}
+		}
 	};
+	window.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
+	window.__ga__.l = Date.now();
 
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
