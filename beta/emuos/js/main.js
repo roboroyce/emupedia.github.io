@@ -166,7 +166,7 @@
 		'optional!ga'
 	], function($, desktop, Chat, FileSystem, EmuOS, ga) {
 		$(function() {
-			if (typeof ga !== 'undefined') {
+			if (typeof ga === 'function') {
 				ga('send', 'pageview');
 			}
 
