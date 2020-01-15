@@ -4,6 +4,12 @@
 				'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +
 				'╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩');
 
+	window.GoogleAnalyticsObject = '__ga__';
+	window.__ga__ = {
+		q: [['create', 'UA-47896346-6', 'auto']],
+		l: Date.now()
+	};
+
 	// noinspection JSUnusedLocalSymbols,DuplicatedCode
 	define('optional', [], {
 		load: function(name, req, onload, config) {
@@ -51,6 +57,7 @@
 			esheep: 'libraries/esheep-0.7.2.min',
 			filesystem: 'filesystem',
 			fingerprint: 'libraries/fingerprint-0.5.3',
+			ga: '//www.google-analytics.com/analytics',
 			jquery: 'libraries/jquery-2.2.4.min',
 			jquerymousewheel: 'libraries/jquery-mousewheel-3.1.13',
 			jqueryui: 'libraries/jquery-ui-1.11.4.min',
@@ -96,6 +103,9 @@
 			},
 			fingerprint: {
 				exports: 'Fingerprint'
+			},
+			ga: {
+				exports: '__ga__'
 			},
 			jquerymousewheel: {
 				deps: ['jquery']
@@ -152,9 +162,14 @@
 		'json!config/desktop.json',
 		'chat',
 		'filesystem',
-		'emuos'
-	], function($, desktop, Chat, FileSystem, EmuOS) {
+		'emuos',
+		'optional!ga'
+	], function($, desktop, Chat, FileSystem, EmuOS, ga) {
 		$(function() {
+			if (typeof ga !== 'undefined') {
+				ga('send', 'pageview');
+			}
+
 			/*var filesystem = new FileSystem({
 				github: {
 					organization: 'Emupedia',
