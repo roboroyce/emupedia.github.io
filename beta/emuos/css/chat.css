@@ -133,6 +133,7 @@
 	width: 14px;
 	height: 14px;
 	vertical-align: middle;
+	z-index: 2;
 }
 
 #client_output div > .emoticon:hover {
@@ -151,7 +152,6 @@
 	vertical-align: middle;
 	transform: scale(0.175);
 	transform-origin: left top;
-	z-index: 1;
 }
 
 #client_output div > .emoji:hover {
