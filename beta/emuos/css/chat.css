@@ -47,6 +47,7 @@
 	color: rgba(180, 173, 173, 0.973);
 	font-size: 12px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	overflow: hidden;
 }
 
 #client_container {
