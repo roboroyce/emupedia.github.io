@@ -115,6 +115,7 @@
 
 /*noinspection DuplicatedCode*/
 #client_output .emoji {
+	width: 14px;
 	height: 14px;
 	vertical-align: middle;
 
@@ -125,6 +126,31 @@
 	transition: all 0.5s;
 
 	transform: scale(1);
+	z-index: 1;
+}
+
+#client_output .emoticon {
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+}
+
+#client_output div > .emoticon:hover {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	margin-left: -25px;
+	margin-top: -25px;
+}
+
+#client_output div > .emoticon:hover:before {
+	transform: scale(1);
+}
+
+#client_output .emoticon:before {
+	vertical-align: middle;
+	transform: scale(0.175);
+	transform-origin: left top;
 	z-index: 1;
 }
 
