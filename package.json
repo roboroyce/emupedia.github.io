@@ -39,6 +39,7 @@
     "@webcomponents/webcomponentsjs": "^2.4.1",
     "acorn": "^7.1.0",
     "animate.css": "^3.7.2",
+    "ansilove.js": "github:ansilove/ansilove.js",
     "bootstrap": "^4.4.1",
     "bootstrap-4-stylus": "^1.0.7",
     "browserfs": "^1.4.3",
