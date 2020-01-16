@@ -40,7 +40,7 @@
 		return toCodePoint(rawText.indexOf(U200D) < 0 ? rawText.replace(UFE0Fg, '') : rawText);
 	}
 
-	function parseNode(node, options) {
+	function parseNode(node, options, mapping) {
 		var allText = grabAllTextNodes(node, []),
 			length = allText.length,
 			attrib,
@@ -116,40 +116,13 @@
 		return node;
 	}
 
-	function parseString(str, options) {
+	function parseString(str, options, mapping) {
 		return replace(str, function (rawText) {
-			var ret = rawText,
-				iconId = grabTheRightIcon(rawText),
-				src = options.callback(iconId, options),
-				attrib,
-				attrname;
+			var ret = rawText, emoticon;
+			emoticon = mapping[rawText] ? (Array.isArray(mapping[rawText]) ? mapping[rawText][0] : mapping[rawText] ) : false;
 
-			// noinspection DuplicatedCode
-			/*if (iconId && src) {
-				ret = '<img class="' + options.className + ' ' + rawText + '" draggable="false" alt="' + rawText + '" src="' + src + '"';
-				attrib = options.attributes(rawText, iconId);
-
-				for (attrname in attrib) {
-					if (attrib.hasOwnProperty(attrname) && attrname.indexOf('on') !== 0 && ret.indexOf(' ' + attrname + '=') === -1) {
-						ret = ret.concat(' ', attrname, '="', escapeHTML(attrib[attrname]), '"');
-					}
-				}
-
-				ret = ret.concat('/>');
-			}*/
-
-			// noinspection DuplicatedCode
-			if (iconId && src) {
-				ret = '<i class="' + options.className + ' ' + rawText + '" draggable="false" title="' + rawText + '" data-src="' + src + '"';
-				attrib = options.attributes(rawText, iconId);
-
-				for (attrname in attrib) {
-					if (attrib.hasOwnProperty(attrname) && attrname.indexOf('on') !== 0 && ret.indexOf(' ' + attrname + '=') === -1) {
-						ret = ret.concat(' ', attrname, '="', escapeHTML(attrib[attrname]), '"');
-					}
-				}
-
-				ret = ret.concat('></i>');
+			if (emoticon) {
+				ret = '<i class="' + options.className + ' ' + options.className + '-' + emoticon + '" draggable="false" title="' + emoticon + '"></i>';
 			}
 
 			return ret;
@@ -168,6 +141,7 @@
 		return typeof value === 'number' ? value + 'x' + value : value;
 	}
 
+	// noinspection DuplicatedCode
 	function fromCodePoint(codepoint) {
 		var code = typeof codepoint === 'string' ? parseInt(codepoint, 16) : codepoint;
 
@@ -180,11 +154,12 @@
 		return fromCharCode(0xD800 + (code >> 10), 0xDC00 + (code & 0x3FF));
 	}
 
-	function parse(what, how) {
+	function parse(what, how, mapping) {
 		if (!how || typeof how === 'function') {
 			how = {callback: how};
 		}
 
+		// noinspection DuplicatedCode
 		return (typeof what === 'string' ? parseString : parseNode)(what, {
 			callback:   how.callback || defaultImageSrcGenerator,
 			attributes: typeof how.attributes === 'function' ? how.attributes : returnNull,
@@ -193,7 +168,7 @@
 			size:       how.folder || toSizeSquaredAsset(how.size || emoticons.size),
 			className:  how.className || emoticons.className,
 			onerror:    how.onerror || emoticons.onerror
-		});
+		}, mapping);
 	}
 
 	function replace(text, callback) {
@@ -204,6 +179,7 @@
 		re.lastIndex = 0;
 		var result = re.test(text);
 		re.lastIndex = 0;
+
 		return result;
 	}
 
@@ -234,7 +210,7 @@
 			base: 'https://twemoji.maxcdn.com/v/12.1.4/',
 			ext: '.png',
 			size: '72x72',
-			className: 'emoticons',
+			className: 'emoticon',
 			convert: {
 				fromCodePoint: fromCodePoint,
 				toCodePoint: toCodePoint
