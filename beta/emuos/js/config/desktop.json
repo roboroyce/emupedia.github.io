@@ -109,8 +109,8 @@
 		"height": 480
 	} , {
 		"name": "Biolab Disaster",
-		"icon": "vfat/games/biolab-disaster/favicon.png",
-		"link": "vfat/games/biolab-disaster/index.html",
+		"icon": "https://emupedia.net/emupedia-game-biolab-disaster/favicon.png",
+		"link": "https://emupedia.net/emupedia-game-biolab-disaster/index.html",
 		"width": 720,
 		"height": 480
 	} , {
@@ -139,9 +139,9 @@
 		"width": 640,
 		"height": 480
 	} , {
-		"name": "Spatial Audio (Demo)",
-		"icon": "https://emupedia.net/emupedia-demo-3D-Spatial-Audio/favicon.ico",
-		"link": "https://emupedia.net/emupedia-demo-3D-Spatial-Audio/index.html",
+		"name": "3D Spatial Audio (Demo)",
+		"icon": "https://emupedia.net/emupedia-demo-3d-spatial-audio/favicon.ico",
+		"link": "https://emupedia.net/emupedia-demo-3d-spatial-audio/index.html",
 		"width": 900,
 		"height": 480
 	} , {
