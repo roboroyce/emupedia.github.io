@@ -321,6 +321,7 @@ if (!String.prototype.padStart) {
 // region Array
 
 if (typeof Array.isArray === 'undefined') {
+	console.log('Array.isArray polyfill loaded!');
 	// noinspection JSValidateTypes
 	Array.isArray = function(arr) {
 		return Object.prototype.toString.call(arr) === '[object Array]';
@@ -330,6 +331,7 @@ if (typeof Array.isArray === 'undefined') {
 // IE 11.295.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
+	console.log('Array.from polyfill loaded!');
 	Array.from = (function() {
 		var toStr = Object.prototype.toString;
 		var isCallable = function (fn) {
@@ -458,6 +460,7 @@ if (!Array.prototype.fill) {
 // IE 7/8
 // noinspection DuplicatedCode
 if (!Object.keys) {
+	console.log('Object.keys polyfill loaded!');
 	// noinspection DuplicatedCode
 	Object.keys = (function() {
 		'use strict';
@@ -501,6 +504,7 @@ if (!Object.keys) {
 }
 
 if (!Object.assign) {
+	console.log('Object.assign polyfill loaded!');
 	var assign = function (target, source) {
 		var n$ = Object.getOwnPropertyNames(source);
 
@@ -526,6 +530,7 @@ if (!Object.assign) {
 }
 
 if (!Object.values) {
+	console.log('Object.values polyfill loaded!');
 	// noinspection DuplicatedCode
 	Object.values = function values(O) {
 		var ownKeys = function(O) {
@@ -551,6 +556,7 @@ if (!Object.values) {
 }
 
 if (!Object.entries) {
+	console.log('Object.entries polyfill loaded!');
 	// noinspection DuplicatedCode
 	Object.entries = function entries(O) {
 		var ownKeys = function(O) {
