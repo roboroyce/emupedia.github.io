@@ -111,6 +111,7 @@
 }
 
 #client_output {
+	position: relative;
 	overflow-x: hidden;
 }
 
@@ -137,6 +138,10 @@
 	z-index: 2;
 }
 
+#client_output div {
+	word-break: break-word;
+}
+
 #client_output div > .emoticon:hover {
 	position: absolute;
 	width: 80px;
@@ -145,14 +150,14 @@
 	margin-top: -25px;
 }
 
-#client_output div > .emoticon:hover:before {
-	transform: scale(1);
-}
-
-#client_output .emoticon:before {
+#client_output div > .emoticon:before {
 	vertical-align: middle;
 	transform: scale(0.175);
 	transform-origin: left top;
+}
+
+#client_output div > .emoticon:hover:before {
+	transform: scale(1);
 }
 
 #client_output div > .emoji:hover {
