@@ -291,8 +291,8 @@
 			} , {
 				name: 'Command and Conquer',
 				title: 'Under Development',
-				icon: 'vfat/games/command-and-conquer/favicon.ico',
-				link: 'vfat/games/command-and-conquer/index.html',
+				icon: 'https://emupedia.net/emupedia-game-command-and-conquer/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-command-and-conquer/index.html',
 				width: 640,
 				height: 535
 			} , {
