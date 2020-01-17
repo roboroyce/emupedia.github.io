@@ -498,7 +498,6 @@
 				if (typeof $(this).data('link') !== 'undefined') {
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
 						if ($(this).data('singleinstance') && self.$body.find('[id^=' + $(this).data('name') + ']').length === 0) {
-							console.log('test');
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 							self.iframe({
 								title: $(this).data('name'),
