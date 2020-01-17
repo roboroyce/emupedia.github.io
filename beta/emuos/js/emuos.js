@@ -277,8 +277,8 @@
 			} , {
 				name: 'Diablo 1',
 				title: 'Under Development',
-				icon: 'vfat/games/diablo1/favicon.ico',
-				link: 'vfat/games/diablo1/index.html',
+				icon: 'https://emupedia.net/emupedia-game-diabloweb/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-diabloweb/index.html',
 				width: 640,
 				height: 480
 			} , {
