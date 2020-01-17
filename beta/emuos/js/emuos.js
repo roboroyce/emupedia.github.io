@@ -151,8 +151,8 @@
 				height: 480
 			} , {
 				name: 'Super Blob Blaster',
-				icon: 'https://emupedia.net/emupedia-game-superblobblaster/favicon.png',
-				link: 'https://emupedia.net/emupedia-game-superblobblaster/index.html',
+				icon: 'https://emupedia.net/emupedia-game-super-blob-blaster/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-super-blob-blaster/index.html',
 				width: 720,
 				height: 480
 			} , {
