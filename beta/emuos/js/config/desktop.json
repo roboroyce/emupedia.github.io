@@ -146,8 +146,8 @@
 		"height": 480
 	} , {
 		"name": "Voxel Space (Demo)",
-		"icon": "vfat/games/voxel-space/favicon.ico",
-		"link": "vfat/games/voxel-space/index.html",
+		"icon": "https://emupedia.net/emupedia-demo-voxel-space/favicon.ico",
+		"link": "https://emupedia.net/emupedia-demo-voxel-space/index.html",
 		"width": 900,
 		"height": 480
 	} , {
