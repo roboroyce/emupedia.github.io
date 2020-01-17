@@ -230,8 +230,8 @@
 	} , {
 		"name": "Dark Reign: The Future of War",
 		"title": "Under Development",
-		"icon": "vfat/games/darkreign/favicon.ico",
-		"link": "vfat/games/darkreign/index.html",
+		"icon": "https://emupedia.net/emupedia-game-darkreign/favicon.ico",
+		"link": "https://emupedia.net/emupedia-game-darkreign/index.html",
 		"width": 640,
 		"height": 480
 	} , {
