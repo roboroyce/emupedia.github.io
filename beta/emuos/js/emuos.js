@@ -257,8 +257,8 @@
 				height: 480
 			} , {
 				name: 'Quake 1',
-				icon: 'vfat/games/quake1/favicon.ico',
-				link: 'vfat/games/quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
+				icon: 'https://emupedia.net/emupedia-game-quake1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-quake1/' + (SYSTEM_FEATURE_ES6 && SYSTEM_FEATURE_ES7_ASYNC_AWAIT ? 'async.html' : 'index.html'),
 				width: 640,
 				height: 480
 			} , {
