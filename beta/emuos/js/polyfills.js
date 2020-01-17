@@ -525,6 +525,57 @@ if (!Object.assign) {
 	};
 }
 
+if (!Object.values) {
+	// noinspection DuplicatedCode
+	Object.values = function values(O) {
+		var ownKeys = function(O) {
+			// noinspection JSUnresolvedVariable
+			if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {
+				// noinspection JSUnresolvedVariable,JSValidateTypes
+				return Reflect.ownKeys(O);
+			} else if (typeof Object.getOwnPropertySymbols === 'function') {
+				// noinspection JSValidateTypes
+				return (Object.getOwnPropertyNames(O).concat(Object.getOwnPropertySymbols(O)));
+			} else {
+				return Object.getOwnPropertyNames(O);
+			}
+		};
+		var reduce = Function.bind.call(Function.call, Array.prototype.reduce);
+		var isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+		var concat = Function.bind.call(Function.call, Array.prototype.concat);
+
+		return reduce(ownKeys(O), function(v, k) {
+			return concat(v, typeof k === 'string' && isEnumerable(O, k) ? [O[k]] : []);
+		}, []);
+	}
+}
+
+if (!Object.entries) {
+	// noinspection DuplicatedCode
+	Object.entries = function entries(O) {
+		var ownKeys = function(O) {
+			// noinspection JSUnresolvedVariable
+			if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {
+				// noinspection JSUnresolvedVariable,JSValidateTypes
+				return Reflect.ownKeys(O);
+			} else if (typeof Object.getOwnPropertySymbols === 'function') {
+				// noinspection JSValidateTypes
+				return (Object.getOwnPropertyNames(O).concat(Object.getOwnPropertySymbols(O)));
+			} else {
+				return Object.getOwnPropertyNames(O);
+			}
+		};
+		var reduce = Function.bind.call(Function.call, Array.prototype.reduce);
+		var isEnumerable = Function.bind.call(Function.call, Object.prototype.propertyIsEnumerable);
+		var concat = Function.bind.call(Function.call, Array.prototype.concat);
+
+		return reduce(ownKeys(O), function (e, k) {
+			return concat(e, typeof k === 'string' && isEnumerable(O, k) ? [[k, O[k]]] : []);
+		}, []);
+	}
+}
+
+
 // endregion
 
 // region Typed Array
