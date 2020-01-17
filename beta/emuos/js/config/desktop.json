@@ -69,8 +69,8 @@
 		"height": 600
 	} , {
 		"name": "Flappy Bird",
-		"icon": "vfat/games/flappy-bird/favicon.png",
-		"link": "vfat/games/flappy-bird/index.html",
+		"icon": "https://emupedia.net/emupedia-game-flappybird/favicon.png",
+		"link": "https://emupedia.net/emupedia-game-flappybird/index.html",
 		"width": 432,
 		"height": 600
 	} , {
