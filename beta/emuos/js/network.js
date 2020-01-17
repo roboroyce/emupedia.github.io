@@ -1,9 +1,9 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['socketio'], factory);
+		define(['jquery', 'socketio'], factory);
 	}
-} (function (io) {
+} (function ($, io) {
 	var client_loader = {};
 	var client = {};
 
@@ -58,11 +58,11 @@
 				send_cmd: self.send_cmd
 			};
 
-			window.addEventListener('message', function(e) {
-				if (self.events[e.data.cmd]) {
-					for (var func in self.events[e.data.cmd]) {
+			$(window).off('message').on('message', function(e) {
+				if (self.events[e.originalEvent.data.cmd]) {
+					for (var func in self.events[e.originalEvent.data.cmd]) {
 						// noinspection JSUnfilteredForInLoop
-						self.events[e.data.cmd][func](e.data.data);
+						self.events[e.originalEvent.data.cmd][func](e.originalEvent.data.data);
 					}
 				}
 			});
@@ -94,8 +94,8 @@
 				});
 			});
 
-			window.addEventListener('message', function(e) {
-				if (e.data.cmd === 'iframe_rdy') {
+			$(window).off('message').on('message', function(e) {
+				if (e.originalEvent.data.cmd === 'iframe_rdy') {
 					self.iframe_rdy = true;
 
 					for (var data in self.buffer) {
@@ -105,7 +105,7 @@
 
 					self.buffer = [];
 				} else {
-					self.net.send_cmd(e.data.cmd, e.data.data);
+					self.net.send_cmd(e.originalEvent.data.cmd, e.originalEvent.data.data);
 				}
 			});
 
