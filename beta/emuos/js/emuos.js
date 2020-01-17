@@ -483,6 +483,12 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['singleinstance'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-singleinstance', icon_options['singleinstance'] ? 'true' : 'false').data('singleinstance', icon_options['singleinstance']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			self.$desktop.append($icon);
 
 			$icon.off('click').on('click', function(e) {
@@ -490,14 +496,28 @@
 			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
-					// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
-					self.iframe({
-						title: $(this).data('name'),
-						icon :$(this).data('icon'),
-						src: $(this).data('link'),
-						width: $(this).data('width'),
-						height: $(this).data('height')
-					});
+					if (typeof $(this).data('singleinstance') !== 'undefined') {
+						if ($(this).data('singleinstance') && self.$body.find('[id^=' + $(this).data('name') + ']').length === 0) {
+							console.log('test');
+							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+							self.iframe({
+								title: $(this).data('name'),
+								icon :$(this).data('icon'),
+								src: $(this).data('link'),
+								width: $(this).data('width'),
+								height: $(this).data('height')
+							});
+						}
+					} else {
+						// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+						self.iframe({
+							title: $(this).data('name'),
+							icon :$(this).data('icon'),
+							src: $(this).data('link'),
+							width: $(this).data('width'),
+							height: $(this).data('height')
+						});
+					}
 				} else {
 					switch ($(this).data('name')) {
 						case 'eSheep':
