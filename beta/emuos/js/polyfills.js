@@ -2,7 +2,7 @@
 
 // region Console
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
@@ -226,7 +226,7 @@ if (typeof Math.imul === 'undefined') {
 
 // region String
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 if (!String.prototype.startsWith) {
 	console.log('String.prototype.startsWith polyfill loaded!');
 	String.prototype.startsWith = function(search, pos) {
@@ -234,7 +234,7 @@ if (!String.prototype.startsWith) {
 	};
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.endsWith) {
 	console.log('String.prototype.endsWith polyfill loaded!');
@@ -247,7 +247,7 @@ if (!String.prototype.endsWith) {
 	};
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.repeat) {
 	console.log('String.prototype.repeat polyfill loaded!');
@@ -293,7 +293,7 @@ if (!String.prototype.repeat) {
 	}
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!String.prototype.padStart) {
 	console.log('String.prototype.padStart polyfill loaded!');
@@ -328,7 +328,7 @@ if (typeof Array.isArray === 'undefined') {
 	}
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!Array.from) {
 	console.log('Array.from polyfill loaded!');
@@ -410,7 +410,7 @@ if (!Array.from) {
 	}());
 }
 
-// IE 11.295.18362.0
+// IE 11.592.18362.0
 // noinspection DuplicatedCode
 if (!Array.prototype.fill) {
 	console.log('Array.prototype.fill polyfill loaded!');
@@ -529,6 +529,7 @@ if (!Object.assign) {
 	};
 }
 
+// IE 11.592.18362.0
 if (!Object.values) {
 	console.log('Object.values polyfill loaded!');
 	// noinspection DuplicatedCode
@@ -555,6 +556,7 @@ if (!Object.values) {
 	}
 }
 
+// IE 11.592.18362.0
 if (!Object.entries) {
 	console.log('Object.entries polyfill loaded!');
 	// noinspection DuplicatedCode
@@ -580,7 +582,6 @@ if (!Object.entries) {
 		}, []);
 	}
 }
-
 
 // endregion
 
