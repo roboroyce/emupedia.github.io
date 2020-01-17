@@ -210,7 +210,7 @@
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
 				name: 'Street Fighter Alpha (Demo)',
 				title: 'Under Development',
-				icon: 'vfat/games/sfa/images/icons/' + function() {
+				icon: 'https://emupedia.net/emupedia-game-js-sfa/images/icons/' + function() {
 					var icons = [
 						'akuma',
 						'balrog',
@@ -228,7 +228,7 @@
 
 					return icons[Math.floor(Math.random() * icons.length)];
 				}() + '.ico',
-				link: 'vfat/games/sfa/index.html',
+				link: 'https://emupedia.net/emupedia-game-js-sfa/index.html',
 				width: 1068,
 				height: 576
 			} , {

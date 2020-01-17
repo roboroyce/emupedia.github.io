@@ -174,7 +174,7 @@
 		"name": "Street Fighter Alpha (Demo)",
 		"title": "Under Development",
 		"icon": ["akuma", "balrog", "blanka", "chunli", "dhalsim", "evilryu", "ken", "makoto", "ryu", "sagat", "sakura", "zangief"],
-		"link": "vfat/games/sfa/index.html",
+		"link": "https://emupedia.net/emupedia-game-js-sfa/index.html",
 		"width": 1068,
 		"height": 576
 	} , {
