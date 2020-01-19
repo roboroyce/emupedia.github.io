@@ -273,11 +273,12 @@
 			var r_users = '';
 
 			for (var n in data.users) {
-				var color = (n !== data.me) ? net.colors[3] : net.colors[1];
 				// noinspection JSUnfilteredForInLoop
-				var name = net.normalize(n);
+				var color = (data.users[n].info.user !== data.me) ? net.colors[3] : net.colors[1];
+				// noinspection JSUnfilteredForInLoop,JSUnresolvedVariable
+				var name = net.normalize(data.users[n].info.nick);
 				// noinspection JSUnfilteredForInLoop
-				r_users += '<div id="room_user_' + net.hash(n) + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
+				r_users += '<div id="room_user_' + net.hash(data.users[n].info.user) + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
 			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me + '" on "' + data.name + '"');
