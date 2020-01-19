@@ -379,7 +379,7 @@
 
 		var network_ui = '<div id="client_console" class="client_decoration">' +
 							'<div id="client_output" class="client_decoration client_left"></div>' +
-							'<div class="client_decoration client_right">' +
+							'<div id="client_users" class="client_decoration client_right">' +
 								'<div id="client_room" class="client_decoration"></div>' +
 								'<div id="client_room_users" class="client_decoration"></div>' +
 							'</div>' +

@@ -34,20 +34,21 @@
 }
 
 #client_console {
-	z-index: 1000;
+	/*position: fixed;*/
+	position: absolute;
+	right: 0;
+	bottom: 28px;
+	display: none;
 	width: 640px;
 	height: 350px;
 	margin: 0;
 	padding: 0;
-	display: none;
-	position: fixed;
-	right: 0;
-	bottom: 28px;
 	text-align: left;
 	color: rgba(180, 173, 173, 0.973);
 	font-size: 12px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	overflow: hidden;
+	z-index: 1000;
 }
 
 #client_container {
@@ -70,12 +71,15 @@
 	padding: 0;
 }
 
+#client_users {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 #client_room_users {
 	margin: -4px;
 	height: calc(100% - 20px);
 	padding: 2px;
-	/*overflow-x: hidden;*/
-	/*overflow-y: auto;*/
 }
 
 #client_room_users .emoji {
