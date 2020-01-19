@@ -198,6 +198,7 @@
 /*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties*/
 #client_console [data-title]:after {
 	display: none;
+	visibility: visible;
 	content: attr(data-title);
 	background-color: #ffffe1;
 	color: #000;
@@ -207,10 +208,11 @@
 	padding: 1px 5px 2px 5px;
 	left: 50%;
 	top: 50%;
-	left: calc(var(--mouse-x, 0) + 10px);
-	top: calc(var(--mouse-y, 0) - 20px);
+	left: calc(var(--mouse-x, 0) + 5px);
+	top: calc(var(--mouse-y, 0) - 0px);
 	white-space: nowrap;
 	border: 1px solid #000;
+	opacity: 1;
 	z-index: 99999;
 	pointer-events: none;
 }
