@@ -243,7 +243,7 @@
 			// noinspection JSUnresolvedVariable
 			var socket_id = typeof data !== 'undefined' ? data.socket_id : net.socket.id;
 
-			net.send_cmd('auth', {user: nickname, room: 'Emupedia'});
+			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
 
@@ -257,7 +257,15 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
-			simplestorage.set('nickname', data.info.user);
+			if (typeof data !== 'undefined') {
+				if (typeof data.info !== 'undefined') {
+					// noinspection JSUnresolvedVariable
+					if (typeof data.info.nick !== 'undefined') {
+						// noinspection JSUnresolvedVariable
+						simplestorage.set('nickname', data.info.nick);
+					}
+				}
+			}
 		});
 
 		// noinspection DuplicatedCode

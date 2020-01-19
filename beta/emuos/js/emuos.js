@@ -233,8 +233,8 @@
 				height: 576
 			} , {
 				name: 'Wolfenstein 3D',
-				icon: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/favicon.gif',
-				link: 'vfat/games/wolf3d-' + (SYSTEM_FEATURE_CANVAS ? 'canvas' : '') + '/index.html',
+				icon: (SYSTEM_FEATURE_CANVAS ? 'vfat/games/wolf3d-canvas' : 'https://emupedia.net/emupedia-game-wolfenstein-3d') + '/favicon.gif',
+				link: (SYSTEM_FEATURE_CANVAS ? 'vfat/games/wolf3d-canvas' : 'https://emupedia.net/emupedia-game-wolfenstein-3d') + '/index.html',
 				width: SYSTEM_FEATURE_CANVAS ? 960 : 640,
 				height: SYSTEM_FEATURE_CANVAS ? 600 : 400
 			} , {
