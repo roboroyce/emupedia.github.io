@@ -80,6 +80,7 @@
 	height: calc(100% - 20px);
 	padding: 2px;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 #client_room_users .emoji {

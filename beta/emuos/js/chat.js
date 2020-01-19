@@ -292,6 +292,9 @@
 			// console.log('room.user_join');
 			// console.log(JSON.stringify(data, null, 2));
 
+			if (net.room_info) {
+				net.room_info.users[data.user] = data.data;
+			}
 			// noinspection JSUnresolvedVariable
 			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + ';" data-title="' + net.hash(data.data.info.user) + '">' + net.normalize(data.data.info.nick) + '</div>');
 		});
