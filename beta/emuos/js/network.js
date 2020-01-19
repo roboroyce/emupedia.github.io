@@ -32,8 +32,10 @@
 		},
 		cmd: function(cmd, data) {
 			if (this.iframe_rdy && this.iframe_id) {
-				if (document.getElementById(this.iframe_id)) {
-					document.getElementById(this.iframe_id).contentWindow.postMessage({cmd: cmd, data: data}, '*');
+				var $iframe = $('#' + this.iframe_id);
+
+				if ($iframe.length) {
+					$iframe.get(0).contentWindow.postMessage({cmd: cmd, data: data}, '*');
 				}
 			} else {
 				this.buffer.push([cmd, data]);
