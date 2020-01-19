@@ -79,7 +79,7 @@
 	margin: -4px;
 	height: calc(100% - 20px);
 	padding: 2px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 }
 
@@ -197,6 +197,7 @@
 
 /*noinspection CssUnresolvedCustomProperty,CssOverwrittenProperties*/
 #client_console [data-title]:after {
+	display: none;
 	content: attr(data-title);
 	background-color: #ffffe1;
 	color: #000;
@@ -211,14 +212,9 @@
 	white-space: nowrap;
 	border: 1px solid #000;
 	z-index: 99999;
-	transition: all 0.1s ease 0.5s;
-	transition-property: opacity;
 	pointer-events: none;
-	opacity: 0;
-	visibility: hidden;
 }
 
 #client_console [data-title]:hover:after {
-	opacity: 1;
-	visibility: visible;
+	display: block;
 }
