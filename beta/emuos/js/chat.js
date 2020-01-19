@@ -346,7 +346,7 @@
 				// noinspection JSUnresolvedVariable
 				if (data.info.nick) {
 					// noinspection JSUnresolvedVariable
-					$('#room_user_' + data.user).html(data.info.nick);
+					$('#room_user_' + net.hash(data.user)).html(data.info.nick);
 				}
 			}
 		});
