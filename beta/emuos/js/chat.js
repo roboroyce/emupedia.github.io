@@ -311,14 +311,21 @@
 
 		// noinspection DuplicatedCode
 		net.socket.on('room.msg', function (data) {
-			// console.log('room.msg');
-			// console.log(JSON.stringify(data, null, 2));
+			console.log('room.msg');
+			console.log(JSON.stringify(data, null, 2));
 
 			var nick = data.user;
 
-			if (net.room_info) {
-				// noinspection JSUnresolvedVariable
-				nick = net.normalize(net.room_info.users[data.user].info.nick);
+			if (typeof net.room_info !== 'undefined') {
+				if (typeof net.room_info.users[nick] !== 'undefined') {
+					if (typeof net.room_info.users[nick].info !== 'undefined') {
+						// noinspection JSUnresolvedVariable
+						if (typeof net.room_info.users[nick].info.nick !== 'undefined') {
+							// noinspection JSUnresolvedVariable
+							nick = net.normalize(net.room_info.users[nick].info.nick);
+						}
+					}
+				}
 			}
 
 			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + nick + '] </span>' + net.normalize(data.msg));
