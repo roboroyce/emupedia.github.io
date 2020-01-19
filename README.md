@@ -181,6 +181,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+---
 In general, the copying and distribution of video games that are under copyright without authorization is considered a copyright violation (often called as software piracy).
 
 Through the Library of Congress, some key exemptions to the DMCA have been granted to allow for video game preservation.
@@ -190,12 +191,15 @@ Through the Library of Congress, some key exemptions to the DMCA have been grant
 * In the 2018 exemptions, the Library allowed for preservation and fair use of server-based games like MMos, permitting preservationists to offer such games where they have legally obtained the game's code within museums and libraries.
 
 More information here: [https://www.copyright.gov/1201/docs/librarian_statement_01.html](https://www.copyright.gov/1201/docs/librarian_statement_01.html)
+
+---
 </details>
 
 ## 📄 <sub>DMCA Takedown notices & Removal Requests</sub>
 <details>
 <summary>Click to reveal</summary>
 
+---
 Emupedia is aware of intellectual property rights and other proprietary rights of others.
 
 If you own the copyrights to a title on Emupedia and would like to request removal please note that we process all correct and complete removal requests within 5 working days.
@@ -212,6 +216,8 @@ Please include the following information in your claim request:
 You may send an email to **dmca [at] emupedia.net** for all **DMCA Takedown notices / Removal Requests**.
 
 You will receive a confirmation once your request has been processed.
+
+---
 </details>
 
 ## 📝 <sub>License</sub>
