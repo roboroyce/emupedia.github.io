@@ -832,7 +832,7 @@
 		});
 
 		self.$html.contextmenu({
-			delegate: 'body, .emuos-taskbar',
+			delegate: '.emuos-desktop, .emuos-taskbar',
 			menu: [{
 				title: 'Refresh',
 				cmd: 'refresh',
