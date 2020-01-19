@@ -238,10 +238,9 @@
 
 		// noinspection DuplicatedCode
 		net.socket.on('connect', function(data) {
-			console.log('connect');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('connect');
+			// console.log(JSON.stringify(data, null, 2));
 
-			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? simplestorage.get('nickname') : 'EMU-' + fingerprint;
 			var server = typeof data !== 'undefined' ? data.server : net.server;
 			// noinspection JSUnresolvedVariable
 			var socket_id = typeof data !== 'undefined' ? data.socket_id : net.socket.id;
@@ -249,35 +248,19 @@
 			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
-
-			if (~nickname.indexOf('EMU-')) {
-				net.log('Type /nick <nickname> to set your name', 0);
-			}
+			net.log('Type /nick <nickname> to set your name', 0);
 		});
 
 		net.socket.on('disconnect', function() {
+			// console.log('disconnect');
+			// console.log(JSON.stringify(data, null, 2));
 			net.log('[disconnected][' + net.server + ']', 0);
-		});
-
-		net.socket.on('auth.info', function (data) {
-			console.log('auth.info');
-			console.log(JSON.stringify(data, null, 2));
-
-			if (typeof data !== 'undefined') {
-				if (typeof data.info !== 'undefined') {
-					// noinspection JSUnresolvedVariable
-					if (typeof data.info.nick !== 'undefined') {
-						// noinspection JSUnresolvedVariable
-						simplestorage.set('nickname', data.info.nick);
-					}
-				}
-			}
 		});
 
 		// noinspection DuplicatedCode
 		net.socket.on('room.info', function (data) {
-			console.log('room.info');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('room.info');
+			// console.log(JSON.stringify(data, null, 2));
 
 			net.room_info = data;
 
@@ -299,16 +282,16 @@
 		});
 
 		net.socket.on('room.user_join', function (data) {
-			console.log('room.user_join');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('room.user_join');
+			// console.log(JSON.stringify(data, null, 2));
 
 			// noinspection JSUnresolvedVariable
 			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + ';">' + net.normalize(data.data.info.nick) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
-			console.log('room.user_leave');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('room.user_leave');
+			// console.log(JSON.stringify(data, null, 2));
 
 			var $el = $('#room_user_' + net.hash(data.user));
 
@@ -319,9 +302,10 @@
 			}, 1000);
 		});
 
+		// noinspection DuplicatedCode
 		net.socket.on('room.msg', function (data) {
-			console.log('room.msg');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('room.msg');
+			// console.log(JSON.stringify(data, null, 2));
 
 			var nick = data.user;
 
@@ -334,9 +318,10 @@
 		});
 
 		net.socket.on('room.user_info',function(data) {
-			console.log('room.user_info');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('room.user_info');
+			// console.log(JSON.stringify(data, null, 2));
 
+			// noinspection DuplicatedCode
 			if (net.room_info.users[data.user]) {
 				for (var n in data.info) {
 					// noinspection JSUnfilteredForInLoop
@@ -352,16 +337,16 @@
 		});
 
 		net.socket.on('silent.msg', function (data) {
-			console.log('silent.msg');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('silent.msg');
+			// console.log(JSON.stringify(data, null, 2));
 
 			net.log(net.normalize(data), 1, 10000);
 		});
 
 		// noinspection DuplicatedCode
 		net.socket.on('server.help', function (data) {
-			console.log('server.help');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('server.help');
+			// console.log(JSON.stringify(data, null, 2));
 
 			var msg = '';
 
