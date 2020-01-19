@@ -258,8 +258,11 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
+			console.log('auth.info');
+			console.log(JSON.stringify(data, null, 2));
+
 			// noinspection JSUnresolvedVariable
-			if (data.login === data.info.nick){
+			if (data.login === data.info.nick) {
 				net.log('Type /nick <nickname> to set your name', 0);
 			}
 		});
