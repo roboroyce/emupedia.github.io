@@ -72,14 +72,14 @@
 }
 
 #client_users {
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden;
 }
 
 #client_room_users {
 	margin: -4px;
 	height: calc(100% - 20px);
 	padding: 2px;
+	overflow-y: scroll;
 }
 
 #client_room_users .emoji {
