@@ -104,8 +104,8 @@
 				height: 600
 			} , {
 				name: 'Flappy Bird',
-				icon: 'https://emupedia.net/emupedia-game-flappybird/favicon.png',
-				link: 'https://emupedia.net/emupedia-game-flappybird/index.html',
+				icon: 'https://emupedia.net/emupedia-game-flappy-bird/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-flappy-bird/index.html',
 				width: 432,
 				height: 600
 			} , {
@@ -157,8 +157,8 @@
 				height: 480
 			} , {
 				name: 'Pac-Man',
-				icon: 'https://emupedia.net/emupedia-game-pacman/favicon.ico',
-				link: 'https://emupedia.net/emupedia-game-pacman/index.html',
+				icon: 'https://emupedia.net/emupedia-game-pac-man/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-pac-man/index.html',
 				width: 1025,
 				height: 715
 			} , {
@@ -210,7 +210,7 @@
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
 				name: 'Street Fighter Alpha (Demo)',
 				title: 'Under Development',
-				icon: 'https://emupedia.net/emupedia-game-js-sfa/images/icons/' + function() {
+				icon: 'https://emupedia.net/emupedia-game-street-fighter-alpha/images/icons/' + function() {
 					var icons = [
 						'akuma',
 						'balrog',
@@ -228,7 +228,7 @@
 
 					return icons[Math.floor(Math.random() * icons.length)];
 				}() + '.ico',
-				link: 'https://emupedia.net/emupedia-game-js-sfa/index.html',
+				link: 'https://emupedia.net/emupedia-game-street-fighter-alpha/index.html',
 				width: 1068,
 				height: 576
 			} , {
@@ -270,29 +270,29 @@
 			} , {
 				name: 'Half-Life 1',
 				title: 'Under Development',
-				icon: 'vfat/games/half-life/favicon.ico',
-				link: 'vfat/games/half-life/index.html',
+				icon: 'https://emupedia.net/emupedia-game-half-life1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-half-life1/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Diablo 1',
 				title: 'Under Development',
-				icon: 'https://emupedia.net/emupedia-game-diabloweb/favicon.ico',
-				link: 'https://emupedia.net/emupedia-game-diabloweb/index.html',
+				icon: 'https://emupedia.net/emupedia-game-diablo1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-diablo1/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Dark Reign: The Future of War',
 				title: 'Under Development',
-				icon: 'https://emupedia.net/emupedia-game-darkreign/favicon.ico',
-				link: 'https://emupedia.net/emupedia-game-darkreign/index.html',
+				icon: 'https://emupedia.net/emupedia-game-dark-reign/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-dark-reign/index.html',
 				width: 640,
 				height: 480
 			} , {
 				name: 'Command and Conquer',
 				title: 'Under Development',
-				icon: 'https://emupedia.net/emupedia-game-command-and-conquer/favicon.ico',
-				link: 'https://emupedia.net/emupedia-game-command-and-conquer/index.html',
+				icon: 'https://emupedia.net/emupedia-game-command-and-conquer1/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-command-and-conquer1/index.html',
 				width: 640,
 				height: 535
 			} , {
