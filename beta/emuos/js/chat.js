@@ -248,7 +248,6 @@
 			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
-			net.log('Type /nick <nickname> to set your name', 0);
 		});
 
 		net.socket.on('disconnect', function() {
@@ -258,8 +257,8 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
-			console.log('auth.info');
-			console.log(JSON.stringify(data, null, 2));
+			// console.log('auth.info');
+			// console.log(JSON.stringify(data, null, 2));
 
 			// noinspection JSUnresolvedVariable
 			if (data.login === data.info.nick) {
