@@ -257,6 +257,13 @@
 			net.log('[disconnected][' + net.server + ']', 0);
 		});
 
+		net.socket.on('auth.info', function (data) {
+			// noinspection JSUnresolvedVariable
+			if (data.login === data.info.nick){
+				net.log('Type /nick <nickname> to set your name', 0);
+			}
+		});
+
 		// noinspection DuplicatedCode
 		net.socket.on('room.info', function (data) {
 			// console.log('room.info');
