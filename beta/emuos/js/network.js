@@ -80,6 +80,7 @@
 				'disconnect',
 				'auth.info',
 				'room.info',
+				'room.user_info',
 				'room.user_join',
 				'room.user_leave',
 				'room.msg',

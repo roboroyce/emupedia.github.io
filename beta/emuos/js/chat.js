@@ -238,6 +238,9 @@
 
 		// noinspection DuplicatedCode
 		net.socket.on('connect', function(data) {
+			console.log('connect');
+			console.log(JSON.stringify(data, null, 2));
+
 			var nickname = typeof simplestorage.get('nickname') !== 'undefined' ? simplestorage.get('nickname') : 'EMU-' + fingerprint;
 			var server = typeof data !== 'undefined' ? data.server : net.server;
 			// noinspection JSUnresolvedVariable
@@ -257,6 +260,9 @@
 		});
 
 		net.socket.on('auth.info', function (data) {
+			console.log('auth.info');
+			console.log(JSON.stringify(data, null, 2));
+
 			if (typeof data !== 'undefined') {
 				if (typeof data.info !== 'undefined') {
 					// noinspection JSUnresolvedVariable
@@ -270,6 +276,11 @@
 
 		// noinspection DuplicatedCode
 		net.socket.on('room.info', function (data) {
+			console.log('room.info');
+			console.log(JSON.stringify(data, null, 2));
+
+			net.room_info = data;
+
 			var r_users = '';
 
 			for (var n in data.users) {
@@ -281,18 +292,26 @@
 				r_users += '<div id="room_user_' + net.hash(data.users[n].info.user) + '" style="color: ' + color + '; overflow: hidden;">' + name + '</div>';
 			}
 
-			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.me + '" on "' + data.name + '"');
+			// noinspection JSUnresolvedVariable
+			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.users[data.me].info.nick + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
 			net.client_room.html(data.name);
 		});
 
 		net.socket.on('room.user_join', function (data) {
-			var name = net.normalize(data.user);
-			net.client_room_users.append('<div id="room_user_' + net.hash(data.user) + '" style="color: ' + net.colors[3] + ';">' + name + '</div>');
+			console.log('room.user_join');
+			console.log(JSON.stringify(data, null, 2));
+
+			// noinspection JSUnresolvedVariable
+			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + ';">' + net.normalize(data.data.info.nick) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
+			console.log('room.user_leave');
+			console.log(JSON.stringify(data, null, 2));
+
 			var $el = $('#room_user_' + net.hash(data.user));
+
 			setTimeout(function() {
 				$el.slideUp(200, function() {
 					$(this).remove();
@@ -301,33 +320,49 @@
 		});
 
 		net.socket.on('room.msg', function (data) {
-			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-			var badge = '';
+			console.log('room.msg');
+			console.log(JSON.stringify(data, null, 2));
 
-			if (net.console.is(':hidden') && $body.find('[data-title="EmuChat"]').length === 0) {
-				net.badge++;
+			var nick = data.user;
 
-				if (net.badge >= 10) {
-					badge = '-9-plus';
-				} else {
-					badge = '-' + net.badge;
-				}
-
-				$icon.attr('class', 'icon badge badge' + badge);
-			} else {
-				net.badge = 0;
-				$icon.attr('class', 'icon badge');
+			if (net.room_info) {
+				// noinspection JSUnresolvedVariable
+				nick = net.normalize(net.room_info.users[data.user].info.nick);
 			}
 
-			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + net.normalize(data.user) + '] </span>' + net.normalize(data.msg));
+			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + nick + '] </span>' + net.normalize(data.msg));
+		});
+
+		net.socket.on('room.user_info',function(data) {
+			console.log('room.user_info');
+			console.log(JSON.stringify(data, null, 2));
+
+			if (net.room_info.users[data.user]) {
+				for (var n in data.info) {
+					// noinspection JSUnfilteredForInLoop
+					net.room_info.users[data.user].info[n] = data.info[n];
+				}
+
+				// noinspection JSUnresolvedVariable
+				if (data.info.nick) {
+					// noinspection JSUnresolvedVariable
+					$('#room_user_' + data.user).html(data.info.nick);
+				}
+			}
 		});
 
 		net.socket.on('silent.msg', function (data) {
+			console.log('silent.msg');
+			console.log(JSON.stringify(data, null, 2));
+
 			net.log(net.normalize(data), 1, 10000);
 		});
 
 		// noinspection DuplicatedCode
 		net.socket.on('server.help', function (data) {
+			console.log('server.help');
+			console.log(JSON.stringify(data, null, 2));
+
 			var msg = '';
 
 			for (var n in data) {
