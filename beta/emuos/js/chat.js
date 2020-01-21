@@ -279,7 +279,7 @@
 				// noinspection JSUnfilteredForInLoop
 				var color = (data.users[n].info.user !== data.me) ? net.colors[3] : net.colors[1];
 				// noinspection JSUnfilteredForInLoop,JSUnresolvedVariable
-				r_users += '<div id="room_user_' + net.hash(data.users[n].info.user) + '" style="color: ' + color + ';" data-title="' + data.users[n].info.user + '">' + net.normalize(data.users[n].info.nick) + '</div>';
+				r_users += '<div id="room_user_' + net.hash(data.users[n].info.user) + '" style="color: ' + color + '; word-break: keep-all;" data-title="' + data.users[n].info.user + '">' + net.normalize(data.users[n].info.nick) + '</div>';
 			}
 
 			// noinspection JSUnresolvedVariable
@@ -296,7 +296,7 @@
 				net.room_info.users[data.user] = data.data;
 			}
 			// noinspection JSUnresolvedVariable
-			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + ';" data-title="' + data.data.info.user + '">' + net.normalize(data.data.info.nick) + '</div>');
+			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize(data.data.info.nick) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
