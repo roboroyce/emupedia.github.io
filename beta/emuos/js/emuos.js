@@ -238,8 +238,8 @@
 				height: SYSTEM_FEATURE_CANVAS ? 600 : 400
 			} , {
 				name: 'Doom 1',
-				icon: 'vfat/games/doom1/favicon.gif',
-				link: 'vfat/games/doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
+				icon: 'https://emupedia.net/emupedia-game-doom1/favicon.gif',
+				link: 'https://emupedia.net/emupedia-game-doom1/' + (SYSTEM_FEATURE_WEBASSEMBLY ? '/' : 'asmjs/') + 'index.html',
 				width: 640,
 				height: 400
 			} , {

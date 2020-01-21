@@ -184,8 +184,8 @@
 		"height": 600
 	} , {
 		"name": "Doom 1",
-		"icon": "vfat/games/doom1/favicon.gif",
-		"link": "vfat/games/doom1/index.html",
+		"icon": "https://emupedia.net/emupedia-game-doom1/favicon.gif",
+		"link": "https://emupedia.net/emupedia-game-doom1/index.html",
 		"width": 640,
 		"height": 400
 	} , {
