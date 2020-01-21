@@ -138,8 +138,8 @@
 			} , {
 				name: 'Worms 2<br/>Prototype',
 				title: 'Under Development',
-				icon: 'vfat/games/worms2/favicon.ico',
-				link: 'vfat/games/worms2/index.html',
+				icon: 'https://emupedia.net/emupedia-game-worms2/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-worms2/index.html',
 				width: 900,
 				height: 480
 			} , {
