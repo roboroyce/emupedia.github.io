@@ -170,8 +170,8 @@
 			} , {
 				name: 'ASCIICKER',
 				title: 'Under Development',
-				icon: 'vfat/games/asciicker/favicon.ico',
-				link: 'vfat/games/asciicker/index.html',
+				icon: 'https://emupedia.net/emupedia-demo-asciicker/favicon.ico',
+				link: 'https://emupedia.net/emupedia-demo-asciicker/index.html',
 				width: 640,
 				height: 480
 			} , {
