@@ -12,19 +12,19 @@
 	} , {
 		"name": "ÐeKaÐeNcE",
 		"title": "Under Development",
-		"icon": "vfat/apps/dekadence/favicon.ico",
+		"icon": "images/icons/dekadence.ico",
 		"link": "https://launcher.dekadence.ro",
 		"width": 900,
 		"height": 480
 	} , {
 		"name": "Windows 93",
-		"icon": "vfat/apps/windows93/favicon.ico",
+		"icon": "images/icons/windows93.ico",
 		"link": "https://v1.windows93.net",
 		"width": 960,
 		"height": 734
 	} , {
 		"name": "98.js",
-		"icon": "vfat/apps/98.js/favicon.ico",
+		"icon": "images/icons/98.js.ico",
 		"link": "https://98.js.org/",
 		"width": 960,
 		"height": 713
@@ -275,7 +275,7 @@
 	} , {
 		"name": "YouTube<br/>BETA",
 		"title": "Under Development",
-		"icon": "vfat/apps/youtube/favicon.png",
+		"icon": "images/icons/youtube.ico",
 		"link": "https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==",
 		"width": 1020,
 		"height": 630
@@ -288,7 +288,7 @@
 		"singleinstance": true
 	} , {
 		"name": "Discord",
-		"icon": "vfat/apps/discord/favicon.ico",
+		"icon": "images/icons/discord.ico",
 		"link": "https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/",
 		"width": 900,
 		"height": 480,
