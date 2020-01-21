@@ -109,14 +109,14 @@
 				height: 600
 			} , {
 				name: 'Geometry Dash',
-				icon: 'vfat/games/geometry-dash/favicon.png',
+				icon: 'images/icons/geometry-dash.png',
 				link: 'https://scratch.mit.edu/projects/105500895/embed',
 				width: 900,
 				height: 600
 			} , {
 				name: 'agar.io<br/>BETA',
 				title: 'Under Development',
-				icon: 'vfat/games/agar.io/favicon.png',
+				icon: 'images/icons/agar.io.png',
 				link: 'https://agasio.herokuapp.com/',
 				// link: 'https://explorer.emupedia.net/aHR0cHM6Ly9hZ2FyLmlv',
 				width: 900,
@@ -124,7 +124,7 @@
 			} , {
 				name: 'slither.io<br/>BETA',
 				title: 'Under Development',
-				icon: 'vfat/games/slither.io/favicon.png',
+				icon: 'images/icons/slither.io.png',
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG',
 				width: 900,
 				height: 600
