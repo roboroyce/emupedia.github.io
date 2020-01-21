@@ -302,9 +302,9 @@
 				width: 900,
 				height: 480
 			} , {
-				name: 'Webamp',
-				icon: 'vfat/apps/webamp/favicon.ico',
-				link: 'vfat/apps/webamp/index.html',
+				name: 'Winamp',
+				icon: 'https://emupedia.net/emupedia-app-winamp/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-winamp/index.html',
 				width: 900,
 				height: 480
 			} , {
