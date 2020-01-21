@@ -179,8 +179,8 @@
 		"height": 576
 	} , {
 		"name": "Wolfenstein 3D",
-		"icon": "vfat/games/wolf3d-canvas/favicon.gif",
-		"link": "vfat/games/wolf3d-canvas/index.html",
+		"icon": "https://emupedia.net/emupedia-game-wolfenstein-3d-canvas/favicon.gif",
+		"link": "https://emupedia.net/emupedia-game-wolfenstein-3d-canvas/index.html",
 		"width": 960,
 		"height": 600
 	} , {
