@@ -18,6 +18,10 @@
 		var search = Object.keys(emoticons_data.mapping);
 		var replace = Object.values(emoticons_data.mapping);
 
+		if (typeof simplestorage.get('nickname') !== 'undefined') {
+			simplestorage.deleteKey('nickname');
+		}
+
 		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
