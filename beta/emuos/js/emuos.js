@@ -96,10 +96,9 @@
 				width: 960,
 				height: 552
 			} , {
-				name: 'Cookie Clicker<br/>BETA',
-				title: 'Under Development',
-				icon: 'vfat/games/cookie-clicker/favicon.png',
-				link: 'https://orteil.dashnet.org/cookieclicker/',
+				name: 'Cookie Clicker',
+				icon: 'https://emupedia.net/emupedia-game-cookie-clicker/favicon.png',
+				link: 'https://emupedia.net/emupedia-game-cookie-clicker/index.html',
 				width: 900,
 				height: 600
 			} , {
