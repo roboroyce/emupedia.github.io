@@ -129,10 +129,10 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'Wing 2.0<br/>Prototype',
+				name: 'Wings 2.0<br/>Prototype',
 				title: 'Under Development',
-				icon: 'vfat/games/wing2/favicon.ico',
-				link: 'vfat/games/wing2/index.html',
+				icon: 'https://emupedia.net/emupedia-game-wings2/favicon.ico',
+				link: 'https://emupedia.net/emupedia-game-wings2/index.html',
 				width: 900,
 				height: 480
 			} , {
