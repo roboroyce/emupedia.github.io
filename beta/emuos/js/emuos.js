@@ -194,8 +194,8 @@
 			} , {
 				name: 'RomCenter',
 				title: 'Under Development',
-				icon: 'vfat/apps/romcenter/favicon.ico',
-				link: 'vfat/apps/romcenter/index.html',
+				icon: 'https://emupedia.net/emupedia-app-romcenter/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-romcenter/index.html',
 				width: 900,
 				height: 480
 			} , {
