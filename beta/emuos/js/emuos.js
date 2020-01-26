@@ -129,14 +129,14 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'Wings 2.0<br/>Prototype',
+				name: 'Wings 2.0<br />(Prototype)',
 				title: 'Under Development',
 				icon: 'https://emupedia.net/emupedia-game-wings2/favicon.ico',
 				link: 'https://emupedia.net/emupedia-game-wings2/index.html',
 				width: 900,
 				height: 480
 			} , {
-				name: 'Worms 2<br/>Prototype',
+				name: 'Worms 2<br />(Prototype)',
 				title: 'Under Development',
 				icon: 'https://emupedia.net/emupedia-game-worms2/favicon.ico',
 				link: 'https://emupedia.net/emupedia-game-worms2/index.html',
@@ -167,26 +167,26 @@
 				name: 'eSheep',
 				icon: 'vfat/apps/esheep/favicon.png'
 			} , {
-				name: 'ASCIICKER',
+				name: 'ASCIICKER<br />(Demo)',
 				title: 'Under Development',
 				icon: 'https://emupedia.net/emupedia-demo-asciicker/favicon.ico',
 				link: 'https://emupedia.net/emupedia-demo-asciicker/index.html',
 				width: 640,
 				height: 480
 			} , {
-				name: '3D Spatial Audio (Demo)',
+				name: '3D Spatial Audio<br />(Demo)',
 				icon: 'https://emupedia.net/emupedia-demo-3d-spatial-audio/favicon.ico',
 				link: 'https://emupedia.net/emupedia-demo-3d-spatial-audio/index.html',
 				width: 900,
 				height: 480
 			} , {
-				name: 'Voxel Space (Demo)',
+				name: 'Voxel Space<br />(Demo)',
 				icon: 'https://emupedia.net/emupedia-demo-voxel-space/favicon.ico',
 				link: 'https://emupedia.net/emupedia-demo-voxel-space/index.html',
 				width: 900,
 				height: 480
 			} , {
-				name: '8-bit Palette Color Cycling (Demo)',
+				name: '8-bit Palette Color Cycling<br />(Demo)',
 				icon: 'vfat/apps/palette/favicon.ico',
 				link: 'vfat/apps/palette/index.html',
 				width: 900,
@@ -207,7 +207,7 @@
 				height: 422
 			} , {
 				// name: 'Street Fighter Alpha: Warriors\' Dreams',
-				name: 'Street Fighter Alpha (Demo)',
+				name: 'Street Fighter Alpha<br />(Demo)',
 				title: 'Under Development',
 				icon: 'https://emupedia.net/emupedia-game-street-fighter-alpha/images/icons/' + function() {
 					var icons = [
