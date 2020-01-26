@@ -322,8 +322,8 @@
 				height: 480
 			} , {
 				name: 'SVG Editor',
-				icon: 'vfat/apps/svg-editor/favicon.ico',
-				link: 'vfat/apps/svg-editor/index.html',
+				icon: 'https://emupedia.net/emupedia-app-svg-editor/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-svg-editor/index.html',
 				width: 900,
 				height: 480
 			} , {
