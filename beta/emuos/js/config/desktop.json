@@ -31,8 +31,8 @@
 	} , {
 		"name": "Visual Studio Code",
 		"title": "Under Development",
-		"icon": "vfat/apps/vscode/favicon.ico",
-		"link": "vfat/apps/vscode/index.html",
+		"icon": "https://emupedia.net/emupedia-app-vscode/favicon.ico",
+		"link": "https://emupedia.net/emupedia-app-vscode/index.html",
 		"width": 900,
 		"height": 480
 	} , {
