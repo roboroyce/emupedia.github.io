@@ -262,8 +262,8 @@
 		"runonce": true
 	} , {
 		"name": "Paint",
-		"icon": "vfat/apps/paint/favicon.ico",
-		"link": "vfat/apps/paint/index.html",
+		"icon": "https://emupedia.net/emupedia-app-paint/favicon.ico",
+		"link": "https://emupedia.net/emupedia-app-paint/index.html",
 		"width": 900,
 		"height": 480
 	} , {
