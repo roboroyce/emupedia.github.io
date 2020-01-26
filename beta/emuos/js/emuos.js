@@ -201,8 +201,8 @@
 			} , {
 				name: 'DOSBox',
 				title: 'Under Development',
-				icon: 'vfat/apps/dosbox/favicon.ico',
-				link: 'vfat/apps/dosbox/index.html',
+				icon: 'https://emupedia.net/emupedia-app-dosbox/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-dosbox/index.html',
 				width: 640,
 				height: 422
 			} , {
