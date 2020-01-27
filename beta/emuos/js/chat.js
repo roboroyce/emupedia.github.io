@@ -321,6 +321,24 @@
 			// console.log('room.msg');
 			// console.log(JSON.stringify(data, null, 2));
 
+			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+			var badge = '';
+
+			if (net.console.is(':hidden') && $body.find('[data-title="EmuChat"]').length === 0) {
+				net.badge++;
+
+				if (net.badge >= 10) {
+					badge = '-9-plus';
+				} else {
+					badge = '-' + net.badge;
+				}
+
+				$icon.attr('class', 'icon badge badge' + badge);
+			} else {
+				net.badge = 0;
+				$icon.attr('class', 'icon badge');
+			}
+
 			var nick = data.user;
 
 			if (typeof net.room_info !== 'undefined') {
