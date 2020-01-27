@@ -1020,11 +1020,14 @@
 		self.$body.append(win);
 
 		if (title === 'EmuChat') {
-			if (window.top === window) {
-				if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
-					if (typeof window['NETWORK_CONNECTION']['register_iframe'] === 'function') {
-						window['NETWORK_CONNECTION']['register_iframe'](title + '-' + timestamp);
-					}
+			var net = window['NETWORK_CONNECTION'];
+
+			if (typeof net !== 'undefined') {
+				if (typeof net.register_iframe === 'function') {
+					net.register_iframe(title + '-' + timestamp);
+					net.badge = 0;
+					var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+					$icon.attr('class', 'icon badge');
 				}
 			}
 		}
