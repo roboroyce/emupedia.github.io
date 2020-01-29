@@ -101,6 +101,9 @@
 				if (e.originalEvent.data.cmd === 'iframe_rdy') {
 					self.iframe_rdy = true;
 
+					var $body = $('body');
+					$body.find('iframe#' + iframe_id).contents().find('#client_output').get(0).innerHTML = $body.find('#client_output').get(0).innerHTML;
+
 					for (var data in self.buffer) {
 						// noinspection JSUnfilteredForInLoop
 						self.cmd.apply(self, self.buffer[data]);
@@ -111,10 +114,6 @@
 					self.net.send_cmd(e.originalEvent.data.cmd, e.originalEvent.data.data);
 				}
 			});
-
-			/*if (client.server && client.socket.id) {
-				self.cmd('connect', {server: client.server, socket_id: client.socket.id});
-			}*/
 
 			if (client.preload.auth_info) {
 				self.cmd('auth.info', client.preload.auth_info);
