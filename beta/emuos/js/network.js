@@ -102,7 +102,12 @@
 					self.iframe_rdy = true;
 
 					var $body = $('body');
+
 					$body.find('iframe#' + iframe_id).contents().find('#client_output').get(0).innerHTML = $body.find('#client_output').get(0).innerHTML;
+
+					$body.find('iframe#' + iframe_id).contents().find('.net_msg_hide').slideUp(200, function() {
+						$(this).remove();
+					});
 
 					for (var data in self.buffer) {
 						// noinspection JSUnfilteredForInLoop

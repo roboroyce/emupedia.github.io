@@ -133,18 +133,18 @@
 				']&nbsp;</span>'
 			].join('');
 
-			if (typeof hide !== 'undefined') {
-				var $el = $('<div style="' + color + '">' + time_stamp + txt + '</div>');
-				net.output_div.append($el);
+			var msg_class = typeof hide !== 'undefined' ? 'net_msg_hide' : 'net_msg';
 
-				setTimeout(function() {
-					$el.slideUp(200, function() {
-						$(this).remove();
-					});
-				}, hide);
-			} else {
-				net.output_div.append('<div style="' + color + '">' + time_stamp + txt + '</div>');
-			}
+			var $el = $('<div style="' + color + '">' + time_stamp + txt + '</div>');
+
+			net.output_div.append('<div class="'+ msg_class +'" style="' + color + '">' + time_stamp + txt + '</div>');
+			net.output_div.append($el);
+
+			setTimeout(function() {
+				$('.net_msg_hide').slideUp(200, function() {
+					$(this).remove();
+				});
+			}, hide ? hide : 0);
 
 			net.output_div.get(0).scrollTop = net.output_div.get(0).scrollHeight;
 		};
@@ -379,7 +379,7 @@
 			// console.log('silent.msg');
 			// console.log(JSON.stringify(data, null, 2));
 
-			//net.log(net.normalize(data), 1, 10000);
+			net.log(net.normalize(data), 1, 10000);
 			if (window.top === window) {
 				console.log(new Date().toString() + ': ' + data);
 			}
