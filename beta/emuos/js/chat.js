@@ -16,7 +16,7 @@
 		var net = window['NETWORK_CONNECTION'];
 
 		var fingerprint = new Fingerprint().get();
-		fingerprint = typeof simplestorage.get('fingerprint') !== 'undefined' ? simplestorage.get('fingerprint') : fingerprint || simplestorage.set('fingerprint', fingerprint);
+		fingerprint = typeof simplestorage.get('fingerprint') !== 'undefined' ? simplestorage.get('fingerprint') : simplestorage.set('fingerprint', fingerprint) && fingerprint;
 
 		var search = Object.keys(emoticons_data.mapping);
 		var replace = Object.values(emoticons_data.mapping);
