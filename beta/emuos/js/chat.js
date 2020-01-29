@@ -135,10 +135,7 @@
 
 			var msg_class = typeof hide !== 'undefined' ? 'net_msg_hide' : 'net_msg';
 
-			var $el = $('<div style="' + color + '">' + time_stamp + txt + '</div>');
-
 			net.output_div.append('<div class="'+ msg_class +'" style="' + color + '">' + time_stamp + txt + '</div>');
-			net.output_div.append($el);
 
 			setTimeout(function() {
 				$('.net_msg_hide').slideUp(200, function() {
