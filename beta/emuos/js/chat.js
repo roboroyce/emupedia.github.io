@@ -380,7 +380,9 @@
 			// console.log(JSON.stringify(data, null, 2));
 
 			//net.log(net.normalize(data), 1, 10000);
-			console.log(new Date().toString() + ': ' + data);
+			if (window.top === window) {
+				console.log(new Date().toString() + ': ' + data);
+			}
 		});
 
 		// noinspection DuplicatedCode
