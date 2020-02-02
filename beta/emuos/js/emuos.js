@@ -309,8 +309,8 @@
 				height: 480
 			} , {
 				name: 'Notepad',
-				icon: 'vfat/apps/notepad/favicon.ico',
-				link: 'vfat/apps/notepad/index.html',
+				icon: 'https://emupedia.net/emupedia-app-notepad/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-notepad/index.html',
 				width: 900,
 				height: 480,
 				runonce: true
