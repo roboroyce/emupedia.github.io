@@ -187,8 +187,8 @@
 				height: 480
 			} , {
 				name: '8-bit Palette Color Cycling<br />(Demo)',
-				icon: 'vfat/apps/palette/favicon.ico',
-				link: 'vfat/apps/palette/index.html',
+				icon: 'https://emupedia.net/emupedia-app-8-bit-palette-color-cycling/favicon.ico',
+				link: 'https://emupedia.net/emupedia-app-8-bit-palette-color-cycling/index.html',
 				width: 900,
 				height: 550
 			} , {
