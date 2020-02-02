@@ -126,10 +126,10 @@
 		"height": 715
 	} , {
 		"name": "Clippy",
-		"icon": "vfat/apps/clippy/favicon.png"
+		"icon": "images/icons/clippy.png"
 	} , {
 		"name": "eSheep",
-		"icon": "vfat/apps/esheep/favicon.png"
+		"icon": "images/icons/esheep.png"
 	} , {
 		"name": "ASCIICKER<br />(Demo)",
 		"title": "Under Development",

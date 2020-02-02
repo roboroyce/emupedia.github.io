@@ -162,10 +162,10 @@
 				height: 715
 			} , {
 				name: 'Clippy',
-				icon: 'vfat/apps/clippy/favicon.png'
+				icon: 'images/icons/clippy.png'
 			} , {
 				name: 'eSheep',
-				icon: 'vfat/apps/esheep/favicon.png'
+				icon: 'images/icons/esheep.png'
 			} , {
 				name: 'ASCIICKER<br />(Demo)',
 				title: 'Under Development',
@@ -523,7 +523,7 @@
 								if (typeof eSheep.prototype.Start === 'function') {
 									var pets = ['esheep64', 'gsheep-green', 'neko', 'pingus', 'ssj-goku'];
 									var pet = pets[~~(Math.random() * pets.length)];
-									var path = 'vfat/apps/esheep/assets/' + pet + '/animations.xml';
+									var path = 'https://emupedia.net/emupedia-app-esheep/pets/' + pet + '/animations.xml';
 
 									if (!path) break;
 
@@ -535,7 +535,8 @@
 							}
 							break;
 						case 'Clippy':
-							var agents = ['Bonzi', 'Clippy', 'F1', 'Genie', 'Genius', 'Links', 'Merlin', 'Peedy', 'Rocky', 'Rover'];
+							//Peedy is bugged
+							var agents = ['Bonzi', 'Clippy', 'F1', 'Genie', 'Genius', 'Links', 'Merlin', 'Rocky', 'Rover'];
 
 							var phrases = [
 								'How can i help you?',
@@ -587,7 +588,7 @@
 										/*setInterval(function() {
 											move();
 										}, 3000 + (Math.random() * 4000));*/
-									}, undefined, 'vfat/apps/clippy/assets/');
+									}, undefined, 'https://emupedia.net/emupedia-app-clippy/agents/');
 								}
 							}
 							break;
