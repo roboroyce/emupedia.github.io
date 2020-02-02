@@ -39,7 +39,7 @@
 		"name": "Sandbox",
 		"title": "Under Development",
 		"icon": "https://emupedia.net/emupedia-app-sandbox/favicon.ico",
-		"link": "https://emupedia.net/emupedia-app-sandbox/index.html?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=https://emupedia.net/beta/emuos/vfat/apps/romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
+		"link": "https://emupedia.net/emupedia-app-sandbox/index.html?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=https://emupedia.net/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
 		"width": 900,
 		"height": 480
 	} , {
@@ -281,8 +281,8 @@
 		"height": 630
 	} , {
 		"name": "EmuChat",
-		"icon": "vfat/apps/emuchat/favicon.ico",
-		"link": "vfat/apps/emuchat/index.html",
+		"icon": "https://emupedia.net/emupedia-app-emuchat/favicon.ico",
+		"link": "https://emupedia.net/emupedia-app-emuchat/index.html",
 		"width": 900,
 		"height": 480,
 		"singleinstance": true
