@@ -2339,8 +2339,9 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.js', copy_options_overwrite, (error) => {
+											/*fs.copy(nodemodules_directory + dependency + '/dist/wdosbox.js', install_directory + 'vfat/apps/dosbox/js/wdosbox.js', copy_options_overwrite, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
@@ -2402,7 +2403,7 @@ function install(install_directory, dependency, version) {
 														}
 													});
 												}
-											});
+											});*/
 										}
 									});
 								}

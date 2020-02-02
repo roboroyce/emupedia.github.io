@@ -521,16 +521,16 @@
 						case 'eSheep':
 							if (typeof eSheep !== 'undefined') {
 								if (typeof eSheep.prototype.Start === 'function') {
-									var pets = ['esheep64', 'gsheep-green', 'neko', 'pingus', 'ssj-goku'];
+									var pets = ['esheep64', 'green_sheep', 'neko', 'pingus', 'ssj-goku'];
 									var pet = pets[~~(Math.random() * pets.length)];
 									var path = 'https://emupedia.net/emupedia-app-esheep/pets/' + pet + '/animations.xml';
 
-									if (!path) break;
-
-									new eSheep({
-										allowPets: 'all',
-										allowPopup: 'no'
-									}).Start(path);
+									if (path) {
+										new eSheep({
+											allowPets: 'all',
+											allowPopup: 'no'
+										}).Start(path);
+									}
 								}
 							}
 							break;
