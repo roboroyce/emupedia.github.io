@@ -85,7 +85,7 @@
 			socketio: 'libraries/socket.io-2.3.0.min',
 			taskbar: 'taskbar',
 			text: 'libraries/requirejs-text-2.0.15',
-			twemoji: 'libraries/twemoji-12.1.4.min',
+			twemoji: 'libraries/twemoji-12.1.5.min',
 			window: 'window'
 		},
 		shim: {
