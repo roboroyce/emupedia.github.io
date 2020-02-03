@@ -1,10 +1,8 @@
-// noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'json!config/emoticons.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
 	}
 } (function ($, emoticons_data, emoticons, twemoji, simplestorage, network, Fingerprint) {
-	// noinspection DuplicatedCode
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws.emupedia.net/'],
@@ -21,10 +19,6 @@
 		var search = Object.keys(emoticons_data.mapping);
 		var replace = Object.values(emoticons_data.mapping);
 
-		if (typeof simplestorage.get('nickname') !== 'undefined') {
-			simplestorage.deleteKey('nickname');
-		}
-
 		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
 
@@ -38,13 +32,13 @@
 			return hash >>> 0;
 		};
 
-		// noinspection DuplicatedCode
 		net.str_replace = function(search, replace, subject) {
 			var i = 0;
 			var j = 0;
 			var k = 0;
 			var temp = '';
 			var repl = '';
+			// noinspection JSUnusedAssignment
 			var sl = 0;
 			var fl = 0;
 			var f = [].concat(search);
@@ -101,7 +95,6 @@
 			});
 		};
 
-		// noinspection DuplicatedCode
 		net.log = function (txt, color, hide) {
 			if (typeof color === 'undefined') {
 				color = 0;
@@ -172,7 +165,6 @@
 			net.text_input.focus();
 		};
 
-		// noinspection DuplicatedCode
 		net.send_input = function() {
 			var timestamp = Math.floor(Date.now() / 1000);
 
@@ -187,7 +179,7 @@
 			if (timestamp - net.last_send < 2) {
 				net.spam_cap++;
 			} else {
-				if (net.spam_cap > 10) {
+				if (net.spam_cap > 2) {
 					if (timestamp - net.last_send < 10) {
 						return false;
 					}
@@ -196,7 +188,7 @@
 				net.spam_cap = 0;
 			}
 
-			if (net.spam_cap > 10) {
+			if (net.spam_cap > 2) {
 				return false;
 			}
 
@@ -240,7 +232,6 @@
 			net.text_input.val('');
 		};
 
-		// noinspection DuplicatedCode
 		net.socket.on('connect', function(data) {
 			// console.log('connect');
 			// console.log(JSON.stringify(data, null, 2));
@@ -270,7 +261,6 @@
 			}
 		});
 
-		// noinspection DuplicatedCode
 		net.socket.on('room.info', function (data) {
 			// console.log('room.info');
 			// console.log(JSON.stringify(data, null, 2));
@@ -316,7 +306,6 @@
 			}, 1000);
 		});
 
-		// noinspection DuplicatedCode
 		net.socket.on('room.msg', function (data) {
 			// console.log('room.msg');
 			// console.log(JSON.stringify(data, null, 2));
@@ -360,7 +349,6 @@
 			// console.log('room.user_info');
 			// console.log(JSON.stringify(data, null, 2));
 
-			// noinspection DuplicatedCode
 			if (net.room_info.users[data.user]) {
 				for (var n in data.info) {
 					// noinspection JSUnfilteredForInLoop
@@ -385,7 +373,6 @@
 			}
 		});
 
-		// noinspection DuplicatedCode
 		net.socket.on('server.help', function (data) {
 			// console.log('server.help');
 			// console.log(JSON.stringify(data, null, 2));
@@ -412,7 +399,7 @@
 								'<div id="client_room_users" class="client_decoration"></div>' +
 							'</div>' +
 							'<div id="client_input" class="client_decoration">' +
-								'<button id="client_emoticons">😀</button><input id="client_command" type="text" spellcheck="false" autocomplete="off" maxlength="500" /><button id="client_command_send">Send</button>' +
+								'<button id="client_emoticons">😀</button><input id="client_command" type="text" spellcheck="false" autocomplete="off" maxlength="160" /><button id="client_command_send">Send</button>' +
 							'</div>' +
 						'</div>';
 
