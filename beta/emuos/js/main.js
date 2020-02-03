@@ -177,22 +177,6 @@
 				ga('send', 'pageview');
 			}
 
-			/*var filesystem = new FileSystem({
-				github: {
-					organization: 'Emupedia',
-					repo: 'emupedia.github.io',
-					branch: 'master',
-					app_id: 18939,
-					app_install_id: 1580976,
-					private_key: window['GITHUB_PRIVATE_KEY']
-				},
-				dropbox: {
-					token: window['DROPBOX_TOKEN']
-				}
-			});*/
-
-			// var webamp = new Webamp({template: webamp_template});
-
 			// noinspection JSUnusedLocalSymbols
 			new EmuOS({
 				filesystem: null,
@@ -204,37 +188,6 @@
 				theme: 'theme-win9x',
 				icons: [] //desktop.icons
 			});
-
-			// noinspection JSUnresolvedFunction
-			/*desktop.window({
-				title: 'Tree Component',
-				icon: 'apps/wing/favicon.ico',
-				content: tree_template
-			});
-
-			// noinspection JSUnresolvedFunction
-			filesystem.getTree(function (tree) {
-				console.log(tree);
-
-				// noinspection AmdModulesDependencies
-				$('#treeview').btechcotree({
-					containerid: 'treeview',
-					dataset: {root: tree},
-					datatype: $treedatatype.Json,
-					dataformat: $treedataformat.Hierarchy,
-					class_node_collapse: 'ui-icon-circle-minus',
-					class_node_expand: 'ui-icon-circle-plus',
-					class_node_item: 'ui-icon-clipboard',
-					class_node_highlight: 'ui-state-highlight',
-					class_node_add: 'ui-icon-plusthick',
-					class_node_remove: 'ui-icon-minusthick',
-					collapse_tree: true,
-					show_button_check: false,
-					show_button_add: false,
-					show_button_remove: false,
-					node_remove_message: 'Are you sure?'
-				});
-			});*/
 		});
 	});
 } (this));
