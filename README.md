@@ -56,6 +56,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Em-DOSBox                   | ❌                                                                                                                                | [github.com/dreamlayers/em-dosbox](https://github.com/dreamlayers/em-dosbox)                                                                          | [GPLv2](https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING)                     |
 | emularity                   | [archiveteam.org/index.php?title=Emularity](https://www.archiveteam.org/index.php?title=Emularity)                                | [github.com/db48x/emularity](https://github.com/db48x/emularity)                                                                                      | [GPLv3](https://github.com/db48x/emularity/blob/master/LICENSE)                                       |
 | JS-DOS                      | [js-dos.com](https://js-dos.com/)                                                                                                 | [github.com/caiiiycuk/js-dos](https://github.com/caiiiycuk/js-dos)                                                                                    | [GPLv2](https://github.com/caiiiycuk/js-dos/blob/6.22/LICENSE)                                        |
+---
 </details>
 
 ## ⚙ <sub>Apps used</sub>
