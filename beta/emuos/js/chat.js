@@ -279,7 +279,8 @@
 			// noinspection JSUnresolvedVariable
 			net.text_input.attr('placeholder', 'Press "`" (tilda) to Show / Hide chat. You are Typing as "' + data.users[data.me].info.nick + '" on "' + data.name + '"');
 			net.client_room_users.html(r_users);
-			net.client_room.html(data.name);
+			net.client_room_name.text(data.name);
+			net.client_room_online.text(Object.keys(net.room_info.users).length);
 		});
 
 		net.socket.on('room.user_join', function (data) {
@@ -288,6 +289,7 @@
 
 			if (net.room_info) {
 				net.room_info.users[data.user] = data.data;
+				net.client_room_online.text(Object.keys(net.room_info.users).length);
 			}
 			// noinspection JSUnresolvedVariable
 			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize(data.data.info.nick) + '</div>');
@@ -395,7 +397,7 @@
 		var network_ui = '<div id="client_console" class="client_decoration">' +
 							'<div id="client_output" class="client_decoration client_left"></div>' +
 							'<div id="client_users" class="client_decoration client_right">' +
-								'<div id="client_room" class="client_decoration"></div>' +
+								'<div id="client_room" class="client_decoration"><span class="name"></span> (<span class="online">0</span> online)</div>' +
 								'<div id="client_room_users" class="client_decoration"></div>' +
 							'</div>' +
 							'<div id="client_input" class="client_decoration">' +
@@ -418,6 +420,8 @@
 		net.output_div = $('#client_output');
 		net.client_room_users = $('#client_room_users');
 		net.client_room = $('#client_room');
+		net.client_room_name = net.client_room.find('span.name');
+		net.client_room_online = net.client_room.find('span.online');
 		net.text_input.off('keypress').on('keypress', function (e) {
 			if (e.which === 13) {
 				net.send_input();
