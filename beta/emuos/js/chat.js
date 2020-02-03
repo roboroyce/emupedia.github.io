@@ -200,6 +200,12 @@
 				return false;
 			}
 
+			if (net.last_msg) {
+				if (net.last_msg === msg) {
+					return false;
+				}
+			}
+
 			if (msg.charAt(0) === '/') {
 				var data = {
 					cmd: '',
@@ -227,6 +233,7 @@
 				net.send_cmd(data.cmd, data.data);
 			} else {
 				net.send_cmd('room_msg', msg);
+				net.last_msg = msg;
 			}
 
 			net.text_input.val('');
