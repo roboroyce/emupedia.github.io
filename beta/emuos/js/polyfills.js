@@ -3,7 +3,6 @@
 // region Console
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (typeof console !== 'undefined') {
 	if (!console.table) {
 		// noinspection DuplicatedCode
@@ -235,7 +234,6 @@ if (!String.prototype.startsWith) {
 }
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (!String.prototype.endsWith) {
 	console.log('String.prototype.endsWith polyfill loaded!');
 	String.prototype.endsWith = function(search, this_len) {
@@ -248,7 +246,6 @@ if (!String.prototype.endsWith) {
 }
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (!String.prototype.repeat) {
 	console.log('String.prototype.repeat polyfill loaded!');
 	String.prototype.repeat = function(count) {
@@ -294,7 +291,6 @@ if (!String.prototype.repeat) {
 }
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (!String.prototype.padStart) {
 	console.log('String.prototype.padStart polyfill loaded!');
 	String.prototype.padStart = function padStart(targetLength, padString) {
@@ -316,6 +312,22 @@ if (!String.prototype.padStart) {
 	};
 }
 
+// IE 11.592.18362.0
+if (!String.prototype.includes) {
+	console.log('String.prototype.includes polyfill loaded!');
+	String.prototype.includes = function(search, start) {
+		if (search instanceof RegExp) {
+			throw TypeError('first argument must not be a RegExp');
+		}
+
+		if (start === undefined) {
+			start = 0;
+		}
+
+		return this.indexOf(search, start) !== -1;
+	};
+}
+
 // endregion
 
 // region Array
@@ -329,7 +341,6 @@ if (typeof Array.isArray === 'undefined') {
 }
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (!Array.from) {
 	console.log('Array.from polyfill loaded!');
 	Array.from = (function() {
@@ -411,7 +422,6 @@ if (!Array.from) {
 }
 
 // IE 11.592.18362.0
-// noinspection DuplicatedCode
 if (!Array.prototype.fill) {
 	console.log('Array.prototype.fill polyfill loaded!');
 	Object.defineProperty(Array.prototype, 'fill', {
@@ -458,10 +468,8 @@ if (!Array.prototype.fill) {
 // region Object
 
 // IE 7/8
-// noinspection DuplicatedCode
 if (!Object.keys) {
 	console.log('Object.keys polyfill loaded!');
-	// noinspection DuplicatedCode
 	Object.keys = (function() {
 		'use strict';
 		var hasOwnProperty = Object.prototype.hasOwnProperty,
@@ -532,7 +540,6 @@ if (!Object.assign) {
 // IE 11.592.18362.0
 if (!Object.values) {
 	console.log('Object.values polyfill loaded!');
-	// noinspection DuplicatedCode
 	Object.values = function values(O) {
 		var ownKeys = function(O) {
 			// noinspection JSUnresolvedVariable
@@ -559,7 +566,6 @@ if (!Object.values) {
 // IE 11.592.18362.0
 if (!Object.entries) {
 	console.log('Object.entries polyfill loaded!');
-	// noinspection DuplicatedCode
 	Object.entries = function entries(O) {
 		var ownKeys = function(O) {
 			// noinspection JSUnresolvedVariable
