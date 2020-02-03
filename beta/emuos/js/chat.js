@@ -48,7 +48,7 @@
 			'shit',
 			'jew',
 			'gay',
-			'ass'
+			' ass '
 		];
 		var replace2 = [
 			'`ok teacher`',
