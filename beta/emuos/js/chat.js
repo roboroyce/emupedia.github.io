@@ -289,7 +289,7 @@
 
 			if (net.room_info) {
 				net.room_info.users[data.user] = data.data;
-				net.client_room_online.text(Object.keys(net.room_info.users).length);
+				net.client_room_online.text(parseInt(net.client_room_online.text()) + 1);
 			}
 			// noinspection JSUnresolvedVariable
 			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize(data.data.info.nick) + '</div>');
@@ -300,6 +300,7 @@
 			// console.log(JSON.stringify(data, null, 2));
 
 			var $el = $('#room_user_' + net.hash(data.user));
+			net.client_room_online.text(parseInt(net.client_room_online.text()) - 1);
 
 			setTimeout(function() {
 				$el.slideUp(200, function() {
