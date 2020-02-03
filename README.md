@@ -109,9 +109,10 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Voxel Space                 | [s-macke.github.io/VoxelSpace](https://s-macke.github.io/VoxelSpace/VoxelSpace.html)                                              | [github.com/s-macke/VoxelSpace](https://github.com/s-macke/VoxelSpace)                                                                                | [MIT](https://github.com/s-macke/VoxelSpace/blob/master/LICENSE)                                      |
 </details>
 
-## 📚 <sub>Libraries used</sub>
 <details>
-<summary>Click to reveal</summary>
+<summary><h2>📚 Libraries used <sub><sup><sub><sup>(Click to reveal)</sup></sub></sup></sub></h2> </summary>
+
+---
 
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
@@ -160,6 +161,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | minesweeper_js              | [minesweeper.zone](https://minesweeper.zone)                                                                                      | [github.com/reed-jones/minesweeper_js](https://github.com/reed-jones/minesweeper_js)                                                                  | [CC BY-NC 4.0](https://github.com/reed-jones/minesweeper_js/blob/master/LICENSE)                      |
 | winmine-exe                 | [winmine-exe.now.sh](https://winmine-exe.now.sh)                                                                                  | [github.com/1000hz/winmine-exe](https://github.com/1000hz/winmine-exe)                                                                                | ❓                                                                                                     |
 | HTML5 Pacman                | ❌                                                                                                                                | [github.com/daleharvey/pacman](https://github.com/daleharvey/pacman)                                                                                  | [WTFPL](https://github.com/daleharvey/pacman/blob/master/LICENSE)                                      |
+---
 </details>
 
 ## ⭐ <sub>Similar projects <sub><sup>(from which this project is heavily inspired)</sup></sub></sub>
