@@ -32,6 +32,7 @@
 			'vagina',
 			'faggot',
 			'fagot',
+			'whore',
 			'bitch',
 			'dicks',
 			'pussy',
@@ -51,7 +52,8 @@
 			'shit',
 			'jew',
 			'gay',
-			' ass '
+			' ass ',
+			' cum '
 		];
 		var replace2 = [
 			'`ok teacher`',
@@ -66,6 +68,7 @@
 			'`toy`',
 			'`nice`',
 			'`nice`',
+			'`dog`',
 			'`dog`',
 			'`nails`',
 			'`cat`',
@@ -85,7 +88,8 @@
 			'`stuff`',
 			'`hebrew`',
 			'`nice`',
-			'`behind`'
+			'`behind`',
+			'`candy`'
 		];
 
 		net.badge = 0;
