@@ -34,17 +34,21 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+---
 | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_24x24.png" alt="Internet Explorer" /><br />Internet<br />Explorer<br />Trident | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/edge_12-18/edge_12-18_24x24.png" alt="Edge" /><br />Edge<br />EdgeHTML<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png" alt="Edge" /><br />Edge<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/firefox_3.5-22/firefox_3.5-22_24x24.png" alt="Firefox" /><br />Firefox<br />Gecko<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png" alt="Firefox" /><br />Firefox<br />Quantum<br />Gecko | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/pale-moon/pale-moon_24x24.png" alt="Pale Moon" /><br />Pale<br />Moon<br />Goanna | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/chrome_1-11/chrome_1-11_24x24.png" alt="Chrome" /><br />Chrome<br />WebKit<br /><br />  | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png" alt="Chrome" /><br />Chrome<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/opera_15-32/opera_15-32_24x24.png" alt="Opera" /><br />Opera<br />Presto<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png" alt="Opera" /><br />Opera<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png" alt="Safari" /><br />Safari<br />WebKit<br /><br /> |  <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave_24x24.png" alt="Brave" /><br />Brave<br />Blink<br /><br /> | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_24x24.png" alt="Vivaldi" /><br />Vivaldi<br />Blink<br /><br /> |
 | :-------------: | :-------------: | :---: | :------------: | :---: | :------------: | :------------: | :---: | :-------------: | :---: | :---: | :---: | :---: |
 | <sup>*</sup>11+ | <sup>*</sup>12+ | 79+   | <sup>*</sup>4+ | 57+   | <sup>*</sup>4+ | <sup>*</sup>3+ | 28+   | <sup>*</sup>12+ | 15+   | 8+    | 1+    | 1+    |
 
 [![* application support may vary](https://emupedia.net/beta/emuos/images/icons/ie-notice.svg)](#-browser-support)
+
+---
 </details>
 
 ## 🤖 <sub>Emulators used</sub>
 <details>
 <summary>Click to reveal</summary>
 
+---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | MAME                        | [mamedev.org](https://www.mamedev.org)                                                                                            | [github.com/mamedev/mame](https://github.com/mamedev/mame)                                                                                            | [GPLv2](https://github.com/mamedev/mame/blob/master/LICENSE.md)                                       |
@@ -58,6 +62,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | Butterchurn                 | [butterchurnviz.com](https://butterchurnviz.com)                                                                                  | [github.com/jberg/butterchurn](https://github.com/jberg/butterchurn)                                                                                  | [MIT](https://github.com/jberg/butterchurn/blob/master/LICENSE)                                       |
@@ -72,12 +77,14 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | SVG Editor                  | [svg-edit.github.io/svgedit/releases/latest](https://svg-edit.github.io/svgedit/releases/latest/editor/svg-editor.html)           | [github.com/SVG-Edit/svgedit](https://github.com/SVG-Edit/svgedit)                                                                                    | [MIT](https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt)                                |
 | web-esheep                  | [adrianotiger.github.io/web-esheep](https://adrianotiger.github.io/web-esheep)                                                    | [github.com/Adrianotiger/web-esheep](https://github.com/Adrianotiger/web-esheep)                                                                      | [GPLv3](https://github.com/Adrianotiger/web-esheep/blob/master/LICENSE)                               |
 | WebAmp                      | [webamp.org](https://webamp.org)                                                                                                  | [github.com/captbaritone/webamp](https://github.com/captbaritone/webamp)                                                                              | [MIT](https://github.com/captbaritone/webamp/blob/master/LICENSE.txt)                                 |
+---
 </details>
 
 ## 🕹️ <sub>Games used</sub>
 <details>
 <summary>Click to reveal</summary>
 
+---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | C&C - HTML5                 | [adityaravishankar.com/projects/games/command-and-conquer](http://www.adityaravishankar.com/projects/games/command-and-conquer/)  | [github.com/adityaravishankar/command-and-conquer](https://github.com/adityaravishankar/command-and-conquer)                                          | ❓                                                                                                    |
@@ -94,12 +101,14 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Wolfenstein 3D              | ❌                                                                                                                                | [github.com/id-Software/wolf3d-browser](https://github.com/id-Software/wolf3d-browser)                                                                | [GPLv2](https://github.com/id-Software/wolf3d-browser/blob/master/COPYING.txt)                        |
 | Wolfenstein 3D (Canvas)     | [users.atw.hu/wolf3d](http://users.atw.hu/wolf3d)                                                                                 | ❌                                                                                                                                                    | [GPLv2](http://users.atw.hu/wolf3d/COPYING.txt)                                                       |
 | Xash3D-Emscripten           | [icrazyblaze.github.io/Xash3D-Emscripten/xash-intro.html](https://icrazyblaze.github.io/Xash3D-Emscripten/xash-intro.html)        | [github.com/FWGS/xash3d](https://github.com/FWGS/xash3d)                                                                                              | [GPLv3](https://github.com/FWGS/xash3d/blob/master/COPYING)                                           |
+---
 </details>
 
 ## 🔫 <sub>Demos used</sub>
 <details>
 <summary>Click to reveal</summary>
 
+---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | 8-bit Palette Color Cycling | [effectgames.com/demos/canvascycle](http://effectgames.com/demos/canvascycle/)                                                    | [effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5](http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html)  | [LGPLv3](http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6) |
@@ -107,13 +116,14 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | Super Blob Blaster          | [phoboslab.org/twopointfive](https://phoboslab.org/twopointfive)                                                                  | [github.com/phoboslab/TwoPointFive](https://github.com/phoboslab/twopointfive)                                                                        | [MIT](https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE)                                  |
 | Spatial Audio               | [howlerjs.com/#spatial](https://howlerjs.com/#spatial)                                                                            | [github.com/goldfire/howler.js](https://github.com/goldfire/howler.js/tree/master/examples/3d)                                                        | [MIT](https://github.com/goldfire/howler.js/blob/master/LICENSE.md)                                   |
 | Voxel Space                 | [s-macke.github.io/VoxelSpace](https://s-macke.github.io/VoxelSpace/VoxelSpace.html)                                              | [github.com/s-macke/VoxelSpace](https://github.com/s-macke/VoxelSpace)                                                                                | [MIT](https://github.com/s-macke/VoxelSpace/blob/master/LICENSE)                                      |
+---
 </details>
 
+## 📚 <sub>Libraries used</sub>
 <details>
-<summary><h2>📚 Libraries used <sub><sup><sub><sup>(Click to reveal)</sup></sub></sup></sub></h2> </summary>
+<summary>Click to reveal</summary>
 
 ---
-
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | **Frontend**                |                                                                                                                                   |                                                                                                                                                       |                                                                                                       |
@@ -168,6 +178,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                                |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                   |
 | 98.js                       | [98.js.org](https://98.js.org)                                                                                                    | [github.com/1j01/98](https://github.com/1j01/98)                                                                                                      | ❓                                                                                                     |
@@ -181,6 +192,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | winXP                       | [winxp.now.sh](https://winxp.now.sh/)                                                                                             | [github.com/ShizukuIchi/winXP](https://github.com/ShizukuIchi/winXP)                                                                                  | [MIT](https://github.com/ShizukuIchi/winXP/blob/master/LICENSE)                                        |
 | X-WebDesktop-Vue            | [oxoyo.co/X-WebDesktop-Vue](https://oxoyo.co/X-WebDesktop-Vue/)                                                                   | [github.com/OXOYO/X-WebDesktop-Vue](https://github.com/OXOYO/X-WebDesktop-Vue)                                                                        | [MIT](https://github.com/OXOYO/X-WebDesktop-Vue/blob/master/LICENSE)                                   |
 | ZineOS                      | [whimsy.space](https://whimsy.space/)                                                                                             | [github.com/STRd6/zine](https://github.com/STRd6/zine)                                                                                                | [MIT](https://github.com/STRd6/zine/blob/master/LICENSE)                                               |
+---
 </details>
 
 ## 📑 <sub>Legal issues</sub>
