@@ -22,6 +22,7 @@
 		var search2 = [
 			'ok boomer',
 			'porn hub',
+			'pornhub',
 			'niggers',
 			'cracker',
 			'fucking',
@@ -60,6 +61,7 @@
 		];
 		var replace2 = [
 			'`ok teacher`',
+			'`library`',
 			'`library`',
 			'`blacks`',
 			'`biscuit`',
