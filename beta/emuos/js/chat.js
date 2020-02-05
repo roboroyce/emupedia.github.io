@@ -374,7 +374,7 @@
 			}
 
 			if (net.last_msg) {
-				if (net.last_msg === msg) {
+				if (net.last_msg === msg || (~msg.indexOf(net.last_msg) && msg.length >= 10)) {
 					return false;
 				}
 			}
