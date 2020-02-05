@@ -23,8 +23,10 @@
 			'n i g g a s',
 			'n i g g a r',
 			'n i g g e r',
+			'f a g g o t',
 			'ok boomer',
 			'ok b00mer',
+			'B I T C H',
 			'porn hub',
 			'dick pic',
 			'pornhub',
@@ -36,6 +38,7 @@
 			'fucking',
 			'dickpic',
 			'f u c k',
+			'peni s',
 			'dicpic',
 			'dikpic',
 			'retard',
@@ -88,6 +91,7 @@
 			'jew',
 			'gay',
 			'g@y',
+			' anal ',
 			' ass ',
 			' cum '
 		];
@@ -95,8 +99,10 @@
 			'`blacks`',
 			'`black`',
 			'`black`',
+			'`nice`',
 			'`ok teacher`',
 			'`ok teacher`',
+			'`dog`',
 			'`library`',
 			'`selfie`',
 			'`library`',
@@ -108,6 +114,7 @@
 			'`smiling`',
 			'`selfie`',
 			'`lol`',
+			'`nail`',
 			'`selfie`',
 			'`selfie`',
 			'`slow thinker`',
@@ -160,6 +167,7 @@
 			'`hebrew`',
 			'`nice`',
 			'`nice`',
+			'`behind`',
 			'`behind`',
 			'`candy`'
 		];
