@@ -142,7 +142,7 @@
 			var server = config.servers[config.server];
 
 			client = {
-				socket: io.connect(server, {transports: ['websocket'], secure: true}),
+				socket: io.connect(server, {transports: ['websocket'], secure: true, rejectUnauthorized: false}),
 				config: config,
 				server: server,
 				preload: {}
