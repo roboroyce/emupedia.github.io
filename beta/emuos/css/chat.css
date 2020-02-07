@@ -167,6 +167,7 @@
 	margin-top: -25px;
 }
 
+#client_output span > .emoticon:before,
 #client_output div > .emoticon:before {
 	vertical-align: sub;
 	transform: scale(0.175);
