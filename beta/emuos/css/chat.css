@@ -85,7 +85,18 @@
 
 #client_room_users .emoji {
 	width: 14px;
-	vertical-align: middle;
+	vertical-align: sub;
+}
+
+#client_room_users .emoticon {
+	width: 14px;
+	height: 14px;
+	vertical-align: sub;
+}
+
+#client_room_users .emoticon:before {
+	transform: scale(0.175);
+	transform-origin: left top;
 }
 
 #client_room {
@@ -125,7 +136,7 @@
 #client_output .emoji {
 	width: 14px;
 	height: 14px;
-	vertical-align: middle;
+	vertical-align: sub;
 
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -140,7 +151,7 @@
 #client_output .emoticon {
 	width: 14px;
 	height: 14px;
-	vertical-align: middle;
+	vertical-align: sub;
 	z-index: 2;
 }
 
@@ -157,7 +168,7 @@
 }
 
 #client_output div > .emoticon:before {
-	vertical-align: middle;
+	vertical-align: sub;
 	transform: scale(0.175);
 	transform-origin: left top;
 }
