@@ -2,7 +2,7 @@
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'json!config/emoticons.json', 'json!config/diacritics.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
 	}
-} (function ($, emoticons_data, diacritics_map, emoticons, twemoji, simplestorage, network, Fingerprint) {
+} (function ($, emoticons_data, diacritics_data, emoticons, twemoji, simplestorage, network, Fingerprint) {
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
@@ -363,7 +363,7 @@
 
 		net.remove_diacritics = function(str) {
 			return str.replace(/[^\u0000-\u007E]/g, function (letter) {
-				return diacritics_map[letter] || letter;
+				return diacritics_data.mapping[letter] || letter;
 			});
 		};
 
