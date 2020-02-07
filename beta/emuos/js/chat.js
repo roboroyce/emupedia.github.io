@@ -101,7 +101,8 @@
 			'g@y',
 			' anal ',
 			' ass ',
-			' cum '
+			' cum ',
+			'卐'
 		];
 		var replace2 = [
 			'`blacks`',
@@ -186,7 +187,8 @@
 			'`nice`',
 			'`behind`',
 			'`behind`',
-			'`candy`'
+			'`candy`',
+			'🌼'
 		];
 
 		net.badge = 0;
