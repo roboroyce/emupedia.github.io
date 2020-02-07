@@ -166,7 +166,7 @@
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
 	requirejs([
 		'jquery',
-		'json!config/desktop.json',
+		'json!../data/desktop.json',
 		'chat',
 		'filesystem',
 		'emuos',

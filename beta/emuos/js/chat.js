@@ -1,6 +1,6 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'json!config/emoticons.json', 'json!config/diacritics.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
+		define(['jquery', 'json!../data/emoticons.json', 'json!../data/diacritics.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
 	}
 } (function ($, emoticons_data, diacritics_data, emoticons, twemoji, simplestorage, network, Fingerprint) {
 	$(function() {
