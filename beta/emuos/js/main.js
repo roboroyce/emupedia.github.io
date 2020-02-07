@@ -174,7 +174,11 @@
 	], function($, desktop, Chat, FileSystem, EmuOS, ga) {
 		$(function() {
 			if (typeof ga === 'function') {
-				ga('send', 'pageview');
+				ga('send', {
+					hitType: 'pageview',
+					page: window.location.pathname,
+					title: window.location.href
+				});
 			}
 
 			// noinspection JSUnusedLocalSymbols

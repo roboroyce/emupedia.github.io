@@ -496,7 +496,11 @@
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
 					if (typeof ga === 'function') {
-						ga('send', 'pageview', $(this).data('link'));
+						ga('send', {
+							hitType: 'pageview',
+							page: $(this).data('link'),
+							title: window.location.href
+						});
 					}
 
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
