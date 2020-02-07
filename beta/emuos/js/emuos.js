@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode,JSUnusedLocalSymbols
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else if (typeof module === 'object' && module.exports) {
 		module.exports = function(root, jQuery) {
 			if (jQuery === undefined) {
@@ -19,7 +19,7 @@
 	} else {
 		factory(jQuery);
 	}
-} (function ($, simplestorage, moment, Octokat, eSheep, clippy) {
+} (function ($, simplestorage, moment, ga, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -495,6 +495,10 @@
 			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
+					if (typeof ga === 'function') {
+						ga('send', 'pageview', $(this).data('link'));
+					}
+
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
 						if ($(this).data('singleinstance') && self.$body.find('[id^=' + $(this).data('name') + ']').length === 0) {
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
