@@ -369,6 +369,10 @@
 				}
 			}
 
+			if (!~msg.indexOf(' ') && msg.length >= 20) {
+				return false;
+			}
+
 			if (msg.charAt(0) === '/') {
 				var data = {
 					cmd: '',
