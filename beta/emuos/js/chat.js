@@ -24,15 +24,20 @@
 
 		// noinspection DuplicatedCode
 		for (var profanity1 in profanity_data.mapping.en) {
-			var regex1 = '';
 			// noinspection JSUnfilteredForInLoop
-			for (var p1 in profanity_data.mapping.en[profanity1]) {
+			var regex1 = profanity_data.mapping.en[profanity1][0] + '|';
+			// noinspection JSUnfilteredForInLoop
+			var profanity1sorted = profanity_data.mapping.en[profanity1].sort(function(a, b) {
+				return b.length - a.length
+			});
+			// noinspection JSUnfilteredForInLoop,DuplicatedCode
+			for (var p1 in profanity1sorted) {
 				// noinspection JSUnfilteredForInLoop
-				regex1 += ' ' + profanity_data.mapping.en[profanity1][p1] + '|';
+				regex1 += ' ' + profanity1sorted[p1] + '|';
 				// noinspection JSUnfilteredForInLoop
-				regex1 += ' ' + profanity_data.mapping.en[profanity1][p1] + ' |';
+				regex1 += ' ' + profanity1sorted[p1] + ' |';
 				// noinspection JSUnfilteredForInLoop
-				regex1 += profanity_data.mapping.en[profanity1][p1] + ' |';
+				regex1 += profanity1sorted[p1] + ' |';
 			}
 			// noinspection JSUnfilteredForInLoop
 			search_regex[profanity1] = new RegExp(regex1.slice(0, -1), 'gi');
