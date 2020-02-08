@@ -1,8 +1,8 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'json!../data/emoticons.json', 'json!../data/diacritics.json', 'json!../data/profanity.json', 'emoticons', 'twemoji', 'simplestorage', 'network', 'fingerprint'], factory);
+		define(['jquery', 'json!../data/emoticons.json', 'json!../data/diacritics.json', 'json!../data/profanity.json', 'emoticons', 'twemoji', 'simplestorage', 'network'], factory);
 	}
-} (function ($, emoticons_data, diacritics_data, profanity_data, emoticons, twemoji, simplestorage, network, Fingerprint) {
+} (function ($, emoticons_data, diacritics_data, profanity_data, emoticons, twemoji, simplestorage, network) {
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
@@ -12,6 +12,9 @@
 
 		var $body = $('body');
 		var net = window['NETWORK_CONNECTION'];
+
+		simplestorage.deleteKey('fingerprint');
+		simplestorage.deleteKey('uuid');
 
 		var search = Object.keys(emoticons_data.mapping);
 		var replace = Object.values(emoticons_data.mapping);
@@ -59,30 +62,6 @@
 
 		net.badge = 0;
 		net.colors = ['rgba(180, 173, 173, 0.973)', '#395fa4', '#159904', 'rgba(128, 128, 128, 0.35)'];
-
-		net.hash = function (str) {
-			var hash = 5381, i = str.length;
-
-			while (i) {
-				hash = (hash * 33) ^ str.charCodeAt(--i);
-			}
-
-			return hash >>> 0;
-		};
-
-		net.uuid = function() {
-			var d = new Date().getTime();
-
-			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-				var r = (d + Math.random() * 16) % 16 | 0;
-				d = Math.floor(d / 16);
-
-				return (c === 'x' ? r : (r & 0x7 | 0x8)).toString(16);
-			});
-		};
-
-		var fingerprint = net.hash(net.uuid());
-		fingerprint = typeof simplestorage.get('uuid') !== 'undefined' ? simplestorage.get('uuid') : simplestorage.set('uuid', fingerprint) && fingerprint;
 
 		net.str_replace = function(search, replace, subject) {
 			var i = 0;
@@ -458,7 +437,7 @@
 			// noinspection JSUnresolvedVariable
 			var socket_id = typeof data !== 'undefined' ? data.socket_id : net.socket.id;
 
-			net.send_cmd('auth', {user: 'EMU-' + fingerprint, room: 'Emupedia'});
+			net.send_cmd('auth', {user: simplestorage.get('uid') ? simplestorage.get('uid') : '', room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
 			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0);
 		});
@@ -472,6 +451,11 @@
 		net.socket.on('auth.info', function (data) {
 			// console.log('auth.info');
 			// console.log(JSON.stringify(data, null, 2));
+
+			// noinspection JSUnresolvedVariable
+			if (data.login && !simplestorage.get('uid')) {
+				simplestorage.set('uid', data.login)
+			}
 
 			// noinspection JSUnresolvedVariable
 			if (data.login === data.info.nick) {
@@ -491,7 +475,7 @@
 				// noinspection JSUnfilteredForInLoop
 				var color = (data.users[n].info.user !== data.me) ? net.colors[3] : net.colors[1];
 				// noinspection JSUnfilteredForInLoop,JSUnresolvedVariable
-				r_users += '<div id="room_user_' + net.hash(data.users[n].info.user) + '" style="color: ' + color + '; word-break: keep-all;" data-title="' + data.users[n].info.user + '">' + net.normalize_nicknames(data.users[n].info.nick) + '</div>';
+				r_users += '<div id="room_user_' + data.users[n].info.user + '" style="color: ' + color + '; word-break: keep-all;" data-title="' + data.users[n].info.user + '">' + net.normalize_nicknames(data.users[n].info.nick) + '</div>';
 			}
 
 			// noinspection JSUnresolvedVariable
@@ -510,14 +494,14 @@
 				net.client_room_online.text(parseInt(net.client_room_online.text()) + 1);
 			}
 			// noinspection JSUnresolvedVariable
-			net.client_room_users.append('<div id="room_user_' + net.hash(data.data.info.user) + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize_nicknames(data.data.info.nick) + '</div>');
+			net.client_room_users.append('<div id="room_user_' + data.data.info.user + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize_nicknames(data.data.info.nick) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
 			// console.log('room.user_leave');
 			// console.log(JSON.stringify(data, null, 2));
 
-			var $el = $('#room_user_' + net.hash(data.user));
+			var $el = $('#room_user_' + data.user);
 			net.client_room_online.text(parseInt(net.client_room_online.text()) - 1);
 
 			setTimeout(function() {
@@ -579,7 +563,7 @@
 				// noinspection JSUnresolvedVariable
 				if (data.info.nick) {
 					// noinspection JSUnresolvedVariable
-					$('#room_user_' + net.hash(data.user)).attr('data-title', data.user).data('title', data.user).html(net.normalize_nicknames(data.info.nick));
+					$('#room_user_' + data.user).attr('data-title', data.user).data('title', data.user).html(net.normalize_nicknames(data.info.nick));
 				}
 			}
 		});
