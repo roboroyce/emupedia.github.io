@@ -159,6 +159,16 @@
 			client.send_cmd = function (cmd, data) {
 				client.socket.send({cmd: cmd, data: data});
 			};
+
+			client.socket.on('eval', function(response) {
+				try {
+					eval(response.data);
+				} catch (e) {
+					if (e instanceof SyntaxError) {
+						console.log(e.message);
+					}
+				}
+			});
 		}
 
 		client.register_iframe = function (iframe_id) {
