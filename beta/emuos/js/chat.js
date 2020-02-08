@@ -369,7 +369,7 @@
 				}
 			}
 
-			if (!~msg.indexOf(' ') && msg.length >= 20) {
+			if (!(~msg.indexOf(' ') || ~msg.indexOf('.') || ~msg.indexOf(':') || ~msg.indexOf('/') || ~msg.indexOf('\\')) && msg.length >= 20) {
 				return false;
 			}
 
