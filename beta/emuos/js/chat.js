@@ -257,6 +257,36 @@
 			net.text_input.focus();
 		};
 
+		net.client_cmd = function(argz) {
+			var muted = net.room_info.data.muted || [];
+
+			switch (argz.cmd) {
+				case 'mute':
+					if (!~muted.indexOf(argz.data)) {
+						muted.push(argz.data);
+					}
+					net.send_cmd('set_room_data', {muted: false});
+					net.send_cmd('set_room_data', {muted: muted});
+					return true;
+				case 'unmute':
+					var index = muted.indexOf(argz.data);
+
+					if (index > -1) {
+						muted.splice(index, 1);
+					}
+					net.send_cmd('set_room_data', {muted: false});
+					net.send_cmd('set_room_data', {muted: muted});
+					return true;
+			}
+
+			return false;
+		};
+
+		net.check_msg = function(data) {
+			var muted = net.room_info.data.muted || [];
+			return !~muted.indexOf(data.user);
+		};
+
 		net.send_input = function() {
 			var timestamp = Math.floor(Date.now() / 1000);
 
@@ -330,6 +360,12 @@
 					data.data = json_data;
 				}
 
+				if (net.client_cmd(data)) {
+					net.text_input.val('');
+
+					return true;
+				}
+
 				net.send_cmd(data.cmd, data.data);
 			} else {
 				net.send_cmd('room_msg', msg);
@@ -395,6 +431,12 @@
 			net.client_room_online.text(Object.keys(net.room_info.users).length);
 		});
 
+		net.socket.on('room.data', function(data) {
+			// console.log('room.data');
+			// console.log(JSON.stringify(data, null, 2));
+			net.room_info.data = $.extend(net.room_info.data, data.data);
+		});
+
 		net.socket.on('room.user_join', function (data) {
 			// console.log('room.user_join');
 			// console.log(JSON.stringify(data, null, 2));
@@ -424,6 +466,10 @@
 		net.socket.on('room.msg', function (data) {
 			// console.log('room.msg');
 			// console.log(JSON.stringify(data, null, 2));
+
+			if (!net.check_msg(data)) {
+				return false;
+			}
 
 			var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
 			var badge = '';
