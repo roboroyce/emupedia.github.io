@@ -216,7 +216,7 @@
 		};
 
 		net.remove_profanity = function(str) {
-			str = str.replace(/  +/g, ' ');
+			str = str.replace(/  +/g, ' ').trim();
 
 			for (var profanity1 in profanity_data.mapping.en) {
 				// noinspection JSUnfilteredForInLoop
@@ -250,7 +250,7 @@
 				str = str.replace(replace_regex[r2], ' `' + r2 + '` ');
 			}
 
-			return str.replace(/  +/g, ' ');
+			return str.replace(/  +/g, ' ').trim();
 		};
 
 		net.normalize = function(str) {
