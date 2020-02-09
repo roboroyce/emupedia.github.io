@@ -9,6 +9,7 @@
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
 
+			// noinspection JSUnresolvedVariable
 			if (arg.constructor === Object && arg.hitCallback) {
 				arg.hitCallback();
 			}
