@@ -144,7 +144,7 @@
 			client = {
 				socket: io.connect(server, {
 					reconnection: true,
-					reconnectionAttempts: 10,
+					reconnectionAttempts: Infinity,
 					reconnectionDelay: 5000,
 					reconnectionDelayMax : 60000,
 					randomizationFactor: 0.5,
