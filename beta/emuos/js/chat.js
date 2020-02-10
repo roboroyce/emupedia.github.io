@@ -5,7 +5,7 @@
 } (function ($, emoticons_data, diacritics_data, profanity_data, emoticons, twemoji, simplestorage, network) {
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
-			servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
+			servers: ['https://ws2.emupedia.net/', 'https://ws2.emuos.net/'],
 			server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
 			mode: 0
 		});
