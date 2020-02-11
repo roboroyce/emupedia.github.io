@@ -456,7 +456,7 @@
 
 			if (net.room_info) {
 				net.room_info.users[data.user] = data.data;
-				net.client_room_online.text(Object.keys(window['NETWORK_CONNECTION'].room_info.users).length);
+				net.client_room_online.text(Object.keys(net.room_info.users).length);
 			}
 			// noinspection JSUnresolvedVariable
 			net.client_room_users.append('<div id="room_user_' + data.data.info.user + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.clean_nicknames(data.data.info.nick) + '</div>');
