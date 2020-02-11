@@ -1,8 +1,8 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'json!../data/emoticons.json', 'json!../data/diacritics.json', 'json!../data/profanity.json', 'emoticons', 'twemoji', 'simplestorage', 'network'], factory);
+		define(['jquery', 'json!../data/emoticons.json', 'json!../data/normalize.json', 'json!../data/profanity.json', 'emoticons', 'twemoji', 'simplestorage', 'network'], factory);
 	}
-} (function ($, emoticons_data, diacritics_data, profanity_data, emoticons, twemoji, simplestorage, network) {
+} (function ($, emoticons_data, normalize_data, profanity_data, emoticons, twemoji, simplestorage, network) {
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws2.emupedia.net/', 'https://ws2.emuos.net/'],
@@ -12,9 +12,6 @@
 
 		var $body = $('body');
 		var net = window['NETWORK_CONNECTION'];
-
-		simplestorage.deleteKey('fingerprint');
-		simplestorage.deleteKey('uuid');
 
 		var search = Object.keys(emoticons_data.mapping);
 		var replace = Object.values(emoticons_data.mapping);
@@ -117,10 +114,22 @@
 			return sa ? s : s[0];
 		};
 
+		//net.normalize = function(str) {};
+
+		//str.normalize('NFKD');
+
 		net.remove_diacritics = function(str) {
-			return str.replace(/[^\u0000-\u007E]/g, function (letter) {
-				return diacritics_data.mapping[letter] || letter;
+			return str.replace(/[^\u0020-\u007E]/g, function (letter) {
+				return normalize_data.mapping.diacritics[letter] || letter;
 			});
+		};
+
+		net.remove_numbers = function(str) {
+			return str.replace(/[0-9]/g, '');
+		};
+
+		net.remove_zalgo = function(str) {
+			return str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')
 		};
 
 		net.remove_profanity = function(str) {
@@ -161,8 +170,12 @@
 			return str.replace(/  +/g, ' ').trim();
 		};
 
-		net.normalize = function(str) {
-			var subject = $('<div />').text(str.replace(/[0-9]/g, '').replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html();
+		net.clean = function(str) {
+			if (window.SYSTEM_FEATURE_ES6_STRING) {
+
+			}
+
+			var subject = $('<div />').text(net.remove_numbers(net.remove_zalgo(str))).html();
 
 			if (net.client_room_name.text() === 'Emupedia') {
 				subject = net.remove_profanity(net.remove_diacritics(subject));
@@ -174,7 +187,7 @@
 			});
 		};
 
-		net.normalize_nicknames = function(str) {
+		net.clean_nicknames = function(str) {
 			var subject = $('<div />').text(str.replace(/[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F\u0483-\u0486\u05C7\u0610-\u061A\u0656-\u065F\u0670\u06D6-\u06ED\u0711\u0730-\u073F\u0743-\u074A\u0F18-\u0F19\u0F35\u0F37\u0F72-\u0F73\u0F7A-\u0F81\u0F84\u0e00-\u0eff\uFC5E-\uFC62]{2,}/gi, '')).html();
 
 			if (net.client_room_name.text() === 'Emupedia') {
@@ -421,7 +434,7 @@
 				// noinspection JSUnfilteredForInLoop
 				var color = (data.users[n].info.user !== data.me) ? net.colors[3] : net.colors[1];
 				// noinspection JSUnfilteredForInLoop,JSUnresolvedVariable
-				r_users += '<div id="room_user_' + data.users[n].info.user + '" style="color: ' + color + '; word-break: keep-all;" data-title="' + data.users[n].info.user + '">' + net.normalize_nicknames(data.users[n].info.nick) + '</div>';
+				r_users += '<div id="room_user_' + data.users[n].info.user + '" style="color: ' + color + '; word-break: keep-all;" data-title="' + data.users[n].info.user + '">' + net.clean_nicknames(data.users[n].info.nick) + '</div>';
 			}
 
 			// noinspection JSUnresolvedVariable
@@ -443,10 +456,10 @@
 
 			if (net.room_info) {
 				net.room_info.users[data.user] = data.data;
-				net.client_room_online.text(parseInt(net.client_room_online.text()) + 1);
+				net.client_room_online.text(Object.keys(window['NETWORK_CONNECTION'].room_info.users).length);
 			}
 			// noinspection JSUnresolvedVariable
-			net.client_room_users.append('<div id="room_user_' + data.data.info.user + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.normalize_nicknames(data.data.info.nick) + '</div>');
+			net.client_room_users.append('<div id="room_user_' + data.data.info.user + '" style="color: ' + net.colors[3] + '; word-break: keep-all;" data-title="' + data.data.info.user + '">' + net.clean_nicknames(data.data.info.nick) + '</div>');
 		});
 
 		net.socket.on('room.user_leave', function (data) {
@@ -454,7 +467,6 @@
 			// console.log(JSON.stringify(data, null, 2));
 
 			var $el = $('#room_user_' + data.user);
-			net.client_room_online.text(parseInt(net.client_room_online.text()) - 1);
 
 			setTimeout(function() {
 				$el.slideUp(200, function() {
@@ -497,13 +509,13 @@
 						// noinspection JSUnresolvedVariable
 						if (typeof net.room_info.users[nick].info.nick !== 'undefined') {
 							// noinspection JSUnresolvedVariable
-							nick = net.normalize_nicknames(net.room_info.users[nick].info.nick);
+							nick = net.clean_nicknames(net.room_info.users[nick].info.nick);
 						}
 					}
 				}
 			}
 
-			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + nick + '] </span>' + net.normalize(data.msg));
+			net.log('<span style="color: ' + net.colors[3] + '; overflow: hidden;">[' + nick + '] </span>' + net.clean(data.msg));
 		});
 
 		net.socket.on('room.user_info',function(data) {
@@ -519,7 +531,7 @@
 				// noinspection JSUnresolvedVariable
 				if (data.info.nick) {
 					// noinspection JSUnresolvedVariable
-					$('#room_user_' + data.user).attr('data-title', data.user).data('title', data.user).html(net.normalize_nicknames(data.info.nick));
+					$('#room_user_' + data.user).attr('data-title', data.user).data('title', data.user).html(net.clean_nicknames(data.info.nick));
 				}
 			}
 		});
@@ -528,7 +540,7 @@
 			// console.log('silent.msg');
 			// console.log(JSON.stringify(data, null, 2));
 
-			//net.log(net.normalize(data), 1, 10000);
+			//net.log(net.clean(data), 1, 10000);
 			if (window.top === window) {
 				console.log(new Date().toString() + ': ' + data);
 			}

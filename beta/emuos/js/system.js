@@ -335,7 +335,7 @@
 		return true;
 	})();
 	// noinspection JSUnresolvedVariable
-	window.SYSTEM_FEATURE_ES6_STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
+	window.SYSTEM_FEATURE_ES6_STRING			= !!(String.fromCodePoint && String.raw && String.prototype.codePointAt && String.prototype.normalize && String.prototype.repeat && String.prototype.startsWith && String.prototype.endsWith && (String.prototype.includes || String.prototype.contains));
 	// noinspection JSUnresolvedVariable
 	window.SYSTEM_FEATURE_ES6_COLLECTIONS		= !!(window.Map && window.Set && window.WeakMap && window.WeakSet);
 	window.SYSTEM_FEATURE_ES6_GENERATORS		= (function() {

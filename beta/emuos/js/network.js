@@ -143,6 +143,7 @@
 
 			client = {
 				socket: io.connect(server, {
+					autoConnect: true,
 					reconnection: true,
 					reconnectionAttempts: Infinity,
 					reconnectionDelay: 5000,
@@ -150,8 +151,9 @@
 					randomizationFactor: 0.5,
 					timeout: 120000,
 					transports: ['websocket'],
-					secure: true,
-					rejectUnauthorized: true
+					rememberUpgrade: true,
+					rejectUnauthorized: true,
+					secure: true
 				}),
 				config: config,
 				server: server,
