@@ -83,6 +83,18 @@
 	overflow-x: hidden;
 }
 
+#client_room_users ::-webkit-scrollbar {
+	width: 7px;
+}
+
+#client_room_users ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.38);
+}
+
+#client_room_users ::-webkit-scrollbar-track {
+	background: rgba(34, 33, 33, 0.95);
+}
+
 #client_room_users .emoji {
 	width: 14px;
 	vertical-align: sub;
@@ -131,6 +143,18 @@
 #client_output {
 	position: relative;
 	overflow-x: hidden;
+}
+
+#client_output ::-webkit-scrollbar {
+	width: 7px;
+}
+
+#client_output ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.38);
+}
+
+#client_output ::-webkit-scrollbar-track {
+	background: rgba(34, 33, 33, 0.95);
 }
 
 /*noinspection DuplicatedCode*/
