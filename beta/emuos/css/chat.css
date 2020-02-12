@@ -83,83 +83,6 @@
 	overflow-x: hidden;
 }
 
-#client_room_users ::-webkit-scrollbar {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-track {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:hover:active {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:horizontal:decrement:disabled {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:horizontal:increment:disabled {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:vertical:decrement:disabled {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:vertical:increment:disabled {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:horizontal:decrement {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:horizontal:increment {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:vertical:decrement {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-button:vertical:increment {
-	all: unset;
-}
-
-
-#client_room_users ::-webkit-scrollbar-corner {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-thumb {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-thumb:window-inactive {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar-track-piece:active {
-	all: unset;
-}
-
-#client_room_users ::-webkit-scrollbar {
-	width: 7px;
-}
-
-#client_room_users ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.38);
-}
-
-#client_room_users ::-webkit-scrollbar-track {
-	background: rgba(34, 33, 33, 0.95);
-}
-
 #client_room_users .emoji {
 	width: 14px;
 	vertical-align: sub;
@@ -208,82 +131,6 @@
 #client_output {
 	position: relative;
 	overflow-x: hidden;
-}
-
-#client_output ::-webkit-scrollbar {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-track {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:hover:active {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:horizontal:decrement:disabled {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:horizontal:increment:disabled {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:vertical:decrement:disabled {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:vertical:increment:disabled {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:horizontal:decrement {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:horizontal:increment {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:vertical:decrement {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-button:vertical:increment {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-corner {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-thumb {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-thumb:window-inactive {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar-track-piece:active {
-	all: unset;
-}
-
-#client_output ::-webkit-scrollbar {
-	width: 7px;
-}
-
-#client_output ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.38);
-}
-
-#client_output ::-webkit-scrollbar-track {
-	background: rgba(34, 33, 33, 0.95);
 }
 
 /*noinspection DuplicatedCode*/
@@ -386,4 +233,80 @@
 
 #client_console [data-title]:hover:after {
 	display: block;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-track {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:hover:active {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:horizontal:decrement:disabled {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:horizontal:increment:disabled {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:vertical:decrement:disabled {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:vertical:increment:disabled {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:horizontal:decrement {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:horizontal:increment {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:vertical:decrement {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-button:vertical:increment {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-corner {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-thumb {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-thumb:window-inactive {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-track-piece:active {
+	all: unset;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar {
+	width: 7px;
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.38);
+}
+
+.theme-win9x .client_decoration ::-webkit-scrollbar-track {
+	background: rgba(34, 33, 33, 0.95);
 }
