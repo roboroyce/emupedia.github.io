@@ -235,7 +235,7 @@
 	display: block;
 }
 
-.theme-win9x .client_decoration ::-webkit-scrollbar {
+/*.theme-win9x .client_decoration ::-webkit-scrollbar {
 	all: unset;
 }
 
@@ -309,4 +309,4 @@
 
 .theme-win9x .client_decoration ::-webkit-scrollbar-track {
 	background: rgba(34, 33, 33, 0.95);
-}
+}*/
