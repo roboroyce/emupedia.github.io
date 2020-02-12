@@ -1,8 +1,8 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'json!../data/emoticons.json', 'json!../data/normalize.json', 'json!../data/profanity.json', 'emoticons', 'twemoji', 'simplestorage', 'network'], factory);
+		define(['jquery', 'json!../data/emoticons.json', 'json!../data/normalize.json', 'json!../data/blacklist.json', 'emoticons', 'twemoji', 'simplestorage', 'network'], factory);
 	}
-} (function ($, emoticons_data, normalize_data, profanity_data, emoticons, twemoji, simplestorage, network) {
+} (function ($, emoticons_data, normalize_data, blacklist_data, emoticons, twemoji, simplestorage, network) {
 	$(function() {
 		window['NETWORK_CONNECTION'] = network.start({
 			servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
@@ -20,11 +20,11 @@
 		var replace_regex = {};
 
 		// noinspection DuplicatedCode
-		for (var profanity1 in profanity_data.mapping.en) {
+		for (var profanity1 in blacklist_data.mapping.en) {
 			// noinspection JSUnfilteredForInLoop
 			var regex1 = '';
 			// noinspection JSUnfilteredForInLoop
-			var profanity1sorted = profanity_data.mapping.en[profanity1].sort(function(a, b) {
+			var profanity1sorted = blacklist_data.mapping.en[profanity1].sort(function(a, b) {
 				return b.length - a.length
 			});
 			// noinspection JSUnfilteredForInLoop,DuplicatedCode
@@ -41,17 +41,17 @@
 		}
 
 		// noinspection DuplicatedCode
-		for (var profanity2 in profanity_data.replace.en) {
+		for (var profanity2 in blacklist_data.replace.en) {
 			// noinspection JSUnfilteredForInLoop
 			var regex2 = '';
 			// noinspection JSUnfilteredForInLoop,DuplicatedCode
-			for (var p2 in profanity_data.replace.en[profanity2]) {
+			for (var p2 in blacklist_data.replace.en[profanity2]) {
 				// noinspection JSUnfilteredForInLoop
-				regex2 += ' ' + profanity_data.replace.en[profanity2][p2] + '|';
+				regex2 += ' ' + blacklist_data.replace.en[profanity2][p2] + '|';
 				// noinspection JSUnfilteredForInLoop
-				regex2 += ' ' + profanity_data.replace.en[profanity2][p2] + ' |';
+				regex2 += ' ' + blacklist_data.replace.en[profanity2][p2] + ' |';
 				// noinspection JSUnfilteredForInLoop
-				regex2 += profanity_data.replace.en[profanity2][p2] + ' |';
+				regex2 += blacklist_data.replace.en[profanity2][p2] + ' |';
 			}
 			// noinspection JSUnfilteredForInLoop
 			replace_regex[profanity2] = new RegExp(regex2.slice(0, -1), 'gi');
@@ -135,9 +135,9 @@
 		net.remove_profanity = function(str) {
 			str = str.replace(/  +/g, ' ').trim();
 
-			for (var profanity1 in profanity_data.mapping.en) {
+			for (var profanity1 in blacklist_data.mapping.en) {
 				// noinspection JSUnfilteredForInLoop
-				var profanity1sorted = profanity_data.mapping.en[profanity1].sort(function(a, b) {
+				var profanity1sorted = blacklist_data.mapping.en[profanity1].sort(function(a, b) {
 					return b.length - a.length
 				});
 
@@ -146,11 +146,11 @@
 					if (str.toLowerCase().split('?').join('').split('!').join('') === profanity1sorted[p1].split('.').join(' ').split('\\$').join('$').trim()) {
 						str = profanity1;
 
-						for (var profanity2 in profanity_data.replace.en) {
+						for (var profanity2 in blacklist_data.replace.en) {
 							// noinspection JSUnfilteredForInLoop
-							for (var p2 in profanity_data.replace.en[profanity2]) {
+							for (var p2 in blacklist_data.replace.en[profanity2]) {
 								// noinspection JSUnfilteredForInLoop
-								if (str.toLowerCase() === profanity_data.replace.en[profanity2][p2]) {
+								if (str.toLowerCase() === blacklist_data.replace.en[profanity2][p2]) {
 									return str = '`' + profanity2 + '`';
 								}
 							}
@@ -234,12 +234,16 @@
 				']&nbsp;</span>'
 			].join('');
 
-			var msg_class = typeof hide !== 'undefined' ? 'net_msg_hide' : 'net_msg';
+			var msg_class = typeof hide !== 'undefined' ? (hide > 0 ? 'net_msg_hide' : 'net_msg_hide_last') : 'net_msg';
 
 			net.output_div.append('<div class="'+ msg_class +'" style="' + color + '">' + time_stamp + txt + '</div>');
 
 			setTimeout(function() {
 				$('.net_msg_hide').slideUp(200, function() {
+					$(this).remove();
+				});
+
+				$('.net_msg_hide_last:not(:last-child)').slideUp(200, function() {
 					$(this).remove();
 				});
 			}, hide ? hide : 0);
@@ -398,13 +402,13 @@
 
 			net.send_cmd('auth', {user: simplestorage.get('uid') ? simplestorage.get('uid') : '', room: 'Emupedia'});
 			net.chat_id = '<span style="color: #2c487e;">[' + socket_id + '] </span>';
-			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0, 5000);
+			net.log('[connected][' + server + '] [id][' + socket_id + ']', 0, 0);
 		});
 
 		net.socket.on('disconnect', function() {
 			// console.log('disconnect');
 			// console.log(JSON.stringify(data, null, 2));
-			net.log('[disconnected][' + net.server + ']', 0, 5000);
+			net.log('[disconnected][' + net.server + ']', 0, 0);
 		});
 
 		net.socket.on('auth.info', function (data) {
