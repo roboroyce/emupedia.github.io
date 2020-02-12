@@ -84,6 +84,10 @@
 }
 
 #client_room_users ::-webkit-scrollbar {
+	all: unset;
+}
+
+#client_room_users ::-webkit-scrollbar {
 	width: 7px;
 }
 
@@ -143,6 +147,10 @@
 #client_output {
 	position: relative;
 	overflow-x: hidden;
+}
+
+#client_output ::-webkit-scrollbar {
+	all: unset;
 }
 
 #client_output ::-webkit-scrollbar {
