@@ -2,22 +2,24 @@
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['jquery', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
-	} else if (typeof module === 'object' && module.exports) {
-		module.exports = function(root, jQuery) {
-			if (jQuery === undefined) {
-				if (typeof window !== 'undefined') {
-					// noinspection NpmUsedModulesInstalled
-					jQuery = require('jquery');
-				} else {
-					// noinspection NpmUsedModulesInstalled
-					jQuery = require('jquery')(root);
-				}
+	} else { // noinspection DuplicatedCode
+		if (typeof module === 'object' && module.exports) {
+				module.exports = function(root, jQuery) {
+					if (jQuery === undefined) {
+						if (typeof window !== 'undefined') {
+							// noinspection NpmUsedModulesInstalled
+							jQuery = require('jquery');
+						} else {
+							// noinspection NpmUsedModulesInstalled
+							jQuery = require('jquery')(root);
+						}
+					}
+					factory(jQuery);
+					return jQuery;
+				};
+			} else {
+				factory(jQuery);
 			}
-			factory(jQuery);
-			return jQuery;
-		};
-	} else {
-		factory(jQuery);
 	}
 } (function ($, simplestorage, moment, ga, Octokat, eSheep, clippy) {
 	var EmuOS = function (options) {
@@ -357,27 +359,30 @@
 			case 'theme-basic':
 				break;
 			case 'theme-win3x':
-				$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
-					axis: 'y',
-					scrollbarPosition: 'inside',
-					scrollInertia: 0,
-					alwaysShowScrollbar: 0,
-					keyboard: {
-						enable: true
-					},
-					scrollButtons: {
-						enable: true
-					},
-					mouseWheel: {
-						enable: true
-					},
-					advanced: {
-						updateOnContentResize: true,
-						updateOnImageLoad: true,
-						updateOnSelectorChange: true
-					},
-					live: true
-				});
+				// noinspection JSJQueryEfficiency
+				if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
+					$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
+						axis: 'y',
+						scrollbarPosition: 'inside',
+						scrollInertia: 0,
+						alwaysShowScrollbar: 0,
+						keyboard: {
+							enable: true
+						},
+						scrollButtons: {
+							enable: true
+						},
+						mouseWheel: {
+							enable: true
+						},
+						advanced: {
+							updateOnContentResize: true,
+							updateOnImageLoad: true,
+							updateOnSelectorChange: true
+						},
+						live: true
+					});
+				}
 				break;
 			case 'theme-win9x':
 				self.options.start = [{
@@ -602,7 +607,7 @@
 							}
 							break;
 						case 'Webamp Classic':
-							// noinspection JSUnresolvedFunction
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 							var webamp_content = self.options.apps.webamp.render();
 
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
@@ -612,7 +617,7 @@
 								content: webamp_content
 							});
 
-							// noinspection JSUnresolvedFunction
+							// noinspection JSUnresolvedFunction,JSUnresolvedVariable
 							self.options.apps.webamp.events('.emuos-taskbar-windows-containment');
 							break;
 						default:
@@ -872,41 +877,49 @@
 					case 'basic':
 						self.$html.removeClass('theme-win3x theme-win9x').addClass('theme-basic');
 						// noinspection JSJQueryEfficiency
-						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
+							// noinspection JSJQueryEfficiency
+							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win3x':
 						self.$html.removeClass('theme-basic theme-win9x').addClass('theme-win3x');
 						// noinspection JSJQueryEfficiency
-						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
-						// noinspection JSJQueryEfficiency
-						$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
-							axis: 'y',
-							scrollbarPosition: 'inside',
-							scrollInertia: 0,
-							alwaysShowScrollbar: 0,
-							keyboard: {
-								enable: true
-							},
-							scrollButtons: {
-								enable: true
-							},
-							mouseWheel: {
-								enable: true
-							},
-							advanced: {
-								updateOnContentResize: true,
-								updateOnImageLoad: true,
-								updateOnSelectorChange: true
-							},
-							live: true
-						});
+						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
+							// noinspection JSJQueryEfficiency
+							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+							// noinspection JSJQueryEfficiency
+							$('.emuos-window .window.emuos-window-content').mCustomScrollbar({
+								axis: 'y',
+								scrollbarPosition: 'inside',
+								scrollInertia: 0,
+								alwaysShowScrollbar: 0,
+								keyboard: {
+									enable: true
+								},
+								scrollButtons: {
+									enable: true
+								},
+								mouseWheel: {
+									enable: true
+								},
+								advanced: {
+									updateOnContentResize: true,
+									updateOnImageLoad: true,
+									updateOnSelectorChange: true
+								},
+								live: true
+							});
+						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 0).taskbar('instance')._refresh();
 						break;
 					case 'win9x':
 						self.$html.removeClass('theme-basic theme-win3x').addClass('theme-win9x');
 						// noinspection JSJQueryEfficiency
-						$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						if (typeof $('.emuos-window .window.emuos-window-content').mCustomScrollbar === 'function') {
+							$('.emuos-window .window.emuos-window-content').mCustomScrollbar('destroy');
+						}
 						self.$taskbar.taskbar('option', 'resizableHandleOffset', 1).taskbar('instance')._refresh();
 						break;
 				}

@@ -214,6 +214,66 @@
 	all: unset;
 }
 
+#client_output ::-webkit-scrollbar-track {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:hover:active {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:horizontal:decrement:disabled {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:horizontal:increment:disabled {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:vertical:decrement:disabled {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:vertical:increment:disabled {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:horizontal:decrement {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:horizontal:increment {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:vertical:decrement {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-button:vertical:increment {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-corner {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-thumb {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-thumb:window-inactive {
+	all: unset;
+}
+
+#client_output ::-webkit-scrollbar-track-piece:active {
+	all: unset;
+}
+
 #client_output ::-webkit-scrollbar {
 	width: 7px;
 }
