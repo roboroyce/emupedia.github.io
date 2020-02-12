@@ -1,22 +1,22 @@
-.theme-win3x:not(.client_decoration) ::selection {
+.theme-win3x div:not(.client_decoration) ::selection {
 	background: #000080;
 	color: #fff;
 }
 
-.theme-win3x:not(.client_decoration) ::-moz-selection {
+.theme-win3x div:not(.client_decoration) ::-moz-selection {
 	background: #000080;
 	color: #fff;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar,
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-thumb,
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar,
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-thumb,
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button {
 	width: 16px;
 	height: 16px;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-thumb,
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-thumb,
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button {
 	background: #c0c0c0;
 	border-top: 1px solid #c0c0c0;
 	border-left: 1px solid #c0c0c0;
@@ -25,61 +25,61 @@
 	box-shadow: 1px 1px 0 #fff inset, -1px -1px 0 #707070 inset;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:hover:active {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:hover:active {
 	border: 1px solid #7b7b7b;
 	box-shadow: none;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-corner {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-corner {
 	background: #c0c0c0;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button {
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
-.theme-win3x:not(.client_decoration)::-webkit-scrollbar-button {
+.theme-win3x div:not(.client_decoration)::-webkit-scrollbar-button {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAYCAYAAAC8/X7cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTM0A1t6AAAAxUlEQVRYR+3T0QrDIBBEUT/dP2/ZMAODyZrZQINQDyy05irmIW37V733D35Oud2r4lIxAUsptvibY3g1SFJOQ3pu5QVisJTTmENITrTFUkrbmNm5NO7Bck5jwqMTbTl4lNJ2djaNfcCjnBPrweMgSbGbnU/aBizfc+LjxASSVOUFCEvrcC+15OW3bWvuh7nkBxyXqryA1TK8mjtOQ5VzQ6nX2N30tHX6UN5TibV9ssdR7Q9OrAePc8ftQqV9VeUFtu03WvsCS61PICoBlBoAAAAASUVORK5CYII=);
 }
 
-.theme-win3x:not(.client_decoration)::-webkit-scrollbar-button:horizontal:decrement:disabled {
+.theme-win3x div:not(.client_decoration)::-webkit-scrollbar-button:horizontal:decrement:disabled {
 	background-position: calc(-24px + 1px) 1px; /* left */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment:disabled {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment:disabled {
 	background-position: calc(-36px + 1px) 1px; /* right */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement:disabled {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement:disabled {
 	background-position: calc(-12px + 1px) 1px; /* up */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment:disabled {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment:disabled {
 	background-position: calc(-0px + 1px) 1px; /* down */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:decrement {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:decrement {
 	background-position: calc(-24px + 1px) calc(-12px + 1px); /* left */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:horizontal:increment {
 	background-position: calc(-36px + 1px) calc(-12px + 1px); /* right */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:decrement {
 	background-position: calc(-12px + 1px) calc(-12px + 1px); /* up */
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-button:vertical:increment {
 	background-position: calc(-0px + 1px) calc(-12px + 1px); /* down */
 }
 
-.theme-win3x:not(.client_decoration) .theme-win3x ::-webkit-scrollbar {
+.theme-win3x div:not(.client_decoration) .theme-win3x ::-webkit-scrollbar {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAABlBMVEW9vb3///8EwsWUAAAADElEQVQI12NoYHAAAAHEAMFJRSpJAAAAAElFTkSuQmCC) repeat;
 }
 
-.theme-win3x:not(.client_decoration) ::-webkit-scrollbar-track-piece:active {
+.theme-win3x div:not(.client_decoration) ::-webkit-scrollbar-track-piece:active {
 	background: #000;
 }
 
