@@ -378,6 +378,7 @@
 					},
 					live: true
 				});
+				break;
 			case 'theme-win9x':
 				self.options.start = [{
 					name: 'Windows Update'
