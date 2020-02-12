@@ -234,3 +234,15 @@
 #client_console [data-title]:hover:after {
 	display: block;
 }
+
+.client_decoration ::-webkit-scrollbar {
+	width: 7px;
+}
+
+.client_decoration ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.38);
+}
+
+.client_decoration ::-webkit-scrollbar-track {
+	background: rgba(34, 33, 33, 0.95);
+}
