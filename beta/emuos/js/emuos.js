@@ -45,17 +45,16 @@
 				link: 'boot.html',
 				width: 824,
 				height: 624
-			} , {
+			/*} , {
 				name: 'ÐeKaÐeNcE',
 				title: 'Under Development',
 				icon: 'images/icons/dekadence.ico',
 				link: 'https://launcher.dekadence.ro',
 				width: 900,
-				height: 480
+				height: 480*/
 			} , {
 				name: 'Windows 93',
 				icon: 'images/icons/windows93.ico',
-				// link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ2MS53aW5kb3dzOTMubmV0JTJG',
 				link: 'https://v1.windows93.net',
 				width: 960,
 				height: 734
@@ -124,12 +123,12 @@
 				width: 900,
 				height: 600
 			} , {
-				name: 'slither.io<br/>BETA',
+				name: 'Raptor<br />(Prototype)',
 				title: 'Under Development',
-				icon: 'images/icons/slither.io.png',
-				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZzbGl0aGVyLmlvJTJG',
-				width: 900,
-				height: 600
+				icon: '/emupedia-game-raptor/favicon.ico',
+				link: '/emupedia-game-raptor/index.html',
+				width: 640,
+				height: 400
 			} , {
 				name: 'Wings 2.0<br />(Prototype)',
 				title: 'Under Development',
@@ -328,13 +327,13 @@
 				link: '/emupedia-app-svg-editor/index.html',
 				width: 900,
 				height: 480
-			} , {
+			/*} , {
 				name: 'YouTube<br/>BETA',
 				title: 'Under Development',
 				icon: 'images/icons/youtube.ico',
 				link: 'https://explorer.emupedia.net/aHR0cHMlM0ElMkYlMkZ5b3V0dWJlLmNvbSUyRg==',
 				width: 1020,
-				height: 630
+				height: 630*/
 			} , {
 				name: 'EmuChat',
 				icon: '/emupedia-app-emuchat/favicon.ico',
