@@ -647,6 +647,10 @@
 		});
 
 		if (typeof moment === 'function') {
+			if (moment().month() === 1 && moment().date() === 14) {
+				self.$html.addClass('emuos-valentines');
+			}
+
 			if (moment().month() === 11) {
 				var xmas = '';
 				var newyear = '';
