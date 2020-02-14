@@ -111,8 +111,8 @@
 			} , {
 				name: 'Geometry Dash',
 				icon: 'images/icons/geometry-dash.png',
-				link: 'https://scratch.mit.edu/projects/105500895/embed',
-				width: 900,
+				link: 'https://forkphorus.github.io/keep-in-view/app.html?id=356566581',
+				width: 800,
 				height: 600
 			} , {
 				name: 'agar.io<br/>BETA',
