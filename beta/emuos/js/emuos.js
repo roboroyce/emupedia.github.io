@@ -110,16 +110,15 @@
 				height: 600
 			} , {
 				name: 'Geometry Dash',
-				icon: 'images/icons/geometry-dash.png',
-				link: 'https://forkphorus.github.io/keep-in-view/app.html?id=356566581',
-				width: 800,
-				height: 600
+				icon: '/emupedia-game-geometry-dash/favicon.png',
+				link: '/emupedia-game-geometry-dash/index.html',
+				width: 480,
+				height: 392
 			} , {
 				name: 'agar.io<br/>BETA',
 				title: 'Under Development',
 				icon: 'images/icons/agar.io.png',
 				link: 'https://agasio.herokuapp.com/',
-				// link: 'https://explorer.emupedia.net/aHR0cHM6Ly9hZ2FyLmlv',
 				width: 900,
 				height: 600
 			} , {
