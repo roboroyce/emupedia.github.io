@@ -174,10 +174,6 @@
 		};
 
 		net.clean = function(str) {
-			if (window['SYSTEM_FEATURE_ES6_STRING']) {
-				str = str.normalize('NFKD');
-			}
-
 			var subject = $('<div />').text(net.remove_zalgo(net.normalize(str))).html();
 
 			if (net.client_room_name.text() === 'Emupedia') {
