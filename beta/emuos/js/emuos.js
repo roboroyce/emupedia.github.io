@@ -343,7 +343,7 @@
 			} , {
 				name: 'Discord',
 				icon: 'images/icons/discord.ico',
-				link: 'https://disweb.dashflo.net/channels/510149138491506688/604419869345185884/',
+				link: 'https://e.widgetbot.io/channels/510149138491506688/604419869345185884/',
 				width: 900,
 				height: 480,
 				singleinstance: true
