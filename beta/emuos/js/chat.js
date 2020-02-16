@@ -497,6 +497,7 @@
 							case 'WG':
 							case 'WS':
 							case 'XX':
+								simplestorage.deleteKey('country');
 								break;
 							default:
 								simplestorage.set('country', trace['loc']);
