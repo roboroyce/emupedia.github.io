@@ -294,6 +294,7 @@
 			});
 
 			client.socket.on('room.info', function(data) {
+				client.room_info = data;
 				client.preload.room_info = data;
 			});
 
