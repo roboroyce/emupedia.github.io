@@ -847,6 +847,14 @@
 			}
 		});
 
+		if (self.options.network.start === 'function') {
+			window['NETWORK_CONNECTION'] = self.options.network.start({
+				servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
+				server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
+				mode: 0
+			});
+		}
+
 		self.widget({
 			title: 'Chat',
 			hidden: true,

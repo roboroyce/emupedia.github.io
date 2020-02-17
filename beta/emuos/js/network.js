@@ -294,11 +294,10 @@
 			});
 
 			client.socket.on('room.info', function(data) {
-				client.room_info = data;
 				client.preload.room_info = data;
 			});
 
-			client.socket.on('auth.info', function (data) {
+			client.socket.on('auth.info', function(data) {
 				client.preload.auth_info = data;
 			});
 
@@ -311,19 +310,13 @@
 			});
 		}
 
-		client.register_iframe = function (iframe_id) {
+		client.register_iframe = function(iframe_id) {
 			// noinspection JSPotentiallyInvalidConstructorUsage
 			return new iframe_network(client, iframe_id);
 		};
 
 		return client;
 	};
-
-	window['NETWORK_CONNECTION'] = client_loader.init_client({
-		servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
-		server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
-		mode: 0
-	});
 
 	return {
 		start: client_loader.init_client
