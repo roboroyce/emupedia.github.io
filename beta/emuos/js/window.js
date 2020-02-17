@@ -2889,10 +2889,9 @@
 		_getDimensions: function(options) {
 			var $e = this;
 			var position = $.extend({}, options && options.position ? $e.position() : $e.offset(), {
-										width: options && options.outer ? $e.outerWidth() : $e.width(),
-										height: options && options.outer ? $e.outerHeight() : $e.height()
-									}
-			);
+				width: options && options.outer ? $e.outerWidth() : $e.width(),
+				height: options && options.outer ? $e.outerHeight() : $e.height()
+			});
 
 			position.bottom = position.height + position.top;
 			position.right = position.width + position.left;

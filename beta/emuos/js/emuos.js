@@ -434,7 +434,7 @@
 			start += '</ul>';
 		}
 
-		self.$body.append('<div class="desktop"></div><div class="taskbar">' + start + '</div>');
+		self.$body.append('<div class="desktop" tabindex="0"></div><div class="taskbar">' + start + '</div>');
 
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
@@ -633,9 +633,14 @@
 			draggable: true,
 			resizable: true,
 			resizableHandleOffset: 1,
+			// draggableBetweenEdges: true,
+			// buttonsTooltips: true,
+			// propagateWindowBlur: true,
+			// startButtons: true,
 			minimizeAll: true,
 			languageSelect: false,
 			toggleFullscreen: true,
+			networkMonitor: true,
 			clock: true
 		});
 
@@ -1006,7 +1011,7 @@
 							widget.slideToggle(300);
 						};
 
-						self.$body.keydown(function (e) {
+						self.$body.on('keydown', function (e) {
 							// noinspection JSRedundantSwitchStatement
 							switch (e.keyCode) {
 								case 192:
@@ -1146,6 +1151,7 @@
 		// noinspection JSValidateTypes
 		win.window({
 			embeddedContent: true,
+			// group: title,
 			width: width,
 			height: height,
 			position: {
