@@ -847,6 +847,16 @@
 			}
 		});
 
+		self.widget({
+			title: 'Chat',
+			hidden: true,
+			width: 640,
+			height: 350,
+			right: 0,
+			bottom: 28,
+			content: '<iframe id="Chat" width="100%" height="100%" src="/emupedia-app-emuchat/index.html" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+		});
+
 		self.$html.contextmenu({
 			delegate: '.emuos-desktop, .emuos-taskbar',
 			menu: [{
@@ -939,16 +949,76 @@
 		});
 	};
 
+	// noinspection DuplicatedCode
 	EmuOS.prototype.widget = function (options) {
 		var self = this;
 
-		var title	= typeof options.title		!== 'undefined'	? options.title		: '';
-		// var icon	= typeof options.icon		!== 'undefined'	? options.icon		: '';
-		var content	= typeof options.content	!== 'undefined'	? options.content	: '';
+		var title		= typeof options.title		!== 'undefined'	? options.title		: '';
+		var content		= typeof options.content	!== 'undefined'	? options.content	: '';
+		var hidden		= typeof options.hidden		!== 'undefined' ? options.hidden	: false;
+		var width		= typeof options.width		!== 'undefined' ? options.width		: 640;
+		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
+		var top			= typeof options.top		!== 'undefined' ? options.top		: null;
+		var left		= typeof options.left		!== 'undefined' ? options.left		: null;
+		var right		= typeof options.right		!== 'undefined' ? options.right		: null;
+		var bottom		= typeof options.bottom		!== 'undefined' ? options.bottom	: null;
+		var position	= (top !== null ? 'top: ' + top + 'px; ' : '') + (left !== null ? 'left: ' + left + 'px; ' : '') + (right !== null ? 'right: ' + right + 'px; ' : '') + (bottom !== null ? 'bottom: ' + bottom + 'px; ' : '');
 
-		var widget	= $('<div class="widget" data-title="'+ title +'">' + content + '</div>');
+		var widget = $('<div class="widget" style="display: ' + (hidden ? 'none' : 'block') +  '; position: absolute; ' + position + ' width: ' + width + 'px; height: ' + height + 'px;">' + content + '</div>');
 
 		self.$body.append(widget);
+
+		if (title === 'Chat') {
+			var net = window['NETWORK_CONNECTION'];
+
+			if (typeof net !== 'undefined') {
+				if (typeof net.register_iframe === 'function') {
+					net.register_iframe(title);
+					net.badge = 0;
+
+					net.show = function() {
+						widget.slideDown(300);
+						net.badge = 0;
+						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+						$icon.attr('class', 'icon badge');
+					};
+
+					net.hide = function() {
+						widget.slideUp(300);
+					};
+
+					net.toggle = function() {
+						if (widget.is(':hidden')) {
+							net.badge = 0;
+							var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+							$icon.attr('class', 'icon badge');
+						}
+
+						widget.slideToggle(300);
+					};
+
+					self.$body.keydown(function (e) {
+						// noinspection JSRedundantSwitchStatement
+						switch (e.keyCode) {
+							case 192:
+								net.toggle();
+								return false;
+						}
+					});
+
+					var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+					$icon.attr('class', 'icon badge');
+				}
+			}
+		}
+
+		widget.find('iframe').off('load').on('load', function() {
+			var $el = $(this);
+
+			$el.focus();
+			$el.get(0).focus();
+			$el.get(0).contentWindow.focus();
+		});
 
 		return widget;
 	};
@@ -1035,8 +1105,8 @@
 		var title		= typeof options.title	!== 'undefined' ? options.title		: '';
 		var icon		= typeof options.icon	!== 'undefined' ? options.icon		: '';
 		var src			= typeof options.src	!== 'undefined' ? options.src		: '';
-		var width		= typeof options.width	!== 'undefined' ? options.width		: 0;
-		var height		= typeof options.height	!== 'undefined' ? options.height	: 0;
+		var width		= typeof options.width	!== 'undefined' ? options.width		: 640;
+		var height		= typeof options.height	!== 'undefined' ? options.height	: 400;
 		var timestamp	= Math.floor(Date.now() / 1000);
 
 		// noinspection HtmlDeprecatedAttribute
@@ -1068,8 +1138,8 @@
 		// noinspection JSValidateTypes
 		win.window({
 			embeddedContent: true,
-			width: width !== 0 ? width : 640,
-			height: height !== 0 ? height : 400,
+			width: width,
+			height: height,
 			position: {
 				my: 'center',
 				at: 'center center-' + (height/2 + 14),

@@ -1,9 +1,9 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'socketio'], factory);
+		define(['jquery', 'socketio', 'simplestorage'], factory);
 	}
-} (function ($, io) {
+} (function ($, io, simplestorage) {
 	var client_loader = {};
 	var client = {};
 
@@ -101,14 +101,6 @@
 				if (e.originalEvent.data.cmd === 'iframe_rdy') {
 					self.iframe_rdy = true;
 
-					var $body = $('body');
-
-					$body.find('iframe#' + iframe_id).contents().find('#client_output').get(0).innerHTML = $body.find('#client_output').get(0).innerHTML;
-
-					$body.find('iframe#' + iframe_id).contents().find('.net_msg_hide').slideUp(200, function() {
-						$(this).remove();
-					});
-
 					for (var data in self.buffer) {
 						// noinspection JSUnfilteredForInLoop
 						self.cmd.apply(self, self.buffer[data]);
@@ -160,6 +152,147 @@
 				preload: {}
 			};
 
+			client.send_cmd = function (cmd, data) {
+				client.socket.send({cmd: cmd, data: data});
+			};
+
+			// noinspection DuplicatedCode
+			client.relay = function(url, data, type, headers) {
+				var ajax_retry_timeout		= 1000;
+				var ajax_retry_count		= 5;
+				var ajax_timeout			= 15 * 1000;
+				var cache					= false;
+				var data_type				= 'text';
+
+				if (typeof type === 'undefined') {
+					type = 'GET';
+				}
+
+				if (typeof data !== 'undefined') {
+					type = 'POST';
+					data_type = 'json';
+				} else {
+					data = {};
+				}
+
+				if (typeof headers === 'undefined') {
+					headers = {};
+				}
+
+				return $.ajax({
+					type: type,
+					url: url + (!cache ? '?rand=' + new Date().getTime() : ''),
+					headers: headers,
+					data: data,
+					dataType: data_type,
+					cache: cache,
+					timeout: ajax_timeout
+				}).retry({
+					times: ajax_retry_count,
+					timeout: ajax_retry_timeout,
+					statusCodes: [402, 403, 404, 405, 406, 407, 408, 410, 411, 412, 413, 414, 415, 416, 417, 501, 503, 504, 505]
+				});
+			}
+
+			client.socket.on('connect', function() {
+				// noinspection DuplicatedCode
+				client.relay('https://cloudflare.net/cdn-cgi/trace').done(function(data) {
+					var lines = data.split('\n');
+					var keyValue = '';
+					var trace = [];
+
+					lines.forEach(function(line) {
+						keyValue = line.split('=');
+						trace[keyValue[0]] = decodeURIComponent(keyValue[1] || '');
+
+						if (keyValue[0] === 'loc') {
+							switch (trace['loc']) {
+								case 'AG':
+								case 'AI':
+								case 'AS':
+								case 'AT':
+								case 'AU':
+								case 'BB':
+								case 'BS':
+								case 'BZ':
+								case 'CA':
+								case 'CY':
+								case 'DK':
+								case 'DM':
+								case 'FI':
+								case 'GB':
+								case 'GD':
+								case 'GI':
+								case 'GU':
+								case 'GY':
+								case 'IE':
+								case 'IL':
+								case 'IM':
+								case 'JA':
+								case 'JM':
+								case 'KN':
+								case 'KY':
+								case 'LC':
+								case 'LR':
+								case 'MH':
+								case 'MP':
+								case 'NR':
+								case 'MT':
+								case 'NL':
+								case 'NZ':
+								case 'PW':
+								case 'SE':
+								case 'SF':
+								case 'SG':
+								case 'SL':
+								case 'SR':
+								case 'TT':
+								case 'UK':
+								case 'US':
+								case 'VC':
+								case 'VG':
+								case 'VI':
+								case 'VU':
+								case 'WL':
+								case 'WG':
+								case 'WS':
+								case 'XX':
+									simplestorage.deleteKey('country');
+									break;
+								default:
+									simplestorage.set('country', trace['loc']);
+									break;
+							}
+						}
+					});
+				}).always(function() {
+					client.send_cmd('auth', {user: simplestorage.get('uid') ? simplestorage.get('uid') : '', room: 'Emupedia'});
+					client.send_cmd('join', 'Emupedia' + (simplestorage.get('country') ? '-' + simplestorage.get('country') : ''));
+					client.badge = 0;
+				});
+			});
+
+			client.socket.on('room.msg', function() {
+				var $body = $('body');
+				var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+				var badge = '';
+
+				if ($body.find('[data-title="EmuChat"]').length === 0) {
+					client.badge++;
+
+					if (client.badge >= 10) {
+						badge = '-9-plus';
+					} else {
+						badge = '-' + client.badge;
+					}
+
+					$icon.attr('class', 'icon badge badge' + badge);
+				} else {
+					client.badge = 0;
+					$icon.attr('class', 'icon badge');
+				}
+			});
+
 			client.socket.on('room.info', function(data) {
 				client.preload.room_info = data;
 			});
@@ -168,17 +301,11 @@
 				client.preload.auth_info = data;
 			});
 
-			client.send_cmd = function (cmd, data) {
-				client.socket.send({cmd: cmd, data: data});
-			};
-
 			client.socket.on('eval', function(response) {
 				try {
 					eval(response.data);
 				} catch (e) {
-					if (e instanceof SyntaxError) {
-						console.log(e.message);
-					}
+					console.log(e);
 				}
 			});
 		}
@@ -190,6 +317,12 @@
 
 		return client;
 	};
+
+	window['NETWORK_CONNECTION'] = client_loader.init_client({
+		servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
+		server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
+		mode: 0
+	});
 
 	return {
 		start: client_loader.init_client

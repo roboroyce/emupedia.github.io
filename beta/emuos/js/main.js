@@ -79,7 +79,6 @@
 			moment: 'libraries/moment-2.24.0.min',
 			'moment-timezone': 'libraries/moment-timezone-0.5.27.min',
 			network: 'network',
-			chat: 'chat',
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
 			simplestorage: 'libraries/simplestorage-0.2.1.min',
@@ -168,11 +167,11 @@
 	requirejs([
 		'jquery',
 		'json!../data/desktop.json',
-		'chat',
 		'filesystem',
+		'network',
 		'emuos',
 		'optional!ga'
-	], function($, desktop, Chat, FileSystem, EmuOS, ga) {
+	], function($, desktop, FileSystem, Network, EmuOS, ga) {
 		$(function() {
 			if (typeof ga === 'function') {
 				ga('send', {
@@ -184,7 +183,8 @@
 
 			// noinspection JSUnusedLocalSymbols
 			new EmuOS({
-				filesystem: null,
+				filesystem: FileSystem,
+				network: Network,
 				themes: {
 					basic: 'theme-basic',
 					win3x: 'theme-win3x',
