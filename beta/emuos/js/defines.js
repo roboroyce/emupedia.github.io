@@ -3,6 +3,7 @@
 if (typeof atob === 'undefined') {
 	// noinspection DuplicatedCode
 	atob = function(input) {
+		var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 		var str = String(input).replace(/[=]+$/, '');
 
 		if (str.length % 4 === 1) {
@@ -20,6 +21,7 @@ if (typeof atob === 'undefined') {
 if (typeof btoa === 'undefined') {
 	// noinspection DuplicatedCode
 	btoa = function(input) {
+		var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 		var str = String(input);
 		// noinspection JSAssignmentUsedAsCondition,CommaExpressionJS
 		for (var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
