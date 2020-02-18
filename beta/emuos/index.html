@@ -85,16 +85,92 @@
 				height: 100%;
 				margin: 0;
 				padding: 0;
-				background-color: #333;
-				background-image: url(images/boot/winme.gif);
+				background-color: #7b9bbc;
+				background-image: url(images/boot/emuos-boot.png);
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: contain;
 				overflow: hidden;
 			}
 
+			body::after {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				display: block;
+				content: '';
+				width: 100%;
+				height: 30px;
+				background-image: linear-gradient(270deg, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8, #4d7fb8, #5c89b9, #6c92bb, #7b9bbc, #8ba4be, #9aadbf, #aeb8c1, #9aadbf, #8ba4be, #7b9bbc, #6c92bb, #5c89b9, #4d7fb8);
+				background-repeat: no-repeat;
+				background-position: 0 50%;
+				background-size: 200% 100%;
+
+				-webkit-animation: boot 5s ease infinite;
+				-moz-animation: boot 5s ease infinite;
+				-o-animation: boot 5s ease infinite;
+				animation: boot 5s ease infinite;
+			}
+
 			.emuos body {
 				background-image: none;
+			}
+
+			.emuos body::after {
+				background-image: none;
+
+				-webkit-animation: none;
+				-moz-animation: none;
+				-o-animation: none;
+				animation: none;
+			}
+
+			@-webkit-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-moz-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-o-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
 			}
 		</style>
 
