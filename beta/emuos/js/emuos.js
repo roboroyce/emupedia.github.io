@@ -867,7 +867,7 @@
 			height: 350,
 			right: 0,
 			bottom: 28,
-			content: '<iframe id="Chat" width="100%" height="100%" src="/emupedia-app-emuchat/index.html" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+			content: '<iframe id="Chat" width="100%" height="100%" src="/emupedia-app-emuchat/index.html" frameborder="0" allowFullscreen="true" allowTransparency="true" sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
 		});
 
 		self.$html.contextmenu({
@@ -1025,12 +1025,6 @@
 					}
 				}
 			}
-
-			var $el = $(this);
-
-			$el.focus();
-			$el.get(0).focus();
-			$el.get(0).contentWindow.focus();
 		});
 
 		return widget;
