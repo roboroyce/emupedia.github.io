@@ -277,7 +277,7 @@
 				var $icon = $body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
 				var badge = '';
 
-				if ($body.find('[data-title="EmuChat"]').length === 0) {
+				if ($body.find('iframe[id="Chat"]').is(':hidden') && $body.find('[data-title="EmuChat"]').length === 0) {
 					client.badge++;
 
 					if (client.badge >= 10) {
