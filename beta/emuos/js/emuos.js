@@ -167,6 +167,12 @@
 				name: 'eSheep',
 				icon: 'images/icons/esheep.png'
 			} , {
+				name: 'SkiFree',
+				icon: '/emupedia-game-skifree/favicon.ico',
+				link: '/emupedia-game-skifree/index.html',
+				width: 640,
+				height: 480
+			} , {
 				name: 'ASCIICKER<br />(Demo)',
 				title: 'Under Development',
 				icon: '/emupedia-demo-asciicker/favicon.ico',
