@@ -128,9 +128,9 @@
 	color: #000;
 }
 
-/*noinspection CssReplaceWithShorthandSafely*/
+/*noinspection CssReplaceWithShorthandSafely,CssUnknownTarget*/
 .theme-win9x .emuos-taskbar .emuos-taskbar-window-button.ui-button.ui-state-active .ui-button-text {
-	background-image: url(../../../images/themes/win9x/taskbar/bg.png);
+	background-image: url(/emupedia-resources/images/transparent.png);
 }
 
 /*noinspection CssReplaceWithShorthandSafely*/
@@ -157,10 +157,10 @@
 	outline-offset: -3px;
 }
 
-
+/*noinspection CssUnknownTarget*/
 .theme-win9x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
 	left: 3px;
-	background-image: url(../../../images/themes/win9x/icons/start.png);
+	background-image: url(/emupedia-resources/icons/win95/start.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }

@@ -80,9 +80,9 @@
 	-ms-filter: none;
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,CssUnknownTarget*/
 .theme-win3x .mCustomScrollBox .mCSB_buttonUp {
-	background-image: url(../../../images/themes/win3x/icons/up.png);
+	background-image: url(./emupedia-resources/icons/win31/up.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/
@@ -92,9 +92,9 @@
 	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,CssUnknownTarget*/
 .theme-win3x .mCustomScrollBox .mCSB_buttonDown {
-	background-image: url(../../../images/themes/win3x/icons/down.png);
+	background-image: url(/emupedia-resources/icons/win31/down.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/

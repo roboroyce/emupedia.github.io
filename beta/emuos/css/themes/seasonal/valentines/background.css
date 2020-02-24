@@ -1,6 +1,7 @@
+/*noinspection CssUnknownTarget*/
 .emuos-valentines .emuos-desktop {
 	background-color: #f0f1e9;
-	background-image: url(../../../../images/themes/seasonal/wallpapers/valentines.jpg);
+	background-image: url(/emupedia-resources/wallpapers/seasonal/valentines.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;

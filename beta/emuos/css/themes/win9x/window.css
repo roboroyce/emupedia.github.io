@@ -65,29 +65,30 @@
 	height: 14px;
 }
 
+/*noinspection CssUnknownTarget*/
 .theme-win9x .emuos-window.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
-	background-image: url(../../../images/themes/win9x/icons/close.gif) !important;
+	background-image: url(/emupedia-resources/icons/win95/close.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
-/*noinspection CssOverwrittenProperties*/
+/*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win9x .emuos-window.ui-dialog .emuos-window-button-maximize-restore .ui-icon-arrow-4-diag {
-	background-image: url(../../../images/themes/win9x/icons/maximize.gif) !important;
+	background-image: url(/emupedia-resources/icons/win95/maximize.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
-/*noinspection CssOverwrittenProperties*/
+/*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win9x .emuos-window.ui-dialog .emuos-window-button-maximize-restore .ui-icon-newwin {
-	background-image: url(../../../images/themes/win9x/icons/restore.gif) !important;
+	background-image: url(/emupedia-resources/icons/win95/restore.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
-/*noinspection CssOverwrittenProperties*/
+/*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win9x .emuos-window.ui-dialog .emuos-window-button-minimize .ui-icon-minusthick {
-	background-image: url(../../../images/themes/win9x/icons/minimize.gif) !important;
+	background-image: url(/emupedia-resources/icons/win95/minimize.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }

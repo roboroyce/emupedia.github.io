@@ -1,8 +1,8 @@
-/*noinspection CssOverwrittenProperties*/
+/*noinspection CssOverwrittenProperties,CssUnknownTarget*/
 .theme-win3x .emuos-desktop {
 	background-color: #008080;
-	background: url(../../../images/themes/win3x/patterns/castle.bmp);
-	background: url(../../../images/themes/win3x/wallpapers/winlogo.svg) center no-repeat, url(../../../images/themes/win3x/patterns/castle.bmp);
+	background: url(/emupedia-resources/wallpapers/win31/castle.bmp);
+	background: url(/emupedia-resources/logos/windows/winlogo.svg) center no-repeat, url(/emupedia-resources/wallpapers/win31/castle.bmp);
 	background-size: auto;
 	background-size: 40%, auto;
 }

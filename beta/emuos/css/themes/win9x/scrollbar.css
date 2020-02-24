@@ -1,14 +1,14 @@
 /*noinspection DuplicatedCode*/
-.theme-win3x .mCustomScrollBox .mCSB_container_wrapper {
+.theme-win9x .mCustomScrollBox .mCSB_container_wrapper {
 	margin-right: 15px;
 }
 
-.theme-win3x .mCustomScrollBox .mCSB_container {
+.theme-win9x .mCustomScrollBox .mCSB_container {
 	margin-right: 0;
 	padding-right: 0;
 }
 
-.theme-win3x .mCustomScrollBox .mCSB_scrollTools_vertical {
+.theme-win9x .mCustomScrollBox .mCSB_scrollTools_vertical {
 	width: 15px;
 	border-left: 1px solid #000;
 	opacity: 1;
@@ -16,14 +16,14 @@
 	-ms-filter: none;
 }
 
-.theme-win3x .mCustomScrollBox .mCSB_draggerContainer {
+.theme-win9x .mCustomScrollBox .mCSB_draggerContainer {
 	margin: 15px 0;
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 	/*background: #c0c0c0;*/
 }
 
-.theme-win3x .mCustomScrollBox .mCSB_draggerRail {
+.theme-win9x .mCustomScrollBox .mCSB_draggerRail {
 	width: 100%;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -33,13 +33,13 @@
 	-ms-filter: none;
 }
 
-.theme-win3x .mCustomScrollBox .mCSB_dragger {
+.theme-win9x .mCustomScrollBox .mCSB_dragger {
 	/*border-top: 1px solid #000;*/
 	/*border-bottom: 1px solid #000;*/
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-win3x .mCustomScrollBox .mCSB_dragger::after {
+.theme-win9x .mCustomScrollBox .mCSB_dragger::after {
 	display: block;
 	position: absolute;
 	top: -1px;
@@ -51,7 +51,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties,CssOverwrittenProperties*/
-.theme-win3x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar {
+.theme-win9x .mCustomScrollBox .mCSB_dragger .mCSB_dragger_bar {
 	width: 100%;
 	height: 100%;
 	width: calc(100% - 3px);
@@ -67,8 +67,8 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.theme-win3x .mCustomScrollBox .mCSB_buttonUp,
-.theme-win3x .mCustomScrollBox .mCSB_buttonDown {
+.theme-win9x .mCustomScrollBox .mCSB_buttonUp,
+.theme-win9x .mCustomScrollBox .mCSB_buttonDown {
 	width: 12px;
 	height: 12px;
 	background: #c0c0c0;
@@ -81,9 +81,9 @@
 	-ms-filter: none;
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win3x .mCustomScrollBox .mCSB_buttonUp {
-	background-image: url(../../../images/themes/win3x/icons/up.png);
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,CssUnknownTarget*/
+.theme-win9x .mCustomScrollBox .mCSB_buttonUp {
+	background-image: url(/emupedia-resources/icons/win31/up.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/
@@ -93,9 +93,9 @@
 	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
-/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue*/
-.theme-win3x .mCustomScrollBox .mCSB_buttonDown {
-	background-image: url(../../../images/themes/win3x/icons/down.png);
+/*noinspection CssOptimizeSimilarProperties,CssInvalidPropertyValue,CssUnknownTarget*/
+.theme-win9x .mCustomScrollBox .mCSB_buttonDown {
+	background-image: url(/emupedia-resources/icons/win31/down.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	/*image-rendering: -moz-crisp-edges;*/

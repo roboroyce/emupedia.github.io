@@ -45,8 +45,9 @@
 	/*-ms-interpolation-mode: nearest-neighbor;*/
 }
 
+/*noinspection CssUnknownTarget*/
 .theme-win3x .emuos-taskbar .ui-button.emuos-taskbar-start-button .ui-button-icon-primary {
-	background-image: url(../../../images/themes/win3x/icons/start.png);
+	background-image: url(/emupedia-resources/icons/win31/start.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
