@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="emuos theme-win7" lang="en-us" prefix="og: http://ogp.me/ns/website#">
+	<!--
+
+
+	╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+	╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+	╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+	-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8" />
+		<title>EmuOS</title>
+		<link type="text/css" rel="stylesheet" href="../../css/libraries/jquery-ui.structure-1.11.4.min.css" />
+		<link type="text/css" rel="stylesheet" href="../../css/libraries/jquery-ui.theme-1.11.4.min.css" />
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+
+		<style type="text/css">
+			html {
+				height: 100%;
+			}
+
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background-color: #000;
+				color: #fff;
+				overflow: hidden;
+			}
+
+			.emuos-boot {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				margin: auto;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			.emuos-boot::after {
+				display: block;
+				content: 'Starting Windows';
+				padding-top: 50px;
+				text-align: center;
+				font-family: 'Segoe UI', sans-serif;
+				font-size: 24px;
+			}
+
+			.emuos-boot-container {
+				width: 200px;
+				height: 200px;
+				overflow: hidden;
+			}
+
+			.emuos-boot-container::before {
+				display: block;
+
+				width: 200px;
+				height: 21000px;
+
+				content: '';
+
+				will-change: background-position;
+
+				background-color: #000;
+				background-image: url(images/boot-transparent.png);
+				background-repeat: no-repeat;
+				background-position: 0 -21000px;
+				background-size: 200px 21000px;
+
+				-webkit-animation-duration: 7s;
+				-moz-animation-duration: 7s;
+				-ms-animation-duration: 7s;
+				-o-animation-duration: 7s;
+				animation-duration: 7s;
+
+				-webkit-animation-timing-function: steps(105);
+				-moz-animation-timing-function: steps(105);
+				-ms-animation-timing-function: steps(105);
+				-o-animation-timing-function: steps(105);
+				animation-timing-function: steps(105);
+
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation-iteration-count: infinite;
+				-ms-animation-iteration-count: infinite;
+				-o-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+
+				-webkit-animation-name: BackgroundPosition;
+				-moz-animation-name: BackgroundPosition;
+				-ms-animation-name: BackgroundPosition;
+				-o-animation-name: BackgroundPosition;
+				animation-name: BackgroundPosition;
+			}
+
+			@-webkit-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-moz-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-ms-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@-o-keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+
+			@keyframes BackgroundPosition {
+				0% {
+					background-position: 0 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+	<div class="emuos-boot"><div class="emuos-boot-container"></div></div>
+		<script type="text/javascript" src="../../js/libraries/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="../../js/libraries/jquery-ui-1.11.4.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
