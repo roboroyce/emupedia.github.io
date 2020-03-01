@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'socketio', 'simplestorage'], factory);
+		define(['jquery', 'socket', 'simplestorage'], factory);
 	}
 } (function ($, io, simplestorage) {
 	var client_loader = {};

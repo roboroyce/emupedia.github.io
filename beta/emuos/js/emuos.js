@@ -860,7 +860,7 @@
 
 		if (typeof self.options.network.start === 'function') {
 			window['NETWORK_CONNECTION'] = self.options.network.start({
-				servers: ['https://ws.emupedia.net/', 'https://ws.emuos.net/'],
+				servers: ['wss://ws.emupedia.net:3000', 'wss://ws.emuos.net:3000'],
 				server: ~window.location.hostname.indexOf('emuos.net') ? 1 : 0,
 				mode: 0
 			});

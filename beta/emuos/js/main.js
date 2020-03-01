@@ -82,6 +82,7 @@
 			noext: 'libraries/requirejs-noext-1.0.3',
 			octokat: 'libraries/octokat-0.10.0',
 			simplestorage: 'libraries/simplestorage-0.2.1.min',
+			socket: 'socket',
 			socketio: 'libraries/socket.io-2.3.0.min',
 			taskbar: 'taskbar',
 			text: 'libraries/requirejs-text-2.0.15',

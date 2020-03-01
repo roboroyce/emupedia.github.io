@@ -837,8 +837,8 @@
 				var $this = $(this);
 
 				var diffs = self._bringIntoView({
-													diffs: true
-												});
+					diffs: true
+				});
 
 				$.each(['top', 'left'], function(index, edge) {
 					var scroll = $(window)['scroll' + self._ucFirst(edge)](),
@@ -846,9 +846,7 @@
 						val = ui.position[edge] + scroll,
 						dimension = isTop ? 'height' : 'width',
 						end = isTop ? 'bottom' : 'right',
-						direction = ui.position[edge] > ui.originalPosition[edge]
-									? 'less'
-									: 'more',
+						direction = ui.position[edge] > ui.originalPosition[edge] ? 'less' : 'more',
 						size = ui.size[dimension];
 
 					// apply property first
@@ -1176,8 +1174,7 @@
 				iframeFix: true, //just to be safe
 				start: function(event, ui) {
 					self.$elem.data(
-						self._cnst.dataPrefix + 'window-scrolls',
-						{
+						self._cnst.dataPrefix + 'window-scrolls', {
 							x: $(window).scrollLeft(),
 							y: $(window).scrollTop()
 						}
@@ -1245,9 +1242,7 @@
 		_getRealContainment: function() {
 			var taskbar = this._getTaskbarInstance();
 
-			return this.options.containment === 'inherit' && taskbar
-				   ? taskbar.options.windowsContainment
-				   : this.options.containment;
+			return this.options.containment === 'inherit' && taskbar ? taskbar.options.windowsContainment : this.options.containment;
 		},
 
 		_getRealContainmentObject: function() {
@@ -1260,10 +1255,7 @@
 			var taskbar = this._getTaskbarInstance(),
 				containment;
 
-			var x1,
-				x2,
-				y1,
-				y2;
+			var x1, x2, y1, y2;
 
 			this._refreshTaskbarMargins();
 
@@ -1283,7 +1275,8 @@
 
 			var ed = taskbar._extendedPosition.call($elem),
 				cd = taskbar._extendedPosition.call(
-					this._getRealContainmentObject(), 'offset'
+					this._getRealContainmentObject(),
+					'offset'
 				),
 				tdt = taskbar._extendedPosition.call(
 					this.uiDialogTitlebar.find('.' + this.classes.uiDialogTitle),
@@ -1354,43 +1347,43 @@
 			if (o.confirmClose.confirm) {
 				if (!this._cache.progress.close) {
 					this._placeOverlay({
-										   window: true
-									   });
+						window: true
+					});
 
 					this.$confirmCloseWindow = $('<div></div>');
 
 					this.$confirmCloseWindow.addClass(this.classes.confirmClose).append(
 						$('<p>' + this._buildConfirmCloseText('text') + '</p>').addClass(this.classes.confirmCloseText)
 					).window({
-								 // options that propagate from main window
-								 taskbar: this.$taskbar,
-								 minimizable: o.confirmClose.minimizable,
-								 modal: o.confirmClose.modal,
-								 containment: o.containment,
-								 durations: o.durations,
-								 icons: {
-									 main: o.icons.confirmClose
-								 },
-								 // end of options that propagate from main window
-								 title: this._buildConfirmCloseText('title'),
-								 buttons: this._confirmCloseButtonsConfig(),
-								 closeOnEscape: true,
-								 maximizable: false,
-								 resizable: false,
-								 height: 'auto',
-								 minHeight: null,
-								 beforeMinimize: function() {
-									 self._cache.confirmCloseMinimizing = true;
-								 },
-								 minimize: function() {
-									 self._cache.confirmCloseMinimizing = false;
-								 },
-								 // let's have it here so calling close() on this window
-								 // don't break anything
-								 close: function() {
-									 self._unblock();
-								 }
-							 });
+						// options that propagate from main window
+						taskbar: this.$taskbar,
+						minimizable: o.confirmClose.minimizable,
+						modal: o.confirmClose.modal,
+						containment: o.containment,
+						durations: o.durations,
+						icons: {
+							 main: o.icons.confirmClose
+						 },
+						// end of options that propagate from main window
+						title: this._buildConfirmCloseText('title'),
+						buttons: this._confirmCloseButtonsConfig(),
+						closeOnEscape: true,
+						maximizable: false,
+						resizable: false,
+						height: 'auto',
+						minHeight: null,
+						beforeMinimize: function() {
+							 self._cache.confirmCloseMinimizing = true;
+						 },
+						minimize: function() {
+							 self._cache.confirmCloseMinimizing = false;
+						 },
+						// let's have it here so calling close() on this window
+						// don't break anything
+						close: function() {
+							 self._unblock();
+						 }
+					 });
 
 					this._afterConfirmCloseButtonsBuild();
 
