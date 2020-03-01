@@ -273,8 +273,7 @@
 						}
 					});
 				}).always(function() {
-					client.send_cmd('auth', {user: simplestorage.get('uid') ? simplestorage.get('uid') : '', room: 'Emupedia'});
-					client.send_cmd('join', 'Emupedia' + (simplestorage.get('country') ? '-' + simplestorage.get('country') : ''));
+					client.send_cmd('auth', {user: simplestorage.get('uid') ? simplestorage.get('uid') : '', room: 'Emupedia' + (simplestorage.get('country') ? '-' + simplestorage.get('country') : '')});
 					client.badge = 0;
 				});
 			});
