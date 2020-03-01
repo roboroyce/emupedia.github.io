@@ -137,7 +137,7 @@
 				deps: ['taskbar']
 			},
 			network: {
-				deps: ['socketio']
+				deps: ['socket']
 			},
 			'moment-timezone': {
 				exports: 'moment',
@@ -156,12 +156,7 @@
 				deps: ['taskbar']
 			}
 		},
-		map: {
-			'*': {
-				io: 'socketio',
-				'socket.io': 'socketio'
-			}
-		}
+		map: {}
 	});
 
 	// noinspection JSCheckFunctionSignatures,JSUnusedLocalSymbols
