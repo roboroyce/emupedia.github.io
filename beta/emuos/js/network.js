@@ -91,6 +91,7 @@
 				'room.user_join',
 				'room.user_leave',
 				'room.msg',
+				'rooms.list',
 				'silent.msg',
 				'server.help'
 			];
