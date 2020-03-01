@@ -86,8 +86,6 @@
 		init_socket: function() {
 			var self = this;
 
-			console.log(self.server);
-
 			self.socket = new WebSocket(self.server);
 
 			self.socket.on = function() {

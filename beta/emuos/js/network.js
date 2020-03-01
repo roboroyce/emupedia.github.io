@@ -35,8 +35,12 @@
 				var $iframe = $('#' + this.iframe_id);
 
 				if ($iframe.length) {
-					var cdata = JSON.parse(JSON.stringify(data));
-					$iframe.get(0).contentWindow.postMessage({cmd: cmd, data: cdata}, '*');
+					try {
+						var cdata = JSON.parse(JSON.stringify(data));
+						$iframe.get(0).contentWindow.postMessage({cmd: cmd, data: cdata}, '*');
+					} catch (e) {
+						console.log(e);
+					}
 				}
 			} else {
 				this.buffer.push([cmd, data]);
