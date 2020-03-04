@@ -1,5 +1,7 @@
 (function() {
+	// noinspection JSUnresolvedVariable
 	const define = $sys.api.hybrids.define;
+	// noinspection JSUnresolvedVariable
 	const html = $sys.api.hybrids.html;
 
 	function increaseCount(host) {
