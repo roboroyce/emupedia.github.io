@@ -8,12 +8,15 @@ exclude:
   - .editorconfig
   - .gitignore
   - .gitpod.yml
-  - build-styl.cmd
+  - apple-touch-icon.png
   - CNAME
   - Dockerfile
+  - favicon.ico
+  - favicon-xmas.ico
   - LICENSE
   - package.json
   - package-lock.json
+  - README.md
   - beta/emuos/**/*.md
   - beta/emuos/**/*.markdown
 whitelist:
