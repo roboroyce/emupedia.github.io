@@ -93,7 +93,7 @@
 		width: 100%;
 		height: 100%;
 		content: '';
-		background-image: url(../images/logo.png), url(../images/default.png);
+		background-image: url(../../images/logo.png), url(../../images/default.png);
 		background-repeat: no-repeat, no-repeat;
 		background-position: center, center bottom;
 		background-size: auto, cover;
@@ -108,93 +108,40 @@
 	background-image: none;
 }
 
-/* region Basic */
+/* region Windows 7 */
 
-.emuos .emuos-desktop {
-	width: 100%;
-	height: 100%;
-	background-color: #fff;
-}
-
-.emuos .emuos-taskbar-bg {
-	position: absolute;
-	width: 100%;
-	height: 70px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-.emuos .emuos-taskbar {
-	position: absolute;
-	width: 100%;
-	height: 69px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-
-.emuos .emuos-taskbar-container {
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-
-.emuos .emuos-taskbar-container > div {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.emuos .emuos-window {
-	position: absolute;
-	left: 100px;
-	top: 100px;
-
-	width: 640px;
-	height: 480px;
-
-	border: 1px solid #000;
-	border-radius: 8px;
-	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.75);
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* endregion */
-
-/* region Theme Win7 */
-
-.emuos.theme-win7 .emuos-desktop {
-	background-image: url(../images/logo.png), url(../images/default.png);
+.emuos.theme-windows-7 .emuos-desktop {
+	background-image: url(../../images/logo.png), url(../../images/default.png);
 	background-repeat: no-repeat, no-repeat;
 	background-position: center, center bottom;
 	background-size: auto, cover;
 }
 
-.emuos.theme-win7 .emuos-taskbar-bg {
+.emuos.theme-windows-7 .emuos-taskbar-bg {
 }
 
-.emuos.theme-win7 .emuos-taskbar {
+.emuos.theme-windows-7 .emuos-taskbar {
 	border-top: 1px solid rgba(0, 0, 0, 0.6);
 }
 
-.emuos.theme-win7 .emuos-taskbar-container {
+.emuos.theme-windows-7 .emuos-taskbar-container {
 	border-top: 1px solid rgba(255, 255, 255, 0.4);
 	background-color: rgba(116, 184, 252, 0.6);
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3) 10%, rgba(0, 0, 0, 0.3) 90%, rgba(0, 0, 0, 0.7));
 	/*background-blend-mode: multiply;*/
 }
 
-.emuos.theme-win7 .emuos-taskbar-container > div {
+.emuos.theme-windows-7 .emuos-taskbar-container > div {
 
 }
 
-.emuos.theme-win7 .emuos-start {
+.emuos.theme-windows-7 .emuos-start {
 	width: 106px;
 	height: 100%;
 	/*background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.3) 100%);*/
 }
 
-.emuos.theme-win7 .emuos-start-button {
+.emuos.theme-windows-7 .emuos-start-button {
 	position: absolute;
 	left: 0;
 	top: -20px;
@@ -205,7 +152,7 @@
 
 	background-color: transparent;
 	/*background-image: url(images/start-button-normal.png);*/
-	background-image: url(../images/start-button-106.png);
+	background-image: url(../../images/start-button-106.png);
 	background-repeat: no-repeat;
 	/*background-position: center;*/
 	background-position: 0 0;
@@ -222,26 +169,26 @@
 	cursor: pointer;
 }
 
-.emuos.theme-win7 .emuos-start-button:hover {
+.emuos.theme-windows-7 .emuos-start-button:hover {
 	background-position: 0 50%;
 	/*background-blend-mode: difference;*/
 	/*mix-blend-mode: color-burn;*/
 	/*background-image: url(images/start-button-hover.png);*/
 }
 
-.emuos.theme-win7 .emuos-start-button:active {
+.emuos.theme-windows-7 .emuos-start-button:active {
 	background-position: 0 100%;
 	/*background-image: url(images/start-button-pressed.png);*/
 }
 
 /*noinspection CssOverwrittenProperties*/
-.emuos.theme-win7 .emuos-apps {
+.emuos.theme-windows-7 .emuos-apps {
 	width: calc(100% - 210px);
 	height: 100%;
 	/*background-color: rgba(0, 0, 0, 0.3);*/
 }
 
-.emuos.theme-win7 .emuos-tray {
+.emuos.theme-windows-7 .emuos-tray {
 	width: 120px;
 	height: 100%;
 	/*background-image: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0.3) 100%);*/
@@ -249,7 +196,7 @@
 	text-align: right;
 }
 
-.emuos.theme-win7 .emuos-window {
+.emuos.theme-windows-7 .emuos-window {
 	position: absolute;
 	left: 100px;
 	top: 100px;
@@ -263,11 +210,11 @@
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-.emuos.theme-win7 .emuos-window.active {
+.emuos.theme-windows-7 .emuos-window.active {
 
 }
 
-.emuos.theme-win7 .emuos-window-container {
+.emuos.theme-windows-7 .emuos-window-container {
 	width: calc(100% - 2px);
 	height: calc(100% - 2px);
 	border: 1px solid rgba(255, 255, 255, 0.8);

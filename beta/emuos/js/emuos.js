@@ -133,11 +133,13 @@
 			if (typeof icon_options['requires'] === 'object') {
 				var reqs = Object.keys(icon_options['requires']);
 
-				for (req in reqs) {
+				for (var req in reqs) {
+					// noinspection JSUnfilteredForInLoop
 					var required = reqs[req].toUpperCase();
 
 					if (typeof $sys.feature[required] !== 'undefined') {
 						if ($sys.feature[required] === true) {
+							// noinspection JSUnfilteredForInLoop
 							$.extend(true, icon_options, icon_options['requires'][reqs[req]]);
 						}
 					}

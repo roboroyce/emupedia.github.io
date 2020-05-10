@@ -65,8 +65,8 @@ const log					= logger.config({
 })(tag);
 
 // noinspection ES6ConvertVarToLetConst
-var libraries				= {};
-var ordered					= {};
+let libraries				= {};
+let ordered					= {};
 
 function checksum(input) {
 	//noinspection JSUnresolvedFunction
@@ -2603,6 +2603,31 @@ function install(install_directory, dependency, version) {
 											});
 										}
 									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'less':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries[dependency] = dependency + '-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									log.log(dependency + ' version ' + version + ' installed!');
 								}
 							});
 						}
