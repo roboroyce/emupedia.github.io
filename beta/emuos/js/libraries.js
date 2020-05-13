@@ -15,11 +15,11 @@
 				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.6.min'
 		],
 		'bootstrap': [
-				'libraries/bootstrap-4.4.1.min',
-				'/beta/emuos/js/libraries/bootstrap-4.4.1.min',
-				'//emupedia.net/beta/emuos/js/libraries/bootstrap-4.4.1.min',
-				'//emuos.net/beta/emuos/js/libraries/bootstrap-4.4.1.min',
-				'//emuos.org/beta/emuos/js/libraries/bootstrap-4.4.1.min'
+				'libraries/bootstrap-4.5.0.min',
+				'/beta/emuos/js/libraries/bootstrap-4.5.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/bootstrap-4.5.0.min',
+				'//emuos.net/beta/emuos/js/libraries/bootstrap-4.5.0.min',
+				'//emuos.org/beta/emuos/js/libraries/bootstrap-4.5.0.min'
 		],
 		'browserfs': [
 				'libraries/browserfs-1.4.3.min',
@@ -43,32 +43,60 @@
 				'//emuos.org/beta/emuos/js/libraries/clippy-0.0.3'
 		],
 		'datatables': [
-				'libraries/datatables-1.10.20.min',
-				'/beta/emuos/js/libraries/datatables-1.10.20.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-1.10.20.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-1.10.20.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-1.10.20.min'
+				'libraries/datatables-1.10.21.min',
+				'/beta/emuos/js/libraries/datatables-1.10.21.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-1.10.21.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-1.10.21.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-1.10.21.min'
 		],
 		'datatables-bootstrap4': [
-				'libraries/datatables-bootstrap4-1.10.20.min',
-				'/beta/emuos/js/libraries/datatables-bootstrap4-1.10.20.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-bootstrap4-1.10.20.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-bootstrap4-1.10.20.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-bootstrap4-1.10.20.min'
+				'libraries/datatables-bootstrap4-1.10.21.min',
+				'/beta/emuos/js/libraries/datatables-bootstrap4-1.10.21.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-bootstrap4-1.10.21.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-bootstrap4-1.10.21.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-bootstrap4-1.10.21.min'
 		],
 		'datatables-buttons': [
-				'libraries/datatables-buttons-1.6.1.min',
-				'/beta/emuos/js/libraries/datatables-buttons-1.6.1.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-1.6.1.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-1.6.1.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-1.6.1.min'
+				'libraries/datatables-buttons-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-1.6.2.min'
 		],
 		'datatables-buttons-bootstrap4': [
-				'libraries/datatables-buttons-bootstrap4-1.6.1.min',
-				'/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.1.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.1.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.1.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.1.min'
+				'libraries/datatables-buttons-bootstrap4-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-bootstrap4-1.6.2.min'
+		],
+		'datatables-buttons-colvis': [
+				'libraries/datatables-buttons-colvis-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-colvis-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-colvis-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-colvis-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-colvis-1.6.2.min'
+		],
+		'datatables-buttons-flash': [
+				'libraries/datatables-buttons-flash-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-flash-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-flash-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-flash-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-flash-1.6.2.min'
+		],
+		'datatables-buttons-html5': [
+				'libraries/datatables-buttons-html5-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-html5-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-html5-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-html5-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-html5-1.6.2.min'
+		],
+		'datatables-buttons-print': [
+				'libraries/datatables-buttons-print-1.6.2.min',
+				'/beta/emuos/js/libraries/datatables-buttons-print-1.6.2.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-buttons-print-1.6.2.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-buttons-print-1.6.2.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-buttons-print-1.6.2.min'
 		],
 		'datatables-colreorder': [
 				'libraries/datatables-colreorder-1.5.2.min',
@@ -99,46 +127,46 @@
 				'//emuos.org/beta/emuos/js/libraries/datatables-ellipsis-1.10.20'
 		],
 		'datatables-fixedcolumns': [
-				'libraries/datatables-fixedcolumns-3.3.0.min',
-				'/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.0.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.0.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.0.min'
+				'libraries/datatables-fixedcolumns-3.3.1.min',
+				'/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.1.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.1.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.1.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-fixedcolumns-3.3.1.min'
 		],
 		'datatables-fixedcolumns-bootstrap4': [
-				'libraries/datatables-fixedcolumns-bootstrap4-3.3.0.min',
-				'/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.0.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.0.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.0.min'
+				'libraries/datatables-fixedcolumns-bootstrap4-3.3.1.min',
+				'/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.1.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.1.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.1.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-fixedcolumns-bootstrap4-3.3.1.min'
 		],
 		'datatables-fixedheader': [
-				'libraries/datatables-fixedheader-3.1.6.min',
-				'/beta/emuos/js/libraries/datatables-fixedheader-3.1.6.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedheader-3.1.6.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-fixedheader-3.1.6.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-fixedheader-3.1.6.min'
+				'libraries/datatables-fixedheader-3.1.7.min',
+				'/beta/emuos/js/libraries/datatables-fixedheader-3.1.7.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedheader-3.1.7.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-fixedheader-3.1.7.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-fixedheader-3.1.7.min'
 		],
 		'datatables-fixedheader-bootstrap4': [
-				'libraries/datatables-fixedheader-bootstrap4-3.1.6.min',
-				'/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.6.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.6.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.6.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.6.min'
+				'libraries/datatables-fixedheader-bootstrap4-3.1.7.min',
+				'/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.7.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.7.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.7.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.7.min'
 		],
 		'datatables-responsive': [
-				'libraries/datatables-responsive-2.2.3.min',
-				'/beta/emuos/js/libraries/datatables-responsive-2.2.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-2.2.3.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-2.2.3.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-2.2.3.min'
+				'libraries/datatables-responsive-2.2.4.min',
+				'/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-2.2.4.min'
 		],
 		'datatables-responsive-bootstrap4': [
-				'libraries/datatables-responsive-bootstrap4-2.2.3.min',
-				'/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.3.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.3.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.3.min'
+				'libraries/datatables-responsive-bootstrap4-2.2.4.min',
+				'/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min'
 		],
 		'datatables-select': [
 				'libraries/datatables-select-1.3.1.min',
@@ -238,6 +266,13 @@
 				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.4.min',
 				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.4.min'
 		],
+		'jquery': [
+				'libraries/jquery-3.5.0.min',
+				'/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emuos.net/beta/emuos/js/libraries/jquery-3.5.0.min',
+				'//emuos.org/beta/emuos/js/libraries/jquery-3.5.0.min'
+		],
 		'jquery-1.x': [
 				'libraries/jquery-1.12.4.min',
 				'/beta/emuos/js/libraries/jquery-1.12.4.min',
@@ -266,6 +301,13 @@
 				'//emuos.net/beta/emuos/js/libraries/jquery-ajax-retry-0.2.8.min',
 				'//emuos.org/beta/emuos/js/libraries/jquery-ajax-retry-0.2.8.min'
 		],
+		'jquery-custom-scrollbar': [
+				'libraries/jquery-customscrollbar-3.1.5.min',
+				'/beta/emuos/js/libraries/jquery-customscrollbar-3.1.5.min',
+				'//emupedia.net/beta/emuos/js/libraries/jquery-customscrollbar-3.1.5.min',
+				'//emuos.net/beta/emuos/js/libraries/jquery-customscrollbar-3.1.5.min',
+				'//emuos.org/beta/emuos/js/libraries/jquery-customscrollbar-3.1.5.min'
+		],
 		'jquery-i18next': [
 				'libraries/jquery-i18next-1.2.1.min',
 				'/beta/emuos/js/libraries/jquery-i18next-1.2.1.min',
@@ -293,6 +335,13 @@
 				'//emupedia.net/beta/emuos/js/libraries/jquery-resizable-0.35.0.min',
 				'//emuos.net/beta/emuos/js/libraries/jquery-resizable-0.35.0.min',
 				'//emuos.org/beta/emuos/js/libraries/jquery-resizable-0.35.0.min'
+		],
+		'jquery-ui': [
+				'libraries/jquery-ui-1.12.1.min',
+				'/beta/emuos/js/libraries/jquery-ui-1.12.1.min',
+				'//emupedia.net/beta/emuos/js/libraries/jquery-ui-1.12.1.min',
+				'//emuos.net/beta/emuos/js/libraries/jquery-ui-1.12.1.min',
+				'//emuos.org/beta/emuos/js/libraries/jquery-ui-1.12.1.min'
 		],
 		'jquery-ui-1.11.x': [
 				'libraries/jquery-ui-1.11.4.min',
@@ -407,11 +456,11 @@
 				'//emuos.org/beta/emuos/js/libraries/pdfmake-0.1.65.min'
 		],
 		'pdfmake-fonts': [
-				'libraries/pdfmake-fonts-0.1.65.min',
-				'/beta/emuos/js/libraries/pdfmake-fonts-0.1.65.min',
-				'//emupedia.net/beta/emuos/js/libraries/pdfmake-fonts-0.1.65.min',
-				'//emuos.net/beta/emuos/js/libraries/pdfmake-fonts-0.1.65.min',
-				'//emuos.org/beta/emuos/js/libraries/pdfmake-fonts-0.1.65.min'
+				'libraries/pdfmake-fonts-0.1.65',
+				'/beta/emuos/js/libraries/pdfmake-fonts-0.1.65',
+				'//emupedia.net/beta/emuos/js/libraries/pdfmake-fonts-0.1.65',
+				'//emuos.net/beta/emuos/js/libraries/pdfmake-fonts-0.1.65',
+				'//emuos.org/beta/emuos/js/libraries/pdfmake-fonts-0.1.65'
 		],
 		'perfect-scrollbar': [
 				'libraries/perfect-scrollbar-1.5.0.min',

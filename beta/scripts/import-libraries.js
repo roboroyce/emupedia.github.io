@@ -1119,6 +1119,7 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
+							libraries['datatables-buttons-colvis'] = 'datatables-buttons-colvis-' + version + '.min';
 							//noinspection JSUnresolvedFunction
 							fs.copy(nodemodules_directory + dependency + '/js/buttons.colVis.min.js', install_directory + libraries_directory + 'datatables-buttons-colvis-' + version + '.min.js', copy_options, (error) => {
 								if (error) {
@@ -1129,6 +1130,7 @@ function install(install_directory, dependency, version) {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
+											libraries['datatables-buttons-flash'] = 'datatables-buttons-flash-' + version + '.min';
 											//noinspection JSUnresolvedFunction
 											fs.copy(nodemodules_directory + dependency + '/js/buttons.flash.min.js', install_directory + libraries_directory + 'datatables-buttons-flash-' + version + '.min.js', copy_options, (error) => {
 												if (error) {
@@ -1139,6 +1141,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
+															libraries['datatables-buttons-html5'] = 'datatables-buttons-html5-' + version + '.min';
 															//noinspection JSUnresolvedFunction
 															fs.copy(nodemodules_directory + dependency + '/js/buttons.html5.min.js', install_directory + libraries_directory + 'datatables-buttons-html5-' + version + '.min.js', copy_options, (error) => {
 																if (error) {
@@ -1149,6 +1152,7 @@ function install(install_directory, dependency, version) {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
+																			libraries['datatables-buttons-print'] = 'datatables-buttons-print-' + version + '.min';
 																			//noinspection JSUnresolvedFunction
 																			fs.copy(nodemodules_directory + dependency + '/js/buttons.print.min.js', install_directory + libraries_directory + 'datatables-buttons-print-' + version + '.min.js', copy_options, (error) => {
 																				if (error) {
@@ -1979,6 +1983,11 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					libraries[dependency] = 'jquery-' + version + '.min';
+
+					if (dependency === 'jquery-3.x') {
+						libraries['jquery'] = 'jquery-' + version + '.min';
+					}
+
 					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'jquery-' + version + '.min.js',
@@ -2270,6 +2279,11 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					libraries[dependency] = 'jquery-ui-' + version + '.min';
+
+					if (dependency === 'jquery-ui-1.12.x') {
+						libraries['jquery-ui'] = 'jquery-ui-' + version + '.min';
+					}
+
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/jquery-ui.js', install_directory + libraries_directory + 'jquery-ui-' + version + '.js', copy_options, (error) => {
 						if (error) {
@@ -2911,6 +2925,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					libraries['jquery-custom-scrollbar'] = 'jquery-customscrollbar-' + version + '.min';
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/jquery.mCustomScrollbar.js', install_directory + libraries_directory + 'jquery-customscrollbar-' + version + '.js', copy_options, (error) => {
 						if (error) {
@@ -3291,7 +3306,7 @@ function install(install_directory, dependency, version) {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
-																					libraries[dependency + '-fonts'] = dependency + '-fonts-' + version + '.min';
+																					libraries[dependency + '-fonts'] = dependency + '-fonts-' + version;
 																					log.log(dependency + ' version ' + version + ' installed!');
 																				}
 																			});

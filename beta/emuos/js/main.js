@@ -75,6 +75,9 @@
 			ga: {
 				exports: '__ga__'
 			},
+			'jquery': {
+				exports: 'jQuery'
+			},
 			'jquery-1.x': {
 				exports: 'jQuery'
 			},
@@ -127,13 +130,13 @@
 		},
 		map: {
 			'*': {
-				'jQuery': 'jquery-2.x',
-				'jquery': 'jquery-2.x',
-				'jqueryui': 'jquery-ui-1.11.x',
+				jQuery: 'jquery-2.x',
+				jquery: 'jquery-2.x',
+				jqueryui: 'jquery-ui-1.11.x',
 				'jquery-ui': 'jquery-ui-1.11.x',
-				'lang': 'lang-en',
-				'json': 'requirejs-json',
-				'text': 'requirejs-text'
+				lang: 'lang-en',
+				json: 'requirejs-json',
+				text: 'requirejs-text'
 			}
 		}
 	});
