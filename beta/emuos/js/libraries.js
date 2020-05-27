@@ -8,11 +8,11 @@
 
 	global['$sys']['lib'] = {
 		'babel-standalone': [
-				'libraries/babel-standalone-7.9.6.min',
-				'/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
-				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
-				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.9.6.min',
-				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.9.6.min'
+				'libraries/babel-standalone-7.10.0.min',
+				'/beta/emuos/js/libraries/babel-standalone-7.10.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/babel-standalone-7.10.0.min',
+				'//emuos.net/beta/emuos/js/libraries/babel-standalone-7.10.0.min',
+				'//emuos.org/beta/emuos/js/libraries/babel-standalone-7.10.0.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.5.0.min',
@@ -155,18 +155,18 @@
 				'//emuos.org/beta/emuos/js/libraries/datatables-fixedheader-bootstrap4-3.1.7.min'
 		],
 		'datatables-responsive': [
-				'libraries/datatables-responsive-2.2.4.min',
-				'/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-2.2.4.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-2.2.4.min'
+				'libraries/datatables-responsive-2.2.5.min',
+				'/beta/emuos/js/libraries/datatables-responsive-2.2.5.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-2.2.5.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-2.2.5.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-2.2.5.min'
 		],
 		'datatables-responsive-bootstrap4': [
-				'libraries/datatables-responsive-bootstrap4-2.2.4.min',
-				'/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
-				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
-				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min',
-				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.4.min'
+				'libraries/datatables-responsive-bootstrap4-2.2.5.min',
+				'/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.5.min',
+				'//emupedia.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.5.min',
+				'//emuos.net/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.5.min',
+				'//emuos.org/beta/emuos/js/libraries/datatables-responsive-bootstrap4-2.2.5.min'
 		],
 		'datatables-select': [
 				'libraries/datatables-select-1.3.1.min',
@@ -232,39 +232,39 @@
 				'//emuos.org/beta/emuos/js/libraries/hjson-3.2.1.min'
 		],
 		'howler': [
-				'libraries/howler-2.1.3.min',
-				'/beta/emuos/js/libraries/howler-2.1.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/howler-2.1.3.min',
-				'//emuos.net/beta/emuos/js/libraries/howler-2.1.3.min',
-				'//emuos.org/beta/emuos/js/libraries/howler-2.1.3.min'
+				'libraries/howler-2.2.0.min',
+				'/beta/emuos/js/libraries/howler-2.2.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/howler-2.2.0.min',
+				'//emuos.net/beta/emuos/js/libraries/howler-2.2.0.min',
+				'//emuos.org/beta/emuos/js/libraries/howler-2.2.0.min'
 		],
 		'howler-core': [
-				'libraries/howler-core-2.1.3.min',
-				'/beta/emuos/js/libraries/howler-core-2.1.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/howler-core-2.1.3.min',
-				'//emuos.net/beta/emuos/js/libraries/howler-core-2.1.3.min',
-				'//emuos.org/beta/emuos/js/libraries/howler-core-2.1.3.min'
+				'libraries/howler-core-2.2.0.min',
+				'/beta/emuos/js/libraries/howler-core-2.2.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/howler-core-2.2.0.min',
+				'//emuos.net/beta/emuos/js/libraries/howler-core-2.2.0.min',
+				'//emuos.org/beta/emuos/js/libraries/howler-core-2.2.0.min'
 		],
 		'howler-spatial': [
-				'libraries/howler-spatial-2.1.3.min',
-				'/beta/emuos/js/libraries/howler-spatial-2.1.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/howler-spatial-2.1.3.min',
-				'//emuos.net/beta/emuos/js/libraries/howler-spatial-2.1.3.min',
-				'//emuos.org/beta/emuos/js/libraries/howler-spatial-2.1.3.min'
+				'libraries/howler-spatial-2.2.0.min',
+				'/beta/emuos/js/libraries/howler-spatial-2.2.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/howler-spatial-2.2.0.min',
+				'//emuos.net/beta/emuos/js/libraries/howler-spatial-2.2.0.min',
+				'//emuos.org/beta/emuos/js/libraries/howler-spatial-2.2.0.min'
 		],
 		'hybrids': [
-				'libraries/hybrids-4.1.9.min',
-				'/beta/emuos/js/libraries/hybrids-4.1.9.min',
-				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.1.9.min',
-				'//emuos.net/beta/emuos/js/libraries/hybrids-4.1.9.min',
-				'//emuos.org/beta/emuos/js/libraries/hybrids-4.1.9.min'
+				'libraries/hybrids-4.2.0.min',
+				'/beta/emuos/js/libraries/hybrids-4.2.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/hybrids-4.2.0.min',
+				'//emuos.net/beta/emuos/js/libraries/hybrids-4.2.0.min',
+				'//emuos.org/beta/emuos/js/libraries/hybrids-4.2.0.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.4.4.min',
-				'/beta/emuos/js/libraries/i18next-19.4.4.min',
-				'//emupedia.net/beta/emuos/js/libraries/i18next-19.4.4.min',
-				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.4.min',
-				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.4.min'
+				'libraries/i18next-19.4.5.min',
+				'/beta/emuos/js/libraries/i18next-19.4.5.min',
+				'//emupedia.net/beta/emuos/js/libraries/i18next-19.4.5.min',
+				'//emuos.net/beta/emuos/js/libraries/i18next-19.4.5.min',
+				'//emuos.org/beta/emuos/js/libraries/i18next-19.4.5.min'
 		],
 		'jquery': [
 				'libraries/jquery-3.5.0.min',
@@ -421,11 +421,11 @@
 				'//emuos.org/beta/emuos/js/libraries/localforage-nopromise-1.7.3.min'
 		],
 		'moment': [
-				'libraries/moment-2.25.3.min',
-				'/beta/emuos/js/libraries/moment-2.25.3.min',
-				'//emupedia.net/beta/emuos/js/libraries/moment-2.25.3.min',
-				'//emuos.net/beta/emuos/js/libraries/moment-2.25.3.min',
-				'//emuos.org/beta/emuos/js/libraries/moment-2.25.3.min'
+				'libraries/moment-2.26.0.min',
+				'/beta/emuos/js/libraries/moment-2.26.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/moment-2.26.0.min',
+				'//emuos.net/beta/emuos/js/libraries/moment-2.26.0.min',
+				'//emuos.org/beta/emuos/js/libraries/moment-2.26.0.min'
 		],
 		'moment-holiday': [
 				'libraries/moment-holiday-1.5.1.min',
@@ -435,11 +435,11 @@
 				'//emuos.org/beta/emuos/js/libraries/moment-holiday-1.5.1.min'
 		],
 		'moment-timezone': [
-				'libraries/moment-timezone-0.5.28.min',
-				'/beta/emuos/js/libraries/moment-timezone-0.5.28.min',
-				'//emupedia.net/beta/emuos/js/libraries/moment-timezone-0.5.28.min',
-				'//emuos.net/beta/emuos/js/libraries/moment-timezone-0.5.28.min',
-				'//emuos.org/beta/emuos/js/libraries/moment-timezone-0.5.28.min'
+				'libraries/moment-timezone-0.5.31.min',
+				'/beta/emuos/js/libraries/moment-timezone-0.5.31.min',
+				'//emupedia.net/beta/emuos/js/libraries/moment-timezone-0.5.31.min',
+				'//emuos.net/beta/emuos/js/libraries/moment-timezone-0.5.31.min',
+				'//emuos.org/beta/emuos/js/libraries/moment-timezone-0.5.31.min'
 		],
 		'octokat': [
 				'libraries/octokat-0.10.0',
@@ -596,11 +596,11 @@
 				'//emuos.org/beta/emuos/js/libraries/twemoji-13.0.0.min'
 		],
 		'xterm': [
-				'libraries/xterm-4.5.0.min',
-				'/beta/emuos/js/libraries/xterm-4.5.0.min',
-				'//emupedia.net/beta/emuos/js/libraries/xterm-4.5.0.min',
-				'//emuos.net/beta/emuos/js/libraries/xterm-4.5.0.min',
-				'//emuos.org/beta/emuos/js/libraries/xterm-4.5.0.min'
+				'libraries/xterm-4.6.0.min',
+				'/beta/emuos/js/libraries/xterm-4.6.0.min',
+				'//emupedia.net/beta/emuos/js/libraries/xterm-4.6.0.min',
+				'//emuos.net/beta/emuos/js/libraries/xterm-4.6.0.min',
+				'//emuos.org/beta/emuos/js/libraries/xterm-4.6.0.min'
 		],
 		'desktop': [
 				'desktop',

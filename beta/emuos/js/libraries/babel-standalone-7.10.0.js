@@ -704,11 +704,13 @@
   }
 
   function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
     return function () {
       var Super = _getPrototypeOf(Derived),
           result;
 
-      if (_isNativeReflectConstruct()) {
+      if (hasNativeReflectConstruct) {
         var NewTarget = _getPrototypeOf(this).constructor;
 
         result = Reflect.construct(Super, arguments, NewTarget);
@@ -912,7 +914,7 @@
     if (typeof o === "string") return _arrayLikeToArray(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(n);
+    if (n === "Map" || n === "Set") return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
   }
 
@@ -7576,7 +7578,7 @@
     validateChild(node, key, val);
   }
   function validateField(node, key, val, field) {
-    if (!field || !field.validate) return;
+    if (!(field == null ? void 0 : field.validate)) return;
     if (field.optional && val == null) return;
     field.validate(node, key, val);
   }
@@ -7681,7 +7683,7 @@
         }
       }
 
-      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val && val.type));
+      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val == null ? void 0 : val.type));
     }
 
     validate.oneOfNodeTypes = types;
@@ -7702,7 +7704,7 @@
         }
       }
 
-      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val && val.type));
+      throw new TypeError("Property " + key + " of " + node.type + " expected node to be of a type " + JSON.stringify(types) + " but instead got " + JSON.stringify(val == null ? void 0 : val.type));
     }
 
     validate.oneOfNodeOrValueTypes = types;
@@ -7925,7 +7927,14 @@
         validate: assertOneOf.apply(void 0, BINARY_OPERATORS)
       },
       left: {
-        validate: assertNodeType("Expression")
+        validate: function () {
+          var expression = assertNodeType("Expression");
+          var inOp = assertNodeType("Expression", "PrivateName");
+          return function (node, key, val) {
+            var validator = node.operator === "in" ? inOp : expression;
+            validator(node, key, val);
+          };
+        }()
       },
       right: {
         validate: assertNodeType("Expression")
@@ -7986,7 +7995,7 @@
     visitor: ["callee", "arguments", "typeParameters", "typeArguments"],
     builder: ["callee", "arguments"],
     aliases: ["Expression"],
-    fields: Object.assign({
+    fields: Object.assign(Object.assign({
       callee: {
         validate: assertNodeType("Expression", "V8IntrinsicIdentifier")
       },
@@ -7998,7 +8007,7 @@
         validate: assertOneOf(true, false),
         optional: true
       }
-    } : {}, {
+    } : {}), {}, {
       typeArguments: {
         validate: assertNodeType("TypeParameterInstantiation"),
         optional: true
@@ -8140,7 +8149,7 @@
       optional: true
     }
   };
-  var functionDeclarationCommon = Object.assign({}, functionCommon, {
+  var functionDeclarationCommon = Object.assign(Object.assign({}, functionCommon), {}, {
     declare: {
       validate: assertValueType("boolean"),
       optional: true
@@ -8153,7 +8162,7 @@
   defineType("FunctionDeclaration", {
     builder: ["id", "params", "body", "generator", "async"],
     visitor: ["id", "params", "body", "returnType", "typeParameters"],
-    fields: Object.assign({}, functionDeclarationCommon, {}, functionTypeAnnotationCommon, {
+    fields: Object.assign(Object.assign(Object.assign({}, functionDeclarationCommon), functionTypeAnnotationCommon), {}, {
       body: {
         validate: assertNodeType("BlockStatement")
       }
@@ -8172,7 +8181,7 @@
   defineType("FunctionExpression", {
     inherits: "FunctionDeclaration",
     aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-    fields: Object.assign({}, functionCommon, {}, functionTypeAnnotationCommon, {
+    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
       id: {
         validate: assertNodeType("Identifier"),
         optional: true
@@ -8195,7 +8204,7 @@
     builder: ["name"],
     visitor: ["typeAnnotation", "decorators"],
     aliases: ["Expression", "PatternLike", "LVal", "TSEntityName"],
-    fields: Object.assign({}, patternLikeCommon, {
+    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
       name: {
         validate: chain(assertValueType("string"), function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
@@ -8406,7 +8415,7 @@
   });
   defineType("ObjectMethod", {
     builder: ["kind", "key", "params", "body", "computed", "generator", "async"],
-    fields: Object.assign({}, functionCommon, {}, functionTypeAnnotationCommon, {
+    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
       kind: Object.assign({
         validate: assertOneOf("method", "get", "set")
       }, !process.env.BABEL_TYPES_8_BREAKING ? {
@@ -8493,7 +8502,7 @@
     builder: ["argument"],
     aliases: ["LVal", "PatternLike"],
     deprecatedAlias: "RestProperty",
-    fields: Object.assign({}, patternLikeCommon, {
+    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
       argument: {
         validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("LVal") : assertNodeType("Identifier", "Pattern", "MemberExpression")
       }
@@ -8712,7 +8721,7 @@
     visitor: ["left", "right", "decorators"],
     builder: ["left", "right"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign({}, patternLikeCommon, {
+    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
       left: {
         validate: assertNodeType("Identifier", "ObjectPattern", "ArrayPattern", "MemberExpression")
       },
@@ -8729,7 +8738,7 @@
     visitor: ["elements", "typeAnnotation"],
     builder: ["elements"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign({}, patternLikeCommon, {
+    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
       elements: {
         validate: chain(assertValueType("array"), assertEach(assertNodeOrValueType("null", "PatternLike")))
       },
@@ -8743,7 +8752,7 @@
     builder: ["params", "body", "async"],
     visitor: ["params", "body", "returnType", "typeParameters"],
     aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-    fields: Object.assign({}, functionCommon, {}, functionTypeAnnotationCommon, {
+    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
       expression: {
         validate: assertValueType("boolean")
       },
@@ -9035,7 +9044,7 @@
       }(), assertNodeType("Identifier", "StringLiteral", "NumericLiteral", "Expression"))
     }
   };
-  var classMethodOrDeclareMethodCommon = Object.assign({}, functionCommon, {}, classMethodOrPropertyCommon, {
+  var classMethodOrDeclareMethodCommon = Object.assign(Object.assign(Object.assign({}, functionCommon), classMethodOrPropertyCommon), {}, {
     kind: {
       validate: assertOneOf("get", "set", "method", "constructor"),
       "default": "method"
@@ -9053,7 +9062,7 @@
     aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"],
     builder: ["kind", "key", "params", "body", "computed", "static", "generator", "async"],
     visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
-    fields: Object.assign({}, classMethodOrDeclareMethodCommon, {}, functionTypeAnnotationCommon, {
+    fields: Object.assign(Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), functionTypeAnnotationCommon), {}, {
       body: {
         validate: assertNodeType("BlockStatement")
       }
@@ -9063,7 +9072,7 @@
     visitor: ["properties", "typeAnnotation", "decorators"],
     builder: ["properties"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign({}, patternLikeCommon, {
+    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
       properties: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("RestElement", "ObjectProperty")))
       }
@@ -9776,7 +9785,7 @@
   for (var _i = 0, _PLACEHOLDERS = PLACEHOLDERS; _i < _PLACEHOLDERS.length; _i++) {
     var type = _PLACEHOLDERS[_i];
     var alias = ALIAS_KEYS[type];
-    if (alias && alias.length) PLACEHOLDERS_ALIAS[type] = alias;
+    if (alias == null ? void 0 : alias.length) PLACEHOLDERS_ALIAS[type] = alias;
   }
 
   var PLACEHOLDERS_FLIPPED_ALIAS = {};
@@ -9841,7 +9850,7 @@
     visitor: ["key", "value", "typeAnnotation", "decorators"],
     builder: ["key", "value", "typeAnnotation", "decorators", "computed", "static"],
     aliases: ["Property"],
-    fields: Object.assign({}, classMethodOrPropertyCommon, {
+    fields: Object.assign(Object.assign({}, classMethodOrPropertyCommon), {}, {
       value: {
         validate: assertNodeType("Expression"),
         optional: true
@@ -9961,7 +9970,7 @@
     builder: ["kind", "key", "params", "body", "static"],
     visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
     aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method", "Private"],
-    fields: Object.assign({}, classMethodOrDeclareMethodCommon, {
+    fields: Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), {}, {
       key: {
         validate: assertNodeType("PrivateName")
       },
@@ -10077,11 +10086,11 @@
   defineType("TSDeclareFunction", {
     aliases: ["Statement", "Declaration"],
     visitor: ["id", "typeParameters", "params", "returnType"],
-    fields: Object.assign({}, functionDeclarationCommon, {}, tSFunctionTypeAnnotationCommon)
+    fields: Object.assign(Object.assign({}, functionDeclarationCommon), tSFunctionTypeAnnotationCommon)
   });
   defineType("TSDeclareMethod", {
     visitor: ["decorators", "key", "typeParameters", "params", "returnType"],
-    fields: Object.assign({}, classMethodOrDeclareMethodCommon, {}, tSFunctionTypeAnnotationCommon)
+    fields: Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), tSFunctionTypeAnnotationCommon)
   });
   defineType("TSQualifiedName", {
     aliases: ["TSEntityName"],
@@ -10111,7 +10120,7 @@
   defineType("TSPropertySignature", {
     aliases: ["TSTypeElement"],
     visitor: ["key", "typeAnnotation", "initializer"],
-    fields: Object.assign({}, namedTypeElementCommon, {
+    fields: Object.assign(Object.assign({}, namedTypeElementCommon), {}, {
       readonly: validateOptional(bool),
       typeAnnotation: validateOptionalType("TSTypeAnnotation"),
       initializer: validateOptionalType("Expression")
@@ -10120,7 +10129,7 @@
   defineType("TSMethodSignature", {
     aliases: ["TSTypeElement"],
     visitor: ["key", "typeParameters", "parameters", "typeAnnotation"],
-    fields: Object.assign({}, signatureDeclarationCommon, {}, namedTypeElementCommon)
+    fields: Object.assign(Object.assign({}, signatureDeclarationCommon), namedTypeElementCommon)
   });
   defineType("TSIndexSignature", {
     aliases: ["TSTypeElement"],
@@ -10277,7 +10286,7 @@
     aliases: ["TSType", "TSBaseType"],
     visitor: ["literal"],
     fields: {
-      literal: validateType(["NumericLiteral", "StringLiteral", "BooleanLiteral"])
+      literal: validateType(["NumericLiteral", "StringLiteral", "BooleanLiteral", "BigIntLiteral"])
     }
   });
   defineType("TSExpressionWithTypeArguments", {
@@ -12256,7 +12265,9 @@
 
   function assertNode(node) {
     if (!isNode(node)) {
-      var type = node && node.type || JSON.stringify(node);
+      var _node$type;
+
+      var type = (_node$type = node == null ? void 0 : node.type) != null ? _node$type : JSON.stringify(node);
       throw new TypeError("Not a valid node of type \"" + type + "\"");
     }
   }
@@ -15156,7 +15167,7 @@
   }
 
   function toSequenceExpression(nodes, scope) {
-    if (!nodes || !nodes.length) return;
+    if (!(nodes == null ? void 0 : nodes.length)) return;
     var declars = [];
     var result = gatherSequenceExpressions(nodes, scope, declars);
     if (!result) return;
@@ -15492,7 +15503,7 @@
         continue;
       }
 
-      if (typeof a[field] === "object" && (!visitorKeys || !visitorKeys.includes(field))) {
+      if (typeof a[field] === "object" && !(visitorKeys == null ? void 0 : visitorKeys.includes(field))) {
         for (var _i2 = 0, _Object$keys = Object.keys(a[field]); _i2 < _Object$keys.length; _i2++) {
           var key = _Object$keys[_i2];
 
@@ -17855,7 +17866,8 @@
         path.skip();
       }
     },
-    "AssignmentExpression|Declaration": function AssignmentExpressionDeclaration(path, state) {
+    "AssignmentExpression|Declaration|VariableDeclarator": function AssignmentExpressionDeclarationVariableDeclarator(path, state) {
+      if (path.isVariableDeclaration()) return;
       var ids = path.getOuterBindingIdentifiers();
 
       for (var name in ids) {
@@ -19999,7 +20011,7 @@
       var node = path.node;
       var cached = scope.get(node);
 
-      if (cached && cached.path === path) {
+      if ((cached == null ? void 0 : cached.path) === path) {
         return cached;
       }
 
@@ -20151,11 +20163,11 @@
       console.log(sep);
     };
 
-    _proto.toArray = function toArray(node, i) {
+    _proto.toArray = function toArray(node, i, allowArrayLike) {
       if (isIdentifier(node)) {
         var binding = this.getBinding(node.name);
 
-        if (binding && binding.constant && binding.path.isGenericType("Array")) {
+        if ((binding == null ? void 0 : binding.constant) && binding.path.isGenericType("Array")) {
           return node;
         }
       }
@@ -20180,6 +20192,11 @@
         helperName = "slicedToArray";
       } else {
         helperName = "toArray";
+      }
+
+      if (allowArrayLike) {
+        args.unshift(this.hub.addHelper(helperName));
+        helperName = "maybeArrayLike";
       }
 
       return CallExpression(this.hub.addHelper(helperName), args);
@@ -20602,13 +20619,14 @@
     };
 
     _proto.getBindingIdentifier = function getBindingIdentifier(name) {
-      var info = this.getBinding(name);
-      return info && info.identifier;
+      var _this$getBinding;
+
+      return (_this$getBinding = this.getBinding(name)) == null ? void 0 : _this$getBinding.identifier;
     };
 
     _proto.getOwnBindingIdentifier = function getOwnBindingIdentifier(name) {
       var binding = this.bindings[name];
-      return binding && binding.identifier;
+      return binding == null ? void 0 : binding.identifier;
     };
 
     _proto.hasOwnBinding = function hasOwnBinding(name) {
@@ -20626,7 +20644,9 @@
     };
 
     _proto.parentHasBinding = function parentHasBinding(name, noGlobals) {
-      return this.parent && this.parent.hasBinding(name, noGlobals);
+      var _this$parent;
+
+      return (_this$parent = this.parent) == null ? void 0 : _this$parent.hasBinding(name, noGlobals);
     };
 
     _proto.moveBindingTo = function moveBindingTo(name, scope) {
@@ -20644,12 +20664,9 @@
     };
 
     _proto.removeBinding = function removeBinding(name) {
-      var info = this.getBinding(name);
+      var _this$getBinding2;
 
-      if (info) {
-        info.scope.removeOwnBinding(name);
-      }
-
+      (_this$getBinding2 = this.getBinding(name)) == null ? void 0 : _this$getBinding2.scope.removeOwnBinding(name);
       var scope = this;
 
       do {
@@ -20665,7 +20682,7 @@
         var parent = this.path.findParent(function (p) {
           return p.isScope();
         });
-        return parent && parent.scope;
+        return parent == null ? void 0 : parent.scope;
       }
     }, {
       key: "parentBlock",
@@ -22922,7 +22939,7 @@
       var result = {
         code: this._buf.join("").trimRight(),
         map: null,
-        rawMappings: map && map.getRawMappings()
+        rawMappings: map == null ? void 0 : map.getRawMappings()
       };
 
       if (map) {
@@ -23096,10 +23113,10 @@
       var origLine = targetObj.line;
       var origColumn = targetObj.column;
       var origFilename = targetObj.filename;
-      targetObj.identifierName = prop === "start" && loc && loc.identifierName || null;
-      targetObj.line = pos ? pos.line : null;
-      targetObj.column = pos ? pos.column : null;
-      targetObj.filename = loc && loc.filename || null;
+      targetObj.identifierName = prop === "start" && (loc == null ? void 0 : loc.identifierName) || null;
+      targetObj.line = pos == null ? void 0 : pos.line;
+      targetObj.column = pos == null ? void 0 : pos.column;
+      targetObj.filename = loc == null ? void 0 : loc.filename;
 
       if (force || targetObj.line !== origLine || targetObj.column !== origColumn || targetObj.filename !== origFilename) {
         targetObj.force = force;
@@ -23259,7 +23276,9 @@
   };
 
   nodes.ObjectTypeCallProperty = function (node, parent) {
-    if (parent.callProperties[0] === node && (!parent.properties || !parent.properties.length)) {
+    var _parent$properties;
+
+    if (parent.callProperties[0] === node && !((_parent$properties = parent.properties) == null ? void 0 : _parent$properties.length)) {
       return {
         before: true
       };
@@ -23267,7 +23286,9 @@
   };
 
   nodes.ObjectTypeIndexer = function (node, parent) {
-    if (parent.indexers[0] === node && (!parent.properties || !parent.properties.length) && (!parent.callProperties || !parent.callProperties.length)) {
+    var _parent$properties2, _parent$callPropertie;
+
+    if (parent.indexers[0] === node && !((_parent$properties2 = parent.properties) == null ? void 0 : _parent$properties2.length) && !((_parent$callPropertie = parent.callProperties) == null ? void 0 : _parent$callPropertie.length)) {
       return {
         before: true
       };
@@ -23275,7 +23296,9 @@
   };
 
   nodes.ObjectTypeInternalSlot = function (node, parent) {
-    if (parent.internalSlots[0] === node && (!parent.properties || !parent.properties.length) && (!parent.callProperties || !parent.callProperties.length) && (!parent.indexers || !parent.indexers.length)) {
+    var _parent$properties3, _parent$callPropertie2, _parent$indexers;
+
+    if (parent.internalSlots[0] === node && !((_parent$properties3 = parent.properties) == null ? void 0 : _parent$properties3.length) && !((_parent$callPropertie2 = parent.callProperties) == null ? void 0 : _parent$callPropertie2.length) && !((_parent$indexers = parent.indexers) == null ? void 0 : _parent$indexers.length)) {
       return {
         before: true
       };
@@ -24571,7 +24594,7 @@
 
     var specifiers = node.specifiers.slice(0);
 
-    if (specifiers && specifiers.length) {
+    if (specifiers == null ? void 0 : specifiers.length) {
       for (;;) {
         var first = specifiers[0];
 
@@ -27583,6 +27606,11 @@
       this.space();
     }
 
+    if (node.kind === "get" || node.kind === "set") {
+      this.word(node.kind);
+      this.space();
+    }
+
     this._variance(node);
 
     this.print(node.key, node);
@@ -27650,9 +27678,11 @@
     this.printSequence(node.body, node);
   }
   function BlockStatement$1(node) {
+    var _node$directives;
+
     this.token("{");
     this.printInnerComments(node);
-    var hasDirectives = node.directives && node.directives.length;
+    var hasDirectives = (_node$directives = node.directives) == null ? void 0 : _node$directives.length;
 
     if (node.body.length || hasDirectives) {
       this.newline();
@@ -28890,7 +28920,7 @@
       if (!this.format.retainLines) return;
       var pos = loc ? loc[prop] : null;
 
-      if (pos && pos.line !== null) {
+      if ((pos == null ? void 0 : pos.line) != null) {
         var count = pos.line - this._buf.getCurrentLine();
 
         for (var i = 0; i < count; i++) {
@@ -28921,7 +28951,7 @@
     _proto.endTerminatorless = function endTerminatorless(state) {
       this._noLineTerminator = false;
 
-      if (state && state.printed) {
+      if (state == null ? void 0 : state.printed) {
         this.dedent();
         this.newline();
         this.token(")");
@@ -28941,7 +28971,7 @@
       var printMethod = this[node.type];
 
       if (!printMethod) {
-        throw new ReferenceError("unknown node of type " + JSON.stringify(node.type) + " with constructor " + JSON.stringify(node && node.constructor.name));
+        throw new ReferenceError("unknown node of type " + JSON.stringify(node.type) + " with constructor " + JSON.stringify(node == null ? void 0 : node.constructor.name));
       }
 
       this._printStack.push(node);
@@ -29020,7 +29050,7 @@
         opts = {};
       }
 
-      if (!nodes || !nodes.length) return;
+      if (!(nodes == null ? void 0 : nodes.length)) return;
       if (opts.indent) this.indent();
       var newlineOpts = {
         addNewlines: opts.addNewlines
@@ -29072,11 +29102,13 @@
     };
 
     _proto.printInnerComments = function printInnerComments(node, indent) {
+      var _node$innerComments;
+
       if (indent === void 0) {
         indent = true;
       }
 
-      if (!node.innerComments || !node.innerComments.length) return;
+      if (!((_node$innerComments = node.innerComments) == null ? void 0 : _node$innerComments.length)) return;
       if (indent) this.indent();
 
       this._printComments(node.innerComments);
@@ -29150,7 +29182,9 @@
       var val = !isBlockComment && !this._noLineTerminator ? "//" + comment.value + "\n" : "/*" + comment.value + "*/";
 
       if (isBlockComment && this.format.indent.adjustMultilineComment) {
-        var offset = comment.loc && comment.loc.start.column;
+        var _comment$loc;
+
+        var offset = (_comment$loc = comment.loc) == null ? void 0 : _comment$loc.start.column;
 
         if (offset) {
           var newlineRegex = new RegExp("\\n\\s{1," + offset + "}", "g");
@@ -29169,7 +29203,7 @@
     };
 
     _proto._printComments = function _printComments(comments, inlinePureAnnotation) {
-      if (!comments || !comments.length) return;
+      if (!(comments == null ? void 0 : comments.length)) return;
 
       if (inlinePureAnnotation && comments.length === 1 && PURE_ANNOTATION_RE.test(comments[0].value)) {
         this._printComment(comments[0], this._buf.hasContent() && !this.endsWith("\n"));
@@ -29636,12 +29670,14 @@
   }
 
   function VariableDeclarator$2() {
+    var _type;
+
     var id = this.get("id");
     if (!id.isIdentifier()) return;
     var init = this.get("init");
     var type = init.getTypeAnnotation();
 
-    if (type && type.type === "AnyTypeAnnotation") {
+    if (((_type = type) == null ? void 0 : _type.type) === "AnyTypeAnnotation") {
       if (init.isCallExpression() && init.get("callee").isIdentifier({
         name: "Array"
       }) && !init.scope.hasBinding("Array", true)) {
@@ -29845,6 +29881,8 @@
     return this.typeAnnotation = type;
   }
   function _getTypeAnnotation() {
+    var _inferer;
+
     var node = this.node;
 
     if (!node) {
@@ -29878,7 +29916,7 @@
 
     inferer = inferers[this.parentPath.type];
 
-    if (inferer && inferer.validParent) {
+    if ((_inferer = inferer) == null ? void 0 : _inferer.validParent) {
       return this.parentPath.getTypeAnnotation();
     }
   }
@@ -31812,7 +31850,7 @@
       column: 0,
       line: -1
     }, loc.start);
-    var endLoc = Object.assign({}, startLoc, {}, loc.end);
+    var endLoc = Object.assign(Object.assign({}, startLoc), loc.end);
 
     var _ref = opts || {},
         _ref$linesAbove = _ref.linesAbove,
@@ -32565,8 +32603,7 @@
     IllegalLanguageModeDirective: "Illegal 'use strict' directive in function with non-simple parameter list",
     IllegalReturn: "'return' outside of function",
     ImportCallArgumentTrailingComma: "Trailing comma is disallowed inside import(...) arguments",
-    ImportCallArity: "import() requires exactly one argument",
-    ImportCallArityLtOne: "Dynamic imports require a parameter: import('a.js')",
+    ImportCallArity: "import() requires exactly %0",
     ImportCallNotNewExpression: "Cannot use new with import(...)",
     ImportCallSpreadArgument: "... is not allowed in import()",
     ImportMetaOutsideModule: "import.meta may appear only with 'sourceType: \"module\"'",
@@ -32592,6 +32629,9 @@
     MissingEqInAssignment: "Only '=' operator can be used for specifying default value.",
     MissingUnicodeEscape: "Expecting Unicode escape sequence \\uXXXX",
     MixingCoalesceWithLogical: "Nullish coalescing operator(??) requires parens when mixing with logical operators",
+    ModuleAttributeDifferentFromType: "The only accepted module attribute is `type`",
+    ModuleAttributeInvalidValue: "Only string literals are allowed as module attribute values",
+    ModuleAttributesWithDuplicateKeys: 'Duplicate key "%0" is not allowed in module attributes',
     ModuleExportUndefined: "Export '%0' is not defined",
     MultipleDefaultsInSwitch: "Multiple default clauses",
     NewlineAfterThrow: "Illegal newline after throw",
@@ -32610,6 +32650,7 @@
     PipelineTopicUnused: "Pipeline is in topic style but does not use topic reference",
     PrimaryTopicNotAllowed: "Topic reference was used in a lexical context without topic binding",
     PrimaryTopicRequiresSmartPipeline: "Primary Topic Reference found but pipelineOperator not passed 'smart' for 'proposal' option.",
+    PrivateInExpectedIn: "Private names are only allowed in property accesses (`obj.#%0`) or in `in` expressions (`#%0 in obj`)",
     PrivateNameRedeclaration: "Duplicate private name #%0",
     RecordExpressionBarIncorrectEndSyntaxType: "Record expressions ending with '|}' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",
     RecordExpressionBarIncorrectStartSyntaxType: "Record expressions starting with '{|' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",
@@ -32827,7 +32868,7 @@
 
         if (name === "__proto__" && prop.kind === "init") {
           if (protoRef.used) {
-            if (refExpressionErrors && refExpressionErrors.doubleProto === -1) {
+            if ((refExpressionErrors == null ? void 0 : refExpressionErrors.doubleProto) === -1) {
               refExpressionErrors.doubleProto = key.start;
             } else {
               this.raise(key.start, Errors.DuplicateProto);
@@ -32839,7 +32880,9 @@
       };
 
       _proto.isValidDirective = function isValidDirective(stmt) {
-        return stmt.type === "ExpressionStatement" && stmt.expression.type === "Literal" && typeof stmt.expression.value === "string" && (!stmt.expression.extra || !stmt.expression.extra.parenthesized);
+        var _stmt$expression$extr;
+
+        return stmt.type === "ExpressionStatement" && stmt.expression.type === "Literal" && typeof stmt.expression.value === "string" && !((_stmt$expression$extr = stmt.expression.extra) == null ? void 0 : _stmt$expression$extr.parenthesized);
       };
 
       _proto.stmtToDirective = function stmtToDirective(stmt) {
@@ -34913,7 +34956,7 @@
         for (var i = 0; i < exprList.length; i++) {
           var expr = exprList[i];
 
-          if (expr && expr.type === "TypeCastExpression") {
+          if ((expr == null ? void 0 : expr.type) === "TypeCastExpression") {
             exprList[i] = this.typeCastToParameter(expr);
           }
         }
@@ -34923,9 +34966,11 @@
 
       _proto.toReferencedList = function toReferencedList(exprList, isParenthesizedExpr) {
         for (var i = 0; i < exprList.length; i++) {
+          var _expr$extra;
+
           var expr = exprList[i];
 
-          if (expr && expr.type === "TypeCastExpression" && (!expr.extra || !expr.extra.parenthesized) && (exprList.length > 1 || !isParenthesizedExpr)) {
+          if (expr && expr.type === "TypeCastExpression" && !((_expr$extra = expr.extra) == null ? void 0 : _expr$extra.parenthesized) && (exprList.length > 1 || !isParenthesizedExpr)) {
             this.raise(expr.typeAnnotation.start, FlowErrors.TypeCastInPattern);
           }
         }
@@ -35219,7 +35264,8 @@
       };
 
       _proto.parseMaybeAssign = function parseMaybeAssign(noIn, refExpressionErrors, afterLeftParse, refNeedsArrowPos) {
-        var _this7 = this;
+        var _this7 = this,
+            _jsx;
 
         var state = null;
         var jsx;
@@ -35239,7 +35285,9 @@
           }
         }
 
-        if (jsx && jsx.error || this.isRelational("<")) {
+        if (((_jsx = jsx) == null ? void 0 : _jsx.error) || this.isRelational("<")) {
+          var _arrow$node, _jsx2, _jsx3;
+
           state = state || this.state.clone();
           var typeParameters;
           var arrow = this.tryParse(function () {
@@ -35255,10 +35303,10 @@
 
             return arrowExpression;
           }, state);
-          var arrowExpression = arrow.node && arrow.node.type === "ArrowFunctionExpression" ? arrow.node : null;
+          var arrowExpression = ((_arrow$node = arrow.node) == null ? void 0 : _arrow$node.type) === "ArrowFunctionExpression" ? arrow.node : null;
           if (!arrow.error && arrowExpression) return arrowExpression;
 
-          if (jsx && jsx.node) {
+          if ((_jsx2 = jsx) == null ? void 0 : _jsx2.node) {
             this.state = jsx.failState;
             return jsx.node;
           }
@@ -35268,7 +35316,7 @@
             return arrowExpression;
           }
 
-          if (jsx && jsx.thrown) throw jsx.error;
+          if ((_jsx3 = jsx) == null ? void 0 : _jsx3.thrown) throw jsx.error;
           if (arrow.thrown) throw arrow.error;
           throw this.raise(typeParameters.start, FlowErrors.UnexpectedTokenAfterTypeParameter);
         }
@@ -37597,6 +37645,7 @@
         node.literal = function () {
           switch (_this3.state.type) {
             case types.num:
+            case types.bigint:
             case types.string:
             case types._true:
             case types._false:
@@ -37651,6 +37700,7 @@
 
           case types.string:
           case types.num:
+          case types.bigint:
           case types._true:
           case types._false:
             return this.tsParseLiteralTypeNode();
@@ -37659,7 +37709,9 @@
             if (this.state.value === "-") {
               var _node = this.startNode();
 
-              if (this.lookahead().type !== types.num) {
+              var nextToken = this.lookahead();
+
+              if (nextToken.type !== types.num && nextToken.type !== types.bigint) {
                 throw this.unexpected();
               }
 
@@ -38957,7 +39009,14 @@
       };
 
       _proto.parseMaybeAssign = function parseMaybeAssign() {
-        var _this15 = this;
+        var _this15 = this,
+            _jsx,
+            _jsx2,
+            _typeCast,
+            _jsx3,
+            _typeCast2,
+            _jsx4,
+            _typeCast3;
 
         for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
           args[_key2] = arguments[_key2];
@@ -38984,7 +39043,7 @@
           }
         }
 
-        if (!(jsx && jsx.error) && !this.isRelational("<")) {
+        if (!((_jsx = jsx) == null ? void 0 : _jsx.error) && !this.isRelational("<")) {
           var _superClass$prototype3;
 
           return (_superClass$prototype3 = _superClass.prototype.parseMaybeAssign).call.apply(_superClass$prototype3, [this].concat(args));
@@ -38993,7 +39052,7 @@
         var typeParameters;
         state = state || this.state.clone();
         var arrow = this.tryParse(function (abort) {
-          var _superClass$prototype4;
+          var _superClass$prototype4, _typeParameters;
 
           typeParameters = _this15.tsParseTypeParameters();
 
@@ -39003,7 +39062,7 @@
             abort();
           }
 
-          if (typeParameters && typeParameters.params.length !== 0) {
+          if (((_typeParameters = typeParameters) == null ? void 0 : _typeParameters.params.length) !== 0) {
             _this15.resetStartLocationFromNode(expr, typeParameters);
           }
 
@@ -39022,7 +39081,7 @@
           if (!typeCast.error) return typeCast.node;
         }
 
-        if (jsx && jsx.node) {
+        if ((_jsx2 = jsx) == null ? void 0 : _jsx2.node) {
           this.state = jsx.failState;
           return jsx.node;
         }
@@ -39032,15 +39091,15 @@
           return arrow.node;
         }
 
-        if (typeCast && typeCast.node) {
+        if ((_typeCast = typeCast) == null ? void 0 : _typeCast.node) {
           this.state = typeCast.failState;
           return typeCast.node;
         }
 
-        if (jsx && jsx.thrown) throw jsx.error;
+        if ((_jsx3 = jsx) == null ? void 0 : _jsx3.thrown) throw jsx.error;
         if (arrow.thrown) throw arrow.error;
-        if (typeCast && typeCast.thrown) throw typeCast.error;
-        throw jsx && jsx.error || arrow.error || typeCast && typeCast.error;
+        if ((_typeCast2 = typeCast) == null ? void 0 : _typeCast2.thrown) throw typeCast.error;
+        throw ((_jsx4 = jsx) == null ? void 0 : _jsx4.error) || arrow.error || ((_typeCast3 = typeCast) == null ? void 0 : _typeCast3.error);
       };
 
       _proto.parseMaybeUnary = function parseMaybeUnary(refExpressionErrors) {
@@ -39226,7 +39285,7 @@
         for (var i = 0; i < exprList.length; i++) {
           var expr = exprList[i];
 
-          if (expr && expr.type === "TSTypeCastExpression") {
+          if ((expr == null ? void 0 : expr.type) === "TSTypeCastExpression") {
             this.raise(expr.start, TSErrors.UnexpectedTypeAnnotation);
           }
         }
@@ -39425,7 +39484,7 @@
       _proto.checkExport = function checkExport(node) {
         var specifiers = node.specifiers;
 
-        if (specifiers && specifiers.length) {
+        if (specifiers == null ? void 0 : specifiers.length) {
           node.specifiers = specifiers.filter(function (node) {
             return node.exported.type === "Placeholder";
           });
@@ -39562,6 +39621,14 @@
       throw new Error("'pipelineOperator' requires 'proposal' option whose value should be one of: " + PIPELINE_PROPOSALS.map(function (p) {
         return "'" + p + "'";
       }).join(", "));
+    }
+
+    if (hasPlugin(plugins, "moduleAttributes")) {
+      var moduleAttributesVerionPluginOption = getPluginOption(plugins, "moduleAttributes", "version");
+
+      if (moduleAttributesVerionPluginOption !== "may-2020") {
+        throw new Error("The 'moduleAttributes' plugin requires a 'version' option," + " representing the last proposal update. Currently, the" + " only supported value is 'may-2020'.");
+      }
     }
 
     if (hasPlugin(plugins, "recordAndTuple") && !RECORD_AND_TUPLE_SYNTAX_TYPES.includes(getPluginOption(plugins, "recordAndTuple", "syntaxType"))) {
@@ -39805,7 +39872,7 @@
 
     _proto.nextToken = function nextToken() {
       var curContext = this.curContext();
-      if (!curContext || !curContext.preserveSpace) this.skipSpace();
+      if (!(curContext == null ? void 0 : curContext.preserveSpace)) this.skipSpace();
       this.state.octalPositions = [];
       this.state.start = this.state.pos;
       this.state.startLoc = this.state.curPosition();
@@ -40787,7 +40854,8 @@
         default:
           if (ch >= 48 && ch <= 55) {
             var codePos = this.state.pos - 1;
-            var octalStr = this.input.substr(this.state.pos - 1, 3).match(/^[0-7]+/)[0];
+            var match = this.input.substr(this.state.pos - 1, 3).match(/^[0-7]+/);
+            var octalStr = match[0];
             var octal = parseInt(octalStr, 8);
 
             if (octal > 255) {
@@ -41166,6 +41234,10 @@
       }
     };
 
+    _proto.isLiteralPropertyName = function isLiteralPropertyName() {
+      return this.match(types.name) || !!this.state.type.keyword || this.match(types.string) || this.match(types.num) || this.match(types.bigint);
+    };
+
     return UtilParser;
   }(Tokenizer);
   var ExpressionErrors = function ExpressionErrors() {
@@ -41179,8 +41251,8 @@
       this.start = pos;
       this.end = 0;
       this.loc = new SourceLocation(loc);
-      if (parser && parser.options.ranges) this.range = [pos, 0];
-      if (parser && parser.filename) this.loc.filename = parser.filename;
+      if (parser == null ? void 0 : parser.options.ranges) this.range = [pos, 0];
+      if (parser == null ? void 0 : parser.filename) this.loc.filename = parser.filename;
     }
 
     var _proto = Node.prototype;
@@ -41371,9 +41443,9 @@
       if (end) {
         var last = exprList[end - 1];
 
-        if (last && last.type === "RestElement") {
+        if ((last == null ? void 0 : last.type) === "RestElement") {
           --end;
-        } else if (last && last.type === "SpreadElement") {
+        } else if ((last == null ? void 0 : last.type) === "SpreadElement") {
           last.type = "RestElement";
           var arg = last.argument;
           this.toAssignable(arg);
@@ -41415,7 +41487,7 @@
       for (var _i2 = 0; _i2 < exprList.length; _i2++) {
         var expr = exprList[_i2];
 
-        if (expr && expr.type === "ArrayExpression") {
+        if ((expr == null ? void 0 : expr.type) === "ArrayExpression") {
           this.toReferencedListDeep(expr.elements);
         }
       }
@@ -41923,7 +41995,7 @@
 
           if (arg.type === "Identifier") {
             this.raise(node.start, Errors.StrictDelete);
-          } else if (arg.type === "MemberExpression" && arg.property.type === "PrivateName") {
+          } else if ((arg.type === "MemberExpression" || arg.type === "OptionalMemberExpression") && arg.property.type === "PrivateName") {
             this.raise(node.start, Errors.DeletePrivateField);
           }
         }
@@ -42013,7 +42085,7 @@
         var _node2 = this.startNodeAt(startPos, startLoc);
 
         _node2.object = base;
-        _node2.property = computed ? this.parseExpression() : optional ? this.parseIdentifier(true) : this.parseMaybePrivateName(true);
+        _node2.property = computed ? this.parseExpression() : this.parseMaybePrivateName(true);
         _node2.computed = computed;
 
         if (_node2.property.type === "PrivateName") {
@@ -42100,13 +42172,19 @@
 
     _proto.finishCallExpression = function finishCallExpression(node, optional) {
       if (node.callee.type === "Import") {
-        if (node.arguments.length !== 1) {
-          this.raise(node.start, Errors.ImportCallArity);
-        } else {
-          var importArg = node.arguments[0];
+        if (node.arguments.length === 2) {
+          this.expectPlugin("moduleAttributes");
+        }
 
-          if (importArg && importArg.type === "SpreadElement") {
-            this.raise(importArg.start, Errors.ImportCallSpreadArgument);
+        if (node.arguments.length === 0 || node.arguments.length > 2) {
+          this.raise(node.start, Errors.ImportCallArity, this.hasPlugin("moduleAttributes") ? "one or two arguments" : "one argument");
+        } else {
+          for (var _i2 = 0, _node$arguments2 = node.arguments; _i2 < _node$arguments2.length; _i2++) {
+            var arg = _node$arguments2[_i2];
+
+            if (arg.type === "SpreadElement") {
+              this.raise(arg.start, Errors.ImportCallSpreadArgument);
+            }
           }
         }
       }
@@ -42128,7 +42206,7 @@
           this.expect(types.comma);
 
           if (this.match(close)) {
-            if (dynamicImport) {
+            if (dynamicImport && !this.hasPlugin("moduleAttributes")) {
               this.raise(this.state.lastTokStart, Errors.ImportCallArgumentTrailingComma);
             }
 
@@ -42410,6 +42488,24 @@
               this.registerTopicReference();
               return this.finishNode(node, "PipelinePrimaryTopicReference");
             }
+
+            var nextCh = this.input.codePointAt(this.state.end);
+
+            if (isIdentifierStart(nextCh) || nextCh === 92) {
+              var start = this.state.start;
+              node = this.parseMaybePrivateName(true);
+
+              if (this.match(types._in)) {
+                this.expectPlugin("privateIn");
+                this.classScope.usePrivateName(node.id.name, node.start);
+              } else if (this.hasPlugin("privateIn")) {
+                this.raise(this.state.start, Errors.PrivateInExpectedIn, node.id.name);
+              } else {
+                throw this.unexpected(start);
+              }
+
+              return node;
+            }
           }
 
         default:
@@ -42483,8 +42579,6 @@
       this.expect(types.dot);
 
       if (this.isContextual("meta")) {
-        this.expectPlugin("importMeta");
-
         if (!this.inModule) {
           this.raiseWithData(id.start, {
             code: "BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED"
@@ -42492,8 +42586,6 @@
         }
 
         this.sawUnambiguousESM = true;
-      } else if (!this.hasPlugin("importMeta")) {
-        this.raise(id.start, Errors.ImportCallArityLtOne);
       }
 
       return this.parseMetaProperty(node, id, "meta");
@@ -42574,8 +42666,8 @@
         this.state.yieldPos = oldYieldPos;
         this.state.awaitPos = oldAwaitPos;
 
-        for (var _i2 = 0; _i2 < exprList.length; _i2++) {
-          var param = exprList[_i2];
+        for (var _i4 = 0; _i4 < exprList.length; _i4++) {
+          var param = exprList[_i4];
 
           if (param.extra && param.extra.parenthesized) {
             this.unexpected(param.extra.parenStart);
@@ -42760,7 +42852,7 @@
     };
 
     _proto.isAsyncProp = function isAsyncProp(prop) {
-      return !prop.computed && prop.key.type === "Identifier" && prop.key.name === "async" && (this.match(types.name) || this.match(types.num) || this.match(types.string) || this.match(types.bracketL) || this.state.type.keyword || this.match(types.star)) && !this.hasPrecedingLineBreak();
+      return !prop.computed && prop.key.type === "Identifier" && prop.key.name === "async" && (this.isLiteralPropertyName() || this.match(types.bracketL) || this.match(types.star)) && !this.hasPrecedingLineBreak();
     };
 
     _proto.parseObjectMember = function parseObjectMember(isPattern, refExpressionErrors) {
@@ -42827,7 +42919,7 @@
     };
 
     _proto.isGetterOrSetterMethod = function isGetterOrSetterMethod(prop, isPattern) {
-      return !isPattern && !prop.computed && prop.key.type === "Identifier" && (prop.key.name === "get" || prop.key.name === "set") && (this.match(types.string) || this.match(types.num) || this.match(types.bracketL) || this.match(types.name) || !!this.state.type.keyword);
+      return !isPattern && !prop.computed && prop.key.type === "Identifier" && (prop.key.name === "get" || prop.key.name === "set") && (this.isLiteralPropertyName() || this.match(types.bracketL));
     };
 
     _proto.getGetterSetterExpectedParamCount = function getGetterSetterExpectedParamCount(method) {
@@ -44905,6 +44997,12 @@
       }
 
       node.source = this.parseImportSource();
+      var attributes = this.maybeParseModuleAttributes();
+
+      if (attributes) {
+        node.attributes = attributes;
+      }
+
       this.semicolon();
       return this.finishNode(node, "ImportDeclaration");
     };
@@ -44922,6 +45020,45 @@
       specifier.local = this.parseIdentifier();
       this.checkLVal(specifier.local, BIND_LEXICAL, undefined, contextDescription);
       node.specifiers.push(this.finishNode(specifier, type));
+    };
+
+    _proto.maybeParseModuleAttributes = function maybeParseModuleAttributes() {
+      if (this.match(types._with) && !this.hasPrecedingLineBreak()) {
+        this.expectPlugin("moduleAttributes");
+        this.next();
+      } else {
+        if (this.hasPlugin("moduleAttributes")) return [];
+        return null;
+      }
+
+      var attrs = [];
+      var attributes = new Set();
+
+      do {
+        var node = this.startNode();
+        node.key = this.parseIdentifier(true);
+
+        if (node.key.name !== "type") {
+          this.raise(node.key.start, Errors.ModuleAttributeDifferentFromType, node.key.name);
+        }
+
+        if (attributes.has(node.key.name)) {
+          this.raise(node.key.start, Errors.ModuleAttributesWithDuplicateKeys, node.key.name);
+        }
+
+        attributes.add(node.key.name);
+        this.expect(types.colon);
+
+        if (!this.match(types.string)) {
+          throw this.unexpected(this.state.start, Errors.ModuleAttributeInvalidValue);
+        }
+
+        node.value = this.parseLiteral(this.state.value, "StringLiteral");
+        this.finishNode(node, "ImportAttribute");
+        attrs.push(node);
+      } while (this.eat(types.comma));
+
+      return attrs;
     };
 
     _proto.maybeParseDefaultImportSpecifier = function maybeParseDefaultImportSpecifier(node) {
@@ -45135,7 +45272,9 @@
   }
 
   function parse$1(input, options) {
-    if (options && options.sourceType === "unambiguous") {
+    var _options;
+
+    if (((_options = options) == null ? void 0 : _options.sourceType) === "unambiguous") {
       options = Object.assign({}, options);
 
       try {
@@ -45173,7 +45312,7 @@
   function getParser(options, input) {
     var cls = Parser;
 
-    if (options && options.plugins) {
+    if (options == null ? void 0 : options.plugins) {
       validatePlugins(options.plugins);
       cls = getParserClass(options.plugins);
     }
@@ -45345,7 +45484,7 @@
       validate(this.parent, this.key, node);
     }
 
-    this.debug("Replace with " + (node && node.type));
+    this.debug("Replace with " + (node == null ? void 0 : node.type));
     this.node = this.container[this.key] = node;
   }
   function replaceExpressionWithStatements(nodes) {
@@ -45357,7 +45496,7 @@
     }
 
     var functionParent = this.getFunctionParent();
-    var isParentAsync = functionParent && functionParent.is("async");
+    var isParentAsync = functionParent == null ? void 0 : functionParent.is("async");
     var container = ArrowFunctionExpression([], BlockStatement(nodes));
     this.replaceWith(CallExpression(container, []));
     this.traverse(hoistVariablesVisitor);
@@ -45547,7 +45686,7 @@
         return deopt(binding.path, state);
       }
 
-      if (binding && binding.hasValue) {
+      if (binding == null ? void 0 : binding.hasValue) {
         return binding.value;
       } else {
         if (node.name === "undefined") {
@@ -45927,7 +46066,7 @@
         _b$syntacticPlacehold = b.syntacticPlaceholders,
         syntacticPlaceholders = _b$syntacticPlacehold === void 0 ? a.syntacticPlaceholders : _b$syntacticPlacehold;
     return {
-      parser: Object.assign({}, a.parser, {}, b.parser),
+      parser: Object.assign(Object.assign({}, a.parser), b.parser),
       placeholderWhitelist: placeholderWhitelist,
       placeholderPattern: placeholderPattern,
       preserveComments: preserveComments,
@@ -46023,6 +46162,8 @@
   }
 
   function placeholderVisitorHandler(node, ancestors, state) {
+    var _state$placeholderWhi;
+
     var name;
 
     if (isPlaceholder(node)) {
@@ -46048,7 +46189,7 @@
       throw new Error("'.placeholderWhitelist' and '.placeholderPattern' aren't compatible" + " with '.syntacticPlaceholders: true'");
     }
 
-    if (state.isLegacyRef.value && (state.placeholderPattern === false || !(state.placeholderPattern || PATTERN).test(name)) && (!state.placeholderWhitelist || !state.placeholderWhitelist.has(name))) {
+    if (state.isLegacyRef.value && (state.placeholderPattern === false || !(state.placeholderPattern || PATTERN).test(name)) && !((_state$placeholderWhi = state.placeholderWhitelist) == null ? void 0 : _state$placeholderWhi.has(name))) {
       return;
     }
 
@@ -46114,11 +46255,11 @@
   }
 
   function parseWithCodeFrame(code, parserOpts) {
-    parserOpts = Object.assign({
+    parserOpts = Object.assign(Object.assign({
       allowReturnOutsideFunction: true,
       allowSuperOutsideMethod: true,
       sourceType: "module"
-    }, parserOpts, {
+    }, parserOpts), {}, {
       plugins: (parserOpts.plugins || []).concat("placeholders")
     });
 
@@ -46677,7 +46818,7 @@
         "static": false
       });
     });
-    var inConstructor = thisEnvFn && thisEnvFn.node.kind === "constructor";
+    var inConstructor = (thisEnvFn == null ? void 0 : thisEnvFn.node.kind) === "constructor";
 
     if (thisEnvFn.isClassProperty()) {
       throw fnPath.buildCodeFrameError("Unable to transform arrow inside class property");
@@ -47554,9 +47695,11 @@
     this.setKey(key);
   }
   function setKey(key) {
+    var _this$node;
+
     this.key = key;
     this.node = this.container[this.key];
-    this.type = this.node && this.node.type;
+    this.type = (_this$node = this.node) == null ? void 0 : _this$node.type;
   }
   function requeue(pathToQueue) {
     if (pathToQueue === void 0) {
@@ -47641,11 +47784,13 @@
   }];
 
   function remove() {
+    var _this$opts;
+
     this._assertUnremoved();
 
     this.resync();
 
-    if (!this.opts || !this.opts.noScope) {
+    if (!((_this$opts = this.opts) == null ? void 0 : _this$opts.noScope)) {
       this._removeFromScope();
     }
 
@@ -48645,7 +48790,7 @@
       if (opts.enter || opts.exit) return true;
       if (opts[node.type]) return true;
       var keys = VISITOR_KEYS[node.type];
-      if (!keys || !keys.length) return false;
+      if (!(keys == null ? void 0 : keys.length)) return false;
 
       for (var _iterator = _createForOfIteratorHelperLoose(keys), _step; !(_step = _iterator()).done;) {
         var key = _step.value;
@@ -49092,8 +49237,18 @@
 
   traverse$1.cache = cache;
 
-  function _templateObject79() {
+  function _templateObject80() {
     var data = _taggedTemplateLiteralLoose(["\n  import wrapNativeSuper from \"wrapNativeSuper\";\n  import getPrototypeOf from \"getPrototypeOf\";\n  import possibleConstructorReturn from \"possibleConstructorReturn\";\n  import inherits from \"inherits\";\n\n  export default function _wrapRegExp(re, groups) {\n    _wrapRegExp = function(re, groups) {\n      return new BabelRegExp(re, undefined, groups);\n    };\n\n    var _RegExp = wrapNativeSuper(RegExp);\n    var _super = RegExp.prototype;\n    var _groups = new WeakMap();\n\n    function BabelRegExp(re, flags, groups) {\n      var _this = _RegExp.call(this, re, flags);\n      // if the regex is recreated with 'g' flag\n      _groups.set(_this, groups || _groups.get(re));\n      return _this;\n    }\n    inherits(BabelRegExp, _RegExp);\n\n    BabelRegExp.prototype.exec = function(str) {\n      var result = _super.exec.call(this, str);\n      if (result) result.groups = buildGroups(result, this);\n      return result;\n    };\n    BabelRegExp.prototype[Symbol.replace] = function(str, substitution) {\n      if (typeof substitution === \"string\") {\n        var groups = _groups.get(this);\n        return _super[Symbol.replace].call(\n          this,\n          str,\n          substitution.replace(/\\$<([^>]+)>/g, function(_, name) {\n            return \"$\" + groups[name];\n          })\n        );\n      } else if (typeof substitution === \"function\") {\n        var _this = this;\n        return _super[Symbol.replace].call(\n          this,\n          str,\n          function() {\n            var args = [];\n            args.push.apply(args, arguments);\n            if (typeof args[args.length - 1] !== \"object\") {\n              // Modern engines already pass result.groups as the last arg.\n              args.push(buildGroups(args, _this));\n            }\n            return substitution.apply(this, args);\n          }\n        );\n      } else {\n        return _super[Symbol.replace].call(this, str, substitution);\n      }\n    }\n\n    function buildGroups(result, re) {\n      // NOTE: This function should return undefined if there are no groups,\n      // but in that case Babel doesn't add the wrapper anyway.\n\n      var g = _groups.get(re);\n      return Object.keys(g).reduce(function(groups, name) {\n        groups[name] = result[g[name]];\n        return groups;\n      }, Object.create(null));\n    }\n\n    return _wrapRegExp.apply(this, arguments);\n  }\n"], ["\n  import wrapNativeSuper from \"wrapNativeSuper\";\n  import getPrototypeOf from \"getPrototypeOf\";\n  import possibleConstructorReturn from \"possibleConstructorReturn\";\n  import inherits from \"inherits\";\n\n  export default function _wrapRegExp(re, groups) {\n    _wrapRegExp = function(re, groups) {\n      return new BabelRegExp(re, undefined, groups);\n    };\n\n    var _RegExp = wrapNativeSuper(RegExp);\n    var _super = RegExp.prototype;\n    var _groups = new WeakMap();\n\n    function BabelRegExp(re, flags, groups) {\n      var _this = _RegExp.call(this, re, flags);\n      // if the regex is recreated with 'g' flag\n      _groups.set(_this, groups || _groups.get(re));\n      return _this;\n    }\n    inherits(BabelRegExp, _RegExp);\n\n    BabelRegExp.prototype.exec = function(str) {\n      var result = _super.exec.call(this, str);\n      if (result) result.groups = buildGroups(result, this);\n      return result;\n    };\n    BabelRegExp.prototype[Symbol.replace] = function(str, substitution) {\n      if (typeof substitution === \"string\") {\n        var groups = _groups.get(this);\n        return _super[Symbol.replace].call(\n          this,\n          str,\n          substitution.replace(/\\\\$<([^>]+)>/g, function(_, name) {\n            return \"$\" + groups[name];\n          })\n        );\n      } else if (typeof substitution === \"function\") {\n        var _this = this;\n        return _super[Symbol.replace].call(\n          this,\n          str,\n          function() {\n            var args = [];\n            args.push.apply(args, arguments);\n            if (typeof args[args.length - 1] !== \"object\") {\n              // Modern engines already pass result.groups as the last arg.\n              args.push(buildGroups(args, _this));\n            }\n            return substitution.apply(this, args);\n          }\n        );\n      } else {\n        return _super[Symbol.replace].call(this, str, substitution);\n      }\n    }\n\n    function buildGroups(result, re) {\n      // NOTE: This function should return undefined if there are no groups,\n      // but in that case Babel doesn't add the wrapper anyway.\n\n      var g = _groups.get(re);\n      return Object.keys(g).reduce(function(groups, name) {\n        groups[name] = result[g[name]];\n        return groups;\n      }, Object.create(null));\n    }\n\n    return _wrapRegExp.apply(this, arguments);\n  }\n"]);
+
+    _templateObject80 = function _templateObject80() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject79() {
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateMethodSet() {\n    throw new TypeError(\"attempted to reassign private method\");\n  }\n"]);
 
     _templateObject79 = function _templateObject79() {
       return data;
@@ -49103,7 +49258,7 @@
   }
 
   function _templateObject78() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateMethodSet() {\n    throw new TypeError(\"attempted to reassign private method\");\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateMethodGet(receiver, privateSet, fn) {\n    if (!privateSet.has(receiver)) {\n      throw new TypeError(\"attempted to get private field on non-instance\");\n    }\n    return fn;\n  }\n"]);
 
     _templateObject78 = function _templateObject78() {
       return data;
@@ -49113,7 +49268,7 @@
   }
 
   function _templateObject77() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateMethodGet(receiver, privateSet, fn) {\n    if (!privateSet.has(receiver)) {\n      throw new TypeError(\"attempted to get private field on non-instance\");\n    }\n    return fn;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import toArray from \"toArray\";\n  import toPropertyKey from \"toPropertyKey\";\n\n  // These comments are stripped by @babel/template\n  /*::\n  type PropertyDescriptor =\n    | {\n        value: any,\n        writable: boolean,\n        configurable: boolean,\n        enumerable: boolean,\n      }\n    | {\n        get?: () => any,\n        set?: (v: any) => void,\n        configurable: boolean,\n        enumerable: boolean,\n      };\n\n  type FieldDescriptor ={\n    writable: boolean,\n    configurable: boolean,\n    enumerable: boolean,\n  };\n\n  type Placement = \"static\" | \"prototype\" | \"own\";\n  type Key = string | symbol; // PrivateName is not supported yet.\n\n  type ElementDescriptor =\n    | {\n        kind: \"method\",\n        key: Key,\n        placement: Placement,\n        descriptor: PropertyDescriptor\n      }\n    | {\n        kind: \"field\",\n        key: Key,\n        placement: Placement,\n        descriptor: FieldDescriptor,\n        initializer?: () => any,\n      };\n\n  // This is exposed to the user code\n  type ElementObjectInput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n  };\n\n  // This is exposed to the user code\n  type ElementObjectOutput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n    extras?: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  // This is exposed to the user code\n  type ClassObject = {\n    [@@toStringTag]?: \"Descriptor\",\n    kind: \"class\",\n    elements: ElementDescriptor[],\n  };\n\n  type ElementDecorator = (descriptor: ElementObjectInput) => ?ElementObjectOutput;\n  type ClassDecorator = (descriptor: ClassObject) => ?ClassObject;\n  type ClassFinisher = <A, B>(cl: Class<A>) => Class<B>;\n\n  // Only used by Babel in the transform output, not part of the spec.\n  type ElementDefinition =\n    | {\n        kind: \"method\",\n        value: any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n      }\n    | {\n        kind: \"field\",\n        value: () => any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n    };\n\n  declare function ClassFactory<C>(initialize: (instance: C) => void): {\n    F: Class<C>,\n    d: ElementDefinition[]\n  }\n\n  */\n\n  /*::\n  // Various combinations with/without extras and with one or many finishers\n\n  type ElementFinisherExtras = {\n    element: ElementDescriptor,\n    finisher?: ClassFinisher,\n    extras?: ElementDescriptor[],\n  };\n\n  type ElementFinishersExtras = {\n    element: ElementDescriptor,\n    finishers: ClassFinisher[],\n    extras: ElementDescriptor[],\n  };\n\n  type ElementsFinisher = {\n    elements: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  type ElementsFinishers = {\n    elements: ElementDescriptor[],\n    finishers: ClassFinisher[],\n  };\n\n  */\n\n  /*::\n\n  type Placements = {\n    static: Key[],\n    prototype: Key[],\n    own: Key[],\n  };\n\n  */\n\n  // ClassDefinitionEvaluation (Steps 26-*)\n  export default function _decorate(\n    decorators /*: ClassDecorator[] */,\n    factory /*: ClassFactory */,\n    superClass /*: ?Class<*> */,\n    mixins /*: ?Array<Function> */,\n  ) /*: Class<*> */ {\n    var api = _getDecoratorsApi();\n    if (mixins) {\n      for (var i = 0; i < mixins.length; i++) {\n        api = mixins[i](api);\n      }\n    }\n\n    var r = factory(function initialize(O) {\n      api.initializeInstanceElements(O, decorated.elements);\n    }, superClass);\n    var decorated = api.decorateClass(\n      _coalesceClassElements(r.d.map(_createElementDescriptor)),\n      decorators,\n    );\n\n    api.initializeClassElements(r.F, decorated.elements);\n\n    return api.runClassFinishers(r.F, decorated.finishers);\n  }\n\n  function _getDecoratorsApi() {\n    _getDecoratorsApi = function() {\n      return api;\n    };\n\n    var api = {\n      elementsDefinitionOrder: [[\"method\"], [\"field\"]],\n\n      // InitializeInstanceElements\n      initializeInstanceElements: function(\n        /*::<C>*/ O /*: C */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            if (element.kind === kind && element.placement === \"own\") {\n              this.defineClassElement(O, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // InitializeClassElements\n      initializeClassElements: function(\n        /*::<C>*/ F /*: Class<C> */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        var proto = F.prototype;\n\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            var placement = element.placement;\n            if (\n              element.kind === kind &&\n              (placement === \"static\" || placement === \"prototype\")\n            ) {\n              var receiver = placement === \"static\" ? F : proto;\n              this.defineClassElement(receiver, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // DefineClassElement\n      defineClassElement: function(\n        /*::<C>*/ receiver /*: C | Class<C> */,\n        element /*: ElementDescriptor */,\n      ) {\n        var descriptor /*: PropertyDescriptor */ = element.descriptor;\n        if (element.kind === \"field\") {\n          var initializer = element.initializer;\n          descriptor = {\n            enumerable: descriptor.enumerable,\n            writable: descriptor.writable,\n            configurable: descriptor.configurable,\n            value: initializer === void 0 ? void 0 : initializer.call(receiver),\n          };\n        }\n        Object.defineProperty(receiver, element.key, descriptor);\n      },\n\n      // DecorateClass\n      decorateClass: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var newElements /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n        var placements /*: Placements */ = {\n          static: [],\n          prototype: [],\n          own: [],\n        };\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          this.addElementPlacement(element, placements);\n        }, this);\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          if (!_hasDecorators(element)) return newElements.push(element);\n\n          var elementFinishersExtras /*: ElementFinishersExtras */ = this.decorateElement(\n            element,\n            placements,\n          );\n          newElements.push(elementFinishersExtras.element);\n          newElements.push.apply(newElements, elementFinishersExtras.extras);\n          finishers.push.apply(finishers, elementFinishersExtras.finishers);\n        }, this);\n\n        if (!decorators) {\n          return { elements: newElements, finishers: finishers };\n        }\n\n        var result /*: ElementsFinishers */ = this.decorateConstructor(\n          newElements,\n          decorators,\n        );\n        finishers.push.apply(finishers, result.finishers);\n        result.finishers = finishers;\n\n        return result;\n      },\n\n      // AddElementPlacement\n      addElementPlacement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n        silent /*: boolean */,\n      ) {\n        var keys = placements[element.placement];\n        if (!silent && keys.indexOf(element.key) !== -1) {\n          throw new TypeError(\"Duplicated element (\" + element.key + \")\");\n        }\n        keys.push(element.key);\n      },\n\n      // DecorateElement\n      decorateElement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n      ) /*: ElementFinishersExtras */ {\n        var extras /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (\n          var decorators = element.decorators, i = decorators.length - 1;\n          i >= 0;\n          i--\n        ) {\n          // (inlined) RemoveElementPlacement\n          var keys = placements[element.placement];\n          keys.splice(keys.indexOf(element.key), 1);\n\n          var elementObject /*: ElementObjectInput */ = this.fromElementDescriptor(\n            element,\n          );\n          var elementFinisherExtras /*: ElementFinisherExtras */ = this.toElementFinisherExtras(\n            (0, decorators[i])(elementObject) /*: ElementObjectOutput */ ||\n              elementObject,\n          );\n\n          element = elementFinisherExtras.element;\n          this.addElementPlacement(element, placements);\n\n          if (elementFinisherExtras.finisher) {\n            finishers.push(elementFinisherExtras.finisher);\n          }\n\n          var newExtras /*: ElementDescriptor[] | void */ =\n            elementFinisherExtras.extras;\n          if (newExtras) {\n            for (var j = 0; j < newExtras.length; j++) {\n              this.addElementPlacement(newExtras[j], placements);\n            }\n            extras.push.apply(extras, newExtras);\n          }\n        }\n\n        return { element: element, finishers: finishers, extras: extras };\n      },\n\n      // DecorateConstructor\n      decorateConstructor: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (var i = decorators.length - 1; i >= 0; i--) {\n          var obj /*: ClassObject */ = this.fromClassDescriptor(elements);\n          var elementsAndFinisher /*: ElementsFinisher */ = this.toClassDescriptor(\n            (0, decorators[i])(obj) /*: ClassObject */ || obj,\n          );\n\n          if (elementsAndFinisher.finisher !== undefined) {\n            finishers.push(elementsAndFinisher.finisher);\n          }\n\n          if (elementsAndFinisher.elements !== undefined) {\n            elements = elementsAndFinisher.elements;\n\n            for (var j = 0; j < elements.length - 1; j++) {\n              for (var k = j + 1; k < elements.length; k++) {\n                if (\n                  elements[j].key === elements[k].key &&\n                  elements[j].placement === elements[k].placement\n                ) {\n                  throw new TypeError(\n                    \"Duplicated element (\" + elements[j].key + \")\",\n                  );\n                }\n              }\n            }\n          }\n        }\n\n        return { elements: elements, finishers: finishers };\n      },\n\n      // FromElementDescriptor\n      fromElementDescriptor: function(\n        element /*: ElementDescriptor */,\n      ) /*: ElementObject */ {\n        var obj /*: ElementObject */ = {\n          kind: element.kind,\n          key: element.key,\n          placement: element.placement,\n          descriptor: element.descriptor,\n        };\n\n        var desc = {\n          value: \"Descriptor\",\n          configurable: true,\n        };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        if (element.kind === \"field\") obj.initializer = element.initializer;\n\n        return obj;\n      },\n\n      // ToElementDescriptors\n      toElementDescriptors: function(\n        elementObjects /*: ElementObject[] */,\n      ) /*: ElementDescriptor[] */ {\n        if (elementObjects === undefined) return;\n        return toArray(elementObjects).map(function(elementObject) {\n          var element = this.toElementDescriptor(elementObject);\n          this.disallowProperty(elementObject, \"finisher\", \"An element descriptor\");\n          this.disallowProperty(elementObject, \"extras\", \"An element descriptor\");\n          return element;\n        }, this);\n      },\n\n      // ToElementDescriptor\n      toElementDescriptor: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementDescriptor */ {\n        var kind = String(elementObject.kind);\n        if (kind !== \"method\" && kind !== \"field\") {\n          throw new TypeError(\n            'An element descriptor\\'s .kind property must be either \"method\" or' +\n              ' \"field\", but a decorator created an element descriptor with' +\n              ' .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        var key = toPropertyKey(elementObject.key);\n\n        var placement = String(elementObject.placement);\n        if (\n          placement !== \"static\" &&\n          placement !== \"prototype\" &&\n          placement !== \"own\"\n        ) {\n          throw new TypeError(\n            'An element descriptor\\'s .placement property must be one of \"static\",' +\n              ' \"prototype\" or \"own\", but a decorator created an element descriptor' +\n              ' with .placement \"' +\n              placement +\n              '\"',\n          );\n        }\n\n        var descriptor /*: PropertyDescriptor */ = elementObject.descriptor;\n\n        this.disallowProperty(elementObject, \"elements\", \"An element descriptor\");\n\n        var element /*: ElementDescriptor */ = {\n          kind: kind,\n          key: key,\n          placement: placement,\n          descriptor: Object.assign({}, descriptor),\n        };\n\n        if (kind !== \"field\") {\n          this.disallowProperty(elementObject, \"initializer\", \"A method descriptor\");\n        } else {\n          this.disallowProperty(\n            descriptor,\n            \"get\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"set\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"value\",\n            \"The property descriptor of a field descriptor\",\n          );\n\n          element.initializer = elementObject.initializer;\n        }\n\n        return element;\n      },\n\n      toElementFinisherExtras: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementFinisherExtras */ {\n        var element /*: ElementDescriptor */ = this.toElementDescriptor(\n          elementObject,\n        );\n        var finisher /*: ClassFinisher */ = _optionalCallableProperty(\n          elementObject,\n          \"finisher\",\n        );\n        var extras /*: ElementDescriptors[] */ = this.toElementDescriptors(\n          elementObject.extras,\n        );\n\n        return { element: element, finisher: finisher, extras: extras };\n      },\n\n      // FromClassDescriptor\n      fromClassDescriptor: function(\n        elements /*: ElementDescriptor[] */,\n      ) /*: ClassObject */ {\n        var obj = {\n          kind: \"class\",\n          elements: elements.map(this.fromElementDescriptor, this),\n        };\n\n        var desc = { value: \"Descriptor\", configurable: true };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        return obj;\n      },\n\n      // ToClassDescriptor\n      toClassDescriptor: function(\n        obj /*: ClassObject */,\n      ) /*: ElementsFinisher */ {\n        var kind = String(obj.kind);\n        if (kind !== \"class\") {\n          throw new TypeError(\n            'A class descriptor\\'s .kind property must be \"class\", but a decorator' +\n              ' created a class descriptor with .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        this.disallowProperty(obj, \"key\", \"A class descriptor\");\n        this.disallowProperty(obj, \"placement\", \"A class descriptor\");\n        this.disallowProperty(obj, \"descriptor\", \"A class descriptor\");\n        this.disallowProperty(obj, \"initializer\", \"A class descriptor\");\n        this.disallowProperty(obj, \"extras\", \"A class descriptor\");\n\n        var finisher = _optionalCallableProperty(obj, \"finisher\");\n        var elements = this.toElementDescriptors(obj.elements);\n\n        return { elements: elements, finisher: finisher };\n      },\n\n      // RunClassFinishers\n      runClassFinishers: function(\n        constructor /*: Class<*> */,\n        finishers /*: ClassFinisher[] */,\n      ) /*: Class<*> */ {\n        for (var i = 0; i < finishers.length; i++) {\n          var newConstructor /*: ?Class<*> */ = (0, finishers[i])(constructor);\n          if (newConstructor !== undefined) {\n            // NOTE: This should check if IsConstructor(newConstructor) is false.\n            if (typeof newConstructor !== \"function\") {\n              throw new TypeError(\"Finishers must return a constructor.\");\n            }\n            constructor = newConstructor;\n          }\n        }\n        return constructor;\n      },\n\n      disallowProperty: function(obj, name, objectType) {\n        if (obj[name] !== undefined) {\n          throw new TypeError(objectType + \" can't have a .\" + name + \" property.\");\n        }\n      }\n    };\n\n    return api;\n  }\n\n  // ClassElementEvaluation\n  function _createElementDescriptor(\n    def /*: ElementDefinition */,\n  ) /*: ElementDescriptor */ {\n    var key = toPropertyKey(def.key);\n\n    var descriptor /*: PropertyDescriptor */;\n    if (def.kind === \"method\") {\n      descriptor = {\n        value: def.value,\n        writable: true,\n        configurable: true,\n        enumerable: false,\n      };\n    } else if (def.kind === \"get\") {\n      descriptor = { get: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"set\") {\n      descriptor = { set: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"field\") {\n      descriptor = { configurable: true, writable: true, enumerable: true };\n    }\n\n    var element /*: ElementDescriptor */ = {\n      kind: def.kind === \"field\" ? \"field\" : \"method\",\n      key: key,\n      placement: def.static\n        ? \"static\"\n        : def.kind === \"field\"\n        ? \"own\"\n        : \"prototype\",\n      descriptor: descriptor,\n    };\n    if (def.decorators) element.decorators = def.decorators;\n    if (def.kind === \"field\") element.initializer = def.value;\n\n    return element;\n  }\n\n  // CoalesceGetterSetter\n  function _coalesceGetterSetter(\n    element /*: ElementDescriptor */,\n    other /*: ElementDescriptor */,\n  ) {\n    if (element.descriptor.get !== undefined) {\n      other.descriptor.get = element.descriptor.get;\n    } else {\n      other.descriptor.set = element.descriptor.set;\n    }\n  }\n\n  // CoalesceClassElements\n  function _coalesceClassElements(\n    elements /*: ElementDescriptor[] */,\n  ) /*: ElementDescriptor[] */ {\n    var newElements /*: ElementDescriptor[] */ = [];\n\n    var isSameElement = function(\n      other /*: ElementDescriptor */,\n    ) /*: boolean */ {\n      return (\n        other.kind === \"method\" &&\n        other.key === element.key &&\n        other.placement === element.placement\n      );\n    };\n\n    for (var i = 0; i < elements.length; i++) {\n      var element /*: ElementDescriptor */ = elements[i];\n      var other /*: ElementDescriptor */;\n\n      if (\n        element.kind === \"method\" &&\n        (other = newElements.find(isSameElement))\n      ) {\n        if (\n          _isDataDescriptor(element.descriptor) ||\n          _isDataDescriptor(other.descriptor)\n        ) {\n          if (_hasDecorators(element) || _hasDecorators(other)) {\n            throw new ReferenceError(\n              \"Duplicated methods (\" + element.key + \") can't be decorated.\",\n            );\n          }\n          other.descriptor = element.descriptor;\n        } else {\n          if (_hasDecorators(element)) {\n            if (_hasDecorators(other)) {\n              throw new ReferenceError(\n                \"Decorators can't be placed on different accessors with for \" +\n                  \"the same property (\" +\n                  element.key +\n                  \").\",\n              );\n            }\n            other.decorators = element.decorators;\n          }\n          _coalesceGetterSetter(element, other);\n        }\n      } else {\n        newElements.push(element);\n      }\n    }\n\n    return newElements;\n  }\n\n  function _hasDecorators(element /*: ElementDescriptor */) /*: boolean */ {\n    return element.decorators && element.decorators.length;\n  }\n\n  function _isDataDescriptor(desc /*: PropertyDescriptor */) /*: boolean */ {\n    return (\n      desc !== undefined &&\n      !(desc.value === undefined && desc.writable === undefined)\n    );\n  }\n\n  function _optionalCallableProperty /*::<T>*/(\n    obj /*: T */,\n    name /*: $Keys<T> */,\n  ) /*: ?Function */ {\n    var value = obj[name];\n    if (value !== undefined && typeof value !== \"function\") {\n      throw new TypeError(\"Expected '\" + name + \"' to be a function\");\n    }\n    return value;\n  }\n\n"], ["\n  import toArray from \"toArray\";\n  import toPropertyKey from \"toPropertyKey\";\n\n  // These comments are stripped by @babel/template\n  /*::\n  type PropertyDescriptor =\n    | {\n        value: any,\n        writable: boolean,\n        configurable: boolean,\n        enumerable: boolean,\n      }\n    | {\n        get?: () => any,\n        set?: (v: any) => void,\n        configurable: boolean,\n        enumerable: boolean,\n      };\n\n  type FieldDescriptor ={\n    writable: boolean,\n    configurable: boolean,\n    enumerable: boolean,\n  };\n\n  type Placement = \"static\" | \"prototype\" | \"own\";\n  type Key = string | symbol; // PrivateName is not supported yet.\n\n  type ElementDescriptor =\n    | {\n        kind: \"method\",\n        key: Key,\n        placement: Placement,\n        descriptor: PropertyDescriptor\n      }\n    | {\n        kind: \"field\",\n        key: Key,\n        placement: Placement,\n        descriptor: FieldDescriptor,\n        initializer?: () => any,\n      };\n\n  // This is exposed to the user code\n  type ElementObjectInput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n  };\n\n  // This is exposed to the user code\n  type ElementObjectOutput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n    extras?: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  // This is exposed to the user code\n  type ClassObject = {\n    [@@toStringTag]?: \"Descriptor\",\n    kind: \"class\",\n    elements: ElementDescriptor[],\n  };\n\n  type ElementDecorator = (descriptor: ElementObjectInput) => ?ElementObjectOutput;\n  type ClassDecorator = (descriptor: ClassObject) => ?ClassObject;\n  type ClassFinisher = <A, B>(cl: Class<A>) => Class<B>;\n\n  // Only used by Babel in the transform output, not part of the spec.\n  type ElementDefinition =\n    | {\n        kind: \"method\",\n        value: any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n      }\n    | {\n        kind: \"field\",\n        value: () => any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n    };\n\n  declare function ClassFactory<C>(initialize: (instance: C) => void): {\n    F: Class<C>,\n    d: ElementDefinition[]\n  }\n\n  */\n\n  /*::\n  // Various combinations with/without extras and with one or many finishers\n\n  type ElementFinisherExtras = {\n    element: ElementDescriptor,\n    finisher?: ClassFinisher,\n    extras?: ElementDescriptor[],\n  };\n\n  type ElementFinishersExtras = {\n    element: ElementDescriptor,\n    finishers: ClassFinisher[],\n    extras: ElementDescriptor[],\n  };\n\n  type ElementsFinisher = {\n    elements: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  type ElementsFinishers = {\n    elements: ElementDescriptor[],\n    finishers: ClassFinisher[],\n  };\n\n  */\n\n  /*::\n\n  type Placements = {\n    static: Key[],\n    prototype: Key[],\n    own: Key[],\n  };\n\n  */\n\n  // ClassDefinitionEvaluation (Steps 26-*)\n  export default function _decorate(\n    decorators /*: ClassDecorator[] */,\n    factory /*: ClassFactory */,\n    superClass /*: ?Class<*> */,\n    mixins /*: ?Array<Function> */,\n  ) /*: Class<*> */ {\n    var api = _getDecoratorsApi();\n    if (mixins) {\n      for (var i = 0; i < mixins.length; i++) {\n        api = mixins[i](api);\n      }\n    }\n\n    var r = factory(function initialize(O) {\n      api.initializeInstanceElements(O, decorated.elements);\n    }, superClass);\n    var decorated = api.decorateClass(\n      _coalesceClassElements(r.d.map(_createElementDescriptor)),\n      decorators,\n    );\n\n    api.initializeClassElements(r.F, decorated.elements);\n\n    return api.runClassFinishers(r.F, decorated.finishers);\n  }\n\n  function _getDecoratorsApi() {\n    _getDecoratorsApi = function() {\n      return api;\n    };\n\n    var api = {\n      elementsDefinitionOrder: [[\"method\"], [\"field\"]],\n\n      // InitializeInstanceElements\n      initializeInstanceElements: function(\n        /*::<C>*/ O /*: C */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            if (element.kind === kind && element.placement === \"own\") {\n              this.defineClassElement(O, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // InitializeClassElements\n      initializeClassElements: function(\n        /*::<C>*/ F /*: Class<C> */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        var proto = F.prototype;\n\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            var placement = element.placement;\n            if (\n              element.kind === kind &&\n              (placement === \"static\" || placement === \"prototype\")\n            ) {\n              var receiver = placement === \"static\" ? F : proto;\n              this.defineClassElement(receiver, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // DefineClassElement\n      defineClassElement: function(\n        /*::<C>*/ receiver /*: C | Class<C> */,\n        element /*: ElementDescriptor */,\n      ) {\n        var descriptor /*: PropertyDescriptor */ = element.descriptor;\n        if (element.kind === \"field\") {\n          var initializer = element.initializer;\n          descriptor = {\n            enumerable: descriptor.enumerable,\n            writable: descriptor.writable,\n            configurable: descriptor.configurable,\n            value: initializer === void 0 ? void 0 : initializer.call(receiver),\n          };\n        }\n        Object.defineProperty(receiver, element.key, descriptor);\n      },\n\n      // DecorateClass\n      decorateClass: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var newElements /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n        var placements /*: Placements */ = {\n          static: [],\n          prototype: [],\n          own: [],\n        };\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          this.addElementPlacement(element, placements);\n        }, this);\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          if (!_hasDecorators(element)) return newElements.push(element);\n\n          var elementFinishersExtras /*: ElementFinishersExtras */ = this.decorateElement(\n            element,\n            placements,\n          );\n          newElements.push(elementFinishersExtras.element);\n          newElements.push.apply(newElements, elementFinishersExtras.extras);\n          finishers.push.apply(finishers, elementFinishersExtras.finishers);\n        }, this);\n\n        if (!decorators) {\n          return { elements: newElements, finishers: finishers };\n        }\n\n        var result /*: ElementsFinishers */ = this.decorateConstructor(\n          newElements,\n          decorators,\n        );\n        finishers.push.apply(finishers, result.finishers);\n        result.finishers = finishers;\n\n        return result;\n      },\n\n      // AddElementPlacement\n      addElementPlacement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n        silent /*: boolean */,\n      ) {\n        var keys = placements[element.placement];\n        if (!silent && keys.indexOf(element.key) !== -1) {\n          throw new TypeError(\"Duplicated element (\" + element.key + \")\");\n        }\n        keys.push(element.key);\n      },\n\n      // DecorateElement\n      decorateElement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n      ) /*: ElementFinishersExtras */ {\n        var extras /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (\n          var decorators = element.decorators, i = decorators.length - 1;\n          i >= 0;\n          i--\n        ) {\n          // (inlined) RemoveElementPlacement\n          var keys = placements[element.placement];\n          keys.splice(keys.indexOf(element.key), 1);\n\n          var elementObject /*: ElementObjectInput */ = this.fromElementDescriptor(\n            element,\n          );\n          var elementFinisherExtras /*: ElementFinisherExtras */ = this.toElementFinisherExtras(\n            (0, decorators[i])(elementObject) /*: ElementObjectOutput */ ||\n              elementObject,\n          );\n\n          element = elementFinisherExtras.element;\n          this.addElementPlacement(element, placements);\n\n          if (elementFinisherExtras.finisher) {\n            finishers.push(elementFinisherExtras.finisher);\n          }\n\n          var newExtras /*: ElementDescriptor[] | void */ =\n            elementFinisherExtras.extras;\n          if (newExtras) {\n            for (var j = 0; j < newExtras.length; j++) {\n              this.addElementPlacement(newExtras[j], placements);\n            }\n            extras.push.apply(extras, newExtras);\n          }\n        }\n\n        return { element: element, finishers: finishers, extras: extras };\n      },\n\n      // DecorateConstructor\n      decorateConstructor: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (var i = decorators.length - 1; i >= 0; i--) {\n          var obj /*: ClassObject */ = this.fromClassDescriptor(elements);\n          var elementsAndFinisher /*: ElementsFinisher */ = this.toClassDescriptor(\n            (0, decorators[i])(obj) /*: ClassObject */ || obj,\n          );\n\n          if (elementsAndFinisher.finisher !== undefined) {\n            finishers.push(elementsAndFinisher.finisher);\n          }\n\n          if (elementsAndFinisher.elements !== undefined) {\n            elements = elementsAndFinisher.elements;\n\n            for (var j = 0; j < elements.length - 1; j++) {\n              for (var k = j + 1; k < elements.length; k++) {\n                if (\n                  elements[j].key === elements[k].key &&\n                  elements[j].placement === elements[k].placement\n                ) {\n                  throw new TypeError(\n                    \"Duplicated element (\" + elements[j].key + \")\",\n                  );\n                }\n              }\n            }\n          }\n        }\n\n        return { elements: elements, finishers: finishers };\n      },\n\n      // FromElementDescriptor\n      fromElementDescriptor: function(\n        element /*: ElementDescriptor */,\n      ) /*: ElementObject */ {\n        var obj /*: ElementObject */ = {\n          kind: element.kind,\n          key: element.key,\n          placement: element.placement,\n          descriptor: element.descriptor,\n        };\n\n        var desc = {\n          value: \"Descriptor\",\n          configurable: true,\n        };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        if (element.kind === \"field\") obj.initializer = element.initializer;\n\n        return obj;\n      },\n\n      // ToElementDescriptors\n      toElementDescriptors: function(\n        elementObjects /*: ElementObject[] */,\n      ) /*: ElementDescriptor[] */ {\n        if (elementObjects === undefined) return;\n        return toArray(elementObjects).map(function(elementObject) {\n          var element = this.toElementDescriptor(elementObject);\n          this.disallowProperty(elementObject, \"finisher\", \"An element descriptor\");\n          this.disallowProperty(elementObject, \"extras\", \"An element descriptor\");\n          return element;\n        }, this);\n      },\n\n      // ToElementDescriptor\n      toElementDescriptor: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementDescriptor */ {\n        var kind = String(elementObject.kind);\n        if (kind !== \"method\" && kind !== \"field\") {\n          throw new TypeError(\n            'An element descriptor\\\\'s .kind property must be either \"method\" or' +\n              ' \"field\", but a decorator created an element descriptor with' +\n              ' .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        var key = toPropertyKey(elementObject.key);\n\n        var placement = String(elementObject.placement);\n        if (\n          placement !== \"static\" &&\n          placement !== \"prototype\" &&\n          placement !== \"own\"\n        ) {\n          throw new TypeError(\n            'An element descriptor\\\\'s .placement property must be one of \"static\",' +\n              ' \"prototype\" or \"own\", but a decorator created an element descriptor' +\n              ' with .placement \"' +\n              placement +\n              '\"',\n          );\n        }\n\n        var descriptor /*: PropertyDescriptor */ = elementObject.descriptor;\n\n        this.disallowProperty(elementObject, \"elements\", \"An element descriptor\");\n\n        var element /*: ElementDescriptor */ = {\n          kind: kind,\n          key: key,\n          placement: placement,\n          descriptor: Object.assign({}, descriptor),\n        };\n\n        if (kind !== \"field\") {\n          this.disallowProperty(elementObject, \"initializer\", \"A method descriptor\");\n        } else {\n          this.disallowProperty(\n            descriptor,\n            \"get\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"set\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"value\",\n            \"The property descriptor of a field descriptor\",\n          );\n\n          element.initializer = elementObject.initializer;\n        }\n\n        return element;\n      },\n\n      toElementFinisherExtras: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementFinisherExtras */ {\n        var element /*: ElementDescriptor */ = this.toElementDescriptor(\n          elementObject,\n        );\n        var finisher /*: ClassFinisher */ = _optionalCallableProperty(\n          elementObject,\n          \"finisher\",\n        );\n        var extras /*: ElementDescriptors[] */ = this.toElementDescriptors(\n          elementObject.extras,\n        );\n\n        return { element: element, finisher: finisher, extras: extras };\n      },\n\n      // FromClassDescriptor\n      fromClassDescriptor: function(\n        elements /*: ElementDescriptor[] */,\n      ) /*: ClassObject */ {\n        var obj = {\n          kind: \"class\",\n          elements: elements.map(this.fromElementDescriptor, this),\n        };\n\n        var desc = { value: \"Descriptor\", configurable: true };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        return obj;\n      },\n\n      // ToClassDescriptor\n      toClassDescriptor: function(\n        obj /*: ClassObject */,\n      ) /*: ElementsFinisher */ {\n        var kind = String(obj.kind);\n        if (kind !== \"class\") {\n          throw new TypeError(\n            'A class descriptor\\\\'s .kind property must be \"class\", but a decorator' +\n              ' created a class descriptor with .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        this.disallowProperty(obj, \"key\", \"A class descriptor\");\n        this.disallowProperty(obj, \"placement\", \"A class descriptor\");\n        this.disallowProperty(obj, \"descriptor\", \"A class descriptor\");\n        this.disallowProperty(obj, \"initializer\", \"A class descriptor\");\n        this.disallowProperty(obj, \"extras\", \"A class descriptor\");\n\n        var finisher = _optionalCallableProperty(obj, \"finisher\");\n        var elements = this.toElementDescriptors(obj.elements);\n\n        return { elements: elements, finisher: finisher };\n      },\n\n      // RunClassFinishers\n      runClassFinishers: function(\n        constructor /*: Class<*> */,\n        finishers /*: ClassFinisher[] */,\n      ) /*: Class<*> */ {\n        for (var i = 0; i < finishers.length; i++) {\n          var newConstructor /*: ?Class<*> */ = (0, finishers[i])(constructor);\n          if (newConstructor !== undefined) {\n            // NOTE: This should check if IsConstructor(newConstructor) is false.\n            if (typeof newConstructor !== \"function\") {\n              throw new TypeError(\"Finishers must return a constructor.\");\n            }\n            constructor = newConstructor;\n          }\n        }\n        return constructor;\n      },\n\n      disallowProperty: function(obj, name, objectType) {\n        if (obj[name] !== undefined) {\n          throw new TypeError(objectType + \" can't have a .\" + name + \" property.\");\n        }\n      }\n    };\n\n    return api;\n  }\n\n  // ClassElementEvaluation\n  function _createElementDescriptor(\n    def /*: ElementDefinition */,\n  ) /*: ElementDescriptor */ {\n    var key = toPropertyKey(def.key);\n\n    var descriptor /*: PropertyDescriptor */;\n    if (def.kind === \"method\") {\n      descriptor = {\n        value: def.value,\n        writable: true,\n        configurable: true,\n        enumerable: false,\n      };\n    } else if (def.kind === \"get\") {\n      descriptor = { get: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"set\") {\n      descriptor = { set: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"field\") {\n      descriptor = { configurable: true, writable: true, enumerable: true };\n    }\n\n    var element /*: ElementDescriptor */ = {\n      kind: def.kind === \"field\" ? \"field\" : \"method\",\n      key: key,\n      placement: def.static\n        ? \"static\"\n        : def.kind === \"field\"\n        ? \"own\"\n        : \"prototype\",\n      descriptor: descriptor,\n    };\n    if (def.decorators) element.decorators = def.decorators;\n    if (def.kind === \"field\") element.initializer = def.value;\n\n    return element;\n  }\n\n  // CoalesceGetterSetter\n  function _coalesceGetterSetter(\n    element /*: ElementDescriptor */,\n    other /*: ElementDescriptor */,\n  ) {\n    if (element.descriptor.get !== undefined) {\n      other.descriptor.get = element.descriptor.get;\n    } else {\n      other.descriptor.set = element.descriptor.set;\n    }\n  }\n\n  // CoalesceClassElements\n  function _coalesceClassElements(\n    elements /*: ElementDescriptor[] */,\n  ) /*: ElementDescriptor[] */ {\n    var newElements /*: ElementDescriptor[] */ = [];\n\n    var isSameElement = function(\n      other /*: ElementDescriptor */,\n    ) /*: boolean */ {\n      return (\n        other.kind === \"method\" &&\n        other.key === element.key &&\n        other.placement === element.placement\n      );\n    };\n\n    for (var i = 0; i < elements.length; i++) {\n      var element /*: ElementDescriptor */ = elements[i];\n      var other /*: ElementDescriptor */;\n\n      if (\n        element.kind === \"method\" &&\n        (other = newElements.find(isSameElement))\n      ) {\n        if (\n          _isDataDescriptor(element.descriptor) ||\n          _isDataDescriptor(other.descriptor)\n        ) {\n          if (_hasDecorators(element) || _hasDecorators(other)) {\n            throw new ReferenceError(\n              \"Duplicated methods (\" + element.key + \") can't be decorated.\",\n            );\n          }\n          other.descriptor = element.descriptor;\n        } else {\n          if (_hasDecorators(element)) {\n            if (_hasDecorators(other)) {\n              throw new ReferenceError(\n                \"Decorators can't be placed on different accessors with for \" +\n                  \"the same property (\" +\n                  element.key +\n                  \").\",\n              );\n            }\n            other.decorators = element.decorators;\n          }\n          _coalesceGetterSetter(element, other);\n        }\n      } else {\n        newElements.push(element);\n      }\n    }\n\n    return newElements;\n  }\n\n  function _hasDecorators(element /*: ElementDescriptor */) /*: boolean */ {\n    return element.decorators && element.decorators.length;\n  }\n\n  function _isDataDescriptor(desc /*: PropertyDescriptor */) /*: boolean */ {\n    return (\n      desc !== undefined &&\n      !(desc.value === undefined && desc.writable === undefined)\n    );\n  }\n\n  function _optionalCallableProperty /*::<T>*/(\n    obj /*: T */,\n    name /*: $Keys<T> */,\n  ) /*: ?Function */ {\n    var value = obj[name];\n    if (value !== undefined && typeof value !== \"function\") {\n      throw new TypeError(\"Expected '\" + name + \"' to be a function\");\n    }\n    return value;\n  }\n\n"]);
 
     _templateObject77 = function _templateObject77() {
       return data;
@@ -49123,7 +49278,7 @@
   }
 
   function _templateObject76() {
-    var data = _taggedTemplateLiteralLoose(["\n  import toArray from \"toArray\";\n  import toPropertyKey from \"toPropertyKey\";\n\n  // These comments are stripped by @babel/template\n  /*::\n  type PropertyDescriptor =\n    | {\n        value: any,\n        writable: boolean,\n        configurable: boolean,\n        enumerable: boolean,\n      }\n    | {\n        get?: () => any,\n        set?: (v: any) => void,\n        configurable: boolean,\n        enumerable: boolean,\n      };\n\n  type FieldDescriptor ={\n    writable: boolean,\n    configurable: boolean,\n    enumerable: boolean,\n  };\n\n  type Placement = \"static\" | \"prototype\" | \"own\";\n  type Key = string | symbol; // PrivateName is not supported yet.\n\n  type ElementDescriptor =\n    | {\n        kind: \"method\",\n        key: Key,\n        placement: Placement,\n        descriptor: PropertyDescriptor\n      }\n    | {\n        kind: \"field\",\n        key: Key,\n        placement: Placement,\n        descriptor: FieldDescriptor,\n        initializer?: () => any,\n      };\n\n  // This is exposed to the user code\n  type ElementObjectInput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n  };\n\n  // This is exposed to the user code\n  type ElementObjectOutput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n    extras?: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  // This is exposed to the user code\n  type ClassObject = {\n    [@@toStringTag]?: \"Descriptor\",\n    kind: \"class\",\n    elements: ElementDescriptor[],\n  };\n\n  type ElementDecorator = (descriptor: ElementObjectInput) => ?ElementObjectOutput;\n  type ClassDecorator = (descriptor: ClassObject) => ?ClassObject;\n  type ClassFinisher = <A, B>(cl: Class<A>) => Class<B>;\n\n  // Only used by Babel in the transform output, not part of the spec.\n  type ElementDefinition =\n    | {\n        kind: \"method\",\n        value: any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n      }\n    | {\n        kind: \"field\",\n        value: () => any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n    };\n\n  declare function ClassFactory<C>(initialize: (instance: C) => void): {\n    F: Class<C>,\n    d: ElementDefinition[]\n  }\n\n  */\n\n  /*::\n  // Various combinations with/without extras and with one or many finishers\n\n  type ElementFinisherExtras = {\n    element: ElementDescriptor,\n    finisher?: ClassFinisher,\n    extras?: ElementDescriptor[],\n  };\n\n  type ElementFinishersExtras = {\n    element: ElementDescriptor,\n    finishers: ClassFinisher[],\n    extras: ElementDescriptor[],\n  };\n\n  type ElementsFinisher = {\n    elements: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  type ElementsFinishers = {\n    elements: ElementDescriptor[],\n    finishers: ClassFinisher[],\n  };\n\n  */\n\n  /*::\n\n  type Placements = {\n    static: Key[],\n    prototype: Key[],\n    own: Key[],\n  };\n\n  */\n\n  // ClassDefinitionEvaluation (Steps 26-*)\n  export default function _decorate(\n    decorators /*: ClassDecorator[] */,\n    factory /*: ClassFactory */,\n    superClass /*: ?Class<*> */,\n    mixins /*: ?Array<Function> */,\n  ) /*: Class<*> */ {\n    var api = _getDecoratorsApi();\n    if (mixins) {\n      for (var i = 0; i < mixins.length; i++) {\n        api = mixins[i](api);\n      }\n    }\n\n    var r = factory(function initialize(O) {\n      api.initializeInstanceElements(O, decorated.elements);\n    }, superClass);\n    var decorated = api.decorateClass(\n      _coalesceClassElements(r.d.map(_createElementDescriptor)),\n      decorators,\n    );\n\n    api.initializeClassElements(r.F, decorated.elements);\n\n    return api.runClassFinishers(r.F, decorated.finishers);\n  }\n\n  function _getDecoratorsApi() {\n    _getDecoratorsApi = function() {\n      return api;\n    };\n\n    var api = {\n      elementsDefinitionOrder: [[\"method\"], [\"field\"]],\n\n      // InitializeInstanceElements\n      initializeInstanceElements: function(\n        /*::<C>*/ O /*: C */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            if (element.kind === kind && element.placement === \"own\") {\n              this.defineClassElement(O, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // InitializeClassElements\n      initializeClassElements: function(\n        /*::<C>*/ F /*: Class<C> */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        var proto = F.prototype;\n\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            var placement = element.placement;\n            if (\n              element.kind === kind &&\n              (placement === \"static\" || placement === \"prototype\")\n            ) {\n              var receiver = placement === \"static\" ? F : proto;\n              this.defineClassElement(receiver, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // DefineClassElement\n      defineClassElement: function(\n        /*::<C>*/ receiver /*: C | Class<C> */,\n        element /*: ElementDescriptor */,\n      ) {\n        var descriptor /*: PropertyDescriptor */ = element.descriptor;\n        if (element.kind === \"field\") {\n          var initializer = element.initializer;\n          descriptor = {\n            enumerable: descriptor.enumerable,\n            writable: descriptor.writable,\n            configurable: descriptor.configurable,\n            value: initializer === void 0 ? void 0 : initializer.call(receiver),\n          };\n        }\n        Object.defineProperty(receiver, element.key, descriptor);\n      },\n\n      // DecorateClass\n      decorateClass: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var newElements /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n        var placements /*: Placements */ = {\n          static: [],\n          prototype: [],\n          own: [],\n        };\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          this.addElementPlacement(element, placements);\n        }, this);\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          if (!_hasDecorators(element)) return newElements.push(element);\n\n          var elementFinishersExtras /*: ElementFinishersExtras */ = this.decorateElement(\n            element,\n            placements,\n          );\n          newElements.push(elementFinishersExtras.element);\n          newElements.push.apply(newElements, elementFinishersExtras.extras);\n          finishers.push.apply(finishers, elementFinishersExtras.finishers);\n        }, this);\n\n        if (!decorators) {\n          return { elements: newElements, finishers: finishers };\n        }\n\n        var result /*: ElementsFinishers */ = this.decorateConstructor(\n          newElements,\n          decorators,\n        );\n        finishers.push.apply(finishers, result.finishers);\n        result.finishers = finishers;\n\n        return result;\n      },\n\n      // AddElementPlacement\n      addElementPlacement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n        silent /*: boolean */,\n      ) {\n        var keys = placements[element.placement];\n        if (!silent && keys.indexOf(element.key) !== -1) {\n          throw new TypeError(\"Duplicated element (\" + element.key + \")\");\n        }\n        keys.push(element.key);\n      },\n\n      // DecorateElement\n      decorateElement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n      ) /*: ElementFinishersExtras */ {\n        var extras /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (\n          var decorators = element.decorators, i = decorators.length - 1;\n          i >= 0;\n          i--\n        ) {\n          // (inlined) RemoveElementPlacement\n          var keys = placements[element.placement];\n          keys.splice(keys.indexOf(element.key), 1);\n\n          var elementObject /*: ElementObjectInput */ = this.fromElementDescriptor(\n            element,\n          );\n          var elementFinisherExtras /*: ElementFinisherExtras */ = this.toElementFinisherExtras(\n            (0, decorators[i])(elementObject) /*: ElementObjectOutput */ ||\n              elementObject,\n          );\n\n          element = elementFinisherExtras.element;\n          this.addElementPlacement(element, placements);\n\n          if (elementFinisherExtras.finisher) {\n            finishers.push(elementFinisherExtras.finisher);\n          }\n\n          var newExtras /*: ElementDescriptor[] | void */ =\n            elementFinisherExtras.extras;\n          if (newExtras) {\n            for (var j = 0; j < newExtras.length; j++) {\n              this.addElementPlacement(newExtras[j], placements);\n            }\n            extras.push.apply(extras, newExtras);\n          }\n        }\n\n        return { element: element, finishers: finishers, extras: extras };\n      },\n\n      // DecorateConstructor\n      decorateConstructor: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (var i = decorators.length - 1; i >= 0; i--) {\n          var obj /*: ClassObject */ = this.fromClassDescriptor(elements);\n          var elementsAndFinisher /*: ElementsFinisher */ = this.toClassDescriptor(\n            (0, decorators[i])(obj) /*: ClassObject */ || obj,\n          );\n\n          if (elementsAndFinisher.finisher !== undefined) {\n            finishers.push(elementsAndFinisher.finisher);\n          }\n\n          if (elementsAndFinisher.elements !== undefined) {\n            elements = elementsAndFinisher.elements;\n\n            for (var j = 0; j < elements.length - 1; j++) {\n              for (var k = j + 1; k < elements.length; k++) {\n                if (\n                  elements[j].key === elements[k].key &&\n                  elements[j].placement === elements[k].placement\n                ) {\n                  throw new TypeError(\n                    \"Duplicated element (\" + elements[j].key + \")\",\n                  );\n                }\n              }\n            }\n          }\n        }\n\n        return { elements: elements, finishers: finishers };\n      },\n\n      // FromElementDescriptor\n      fromElementDescriptor: function(\n        element /*: ElementDescriptor */,\n      ) /*: ElementObject */ {\n        var obj /*: ElementObject */ = {\n          kind: element.kind,\n          key: element.key,\n          placement: element.placement,\n          descriptor: element.descriptor,\n        };\n\n        var desc = {\n          value: \"Descriptor\",\n          configurable: true,\n        };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        if (element.kind === \"field\") obj.initializer = element.initializer;\n\n        return obj;\n      },\n\n      // ToElementDescriptors\n      toElementDescriptors: function(\n        elementObjects /*: ElementObject[] */,\n      ) /*: ElementDescriptor[] */ {\n        if (elementObjects === undefined) return;\n        return toArray(elementObjects).map(function(elementObject) {\n          var element = this.toElementDescriptor(elementObject);\n          this.disallowProperty(elementObject, \"finisher\", \"An element descriptor\");\n          this.disallowProperty(elementObject, \"extras\", \"An element descriptor\");\n          return element;\n        }, this);\n      },\n\n      // ToElementDescriptor\n      toElementDescriptor: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementDescriptor */ {\n        var kind = String(elementObject.kind);\n        if (kind !== \"method\" && kind !== \"field\") {\n          throw new TypeError(\n            'An element descriptor\\'s .kind property must be either \"method\" or' +\n              ' \"field\", but a decorator created an element descriptor with' +\n              ' .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        var key = toPropertyKey(elementObject.key);\n\n        var placement = String(elementObject.placement);\n        if (\n          placement !== \"static\" &&\n          placement !== \"prototype\" &&\n          placement !== \"own\"\n        ) {\n          throw new TypeError(\n            'An element descriptor\\'s .placement property must be one of \"static\",' +\n              ' \"prototype\" or \"own\", but a decorator created an element descriptor' +\n              ' with .placement \"' +\n              placement +\n              '\"',\n          );\n        }\n\n        var descriptor /*: PropertyDescriptor */ = elementObject.descriptor;\n\n        this.disallowProperty(elementObject, \"elements\", \"An element descriptor\");\n\n        var element /*: ElementDescriptor */ = {\n          kind: kind,\n          key: key,\n          placement: placement,\n          descriptor: Object.assign({}, descriptor),\n        };\n\n        if (kind !== \"field\") {\n          this.disallowProperty(elementObject, \"initializer\", \"A method descriptor\");\n        } else {\n          this.disallowProperty(\n            descriptor,\n            \"get\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"set\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"value\",\n            \"The property descriptor of a field descriptor\",\n          );\n\n          element.initializer = elementObject.initializer;\n        }\n\n        return element;\n      },\n\n      toElementFinisherExtras: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementFinisherExtras */ {\n        var element /*: ElementDescriptor */ = this.toElementDescriptor(\n          elementObject,\n        );\n        var finisher /*: ClassFinisher */ = _optionalCallableProperty(\n          elementObject,\n          \"finisher\",\n        );\n        var extras /*: ElementDescriptors[] */ = this.toElementDescriptors(\n          elementObject.extras,\n        );\n\n        return { element: element, finisher: finisher, extras: extras };\n      },\n\n      // FromClassDescriptor\n      fromClassDescriptor: function(\n        elements /*: ElementDescriptor[] */,\n      ) /*: ClassObject */ {\n        var obj = {\n          kind: \"class\",\n          elements: elements.map(this.fromElementDescriptor, this),\n        };\n\n        var desc = { value: \"Descriptor\", configurable: true };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        return obj;\n      },\n\n      // ToClassDescriptor\n      toClassDescriptor: function(\n        obj /*: ClassObject */,\n      ) /*: ElementsFinisher */ {\n        var kind = String(obj.kind);\n        if (kind !== \"class\") {\n          throw new TypeError(\n            'A class descriptor\\'s .kind property must be \"class\", but a decorator' +\n              ' created a class descriptor with .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        this.disallowProperty(obj, \"key\", \"A class descriptor\");\n        this.disallowProperty(obj, \"placement\", \"A class descriptor\");\n        this.disallowProperty(obj, \"descriptor\", \"A class descriptor\");\n        this.disallowProperty(obj, \"initializer\", \"A class descriptor\");\n        this.disallowProperty(obj, \"extras\", \"A class descriptor\");\n\n        var finisher = _optionalCallableProperty(obj, \"finisher\");\n        var elements = this.toElementDescriptors(obj.elements);\n\n        return { elements: elements, finisher: finisher };\n      },\n\n      // RunClassFinishers\n      runClassFinishers: function(\n        constructor /*: Class<*> */,\n        finishers /*: ClassFinisher[] */,\n      ) /*: Class<*> */ {\n        for (var i = 0; i < finishers.length; i++) {\n          var newConstructor /*: ?Class<*> */ = (0, finishers[i])(constructor);\n          if (newConstructor !== undefined) {\n            // NOTE: This should check if IsConstructor(newConstructor) is false.\n            if (typeof newConstructor !== \"function\") {\n              throw new TypeError(\"Finishers must return a constructor.\");\n            }\n            constructor = newConstructor;\n          }\n        }\n        return constructor;\n      },\n\n      disallowProperty: function(obj, name, objectType) {\n        if (obj[name] !== undefined) {\n          throw new TypeError(objectType + \" can't have a .\" + name + \" property.\");\n        }\n      }\n    };\n\n    return api;\n  }\n\n  // ClassElementEvaluation\n  function _createElementDescriptor(\n    def /*: ElementDefinition */,\n  ) /*: ElementDescriptor */ {\n    var key = toPropertyKey(def.key);\n\n    var descriptor /*: PropertyDescriptor */;\n    if (def.kind === \"method\") {\n      descriptor = {\n        value: def.value,\n        writable: true,\n        configurable: true,\n        enumerable: false,\n      };\n    } else if (def.kind === \"get\") {\n      descriptor = { get: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"set\") {\n      descriptor = { set: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"field\") {\n      descriptor = { configurable: true, writable: true, enumerable: true };\n    }\n\n    var element /*: ElementDescriptor */ = {\n      kind: def.kind === \"field\" ? \"field\" : \"method\",\n      key: key,\n      placement: def.static\n        ? \"static\"\n        : def.kind === \"field\"\n        ? \"own\"\n        : \"prototype\",\n      descriptor: descriptor,\n    };\n    if (def.decorators) element.decorators = def.decorators;\n    if (def.kind === \"field\") element.initializer = def.value;\n\n    return element;\n  }\n\n  // CoalesceGetterSetter\n  function _coalesceGetterSetter(\n    element /*: ElementDescriptor */,\n    other /*: ElementDescriptor */,\n  ) {\n    if (element.descriptor.get !== undefined) {\n      other.descriptor.get = element.descriptor.get;\n    } else {\n      other.descriptor.set = element.descriptor.set;\n    }\n  }\n\n  // CoalesceClassElements\n  function _coalesceClassElements(\n    elements /*: ElementDescriptor[] */,\n  ) /*: ElementDescriptor[] */ {\n    var newElements /*: ElementDescriptor[] */ = [];\n\n    var isSameElement = function(\n      other /*: ElementDescriptor */,\n    ) /*: boolean */ {\n      return (\n        other.kind === \"method\" &&\n        other.key === element.key &&\n        other.placement === element.placement\n      );\n    };\n\n    for (var i = 0; i < elements.length; i++) {\n      var element /*: ElementDescriptor */ = elements[i];\n      var other /*: ElementDescriptor */;\n\n      if (\n        element.kind === \"method\" &&\n        (other = newElements.find(isSameElement))\n      ) {\n        if (\n          _isDataDescriptor(element.descriptor) ||\n          _isDataDescriptor(other.descriptor)\n        ) {\n          if (_hasDecorators(element) || _hasDecorators(other)) {\n            throw new ReferenceError(\n              \"Duplicated methods (\" + element.key + \") can't be decorated.\",\n            );\n          }\n          other.descriptor = element.descriptor;\n        } else {\n          if (_hasDecorators(element)) {\n            if (_hasDecorators(other)) {\n              throw new ReferenceError(\n                \"Decorators can't be placed on different accessors with for \" +\n                  \"the same property (\" +\n                  element.key +\n                  \").\",\n              );\n            }\n            other.decorators = element.decorators;\n          }\n          _coalesceGetterSetter(element, other);\n        }\n      } else {\n        newElements.push(element);\n      }\n    }\n\n    return newElements;\n  }\n\n  function _hasDecorators(element /*: ElementDescriptor */) /*: boolean */ {\n    return element.decorators && element.decorators.length;\n  }\n\n  function _isDataDescriptor(desc /*: PropertyDescriptor */) /*: boolean */ {\n    return (\n      desc !== undefined &&\n      !(desc.value === undefined && desc.writable === undefined)\n    );\n  }\n\n  function _optionalCallableProperty /*::<T>*/(\n    obj /*: T */,\n    name /*: $Keys<T> */,\n  ) /*: ?Function */ {\n    var value = obj[name];\n    if (value !== undefined && typeof value !== \"function\") {\n      throw new TypeError(\"Expected '\" + name + \"' to be a function\");\n    }\n    return value;\n  }\n\n"], ["\n  import toArray from \"toArray\";\n  import toPropertyKey from \"toPropertyKey\";\n\n  // These comments are stripped by @babel/template\n  /*::\n  type PropertyDescriptor =\n    | {\n        value: any,\n        writable: boolean,\n        configurable: boolean,\n        enumerable: boolean,\n      }\n    | {\n        get?: () => any,\n        set?: (v: any) => void,\n        configurable: boolean,\n        enumerable: boolean,\n      };\n\n  type FieldDescriptor ={\n    writable: boolean,\n    configurable: boolean,\n    enumerable: boolean,\n  };\n\n  type Placement = \"static\" | \"prototype\" | \"own\";\n  type Key = string | symbol; // PrivateName is not supported yet.\n\n  type ElementDescriptor =\n    | {\n        kind: \"method\",\n        key: Key,\n        placement: Placement,\n        descriptor: PropertyDescriptor\n      }\n    | {\n        kind: \"field\",\n        key: Key,\n        placement: Placement,\n        descriptor: FieldDescriptor,\n        initializer?: () => any,\n      };\n\n  // This is exposed to the user code\n  type ElementObjectInput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n  };\n\n  // This is exposed to the user code\n  type ElementObjectOutput = ElementDescriptor & {\n    [@@toStringTag]?: \"Descriptor\"\n    extras?: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  // This is exposed to the user code\n  type ClassObject = {\n    [@@toStringTag]?: \"Descriptor\",\n    kind: \"class\",\n    elements: ElementDescriptor[],\n  };\n\n  type ElementDecorator = (descriptor: ElementObjectInput) => ?ElementObjectOutput;\n  type ClassDecorator = (descriptor: ClassObject) => ?ClassObject;\n  type ClassFinisher = <A, B>(cl: Class<A>) => Class<B>;\n\n  // Only used by Babel in the transform output, not part of the spec.\n  type ElementDefinition =\n    | {\n        kind: \"method\",\n        value: any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n      }\n    | {\n        kind: \"field\",\n        value: () => any,\n        key: Key,\n        static?: boolean,\n        decorators?: ElementDecorator[],\n    };\n\n  declare function ClassFactory<C>(initialize: (instance: C) => void): {\n    F: Class<C>,\n    d: ElementDefinition[]\n  }\n\n  */\n\n  /*::\n  // Various combinations with/without extras and with one or many finishers\n\n  type ElementFinisherExtras = {\n    element: ElementDescriptor,\n    finisher?: ClassFinisher,\n    extras?: ElementDescriptor[],\n  };\n\n  type ElementFinishersExtras = {\n    element: ElementDescriptor,\n    finishers: ClassFinisher[],\n    extras: ElementDescriptor[],\n  };\n\n  type ElementsFinisher = {\n    elements: ElementDescriptor[],\n    finisher?: ClassFinisher,\n  };\n\n  type ElementsFinishers = {\n    elements: ElementDescriptor[],\n    finishers: ClassFinisher[],\n  };\n\n  */\n\n  /*::\n\n  type Placements = {\n    static: Key[],\n    prototype: Key[],\n    own: Key[],\n  };\n\n  */\n\n  // ClassDefinitionEvaluation (Steps 26-*)\n  export default function _decorate(\n    decorators /*: ClassDecorator[] */,\n    factory /*: ClassFactory */,\n    superClass /*: ?Class<*> */,\n    mixins /*: ?Array<Function> */,\n  ) /*: Class<*> */ {\n    var api = _getDecoratorsApi();\n    if (mixins) {\n      for (var i = 0; i < mixins.length; i++) {\n        api = mixins[i](api);\n      }\n    }\n\n    var r = factory(function initialize(O) {\n      api.initializeInstanceElements(O, decorated.elements);\n    }, superClass);\n    var decorated = api.decorateClass(\n      _coalesceClassElements(r.d.map(_createElementDescriptor)),\n      decorators,\n    );\n\n    api.initializeClassElements(r.F, decorated.elements);\n\n    return api.runClassFinishers(r.F, decorated.finishers);\n  }\n\n  function _getDecoratorsApi() {\n    _getDecoratorsApi = function() {\n      return api;\n    };\n\n    var api = {\n      elementsDefinitionOrder: [[\"method\"], [\"field\"]],\n\n      // InitializeInstanceElements\n      initializeInstanceElements: function(\n        /*::<C>*/ O /*: C */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            if (element.kind === kind && element.placement === \"own\") {\n              this.defineClassElement(O, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // InitializeClassElements\n      initializeClassElements: function(\n        /*::<C>*/ F /*: Class<C> */,\n        elements /*: ElementDescriptor[] */,\n      ) {\n        var proto = F.prototype;\n\n        [\"method\", \"field\"].forEach(function(kind) {\n          elements.forEach(function(element /*: ElementDescriptor */) {\n            var placement = element.placement;\n            if (\n              element.kind === kind &&\n              (placement === \"static\" || placement === \"prototype\")\n            ) {\n              var receiver = placement === \"static\" ? F : proto;\n              this.defineClassElement(receiver, element);\n            }\n          }, this);\n        }, this);\n      },\n\n      // DefineClassElement\n      defineClassElement: function(\n        /*::<C>*/ receiver /*: C | Class<C> */,\n        element /*: ElementDescriptor */,\n      ) {\n        var descriptor /*: PropertyDescriptor */ = element.descriptor;\n        if (element.kind === \"field\") {\n          var initializer = element.initializer;\n          descriptor = {\n            enumerable: descriptor.enumerable,\n            writable: descriptor.writable,\n            configurable: descriptor.configurable,\n            value: initializer === void 0 ? void 0 : initializer.call(receiver),\n          };\n        }\n        Object.defineProperty(receiver, element.key, descriptor);\n      },\n\n      // DecorateClass\n      decorateClass: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var newElements /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n        var placements /*: Placements */ = {\n          static: [],\n          prototype: [],\n          own: [],\n        };\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          this.addElementPlacement(element, placements);\n        }, this);\n\n        elements.forEach(function(element /*: ElementDescriptor */) {\n          if (!_hasDecorators(element)) return newElements.push(element);\n\n          var elementFinishersExtras /*: ElementFinishersExtras */ = this.decorateElement(\n            element,\n            placements,\n          );\n          newElements.push(elementFinishersExtras.element);\n          newElements.push.apply(newElements, elementFinishersExtras.extras);\n          finishers.push.apply(finishers, elementFinishersExtras.finishers);\n        }, this);\n\n        if (!decorators) {\n          return { elements: newElements, finishers: finishers };\n        }\n\n        var result /*: ElementsFinishers */ = this.decorateConstructor(\n          newElements,\n          decorators,\n        );\n        finishers.push.apply(finishers, result.finishers);\n        result.finishers = finishers;\n\n        return result;\n      },\n\n      // AddElementPlacement\n      addElementPlacement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n        silent /*: boolean */,\n      ) {\n        var keys = placements[element.placement];\n        if (!silent && keys.indexOf(element.key) !== -1) {\n          throw new TypeError(\"Duplicated element (\" + element.key + \")\");\n        }\n        keys.push(element.key);\n      },\n\n      // DecorateElement\n      decorateElement: function(\n        element /*: ElementDescriptor */,\n        placements /*: Placements */,\n      ) /*: ElementFinishersExtras */ {\n        var extras /*: ElementDescriptor[] */ = [];\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (\n          var decorators = element.decorators, i = decorators.length - 1;\n          i >= 0;\n          i--\n        ) {\n          // (inlined) RemoveElementPlacement\n          var keys = placements[element.placement];\n          keys.splice(keys.indexOf(element.key), 1);\n\n          var elementObject /*: ElementObjectInput */ = this.fromElementDescriptor(\n            element,\n          );\n          var elementFinisherExtras /*: ElementFinisherExtras */ = this.toElementFinisherExtras(\n            (0, decorators[i])(elementObject) /*: ElementObjectOutput */ ||\n              elementObject,\n          );\n\n          element = elementFinisherExtras.element;\n          this.addElementPlacement(element, placements);\n\n          if (elementFinisherExtras.finisher) {\n            finishers.push(elementFinisherExtras.finisher);\n          }\n\n          var newExtras /*: ElementDescriptor[] | void */ =\n            elementFinisherExtras.extras;\n          if (newExtras) {\n            for (var j = 0; j < newExtras.length; j++) {\n              this.addElementPlacement(newExtras[j], placements);\n            }\n            extras.push.apply(extras, newExtras);\n          }\n        }\n\n        return { element: element, finishers: finishers, extras: extras };\n      },\n\n      // DecorateConstructor\n      decorateConstructor: function(\n        elements /*: ElementDescriptor[] */,\n        decorators /*: ClassDecorator[] */,\n      ) /*: ElementsFinishers */ {\n        var finishers /*: ClassFinisher[] */ = [];\n\n        for (var i = decorators.length - 1; i >= 0; i--) {\n          var obj /*: ClassObject */ = this.fromClassDescriptor(elements);\n          var elementsAndFinisher /*: ElementsFinisher */ = this.toClassDescriptor(\n            (0, decorators[i])(obj) /*: ClassObject */ || obj,\n          );\n\n          if (elementsAndFinisher.finisher !== undefined) {\n            finishers.push(elementsAndFinisher.finisher);\n          }\n\n          if (elementsAndFinisher.elements !== undefined) {\n            elements = elementsAndFinisher.elements;\n\n            for (var j = 0; j < elements.length - 1; j++) {\n              for (var k = j + 1; k < elements.length; k++) {\n                if (\n                  elements[j].key === elements[k].key &&\n                  elements[j].placement === elements[k].placement\n                ) {\n                  throw new TypeError(\n                    \"Duplicated element (\" + elements[j].key + \")\",\n                  );\n                }\n              }\n            }\n          }\n        }\n\n        return { elements: elements, finishers: finishers };\n      },\n\n      // FromElementDescriptor\n      fromElementDescriptor: function(\n        element /*: ElementDescriptor */,\n      ) /*: ElementObject */ {\n        var obj /*: ElementObject */ = {\n          kind: element.kind,\n          key: element.key,\n          placement: element.placement,\n          descriptor: element.descriptor,\n        };\n\n        var desc = {\n          value: \"Descriptor\",\n          configurable: true,\n        };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        if (element.kind === \"field\") obj.initializer = element.initializer;\n\n        return obj;\n      },\n\n      // ToElementDescriptors\n      toElementDescriptors: function(\n        elementObjects /*: ElementObject[] */,\n      ) /*: ElementDescriptor[] */ {\n        if (elementObjects === undefined) return;\n        return toArray(elementObjects).map(function(elementObject) {\n          var element = this.toElementDescriptor(elementObject);\n          this.disallowProperty(elementObject, \"finisher\", \"An element descriptor\");\n          this.disallowProperty(elementObject, \"extras\", \"An element descriptor\");\n          return element;\n        }, this);\n      },\n\n      // ToElementDescriptor\n      toElementDescriptor: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementDescriptor */ {\n        var kind = String(elementObject.kind);\n        if (kind !== \"method\" && kind !== \"field\") {\n          throw new TypeError(\n            'An element descriptor\\\\'s .kind property must be either \"method\" or' +\n              ' \"field\", but a decorator created an element descriptor with' +\n              ' .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        var key = toPropertyKey(elementObject.key);\n\n        var placement = String(elementObject.placement);\n        if (\n          placement !== \"static\" &&\n          placement !== \"prototype\" &&\n          placement !== \"own\"\n        ) {\n          throw new TypeError(\n            'An element descriptor\\\\'s .placement property must be one of \"static\",' +\n              ' \"prototype\" or \"own\", but a decorator created an element descriptor' +\n              ' with .placement \"' +\n              placement +\n              '\"',\n          );\n        }\n\n        var descriptor /*: PropertyDescriptor */ = elementObject.descriptor;\n\n        this.disallowProperty(elementObject, \"elements\", \"An element descriptor\");\n\n        var element /*: ElementDescriptor */ = {\n          kind: kind,\n          key: key,\n          placement: placement,\n          descriptor: Object.assign({}, descriptor),\n        };\n\n        if (kind !== \"field\") {\n          this.disallowProperty(elementObject, \"initializer\", \"A method descriptor\");\n        } else {\n          this.disallowProperty(\n            descriptor,\n            \"get\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"set\",\n            \"The property descriptor of a field descriptor\",\n          );\n          this.disallowProperty(\n            descriptor,\n            \"value\",\n            \"The property descriptor of a field descriptor\",\n          );\n\n          element.initializer = elementObject.initializer;\n        }\n\n        return element;\n      },\n\n      toElementFinisherExtras: function(\n        elementObject /*: ElementObject */,\n      ) /*: ElementFinisherExtras */ {\n        var element /*: ElementDescriptor */ = this.toElementDescriptor(\n          elementObject,\n        );\n        var finisher /*: ClassFinisher */ = _optionalCallableProperty(\n          elementObject,\n          \"finisher\",\n        );\n        var extras /*: ElementDescriptors[] */ = this.toElementDescriptors(\n          elementObject.extras,\n        );\n\n        return { element: element, finisher: finisher, extras: extras };\n      },\n\n      // FromClassDescriptor\n      fromClassDescriptor: function(\n        elements /*: ElementDescriptor[] */,\n      ) /*: ClassObject */ {\n        var obj = {\n          kind: \"class\",\n          elements: elements.map(this.fromElementDescriptor, this),\n        };\n\n        var desc = { value: \"Descriptor\", configurable: true };\n        Object.defineProperty(obj, Symbol.toStringTag, desc);\n\n        return obj;\n      },\n\n      // ToClassDescriptor\n      toClassDescriptor: function(\n        obj /*: ClassObject */,\n      ) /*: ElementsFinisher */ {\n        var kind = String(obj.kind);\n        if (kind !== \"class\") {\n          throw new TypeError(\n            'A class descriptor\\\\'s .kind property must be \"class\", but a decorator' +\n              ' created a class descriptor with .kind \"' +\n              kind +\n              '\"',\n          );\n        }\n\n        this.disallowProperty(obj, \"key\", \"A class descriptor\");\n        this.disallowProperty(obj, \"placement\", \"A class descriptor\");\n        this.disallowProperty(obj, \"descriptor\", \"A class descriptor\");\n        this.disallowProperty(obj, \"initializer\", \"A class descriptor\");\n        this.disallowProperty(obj, \"extras\", \"A class descriptor\");\n\n        var finisher = _optionalCallableProperty(obj, \"finisher\");\n        var elements = this.toElementDescriptors(obj.elements);\n\n        return { elements: elements, finisher: finisher };\n      },\n\n      // RunClassFinishers\n      runClassFinishers: function(\n        constructor /*: Class<*> */,\n        finishers /*: ClassFinisher[] */,\n      ) /*: Class<*> */ {\n        for (var i = 0; i < finishers.length; i++) {\n          var newConstructor /*: ?Class<*> */ = (0, finishers[i])(constructor);\n          if (newConstructor !== undefined) {\n            // NOTE: This should check if IsConstructor(newConstructor) is false.\n            if (typeof newConstructor !== \"function\") {\n              throw new TypeError(\"Finishers must return a constructor.\");\n            }\n            constructor = newConstructor;\n          }\n        }\n        return constructor;\n      },\n\n      disallowProperty: function(obj, name, objectType) {\n        if (obj[name] !== undefined) {\n          throw new TypeError(objectType + \" can't have a .\" + name + \" property.\");\n        }\n      }\n    };\n\n    return api;\n  }\n\n  // ClassElementEvaluation\n  function _createElementDescriptor(\n    def /*: ElementDefinition */,\n  ) /*: ElementDescriptor */ {\n    var key = toPropertyKey(def.key);\n\n    var descriptor /*: PropertyDescriptor */;\n    if (def.kind === \"method\") {\n      descriptor = {\n        value: def.value,\n        writable: true,\n        configurable: true,\n        enumerable: false,\n      };\n    } else if (def.kind === \"get\") {\n      descriptor = { get: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"set\") {\n      descriptor = { set: def.value, configurable: true, enumerable: false };\n    } else if (def.kind === \"field\") {\n      descriptor = { configurable: true, writable: true, enumerable: true };\n    }\n\n    var element /*: ElementDescriptor */ = {\n      kind: def.kind === \"field\" ? \"field\" : \"method\",\n      key: key,\n      placement: def.static\n        ? \"static\"\n        : def.kind === \"field\"\n        ? \"own\"\n        : \"prototype\",\n      descriptor: descriptor,\n    };\n    if (def.decorators) element.decorators = def.decorators;\n    if (def.kind === \"field\") element.initializer = def.value;\n\n    return element;\n  }\n\n  // CoalesceGetterSetter\n  function _coalesceGetterSetter(\n    element /*: ElementDescriptor */,\n    other /*: ElementDescriptor */,\n  ) {\n    if (element.descriptor.get !== undefined) {\n      other.descriptor.get = element.descriptor.get;\n    } else {\n      other.descriptor.set = element.descriptor.set;\n    }\n  }\n\n  // CoalesceClassElements\n  function _coalesceClassElements(\n    elements /*: ElementDescriptor[] */,\n  ) /*: ElementDescriptor[] */ {\n    var newElements /*: ElementDescriptor[] */ = [];\n\n    var isSameElement = function(\n      other /*: ElementDescriptor */,\n    ) /*: boolean */ {\n      return (\n        other.kind === \"method\" &&\n        other.key === element.key &&\n        other.placement === element.placement\n      );\n    };\n\n    for (var i = 0; i < elements.length; i++) {\n      var element /*: ElementDescriptor */ = elements[i];\n      var other /*: ElementDescriptor */;\n\n      if (\n        element.kind === \"method\" &&\n        (other = newElements.find(isSameElement))\n      ) {\n        if (\n          _isDataDescriptor(element.descriptor) ||\n          _isDataDescriptor(other.descriptor)\n        ) {\n          if (_hasDecorators(element) || _hasDecorators(other)) {\n            throw new ReferenceError(\n              \"Duplicated methods (\" + element.key + \") can't be decorated.\",\n            );\n          }\n          other.descriptor = element.descriptor;\n        } else {\n          if (_hasDecorators(element)) {\n            if (_hasDecorators(other)) {\n              throw new ReferenceError(\n                \"Decorators can't be placed on different accessors with for \" +\n                  \"the same property (\" +\n                  element.key +\n                  \").\",\n              );\n            }\n            other.decorators = element.decorators;\n          }\n          _coalesceGetterSetter(element, other);\n        }\n      } else {\n        newElements.push(element);\n      }\n    }\n\n    return newElements;\n  }\n\n  function _hasDecorators(element /*: ElementDescriptor */) /*: boolean */ {\n    return element.decorators && element.decorators.length;\n  }\n\n  function _isDataDescriptor(desc /*: PropertyDescriptor */) /*: boolean */ {\n    return (\n      desc !== undefined &&\n      !(desc.value === undefined && desc.writable === undefined)\n    );\n  }\n\n  function _optionalCallableProperty /*::<T>*/(\n    obj /*: T */,\n    name /*: $Keys<T> */,\n  ) /*: ?Function */ {\n    var value = obj[name];\n    if (value !== undefined && typeof value !== \"function\") {\n      throw new TypeError(\"Expected '\" + name + \"' to be a function\");\n    }\n    return value;\n  }\n\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateMethodSet() {\n    throw new TypeError(\"attempted to set read only static private field\");\n  }\n"]);
 
     _templateObject76 = function _templateObject76() {
       return data;
@@ -49133,7 +49288,7 @@
   }
 
   function _templateObject75() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateMethodSet() {\n    throw new TypeError(\"attempted to set read only static private field\");\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateMethodGet(receiver, classConstructor, method) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    return method;\n  }\n"]);
 
     _templateObject75 = function _templateObject75() {
       return data;
@@ -49143,7 +49298,7 @@
   }
 
   function _templateObject74() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateMethodGet(receiver, classConstructor, method) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    return method;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateFieldSpecSet(receiver, classConstructor, descriptor, value) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    if (descriptor.set) {\n      descriptor.set.call(receiver, value);\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n      descriptor.value = value;\n    }\n\n    return value;\n  }\n"]);
 
     _templateObject74 = function _templateObject74() {
       return data;
@@ -49153,7 +49308,7 @@
   }
 
   function _templateObject73() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateFieldSpecSet(receiver, classConstructor, descriptor, value) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    if (descriptor.set) {\n      descriptor.set.call(receiver, value);\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n      descriptor.value = value;\n    }\n\n    return value;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateFieldSpecGet(receiver, classConstructor, descriptor) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    if (descriptor.get) {\n      return descriptor.get.call(receiver);\n    }\n    return descriptor.value;\n  }\n"]);
 
     _templateObject73 = function _templateObject73() {
       return data;
@@ -49163,7 +49318,7 @@
   }
 
   function _templateObject72() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classStaticPrivateFieldSpecGet(receiver, classConstructor, descriptor) {\n    if (receiver !== classConstructor) {\n      throw new TypeError(\"Private static access of wrong provenance\");\n    }\n    if (descriptor.get) {\n      return descriptor.get.call(receiver);\n    }\n    return descriptor.value;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldDestructureSet(receiver, privateMap) {\n    if (!privateMap.has(receiver)) {\n      throw new TypeError(\"attempted to set private field on non-instance\");\n    }\n    var descriptor = privateMap.get(receiver);\n    if (descriptor.set) {\n      if (!(\"__destrObj\" in descriptor)) {\n        descriptor.__destrObj = {\n          set value(v) {\n            descriptor.set.call(receiver, v)\n          },\n        };\n      }\n      return descriptor.__destrObj;\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n\n      return descriptor;\n    }\n  }\n"]);
 
     _templateObject72 = function _templateObject72() {
       return data;
@@ -49173,7 +49328,7 @@
   }
 
   function _templateObject71() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldDestructureSet(receiver, privateMap) {\n    if (!privateMap.has(receiver)) {\n      throw new TypeError(\"attempted to set private field on non-instance\");\n    }\n    var descriptor = privateMap.get(receiver);\n    if (descriptor.set) {\n      if (!(\"__destrObj\" in descriptor)) {\n        descriptor.__destrObj = {\n          set value(v) {\n            descriptor.set.call(receiver, v)\n          },\n        };\n      }\n      return descriptor.__destrObj;\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n\n      return descriptor;\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldSet(receiver, privateMap, value) {\n    var descriptor = privateMap.get(receiver);\n    if (!descriptor) {\n      throw new TypeError(\"attempted to set private field on non-instance\");\n    }\n    if (descriptor.set) {\n      descriptor.set.call(receiver, value);\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n\n      descriptor.value = value;\n    }\n\n    return value;\n  }\n"]);
 
     _templateObject71 = function _templateObject71() {
       return data;
@@ -49183,7 +49338,7 @@
   }
 
   function _templateObject70() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldSet(receiver, privateMap, value) {\n    var descriptor = privateMap.get(receiver);\n    if (!descriptor) {\n      throw new TypeError(\"attempted to set private field on non-instance\");\n    }\n    if (descriptor.set) {\n      descriptor.set.call(receiver, value);\n    } else {\n      if (!descriptor.writable) {\n        // This should only throw in strict mode, but class bodies are\n        // always strict and private fields can only be used inside\n        // class bodies.\n        throw new TypeError(\"attempted to set read only private field\");\n      }\n\n      descriptor.value = value;\n    }\n\n    return value;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldGet(receiver, privateMap) {\n    var descriptor = privateMap.get(receiver);\n    if (!descriptor) {\n      throw new TypeError(\"attempted to get private field on non-instance\");\n    }\n    if (descriptor.get) {\n      return descriptor.get.call(receiver);\n    }\n    return descriptor.value;\n  }\n"]);
 
     _templateObject70 = function _templateObject70() {
       return data;
@@ -49193,7 +49348,7 @@
   }
 
   function _templateObject69() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldGet(receiver, privateMap) {\n    var descriptor = privateMap.get(receiver);\n    if (!descriptor) {\n      throw new TypeError(\"attempted to get private field on non-instance\");\n    }\n    if (descriptor.get) {\n      return descriptor.get.call(receiver);\n    }\n    return descriptor.value;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldBase(receiver, privateKey) {\n    if (!Object.prototype.hasOwnProperty.call(receiver, privateKey)) {\n      throw new TypeError(\"attempted to use private field on non-instance\");\n    }\n    return receiver;\n  }\n"]);
 
     _templateObject69 = function _templateObject69() {
       return data;
@@ -49203,7 +49358,7 @@
   }
 
   function _templateObject68() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _classPrivateFieldBase(receiver, privateKey) {\n    if (!Object.prototype.hasOwnProperty.call(receiver, privateKey)) {\n      throw new TypeError(\"attempted to use private field on non-instance\");\n    }\n    return receiver;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  var id = 0;\n  export default function _classPrivateFieldKey(name) {\n    return \"__private_\" + (id++) + \"_\" + name;\n  }\n"]);
 
     _templateObject68 = function _templateObject68() {
       return data;
@@ -49213,7 +49368,7 @@
   }
 
   function _templateObject67() {
-    var data = _taggedTemplateLiteralLoose(["\n  var id = 0;\n  export default function _classPrivateFieldKey(name) {\n    return \"__private_\" + (id++) + \"_\" + name;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n    export default function _applyDecoratedDescriptor(target, property, decorators, descriptor, context){\n        var desc = {};\n        Object.keys(descriptor).forEach(function(key){\n            desc[key] = descriptor[key];\n        });\n        desc.enumerable = !!desc.enumerable;\n        desc.configurable = !!desc.configurable;\n        if ('value' in desc || desc.initializer){\n            desc.writable = true;\n        }\n\n        desc = decorators.slice().reverse().reduce(function(desc, decorator){\n            return decorator(target, property, desc) || desc;\n        }, desc);\n\n        if (context && desc.initializer !== void 0){\n            desc.value = desc.initializer ? desc.initializer.call(context) : void 0;\n            desc.initializer = undefined;\n        }\n\n        if (desc.initializer === void 0){\n            // This is a hack to avoid this being processed by 'transform-runtime'.\n            // See issue #9.\n            Object.defineProperty(target, property, desc);\n            desc = null;\n        }\n\n        return desc;\n    }\n"]);
 
     _templateObject67 = function _templateObject67() {
       return data;
@@ -49223,7 +49378,7 @@
   }
 
   function _templateObject66() {
-    var data = _taggedTemplateLiteralLoose(["\n    export default function _applyDecoratedDescriptor(target, property, decorators, descriptor, context){\n        var desc = {};\n        Object.keys(descriptor).forEach(function(key){\n            desc[key] = descriptor[key];\n        });\n        desc.enumerable = !!desc.enumerable;\n        desc.configurable = !!desc.configurable;\n        if ('value' in desc || desc.initializer){\n            desc.writable = true;\n        }\n\n        desc = decorators.slice().reverse().reduce(function(desc, decorator){\n            return decorator(target, property, desc) || desc;\n        }, desc);\n\n        if (context && desc.initializer !== void 0){\n            desc.value = desc.initializer ? desc.initializer.call(context) : void 0;\n            desc.initializer = undefined;\n        }\n\n        if (desc.initializer === void 0){\n            // This is a hack to avoid this being processed by 'transform-runtime'.\n            // See issue #9.\n            Object.defineProperty(target, property, desc);\n            desc = null;\n        }\n\n        return desc;\n    }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n    export default function _initializerDefineProperty(target, property, descriptor, context){\n        if (!descriptor) return;\n\n        Object.defineProperty(target, property, {\n            enumerable: descriptor.enumerable,\n            configurable: descriptor.configurable,\n            writable: descriptor.writable,\n            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0,\n        });\n    }\n"]);
 
     _templateObject66 = function _templateObject66() {
       return data;
@@ -49233,7 +49388,7 @@
   }
 
   function _templateObject65() {
-    var data = _taggedTemplateLiteralLoose(["\n    export default function _initializerDefineProperty(target, property, descriptor, context){\n        if (!descriptor) return;\n\n        Object.defineProperty(target, property, {\n            enumerable: descriptor.enumerable,\n            configurable: descriptor.configurable,\n            writable: descriptor.writable,\n            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0,\n        });\n    }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n    export default function _initializerWarningHelper(descriptor, context){\n        throw new Error(\n          'Decorating class property failed. Please ensure that ' +\n          'proposal-class-properties is enabled and runs after the decorators transform.'\n        );\n    }\n"]);
 
     _templateObject65 = function _templateObject65() {
       return data;
@@ -49243,7 +49398,7 @@
   }
 
   function _templateObject64() {
-    var data = _taggedTemplateLiteralLoose(["\n    export default function _initializerWarningHelper(descriptor, context){\n        throw new Error(\n          'Decorating class property failed. Please ensure that ' +\n          'proposal-class-properties is enabled and runs after the decorators transform.'\n        );\n    }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import toPrimitive from \"toPrimitive\";\n\n  export default function _toPropertyKey(arg) {\n    var key = toPrimitive(arg, \"string\");\n    return typeof key === \"symbol\" ? key : String(key);\n  }\n"]);
 
     _templateObject64 = function _templateObject64() {
       return data;
@@ -49253,7 +49408,7 @@
   }
 
   function _templateObject63() {
-    var data = _taggedTemplateLiteralLoose(["\n  import toPrimitive from \"toPrimitive\";\n\n  export default function _toPropertyKey(arg) {\n    var key = toPrimitive(arg, \"string\");\n    return typeof key === \"symbol\" ? key : String(key);\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _toPrimitive(\n    input,\n    hint /*: \"default\" | \"string\" | \"number\" | void */\n  ) {\n    if (typeof input !== \"object\" || input === null) return input;\n    var prim = input[Symbol.toPrimitive];\n    if (prim !== undefined) {\n      var res = prim.call(input, hint || \"default\");\n      if (typeof res !== \"object\") return res;\n      throw new TypeError(\"@@toPrimitive must return a primitive value.\");\n    }\n    return (hint === \"string\" ? String : Number)(input);\n  }\n"]);
 
     _templateObject63 = function _templateObject63() {
       return data;
@@ -49263,7 +49418,7 @@
   }
 
   function _templateObject62() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _toPrimitive(\n    input,\n    hint /*: \"default\" | \"string\" | \"number\" | void */\n  ) {\n    if (typeof input !== \"object\" || input === null) return input;\n    var prim = input[Symbol.toPrimitive];\n    if (prim !== undefined) {\n      var res = prim.call(input, hint || \"default\");\n      if (typeof res !== \"object\") return res;\n      throw new TypeError(\"@@toPrimitive must return a primitive value.\");\n    }\n    return (hint === \"string\" ? String : Number)(input);\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _skipFirstGeneratorNext(fn) {\n    return function () {\n      var it = fn.apply(this, arguments);\n      it.next();\n      return it;\n    }\n  }\n"]);
 
     _templateObject62 = function _templateObject62() {
       return data;
@@ -49273,7 +49428,7 @@
   }
 
   function _templateObject61() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _skipFirstGeneratorNext(fn) {\n    return function () {\n      var it = fn.apply(this, arguments);\n      it.next();\n      return it;\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  export default function _createForOfIteratorHelperLoose(o, allowArrayLike) {\n    var it;\n\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (\n        Array.isArray(o) ||\n        (it = unsupportedIterableToArray(o)) ||\n        (allowArrayLike && o && typeof o.length === \"number\")\n      ) {\n        if (it) o = it;\n        var i = 0;\n        return function() {\n          if (i >= o.length) return { done: true };\n          return { done: false, value: o[i++] };\n        }\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    it = o[Symbol.iterator]();\n    return it.next.bind(it);\n  }\n"], ["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  export default function _createForOfIteratorHelperLoose(o, allowArrayLike) {\n    var it;\n\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (\n        Array.isArray(o) ||\n        (it = unsupportedIterableToArray(o)) ||\n        (allowArrayLike && o && typeof o.length === \"number\")\n      ) {\n        if (it) o = it;\n        var i = 0;\n        return function() {\n          if (i >= o.length) return { done: true };\n          return { done: false, value: o[i++] };\n        }\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    it = o[Symbol.iterator]();\n    return it.next.bind(it);\n  }\n"]);
 
     _templateObject61 = function _templateObject61() {
       return data;
@@ -49283,7 +49438,7 @@
   }
 
   function _templateObject60() {
-    var data = _taggedTemplateLiteralLoose(["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  export default function _createForOfIteratorHelperLoose(o) {\n    var i = 0;\n\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (Array.isArray(o) || (o = unsupportedIterableToArray(o)))\n        return function() {\n          if (i >= o.length) return { done: true };\n          return { done: false, value: o[i++] };\n        }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    i = o[Symbol.iterator]();\n    return i.next.bind(i);\n  }\n"], ["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  export default function _createForOfIteratorHelperLoose(o) {\n    var i = 0;\n\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (Array.isArray(o) || (o = unsupportedIterableToArray(o)))\n        return function() {\n          if (i >= o.length) return { done: true };\n          return { done: false, value: o[i++] };\n        }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    i = o[Symbol.iterator]();\n    return i.next.bind(i);\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  // s: start (create the iterator)\n  // n: next\n  // e: error (called whenever something throws)\n  // f: finish (always called at the end)\n\n  export default function _createForOfIteratorHelper(o, allowArrayLike) {\n    var it;\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (\n        Array.isArray(o) ||\n        (it = unsupportedIterableToArray(o)) ||\n        (allowArrayLike && o && typeof o.length === \"number\")\n      ) {\n        if (it) o = it;\n        var i = 0;\n        var F = function(){};\n        return {\n          s: F,\n          n: function() {\n            if (i >= o.length) return { done: true };\n            return { done: false, value: o[i++] };\n          },\n          e: function(e) { throw e; },\n          f: F,\n        };\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    var normalCompletion = true, didErr = false, err;\n\n    return {\n      s: function() {\n        it = o[Symbol.iterator]();\n      },\n      n: function() {\n        var step = it.next();\n        normalCompletion = step.done;\n        return step;\n      },\n      e: function(e) {\n        didErr = true;\n        err = e;\n      },\n      f: function() {\n        try {\n          if (!normalCompletion && it.return != null) it.return();\n        } finally {\n          if (didErr) throw err;\n        }\n      }\n    };\n  }\n"], ["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  // s: start (create the iterator)\n  // n: next\n  // e: error (called whenever something throws)\n  // f: finish (always called at the end)\n\n  export default function _createForOfIteratorHelper(o, allowArrayLike) {\n    var it;\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (\n        Array.isArray(o) ||\n        (it = unsupportedIterableToArray(o)) ||\n        (allowArrayLike && o && typeof o.length === \"number\")\n      ) {\n        if (it) o = it;\n        var i = 0;\n        var F = function(){};\n        return {\n          s: F,\n          n: function() {\n            if (i >= o.length) return { done: true };\n            return { done: false, value: o[i++] };\n          },\n          e: function(e) { throw e; },\n          f: F,\n        };\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    var normalCompletion = true, didErr = false, err;\n\n    return {\n      s: function() {\n        it = o[Symbol.iterator]();\n      },\n      n: function() {\n        var step = it.next();\n        normalCompletion = step.done;\n        return step;\n      },\n      e: function(e) {\n        didErr = true;\n        err = e;\n      },\n      f: function() {\n        try {\n          if (!normalCompletion && it.return != null) it.return();\n        } finally {\n          if (didErr) throw err;\n        }\n      }\n    };\n  }\n"]);
 
     _templateObject60 = function _templateObject60() {
       return data;
@@ -49293,7 +49448,7 @@
   }
 
   function _templateObject59() {
-    var data = _taggedTemplateLiteralLoose(["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  // s: start (create the iterator)\n  // n: next\n  // e: error (called whenever something throws)\n  // f: finish (always called at the end)\n\n  export default function _createForOfIteratorHelper(o) {\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (Array.isArray(o) || (o = unsupportedIterableToArray(o))) {\n        var i = 0;\n        var F = function(){};\n        return {\n          s: F,\n          n: function() {\n            if (i >= o.length) return { done: true };\n            return { done: false, value: o[i++] };\n          },\n          e: function(e) { throw e; },\n          f: F,\n        };\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    var it, normalCompletion = true, didErr = false, err;\n\n    return {\n      s: function() {\n        it = o[Symbol.iterator]();\n      },\n      n: function() {\n        var step = it.next();\n        normalCompletion = step.done;\n        return step;\n      },\n      e: function(e) {\n        didErr = true;\n        err = e;\n      },\n      f: function() {\n        try {\n          if (!normalCompletion && it.return != null) it.return();\n        } finally {\n          if (didErr) throw err;\n        }\n      }\n    };\n  }\n"], ["\n  import unsupportedIterableToArray from \"unsupportedIterableToArray\";\n\n  // s: start (create the iterator)\n  // n: next\n  // e: error (called whenever something throws)\n  // f: finish (always called at the end)\n\n  export default function _createForOfIteratorHelper(o) {\n    if (typeof Symbol === \"undefined\" || o[Symbol.iterator] == null) {\n      // Fallback for engines without symbol support\n      if (Array.isArray(o) || (o = unsupportedIterableToArray(o))) {\n        var i = 0;\n        var F = function(){};\n        return {\n          s: F,\n          n: function() {\n            if (i >= o.length) return { done: true };\n            return { done: false, value: o[i++] };\n          },\n          e: function(e) { throw e; },\n          f: F,\n        };\n      }\n\n      throw new TypeError(\"Invalid attempt to iterate non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n    }\n\n    var it, normalCompletion = true, didErr = false, err;\n\n    return {\n      s: function() {\n        it = o[Symbol.iterator]();\n      },\n      n: function() {\n        var step = it.next();\n        normalCompletion = step.done;\n        return step;\n      },\n      e: function(e) {\n        didErr = true;\n        err = e;\n      },\n      f: function() {\n        try {\n          if (!normalCompletion && it.return != null) it.return();\n        } finally {\n          if (didErr) throw err;\n        }\n      }\n    };\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _nonIterableRest() {\n    throw new TypeError(\n      \"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"], ["\n  export default function _nonIterableRest() {\n    throw new TypeError(\n      \"Invalid attempt to destructure non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"]);
 
     _templateObject59 = function _templateObject59() {
       return data;
@@ -49303,7 +49458,7 @@
   }
 
   function _templateObject58() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _nonIterableRest() {\n    throw new TypeError(\n      \"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"], ["\n  export default function _nonIterableRest() {\n    throw new TypeError(\n      \"Invalid attempt to destructure non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _nonIterableSpread() {\n    throw new TypeError(\n      \"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"], ["\n  export default function _nonIterableSpread() {\n    throw new TypeError(\n      \"Invalid attempt to spread non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"]);
 
     _templateObject58 = function _templateObject58() {
       return data;
@@ -49313,7 +49468,7 @@
   }
 
   function _templateObject57() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _nonIterableSpread() {\n    throw new TypeError(\n      \"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"], ["\n  export default function _nonIterableSpread() {\n    throw new TypeError(\n      \"Invalid attempt to spread non-iterable instance.\\\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"\n    );\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _arrayLikeToArray(arr, len) {\n    if (len == null || len > arr.length) len = arr.length;\n    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];\n    return arr2;\n  }\n"]);
 
     _templateObject57 = function _templateObject57() {
       return data;
@@ -49323,7 +49478,7 @@
   }
 
   function _templateObject56() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _arrayLikeToArray(arr, len) {\n    if (len == null || len > arr.length) len = arr.length;\n    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];\n    return arr2;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import arrayLikeToArray from \"arrayLikeToArray\";\n\n  export default function _unsupportedIterableToArray(o, minLen) {\n    if (!o) return;\n    if (typeof o === \"string\") return arrayLikeToArray(o, minLen);\n    var n = Object.prototype.toString.call(o).slice(8, -1);\n    if (n === \"Object\" && o.constructor) n = o.constructor.name;\n    if (n === \"Map\" || n === \"Set\") return Array.from(o);\n    if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))\n      return arrayLikeToArray(o, minLen);\n  }\n"]);
 
     _templateObject56 = function _templateObject56() {
       return data;
@@ -49333,7 +49488,7 @@
   }
 
   function _templateObject55() {
-    var data = _taggedTemplateLiteralLoose(["\n  import arrayLikeToArray from \"arrayLikeToArray\";\n\n  export default function _unsupportedIterableToArray(o, minLen) {\n    if (!o) return;\n    if (typeof o === \"string\") return arrayLikeToArray(o, minLen);\n    var n = Object.prototype.toString.call(o).slice(8, -1);\n    if (n === \"Object\" && o.constructor) n = o.constructor.name;\n    if (n === \"Map\" || n === \"Set\") return Array.from(o);\n    if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))\n      return arrayLikeToArray(o, minLen);\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArrayLimitLoose(arr, i) {\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {\n      _arr.push(_step.value);\n      if (i && _arr.length === i) break;\n    }\n    return _arr;\n  }\n"]);
 
     _templateObject55 = function _templateObject55() {
       return data;
@@ -49343,7 +49498,7 @@
   }
 
   function _templateObject54() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArrayLimitLoose(arr, i) {\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {\n      _arr.push(_step.value);\n      if (i && _arr.length === i) break;\n    }\n    return _arr;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArrayLimit(arr, i) {\n    // this is an expanded form of `for...of` that properly supports abrupt completions of\n    // iterators etc. variable names have been minimised to reduce the size of this massive\n    // helper. sometimes spec compliance is annoying :(\n    //\n    // _n = _iteratorNormalCompletion\n    // _d = _didIteratorError\n    // _e = _iteratorError\n    // _i = _iterator\n    // _s = _step\n\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    var _n = true;\n    var _d = false;\n    var _e = undefined;\n    try {\n      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n        _arr.push(_s.value);\n        if (i && _arr.length === i) break;\n      }\n    } catch (err) {\n      _d = true;\n      _e = err;\n    } finally {\n      try {\n        if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n      } finally {\n        if (_d) throw _e;\n      }\n    }\n    return _arr;\n  }\n"], ["\n  export default function _iterableToArrayLimit(arr, i) {\n    // this is an expanded form of \\`for...of\\` that properly supports abrupt completions of\n    // iterators etc. variable names have been minimised to reduce the size of this massive\n    // helper. sometimes spec compliance is annoying :(\n    //\n    // _n = _iteratorNormalCompletion\n    // _d = _didIteratorError\n    // _e = _iteratorError\n    // _i = _iterator\n    // _s = _step\n\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    var _n = true;\n    var _d = false;\n    var _e = undefined;\n    try {\n      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n        _arr.push(_s.value);\n        if (i && _arr.length === i) break;\n      }\n    } catch (err) {\n      _d = true;\n      _e = err;\n    } finally {\n      try {\n        if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n      } finally {\n        if (_d) throw _e;\n      }\n    }\n    return _arr;\n  }\n"]);
 
     _templateObject54 = function _templateObject54() {
       return data;
@@ -49353,7 +49508,7 @@
   }
 
   function _templateObject53() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArrayLimit(arr, i) {\n    // this is an expanded form of `for...of` that properly supports abrupt completions of\n    // iterators etc. variable names have been minimised to reduce the size of this massive\n    // helper. sometimes spec compliance is annoying :(\n    //\n    // _n = _iteratorNormalCompletion\n    // _d = _didIteratorError\n    // _e = _iteratorError\n    // _i = _iterator\n    // _s = _step\n\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    var _n = true;\n    var _d = false;\n    var _e = undefined;\n    try {\n      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n        _arr.push(_s.value);\n        if (i && _arr.length === i) break;\n      }\n    } catch (err) {\n      _d = true;\n      _e = err;\n    } finally {\n      try {\n        if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n      } finally {\n        if (_d) throw _e;\n      }\n    }\n    return _arr;\n  }\n"], ["\n  export default function _iterableToArrayLimit(arr, i) {\n    // this is an expanded form of \\`for...of\\` that properly supports abrupt completions of\n    // iterators etc. variable names have been minimised to reduce the size of this massive\n    // helper. sometimes spec compliance is annoying :(\n    //\n    // _n = _iteratorNormalCompletion\n    // _d = _didIteratorError\n    // _e = _iteratorError\n    // _i = _iterator\n    // _s = _step\n\n    if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return;\n\n    var _arr = [];\n    var _n = true;\n    var _d = false;\n    var _e = undefined;\n    try {\n      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n        _arr.push(_s.value);\n        if (i && _arr.length === i) break;\n      }\n    } catch (err) {\n      _d = true;\n      _e = err;\n    } finally {\n      try {\n        if (!_n && _i[\"return\"] != null) _i[\"return\"]();\n      } finally {\n        if (_d) throw _e;\n      }\n    }\n    return _arr;\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArray(iter) {\n    if (typeof Symbol !== \"undefined\" && Symbol.iterator in Object(iter)) return Array.from(iter);\n  }\n"]);
 
     _templateObject53 = function _templateObject53() {
       return data;
@@ -49363,7 +49518,7 @@
   }
 
   function _templateObject52() {
-    var data = _taggedTemplateLiteralLoose(["\n  export default function _iterableToArray(iter) {\n    if (typeof Symbol !== \"undefined\" && Symbol.iterator in Object(iter)) return Array.from(iter);\n  }\n"]);
+    var data = _taggedTemplateLiteralLoose(["\n  import arrayLikeToArray from \"arrayLikeToArray\";\n\n  export default function _maybeArrayLike(next, arr, i) {\n    if (arr && !Array.isArray(arr) && typeof arr.length === \"number\") {\n      var len = arr.length;\n      return arrayLikeToArray(arr, i !== void 0 && i < len ? i : len);\n    }\n    return next(arr, i);\n  }\n"]);
 
     _templateObject52 = function _templateObject52() {
       return data;
@@ -49533,7 +49688,7 @@
   }
 
   function _templateObject35() {
-    var data = _taggedTemplateLiteralLoose(["\n  import getPrototypeOf from \"getPrototypeOf\";\n  import isNativeReflectConstruct from \"isNativeReflectConstruct\";\n  import possibleConstructorReturn from \"possibleConstructorReturn\";\n\n  export default function _createSuper(Derived) {\n    var hasNativeReflectConstruct = isNativeReflectConstruct();\n\n    return function () {\n      var Super = getPrototypeOf(Derived), result;\n      if (hasNativeReflectConstruct) {\n        // NOTE: This doesn't work if this.__proto__.constructor has been modified.\n        var NewTarget = getPrototypeOf(this).constructor;\n        result = Reflect.construct(Super, arguments, NewTarget);\n      } else {\n        result = Super.apply(this, arguments);\n      }\n      return possibleConstructorReturn(this, result);\n    }\n  }\n "]);
+    var data = _taggedTemplateLiteralLoose(["\n  import getPrototypeOf from \"getPrototypeOf\";\n  import isNativeReflectConstruct from \"isNativeReflectConstruct\";\n  import possibleConstructorReturn from \"possibleConstructorReturn\";\n\n  export default function _createSuper(Derived) {\n    var hasNativeReflectConstruct = isNativeReflectConstruct();\n\n    return function _createSuperInternal() {\n      var Super = getPrototypeOf(Derived), result;\n      if (hasNativeReflectConstruct) {\n        // NOTE: This doesn't work if this.__proto__.constructor has been modified.\n        var NewTarget = getPrototypeOf(this).constructor;\n        result = Reflect.construct(Super, arguments, NewTarget);\n      } else {\n        result = Super.apply(this, arguments);\n      }\n      return possibleConstructorReturn(this, result);\n    }\n  }\n "]);
 
     _templateObject35 = function _templateObject35() {
       return data;
@@ -49945,34 +50100,35 @@
   helpers.toConsumableArray = helper("7.0.0-beta.0")(_templateObject49());
   helpers.arrayWithoutHoles = helper("7.0.0-beta.0")(_templateObject50());
   helpers.arrayWithHoles = helper("7.0.0-beta.0")(_templateObject51());
-  helpers.iterableToArray = helper("7.0.0-beta.0")(_templateObject52());
-  helpers.iterableToArrayLimit = helper("7.0.0-beta.0")(_templateObject53());
-  helpers.iterableToArrayLimitLoose = helper("7.0.0-beta.0")(_templateObject54());
-  helpers.unsupportedIterableToArray = helper("7.9.0")(_templateObject55());
-  helpers.arrayLikeToArray = helper("7.9.0")(_templateObject56());
-  helpers.nonIterableSpread = helper("7.0.0-beta.0")(_templateObject57());
-  helpers.nonIterableRest = helper("7.0.0-beta.0")(_templateObject58());
-  helpers.createForOfIteratorHelper = helper("7.9.0")(_templateObject59());
-  helpers.createForOfIteratorHelperLoose = helper("7.9.0")(_templateObject60());
-  helpers.skipFirstGeneratorNext = helper("7.0.0-beta.0")(_templateObject61());
-  helpers.toPrimitive = helper("7.1.5")(_templateObject62());
-  helpers.toPropertyKey = helper("7.1.5")(_templateObject63());
-  helpers.initializerWarningHelper = helper("7.0.0-beta.0")(_templateObject64());
-  helpers.initializerDefineProperty = helper("7.0.0-beta.0")(_templateObject65());
-  helpers.applyDecoratedDescriptor = helper("7.0.0-beta.0")(_templateObject66());
-  helpers.classPrivateFieldLooseKey = helper("7.0.0-beta.0")(_templateObject67());
-  helpers.classPrivateFieldLooseBase = helper("7.0.0-beta.0")(_templateObject68());
-  helpers.classPrivateFieldGet = helper("7.0.0-beta.0")(_templateObject69());
-  helpers.classPrivateFieldSet = helper("7.0.0-beta.0")(_templateObject70());
-  helpers.classPrivateFieldDestructureSet = helper("7.4.4")(_templateObject71());
-  helpers.classStaticPrivateFieldSpecGet = helper("7.0.2")(_templateObject72());
-  helpers.classStaticPrivateFieldSpecSet = helper("7.0.2")(_templateObject73());
-  helpers.classStaticPrivateMethodGet = helper("7.3.2")(_templateObject74());
-  helpers.classStaticPrivateMethodSet = helper("7.3.2")(_templateObject75());
-  helpers.decorate = helper("7.1.5")(_templateObject76());
-  helpers.classPrivateMethodGet = helper("7.1.6")(_templateObject77());
-  helpers.classPrivateMethodSet = helper("7.1.6")(_templateObject78());
-  helpers.wrapRegExp = helper("7.2.6")(_templateObject79());
+  helpers.maybeArrayLike = helper("7.9.0")(_templateObject52());
+  helpers.iterableToArray = helper("7.0.0-beta.0")(_templateObject53());
+  helpers.iterableToArrayLimit = helper("7.0.0-beta.0")(_templateObject54());
+  helpers.iterableToArrayLimitLoose = helper("7.0.0-beta.0")(_templateObject55());
+  helpers.unsupportedIterableToArray = helper("7.9.0")(_templateObject56());
+  helpers.arrayLikeToArray = helper("7.9.0")(_templateObject57());
+  helpers.nonIterableSpread = helper("7.0.0-beta.0")(_templateObject58());
+  helpers.nonIterableRest = helper("7.0.0-beta.0")(_templateObject59());
+  helpers.createForOfIteratorHelper = helper("7.9.0")(_templateObject60());
+  helpers.createForOfIteratorHelperLoose = helper("7.9.0")(_templateObject61());
+  helpers.skipFirstGeneratorNext = helper("7.0.0-beta.0")(_templateObject62());
+  helpers.toPrimitive = helper("7.1.5")(_templateObject63());
+  helpers.toPropertyKey = helper("7.1.5")(_templateObject64());
+  helpers.initializerWarningHelper = helper("7.0.0-beta.0")(_templateObject65());
+  helpers.initializerDefineProperty = helper("7.0.0-beta.0")(_templateObject66());
+  helpers.applyDecoratedDescriptor = helper("7.0.0-beta.0")(_templateObject67());
+  helpers.classPrivateFieldLooseKey = helper("7.0.0-beta.0")(_templateObject68());
+  helpers.classPrivateFieldLooseBase = helper("7.0.0-beta.0")(_templateObject69());
+  helpers.classPrivateFieldGet = helper("7.0.0-beta.0")(_templateObject70());
+  helpers.classPrivateFieldSet = helper("7.0.0-beta.0")(_templateObject71());
+  helpers.classPrivateFieldDestructureSet = helper("7.4.4")(_templateObject72());
+  helpers.classStaticPrivateFieldSpecGet = helper("7.0.2")(_templateObject73());
+  helpers.classStaticPrivateFieldSpecSet = helper("7.0.2")(_templateObject74());
+  helpers.classStaticPrivateMethodGet = helper("7.3.2")(_templateObject75());
+  helpers.classStaticPrivateMethodSet = helper("7.3.2")(_templateObject76());
+  helpers.decorate = helper("7.1.5")(_templateObject77());
+  helpers.classPrivateMethodGet = helper("7.1.6")(_templateObject78());
+  helpers.classPrivateMethodSet = helper("7.1.6")(_templateObject79());
+  helpers.wrapRegExp = helper("7.2.6")(_templateObject80());
 
   function makePath(path) {
     var parts = [];
@@ -50065,7 +50221,7 @@
 
         var binding = child.scope.getBinding(exportName);
 
-        if (binding && binding.scope.path.isProgram()) {
+        if (binding == null ? void 0 : binding.scope.path.isProgram()) {
           exportBindingAssignments.push(makePath(child));
         }
       }
@@ -51645,6 +51801,50 @@
     return AssignmentMemoiser;
   }();
 
+  function toNonOptional(path, base) {
+    var node = path.node;
+
+    if (path.isOptionalMemberExpression()) {
+      return MemberExpression(base, node.property, node.computed);
+    }
+
+    if (path.isOptionalCallExpression()) {
+      var callee = path.get("callee");
+
+      if (path.node.optional && callee.isOptionalMemberExpression()) {
+        var object = callee.node.object;
+        var context = path.scope.maybeGenerateMemoised(object) || object;
+        callee.get("object").replaceWith(AssignmentExpression("=", context, object));
+        return CallExpression(MemberExpression(base, Identifier("call")), [context].concat(node.arguments));
+      }
+
+      return CallExpression(base, node.arguments);
+    }
+
+    return path.node;
+  }
+
+  function isInDetachedTree(path) {
+    while (path) {
+      if (path.isProgram()) break;
+      var _path = path,
+          parentPath = _path.parentPath,
+          container = _path.container,
+          listKey = _path.listKey;
+      var parentNode = parentPath.node;
+
+      if (listKey) {
+        if (container !== parentNode[listKey]) return true;
+      } else {
+        if (container !== parentNode) return true;
+      }
+
+      path = parentPath;
+    }
+
+    return false;
+  }
+
   var handle = {
     memoise: function memoise() {},
     handle: function handle(member) {
@@ -51652,9 +51852,124 @@
           parent = member.parent,
           parentPath = member.parentPath;
 
+      if (member.isOptionalMemberExpression()) {
+        if (isInDetachedTree(member)) return;
+        var endPath = member.find(function (_ref) {
+          var node = _ref.node,
+              parent = _ref.parent,
+              parentPath = _ref.parentPath;
+
+          if (parentPath.isOptionalMemberExpression()) {
+            return parent.optional || parent.object !== node;
+          }
+
+          if (parentPath.isOptionalCallExpression()) {
+            return node !== member.node && parent.optional || parent.callee !== node;
+          }
+
+          return true;
+        });
+        var rootParentPath = endPath.parentPath;
+
+        if (rootParentPath.isUpdateExpression({
+          argument: node
+        }) || rootParentPath.isAssignmentExpression({
+          left: node
+        })) {
+          throw member.buildCodeFrameError("can't handle assignment");
+        }
+
+        if (rootParentPath.isUnaryExpression({
+          operator: "delete"
+        })) {
+          throw member.buildCodeFrameError("can't handle delete");
+        }
+
+        var startingOptional = member;
+
+        for (;;) {
+          if (startingOptional.isOptionalMemberExpression()) {
+            if (startingOptional.node.optional) break;
+            startingOptional = startingOptional.get("object");
+            continue;
+          } else if (startingOptional.isOptionalCallExpression()) {
+            if (startingOptional.node.optional) break;
+            startingOptional = startingOptional.get("callee");
+            continue;
+          }
+
+          throw new Error("Internal error: unexpected " + startingOptional.node.type);
+        }
+
+        var scope = member.scope;
+        var startingProp = startingOptional.isOptionalMemberExpression() ? "object" : "callee";
+        var startingNode = startingOptional.node[startingProp];
+        var baseNeedsMemoised = scope.maybeGenerateMemoised(startingNode);
+        var baseRef = baseNeedsMemoised != null ? baseNeedsMemoised : startingNode;
+        var parentIsOptionalCall = parentPath.isOptionalCallExpression({
+          callee: node
+        });
+        startingOptional.replaceWith(toNonOptional(startingOptional, baseRef));
+
+        if (parentIsOptionalCall) {
+          if (parent.optional) {
+            parentPath.replaceWith(this.optionalCall(member, parent.arguments));
+          } else {
+            parentPath.replaceWith(this.call(member, parent.arguments));
+          }
+        } else {
+          member.replaceWith(this.get(member));
+        }
+
+        var regular = member.node;
+
+        for (var current = member; current !== endPath;) {
+          var _current = current,
+              _parentPath = _current.parentPath;
+
+          if (_parentPath === endPath && parentIsOptionalCall && parent.optional) {
+            regular = _parentPath.node;
+            break;
+          }
+
+          regular = toNonOptional(_parentPath, regular);
+          current = _parentPath;
+        }
+
+        var context;
+        var endParentPath = endPath.parentPath;
+
+        if (isMemberExpression(regular) && endParentPath.isOptionalCallExpression({
+          callee: endPath.node,
+          optional: true
+        })) {
+          var _regular = regular,
+              object = _regular.object;
+          context = member.scope.maybeGenerateMemoised(object);
+
+          if (context) {
+            regular.object = AssignmentExpression("=", context, object);
+          }
+        }
+
+        endPath.replaceWith(ConditionalExpression(LogicalExpression("||", BinaryExpression("===", baseNeedsMemoised ? AssignmentExpression("=", baseRef, startingNode) : baseRef, NullLiteral()), BinaryExpression("===", cloneNode(baseRef), scope.buildUndefinedNode())), scope.buildUndefinedNode(), regular));
+
+        if (context) {
+          var endParent = endParentPath.node;
+          endParentPath.replaceWith(OptionalCallExpression(OptionalMemberExpression(endParent.callee, Identifier("call"), false, true), [context].concat(endParent.arguments), false));
+        }
+
+        return;
+      }
+
       if (parentPath.isUpdateExpression({
         argument: node
       })) {
+        if (this.simpleSet) {
+          member.replaceWith(this.simpleSet(member));
+          return;
+        }
+
         var operator = parent.operator,
             prefix = parent.prefix;
         this.memoise(member, 2);
@@ -51663,11 +51978,14 @@
         if (prefix) {
           parentPath.replaceWith(this.set(member, value));
         } else {
-          var scope = member.scope;
-          var ref = scope.generateUidIdentifierBasedOnNode(node);
-          scope.push({
+          var _scope = member.scope;
+
+          var ref = _scope.generateUidIdentifierBasedOnNode(node);
+
+          _scope.push({
             id: ref
           });
+
           value.left = AssignmentExpression("=", cloneNode(ref), value.left);
           parentPath.replaceWith(SequenceExpression([this.set(member, value), cloneNode(ref)]));
         }
@@ -51678,6 +51996,11 @@
       if (parentPath.isAssignmentExpression({
         left: node
       })) {
+        if (this.simpleSet) {
+          member.replaceWith(this.simpleSet(member));
+          return;
+        }
+
         var _operator = parent.operator,
             right = parent.right;
         var _value = right;
@@ -51694,8 +52017,14 @@
       if (parentPath.isCallExpression({
         callee: node
       })) {
-        var args = parent.arguments;
-        parentPath.replaceWith(this.call(member, args));
+        parentPath.replaceWith(this.call(member, parent.arguments));
+        return;
+      }
+
+      if (parentPath.isOptionalCallExpression({
+        callee: node
+      })) {
+        parentPath.replaceWith(this.optionalCall(member, parent.arguments));
         return;
       }
 
@@ -51716,17 +52045,21 @@
     }
   };
   function memberExpressionToFunctions(path, visitor, state) {
-    path.traverse(visitor, Object.assign({}, handle, {}, state, {
+    path.traverse(visitor, Object.assign(Object.assign(Object.assign({}, handle), state), {}, {
       memoiser: new AssignmentMemoiser()
     }));
   }
 
-  function optimiseCall (callee, thisNode, args) {
+  function optimiseCall (callee, thisNode, args, optional) {
     if (args.length === 1 && isSpreadElement(args[0]) && isIdentifier(args[0].argument, {
       name: "arguments"
     })) {
       return CallExpression(MemberExpression(callee, Identifier("apply")), [thisNode, args[0].argument]);
     } else {
+      if (optional) {
+        return OptionalCallExpression(OptionalMemberExpression(callee, Identifier("call"), false, true), [thisNode].concat(args), false);
+      }
+
       return CallExpression(MemberExpression(callee, Identifier("call")), [thisNode].concat(args));
     }
   }
@@ -51839,10 +52172,10 @@
     call: function call(superMember, args) {
       var thisRefs = this._getThisRefs();
 
-      return optimiseCall(this._get(superMember, thisRefs), cloneNode(thisRefs["this"]), args);
+      return optimiseCall(this._get(superMember, thisRefs), cloneNode(thisRefs["this"]), args, false);
     }
   };
-  var looseHandlers = Object.assign({}, specHandlers, {
+  var looseHandlers = Object.assign(Object.assign({}, specHandlers), {}, {
     prop: function prop(superMember) {
       var property = superMember.node.property;
 
@@ -51878,7 +52211,7 @@
       return MemberExpression(ThisExpression(), prop, computed);
     },
     call: function call(superMember, args) {
-      return optimiseCall(this.get(superMember), ThisExpression(), args);
+      return optimiseCall(this.get(superMember), ThisExpression(), args, false);
     }
   });
 
@@ -55594,7 +55927,7 @@
     throw new Error("Cannot load preset " + name + " relative to " + dirname + " in a browser");
   }
 
-  var version$1 = "7.9.6";
+  var version$1 = "7.10.0";
 
   function getEnv(defaultValue) {
     if (defaultValue === void 0) {
@@ -58563,8 +58896,7 @@
         return false;
       },
       caller: caller,
-      assertVersion: assertVersion,
-      tokTypes: undefined
+      assertVersion: assertVersion
     };
   }
 
@@ -59075,7 +59407,7 @@
               break;
             }
 
-            api = Object.assign({}, context, {}, makeAPI(cache));
+            api = Object.assign(Object.assign({}, context), makeAPI(cache));
             _context3.prev = 7;
             item = value(api, options, dirname);
             _context3.next = 15;
@@ -59289,6 +59621,8 @@
   }
 
   var loadOptionsRunner = gensync(regenerator.mark(function _callee(opts) {
+    var _config$options;
+
     var config;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
@@ -59298,7 +59632,7 @@
 
           case 1:
             config = _context.t0;
-            return _context.abrupt("return", config ? config.options : null);
+            return _context.abrupt("return", (_config$options = config == null ? void 0 : config.options) != null ? _config$options : null);
 
           case 3:
           case "end":
@@ -60217,7 +60551,7 @@
           for (var i = 0; i < node.body.length; i++) {
             var bodyNode = node.body[i];
 
-            if (bodyNode && bodyNode._blockHoist != null) {
+            if ((bodyNode == null ? void 0 : bodyNode._blockHoist) != null) {
               hasChange = true;
               break;
             }
@@ -60225,7 +60559,7 @@
 
           if (!hasChange) return;
           node.body = sortBy_1(node.body, function (bodyNode) {
-            var priority = bodyNode && bodyNode._blockHoist;
+            var priority = bodyNode == null ? void 0 : bodyNode._blockHoist;
             if (priority == null) priority = 1;
             if (priority === true) priority = 2;
             return -1 * priority;
@@ -60256,7 +60590,7 @@
         _config$options$compa = _config$options.compact,
         compact = _config$options$compa === void 0 ? "auto" : _config$options$compa;
     var opts = config.options;
-    var options = Object.assign({}, opts, {
+    var options = Object.assign(Object.assign({}, opts), {}, {
       parserOpts: Object.assign({
         sourceType: path$1.extname(filenameRelative) === ".mjs" ? "module" : sourceType,
         sourceFileName: filename,
@@ -61146,7 +61480,7 @@
   }
 
   function buildMappingData(map) {
-    var consumer = new sourceMap.SourceMapConsumer(Object.assign({}, map, {
+    var consumer = new sourceMap.SourceMapConsumer(Object.assign(Object.assign({}, map), {}, {
       sourceRoot: null
     }));
     var sources = new Map();
@@ -61694,7 +62028,7 @@
       }
     }
 
-    return Object.assign({}, proto, {}, api);
+    return Object.assign(Object.assign({}, proto), api);
   }
 
   function has$4(obj, key) {
@@ -61936,6 +62270,24 @@
         }
 
         parserOpts.plugins.push("jsx");
+      }
+    };
+  });
+
+  var syntaxModuleAttributes = declare(function (api, _ref) {
+    var version = _ref.version;
+    api.assertVersion(7);
+
+    if (typeof version !== "string" || version !== "apr-2020") {
+      throw new Error("The 'moduleAttributes' plugin requires a 'version' option," + " representing the last proposal update. Currently, the" + " only supported value is 'apr-2020'.");
+    }
+
+    return {
+      name: "syntax-module-attributes",
+      manipulateOptions: function manipulateOptions(opts, parserOpts) {
+        parserOpts.plugins.push(["moduleAttributes", {
+          version: version
+        }]);
       }
     };
   });
@@ -62355,8 +62707,38 @@
     }
   }
 
-  function _templateObject15$1() {
+  function _templateObject18$1() {
     var data = _taggedTemplateLiteralLoose(["\n    Object.defineProperty(", ", ", ", {\n      // configurable is false by default\n      // enumerable is false by default\n      // writable is false by default\n      value: ", "\n    });\n  "]);
+
+    _templateObject18$1 = function _templateObject18() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject17$1() {
+    var data = _taggedTemplateLiteralLoose(["\n      Object.defineProperty(", ", ", ", {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      })\n    "]);
+
+    _templateObject17$1 = function _templateObject17() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject16$1() {
+    var data = _taggedTemplateLiteralLoose(["", ".add(", ")"]);
+
+    _templateObject16$1 = function _templateObject16() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject15$1() {
+    var data = _taggedTemplateLiteralLoose(["\n      ", ".set(", ", {\n        get: ", ",\n        set: ", "\n      });\n    "]);
 
     _templateObject15$1 = function _templateObject15() {
       return data;
@@ -62366,7 +62748,7 @@
   }
 
   function _templateObject14$1() {
-    var data = _taggedTemplateLiteralLoose(["\n      Object.defineProperty(", ", ", ", {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      })\n    "]);
+    var data = _taggedTemplateLiteralLoose(["\n      Object.defineProperty(", ", ", ", {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      });\n    "]);
 
     _templateObject14$1 = function _templateObject14() {
       return data;
@@ -62376,7 +62758,7 @@
   }
 
   function _templateObject13$1() {
-    var data = _taggedTemplateLiteralLoose(["", ".add(", ")"]);
+    var data = _taggedTemplateLiteralLoose(["\n        Object.defineProperty(", ", ", ", {\n          // configurable is false by default\n          // enumerable is false by default\n          // writable is false by default\n          value: ", "\n        });\n      "]);
 
     _templateObject13$1 = function _templateObject13() {
       return data;
@@ -62386,7 +62768,7 @@
   }
 
   function _templateObject12$1() {
-    var data = _taggedTemplateLiteralLoose(["\n      ", ".set(", ", {\n        get: ", ",\n        set: ", "\n      });\n    "]);
+    var data = _taggedTemplateLiteralLoose(["\n    var ", " = {\n      // configurable is false by default\n      // enumerable is false by default\n      writable: true,\n      value: ", "\n    };\n  "]);
 
     _templateObject12$1 = function _templateObject12() {
       return data;
@@ -62396,7 +62778,7 @@
   }
 
   function _templateObject11$2() {
-    var data = _taggedTemplateLiteralLoose(["\n      Object.defineProperty(", ", ", ", {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      });\n    "]);
+    var data = _taggedTemplateLiteralLoose(["\n      var ", " = {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      }\n    "]);
 
     _templateObject11$2 = function _templateObject11() {
       return data;
@@ -62406,7 +62788,7 @@
   }
 
   function _templateObject10$2() {
-    var data = _taggedTemplateLiteralLoose(["\n        Object.defineProperty(", ", ", ", {\n          // configurable is false by default\n          // enumerable is false by default\n          // writable is false by default\n          value: ", "\n        });\n      "]);
+    var data = _taggedTemplateLiteralLoose(["", ".set(", ", {\n    // configurable is always false for private elements\n    // enumerable is always false for private elements\n    writable: true,\n    value: ", ",\n  })"]);
 
     _templateObject10$2 = function _templateObject10() {
       return data;
@@ -62416,7 +62798,7 @@
   }
 
   function _templateObject9$2() {
-    var data = _taggedTemplateLiteralLoose(["\n    var ", " = {\n      // configurable is false by default\n      // enumerable is false by default\n      writable: true,\n      value: ", "\n    };\n  "]);
+    var data = _taggedTemplateLiteralLoose(["\n    Object.defineProperty(", ", ", ", {\n      // configurable is false by default\n      // enumerable is false by default\n      writable: true,\n      value: ", "\n    });\n  "]);
 
     _templateObject9$2 = function _templateObject9() {
       return data;
@@ -62426,7 +62808,7 @@
   }
 
   function _templateObject8$2() {
-    var data = _taggedTemplateLiteralLoose(["\n      var ", " = {\n        // configurable is false by default\n        // enumerable is false by default\n        // writable is false by default\n        get: ", ",\n        set: ", "\n      }\n    "]);
+    var data = _taggedTemplateLiteralLoose(["BASE(REF, PROP)[PROP]"]);
 
     _templateObject8$2 = function _templateObject8() {
       return data;
@@ -62436,7 +62818,7 @@
   }
 
   function _templateObject7$2() {
-    var data = _taggedTemplateLiteralLoose(["", ".set(", ", {\n    // configurable is always false for private elements\n    // enumerable is always false for private elements\n    writable: true,\n    value: ", ",\n  })"]);
+    var data = _taggedTemplateLiteralLoose(["", ".has(", ")"]);
 
     _templateObject7$2 = function _templateObject7() {
       return data;
@@ -62446,7 +62828,7 @@
   }
 
   function _templateObject6$2() {
-    var data = _taggedTemplateLiteralLoose(["\n    Object.defineProperty(", ", ", ", {\n      // configurable is false by default\n      // enumerable is false by default\n      writable: true,\n      value: ", "\n    });\n  "]);
+    var data = _taggedTemplateLiteralLoose(["", " === ", ""]);
 
     _templateObject6$2 = function _templateObject6() {
       return data;
@@ -62456,7 +62838,7 @@
   }
 
   function _templateObject5$2() {
-    var data = _taggedTemplateLiteralLoose(["BASE(REF, PROP)[PROP]"]);
+    var data = _taggedTemplateLiteralLoose(["\n        Object.prototype.hasOwnProperty.call(", ", ", ")\n      "]);
 
     _templateObject5$2 = function _templateObject5() {
       return data;
@@ -62564,53 +62946,96 @@
 
     return initNodes;
   }
-  var privateNameVisitor = {
+
+  function privateNameVisitorFactory(visitor) {
+    var privateNameVisitor = Object.assign(Object.assign({}, visitor), {}, {
+      Class: function Class(path) {
+        var privateNamesMap = this.privateNamesMap;
+        var body = path.get("body.body");
+        var visiblePrivateNames = new Map(privateNamesMap);
+        var redeclared = [];
+
+        for (var _iterator3 = _createForOfIteratorHelperLoose(body), _step3; !(_step3 = _iterator3()).done;) {
+          var prop = _step3.value;
+          if (!prop.isPrivate()) continue;
+          var name = prop.node.key.id.name;
+          visiblePrivateNames["delete"](name);
+          redeclared.push(name);
+        }
+
+        if (!redeclared.length) {
+          return;
+        }
+
+        path.get("body").traverse(nestedVisitor, Object.assign(Object.assign({}, this), {}, {
+          redeclared: redeclared
+        }));
+        path.traverse(privateNameVisitor, Object.assign(Object.assign({}, this), {}, {
+          privateNamesMap: visiblePrivateNames
+        }));
+        path.skipKey("body");
+      }
+    });
+    var nestedVisitor = traverse$1.visitors.merge([Object.assign({}, visitor), environmentVisitor]);
+    return privateNameVisitor;
+  }
+
+  var privateNameVisitor = privateNameVisitorFactory({
     PrivateName: function PrivateName(path) {
-      var privateNamesMap = this.privateNamesMap;
+      var privateNamesMap = this.privateNamesMap,
+          redeclared = this.redeclared;
       var node = path.node,
           parentPath = path.parentPath;
+
       if (!parentPath.isMemberExpression({
         property: node
-      })) return;
-      if (!privateNamesMap.has(node.id.name)) return;
-      this.handle(parentPath);
-    },
-    Class: function Class(path) {
-      var privateNamesMap = this.privateNamesMap;
-      var body = path.get("body.body");
-      var visiblePrivateNames = new Map(privateNamesMap);
-      var redeclared = [];
-
-      for (var _iterator3 = _createForOfIteratorHelperLoose(body), _step3; !(_step3 = _iterator3()).done;) {
-        var prop = _step3.value;
-        if (!prop.isPrivate()) continue;
-        var name = prop.node.key.id.name;
-        visiblePrivateNames["delete"](name);
-        redeclared.push(name);
-      }
-
-      if (!redeclared.length) {
+      }) && !parentPath.isOptionalMemberExpression({
+        property: node
+      })) {
         return;
       }
 
-      path.get("body").traverse(privateNameNestedVisitor, Object.assign({}, this, {
-        redeclared: redeclared
-      }));
-      path.traverse(privateNameVisitor, Object.assign({}, this, {
-        privateNamesMap: visiblePrivateNames
-      }));
-      path.skipKey("body");
+      var name = node.id.name;
+      if (!privateNamesMap.has(name)) return;
+      if (redeclared && redeclared.includes(name)) return;
+      this.handle(parentPath);
     }
-  };
-  var privateNameNestedVisitor = traverse$1.visitors.merge([{
-    PrivateName: function PrivateName(path) {
-      var redeclared = this.redeclared;
-      var name = path.node.id.name;
-      if (redeclared.includes(name)) path.skip();
+  });
+  var privateInVisitor = privateNameVisitorFactory({
+    BinaryExpression: function BinaryExpression(path) {
+      var _path$node = path.node,
+          operator = _path$node.operator,
+          left = _path$node.left,
+          right = _path$node.right;
+      if (operator !== "in") return;
+      if (!path.get("left").isPrivateName()) return;
+      var loose = this.loose,
+          privateNamesMap = this.privateNamesMap,
+          redeclared = this.redeclared;
+      var name = left.id.name;
+      if (!privateNamesMap.has(name)) return;
+      if (redeclared && redeclared.includes(name)) return;
+
+      if (loose) {
+        var _privateNamesMap$get = privateNamesMap.get(name),
+            _id = _privateNamesMap$get.id;
+
+        path.replaceWith(template.expression.ast(_templateObject5$2(), right, _id));
+        return;
+      }
+
+      var _privateNamesMap$get2 = privateNamesMap.get(name),
+          id = _privateNamesMap$get2.id,
+          isStatic = _privateNamesMap$get2["static"];
+
+      if (isStatic) {
+        path.replaceWith(template.expression.ast(_templateObject6$2(), right, this.classRef));
+        return;
+      }
+
+      path.replaceWith(template.expression.ast(_templateObject7$2(), id, right));
     }
-  }, {
-    PrivateName: privateNameVisitor.PrivateName
-  }, environmentVisitor]);
+  });
   var privateNameHandlerSpec = {
     memoise: function memoise(member, count) {
       var scope = member.scope;
@@ -62638,13 +63063,13 @@
           file = this.file;
       var name = member.node.property.id.name;
 
-      var _privateNamesMap$get = privateNamesMap.get(name),
-          id = _privateNamesMap$get.id,
-          isStatic = _privateNamesMap$get["static"],
-          isMethod = _privateNamesMap$get.method,
-          methodId = _privateNamesMap$get.methodId,
-          getId = _privateNamesMap$get.getId,
-          setId = _privateNamesMap$get.setId;
+      var _privateNamesMap$get3 = privateNamesMap.get(name),
+          id = _privateNamesMap$get3.id,
+          isStatic = _privateNamesMap$get3["static"],
+          isMethod = _privateNamesMap$get3.method,
+          methodId = _privateNamesMap$get3.methodId,
+          getId = _privateNamesMap$get3.getId,
+          setId = _privateNamesMap$get3.setId;
 
       var isAccessor = getId || setId;
 
@@ -62669,12 +63094,12 @@
           file = this.file;
       var name = member.node.property.id.name;
 
-      var _privateNamesMap$get2 = privateNamesMap.get(name),
-          id = _privateNamesMap$get2.id,
-          isStatic = _privateNamesMap$get2["static"],
-          isMethod = _privateNamesMap$get2.method,
-          setId = _privateNamesMap$get2.setId,
-          getId = _privateNamesMap$get2.getId;
+      var _privateNamesMap$get4 = privateNamesMap.get(name),
+          id = _privateNamesMap$get4.id,
+          isStatic = _privateNamesMap$get4["static"],
+          isMethod = _privateNamesMap$get4.method,
+          setId = _privateNamesMap$get4.setId,
+          getId = _privateNamesMap$get4.getId;
 
       var isAccessor = getId || setId;
 
@@ -62698,61 +63123,76 @@
           file = this.file;
       var name = member.node.property.id.name;
 
-      var _privateNamesMap$get3 = privateNamesMap.get(name),
-          id = _privateNamesMap$get3.id;
+      var _privateNamesMap$get5 = privateNamesMap.get(name),
+          id = _privateNamesMap$get5.id;
 
       return MemberExpression(CallExpression(file.addHelper("classPrivateFieldDestructureSet"), [this.receiver(member), cloneNode(id)]), Identifier("value"));
     },
     call: function call(member, args) {
       this.memoise(member, 1);
-      return optimiseCall(this.get(member), this.receiver(member), args);
+      return optimiseCall(this.get(member), this.receiver(member), args, false);
+    },
+    optionalCall: function optionalCall(member, args) {
+      this.memoise(member, 1);
+      return optimiseCall(this.get(member), this.receiver(member), args, true);
     }
   };
   var privateNameHandlerLoose = {
-    handle: function handle(member) {
+    get: function get(member) {
       var privateNamesMap = this.privateNamesMap,
           file = this.file;
       var object = member.node.object;
       var name = member.node.property.id.name;
-      member.replaceWith(template.expression(_templateObject5$2())({
+      return template.expression(_templateObject8$2())({
         BASE: file.addHelper("classPrivateFieldLooseBase"),
         REF: object,
         PROP: privateNamesMap.get(name).id
-      }));
+      });
+    },
+    simpleSet: function simpleSet(member) {
+      return this.get(member);
+    },
+    destructureSet: function destructureSet(member) {
+      return this.get(member);
+    },
+    call: function call(member, args) {
+      return CallExpression(this.get(member), args);
+    },
+    optionalCall: function optionalCall(member, args) {
+      return OptionalCallExpression(this.get(member), args, true);
     }
   };
   function transformPrivateNamesUsage(ref, path, privateNamesMap, loose, state) {
     if (!privateNamesMap.size) return;
     var body = path.get("body");
-
-    if (loose) {
-      body.traverse(privateNameVisitor, Object.assign({
-        privateNamesMap: privateNamesMap,
-        file: state
-      }, privateNameHandlerLoose));
-    } else {
-      memberExpressionToFunctions(body, privateNameVisitor, Object.assign({
-        privateNamesMap: privateNamesMap,
-        classRef: ref,
-        file: state
-      }, privateNameHandlerSpec));
-    }
+    var handler = loose ? privateNameHandlerLoose : privateNameHandlerSpec;
+    memberExpressionToFunctions(body, privateNameVisitor, Object.assign({
+      privateNamesMap: privateNamesMap,
+      classRef: ref,
+      file: state
+    }, handler));
+    body.traverse(privateInVisitor, {
+      privateNamesMap: privateNamesMap,
+      classRef: ref,
+      file: state,
+      loose: loose
+    });
   }
 
   function buildPrivateFieldInitLoose(ref, prop, privateNamesMap) {
-    var _privateNamesMap$get4 = privateNamesMap.get(prop.node.key.id.name),
-        id = _privateNamesMap$get4.id;
+    var _privateNamesMap$get6 = privateNamesMap.get(prop.node.key.id.name),
+        id = _privateNamesMap$get6.id;
 
     var value = prop.node.value || prop.scope.buildUndefinedNode();
-    return template.statement.ast(_templateObject6$2(), ref, id, value);
+    return template.statement.ast(_templateObject9$2(), ref, id, value);
   }
 
   function buildPrivateInstanceFieldInitSpec(ref, prop, privateNamesMap) {
-    var _privateNamesMap$get5 = privateNamesMap.get(prop.node.key.id.name),
-        id = _privateNamesMap$get5.id;
+    var _privateNamesMap$get7 = privateNamesMap.get(prop.node.key.id.name),
+        id = _privateNamesMap$get7.id;
 
     var value = prop.node.value || prop.scope.buildUndefinedNode();
-    return template.statement.ast(_templateObject7$2(), id, ref, value);
+    return template.statement.ast(_templateObject10$2(), id, ref, value);
   }
 
   function buildPrivateStaticFieldInitSpec(prop, privateNamesMap) {
@@ -62765,14 +63205,14 @@
     if (!prop.isProperty() && (initAdded || !isAccessor)) return;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         initAdded: true
       }));
-      return template.statement.ast(_templateObject8$2(), id.name, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
+      return template.statement.ast(_templateObject11$2(), id.name, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
     }
 
     var value = prop.node.value || prop.scope.buildUndefinedNode();
-    return template.statement.ast(_templateObject9$2(), id, value);
+    return template.statement.ast(_templateObject12$1(), id, value);
   }
 
   function buildPrivateMethodInitLoose(ref, prop, privateNamesMap) {
@@ -62785,16 +63225,16 @@
     if (initAdded) return;
 
     if (methodId) {
-      return template.statement.ast(_templateObject10$2(), ref, id, methodId.name);
+      return template.statement.ast(_templateObject13$1(), ref, id, methodId.name);
     }
 
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         initAdded: true
       }));
-      return template.statement.ast(_templateObject11$2(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
+      return template.statement.ast(_templateObject14$1(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
     }
   }
 
@@ -62808,13 +63248,13 @@
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         initAdded: true
       }));
-      return template.statement.ast(_templateObject12$1(), id, ref, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
+      return template.statement.ast(_templateObject15$1(), id, ref, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
     }
 
-    return template.statement.ast(_templateObject13$1(), id, ref);
+    return template.statement.ast(_templateObject16$1(), id, ref);
   }
 
   function buildPublicFieldInitLoose(ref, prop) {
@@ -62844,13 +63284,13 @@
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         initAdded: true
       }));
-      return template.statement.ast(_templateObject14$1(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
+      return template.statement.ast(_templateObject17$1(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
     }
 
-    return template.statement.ast(_templateObject15$1(), ref, id, methodId.name);
+    return template.statement.ast(_templateObject18$1(), ref, id, methodId.name);
   }
 
   function buildPrivateMethodDeclaration(prop, privateNamesMap, loose) {
@@ -62876,14 +63316,14 @@
     var isSetter = setId && !setterDeclared && params.length > 0;
 
     if (isGetter) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         getterDeclared: true
       }));
       return VariableDeclaration("var", [VariableDeclarator(getId, methodValue)]);
     }
 
     if (isSetter) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
         setterDeclared: true
       }));
       return VariableDeclaration("var", [VariableDeclarator(setId, methodValue)]);
@@ -63321,7 +63761,8 @@
   var FEATURES = Object.freeze({
     fields: 1 << 1,
     privateMethods: 1 << 2,
-    decorators: 1 << 3
+    decorators: 1 << 3,
+    privateIn: 1 << 4
   });
   var featuresKey = "@babel/plugin-class-features/featuresKey";
   var looseKey = "@babel/plugin-class-features/looseKey";
@@ -63329,6 +63770,18 @@
     if (!hasFeature(file, feature)) {
       file.set(featuresKey, file.get(featuresKey) | feature);
       if (loose) file.set(looseKey, file.get(looseKey) | feature);
+    }
+
+    if (hasFeature(file, FEATURES.fields) && hasFeature(file, FEATURES.privateMethods) && isLoose(file, FEATURES.fields) !== isLoose(file, FEATURES.privateMethods)) {
+      throw new Error("'loose' mode configuration must be the same for both @babel/plugin-proposal-class-properties " + "and @babel/plugin-proposal-private-methods");
+    }
+
+    if (hasFeature(file, FEATURES.fields) && hasFeature(file, FEATURES.privateIn) && isLoose(file, FEATURES.fields) !== isLoose(file, FEATURES.privateIn)) {
+      throw new Error("'loose' mode configuration must be the same for both @babel/plugin-proposal-class-properties " + "and @babel/plugin-proposal-private-property-in-object");
+    }
+
+    if (hasFeature(file, FEATURES.privateMethods) && hasFeature(file, FEATURES.privateIn) && isLoose(file, FEATURES.privateMethods) !== isLoose(file, FEATURES.privateIn)) {
+      throw new Error("'loose' mode configuration must be the same for both @babel/plugin-proposal-private-methods " + "and @babel/plugin-proposal-private-property-in-object");
     }
   }
 
@@ -63356,8 +63809,13 @@
       }
     }
 
-    if (hasFeature(file, FEATURES.privateMethods) && hasFeature(file, FEATURES.fields) && isLoose(file, FEATURES.privateMethods) !== isLoose(file, FEATURES.fields)) {
-      throw path.buildCodeFrameError("'loose' mode configuration must be the same for both @babel/plugin-proposal-class-properties " + "and @babel/plugin-proposal-private-methods");
+    if (path.isPrivateName() && path.parentPath.isBinaryExpression({
+      operator: "in",
+      left: path.node
+    })) {
+      if (!hasFeature(file, FEATURES.privateIn)) {
+        throw path.buildCodeFrameError("Private property in checks are not enabled.");
+      }
     }
 
     if (path.isProperty()) {
@@ -63368,7 +63826,7 @@
   }
 
   var name = "@babel/helper-create-class-features-plugin";
-  var version$2 = "7.9.6";
+  var version$2 = "7.10.0";
   var author = "The Babel Team (https://babeljs.io/team)";
   var license = "MIT";
   var description = "Compile class public and private fields, private methods and decorators to ES6";
@@ -63383,20 +63841,20 @@
   ];
   var dependencies = {
   	"@babel/helper-function-name": "^7.9.5",
-  	"@babel/helper-member-expression-to-functions": "^7.8.3",
-  	"@babel/helper-optimise-call-expression": "^7.8.3",
+  	"@babel/helper-member-expression-to-functions": "^7.10.0",
+  	"@babel/helper-optimise-call-expression": "^7.10.0",
   	"@babel/helper-plugin-utils": "^7.8.3",
-  	"@babel/helper-replace-supers": "^7.9.6",
+  	"@babel/helper-replace-supers": "^7.10.0",
   	"@babel/helper-split-export-declaration": "^7.8.3"
   };
   var peerDependencies = {
   	"@babel/core": "^7.0.0"
   };
   var devDependencies = {
-  	"@babel/core": "^7.9.6",
+  	"@babel/core": "^7.10.0",
   	"@babel/helper-plugin-test-runner": "^7.8.3"
   };
-  var gitHead = "9c2846bcacc75aa931ea9d556950c2113765d43d";
+  var gitHead = "5da2440adff6f25579fb6e9a018062291c89416f";
   var pkg = {
   	name: name,
   	version: version$2,
@@ -63622,7 +64080,9 @@
 
   function hasMethodDecorators(body) {
     return body.some(function (node) {
-      return node.decorators && node.decorators.length;
+      var _node$decorators;
+
+      return (_node$decorators = node.decorators) == null ? void 0 : _node$decorators.length;
     });
   }
 
@@ -64092,7 +64552,7 @@
         "DirectiveLiteral|StringLiteral": function DirectiveLiteralStringLiteral(_ref) {
           var node = _ref.node;
           var extra = node.extra;
-          if (!extra || !extra.raw) return;
+          if (!(extra == null ? void 0 : extra.raw)) return;
           extra.raw = extra.raw.replace(regex, replace);
         }
       }
@@ -64149,7 +64609,11 @@
             }
           }
 
-          path.replaceWith(LogicalExpression(operator.slice(0, -1), lhs, AssignmentExpression("=", left, right)));
+          var isRHSAnonymousFunction = isFunction(right, {
+            id: null
+          });
+          var rightExpression = isRHSAnonymousFunction ? SequenceExpression([NumericLiteral(0), right]) : right;
+          path.replaceWith(LogicalExpression(operator.slice(0, -1), lhs, AssignmentExpression("=", left, rightExpression)));
         }
       }
     };
@@ -65029,7 +65493,7 @@
             var impureObjRefComputedDeclarators = replaceImpureComputedKeys(refPropertyPath, path.scope);
             refPropertyPath.forEach(function (prop) {
               var node = prop.node;
-              ref = MemberExpression(ref, cloneNode(node.key), node.computed);
+              ref = MemberExpression(ref, cloneNode(node.key), node.computed || isLiteral(node.key));
             });
             var objectPatternPath = path.findParent(function (path) {
               return path.isObjectPattern();
@@ -65179,6 +65643,14 @@
               return;
             }
 
+            if (loose) {
+              if (hadProps) {
+                exp.arguments.push(obj);
+              }
+
+              return;
+            }
+
             exp = CallExpression(cloneNode(helper), [exp].concat(hadProps ? [ObjectExpression([]), obj] : []));
           }
 
@@ -65299,6 +65771,10 @@
             } else if (optionalPath.isOptionalCallExpression()) {
               optionalPath.node.type = "CallExpression";
               optionalPath = optionalPath.get("callee");
+            }
+
+            if (optionalPath.isTSNonNullExpression()) {
+              optionalPath = optionalPath.get("expression");
             }
           }
 
@@ -65512,6 +65988,18 @@
     });
   });
 
+  var proposalPrivatePropertyInObject = declare(function (api, options) {
+    api.assertVersion(7);
+    return createClassFeaturePlugin({
+      name: "proposal-class-properties",
+      feature: FEATURES.privateIn,
+      loose: options.loose,
+      manipulateOptions: function manipulateOptions(opts, parserOpts) {
+        parserOpts.plugins.push("privateIn");
+      }
+    });
+  });
+
   var syntaxThrowExpressions = declare(function (api) {
     api.assertVersion(7);
     return {
@@ -65605,18 +66093,29 @@
       throw Error('Invalid node type: ' + type);
     }
 
-    function generateAlternative(node) {
-      assertType(node.type, 'alternative');
-      var terms = node.body,
-          i = -1,
+    function generateSequence(generator, terms) {
+      var i = -1,
           length = terms.length,
-          result = '';
+          result = '',
+          term;
 
       while (++i < length) {
-        result += generateTerm(terms[i]);
+        term = terms[i];
+
+        if (i + 1 < length && terms[i].type == 'value' && terms[i].kind == 'null' && terms[i + 1].type == 'value' && terms[i + 1].kind == 'symbol' && terms[i + 1].codePoint >= 48 && terms[i + 1].codePoint <= 57) {
+          result += '\\000';
+          continue;
+        }
+
+        result += generator(term);
       }
 
       return result;
+    }
+
+    function generateAlternative(node) {
+      assertType(node.type, 'alternative');
+      return generateSequence(generateTerm, node.body);
     }
 
     function generateAnchor(node) {
@@ -65647,30 +66146,12 @@
 
     function generateCharacterClass(node) {
       assertType(node.type, 'characterClass');
-      var classRanges = node.body,
-          i = -1,
-          length = classRanges.length,
-          result = '';
-
-      if (node.negative) {
-        result += '^';
-      }
-
-      while (++i < length) {
-        result += generateClassAtom(classRanges[i]);
-      }
-
-      return '[' + result + ']';
+      return '[' + (node.negative ? '^' : '') + generateSequence(generateClassAtom, node.body) + ']';
     }
 
     function generateCharacterClassEscape(node) {
       assertType(node.type, 'characterClassEscape');
       return '\\' + node.value;
-    }
-
-    function generateUnicodePropertyEscape(node) {
-      assertType(node.type, 'unicodePropertyEscape');
-      return '\\' + (node.negative ? 'P' : 'p') + '{' + node.value + '}';
     }
 
     function generateCharacterClassRange(node) {
@@ -65749,14 +66230,7 @@
           throw Error('Invalid behaviour: ' + node.behaviour);
       }
 
-      var body = node.body,
-          i = -1,
-          length = body.length;
-
-      while (++i < length) {
-        result += generate(body[i]);
-      }
-
+      result += generateSequence(generate, node.body);
       return '(' + result + ')';
     }
 
@@ -65813,6 +66287,11 @@
       return generate(node);
     }
 
+    function generateUnicodePropertyEscape(node) {
+      assertType(node.type, 'unicodePropertyEscape');
+      return '\\' + (node.negative ? 'P' : 'p') + '{' + node.value + '}';
+    }
+
     function generateValue(node) {
       assertType(node.type, 'value');
       var kind = node.kind,
@@ -65836,7 +66315,7 @@
           return '\\' + codePoint;
 
         case 'octal':
-          return '\\' + codePoint.toString(8);
+          return '\\' + ('000' + codePoint.toString(8)).slice(-3);
 
         case 'singleEscape':
           switch (codePoint) {
@@ -65857,6 +66336,9 @@
 
             case 0x000D:
               return '\\r';
+
+            case 0x002D:
+              return '\\-';
 
             default:
               throw Error('Invalid code point: ' + codePoint);
@@ -65882,12 +66364,12 @@
       'characterClass': generateCharacterClass,
       'characterClassEscape': generateCharacterClassEscape,
       'characterClassRange': generateCharacterClassRange,
-      'unicodePropertyEscape': generateUnicodePropertyEscape,
       'disjunction': generateDisjunction,
       'dot': generateDot,
       'group': generateGroup,
       'quantifier': generateQuantifier,
       'reference': generateReference,
+      'unicodePropertyEscape': generateUnicodePropertyEscape,
       'value': generateValue
     };
     var regjsgen = {
@@ -66053,6 +66535,22 @@
         });
       }
 
+      function createQuantifier(min, max, from, to) {
+        if (to == null) {
+          from = pos - 1;
+          to = pos;
+        }
+
+        return addRaw({
+          type: 'quantifier',
+          min: min,
+          max: max,
+          greedy: true,
+          body: null,
+          range: [from, to]
+        });
+      }
+
       function createAlternative(terms, from, to) {
         return addRaw({
           type: 'alternative',
@@ -66185,6 +66683,14 @@
           bail('Expected atom');
         }
 
+        var quantifier = parseQuantifier() || false;
+
+        if (quantifier) {
+          quantifier.body = flattenBody(atom);
+          updateRawStart(quantifier, atom.range[0]);
+          return quantifier;
+        }
+
         return atom;
       }
 
@@ -66235,6 +66741,45 @@
         } else {
           return parseGroup('(?=', 'lookahead', '(?!', 'negativeLookahead');
         }
+      }
+
+      function parseQuantifier() {
+        var res,
+            from = pos;
+        var quantifier;
+        var min, max;
+
+        if (match('*')) {
+          quantifier = createQuantifier(0);
+        } else if (match('+')) {
+          quantifier = createQuantifier(1);
+        } else if (match('?')) {
+          quantifier = createQuantifier(0, 1);
+        } else if (res = matchReg(/^\{([0-9]+)\}/)) {
+          min = parseInt(res[1], 10);
+          quantifier = createQuantifier(min, min, res.range[0], res.range[1]);
+        } else if (res = matchReg(/^\{([0-9]+),\}/)) {
+          min = parseInt(res[1], 10);
+          quantifier = createQuantifier(min, undefined, res.range[0], res.range[1]);
+        } else if (res = matchReg(/^\{([0-9]+),([0-9]+)\}/)) {
+          min = parseInt(res[1], 10);
+          max = parseInt(res[2], 10);
+
+          if (min > max) {
+            bail('numbers out of order in {} quantifier', '', from, pos);
+          }
+
+          quantifier = createQuantifier(min, max, res.range[0], res.range[1]);
+        }
+
+        if (quantifier) {
+          if (match('?')) {
+            quantifier.greedy = false;
+            quantifier.range[1] += 1;
+          }
+        }
+
+        return quantifier;
       }
 
       function parseAtomAndExtendedAtom() {
@@ -68617,7 +69162,7 @@
     var loopOrFunctionParent = path.find(function (path) {
       return path.isLoop() || path.isFunction();
     });
-    return loopOrFunctionParent && loopOrFunctionParent.isLoop();
+    return loopOrFunctionParent == null ? void 0 : loopOrFunctionParent.isLoop();
   }
 
   function convertBlockScopedToVar(path, node, parent, scope, moveBindingsToParent) {
@@ -71784,7 +72329,9 @@
     var _options$loose = options.loose,
         loose = _options$loose === void 0 ? false : _options$loose,
         _options$useBuiltIns = options.useBuiltIns,
-        useBuiltIns = _options$useBuiltIns === void 0 ? false : _options$useBuiltIns;
+        useBuiltIns = _options$useBuiltIns === void 0 ? false : _options$useBuiltIns,
+        _options$allowArrayLi = options.allowArrayLike,
+        allowArrayLike = _options$allowArrayLi === void 0 ? false : _options$allowArrayLi;
 
     if (typeof loose !== "boolean") {
       throw new Error(".loose must be a boolean or undefined");
@@ -71854,6 +72401,7 @@
         this.scope = opts.scope;
         this.kind = opts.kind;
         this.arrayOnlySpread = opts.arrayOnlySpread;
+        this.allowArrayLike = opts.allowArrayLike;
         this.addHelper = opts.addHelper;
       }
 
@@ -71898,7 +72446,7 @@
         if (this.arrayOnlySpread || isIdentifier(node) && this.arrays[node.name]) {
           return node;
         } else {
-          return this.scope.toArray(node, count);
+          return this.scope.toArray(node, count, this.allowArrayLike);
         }
       };
 
@@ -72007,12 +72555,12 @@
               this.nodes.push(this.buildVariableDeclaration(name, key));
 
               if (!copiedPattern) {
-                copiedPattern = pattern = Object.assign({}, pattern, {
+                copiedPattern = pattern = Object.assign(Object.assign({}, pattern), {}, {
                   properties: pattern.properties.slice()
                 });
               }
 
-              copiedPattern.properties[i] = Object.assign({}, copiedPattern.properties[i], {
+              copiedPattern.properties[i] = Object.assign(Object.assign({}, copiedPattern.properties[i]), {}, {
                 key: name
               });
             }
@@ -72178,6 +72726,7 @@
             scope: scope,
             nodes: nodes,
             arrayOnlySpread: arrayOnlySpread,
+            allowArrayLike: allowArrayLike,
             addHelper: function addHelper(name) {
               return _this.addHelper(name);
             }
@@ -72202,6 +72751,7 @@
             scope: scope,
             nodes: nodes,
             arrayOnlySpread: arrayOnlySpread,
+            allowArrayLike: allowArrayLike,
             addHelper: function addHelper(name) {
               return _this2.addHelper(name);
             }
@@ -72221,6 +72771,7 @@
             scope: scope,
             nodes: nodes,
             arrayOnlySpread: arrayOnlySpread,
+            allowArrayLike: allowArrayLike,
             addHelper: function addHelper(name) {
               return _this3.addHelper(name);
             }
@@ -72273,6 +72824,7 @@
               scope: scope,
               kind: node.kind,
               arrayOnlySpread: arrayOnlySpread,
+              allowArrayLike: allowArrayLike,
               addHelper: function addHelper(name) {
                 return _this4.addHelper(name);
               }
@@ -72515,6 +73067,8 @@
     }
 
     function attachComment(_ref) {
+      var _toPath;
+
       var ofPath = _ref.ofPath,
           toPath = _ref.toPath,
           _ref$where = _ref.where,
@@ -72526,7 +73080,7 @@
           _ref$keepType = _ref.keepType,
           keepType = _ref$keepType === void 0 ? false : _ref$keepType;
 
-      if (!toPath || !toPath.node) {
+      if (!((_toPath = toPath) == null ? void 0 : _toPath.node)) {
         toPath = ofPath.getPrevSibling();
         where = "trailing";
       }
@@ -72547,7 +73101,7 @@
 
       comments = comments.map(commentFromString);
 
-      if (!keepType && ofPath && ofPath.node) {
+      if (!keepType && (ofPath == null ? void 0 : ofPath.node)) {
         var node = ofPath.node;
         var parent = ofPath.parentPath;
         var prev = ofPath.getPrevSibling();
@@ -73033,10 +73587,19 @@
   var transformForOf = declare(function (api, options) {
     api.assertVersion(7);
     var loose = options.loose,
-        assumeArray = options.assumeArray;
+        assumeArray = options.assumeArray,
+        allowArrayLike = options.allowArrayLike;
 
     if (loose === true && assumeArray === true) {
       throw new Error("The loose and assumeArray options cannot be used together in @babel/plugin-transform-for-of");
+    }
+
+    if (assumeArray === true && allowArrayLike === true) {
+      throw new Error("The assumeArray and allowArrayLike options cannot be used together in @babel/plugin-transform-for-of");
+    }
+
+    if (allowArrayLike && /^7\.\d\./.test(api.version)) {
+      throw new Error("The allowArrayLike is only supported when using @babel/core@^7.10.0");
     }
 
     if (assumeArray) {
@@ -73093,8 +73656,8 @@
     }
 
     var buildForOfArray = template("\n    for (var KEY = 0, NAME = ARR; KEY < NAME.length; KEY++) BODY;\n  ");
-    var buildForOfLoose = template.statements("\n    for (var ITERATOR_HELPER = CREATE_ITERATOR_HELPER(OBJECT), STEP_KEY;\n        !(STEP_KEY = ITERATOR_HELPER()).done;) BODY;\n  ");
-    var buildForOf = template.statements("\n    var ITERATOR_HELPER = CREATE_ITERATOR_HELPER(OBJECT), STEP_KEY;\n    try {\n      for (ITERATOR_HELPER.s(); !(STEP_KEY = ITERATOR_HELPER.n()).done;) BODY;\n    } catch (err) {\n      ITERATOR_HELPER.e(err);\n    } finally {\n      ITERATOR_HELPER.f();\n    }\n  ");
+    var buildForOfLoose = template.statements("\n    for (var ITERATOR_HELPER = CREATE_ITERATOR_HELPER(OBJECT, ALLOW_ARRAY_LIKE), STEP_KEY;\n        !(STEP_KEY = ITERATOR_HELPER()).done;) BODY;\n  ");
+    var buildForOf = template.statements("\n    var ITERATOR_HELPER = CREATE_ITERATOR_HELPER(OBJECT, ALLOW_ARRAY_LIKE), STEP_KEY;\n    try {\n      for (ITERATOR_HELPER.s(); !(STEP_KEY = ITERATOR_HELPER.n()).done;) BODY;\n    } catch (err) {\n      ITERATOR_HELPER.e(err);\n    } finally {\n      ITERATOR_HELPER.f();\n    }\n  ");
     var builder = loose ? {
       build: buildForOfLoose,
       helper: "createForOfIteratorHelperLoose",
@@ -73170,6 +73733,7 @@
           var nodes = builder.build({
             CREATE_ITERATOR_HELPER: state.addHelper(builder.helper),
             ITERATOR_HELPER: scope.generateUidIdentifier("iterator"),
+            ALLOW_ARRAY_LIKE: allowArrayLike ? BooleanLiteral(true) : null,
             STEP_KEY: Identifier(stepKey),
             OBJECT: node.right,
             BODY: node.body
@@ -73304,46 +73868,47 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.getImportSource = getImportSource;
-  exports.createDynamicImportTransform = createDynamicImportTransform;
 
-  function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
-  }
+  var _slicedToArray = function () {
+    function sliceIterator(arr, i) {
+      var _arr = [];
+      var _n = true;
+      var _d = false;
+      var _e = undefined;
 
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
-  }
-
-  function _iterableToArrayLimit(arr, i) {
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
-
-    try {
-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-        _arr.push(_s.value);
-
-        if (i && _arr.length === i) break;
-      }
-    } catch (err) {
-      _d = true;
-      _e = err;
-    } finally {
       try {
-        if (!_n && _i["return"] != null) _i["return"]();
+        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+          _arr.push(_s.value);
+
+          if (i && _arr.length === i) break;
+        }
+      } catch (err) {
+        _d = true;
+        _e = err;
       } finally {
-        if (_d) throw _e;
+        try {
+          if (!_n && _i["return"]) _i["return"]();
+        } finally {
+          if (_d) throw _e;
+        }
       }
+
+      return _arr;
     }
 
-    return _arr;
-  }
+    return function (arr, i) {
+      if (Array.isArray(arr)) {
+        return arr;
+      } else if (Symbol.iterator in Object(arr)) {
+        return sliceIterator(arr, i);
+      } else {
+        throw new TypeError("Invalid attempt to destructure non-iterable instance");
+      }
+    };
+  }();
 
-  function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-  }
+  exports.getImportSource = getImportSource;
+  exports.createDynamicImportTransform = createDynamicImportTransform;
 
   function getImportSource(t, callNode) {
     var importArguments = callNode.arguments;
@@ -73370,14 +73935,38 @@
   function createDynamicImportTransform(_ref) {
     var template = _ref.template,
         t = _ref.types;
-    var buildImport = template('Promise.resolve().then(() => MODULE)');
+    var builders = {
+      'static': {
+        interop: template('Promise.resolve().then(() => INTEROP(require(SOURCE)))'),
+        noInterop: template('Promise.resolve().then(() => require(SOURCE))')
+      },
+      dynamic: {
+        interop: template('Promise.resolve(SOURCE).then(s => INTEROP(require(s)))'),
+        noInterop: template('Promise.resolve(SOURCE).then(s => require(s))')
+      }
+    };
+    var visited = typeof WeakSet === 'function' && new WeakSet();
+
+    var isString = function isString(node) {
+      return t.isStringLiteral(node) || t.isTemplateLiteral(node) && node.expressions.length === 0;
+    };
+
     return function (context, path) {
-      var requireCall = t.callExpression(t.identifier('require'), [getImportSource(t, path.parent)]);
-      var _context$opts$noInter = context.opts.noInterop,
-          noInterop = _context$opts$noInter === undefined ? false : _context$opts$noInter;
-      var MODULE = noInterop === true ? requireCall : t.callExpression(context.addHelper('interopRequireWildcard'), [requireCall]);
-      var newImport = buildImport({
-        MODULE: MODULE
+      if (visited) {
+        if (visited.has(path)) {
+          return;
+        }
+
+        visited.add(path);
+      }
+
+      var SOURCE = getImportSource(t, path.parent);
+      var builder = isString(SOURCE) ? builders['static'] : builders.dynamic;
+      var newImport = context.opts.noInterop ? builder.noInterop({
+        SOURCE: SOURCE
+      }) : builder.interop({
+        SOURCE: SOURCE,
+        INTEROP: context.addHelper('interopRequireWildcard')
       });
       path.parentPath.replaceWith(newImport);
     };
@@ -74038,7 +74627,7 @@
                 } else {
                   var specifiers = _path2.node.specifiers;
 
-                  if (specifiers && specifiers.length) {
+                  if (specifiers == null ? void 0 : specifiers.length) {
                     if (_path2.node.source) {
                       pushModule(_path2.node.source.value, "exports", specifiers);
 
@@ -75257,7 +75846,7 @@
                 throw path.buildCodeFrameError("pragma and pragmaFrag cannot be set when runtime is automatic.");
               }
 
-              var importName = addAutoImports(path, Object.assign({}, state.opts, {
+              var importName = addAutoImports(path, Object.assign(Object.assign({}, state.opts), {}, {
                 source: source
               }));
               state.set("@babel/plugin-react-jsx/jsxIdentifier", createIdentifierParser(createIdentifierName(path, options.development ? "jsxDEV" : "jsx", importName)));
@@ -75728,7 +76317,7 @@
 
   var transformAutomatic = declare(function (api, options) {
     var PURE_ANNOTATION = options.pure;
-    var visitor = helper$3(api, Object.assign({
+    var visitor = helper$3(api, Object.assign(Object.assign({
       pre: function pre(state) {
         var tagName = state.tagName;
         var args = state.args;
@@ -75750,7 +76339,7 @@
           state.pure = PURE_ANNOTATION != null ? PURE_ANNOTATION : !pass.get("@babel/plugin-react-jsx/importSourceSet");
         }
       }
-    }, options, {
+    }, options), {}, {
       development: false
     }));
     return {
@@ -75794,7 +76383,7 @@
 
   var transformReactJSXDevelopment = declare(function (api, options) {
     var PURE_ANNOTATION = options.pure;
-    var visitor = helper$3(api, Object.assign({
+    var visitor = helper$3(api, Object.assign(Object.assign({
       pre: function pre(state) {
         var tagName = state.tagName;
         var args = state.args;
@@ -75816,7 +76405,7 @@
           state.pure = PURE_ANNOTATION != null ? PURE_ANNOTATION : !pass.get("@babel/plugin-react-jsx/importSourceSet");
         }
       }
-    }, options, {
+    }, options), {}, {
       development: true
     }));
     return {
@@ -75875,7 +76464,7 @@
         for (var i = 0; i < attributes.length; i++) {
           var name = attributes[i].name;
 
-          if (name && name.name === TRACE_ID$1) {
+          if ((name == null ? void 0 : name.name) === TRACE_ID$1) {
             return;
           }
         }
@@ -77693,7 +78282,7 @@
           path: "parse-int"
         }
       },
-      StaticProperties: Object.assign({
+      StaticProperties: Object.assign(Object.assign({
         Array: {
           from: {
             stable: true,
@@ -77867,7 +78456,7 @@
             path: "math/trunc"
           }
         }
-      } : {}, {
+      } : {}), {}, {
         Symbol: {
           "for": {
             stable: true,
@@ -78746,7 +79335,7 @@
   }
 
   function supportsStaticESM(caller) {
-    return !!(caller && caller.supportsStaticESM);
+    return !!(caller == null ? void 0 : caller.supportsStaticESM);
   }
 
   var transformRuntime = declare(function (api, options, dirname) {
@@ -78975,6 +79564,9 @@
           enter: function enter(path) {
             if (!injectCoreJS) return;
             if (!path.isReferenced()) return;
+            if (path.parentPath.isUnaryExpression({
+              operator: "delete"
+            })) return;
             var node = path.node;
             var object = node.object;
             if (!isReferenced(object, node)) return;
@@ -79040,7 +79632,8 @@
 
   var transformSpread = declare(function (api, options) {
     api.assertVersion(7);
-    var loose = options.loose;
+    var loose = options.loose,
+        allowArrayLike = options.allowArrayLike;
 
     function getSpreadLiteral(spread, scope) {
       if (loose && !isIdentifier(spread.argument, {
@@ -79048,7 +79641,7 @@
       })) {
         return spread.argument;
       } else {
-        return scope.toArray(spread.argument, true);
+        return scope.toArray(spread.argument, true, allowArrayLike);
       }
     }
 
@@ -79907,6 +80500,14 @@
             }
           }
 
+          var pragmaImportName = fileJsxPragma || jsxPragma;
+
+          if (pragmaImportName) {
+            var _pragmaImportName$spl = pragmaImportName.split(".");
+
+            pragmaImportName = _pragmaImportName$spl[0];
+          }
+
           for (var _iterator2 = _createForOfIteratorHelperLoose(path.get("body")), _step2; !(_step2 = _iterator2()).done;) {
             var stmt = _step2.value;
 
@@ -79931,7 +80532,7 @@
                   if (binding && isImportTypeOnly({
                     binding: binding,
                     programPath: path,
-                    jsxPragma: fileJsxPragma || jsxPragma
+                    jsxPragma: pragmaImportName
                   })) {
                     importsToRemove.push(binding.path);
                   } else {
@@ -80139,6 +80740,111 @@
     }
   });
 
+  var transformUnicodeEscapes = declare(function (api) {
+    api.assertVersion(7);
+    var surrogate = /[\ud800-\udfff]/g;
+    var unicodeEscape = /(\\+)u\{([0-9a-fA-F]+)\}/g;
+
+    function escape(code) {
+      var str = code.toString(16);
+
+      while (str.length < 4) {
+        str = "0" + str;
+      }
+
+      return "\\u" + str;
+    }
+
+    function replacer(match, backslashes, code) {
+      if (backslashes.length % 2 === 0) {
+        return match;
+      }
+
+      var _char = String.fromCodePoint(parseInt(code, 16));
+
+      var escaped = backslashes.slice(0, -1) + escape(_char.charCodeAt(0));
+      return _char.length === 1 ? escaped : escaped + escape(_char.charCodeAt(1));
+    }
+
+    function replaceUnicodeEscapes(str) {
+      return str.replace(unicodeEscape, replacer);
+    }
+
+    function getUnicodeEscape(str) {
+      var match;
+
+      while (match = unicodeEscape.exec(str)) {
+        if (match[1].length % 2 === 0) continue;
+        unicodeEscape.lastIndex = 0;
+        return match[0];
+      }
+
+      return null;
+    }
+
+    return {
+      name: "transform-unicode-escapes",
+      visitor: {
+        Identifier: function Identifier(path) {
+          var node = path.node,
+              key = path.key;
+          var name = node.name;
+          var replaced = name.replace(surrogate, function (c) {
+            return "_u" + c.charCodeAt(0).toString(16);
+          });
+          if (name === replaced) return;
+          var str = inherits(StringLiteral(name), node);
+
+          if (key === "key") {
+            path.replaceWith(str);
+            return;
+          }
+
+          var parentPath = path.parentPath,
+              scope = path.scope;
+
+          if (parentPath.isMemberExpression({
+            property: node
+          }) || parentPath.isOptionalMemberExpression({
+            property: node
+          })) {
+            parentPath.node.computed = true;
+            path.replaceWith(str);
+            return;
+          }
+
+          var binding = scope.getBinding(name);
+
+          if (binding) {
+            scope.rename(name, scope.generateUid(replaced));
+            return;
+          }
+
+          throw path.buildCodeFrameError("Can't reference '" + name + "' as a bare identifier");
+        },
+        "StringLiteral|DirectiveLiteral": function StringLiteralDirectiveLiteral(path) {
+          var node = path.node;
+          var extra = node.extra;
+          if (extra == null ? void 0 : extra.raw) extra.raw = replaceUnicodeEscapes(extra.raw);
+        },
+        TemplateElement: function TemplateElement(path) {
+          var node = path.node,
+              parentPath = path.parentPath;
+          var value = node.value;
+          var firstEscape = getUnicodeEscape(value.raw);
+          if (!firstEscape) return;
+          var grandParent = parentPath.parentPath;
+
+          if (grandParent.isTaggedTemplateExpression()) {
+            throw path.buildCodeFrameError("Can't replace Unicode escape '" + firstEscape + "' inside tagged template literals. You can enable '@babel/plugin-transform-template-literals' to compile them to classic strings.");
+          }
+
+          value.raw = replaceUnicodeEscapes(value.raw);
+        }
+      }
+    };
+  });
+
   var transformUnicodeRegex = declare(function (api) {
     api.assertVersion(7);
     return createRegExpFeaturePlugin({
@@ -80159,6 +80865,7 @@
     "syntax-function-sent": syntaxFunctionSent,
     "syntax-import-meta": syntaxImportMeta,
     "syntax-jsx": syntaxJsx,
+    "syntax-module-attributes": syntaxModuleAttributes,
     "syntax-object-rest-spread": syntaxObjectRestSpread,
     "syntax-optional-catch-binding": syntaxOptionalCatchBinding,
     "syntax-pipeline-operator": syntaxPipelineOperator,
@@ -80183,6 +80890,7 @@
     "proposal-optional-chaining": proposalOptionalChaining,
     "proposal-pipeline-operator": proposalPipelineOperator,
     "proposal-private-methods": proposalPrivateMethods,
+    "proposal-private-property-in-object": proposalPrivatePropertyInObject,
     "proposal-throw-expressions": proposalThrowExpressions,
     "proposal-unicode-property-regex": proposalUnicodePropertyRegex,
     "transform-async-to-generator": transformAsyncToGenerator,
@@ -80234,6 +80942,7 @@
     "transform-template-literals": transformTemplateLiterals,
     "transform-typeof-symbol": transformTypeofSymbol,
     "transform-typescript": transformTypeScript,
+    "transform-unicode-escapes": transformUnicodeEscapes,
     "transform-unicode-regex": transformUnicodeRegex
   };
 
@@ -80257,7 +80966,7 @@
         spec: spec
       }], transformLiterals, transformFunctionName, [transformArrowFunctions, {
         spec: spec
-      }], transformBlockScopedFunctions, [transformClasses, optsLoose], transformObjectSuper, transformShorthandProperties, transformDuplicateKeys, [transformComputedProperties, optsLoose], [transformForOf, optsLoose], transformStickyRegex, transformUnicodeRegex, [transformSpread, optsLoose], [transformParameters, optsLoose], [transformDestructuring, optsLoose], transformBlockScoping, transformTypeofSymbol, transformInstanceof, (modules === "commonjs" || modules === "cjs") && [transformModulesCommonjs, optsLoose], modules === "systemjs" && [transformModulesSystemjs, optsLoose], modules === "amd" && [transformModulesAmd, optsLoose], modules === "umd" && [transformModulesUmd, optsLoose], [transformRegenerator, {
+      }], transformBlockScopedFunctions, [transformClasses, optsLoose], transformObjectSuper, transformShorthandProperties, transformDuplicateKeys, [transformComputedProperties, optsLoose], [transformForOf, optsLoose], transformStickyRegex, transformUnicodeEscapes, transformUnicodeRegex, [transformSpread, optsLoose], [transformParameters, optsLoose], [transformDestructuring, optsLoose], transformBlockScoping, transformTypeofSymbol, transformInstanceof, (modules === "commonjs" || modules === "cjs") && [transformModulesCommonjs, optsLoose], modules === "systemjs" && [transformModulesSystemjs, optsLoose], modules === "amd" && [transformModulesAmd, optsLoose], modules === "umd" && [transformModulesUmd, optsLoose], [transformRegenerator, {
         async: false,
         asyncGenerators: false
       }]].filter(Boolean)
@@ -80325,7 +81034,9 @@
         _opts$pipelineProposa = _opts.pipelineProposal,
         pipelineProposal = _opts$pipelineProposa === void 0 ? "minimal" : _opts$pipelineProposa,
         _opts$recordAndTupleS = _opts.recordAndTupleSyntax,
-        recordAndTupleSyntax = _opts$recordAndTupleS === void 0 ? "hash" : _opts$recordAndTupleS;
+        recordAndTupleSyntax = _opts$recordAndTupleS === void 0 ? "hash" : _opts$recordAndTupleS,
+        _opts$moduleAttribute = _opts.moduleAttributesVersion,
+        moduleAttributesVersion = _opts$moduleAttribute === void 0 ? "may-2020" : _opts$moduleAttribute;
     return {
       presets: [[presetStage2, {
         loose: loose,
@@ -80333,11 +81044,13 @@
         decoratorsLegacy: decoratorsLegacy,
         decoratorsBeforeExport: decoratorsBeforeExport
       }]],
-      plugins: [[syntaxRecordAndTuple, {
+      plugins: [[syntaxModuleAttributes, {
+        version: moduleAttributesVersion
+      }], [syntaxRecordAndTuple, {
         syntaxType: recordAndTupleSyntax
       }], proposalExportDefaultFrom, [proposalPipelineOperator, {
         proposal: pipelineProposal
-      }], proposalDoExpressions]
+      }], proposalPrivatePropertyInObject, proposalDoExpressions]
     };
   });
 
@@ -81242,6 +81955,13 @@
   	},
   	{
   		name: "nodejs",
+  		version: "10.20.0",
+  		date: "2020-03-24",
+  		lts: "Dubnium",
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
   		version: "11.0.0",
   		date: "2018-10-23",
   		lts: false,
@@ -81561,6 +82281,41 @@
   		date: "2020-03-26",
   		lts: false,
   		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.13.0",
+  		date: "2020-04-14",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "13.14.0",
+  		date: "2020-04-28",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "14.0.0",
+  		date: "2020-04-21",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "14.1.0",
+  		date: "2020-04-29",
+  		lts: false,
+  		security: false
+  	},
+  	{
+  		name: "nodejs",
+  		version: "14.2.0",
+  		date: "2020-05-05",
+  		lts: false,
+  		security: false
   	}
   ];
 
@@ -81684,19 +82439,19 @@
     PB: "75",
     QB: "76",
     RB: "77",
-    SB: "59",
-    TB: "79",
-    UB: "10.1",
-    VB: "3.2",
-    WB: "9.3",
-    XB: "84",
-    YB: "3.1",
-    ZB: "83",
+    SB: "78",
+    TB: "59",
+    UB: "79",
+    VB: "10.1",
+    WB: "3.2",
+    XB: "10.0-10.2",
+    YB: "85",
+    ZB: "84",
     aB: "5.1",
     bB: "6.1",
     cB: "7.1",
     dB: "9.1",
-    eB: "78",
+    eB: "83",
     fB: "3.6",
     gB: "5.5",
     hB: "13.1",
@@ -81714,8 +82469,8 @@
     tB: "7.0-7.1",
     uB: "8.1-8.4",
     vB: "9.0-9.2",
-    wB: "85",
-    xB: "10.0-10.2",
+    wB: "9.3",
+    xB: "3.1",
     yB: "10.3",
     zB: "11.0-11.2",
     "0B": "11.3-11.4",
@@ -81788,12 +82543,12 @@
         H: 0.031766,
         J: 0.104374,
         K: 1.94226,
-        TB: 0,
+        UB: 0,
         IB: 0,
         N: 0
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "C", "O", "T", "P", "H", "J", "K", "TB", "IB", "N", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "C", "O", "T", "P", "H", "J", "K", "UB", "IB", "N", "", "", ""],
       E: "Edge",
       F: {
         C: 1438128000,
@@ -81803,7 +82558,7 @@
         H: 1508198400,
         J: 1525046400,
         K: 1542067200,
-        TB: 1579046400,
+        UB: 1579046400,
         IB: 1581033600,
         N: 1586736000
       },
@@ -81877,7 +82632,7 @@
         x: 0.013614,
         y: 0.02269,
         z: 0.004538,
-        SB: 0.009076,
+        TB: 0.009076,
         AB: 0.02269,
         FB: 0.009076,
         CB: 0.004538,
@@ -81895,11 +82650,12 @@
         PB: 0.040842,
         QB: 0,
         RB: 0,
+        SB: 0,
         nB: 0.008786,
         fB: 0.00487
       },
       B: "moz",
-      C: ["", "", "qB", "GB", "nB", "fB", "G", "U", "I", "F", "E", "D", "A", "B", "C", "O", "T", "P", "H", "J", "K", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "Q", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "SB", "AB", "FB", "CB", "DB", "BB", "9", "w", "R", "M", "JB", "KB", "LB", "MB", "NB", "OB", "PB", "QB", "RB", ""],
+      C: ["", "qB", "GB", "nB", "fB", "G", "U", "I", "F", "E", "D", "A", "B", "C", "O", "T", "P", "H", "J", "K", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "Q", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "TB", "AB", "FB", "CB", "DB", "BB", "9", "w", "R", "M", "JB", "KB", "LB", "MB", "NB", "OB", "PB", "QB", "RB", "SB", ""],
       E: "Firefox",
       F: {
         "0": 1479168000,
@@ -81962,7 +82718,7 @@
         x: 1465257600,
         y: 1470096000,
         z: 1474329600,
-        SB: 1520985600,
+        TB: 1520985600,
         AB: 1525824000,
         FB: 1529971200,
         CB: 1536105600,
@@ -81978,8 +82734,9 @@
         NB: 1581379200,
         OB: 1583798400,
         PB: 1586304000,
-        QB: null,
-        RB: null
+        QB: 1588636800,
+        RB: null,
+        SB: null
       }
     },
     D: {
@@ -82040,7 +82797,7 @@
         x: 0.009076,
         y: 0.058994,
         z: 0.403882,
-        SB: 0.009076,
+        TB: 0.009076,
         AB: 0.018152,
         FB: 0.02269,
         CB: 0.018152,
@@ -82058,16 +82815,16 @@
         PB: 0.172444,
         QB: 0.15883,
         RB: 0.167906,
-        eB: 0.290432,
-        TB: 1.25249,
+        SB: 0.290432,
+        UB: 1.25249,
         IB: 26.1933,
         N: 0.063532,
-        ZB: 0.009076,
-        XB: 0,
-        wB: 0
+        eB: 0.009076,
+        ZB: 0,
+        YB: 0
       },
       B: "webkit",
-      C: ["G", "U", "I", "F", "E", "D", "A", "B", "C", "O", "T", "P", "H", "J", "K", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "Q", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "SB", "AB", "FB", "CB", "DB", "BB", "9", "w", "R", "M", "JB", "KB", "LB", "MB", "NB", "OB", "PB", "QB", "RB", "eB", "TB", "IB", "N", "ZB", "XB", "wB"],
+      C: ["G", "U", "I", "F", "E", "D", "A", "B", "C", "O", "T", "P", "H", "J", "K", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "Q", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "TB", "AB", "FB", "CB", "DB", "BB", "9", "w", "R", "M", "JB", "KB", "LB", "MB", "NB", "OB", "PB", "QB", "RB", "SB", "UB", "IB", "N", "eB", "ZB", "YB"],
       E: "Chrome",
       F: {
         "0": 1460592000,
@@ -82126,7 +82883,7 @@
         x: 1449014400,
         y: 1453248000,
         z: 1456963200,
-        SB: 1496707200,
+        TB: 1496707200,
         AB: 1500940800,
         FB: 1504569600,
         CB: 1508198400,
@@ -82144,13 +82901,13 @@
         PB: 1559606400,
         QB: 1564444800,
         RB: 1568073600,
-        eB: 1571702400,
-        TB: 1575936000,
+        SB: 1571702400,
+        UB: 1575936000,
         IB: 1580860800,
         N: 1586304000,
+        eB: null,
         ZB: null,
-        XB: null,
-        wB: null
+        YB: null
       }
     },
     E: {
@@ -82165,24 +82922,24 @@
         B: 0.031766,
         C: 0.104374,
         O: 2.9134,
-        YB: 0,
-        VB: 0.008692,
+        xB: 0,
+        WB: 0.008692,
         aB: 0.081684,
         bB: 0.00456,
         cB: 0.004283,
         dB: 0.04538,
-        UB: 0.086222,
+        VB: 0.086222,
         L: 0.18152,
         S: 0.367578,
         hB: 0.145216,
         iB: 0
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "YB", "VB", "G", "U", "aB", "I", "bB", "F", "cB", "E", "D", "dB", "A", "UB", "B", "L", "C", "S", "O", "hB", "iB", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "xB", "WB", "G", "U", "aB", "I", "bB", "F", "cB", "E", "D", "dB", "A", "VB", "B", "L", "C", "S", "O", "hB", "iB", "", ""],
       E: "Safari",
       F: {
-        YB: 1205798400,
-        VB: 1226534400,
+        xB: 1205798400,
+        WB: 1226534400,
         G: 1244419200,
         U: 1275868800,
         aB: 1311120000,
@@ -82194,13 +82951,13 @@
         D: 1443657600,
         dB: 1458518400,
         A: 1474329600,
-        UB: 1490572800,
+        VB: 1490572800,
         B: 1505779200,
         L: 1522281600,
         C: 1537142400,
         S: 1553472000,
         O: 1568851200,
-        hB: null,
+        hB: 1585008000,
         iB: null
       }
     },
@@ -82355,7 +83112,7 @@
     G: {
       A: {
         E: 0,
-        VB: 0.00272636,
+        WB: 0.00272636,
         pB: 0.00136318,
         HB: 0,
         rB: 0.0109054,
@@ -82363,8 +83120,8 @@
         tB: 0.0245372,
         uB: 0.0204477,
         vB: 0.0177213,
-        WB: 0.17585,
-        xB: 0.0477112,
+        wB: 0.17585,
+        XB: 0.0477112,
         yB: 0.169034,
         zB: 0.126776,
         "0B": 0.194934,
@@ -82376,10 +83133,10 @@
         "6B": 0.148586
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "VB", "pB", "HB", "rB", "sB", "tB", "E", "uB", "vB", "WB", "xB", "yB", "zB", "0B", "1B", "2B", "3B", "4B", "5B", "6B", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "WB", "pB", "HB", "rB", "sB", "tB", "E", "uB", "vB", "wB", "XB", "yB", "zB", "0B", "1B", "2B", "3B", "4B", "5B", "6B", "", "", ""],
       E: "iOS Safari",
       F: {
-        VB: 1270252800,
+        WB: 1270252800,
         pB: 1283904000,
         HB: 1299628800,
         rB: 1331078400,
@@ -82388,8 +83145,8 @@
         E: 1410912000,
         uB: 1413763200,
         vB: 1442361600,
-        WB: 1458518400,
-        xB: 1473724800,
+        wB: 1458518400,
+        XB: 1473724800,
         yB: 1490572800,
         zB: 1505779200,
         "0B": 1522281600,
@@ -82398,7 +83155,7 @@
         "3B": 1568851200,
         "4B": 1572220800,
         "5B": 1580169600,
-        "6B": null
+        "6B": 1585008000
       }
     },
     H: {
@@ -82537,11 +83294,11 @@
         HC: 0.0927266,
         IC: 0.0309089,
         JC: 0.226665,
-        UB: 0.679995,
+        VB: 0.679995,
         L: 2.17392
       },
       B: "webkit",
-      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G", "FC", "GC", "HC", "IC", "JC", "UB", "L", "", "", ""],
+      C: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "G", "FC", "GC", "HC", "IC", "JC", "VB", "L", "", "", ""],
       E: "Samsung Internet",
       F: {
         G: 1461024000,
@@ -82550,7 +83307,7 @@
         HC: 1528329600,
         IC: 1546128000,
         JC: 1554163200,
-        UB: 1567900800,
+        VB: 1567900800,
         L: 1582588800
       }
     },
@@ -82685,7 +83442,7 @@
   var v10 = {
   	start: "2018-04-24",
   	lts: "2018-10-30",
-  	maintenance: "2020-04-30",
+  	maintenance: "2020-05-19",
   	end: "2021-04-30",
   	codename: "Dubnium"
   };
@@ -82713,6 +83470,11 @@
   	end: "2023-04-30",
   	codename: ""
   };
+  var v15 = {
+  	start: "2020-10-21",
+  	maintenance: "2021-04-01",
+  	end: "2021-06-01"
+  };
   var releaseSchedule = {
   	"v0.10": {
   	start: "2013-03-11",
@@ -82732,7 +83494,8 @@
   	v11: v11,
   	v12: v12,
   	v13: v13,
-  	v14: v14
+  	v14: v14,
+  	v15: v15
   };
 
   var releaseSchedule$1 = /*#__PURE__*/Object.freeze({
@@ -82748,6 +83511,7 @@
     v12: v12,
     v13: v13,
     v14: v14,
+    v15: v15,
     'default': releaseSchedule
   });
 
@@ -84164,9 +84928,7 @@
   }
 
   var TargetNames = {
-    esmodules: "esmodules",
     node: "node",
-    browsers: "browsers",
     chrome: "chrome",
     opera: "opera",
     edge: "edge",
@@ -84176,8 +84938,7 @@
     ios: "ios",
     android: "android",
     electron: "electron",
-    samsung: "samsung",
-    uglify: "uglify"
+    samsung: "samsung"
   };
 
   function prettifyVersion(version) {
@@ -84245,6 +85006,17 @@
   	ios: "13",
   	samsung: "11",
   	electron: "6"
+  },
+  	"proposal-class-properties": {
+  	chrome: "74",
+  	opera: "61",
+  	edge: "79",
+  	node: "12",
+  	electron: "6.1"
+  },
+  	"proposal-private-methods": {
+  	chrome: "84",
+  	opera: "71"
   },
   	"proposal-nullish-coalescing-operator": {
   	chrome: "80",
@@ -84323,6 +85095,7 @@
   	chrome: "62",
   	opera: "49",
   	edge: "79",
+  	firefox: "78",
   	safari: "11.1",
   	node: "8.10",
   	ios: "11.3",
@@ -84333,6 +85106,7 @@
   	chrome: "64",
   	opera: "51",
   	edge: "79",
+  	firefox: "78",
   	safari: "11.1",
   	node: "10",
   	ios: "11.3",
@@ -84504,6 +85278,17 @@
   	samsung: "5",
   	electron: "0.37"
   },
+  	"transform-unicode-escapes": {
+  	chrome: "44",
+  	opera: "31",
+  	edge: "12",
+  	firefox: "53",
+  	safari: "9",
+  	node: "4",
+  	ios: "9",
+  	samsung: "4",
+  	electron: "0.30"
+  },
   	"transform-unicode-regex": {
   	chrome: "50",
   	opera: "37",
@@ -84673,8 +85458,8 @@
         includes = _ref.includes,
         excludes = _ref.excludes;
 
-    if (excludes && excludes.has(name)) return false;
-    if (includes && includes.has(name)) return true;
+    if (excludes == null ? void 0 : excludes.has(name)) return false;
+    if (includes == null ? void 0 : includes.has(name)) return true;
     return !targetsSupported(targets, compatData[name]);
   }
   function filterItems(list, includes, excludes, targets, defaultIncludes, defaultExcludes, pluginSyntaxMap) {
@@ -84734,6 +85519,8 @@
         throw new Error("Invalid Option: '" + target + "' is not a valid target\n        Maybe you meant to use '" + levenArray(target, validTargets) + "'?");
       }
     }
+
+    return targets;
   }
 
   function isBrowsersQueryValid(browsers) {
@@ -84741,18 +85528,8 @@
   }
 
   function validateBrowsers(browsers) {
-    browser$7(typeof browsers === "undefined" || isBrowsersQueryValid(browsers), "Invalid Option: '" + browsers + "' is not a valid browserslist query");
+    browser$7(typeof browsers === "undefined" || isBrowsersQueryValid(browsers), "Invalid Option: '" + String(browsers) + "' is not a valid browserslist query");
     return browsers;
-  }
-
-  function mergeBrowsers(fromQuery, fromTarget) {
-    return Object.keys(fromTarget).reduce(function (queryObj, targKey) {
-      if (targKey !== TargetNames.browsers) {
-        queryObj[targKey] = fromTarget[targKey];
-      }
-
-      return queryObj;
-    }, fromQuery);
   }
 
   function getLowestVersions(browsers) {
@@ -84794,7 +85571,7 @@
   }
 
   function outputDecimalWarning(decimalTargets) {
-    if (!decimalTargets || !decimalTargets.length) {
+    if (!(decimalTargets == null ? void 0 : decimalTargets.length)) {
       return;
     }
 
@@ -84829,9 +85606,9 @@
       return [target, parsed];
     }
   };
-  function getTargets(targets, options) {
-    if (targets === void 0) {
-      targets = {};
+  function getTargets(inputTargets, options) {
+    if (inputTargets === void 0) {
+      inputTargets = {};
     }
 
     if (options === void 0) {
@@ -84839,19 +85616,20 @@
     }
 
     var targetOpts = {};
-    validateTargetNames(targets);
 
-    if (targets.esmodules) {
+    if (inputTargets.esmodules) {
       var supportsESModules = nativeModules$2["es6.module"];
-      targets.browsers = Object.keys(supportsESModules).map(function (browser) {
+      inputTargets.browsers = Object.keys(supportsESModules).map(function (browser) {
         return browser + " " + supportsESModules[browser];
       }).join(", ");
     }
 
-    delete targets.esmodules;
-    var browsersquery = validateBrowsers(targets.browsers);
-    var hasTargets = Object.keys(targets).length > 0;
-    var shouldParseBrowsers = !!targets.browsers;
+    delete inputTargets.esmodules;
+    var browsersquery = validateBrowsers(inputTargets.browsers);
+    delete inputTargets.browsers;
+    var targets = validateTargetNames(inputTargets);
+    var shouldParseBrowsers = !!browsersquery;
+    var hasTargets = shouldParseBrowsers || Object.keys(targets).length > 0;
     var shouldSearchForConfig = !options.ignoreBrowserslistConfig && !hasTargets;
 
     if (shouldParseBrowsers || shouldSearchForConfig) {
@@ -84861,35 +85639,34 @@
 
       var browsers = browserslist_1(browsersquery, {
         path: options.configPath,
-        mobileToDesktop: true
+        mobileToDesktop: true,
+        env: options.browserslistEnv
       });
       var queryBrowsers = getLowestVersions(browsers);
-      targets = mergeBrowsers(queryBrowsers, targets);
+      targets = Object.assign(queryBrowsers, targets);
       browserslist_1.defaults = browserslistDefaults;
     }
 
-    var parsed = Object.keys(targets).filter(function (value) {
-      return value !== TargetNames.esmodules;
-    }).sort().reduce(function (results, target) {
-      if (target !== TargetNames.browsers) {
-        var value = targets[target];
+    var parsed = Object.keys(targets).sort().reduce(function (results, target) {
+      var _targetParserMap$targ;
 
-        if (typeof value === "number" && value % 1 !== 0) {
-          results.decimalWarnings.push({
-            target: target,
-            value: value
-          });
-        }
+      var value = targets[target];
 
-        var parser = targetParserMap[target] || targetParserMap.__default;
+      if (typeof value === "number" && value % 1 !== 0) {
+        results.decimalWarnings.push({
+          target: target,
+          value: value
+        });
+      }
 
-        var _parser = parser(target, value),
-            parsedTarget = _parser[0],
-            parsedValue = _parser[1];
+      var parser = (_targetParserMap$targ = targetParserMap[target]) != null ? _targetParserMap$targ : targetParserMap.__default;
 
-        if (parsedValue) {
-          results.targets[parsedTarget] = parsedValue;
-        }
+      var _parser = parser(target, value),
+          parsedTarget = _parser[0],
+          parsedValue = _parser[1];
+
+      if (parsedValue) {
+        results.targets[parsedTarget] = parsedValue;
       }
 
       return results;
@@ -90203,6 +90980,7 @@
     "bugfix/transform-safari-for-shadowing": bugfixSafariForShadowing,
     "bugfix/transform-tagged-template-caching": bugfixTaggedTemplateCaching,
     "proposal-async-generator-functions": proposalAsyncGeneratorFunctions,
+    "proposal-class-properties": proposalClassProperties,
     "proposal-dynamic-import": proposalDynamicImport,
     "proposal-json-strings": proposalJsonStrings,
     "proposal-nullish-coalescing-operator": proposalNullishCoalescingOperator,
@@ -90210,8 +90988,10 @@
     "proposal-object-rest-spread": proposalObjectRestSpread,
     "proposal-optional-catch-binding": proposalOptionalCatchBinding,
     "proposal-optional-chaining": proposalOptionalChaining,
+    "proposal-private-methods": proposalPrivateMethods,
     "proposal-unicode-property-regex": proposalUnicodePropertyRegex,
     "syntax-async-generators": syntaxAsyncGenerators$2,
+    "syntax-class-properties": syntaxClassProperties,
     "syntax-dynamic-import": syntaxDynamicImport$1,
     "syntax-json-strings": syntaxJsonStrings$1,
     "syntax-nullish-coalescing-operator": syntaxNullishCoalescingOperator$1,
@@ -90250,6 +91030,7 @@
     "transform-sticky-regex": transformStickyRegex,
     "transform-template-literals": transformTemplateLiterals,
     "transform-typeof-symbol": transformTypeofSymbol,
+    "transform-unicode-escapes": transformUnicodeEscapes,
     "transform-unicode-regex": transformUnicodeRegex
   };
 
@@ -90286,7 +91067,8 @@
     shippedProposals: "shippedProposals",
     spec: "spec",
     targets: "targets",
-    useBuiltIns: "useBuiltIns"
+    useBuiltIns: "useBuiltIns",
+    browserslistEnv: "browserslistEnv"
   };
   var ModulesOption = {
     "false": false,
@@ -90417,6 +91199,15 @@
 
     return value;
   };
+  var validateStringOption = function validateStringOption(name, value, defaultValue) {
+    if (typeof value === "undefined") {
+      value = defaultValue;
+    } else if (typeof value !== "string") {
+      throw new Error("Preset env: '" + name + "' option must be a string.");
+    }
+
+    return value;
+  };
   var validateIgnoreBrowserslistConfig = function validateIgnoreBrowserslistConfig(ignoreBrowserslistConfig) {
     return validateBoolOption(TopLevelOptions.ignoreBrowserslistConfig, ignoreBrowserslistConfig, false);
   };
@@ -90487,19 +91278,22 @@
       shippedProposals: shippedProposals,
       spec: validateBoolOption(TopLevelOptions.spec, opts.spec, false),
       targets: normalizeTargets(opts.targets),
-      useBuiltIns: useBuiltIns
+      useBuiltIns: useBuiltIns,
+      browserslistEnv: validateStringOption(TopLevelOptions.browserslistEnv, opts.browserslistEnv)
     };
   }
 
-  var proposalPlugins = new Set(["proposal-numeric-separator"]);
+  var proposalPlugins = new Set(["proposal-class-properties", "proposal-numeric-separator", "proposal-private-methods"]);
   var pluginSyntaxObject = {
     "proposal-async-generator-functions": "syntax-async-generators",
+    "proposal-class-properties": "syntax-class-properties",
     "proposal-json-strings": "syntax-json-strings",
     "proposal-nullish-coalescing-operator": "syntax-nullish-coalescing-operator",
     "proposal-numeric-separator": "syntax-numeric-separator",
     "proposal-object-rest-spread": "syntax-object-rest-spread",
     "proposal-optional-catch-binding": "syntax-optional-catch-binding",
     "proposal-optional-chaining": "syntax-optional-chaining",
+    "proposal-private-methods": "syntax-class-properties",
     "proposal-unicode-property-regex": null
   };
   var pluginSyntaxEntries = Object.keys(pluginSyntaxObject).map(function (key) {
@@ -92609,7 +93403,7 @@
 
           if (value !== undefined) {
             instanceType = getType$1(value);
-          } else if (deopt && deopt.isIdentifier()) {
+          } else if (deopt == null ? void 0 : deopt.isIdentifier()) {
             builtIn = deopt.node.name;
           }
         }
@@ -101499,15 +102293,15 @@
   };
 
   function supportsStaticESM$1(caller) {
-    return !!(caller && caller.supportsStaticESM);
+    return !!(caller == null ? void 0 : caller.supportsStaticESM);
   }
 
   function supportsDynamicImport(caller) {
-    return !!(caller && caller.supportsDynamicImport);
+    return !!(caller == null ? void 0 : caller.supportsDynamicImport);
   }
 
   function supportsTopLevelAwait(caller) {
-    return !!(caller && caller.supportsTopLevelAwait);
+    return !!(caller == null ? void 0 : caller.supportsTopLevelAwait);
   }
 
   var presetEnv = declare(function (api, opts) {
@@ -101529,11 +102323,12 @@
         useBuiltIns = _normalizeOptions.useBuiltIns,
         _normalizeOptions$cor = _normalizeOptions.corejs,
         corejs = _normalizeOptions$cor.version,
-        proposals = _normalizeOptions$cor.proposals;
+        proposals = _normalizeOptions$cor.proposals,
+        browserslistEnv = _normalizeOptions.browserslistEnv;
 
     var hasUglifyTarget = false;
 
-    if (optionsTargets && optionsTargets.uglify) {
+    if (optionsTargets == null ? void 0 : optionsTargets.uglify) {
       hasUglifyTarget = true;
       delete optionsTargets.uglify;
       console.log("");
@@ -101542,7 +102337,7 @@
       console.log("");
     }
 
-    if (optionsTargets && optionsTargets.esmodules && optionsTargets.browsers) {
+    if ((optionsTargets == null ? void 0 : optionsTargets.esmodules) && optionsTargets.browsers) {
       console.log("");
       console.log("@babel/preset-env: esmodules and browsers targets have been specified together.");
       console.log("`browsers` target, `" + optionsTargets.browsers + "` will be ignored.");
@@ -101551,7 +102346,8 @@
 
     var targets = getTargets(optionsTargets, {
       ignoreBrowserslistConfig: ignoreBrowserslistConfig,
-      configPath: configPath
+      configPath: configPath,
+      browserslistEnv: browserslistEnv
     });
     var include = transformIncludesAndExcludes(optionsInclude);
     var exclude = transformIncludesAndExcludes(optionsExclude);
@@ -101559,8 +102355,8 @@
     var modulesPluginNames = getModulesPluginNames({
       modules: modules,
       transformations: moduleTransformations,
-      shouldTransformESM: modules !== "auto" || !api.caller || !api.caller(supportsStaticESM$1),
-      shouldTransformDynamicImport: modules !== "auto" || !api.caller || !api.caller(supportsDynamicImport),
+      shouldTransformESM: modules !== "auto" || !(api.caller == null ? void 0 : api.caller(supportsStaticESM$1)),
+      shouldTransformDynamicImport: modules !== "auto" || !(api.caller == null ? void 0 : api.caller(supportsDynamicImport)),
       shouldParseTopLevelAwait: !api.caller || api.caller(supportsTopLevelAwait)
     });
     var pluginNames = filterItems(getPluginList(shippedProposals, bugfixes), include.plugins, exclude.plugins, transformTargets, modulesPluginNames, getOptionSpecificExcludesFor({
@@ -101621,6 +102417,66 @@
     };
   });
 
+  var PURE_CALLS = new Map([["react", ["cloneElement", "createElement", "createFactory", "createRef", "forwardRef", "isValidElement", "memo", "lazy"]], ["react-dom", ["createPortal"]]]);
+  var transformReactPure = declare(function (api) {
+    api.assertVersion(7);
+    return {
+      name: "transform-react-pure-annotations",
+      visitor: {
+        CallExpression: function CallExpression(path) {
+          if (isReactCall(path)) {
+            annotateAsPure(path);
+          }
+        }
+      }
+    };
+  });
+
+  function isReactCall(path) {
+    if (!isMemberExpression(path.node.callee)) {
+      var callee = path.get("callee");
+
+      for (var _iterator = _createForOfIteratorHelperLoose(PURE_CALLS), _step; !(_step = _iterator()).done;) {
+        var _step$value = _step.value,
+            module = _step$value[0],
+            methods = _step$value[1];
+
+        for (var _iterator2 = _createForOfIteratorHelperLoose(methods), _step2; !(_step2 = _iterator2()).done;) {
+          var method = _step2.value;
+
+          if (callee.referencesImport(module, method)) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    for (var _iterator3 = _createForOfIteratorHelperLoose(PURE_CALLS), _step3; !(_step3 = _iterator3()).done;) {
+      var _step3$value = _step3.value,
+          _module = _step3$value[0],
+          _methods = _step3$value[1];
+      var object = path.get("callee.object");
+
+      if (object.referencesImport(_module, "default") || object.referencesImport(_module, "*")) {
+        for (var _iterator4 = _createForOfIteratorHelperLoose(_methods), _step4; !(_step4 = _iterator4()).done;) {
+          var _method = _step4.value;
+
+          if (isIdentifier(path.node.callee.property, {
+            name: _method
+          })) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+    }
+
+    return false;
+  }
+
   var presetReact = declare(function (api, opts) {
     api.assertVersion(7);
     var pragma = opts.pragma,
@@ -101656,7 +102512,7 @@
         useBuiltIns: useBuiltIns,
         useSpread: useSpread,
         pure: pure
-      }], transformReactDisplayName, development && runtime === "classic" && transformReactJSXSource, development && runtime === "classic" && transformReactJSXSelf].filter(Boolean)
+      }], transformReactDisplayName, pure !== false && transformReactPure, development && runtime === "classic" && transformReactJSXSource, development && runtime === "classic" && transformReactJSXSelf].filter(Boolean)
     };
   });
 
@@ -101739,6 +102595,11 @@
 
   function run$1(transformFn, script) {
     var scriptEl = document.createElement("script");
+
+    if (typeof script.type !== "undefined") {
+      scriptEl.setAttribute("type", script.type);
+    }
+
     scriptEl.text = transformCode(transformFn, script);
     headEl.appendChild(scriptEl);
   }
@@ -101803,6 +102664,7 @@
     scripts.forEach(function (script, i) {
       var scriptData = {
         async: script.hasAttribute("async"),
+        type: script.getAttribute("data-type"),
         error: false,
         executed: false,
         plugins: getPluginsOrPresetsFromScript(script, "data-plugins"),
@@ -101810,7 +102672,7 @@
       };
 
       if (script.src) {
-        result[i] = Object.assign({}, scriptData, {
+        result[i] = Object.assign(Object.assign({}, scriptData), {}, {
           content: null,
           loaded: false,
           url: script.src
@@ -101824,7 +102686,7 @@
           check();
         });
       } else {
-        result[i] = Object.assign({}, scriptData, {
+        result[i] = Object.assign(Object.assign({}, scriptData), {}, {
           content: script.innerHTML,
           loaded: true,
           url: script.getAttribute("data-module") || null
@@ -101860,6 +102722,8 @@
     loadScripts(transformFn, jsxScripts);
   }
 
+  var _window;
+
   var isArray$4 = Array.isArray || function (arg) {
     return Object.prototype.toString.call(arg) === "[object Array]";
   };
@@ -101884,7 +102748,7 @@
 
       if (preset) {
         if (isArray$4(preset) && typeof preset[0] === "object" && Object.prototype.hasOwnProperty.call(preset[0], "buildPreset")) {
-          preset[0] = Object.assign({}, preset[0], {
+          preset[0] = Object.assign(Object.assign({}, preset[0]), {}, {
             buildPreset: preset[0].buildPreset
           });
         }
@@ -101903,9 +102767,9 @@
 
       return plugin;
     });
-    return Object.assign({
+    return Object.assign(Object.assign({
       babelrc: false
-    }, options, {
+    }, options), {}, {
       presets: presets,
       plugins: plugins
     });
@@ -101980,13 +102844,13 @@
     typescript: presetTypescript,
     flow: presetFlow
   });
-  var version$7 = "7.9.6";
+  var version$7 = "7.10.0";
 
   function onDOMContentLoaded() {
     transformScriptTags();
   }
 
-  if (typeof window !== "undefined" && window && window.addEventListener) {
+  if (typeof window !== "undefined" && ((_window = window) == null ? void 0 : _window.addEventListener)) {
     window.addEventListener("DOMContentLoaded", onDOMContentLoaded, false);
   }
 
