@@ -249,6 +249,14 @@
 		"width": 900,
 		"height": 550
 	} , {
+		"name": "NVolley",
+		"title": "Under Development",
+		"icon": "images/icons/desktop/joystick",
+		"link": "https://cojmar.github.io/nvolley/",
+		"credits": "Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
+		"width": 640,
+		"height": 480
+	} , {
 		"name": "RomCenter",
 		"title": "Under Development",
 		"icon": "images/icons/desktop/romcenter",
@@ -480,10 +488,11 @@
 		"width": 900,
 		"height": 480
 	} , {
-		"name": "SVG Editor",
+		"name": "Nsvg",
+		"title": "Under Development",
 		"icon": "images/icons/desktop/svg-editor",
-		"link": "/emupedia-app-svg-editor/",
-		"credits": "Website: <a href=\"https://editor.method.ac/\" target=\"_blank\">editor.method.ac</a><br /><br />Author: <a href=\"https://github.com/methodofaction\" target=\"_blank\">github.com/methodofaction</a><br />Repository: <a href=\"https://github.com/methodofaction/Method-Draw\" target=\"_blank\">github.com/methodofaction/Method-Draw</a><br />License: <a href=\"https://github.com/methodofaction/Method-Draw/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/SVG-Edit\" target=\"_blank\">github.com/SVG-Edit</a><br />Repository: <a href=\"https://github.com/SVG-Edit/svgedit\" target=\"_blank\">github.com/SVG-Edit/svgedit</a><br />License: <a href=\"https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt\" target=\"_blank\">MIT</a>",
+		"link": "https://cojmar.github.io/nsvg",
+		"credits": "Website: <a href=\"https://cojmar.github.io/nsvg\" target=\"_blank\">cojmar.github.io/nsvg</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nsvg\" target=\"_blank\">github.com/cojmar/nsvg</a><br /><br />Inspired from<hr />Website: <a href=\"https://editor.method.ac/\" target=\"_blank\">editor.method.ac</a><br /><br />Author: <a href=\"https://github.com/methodofaction\" target=\"_blank\">github.com/methodofaction</a><br />Repository: <a href=\"https://github.com/methodofaction/Method-Draw\" target=\"_blank\">github.com/methodofaction/Method-Draw</a><br />License: <a href=\"https://github.com/methodofaction/Method-Draw/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/SVG-Edit\" target=\"_blank\">github.com/SVG-Edit</a><br />Repository: <a href=\"https://github.com/SVG-Edit/svgedit\" target=\"_blank\">github.com/SVG-Edit/svgedit</a><br />License: <a href=\"https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 480,
 		"shortcut": true
