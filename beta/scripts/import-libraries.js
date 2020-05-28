@@ -4077,6 +4077,7 @@ for (let i = 0; i < dependencies.length; i++) {
 							'',
 							'/beta/emuos/',
 							'//emupedia.net/beta/emuos/',
+							'//emupedia.org/beta/emuos/',
 							'//emuos.net/beta/emuos/',
 							'//emuos.org/beta/emuos/'
 						]

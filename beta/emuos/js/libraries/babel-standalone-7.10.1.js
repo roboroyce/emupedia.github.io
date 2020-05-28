@@ -55927,7 +55927,7 @@
     throw new Error("Cannot load preset " + name + " relative to " + dirname + " in a browser");
   }
 
-  var version$1 = "7.10.0";
+  var version$1 = "7.10.1";
 
   function getEnv(defaultValue) {
     if (defaultValue === void 0) {
@@ -63826,11 +63826,15 @@
   }
 
   var name = "@babel/helper-create-class-features-plugin";
-  var version$2 = "7.10.0";
+  var version$2 = "7.10.1";
   var author = "The Babel Team (https://babeljs.io/team)";
   var license = "MIT";
   var description = "Compile class public and private fields, private methods and decorators to ES6";
-  var repository = "https://github.com/babel/babel/tree/master/packages/babel-helper-create-class-features-plugin";
+  var repository = {
+  	type: "git",
+  	url: "https://github.com/babel/babel.git",
+  	directory: "packages/babel-helper-create-class-features-plugin"
+  };
   var main = "lib/index.js";
   var publishConfig = {
   	access: "public"
@@ -63840,21 +63844,21 @@
   	"babel-plugin"
   ];
   var dependencies = {
-  	"@babel/helper-function-name": "^7.9.5",
-  	"@babel/helper-member-expression-to-functions": "^7.10.0",
-  	"@babel/helper-optimise-call-expression": "^7.10.0",
-  	"@babel/helper-plugin-utils": "^7.8.3",
-  	"@babel/helper-replace-supers": "^7.10.0",
-  	"@babel/helper-split-export-declaration": "^7.8.3"
+  	"@babel/helper-function-name": "^7.10.1",
+  	"@babel/helper-member-expression-to-functions": "^7.10.1",
+  	"@babel/helper-optimise-call-expression": "^7.10.1",
+  	"@babel/helper-plugin-utils": "^7.10.1",
+  	"@babel/helper-replace-supers": "^7.10.1",
+  	"@babel/helper-split-export-declaration": "^7.10.1"
   };
   var peerDependencies = {
   	"@babel/core": "^7.0.0"
   };
   var devDependencies = {
-  	"@babel/core": "^7.10.0",
-  	"@babel/helper-plugin-test-runner": "^7.8.3"
+  	"@babel/core": "^7.10.1",
+  	"@babel/helper-plugin-test-runner": "^7.10.1"
   };
-  var gitHead = "5da2440adff6f25579fb6e9a018062291c89416f";
+  var gitHead = "88f57a7ea659d25232bf62de1efceb5d6299b8cf";
   var pkg = {
   	name: name,
   	version: version$2,
@@ -64291,7 +64295,7 @@
 
   var syntaxDynamicImport = unwrapExports(lib$4);
 
-  var version$4 = "7.8.3";
+  var version$4 = "7.10.1";
 
   var SUPPORTED_MODULES = ["commonjs", "amd", "systemjs"];
   var MODULES_NOT_FOUND = "@babel/plugin-proposal-dynamic-import depends on a modules\ntransform plugin. Supported plugins are:\n - @babel/plugin-transform-modules-commonjs ^7.4.0\n - @babel/plugin-transform-modules-amd ^7.4.0\n - @babel/plugin-transform-modules-systemjs ^7.4.0\n\nIf you are using Webpack or Rollup and thus don't want\nBabel to transpile your imports and exports, you can use\nthe @babel/plugin-syntax-dynamic-import plugin and let your\nbundler handle dynamic imports.\n";
@@ -68632,13 +68636,13 @@
   }
 
   var name$1 = "@babel/helper-create-regexp-features-plugin";
-  var version$5 = "7.8.8";
+  var version$5 = "7.10.1";
   var author$1 = "The Babel Team (https://babeljs.io/team)";
   var license$1 = "MIT";
   var description$1 = "Compile ESNext Regular Expressions to ES5";
   var repository$1 = {
   	type: "git",
-  	url: "https://github.com/babel/babel",
+  	url: "https://github.com/babel/babel.git",
   	directory: "packages/babel-helper-create-regexp-features-plugin"
   };
   var main$1 = "lib/index.js";
@@ -68650,17 +68654,18 @@
   	"babel-plugin"
   ];
   var dependencies$1 = {
-  	"@babel/helper-annotate-as-pure": "^7.8.3",
-  	"@babel/helper-regex": "^7.8.3",
+  	"@babel/helper-annotate-as-pure": "^7.10.1",
+  	"@babel/helper-regex": "^7.10.1",
   	"regexpu-core": "^4.7.0"
   };
   var peerDependencies$1 = {
   	"@babel/core": "^7.0.0"
   };
   var devDependencies$1 = {
-  	"@babel/core": "^7.8.6",
-  	"@babel/helper-plugin-test-runner": "^7.8.3"
+  	"@babel/core": "^7.10.1",
+  	"@babel/helper-plugin-test-runner": "^7.10.1"
   };
+  var gitHead$1 = "88f57a7ea659d25232bf62de1efceb5d6299b8cf";
   var pkg$1 = {
   	name: name$1,
   	version: version$5,
@@ -68673,7 +68678,8 @@
   	keywords: keywords$3,
   	dependencies: dependencies$1,
   	peerDependencies: peerDependencies$1,
-  	devDependencies: devDependencies$1
+  	devDependencies: devDependencies$1,
+  	gitHead: gitHead$1
   };
 
   function baseIndexOfWith(array, value, fromIndex, comparator) {
@@ -91053,6 +91059,8 @@
     }
   }
 
+  pluginsFiltered["proposal-class-properties"] = pluginsFiltered["proposal-private-methods"];
+
   var TopLevelOptions = {
     bugfixes: "bugfixes",
     configPath: "configPath",
@@ -102596,7 +102604,7 @@
   function run$1(transformFn, script) {
     var scriptEl = document.createElement("script");
 
-    if (typeof script.type !== "undefined") {
+    if (script.type) {
       scriptEl.setAttribute("type", script.type);
     }
 
@@ -102844,7 +102852,7 @@
     typescript: presetTypescript,
     flow: presetFlow
   });
-  var version$7 = "7.10.0";
+  var version$7 = "7.10.1";
 
   function onDOMContentLoaded() {
     transformScriptTags();

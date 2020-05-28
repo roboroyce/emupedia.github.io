@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@allmarkedup/purl": "github:allmarkedup/purl",
-    "@babel/polyfill": "^7.8.7",
-    "@babel/standalone": "^7.10.0",
+    "@babel/polyfill": "^7.10.1",
+    "@babel/standalone": "^7.10.1",
     "@webcomponents/custom-elements": "^1.4.1",
     "@webcomponents/html-imports": "^1.2.4",
     "@webcomponents/shadycss": "^1.9.6",
