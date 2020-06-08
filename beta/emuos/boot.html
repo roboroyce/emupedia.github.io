@@ -1,21 +1,73 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
 <!DOCTYPE html>
 <html lang="en">
-	<!--
-
-
-	╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
-	╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
-	╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
-
-
-	-->
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="format-detection" content="telephone=no">
 		<title>Emupedia</title>
-		<link type="text/css" rel="stylesheet" href="css/libraries/normalize-8.0.1.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/normalize-8.0.1.css" />
 		<style type="text/css">
 			::selection {
 				background-color: #a8a8a8;
@@ -25,12 +77,12 @@
 
 			@font-face {
 				font-family: 'dosega', monospace;
-				src: url(../../emupedia-resources/fonts/dosega.eot);
-				src: url(../../emupedia-resources/fonts/dosega.eot?#iefix) format('embedded-opentype'),
-				url(../../emupedia-resources/fonts/dosega.woff2) format('woff2'),
-				url(../../emupedia-resources/fonts/dosega.woff) format('woff'),
-				url(../../emupedia-resources/fonts/dosega.ttf) format('truetype'),
-				url(../../emupedia-resources/fonts/dosega.svg#dosega) format('svg');
+				src: url(assets/fonts/dosega.eot);
+				src: url(assets/fonts/dosega.eot?#iefix) format('embedded-opentype'),
+				url(assets/fonts/dosega.woff2) format('woff2'),
+				url(assets/fonts/dosega.woff) format('woff'),
+				url(assets/fonts/dosega.ttf) format('truetype'),
+				url(assets/fonts/dosega.svg#dosega) format('svg');
 				font-weight: normal;
 				font-style: normal;
 			}
@@ -205,8 +257,8 @@
 			}
 
 			#switch:checked ~ .container-wrapper::after {
-				/*-webkit-animation: flicker 0.15s infinite;*/
-				/*animation: flicker 0.15s infinite;*/
+				-webkit-animation: flicker 0.15s infinite;
+				animation: flicker 0.15s infinite;
 			}
 
 			#switch ~ .container-wrapper > .container {
@@ -556,7 +608,7 @@
 	<body>
 		<input type="checkbox" id="switch" checked="checked" />
 		<div class="container-wrapper">
-			<pre id="screen" class="container"><img style="float: left; margin-right: 5px;" alt="" src="../../emupedia-resources/boot/bios/award-logo.png" /><img style="float: right;" alt="" src="../../emupedia-resources/boot/bios/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
+			<pre id="screen" class="container"><img style="float: left; margin-right: 5px;" alt="" src="assets/images/themes/bios/award-logo.png" /><img style="float: right;" alt="" src="assets/images/themes/bios/epa-logo.png" />Award Modular BIOS v4.51PG, An Energy Star Ally
 Copyright (C) 1984-97, Award Software, Inc.
 
 (55XWUQ0E) Intel i430VX PCIset(TM)
@@ -619,7 +671,7 @@ Boot from CD :
 DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span></pre>
 			<label for="switch" class="switch-label no-select"></label>
 		</div>
-		<audio src="sounds/hdd.mp3" autoplay="autoplay"></audio>
+		<audio src="assets/sounds/hdd.mp3" autoplay="autoplay"></audio>
 		<script type="text/javascript">
 			console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗\n' +
 						'╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣\n' +

@@ -8,6 +8,7 @@ const app_directory			= `${packages.config.www_dir}/`;
 const images_directory		= `${packages.config.images_dir}/`;
 const fonts_directory		= `${packages.config.fonts_dir}/`;
 const scss_directory		= `${packages.config.scss_dir}/`;
+const less_directory		= `${packages.config.less_dir}/`;
 const css_directory			= `${packages.config.css_dir}/`;
 // noinspection JSUnusedLocalSymbols
 const pug_directory			= `${packages.config.pug_dir}/`;
@@ -641,6 +642,16 @@ function install(install_directory, dependency, version) {
 							});
 						}
 					});
+				}
+			});
+			break;
+		case 'bootstrap-less-port':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/less/', install_directory + less_directory + 'bootstrap-4.4.1', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					log.log(dependency + ' version ' + version + ' installed!');
 				}
 			});
 			break;
@@ -2298,7 +2309,7 @@ function install(install_directory, dependency, version) {
 									replace({
 										files: install_directory + css_directory + 'jquery-ui-' + version + '.min.css',
 										from: /url\("images\//gi,
-										to: 'url("../../images/themes/basic/'
+										to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
@@ -2312,7 +2323,7 @@ function install(install_directory, dependency, version) {
 													replace({
 														files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
 														from: /url\("images\//gi,
-														to: 'url("../../images/themes/basic/'
+														to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
 													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
@@ -2322,67 +2333,45 @@ function install(install_directory, dependency, version) {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
-																	// noinspection JSValidateTypes
-																	replace({
-																		files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
-																		from: /url\("images\//gi,
-																		to: 'url("../../images/themes/basic/'
-																	}, (error) => {
+																	//noinspection JSUnresolvedFunction
+																	fs.copy(nodemodules_directory + dependency + '/jquery-ui.structure.css', install_directory + css_directory + 'jquery-ui.structure-' + version + '.css', copy_options, (error) => {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
 																			//noinspection JSUnresolvedFunction
-																			fs.copy(nodemodules_directory + dependency + '/jquery-ui.structure.css', install_directory + css_directory + 'jquery-ui.structure-' + version + '.css', copy_options, (error) => {
+																			fs.copy(nodemodules_directory + dependency + '/jquery-ui.theme.min.css', install_directory + css_directory + 'jquery-ui.theme-' + version + '.min.css', copy_options, (error) => {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
 																					// noinspection JSValidateTypes
 																					replace({
-																						files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
+																						files: install_directory + css_directory + 'jquery-ui.theme-' + version + '.min.css',
 																						from: /url\("images\//gi,
-																						to: 'url("../../images/themes/basic/'
+																						to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
 																					}, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
 																							//noinspection JSUnresolvedFunction
-																							fs.copy(nodemodules_directory + dependency + '/jquery-ui.theme.min.css', install_directory + css_directory + 'jquery-ui.theme-' + version + '.min.css', copy_options, (error) => {
+																							fs.copy(nodemodules_directory + dependency + '/jquery-ui.theme.css', install_directory + css_directory + 'jquery-ui.theme-' + version + '.css', copy_options, (error) => {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
 																									// noinspection JSValidateTypes
 																									replace({
-																										files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
+																										files: install_directory + css_directory + 'jquery-ui.theme-' + version + '.css',
 																										from: /url\("images\//gi,
-																										to: 'url("../../images/themes/basic/'
+																										to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
 																									}, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
 																										} else {
 																											//noinspection JSUnresolvedFunction
-																											fs.copy(nodemodules_directory + dependency + '/jquery-ui.theme.css', install_directory + css_directory + 'jquery-ui.theme-' + version + '.css', copy_options, (error) => {
+																											fs.copy(nodemodules_directory + dependency + '/images/', install_directory + images_directory + 'libraries/jquery-ui-' + version + '/basic', copy_options, (error) => {
 																												if (error) {
 																													log.error('Error occurred:', error);
 																												} else {
-																													// noinspection JSValidateTypes
-																													replace({
-																														files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
-																														from: /url\("images\//gi,
-																														to: 'url("../../images/themes/basic/'
-																													}, (error) => {
-																														if (error) {
-																															log.error('Error occurred:', error);
-																														} else {
-																															//noinspection JSUnresolvedFunction
-																															fs.copy(nodemodules_directory + dependency + '/images/', install_directory + images_directory + 'themes/basic', copy_options, (error) => {
-																																if (error) {
-																																	log.error('Error occurred:', error);
-																																} else {
-																																	log.log(dependency + ' version ' + version + ' installed!');
-																																}
-																															});
-																														}
-																													});
+																													log.log(dependency + ' version ' + version + ' installed!');
 																												}
 																											});
 																										}
@@ -2864,13 +2853,13 @@ function install(install_directory, dependency, version) {
 									replace({
 										files: install_directory + css_directory + dependency + '-' + version + '.css',
 										from: /\.\.\/img\//gi,
-										to: '../../images/' + dependency + '/'
+										to: '../../images/libraries/' + dependency + '-' + version + '/'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/dist/img/', install_directory + images_directory + dependency, copy_options, (error) => {
+											fs.copy(nodemodules_directory + dependency + '/dist/img/', install_directory + images_directory + 'libraries/' + dependency + '-' + version, copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
@@ -2940,13 +2929,13 @@ function install(install_directory, dependency, version) {
 									replace({
 										files: install_directory + css_directory + 'jquery-customscrollbar-' + version + '.css',
 										from: 'mCSB_buttons.png',
-										to: '../../../images/ui/themes/scrollbar/jquery-customscrollbar-buttons-3.1.5.png'
+										to: '../../../images/libraries/jquery-customscrollbar-' + version + '/mCSB_buttons.png'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/mCSB_buttons.png', install_directory + images_directory + 'ui/themes/scrollbar/jquery-customscrollbar-buttons-' + version + '.png', copy_options, (error) => {
+											fs.copy(nodemodules_directory + dependency + '/mCSB_buttons.png', install_directory + images_directory + 'libraries/jquery-customscrollbar-' + version + '/mCSB_buttons.png', copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
@@ -3047,12 +3036,30 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					libraries[dependency] = dependency + '-' + version + '.min';
-					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/min/' + dependency + '-with-locales.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.min.js',
+						from: '//# sourceMappingURL=moment-with-locales.min.js.map',
+						to: '//# sourceMappingURL=' + dependency + '-' + version + '.min.js.map'
+					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
-							log.log(dependency + ' version ' + version + ' installed!');
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/min/' + dependency + '-with-locales.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/min/' + dependency + '-with-locales.min.js.map', install_directory + libraries_directory + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
 						}
 					});
 				}
@@ -3089,7 +3096,7 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'monaco-editor':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/min/vs', install_directory + libraries_directory + 'vs', copy_options_overwrite, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/min/vs', install_directory + libraries_directory +  dependency + '-' + version, copy_options_overwrite, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
@@ -4084,10 +4091,10 @@ for (let i = 0; i < dependencies.length; i++) {
 
 						libraries['emularity'] = 'emularity';
 
-						Object.keys(libraries).sort().forEach(function(key) {
-							ordered[key] = paths.map(function(path) {
+						Object.keys(libraries).sort().forEach((key) => {
+							ordered[key] = paths.map((path) => {
 								if (path === '') {
-									return path + libraries_directory.replace('js/', '') + libraries[key]
+									return path + libraries_directory.replace('assets/js/', '') + libraries[key]
 								}
 
 								return path + libraries_directory + libraries[key];
@@ -4107,10 +4114,10 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['window'] = 'window';
 						libraries['socket'] = 'socket';
 
-						Object.keys(libraries).forEach(function(key) {
+						Object.keys(libraries).forEach((key) => {
 							if (!Array.isArray(libraries[key])) {
-								libraries[key] = paths.map(function(path) {
-									return (path !== '' ? path + 'js/' : path) + libraries[key];
+								libraries[key] = paths.map((path) => {
+									return (path !== '' ? path + 'assets/js/' : path) + libraries[key];
 								});
 							}
 						});

@@ -1,14 +1,66 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
+╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
+╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
 <!DOCTYPE html>
 <html class="emuos boot theme-windows-7" lang="en-us" prefix="og: http://ogp.me/ns/website#">
-	<!--
-
-
-	╔═╗╔╦╗╦ ╦╔═╗╔═╗╔╦═╗╦╔═╗
-	╠═ ║║║║ ║╠═╝╠═  ║ ║║╠═╣
-	╚═╝╩ ╩╚═╝╩  ╚═╝═╩═╝╩╩ ╩
-
-
-	-->
 	<head>
 		<meta charset="utf-8" />
 
@@ -38,7 +90,7 @@
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:title" content="EmuOS" />
 		<meta name="twitter:url" content="https://emupedia.net/beta/emuos/" />
-		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta name="twitter:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
 		<meta name="twitter:site" content="@EmupediaNet" />
 		<meta name="twitter:creator" content="@EmupediaNet" />
 
@@ -49,22 +101,20 @@
 		<meta property="og:description" content="The purpose of Emupedia is to serve as a nonprofit meta-resource, hub and community for those interested mainly in video game preservation which aims to digitally collect, archive and preserve games and software to make them available online accessible by a user-friendly UI that simulates several retro operating systems for educational purposes." />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://emupedia.net/beta/emuos/" />
-		<meta property="og:image" content="https://emupedia.net/beta/emuos/images/logos/emupedia/emupedia-logo-256.png" />
+		<meta property="og:image" content="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo-256.png" />
 		<meta property="og:image:type" content="image/png" />
 		<meta property="og:image:width" content="256" />
 		<meta property="og:image:height" content="256" />
 
 		<title>EmuOS</title>
 
-		<link type="text/css" rel="stylesheet" href="css/reset.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic/reset.css" />
 
-		<link type="text/css" rel="stylesheet" href="css/libraries/jquery-ui.structure-1.12.1.min.css" />
-		<link type="text/css" rel="stylesheet" href="css/libraries/jquery-ui.theme-1.12.1.min.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-ui.structure-1.12.1.min.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/libraries/jquery-ui.theme-1.12.1.min.css" />
 
-		<link type="text/css" rel="stylesheet" href="css/themes/basic.css" />
-		<link type="text/css" rel="stylesheet" href="css/themes/windows-95.css" />
-		<link type="text/css" rel="stylesheet" href="css/themes/windows-98.css" />
-		<link type="text/css" rel="stylesheet" href="css/themes/windows-7.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/basic.css" />
+		<link type="text/css" rel="stylesheet" href="assets/styles/css/themes/windows-7.css" />
 
 		<style type="text/css">
 			html {
@@ -81,7 +131,7 @@
 			/* region Boot */
 
 			.emuos body {
-				background-color: #000;
+				background-color: #333;
 				color: #fff;
 			}
 
@@ -115,7 +165,7 @@
 				width: 100%;
 				height: 100%;
 
-				background-image: url(images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png);
+				background-image: url(assets/images/themes/wallpapers/windows-95/windows-95-remastered-1680x1050.png);
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
@@ -125,7 +175,7 @@
 				width: 100%;
 				height: 100%;
 
-				background-image: url(images/themes/boot/windows-95/windows-95-transparent.png);
+				background-image: url(assets/images/themes/boot/windows-95/windows-95-transparent.png);
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: contain;
@@ -169,7 +219,7 @@
 				width: 100%;
 				height: 100%;
 
-				background-image: url(images/themes/boot/windows-me/windows-me-transparent.png);
+				background-image: url(assets/images/themes/boot/windows-me/windows-me-transparent.png);
 				background-repeat: no-repeat, no-repeat;
 				background-position: center, center;
 				background-size: contain, cover;
@@ -248,7 +298,7 @@
 				will-change: background-position;
 
 				background-color: #000;
-				background-image: url(images/boot-transparent.png);
+				background-image: url(assets/images/themes/boot/windows-7/boot-transparent.png);
 				background-repeat: no-repeat;
 				background-position: 0 -21000px;
 				background-size: 200px 21000px;
@@ -370,11 +420,10 @@
 			<div class="emuos-boot-container"></div>
 		</div>
 
-		<script id="polyfills" type="text/javascript" src="js/polyfills.js"></script>
-		<script id="libraries" type="text/javascript" src="js/libraries.js"></script>
-		<script id="system" type="text/javascript" src="js/system.js"></script>
-		<script type="text/javascript" src="js/libraries/requirejs-2.3.6.js" data-main="js/mainv2" defer="defer"></script>
-
+		<script type="text/javascript" src="assets/js/polyfills.js"></script>
+		<script type="text/javascript" src="assets/js/libraries.js"></script>
+		<script type="text/javascript" src="assets/js/system.js"></script>
+		<script type="text/javascript" src="assets/js/libraries/requirejs-2.3.6.js" data-main="assets/js/mainv2"></script>
 		<noscript>Your browser does not support JavaScript!</noscript>
 	</body>
 </html>
