@@ -780,7 +780,9 @@
 
 				if (typeof simplestorage !== 'undefined') {
 					if (typeof simplestorage.set === 'function') {
-						simplestorage.set('theme', ui.cmd);
+						if (ui.cmd !== 'refresh') {
+							simplestorage.set('theme', ui.cmd);
+						}
 					}
 				}
 
