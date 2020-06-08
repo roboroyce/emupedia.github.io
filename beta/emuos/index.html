@@ -1050,8 +1050,6 @@ Press <span class="white">DEL</span> to enter SETUP
 		<audio src="assets/sounds/post.mp3"></audio>
 
 		<script type="text/javascript">
-			var selected_theme = '';
-
 			function setTheme(theme) {
 				var simpleStorage = null;
 
@@ -1073,19 +1071,18 @@ Press <span class="white">DEL</span> to enter SETUP
 						} catch (e) {}
 					}
 
-					boot();
+					boot(theme, true);
 				}
 			}
 
-			function boot() {
+			function boot(theme, first) {
 				var htmlElement = document.getElementsByTagName('html')[0];
 
-				if (selected_theme === '') {
+				if (first) {
 					document.getElementsByTagName('audio')[0].play();
-					selected_theme = 'windows-me';
 
 					setTimeout(function() {
-						htmlElement.className = 'emuos boot theme-' + selected_theme;
+						htmlElement.className = 'emuos boot theme-' + theme;
 
 						var el = document.createElement('script');
 						el.type = 'text/javascript';
@@ -1094,7 +1091,7 @@ Press <span class="white">DEL</span> to enter SETUP
 						document.body.appendChild(el);
 					}, 4000);
 				} else {
-					htmlElement.className = 'emuos boot theme-' + selected_theme;
+					htmlElement.className = 'emuos boot theme-' + theme;
 
 					var el = document.createElement('script');
 					el.type = 'text/javascript';
@@ -1117,9 +1114,8 @@ Press <span class="white">DEL</span> to enter SETUP
 								if (typeof simpleStorage === 'object') {
 									if (typeof simpleStorage.theme !== 'undefined') {
 										if (simpleStorage.theme !== '') {
-											selected_theme = simpleStorage.theme;
 											htmlElement.className = 'emuos post';
-											boot();
+											boot(simpleStorage.theme, false);
 										} else {
 											htmlElement.className = 'emuos startup';
 										}
@@ -1133,7 +1129,6 @@ Press <span class="white">DEL</span> to enter SETUP
 								htmlElement.className = 'emuos startup';
 							}
 						} catch (e) {
-							console.log(e);
 							htmlElement.className = 'emuos startup';
 						}
 					}
