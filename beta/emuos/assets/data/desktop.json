@@ -193,11 +193,12 @@
 	} , {
 		"name": "Pac-Man",
 		"icon": "assets/images/icons/desktop/pac-man",
-		"link": "/emupedia-game-pac-man/",
+		"link": "https://pacman-e281c.firebaseapp.com/",
 		"credits": "Website: <a href=\"https://pacman-e281c.firebaseapp.com/\" target=\"_blank\">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href=\"https://github.com/luciopanepinto\" target=\"_blank\">github.com/luciopanepinto</a><br />Repository: <a href=\"https://github.com/luciopanepinto/pacman\" target=\"_blank\">github.com/luciopanepinto/pacman</a><br />License: <a href=\"https://github.com/luciopanepinto/pacman/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a>",
 		"disclaimer_abandoned": true,
 		"width": 1025,
-		"height": 715
+		"height": 715,
+		"shortcut": true
 	} , {
 		"name": "Clippy",
 		"icon": "assets/images/icons/desktop/clippy"
