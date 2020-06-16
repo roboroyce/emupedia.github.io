@@ -988,7 +988,7 @@
 				default:
 					el = global.document.createElement('script');
 					el.type = typeof type === 'string' ? type : 'text/javascript';
-					el.src = 'js/' + url + '.js';
+					el.src = 'assets/js/' + url + '.js';
 					el.async = false;
 					break;
 			}

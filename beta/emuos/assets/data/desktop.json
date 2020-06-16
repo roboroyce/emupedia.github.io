@@ -192,6 +192,7 @@
 		"height": 480
 	} , {
 		"name": "Pac-Man",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/pac-man",
 		"link": "https://pacman-e281c.firebaseapp.com/",
 		"credits": "Website: <a href=\"https://pacman-e281c.firebaseapp.com/\" target=\"_blank\">pacman-e281c.firebaseapp.com</a><br /><br />Author: <a href=\"https://github.com/luciopanepinto\" target=\"_blank\">github.com/luciopanepinto</a><br />Repository: <a href=\"https://github.com/luciopanepinto/pacman\" target=\"_blank\">github.com/luciopanepinto/pacman</a><br />License: <a href=\"https://github.com/luciopanepinto/pacman/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a>",

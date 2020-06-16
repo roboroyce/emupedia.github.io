@@ -76,15 +76,6 @@
 			'jquery': {
 				exports: 'jQuery'
 			},
-			'jquery-1.x': {
-				exports: 'jQuery'
-			},
-			'jquery-2.x': {
-				exports: 'jQuery'
-			},
-			'jquery-3.x': {
-				exports: 'jQuery'
-			},
 			'jquery-mousewheel': {
 				deps: ['jquery']
 			},
@@ -128,10 +119,6 @@
 		},
 		map: {
 			'*': {
-				jQuery: 'jquery-2.x',
-				jquery: 'jquery-2.x',
-				jqueryui: 'jquery-ui-1.11.x',
-				'jquery-ui': 'jquery-ui-1.11.x',
 				lang: 'lang-en',
 				json: 'requirejs-json',
 				text: 'requirejs-text'

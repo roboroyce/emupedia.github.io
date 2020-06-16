@@ -176,15 +176,15 @@
 			uiResizableHandle: 'ui-resizable-handle',
 			uiDraggable: 'ui-draggable',
 			uiButton: 'ui-button',
+			uiButtonIcon: 'ui-button-icon',
+			uiButtonIconSpace: 'ui-button-icon-space',
 			uiMenu: 'ui-menu',
 			uiIcon: 'ui-icon',
 			uiDialogDragging: 'ui-dialog-dragging',
 			uiDialogTitlebar: 'ui-dialog-titlebar',
 			uiDialogButtonpane: 'ui-dialog-buttonpane',
 			uiDialogButtons: 'ui-dialog-buttons',
-			uiWidgetOverlay: 'ui-widget-overlay',
-			uiButtonIconPrimary: 'ui-button-icon-primary',
-			uiButtonText: 'ui-button-text'
+			uiWidgetOverlay: 'ui-widget-overlay'
 		},
 
 		// size related and resizable related options copied from jQuery UI 1.11,
@@ -1617,6 +1617,7 @@
 		// set label and visibility to close button
 		_setButtonCloseState: function() {
 			this.uiDialogTitlebarClose.button('option', 'label', this._i18n('close'));
+			this.uiDialogTitlebarClose.attr('title', this._i18n('close'));
 			this._addButtonClasses(this.uiDialogTitlebarClose);
 			this.uiDialogTitlebarClose.toggleClass(this.classes.hidden, !this.options.closable);
 			this._enumerateTitlebarButtons();
@@ -1645,7 +1646,7 @@
 				return;
 			}
 
-			this['$' + b] = $('<button></button>').button({text: false}).attr('data-button-name', b).addClass(this.classes['button' + B] + ' ' + this.classes.button).on({
+			this['$' + b] = $('<button></button>').button({showLabel: false}).attr('data-button-name', b).addClass(this.classes['button' + B] + ' ' + this.classes.button).on({
 				click: function() {
 					// trigger action
 					if (b === 'help') {
@@ -2549,7 +2550,7 @@
 				options.icon = options.button;
 			}
 
-			this['$' + options.button].button('option', 'icons.primary', this.options.icons[options.icon]);
+			this['$' + options.button].button('option', 'icon', this.options.icons[options.icon]);
 
 			this._addButtonClasses(this['$' + options.button]);
 		},
@@ -2594,7 +2595,9 @@
 
 		// set text to button, use label or button name as dictionary key
 		_setButtonText: function(options) {
-			this['$' + options.button].button('option', 'label', this._i18n(options.label || options.button));
+			this['$' + options.button].button('option', 'showLabel', false);
+			// this['$' + options.button].button('option', 'label', this._i18n(options.label || options.button));
+			this['$' + options.button].attr('title', this._i18n(options.label || options.button));
 			this._addButtonClasses(this['$' + options.button]);
 		},
 
@@ -2606,7 +2609,7 @@
 		// of determining that this is part of window is required;
 		// this class is the way do to it
 		_addButtonClasses: function($button) {
-			$button.find('.' + this.classes.uiButtonIconPrimary + ', .' + this.classes.uiButtonText).addClass(this.classes.titlebarButtonIcon);
+			$button.find('.' + this.classes.uiButtonIcon + ', .' + this.classes.uiButtonIconSpace).addClass(this.classes.titlebarButtonIcon);
 		},
 
 		// set state (enabled/disabled) of user interaction

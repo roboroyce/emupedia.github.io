@@ -100,7 +100,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.theme-windows-3 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-icon-primary {
+.theme-windows-3 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-button-icon {
 	top: 1px;
 	left: 1px;
 	width: 15px;
@@ -156,7 +156,7 @@
 }
 
 /*noinspection CssOptimizeSimilarProperties*/
-.theme-windows-3 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-icon-primary {
+.theme-windows-3 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-button-icon {
 	top: 1px;
 	left: 1px;
 	width: 15px;

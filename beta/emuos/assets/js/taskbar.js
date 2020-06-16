@@ -262,8 +262,7 @@
 			uiResizableResizing: 'ui-resizable-resizing',
 			uiResizableHandle: 'ui-resizable-handle',
 			uiButton: 'ui-button',
-			uiButtonText: 'ui-button-text',
-			uiButtonIconPrimary: 'ui-button-icon-primary',
+			uiButtonIcon: 'ui-button-icon',
 			uiMenuItem: 'ui-menu-item',
 			uiDatepicker: 'ui-datepicker',
 			uiDatepickerDaysCellOver: 'ui-datepicker-days-cell-over',
@@ -3549,11 +3548,14 @@
 		_buildTaskbarMinimizeAll: function() {
 			var self = this;
 
-			this.$minimizeAll = this._factory('minimizeAll').appendTo(this.$systemButtonsContainer).text(this._i18n('minimizeAll')).attr('data-button-name', 'minimizeAll').button({
-				text: false
+			this.$minimizeAll = this._factory('minimizeAll').appendTo(this.$systemButtonsContainer).attr('data-button-name', 'minimizeAll').button({
+				showLabel: false
 			}).on('click.' + this._cache.uep, function() {
 				self._minimizeAll();
 			});
+
+			// this.$minimizeAll.button('option', 'label', this._i18n('minimizeAll'));
+			// this.$minimizeAll.button('option', 'showLabel', false);
 
 			this._setMinimizeAllHoverOpaqueWindows();
 
@@ -3621,7 +3623,7 @@
 		_buildTaskbarToggleFullscreen: function() {
 			var self = this;
 
-			this.$toggleFullscreen = this._factory('toggleFullscreen').appendTo(this.$systemButtonsContainer).attr('data-button-name', 'toggleFullscreen').button({text: false}).on('click.' + this._cache.uep, function(e) {
+			this.$toggleFullscreen = this._factory('toggleFullscreen').appendTo(this.$systemButtonsContainer).attr('data-button-name', 'toggleFullscreen').button({showLabel: false}).on('click.' + this._cache.uep, function(e) {
 				var ui = {};
 
 				var enabled = self._fullscreenEnabled();
@@ -3654,7 +3656,8 @@
 		// sets label for toggle fullscreen, based on whether
 		// browser is in fullscreen mode or not
 		_setFullscreenToggleState: function() {
-			this.$toggleFullscreen.button('option', 'label', this._i18n(this._fullscreenEnabled() ? 'toggleFullscreenLeave' : 'toggleFullscreenEnter'));
+			//this.$toggleFullscreen.button('option', 'label', this._i18n(this._fullscreenEnabled() ? 'toggleFullscreenLeave' : 'toggleFullscreenEnter'));
+			this.$toggleFullscreen.button('option', 'showLabel', false);
 			this._refreshButtonIcon.call(this.$toggleFullscreen, this);
 		},
 
@@ -3663,7 +3666,7 @@
 			this.$networkMonitor = this._factory('networkMonitor').appendTo(this.$systemButtonsContainer);
 
 			this.$networkMonitor.attr('data-button-name', 'networkMonitor').button({
-				text: false
+				showLabel: false
 			});
 
 			this._disableButton.call(this.$networkMonitor, this);
@@ -3685,7 +3688,8 @@
 				return;
 			}
 
-			this.$networkMonitor.button('option', 'label', this._i18n(this._getNetworkMonitorKey()));
+			// this.$networkMonitor.button('option', 'label', this._i18n(this._getNetworkMonitorKey()));
+			// this.$networkMonitor.button('option', 'showLabel', false);
 
 			this._refreshButtonIcon.call(this.$networkMonitor, this);
 		},
@@ -3955,7 +3959,9 @@
 
 				$this.tooltip({
 					position: position,
-					tooltipClass: self.classes.buttonTooltip,
+					classes: {
+						'ui-tooltip': self.classes.buttonTooltip
+					},
 					show: self.options.durations.buttonsTooltipsShow,
 					hide: self.options.durations.buttonsTooltipsHide,
 					open: function(event, ui) {
@@ -5338,10 +5344,8 @@
 
 				$elem.append(
 					$('<div></div>').addClass(this.classes.menuWindowClose).text(this._i18n('close')).button({
-						text: false,
-						icons: {
-							 primary: this.options.icons.menuWindowClose
-						}
+						showLabel: false,
+						icon: this.options.icons.menuWindowClose
 					}).on('click.' + this._cache.uep, function(event) {
 						event.preventDefault();
 
@@ -5414,9 +5418,9 @@
 		_refreshGroupIcon: function(self) {
 			var $this = $(this), group = $this.attr('data-group-name');
 
-			// because of "icons.primary", single setter cannot be used
-			$this.button('option', 'icons.primary', self.options.icons['group:' + group] || null);
-			$this.button('option', 'text', !self.options.windowButtonsIconsOnly);
+			// because of "icon", single setter cannot be used
+			$this.button('option', 'icon', self.options.icons['group:' + group] || null);
+			$this.button('option', 'label', !self.options.windowButtonsIconsOnly);
 		},
 
 		_refreshButtonIcons: function() {
@@ -5451,11 +5455,11 @@
 			} else {
 				// try to get icon from button object passed in "buttons" option, fail silently
 				try {
-					icon = self.options.buttons[button].icons.primary;
+					icon = self.options.buttons[button].icon;
 				} catch (e) {}
 			}
 
-			$this.button('option', 'icons.primary', icon || null);
+			$this.button('option', 'icon', icon || null);
 		},
 
 		_refreshwindowButtonsIcons: function() {
@@ -5481,20 +5485,18 @@
 					return;
 				}
 
-				$this.button('option', 'text', !self.options.windowButtonsIconsOnly);
-
-				// because of "icons.primary", single setter cannot be used
+				// because of "icon", single setter cannot be used
 				if (icon.indexOf('/') !== -1 || icon.indexOf('.') !== -1) {
-					$this.button('option', 'icons.primary', self.classes.uiIconBlank);
+					$this.button('option', 'icon', self.classes.uiIconBlank);
 					// noinspection JSUnresolvedFunction
-					$this.children('.' + self.classes.uiButtonIconPrimary).first().css({
+					$this.children('.' + self.classes.uiButtonIcon).first().css({
 						'background-image': 'url(' + icon + ')',
 						'background-repeat': 'no-repeat',
 						'background-position': 'center',
 						'background-size': 'cover'
 					});
 				} else {
-					$this.button('option', 'icons.primary', self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
+					$this.button('option', 'icon', self.options.windowButtonsIconsOnly ? icon || self.classes.uiIconBlank : icon);
 				}
 			} else if ($this.is('.' + self.classes.uiMenuItem)) {
 				var $window = $('#' + $this.attr('data-window-id'));
@@ -5541,13 +5543,13 @@
 					// because of html structure not anticipated by jQuery UI,
 					// we have to force some buttons to have default classes,
 					// because ther were inheriting active class from window on top
-					windowButtons = '.' + this.classes.window + '[data-taskbar-uuid="' + this.uuid + '"]' + ' .' + this.classes.uiDialogTitlebar + '.' + this.classes.uiStateActive + ':not(.' + this.classes.uiStateDefault + ')' + ' .' + this.classes.uiButton + ' .' + this.classes.uiButtonIconPrimary + bg,
+					windowButtons = '.' + this.classes.window + '[data-taskbar-uuid="' + this.uuid + '"]' + ' .' + this.classes.uiDialogTitlebar + '.' + this.classes.uiStateActive + ':not(.' + this.classes.uiStateDefault + ')' + ' .' + this.classes.uiButton + ' .' + this.classes.uiButtonIcon + bg,
 					menuWindowClose = '';
 
 				// jQuery UI since version 1.11 would also need
 				// default styles for button in menus
 				if ($.ui.menu && parseFloat($.ui.menu.prototype.version) >= 1.11) {
-					menuWindowClose = '.' + this.classes.taskbar + '[data-taskbar-uuid="' + this.uuid + '"]' + ' .' + this.classes.windowGroupElement + ' .' + this.classes.uiButtonIconPrimary + ':not(:hover)' + bg;
+					menuWindowClose = '.' + this.classes.taskbar + '[data-taskbar-uuid="' + this.uuid + '"]' + ' .' + this.classes.windowGroupElement + ' .' + this.classes.uiButtonIcon + ':not(:hover)' + bg;
 				}
 
 				var iframes = '';

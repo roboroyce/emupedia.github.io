@@ -71,7 +71,7 @@
 				this.$elem.prependTo('body');
 			}
 
-			if (this.options.parent !== '' && $(this.options.parent).size()) {
+			if (this.options.parent !== '' && $(this.options.parent).length) {
 				this.$elem.prependTo($(this.options.parent));
 			}
 

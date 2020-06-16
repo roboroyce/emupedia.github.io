@@ -82,23 +82,49 @@
 	box-shadow: 0 0 0 1px #fff;
 }
 
-.emuos-desktop-icon.ui-draggable-dragging {
-	/*background-position: 0 0;*/
-	/*background-repeat: repeat;*/
-	/*border: 1px solid #fff;*/
-	/*padding: 5px 0 5px;*/
+.emuos-desktop-icon.ui-sortable-helper span,
+.emuos-desktop-icon.ui-draggable-dragging span,
+.emuos-desktop-icon.ui-selecting span,
+.emuos-desktop-icon.ui-selected span {
+	position: relative;
+	background-color: #000080;
+	color: #fff;
 }
 
-/*.emuos-desktop-icon .ui-sortable-handle {
-	display: none;
-	width: 100%;
-	height: 100%;
-}
-
-.emuos-desktop-icon.ui-selecting .ui-sortable-handle,
-.emuos-desktop-icon.ui-selected .ui-sortable-handle {
-	display: block;
+.emuos-desktop-icon.ui-sortable-helper span:after,
+.emuos-desktop-icon.ui-draggable-dragging span:after,
+.emuos-desktop-icon.ui-selecting span:after,
+.emuos-desktop-icon.ui-selected span:after {
 	position: absolute;
+	display: block;
+	content: '';
 	left: 0;
 	top: 0;
-}*/
+	width: 100%;
+	height: 100%;
+	outline: 1px dotted #ffff7f;
+	outline-offset: -1px;
+}
+
+@supports (mix-blend-mode: difference) {
+	.emuos-desktop-icon.ui-sortable-helper span:after,
+	.emuos-desktop-icon.ui-draggable-dragging span:after,
+	.emuos-desktop-icon.ui-selecting span:after,
+	.emuos-desktop-icon.ui-selected span:after {
+		outline-color: #fff;
+		mix-blend-mode: difference;
+	}
+}
+
+.emuos-desktop-icon.ui-sortable-helper i,
+.emuos-desktop-icon.ui-draggable-dragging i,
+.emuos-desktop-icon.ui-selecting i,
+.emuos-desktop-icon.ui-selected i {
+	-webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+	filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+.emuos-desktop-icon.ui-sortable-helper,
+.emuos-desktop-icon.ui-draggable-dragging {
+	border: none;
+}

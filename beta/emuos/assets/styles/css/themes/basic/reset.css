@@ -48,8 +48,7 @@ canvas:fullscreen {
 
 .emuos-desktop-icon img,
 .emuos-desktop-icon span,
-.ui-dialog-title,
-.ui-button-text {
+.ui-dialog-title {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -58,10 +57,9 @@ canvas:fullscreen {
 	user-select: none;
 }
 
-.ui-button-icon-only .ui-button-text,
-.ui-button-icons-only .ui-button-text {
-	white-space: nowrap;
-	overflow: hidden;
+.ui-button-icon-only {
+	text-indent: 0;
+	color: transparent !important;
 }
 
 .emuos-taskbar-windows-containment {
@@ -70,6 +68,17 @@ canvas:fullscreen {
 
 .ui-selectable-helper {
 	border-color: #ffff7f;
+}
+
+/*noinspection CssInvalidPropertyValue,CssOverwrittenProperties*/
+.ui-icon {
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: optimizeSpeed;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: crisp-edges;
+	image-rendering: pixelated;
 }
 
 @supports (mix-blend-mode: difference) {

@@ -2281,6 +2281,7 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'jquery-ui':
 		case 'jquery-ui-dist':
 		case 'jquery-ui-1.11.x':
 		case 'jquery-ui-1.12.x':
@@ -2309,7 +2310,7 @@ function install(install_directory, dependency, version) {
 									replace({
 										files: install_directory + css_directory + 'jquery-ui-' + version + '.min.css',
 										from: /url\("images\//gi,
-										to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
+										to: 'url("../../../images/libraries/jquery-ui-' + version + '/base/'
 									}, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
@@ -2323,7 +2324,7 @@ function install(install_directory, dependency, version) {
 													replace({
 														files: install_directory + css_directory + 'jquery-ui-' + version + '.css',
 														from: /url\("images\//gi,
-														to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
+														to: 'url("../../../images/libraries/jquery-ui-' + version + '/base/'
 													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
@@ -2347,7 +2348,7 @@ function install(install_directory, dependency, version) {
 																					replace({
 																						files: install_directory + css_directory + 'jquery-ui.theme-' + version + '.min.css',
 																						from: /url\("images\//gi,
-																						to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
+																						to: 'url("../../../images/libraries/jquery-ui-' + version + '/base/'
 																					}, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
@@ -2361,13 +2362,13 @@ function install(install_directory, dependency, version) {
 																									replace({
 																										files: install_directory + css_directory + 'jquery-ui.theme-' + version + '.css',
 																										from: /url\("images\//gi,
-																										to: 'url("../../../images/libraries/jquery-ui-' + version + '/basic/'
+																										to: 'url("../../../images/libraries/jquery-ui-' + version + '/base/'
 																									}, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
 																										} else {
 																											//noinspection JSUnresolvedFunction
-																											fs.copy(nodemodules_directory + dependency + '/images/', install_directory + images_directory + 'libraries/jquery-ui-' + version + '/basic', copy_options, (error) => {
+																											fs.copy(nodemodules_directory + dependency + '/images/', install_directory + images_directory + 'libraries/jquery-ui-' + version + '/base', copy_options, (error) => {
 																												if (error) {
 																													log.error('Error occurred:', error);
 																												} else {

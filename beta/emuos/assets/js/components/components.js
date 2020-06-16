@@ -15,7 +15,7 @@
 
 	define('simple-counter', SimpleCounter);
 
-	$sys.api.fetch('css/components/themes/win9x/panel.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/panel.css', (e, style) => {
 		const Panel = {
 			render: () => html`
 				<slot name="panel-content">Panel</slot>
@@ -25,7 +25,7 @@
 		define('emuos-panel', Panel);
 	});
 
-	$sys.api.fetch('css/components/themes/win9x/button.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/button.css', (e, style) => {
 		const Button = {
 			render: () => html`
 				<button type="button">
@@ -41,7 +41,7 @@
 		define('emuos-button', Button);
 	});
 
-	$sys.api.fetch('css/components/themes/win9x/titlebar.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/titlebar.css', (e, style) => {
 		const TitleBar = {
 			render: () => html`
 				<slot name="titlebar-content">Title</slot>
@@ -51,7 +51,7 @@
 		define('emuos-titlebar', TitleBar);
 	});
 
-	$sys.api.fetch('css/components/themes/win9x/window.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/window.css', (e, style) => {
 		const Window = {
 			render: () => html`
 				<emuos-panel>
@@ -72,7 +72,7 @@
 		define('emuos-window', Window);
 	});
 
-	$sys.api.fetch('css/components/themes/win9x/taskbar.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/taskbar.css', (e, style) => {
 		const Taskbar = {
 			render: () => html`
 				<emuos-button id="start">
@@ -90,7 +90,7 @@
 		define('emuos-taskbar', Taskbar);
 	});
 
-	$sys.api.fetch('css/components/themes/win9x/desktop.css', (e, style) => {
+	$sys.api.fetch('assets/styles/css/components/themes/win9x/desktop.css', (e, style) => {
 		const Desktop = {
 			render: () => html`
 				<emuos-window></emuos-window>
