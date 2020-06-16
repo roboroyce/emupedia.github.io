@@ -15,17 +15,17 @@ We revive old games and software by the use of [emulation software](https://en.w
 ---
 Similar organizations that do [digital preservation](https://en.wikipedia.org/wiki/Digital_preservation) and archiving:
 
-* 🏛 [Internet Archive](https://archive.org)
-* 🏛 [Archive Team](https://www.archiveteam.org)
-* 🏛 [Video Game History Foundation](https://gamehistory.org)
-* 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
+* 🏛 [Internet Archive](https://archive.org)
+* 🏛 [Archive Team](https://www.archiveteam.org)
+* 🏛 [Video Game History Foundation](https://gamehistory.org)
+* 🏛 [International Center for the History of Electronic Games](https://www.museumofplay.org/about/icheg)
 * more on [Wikipedia](https://en.wikipedia.org/wiki/List_of_digital_preservation_initiatives)
 
-## 💬 <sub>Join us on Discord</sub>
+## 💬 <sub>Join us on Discord</sub>
 
 <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/discord-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
-## 👀 <sub>View a Live Demo</sub>
+## 👀 <sub>View a Live Demo</sub>
 [![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/assets/images/icons/under-development.svg)](#-view-a-live-demo)
 
 * <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/emupedia-48.png" /></sub> [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
@@ -42,7 +42,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 </details>
 
-## 🌍 <sub>Browser support</sub>
+## 🌍 <sub>Browser support</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -56,7 +56,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## 🤖 <sub>Emulators used</sub>
+## 🤖 <sub>Emulators used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -71,7 +71,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## ⚙ <sub>Apps used</sub>
+## ⚙ <sub>Apps used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -92,7 +92,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## 🕹️ <sub>Games used</sub>
+## 🕹️ <sub>Games used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -131,7 +131,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## 🔫 <sub>Demos used</sub>
+## 🔫 <sub>Demos used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -147,7 +147,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## 📚 <sub>Libraries used</sub>
+## 📚 <sub>Libraries used</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -202,7 +202,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## ⭐ <sub>Similar projects <sub><sup>(from which this project is heavily inspired)</sup></sub></sub>
+## ⭐ <sub>Similar projects <sub><sup>(from which this project is heavily inspired)</sup></sub></sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -223,7 +223,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ---
 </details>
 
-## 📑 <sub>Legal issues</sub>
+## 📑 <sub>Legal issues</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -241,7 +241,7 @@ More information here: [https://www.copyright.gov/1201/docs/librarian_statement_
 ---
 </details>
 
-## 📄 <sub>DMCA Takedown notices & Removal Requests</sub>
+## 📄 <sub>DMCA Takedown notices & Removal Requests</sub>
 <details>
 <summary>Click to reveal</summary>
 
@@ -266,7 +266,7 @@ You will receive a confirmation once your request has been processed.
 ---
 </details>
 
-## 📝 <sub>License</sub>
+## 📝 <sub>License</sub>
 
 Copyright © 2016 - 2020 Emupedia or its affiliates. All rights reserved.
 
