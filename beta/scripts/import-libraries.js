@@ -1983,8 +1983,8 @@ function install(install_directory, dependency, version) {
 					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + 'css-vars-' + version + '.js',
-						from: ["'use strict';", /\b(let|const)\s+/gi],
-						to: ['', 'var ']
+						from: ["'use strict';", "return value.replace(/ /g,'␣');", /function decodeValue(\w|\(|\)|{|;|=|\.|\/|␣|,|'|\[|]|\s)*}/, /\b(let|const)\s+/gi],
+						to: ['', '', "function decodeValue(value){return value;}", 'var ']
 					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
