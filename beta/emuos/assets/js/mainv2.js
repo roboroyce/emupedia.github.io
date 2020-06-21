@@ -51,25 +51,12 @@
 			ga: {
 				exports: '__ga__'
 			},
-			'jquery-1.x': {
-				exports: 'jQuery'
-			},
-			'jquery-2.x': {
-				exports: 'jQuery'
-			},
-			'jquery-3.x': {
-				exports: 'jQuery'
-			},
 			'jquery-ui': {
 				deps: ['jquery']
 			}
 		},
 		map: {
 			'*': {
-				'jQuery': 'jquery-3.x',
-				'jquery': 'jquery-3.x',
-				'jqueryui': 'jquery-ui-1.12.x',
-				'jquery-ui': 'jquery-ui-1.12.x',
 				'lang': 'lang-en',
 				'json': 'requirejs-json',
 				'text': 'requirejs-text'

@@ -105,7 +105,7 @@
 				deps: ['moment']
 			},
 			octokat: {
-				deps: ['polyfill-es6-promise', 'polyfill-es6-fetch']
+				deps: ['promise-auto', 'fetch']
 			},
 			taskbar: {
 				deps: ['jquery-ui']

@@ -706,7 +706,7 @@
   function _createSuper(Derived) {
     var hasNativeReflectConstruct = _isNativeReflectConstruct();
 
-    return function () {
+    return function _createSuperInternal() {
       var Super = _getPrototypeOf(Derived),
           result;
 
@@ -865,6 +865,15 @@
     if (Array.isArray(arr)) return arr;
   }
 
+  function _maybeArrayLike(next, arr, i) {
+    if (arr && !Array.isArray(arr) && typeof arr.length === "number") {
+      var len = arr.length;
+      return _arrayLikeToArray(arr, i !== void 0 && i < len ? i : len);
+    }
+
+    return next(arr, i);
+  }
+
   function _iterableToArray(iter) {
     if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
   }
@@ -934,9 +943,12 @@
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  function _createForOfIteratorHelper(o) {
+  function _createForOfIteratorHelper(o, allowArrayLike) {
+    var it;
+
     if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-      if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) {
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
         var i = 0;
 
         var F = function () {};
@@ -962,8 +974,7 @@
       throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
 
-    var it,
-        normalCompletion = true,
+    var normalCompletion = true,
         didErr = false,
         err;
     return {
@@ -989,24 +1000,29 @@
     };
   }
 
-  function _createForOfIteratorHelperLoose(o) {
-    var i = 0;
+  function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+    var it;
 
     if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-      if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) return function () {
-        if (i >= o.length) return {
-          done: true
+      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+        if (it) o = it;
+        var i = 0;
+        return function () {
+          if (i >= o.length) return {
+            done: true
+          };
+          return {
+            done: false,
+            value: o[i++]
+          };
         };
-        return {
-          done: false,
-          value: o[i++]
-        };
-      };
+      }
+
       throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
 
-    i = o[Symbol.iterator]();
-    return i.next.bind(i);
+    it = o[Symbol.iterator]();
+    return it.next.bind(it);
   }
 
   function _skipFirstGeneratorNext(fn) {
@@ -1723,6 +1739,7 @@
     toConsumableArray: _toConsumableArray,
     arrayWithoutHoles: _arrayWithoutHoles,
     arrayWithHoles: _arrayWithHoles,
+    maybeArrayLike: _maybeArrayLike,
     iterableToArray: _iterableToArray,
     iterableToArrayLimit: _iterableToArrayLimit,
     iterableToArrayLimitLoose: _iterableToArrayLimitLoose,
@@ -7944,10 +7961,14 @@
         validate: function () {
           var expression = assertNodeType("Expression");
           var inOp = assertNodeType("Expression", "PrivateName");
-          return function (node, key, val) {
+
+          var validator = function validator(node, key, val) {
             var validator = node.operator === "in" ? inOp : expression;
             validator(node, key, val);
           };
+
+          validator.oneOfNodeTypes = ["Expression", "PrivateName"];
+          return validator;
         }()
       },
       right: {
@@ -8009,7 +8030,7 @@
     visitor: ["callee", "arguments", "typeParameters", "typeArguments"],
     builder: ["callee", "arguments"],
     aliases: ["Expression"],
-    fields: Object.assign(Object.assign({
+    fields: Object.assign({
       callee: {
         validate: assertNodeType("Expression", "V8IntrinsicIdentifier")
       },
@@ -8021,7 +8042,7 @@
         validate: assertOneOf(true, false),
         optional: true
       }
-    } : {}), {}, {
+    } : {}, {
       typeArguments: {
         validate: assertNodeType("TypeParameterInstantiation"),
         optional: true
@@ -8103,6 +8124,16 @@
     fields: {
       program: {
         validate: assertNodeType("Program")
+      },
+      comments: {
+        validate: assertEach(assertNodeType("Comment")),
+        optional: true
+      },
+      tokens: {
+        validate: assertEach(Object.assign(function () {}, {
+          type: "any"
+        })),
+        optional: true
       }
     }
   });
@@ -8163,7 +8194,7 @@
       optional: true
     }
   };
-  var functionDeclarationCommon = Object.assign(Object.assign({}, functionCommon), {}, {
+  var functionDeclarationCommon = Object.assign({}, functionCommon, {
     declare: {
       validate: assertValueType("boolean"),
       optional: true
@@ -8176,7 +8207,7 @@
   defineType("FunctionDeclaration", {
     builder: ["id", "params", "body", "generator", "async"],
     visitor: ["id", "params", "body", "returnType", "typeParameters"],
-    fields: Object.assign(Object.assign(Object.assign({}, functionDeclarationCommon), functionTypeAnnotationCommon), {}, {
+    fields: Object.assign({}, functionDeclarationCommon, functionTypeAnnotationCommon, {
       body: {
         validate: assertNodeType("BlockStatement")
       }
@@ -8195,7 +8226,7 @@
   defineType("FunctionExpression", {
     inherits: "FunctionDeclaration",
     aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
+    fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
       id: {
         validate: assertNodeType("Identifier"),
         optional: true
@@ -8218,15 +8249,17 @@
     builder: ["name"],
     visitor: ["typeAnnotation", "decorators"],
     aliases: ["Expression", "PatternLike", "LVal", "TSEntityName"],
-    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
+    fields: Object.assign({}, patternLikeCommon, {
       name: {
-        validate: chain(assertValueType("string"), function (node, key, val) {
+        validate: chain(assertValueType("string"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (!isValidIdentifier(val, false)) {
             throw new TypeError("\"" + val + "\" is not a valid identifier name");
           }
-        })
+        }, {
+          type: "string"
+        }))
       },
       optional: {
         validate: assertValueType("boolean"),
@@ -8333,14 +8366,16 @@
         validate: assertValueType("string")
       },
       flags: {
-        validate: chain(assertValueType("string"), function (node, key, val) {
+        validate: chain(assertValueType("string"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
           var invalid = /[^gimsuy]/.exec(val);
 
           if (invalid) {
             throw new TypeError("\"" + invalid[0] + "\" is not a valid RegExp flag");
           }
-        }),
+        }, {
+          type: "string"
+        })),
         "default": ""
       }
     }
@@ -8373,10 +8408,14 @@
         validate: function () {
           var normal = assertNodeType("Identifier", "PrivateName");
           var computed = assertNodeType("Expression");
-          return function (node, key, val) {
+
+          var validator = function validator(node, key, val) {
             var validator = node.computed ? computed : normal;
             validator(node, key, val);
           };
+
+          validator.oneOfNodeTypes = ["Expression", "Identifier", "PrivateName"];
+          return validator;
         }()
       },
       computed: {
@@ -8429,7 +8468,7 @@
   });
   defineType("ObjectMethod", {
     builder: ["kind", "key", "params", "body", "computed", "generator", "async"],
-    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
+    fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
       kind: Object.assign({
         validate: assertOneOf("method", "get", "set")
       }, !process.env.BABEL_TYPES_8_BREAKING ? {
@@ -8442,10 +8481,14 @@
         validate: function () {
           var normal = assertNodeType("Identifier", "StringLiteral", "NumericLiteral");
           var computed = assertNodeType("Expression");
-          return function (node, key, val) {
+
+          var validator = function validator(node, key, val) {
             var validator = node.computed ? computed : normal;
             validator(node, key, val);
           };
+
+          validator.oneOfNodeTypes = ["Expression", "Identifier", "StringLiteral", "NumericLiteral"];
+          return validator;
         }()
       },
       decorators: {
@@ -8469,23 +8512,29 @@
         validate: function () {
           var normal = assertNodeType("Identifier", "StringLiteral", "NumericLiteral");
           var computed = assertNodeType("Expression");
-          return function (node, key, val) {
+
+          var validator = function validator(node, key, val) {
             var validator = node.computed ? computed : normal;
             validator(node, key, val);
           };
+
+          validator.oneOfNodeTypes = ["Expression", "Identifier", "StringLiteral", "NumericLiteral"];
+          return validator;
         }()
       },
       value: {
         validate: assertNodeType("Expression", "PatternLike")
       },
       shorthand: {
-        validate: chain(assertValueType("boolean"), function (node, key, val) {
+        validate: chain(assertValueType("boolean"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (val && node.computed) {
             throw new TypeError("Property shorthand of ObjectProperty cannot be true if computed is true");
           }
-        }, function (node, key, val) {
+        }, {
+          type: "boolean"
+        }), function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (val && !is("Identifier", node.key)) {
@@ -8516,7 +8565,7 @@
     builder: ["argument"],
     aliases: ["LVal", "PatternLike"],
     deprecatedAlias: "RestProperty",
-    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
+    fields: Object.assign({}, patternLikeCommon, {
       argument: {
         validate: !process.env.BABEL_TYPES_8_BREAKING ? assertNodeType("LVal") : assertNodeType("Identifier", "Pattern", "MemberExpression")
       }
@@ -8602,13 +8651,15 @@
     aliases: ["Statement"],
     fields: {
       block: {
-        validate: chain(assertNodeType("BlockStatement"), function (node) {
+        validate: chain(assertNodeType("BlockStatement"), Object.assign(function (node) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (!node.handler && !node.finalizer) {
             throw new TypeError("TryStatement expects either a handler or finalizer, or both");
           }
-        })
+        }, {
+          oneOfNodeTypes: ["BlockStatement"]
+        }))
       },
       handler: {
         optional: true,
@@ -8735,7 +8786,7 @@
     visitor: ["left", "right", "decorators"],
     builder: ["left", "right"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
+    fields: Object.assign({}, patternLikeCommon, {
       left: {
         validate: assertNodeType("Identifier", "ObjectPattern", "ArrayPattern", "MemberExpression")
       },
@@ -8752,7 +8803,7 @@
     visitor: ["elements", "typeAnnotation"],
     builder: ["elements"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
+    fields: Object.assign({}, patternLikeCommon, {
       elements: {
         validate: chain(assertValueType("array"), assertEach(assertNodeOrValueType("null", "PatternLike")))
       },
@@ -8766,7 +8817,7 @@
     builder: ["params", "body", "async"],
     visitor: ["params", "body", "returnType", "typeParameters"],
     aliases: ["Scopable", "Function", "BlockParent", "FunctionParent", "Expression", "Pureish"],
-    fields: Object.assign(Object.assign(Object.assign({}, functionCommon), functionTypeAnnotationCommon), {}, {
+    fields: Object.assign({}, functionCommon, functionTypeAnnotationCommon, {
       expression: {
         validate: assertValueType("boolean")
       },
@@ -8814,6 +8865,10 @@
       decorators: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
         optional: true
+      },
+      mixins: {
+        validate: assertNodeType("InterfaceExtends"),
+        optional: true
       }
     }
   });
@@ -8821,6 +8876,36 @@
     inherits: "ClassExpression",
     aliases: ["Scopable", "Class", "Statement", "Declaration"],
     fields: {
+      id: {
+        validate: assertNodeType("Identifier")
+      },
+      typeParameters: {
+        validate: assertNodeType("TypeParameterDeclaration", "TSTypeParameterDeclaration", "Noop"),
+        optional: true
+      },
+      body: {
+        validate: assertNodeType("ClassBody")
+      },
+      superClass: {
+        optional: true,
+        validate: assertNodeType("Expression")
+      },
+      superTypeParameters: {
+        validate: assertNodeType("TypeParameterInstantiation", "TSTypeParameterInstantiation"),
+        optional: true
+      },
+      "implements": {
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("TSExpressionWithTypeArguments", "ClassImplements"))),
+        optional: true
+      },
+      decorators: {
+        validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator"))),
+        optional: true
+      },
+      mixins: {
+        validate: assertNodeType("InterfaceExtends"),
+        optional: true
+      },
       declare: {
         validate: assertValueType("boolean"),
         optional: true
@@ -8865,13 +8950,15 @@
     fields: {
       declaration: {
         optional: true,
-        validate: chain(assertNodeType("Declaration"), function (node, key, val) {
+        validate: chain(assertNodeType("Declaration"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (val && node.specifiers.length) {
             throw new TypeError("Only declaration or specifiers is allowed on ExportNamedDeclaration");
           }
-        }, function (node, key, val) {
+        }, {
+          oneOfNodeTypes: ["Declaration"]
+        }), function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (val && node.source) {
@@ -8998,7 +9085,7 @@
     aliases: ["Expression"],
     fields: {
       meta: {
-        validate: chain(assertNodeType("Identifier"), function (node, key, val) {
+        validate: chain(assertNodeType("Identifier"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
           var property;
 
@@ -9021,7 +9108,9 @@
           })) {
             throw new TypeError("Unrecognised MetaProperty");
           }
-        })
+        }, {
+          oneOfNodeTypes: ["Identifier"]
+        }))
       },
       property: {
         validate: assertNodeType("Identifier")
@@ -9058,7 +9147,7 @@
       }(), assertNodeType("Identifier", "StringLiteral", "NumericLiteral", "Expression"))
     }
   };
-  var classMethodOrDeclareMethodCommon = Object.assign(Object.assign(Object.assign({}, functionCommon), classMethodOrPropertyCommon), {}, {
+  var classMethodOrDeclareMethodCommon = Object.assign({}, functionCommon, classMethodOrPropertyCommon, {
     kind: {
       validate: assertOneOf("get", "set", "method", "constructor"),
       "default": "method"
@@ -9076,7 +9165,7 @@
     aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"],
     builder: ["kind", "key", "params", "body", "computed", "static", "generator", "async"],
     visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
-    fields: Object.assign(Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), functionTypeAnnotationCommon), {}, {
+    fields: Object.assign({}, classMethodOrDeclareMethodCommon, functionTypeAnnotationCommon, {
       body: {
         validate: assertNodeType("BlockStatement")
       }
@@ -9086,7 +9175,7 @@
     visitor: ["properties", "typeAnnotation", "decorators"],
     builder: ["properties"],
     aliases: ["Pattern", "PatternLike", "LVal"],
-    fields: Object.assign(Object.assign({}, patternLikeCommon), {}, {
+    fields: Object.assign({}, patternLikeCommon, {
       properties: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("RestElement", "ObjectProperty")))
       }
@@ -9162,13 +9251,15 @@
     aliases: ["Expression", "Terminatorless"],
     fields: {
       delegate: {
-        validate: chain(assertValueType("boolean"), function (node, key, val) {
+        validate: chain(assertValueType("boolean"), Object.assign(function (node, key, val) {
           if (!process.env.BABEL_TYPES_8_BREAKING) return;
 
           if (val && !node.argument) {
             throw new TypeError("Property delegate of YieldExpression cannot be true if there is no argument");
           }
-        }),
+        }, {
+          type: "boolean"
+        })),
         "default": false
       },
       argument: {
@@ -9672,6 +9763,10 @@
       },
       children: {
         validate: chain(assertValueType("array"), assertEach(assertNodeType("JSXText", "JSXExpressionContainer", "JSXSpreadChild", "JSXElement", "JSXFragment")))
+      },
+      selfClosing: {
+        validate: assertValueType("boolean"),
+        optional: true
       }
     }
   });
@@ -9851,7 +9946,18 @@
   defineType("BindExpression", {
     visitor: ["object", "callee"],
     aliases: ["Expression"],
-    fields: !process.env.BABEL_TYPES_8_BREAKING ? {} : {
+    fields: !process.env.BABEL_TYPES_8_BREAKING ? {
+      object: {
+        validate: Object.assign(function () {}, {
+          oneOfNodeTypes: ["Expression"]
+        })
+      },
+      callee: {
+        validate: Object.assign(function () {}, {
+          oneOfNodeTypes: ["Expression"]
+        })
+      }
+    } : {
       object: {
         validate: assertNodeType("Expression")
       },
@@ -9864,7 +9970,7 @@
     visitor: ["key", "value", "typeAnnotation", "decorators"],
     builder: ["key", "value", "typeAnnotation", "decorators", "computed", "static"],
     aliases: ["Property"],
-    fields: Object.assign(Object.assign({}, classMethodOrPropertyCommon), {}, {
+    fields: Object.assign({}, classMethodOrPropertyCommon, {
       value: {
         validate: assertNodeType("Expression"),
         optional: true
@@ -9903,10 +10009,14 @@
         validate: function () {
           var normal = assertNodeType("Identifier");
           var computed = assertNodeType("Expression");
-          return function (node, key, val) {
+
+          var validator = function validator(node, key, val) {
             var validator = node.computed ? computed : normal;
             validator(node, key, val);
           };
+
+          validator.oneOfNodeTypes = ["Expression", "Identifier"];
+          return validator;
         }()
       },
       computed: {
@@ -9984,7 +10094,7 @@
     builder: ["kind", "key", "params", "body", "static"],
     visitor: ["key", "params", "body", "decorators", "returnType", "typeParameters"],
     aliases: ["Function", "Scopable", "BlockParent", "FunctionParent", "Method", "Private"],
-    fields: Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), {}, {
+    fields: Object.assign({}, classMethodOrDeclareMethodCommon, functionTypeAnnotationCommon, {
       key: {
         validate: assertNodeType("PrivateName")
       },
@@ -9997,7 +10107,15 @@
     aliases: ["Expression"]
   });
   defineType("ImportAttribute", {
-    visitor: ["key", "value"]
+    visitor: ["key", "value"],
+    fields: {
+      key: {
+        validate: assertNodeType("Identifier")
+      },
+      value: {
+        validate: assertNodeType("StringLiteral")
+      }
+    }
   });
   defineType("Decorator", {
     visitor: ["expression"],
@@ -10103,11 +10221,11 @@
   defineType("TSDeclareFunction", {
     aliases: ["Statement", "Declaration"],
     visitor: ["id", "typeParameters", "params", "returnType"],
-    fields: Object.assign(Object.assign({}, functionDeclarationCommon), tSFunctionTypeAnnotationCommon)
+    fields: Object.assign({}, functionDeclarationCommon, tSFunctionTypeAnnotationCommon)
   });
   defineType("TSDeclareMethod", {
     visitor: ["decorators", "key", "typeParameters", "params", "returnType"],
-    fields: Object.assign(Object.assign({}, classMethodOrDeclareMethodCommon), tSFunctionTypeAnnotationCommon)
+    fields: Object.assign({}, classMethodOrDeclareMethodCommon, tSFunctionTypeAnnotationCommon)
   });
   defineType("TSQualifiedName", {
     aliases: ["TSEntityName"],
@@ -10137,7 +10255,7 @@
   defineType("TSPropertySignature", {
     aliases: ["TSTypeElement"],
     visitor: ["key", "typeAnnotation", "initializer"],
-    fields: Object.assign(Object.assign({}, namedTypeElementCommon), {}, {
+    fields: Object.assign({}, namedTypeElementCommon, {
       readonly: validateOptional(bool),
       typeAnnotation: validateOptionalType("TSTypeAnnotation"),
       initializer: validateOptionalType("Expression")
@@ -10146,7 +10264,7 @@
   defineType("TSMethodSignature", {
     aliases: ["TSTypeElement"],
     visitor: ["key", "typeParameters", "parameters", "typeAnnotation"],
-    fields: Object.assign(Object.assign({}, signatureDeclarationCommon), namedTypeElementCommon)
+    fields: Object.assign({}, signatureDeclarationCommon, namedTypeElementCommon)
   });
   defineType("TSIndexSignature", {
     aliases: ["TSTypeElement"],
@@ -31902,7 +32020,7 @@
       column: 0,
       line: -1
     }, loc.start);
-    var endLoc = Object.assign(Object.assign({}, startLoc), loc.end);
+    var endLoc = Object.assign({}, startLoc, loc.end);
 
     var _ref = opts || {},
         _ref$linesAbove = _ref.linesAbove,
@@ -32611,7 +32729,16 @@
         if (trailingComments.length && trailingComments[0].start >= node.start && last(trailingComments).end <= node.end) {
           node.innerComments = trailingComments;
         } else {
-          node.trailingComments = trailingComments;
+          var firstTrailingCommentIndex = trailingComments.findIndex(function (comment) {
+            return comment.end >= node.end;
+          });
+
+          if (firstTrailingCommentIndex > 0) {
+            node.innerComments = trailingComments.slice(0, firstTrailingCommentIndex);
+            node.trailingComments = trailingComments.slice(firstTrailingCommentIndex);
+          } else {
+            node.trailingComments = trailingComments;
+          }
         }
       }
 
@@ -32649,6 +32776,7 @@
     DuplicateRegExpFlags: "Duplicate regular expression flag",
     ElementAfterRest: "Rest element must be last element",
     EscapedCharNotAnIdentifier: "Invalid Unicode escape",
+    ExportDefaultFromAsIdentifier: "'from' is not allowed as an identifier after 'export default'",
     ForInOfLoopInitializer: "%0 loop variable declaration may not have an initializer",
     GeneratorInSingleStatementContext: "Generators can only be declared at the top level or inside a block",
     IllegalBreakContinue: "Unsyntactic %0",
@@ -33077,6 +33205,8 @@
           node.source = node.arguments[0];
           delete node.arguments;
           delete node.callee;
+        } else if (node.type === "CallExpression") {
+          node.optional = false;
         }
 
         return node;
@@ -33106,6 +33236,22 @@
             }
 
             break;
+        }
+
+        return node;
+      };
+
+      _proto.parseSubscript = function parseSubscript() {
+        var _superClass$prototype;
+
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        var node = (_superClass$prototype = _superClass.prototype.parseSubscript).call.apply(_superClass$prototype, [this].concat(args));
+
+        if (node.type === "MemberExpression") {
+          node.optional = false;
         }
 
         return node;
@@ -39525,6 +39671,20 @@
         return _superClass.prototype.parseExport.call(this, node);
       };
 
+      _proto.isExportDefaultSpecifier = function isExportDefaultSpecifier() {
+        if (this.match(types._default)) {
+          var next = this.nextTokenStart();
+
+          if (this.isUnparsedContextual(next, "from")) {
+            if (this.input.startsWith(types.placeholder.label, this.nextTokenStartSince(next + 4))) {
+              return true;
+            }
+          }
+        }
+
+        return _superClass.prototype.isExportDefaultSpecifier.call(this);
+      };
+
       _proto.maybeParseExportDefaultSpecifier = function maybeParseExportDefaultSpecifier(node) {
         if (node.specifiers && node.specifiers.length > 0) {
           return true;
@@ -39895,10 +40055,13 @@
     };
 
     _proto.nextTokenStart = function nextTokenStart() {
-      var thisTokEnd = this.state.pos;
-      skipWhiteSpace.lastIndex = thisTokEnd;
+      return this.nextTokenStartSince(this.state.pos);
+    };
+
+    _proto.nextTokenStartSince = function nextTokenStartSince(pos) {
+      skipWhiteSpace.lastIndex = pos;
       var skip = skipWhiteSpace.exec(this.input);
-      return thisTokEnd + skip[0].length;
+      return pos + skip[0].length;
     };
 
     _proto.lookaheadCharCode = function lookaheadCharCode() {
@@ -44907,7 +45070,18 @@
       }
 
       var next = this.nextTokenStart();
-      return this.input.charCodeAt(next) === 44 || this.isUnparsedContextual(next, "from");
+      var hasFrom = this.isUnparsedContextual(next, "from");
+
+      if (this.input.charCodeAt(next) === 44 || this.match(types.name) && hasFrom) {
+        return true;
+      }
+
+      if (this.match(types._default) && hasFrom) {
+        var nextAfterFrom = this.input.charCodeAt(this.nextTokenStartSince(next + 4));
+        return nextAfterFrom === 34 || nextAfterFrom === 39;
+      }
+
+      return false;
     };
 
     _proto.parseExportFrom = function parseExportFrom(node, expect) {
@@ -44945,6 +45119,16 @@
       if (checkNames) {
         if (isDefault) {
           this.checkDuplicateExports(node, "default");
+
+          if (this.hasPlugin("exportDefaultFrom")) {
+            var _declaration$extra;
+
+            var declaration = node.declaration;
+
+            if (declaration.type === "Identifier" && declaration.name === "from" && declaration.end - declaration.start === 4 && !((_declaration$extra = declaration.extra) == null ? void 0 : _declaration$extra.parenthesized)) {
+              this.raise(declaration.start, ErrorMessages.ExportDefaultFromAsIdentifier);
+            }
+          }
         } else if (node.specifiers && node.specifiers.length) {
           for (var _i8 = 0, _node$specifiers3 = node.specifiers; _i8 < _node$specifiers3.length; _i8++) {
             var specifier = _node$specifiers3[_i8];
@@ -44962,8 +45146,8 @@
             this.checkDuplicateExports(node, id.name);
           } else if (node.declaration.type === "VariableDeclaration") {
             for (var _i10 = 0, _node$declaration$dec2 = node.declaration.declarations; _i10 < _node$declaration$dec2.length; _i10++) {
-              var declaration = _node$declaration$dec2[_i10];
-              this.checkDeclaration(declaration.id);
+              var _declaration = _node$declaration$dec2[_i10];
+              this.checkDeclaration(_declaration.id);
             }
           }
         }
@@ -46118,7 +46302,7 @@
         _b$syntacticPlacehold = b.syntacticPlaceholders,
         syntacticPlaceholders = _b$syntacticPlacehold === void 0 ? a.syntacticPlaceholders : _b$syntacticPlacehold;
     return {
-      parser: Object.assign(Object.assign({}, a.parser), b.parser),
+      parser: Object.assign({}, a.parser, b.parser),
       placeholderWhitelist: placeholderWhitelist,
       placeholderPattern: placeholderPattern,
       preserveComments: preserveComments,
@@ -46180,11 +46364,11 @@
 
   var PATTERN = /^[_$A-Z0-9]+$/;
   function parseAndBuildMetadata(formatter, code, opts) {
-    var ast = parseWithCodeFrame(code, opts.parser);
     var placeholderWhitelist = opts.placeholderWhitelist,
         placeholderPattern = opts.placeholderPattern,
         preserveComments = opts.preserveComments,
         syntacticPlaceholders = opts.syntacticPlaceholders;
+    var ast = parseWithCodeFrame(code, opts.parser, syntacticPlaceholders);
     removePropertiesDeep(ast, {
       preserveComments: preserveComments
     });
@@ -46306,13 +46490,19 @@
     };
   }
 
-  function parseWithCodeFrame(code, parserOpts) {
-    parserOpts = Object.assign(Object.assign({
+  function parseWithCodeFrame(code, parserOpts, syntacticPlaceholders) {
+    var plugins = (parserOpts.plugins || []).slice();
+
+    if (syntacticPlaceholders !== false) {
+      plugins.push("placeholders");
+    }
+
+    parserOpts = Object.assign({
       allowReturnOutsideFunction: true,
       allowSuperOutsideMethod: true,
       sourceType: "module"
-    }, parserOpts), {}, {
-      plugins: (parserOpts.plugins || []).concat("placeholders")
+    }, parserOpts, {
+      plugins: plugins
     });
 
     try {
@@ -51961,6 +52151,9 @@
         var parentIsOptionalCall = parentPath.isOptionalCallExpression({
           callee: node
         });
+        var parentIsCall = parentPath.isCallExpression({
+          callee: node
+        });
         startingOptional.replaceWith(toNonOptional(startingOptional, baseRef));
 
         if (parentIsOptionalCall) {
@@ -51969,6 +52162,8 @@
           } else {
             parentPath.replaceWith(this.call(member, parent.arguments));
           }
+        } else if (parentIsCall) {
+          member.replaceWith(this.boundGet(member));
         } else {
           member.replaceWith(this.get(member));
         }
@@ -52080,7 +52275,9 @@
         return;
       }
 
-      if (parentPath.isObjectProperty({
+      if (parentPath.isForXStatement({
+        left: node
+      }) || parentPath.isObjectProperty({
         value: node
       }) && parentPath.parentPath.isObjectPattern() || parentPath.isAssignmentPattern({
         left: node
@@ -52097,7 +52294,7 @@
     }
   };
   function memberExpressionToFunctions(path, visitor, state) {
-    path.traverse(visitor, Object.assign(Object.assign(Object.assign({}, handle), state), {}, {
+    path.traverse(visitor, Object.assign({}, handle, state, {
       memoiser: new AssignmentMemoiser()
     }));
   }
@@ -52227,7 +52424,7 @@
       return optimiseCall(this._get(superMember, thisRefs), cloneNode(thisRefs["this"]), args, false);
     }
   };
-  var looseHandlers = Object.assign(Object.assign({}, specHandlers), {}, {
+  var looseHandlers = Object.assign({}, specHandlers, {
     prop: function prop(superMember) {
       var property = superMember.node.property;
 
@@ -55979,7 +56176,7 @@
     throw new Error("Cannot load preset " + name + " relative to " + dirname + " in a browser");
   }
 
-  var version$1 = "7.10.2";
+  var version$1 = "7.10.3";
 
   function getEnv(defaultValue) {
     if (defaultValue === void 0) {
@@ -59459,7 +59656,7 @@
               break;
             }
 
-            api = Object.assign(Object.assign({}, context), makeAPI(cache));
+            api = Object.assign({}, context, makeAPI(cache));
             _context3.prev = 7;
             item = value(api, options, dirname);
             _context3.next = 15;
@@ -60642,7 +60839,7 @@
         _config$options$compa = _config$options.compact,
         compact = _config$options$compa === void 0 ? "auto" : _config$options$compa;
     var opts = config.options;
-    var options = Object.assign(Object.assign({}, opts), {}, {
+    var options = Object.assign({}, opts, {
       parserOpts: Object.assign({
         sourceType: path$1.extname(filenameRelative) === ".mjs" ? "module" : sourceType,
         sourceFileName: filename,
@@ -61549,7 +61746,7 @@
   }
 
   function buildMappingData(map) {
-    var consumer = new sourceMap.SourceMapConsumer(Object.assign(Object.assign({}, map), {}, {
+    var consumer = new sourceMap.SourceMapConsumer(Object.assign({}, map, {
       sourceRoot: null
     }));
     var sources = new Map();
@@ -62097,7 +62294,7 @@
       }
     }
 
-    return Object.assign(Object.assign({}, proto), api);
+    return Object.assign({}, proto, api);
   }
 
   function has$4(obj, key) {
@@ -63017,7 +63214,7 @@
   }
 
   function privateNameVisitorFactory(visitor) {
-    var privateNameVisitor = Object.assign(Object.assign({}, visitor), {}, {
+    var privateNameVisitor = Object.assign({}, visitor, {
       Class: function Class(path) {
         var privateNamesMap = this.privateNamesMap;
         var body = path.get("body.body");
@@ -63036,10 +63233,10 @@
           return;
         }
 
-        path.get("body").traverse(nestedVisitor, Object.assign(Object.assign({}, this), {}, {
+        path.get("body").traverse(nestedVisitor, Object.assign({}, this, {
           redeclared: redeclared
         }));
-        path.traverse(privateNameVisitor, Object.assign(Object.assign({}, this), {}, {
+        path.traverse(privateNameVisitor, Object.assign({}, this, {
           privateNamesMap: visiblePrivateNames
         }));
         path.skipKey("body");
@@ -63157,6 +63354,10 @@
 
       return CallExpression(file.addHelper("classPrivateFieldGet"), [this.receiver(member), cloneNode(id)]);
     },
+    boundGet: function boundGet(member) {
+      this.memoise(member, 1);
+      return CallExpression(MemberExpression(this.get(member), Identifier("bind")), [this.receiver(member)]);
+    },
     set: function set(member, value) {
       var classRef = this.classRef,
           privateNamesMap = this.privateNamesMap,
@@ -63218,6 +63419,9 @@
         PROP: privateNamesMap.get(name).id
       });
     },
+    boundGet: function boundGet(member) {
+      return CallExpression(MemberExpression(this.get(member), Identifier("bind")), [cloneNode(member.node.object)]);
+    },
     simpleSet: function simpleSet(member) {
       return this.get(member);
     },
@@ -63274,7 +63478,7 @@
     if (!prop.isProperty() && (initAdded || !isAccessor)) return;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         initAdded: true
       }));
       return template.statement.ast(_templateObject11$2(), id.name, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
@@ -63300,7 +63504,7 @@
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         initAdded: true
       }));
       return template.statement.ast(_templateObject14$1(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
@@ -63317,7 +63521,7 @@
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         initAdded: true
       }));
       return template.statement.ast(_templateObject15$1(), id, ref, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
@@ -63353,7 +63557,7 @@
     var isAccessor = getId || setId;
 
     if (isAccessor) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         initAdded: true
       }));
       return template.statement.ast(_templateObject17$1(), ref, id, getId ? getId.name : prop.scope.buildUndefinedNode(), setId ? setId.name : prop.scope.buildUndefinedNode());
@@ -63385,14 +63589,14 @@
     var isSetter = setId && !setterDeclared && params.length > 0;
 
     if (isGetter) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         getterDeclared: true
       }));
       return VariableDeclaration("var", [VariableDeclarator(getId, methodValue)]);
     }
 
     if (isSetter) {
-      privateNamesMap.set(prop.node.key.id.name, Object.assign(Object.assign({}, privateName), {}, {
+      privateNamesMap.set(prop.node.key.id.name, Object.assign({}, privateName, {
         setterDeclared: true
       }));
       return VariableDeclaration("var", [VariableDeclarator(setId, methodValue)]);
@@ -63938,7 +64142,7 @@
   }
 
   var name = "@babel/helper-create-class-features-plugin";
-  var version$2 = "7.10.2";
+  var version$2 = "7.10.3";
   var author = "The Babel Team (https://babeljs.io/team)";
   var license = "MIT";
   var description = "Compile class public and private fields, private methods and decorators to ES6";
@@ -63956,10 +64160,10 @@
   	"babel-plugin"
   ];
   var dependencies = {
-  	"@babel/helper-function-name": "^7.10.1",
-  	"@babel/helper-member-expression-to-functions": "^7.10.1",
-  	"@babel/helper-optimise-call-expression": "^7.10.1",
-  	"@babel/helper-plugin-utils": "^7.10.1",
+  	"@babel/helper-function-name": "^7.10.3",
+  	"@babel/helper-member-expression-to-functions": "^7.10.3",
+  	"@babel/helper-optimise-call-expression": "^7.10.3",
+  	"@babel/helper-plugin-utils": "^7.10.3",
   	"@babel/helper-replace-supers": "^7.10.1",
   	"@babel/helper-split-export-declaration": "^7.10.1"
   };
@@ -63967,10 +64171,10 @@
   	"@babel/core": "^7.0.0"
   };
   var devDependencies = {
-  	"@babel/core": "^7.10.2",
-  	"@babel/helper-plugin-test-runner": "^7.10.1"
+  	"@babel/core": "^7.10.3",
+  	"@babel/helper-plugin-test-runner": "^7.10.3"
   };
-  var gitHead = "b0350e5b1e86bd2d53b4a25705e39eb380ec65a2";
+  var gitHead = "2787ee2f967b6d8e1121fca00a8d578d75449a53";
   var pkg = {
   	name: name,
   	version: version$2,
@@ -64113,8 +64317,8 @@
           }
 
           path = wrapClass(path);
-          path.insertBefore(keysNodes);
-          path.insertAfter([].concat(privateNamesNodes, staticNodes));
+          path.insertBefore([].concat(privateNamesNodes, keysNodes));
+          path.insertAfter(staticNodes);
         },
         PrivateName: function PrivateName(path) {
           if (this.file.get(versionKey) !== version$3) return;
@@ -64725,11 +64929,7 @@
             }
           }
 
-          var isRHSAnonymousFunction = isFunction(right, {
-            id: null
-          });
-          var rightExpression = isRHSAnonymousFunction ? SequenceExpression([NumericLiteral(0), right]) : right;
-          path.replaceWith(LogicalExpression(operator.slice(0, -1), lhs, AssignmentExpression("=", left, rightExpression)));
+          path.replaceWith(LogicalExpression(operator.slice(0, -1), lhs, AssignmentExpression("=", left, right)));
         }
       }
     };
@@ -65867,13 +66067,20 @@
       inherits: syntaxOptionalChaining,
       visitor: {
         "OptionalCallExpression|OptionalMemberExpression": function OptionalCallExpressionOptionalMemberExpression(path) {
-          var parentPath = path.parentPath,
-              scope = path.scope;
+          var scope = path.scope;
+          var maybeParenthesized = path;
+          var parentPath = path.findParent(function (p) {
+            if (!p.isParenthesizedExpression()) return true;
+            maybeParenthesized = p;
+          });
           var isDeleteOperation = false;
+          var parentIsCall = parentPath.isCallExpression({
+            callee: maybeParenthesized.node
+          }) && path.isOptionalMemberExpression();
           var optionals = [];
           var optionalPath = path;
 
-          while (optionalPath.isOptionalMemberExpression() || optionalPath.isOptionalCallExpression()) {
+          while (optionalPath.isOptionalMemberExpression() || optionalPath.isOptionalCallExpression() || optionalPath.isParenthesizedExpression() || optionalPath.isTSNonNullExpression()) {
             var _optionalPath = optionalPath,
                 node = _optionalPath.node;
 
@@ -65887,9 +66094,7 @@
             } else if (optionalPath.isOptionalCallExpression()) {
               optionalPath.node.type = "CallExpression";
               optionalPath = optionalPath.get("callee");
-            }
-
-            if (optionalPath.isTSNonNullExpression()) {
+            } else {
               optionalPath = optionalPath.get("expression");
             }
           }
@@ -65945,7 +66150,27 @@
               }
             }
 
-            replacementPath.replaceWith(ConditionalExpression(loose ? BinaryExpression("==", cloneNode(check), NullLiteral()) : LogicalExpression("||", BinaryExpression("===", cloneNode(check), NullLiteral()), BinaryExpression("===", cloneNode(ref), scope.buildUndefinedNode())), isDeleteOperation ? BooleanLiteral(true) : scope.buildUndefinedNode(), replacementPath.node));
+            var replacement = replacementPath.node;
+
+            if (i === 0 && parentIsCall) {
+              var _baseRef;
+
+              var _replacement = replacement,
+                  _object = _replacement.object;
+              var baseRef = void 0;
+
+              if (!loose || !isSimpleMemberExpression(_object)) {
+                baseRef = scope.maybeGenerateMemoised(_object);
+
+                if (baseRef) {
+                  replacement.object = AssignmentExpression("=", baseRef, _object);
+                }
+              }
+
+              replacement = CallExpression(MemberExpression(replacement, Identifier("bind")), [cloneNode((_baseRef = baseRef) != null ? _baseRef : _object)]);
+            }
+
+            replacementPath.replaceWith(ConditionalExpression(loose ? BinaryExpression("==", cloneNode(check), NullLiteral()) : LogicalExpression("||", BinaryExpression("===", cloneNode(check), NullLiteral()), BinaryExpression("===", cloneNode(ref), scope.buildUndefinedNode())), isDeleteOperation ? BooleanLiteral(true) : scope.buildUndefinedNode(), replacement));
             replacementPath = replacementPath.get("alternate");
           }
         }
@@ -67662,7 +67887,7 @@
               index -= 2;
             }
           }
-        } else if (start == rangeEnd + 1) {
+        } else if (start == rangeEnd + 1 || start == rangeEnd) {
           data[index] = rangeStart;
           return data;
         } else if (start > rangeEnd) {
@@ -68188,7 +68413,7 @@
       return new regenerate().add(value);
     };
 
-    regenerate.version = '1.3.3';
+    regenerate.version = '1.4.1';
     var proto = regenerate.prototype;
     extend(proto, {
       'add': function add(value) {
@@ -72671,12 +72896,12 @@
               this.nodes.push(this.buildVariableDeclaration(name, key));
 
               if (!copiedPattern) {
-                copiedPattern = pattern = Object.assign(Object.assign({}, pattern), {}, {
+                copiedPattern = pattern = Object.assign({}, pattern, {
                   properties: pattern.properties.slice()
                 });
               }
 
-              copiedPattern.properties[i] = Object.assign(Object.assign({}, copiedPattern.properties[i]), {}, {
+              copiedPattern.properties[i] = Object.assign({}, copiedPattern.properties[i], {
                 key: name
               });
             }
@@ -75962,7 +76187,7 @@
                 throw path.buildCodeFrameError("pragma and pragmaFrag cannot be set when runtime is automatic.");
               }
 
-              var importName = addAutoImports(path, Object.assign(Object.assign({}, state.opts), {}, {
+              var importName = addAutoImports(path, Object.assign({}, state.opts, {
                 source: source
               }));
               state.set("@babel/plugin-react-jsx/jsxIdentifier", createIdentifierParser(createIdentifierName(path, options.development ? "jsxDEV" : "jsx", importName)));
@@ -76433,7 +76658,7 @@
 
   var transformAutomatic = declare(function (api, options) {
     var PURE_ANNOTATION = options.pure;
-    var visitor = helper$3(api, Object.assign(Object.assign({
+    var visitor = helper$3(api, Object.assign({
       pre: function pre(state) {
         var tagName = state.tagName;
         var args = state.args;
@@ -76455,7 +76680,7 @@
           state.pure = PURE_ANNOTATION != null ? PURE_ANNOTATION : !pass.get("@babel/plugin-react-jsx/importSourceSet");
         }
       }
-    }, options), {}, {
+    }, options, {
       development: false
     }));
     return {
@@ -76499,7 +76724,7 @@
 
   var transformReactJSXDevelopment = declare(function (api, options) {
     var PURE_ANNOTATION = options.pure;
-    var visitor = helper$3(api, Object.assign(Object.assign({
+    var visitor = helper$3(api, Object.assign({
       pre: function pre(state) {
         var tagName = state.tagName;
         var args = state.args;
@@ -76521,7 +76746,7 @@
           state.pure = PURE_ANNOTATION != null ? PURE_ANNOTATION : !pass.get("@babel/plugin-react-jsx/importSourceSet");
         }
       }
-    }, options), {}, {
+    }, options, {
       development: true
     }));
     return {
@@ -78398,7 +78623,7 @@
           path: "parse-int"
         }
       },
-      StaticProperties: Object.assign(Object.assign({
+      StaticProperties: Object.assign({
         Array: {
           from: {
             stable: true,
@@ -78572,7 +78797,7 @@
             path: "math/trunc"
           }
         }
-      } : {}), {}, {
+      } : {}, {
         Symbol: {
           "for": {
             stable: true,
@@ -80536,7 +80761,7 @@
 
         if (node.definite || node.declare) {
           if (node.value) {
-            throw path.buildCodeFrameError("Definietly assigned fields and fields with the 'declare' modifier cannot" + " be initialized here, but only in the constructor");
+            throw path.buildCodeFrameError("Definitely assigned fields and fields with the 'declare' modifier cannot" + " be initialized here, but only in the constructor");
           }
 
           if (!node.decorators) {
@@ -102548,7 +102773,7 @@
     };
   });
 
-  var PURE_CALLS = new Map([["react", ["cloneElement", "createElement", "createFactory", "createRef", "forwardRef", "isValidElement", "memo", "lazy"]], ["react-dom", ["createPortal"]]]);
+  var PURE_CALLS = new Map([["react", ["cloneElement", "createContext", "createElement", "createFactory", "createRef", "forwardRef", "isValidElement", "memo", "lazy"]], ["react-dom", ["createPortal"]]]);
   var transformReactPure = declare(function (api) {
     api.assertVersion(7);
     return {
@@ -102803,7 +103028,7 @@
       };
 
       if (script.src) {
-        result[i] = Object.assign(Object.assign({}, scriptData), {}, {
+        result[i] = Object.assign({}, scriptData, {
           content: null,
           loaded: false,
           url: script.src
@@ -102817,7 +103042,7 @@
           check();
         });
       } else {
-        result[i] = Object.assign(Object.assign({}, scriptData), {}, {
+        result[i] = Object.assign({}, scriptData, {
           content: script.innerHTML,
           loaded: true,
           url: script.getAttribute("data-module") || null
@@ -102879,7 +103104,7 @@
 
       if (preset) {
         if (isArray$4(preset) && typeof preset[0] === "object" && Object.prototype.hasOwnProperty.call(preset[0], "buildPreset")) {
-          preset[0] = Object.assign(Object.assign({}, preset[0]), {}, {
+          preset[0] = Object.assign({}, preset[0], {
             buildPreset: preset[0].buildPreset
           });
         }
@@ -102898,9 +103123,9 @@
 
       return plugin;
     });
-    return Object.assign(Object.assign({
+    return Object.assign({
       babelrc: false
-    }, options), {}, {
+    }, options, {
       presets: presets,
       plugins: plugins
     });
@@ -102975,7 +103200,7 @@
     typescript: presetTypescript,
     flow: presetFlow
   });
-  var version$7 = "7.10.2";
+  var version$7 = "7.10.3";
 
   function onDOMContentLoaded() {
     transformScriptTags();

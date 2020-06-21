@@ -900,31 +900,14 @@
 			Value: $sys.feature.BATTERY ? 'TRUE' : 'FALSE'
 		}];
 
-		// Microsoft EdgeHTML <= 18.18363 (64-bit) console table is broken
+		// Microsoft Internet Explorer <= 11.900.18362.0 and Microsoft EdgeHTML <= 18.18363 (64-bit) console table is broken
 		// noinspection DuplicatedCode
-		if ($sys.browser.isEdgeHTML) {
+		if ($sys.browser.isIE || $sys.browser.isEdgeHTML) {
 			for (var d in dump) {
 				// noinspection JSUnfilteredForInLoop
 				console.log(dump[d]);
 			}
-
-			/*var chunks = function(array, size) {
-				var results = [];
-
-				while (array.length) {
-					results.push(array.splice(0, size));
-				}
-
-				return results;
-			};
-
-			dump = chunks(dump, 50);
-
-			for (var d in dump) {
-				// noinspection JSUnfilteredForInLoop
-				console.table(dump[d]);
-			}*/
-		} else {
+		} else if (typeof console.table === 'function') {
 			console.table(dump);
 		}
 	};

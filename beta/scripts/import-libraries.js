@@ -103,13 +103,13 @@ function install(install_directory, dependency, version) {
 		case '@babel/polyfill':
 		case 'babel-polyfill':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + polyfills_directory + 'polyfill-es7-babel-polyfill-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/polyfill.min.js', install_directory + polyfills_directory + 'babel-polyfill-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es7-babel-polyfill'] = 'polyfill-es7-babel-polyfill-' + version + '.min';
+					libraries['babel-polyfill'] = 'babel-polyfill-' + version + '.min';
 					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/polyfill.js', install_directory + polyfills_directory + 'polyfill-es7-babel-polyfill-' + version + '.js', copy_options, (error) => {
+					fs.copy(nodemodules_directory + dependency + '/dist/polyfill.js', install_directory + polyfills_directory + 'babel-polyfill-' + version + '.js', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
@@ -281,22 +281,22 @@ function install(install_directory, dependency, version) {
 			break;
 		case '@webcomponents/custom-elements':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js', install_directory + polyfills_directory + 'polyfill-es6-custom-elements-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js', install_directory + polyfills_directory + 'custom-elements-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es6-custom-elements'] = 'polyfill-es6-custom-elements-' + version + '.min';
+					libraries['custom-elements'] = 'custom-elements-' + version + '.min';
 					// noinspection JSValidateTypes
 					replace({
-						files: install_directory + polyfills_directory + 'polyfill-es6-custom-elements-' + version + '.min.js',
+						files: install_directory + polyfills_directory + 'custom-elements-' + version + '.min.js',
 						from: '//# sourceMappingURL=custom-elements.min.js.map',
-						to: '//# sourceMappingURL=polyfill-es6-custom-elements-' + version + '.min.js.map'
+						to: '//# sourceMappingURL=custom-elements-' + version + '.min.js.map'
 					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'polyfill-es6-custom-elements-' + version + '.min.js.map', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/custom-elements.min.js.map', install_directory + polyfills_directory + 'custom-elements-' + version + '.min.js.map', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
@@ -310,22 +310,22 @@ function install(install_directory, dependency, version) {
 			break;
 		case '@webcomponents/html-imports':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/html-imports.min.js', install_directory + polyfills_directory + 'polyfill-es6-html-imports-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/html-imports.min.js', install_directory + polyfills_directory + 'html-imports-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es6-html-imports'] = 'polyfill-es6-html-imports-' + version + '.min';
+					libraries['html-imports'] = 'html-imports-' + version + '.min';
 					// noinspection JSValidateTypes
 					replace({
-						files: install_directory + polyfills_directory + 'polyfill-es6-html-imports-' + version + '.min.js',
+						files: install_directory + polyfills_directory + 'html-imports-' + version + '.min.js',
 						from: '//# sourceMappingURL=html-imports.min.js.map',
-						to: '//# sourceMappingURL=polyfill-es6-html-imports-' + version + '.min.js.map'
+						to: '//# sourceMappingURL=html-imports-' + version + '.min.js.map'
 					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/html-imports.min.js.map', install_directory + polyfills_directory + 'polyfill-es6-html-imports-' + version + '.min.js.map', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/html-imports.min.js.map', install_directory + polyfills_directory + 'html-imports-' + version + '.min.js.map', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
@@ -339,22 +339,22 @@ function install(install_directory, dependency, version) {
 			break;
 		case '@webcomponents/webcomponentsjs':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'polyfill-es6-web-components-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js', install_directory + polyfills_directory + 'webcomponents-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es6-web-components'] = 'polyfill-es6-web-components-' + version + '.min';
+					libraries['webcomponents'] = 'webcomponents-' + version + '.min';
 					// noinspection JSValidateTypes
 					replace({
-						files: install_directory + polyfills_directory + 'polyfill-es6-web-components-' + version + '.min.js',
+						files: install_directory + polyfills_directory + 'webcomponents-' + version + '.min.js',
 						from: '//# sourceMappingURL=webcomponents-bundle.js.map',
-						to: '//# sourceMappingURL=polyfill-es6-web-components-' + version + '.min.js.map'
+						to: '//# sourceMappingURL=webcomponents-' + version + '.min.js.map'
 					}, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							//noinspection JSUnresolvedFunction
-							fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'polyfill-es6-web-components-' + version + '.min.js.map', copy_options, (error) => {
+							fs.copy(nodemodules_directory + dependency + '/webcomponents-bundle.js.map', install_directory + polyfills_directory + 'webcomponents-' + version + '.min.js.map', copy_options, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
@@ -1030,11 +1030,11 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'custom-event-polyfill':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/polyfill.js', install_directory + polyfills_directory + 'polyfill-es6-custom-event-' + version + '.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/polyfill.js', install_directory + polyfills_directory + 'custom-event-' + version + '.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es6-custom-event'] = 'polyfill-es6-custom-event-' + version;
+					libraries['custom-event'] = 'custom-event-' + version;
 					log.log(dependency + ' version ' + version + ' installed!');
 				}
 			});
@@ -1575,79 +1575,79 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'es6-promise':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.js', install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.min.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.js', install_directory + polyfills_directory + 'promise-auto-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-' + dependency] = 'polyfill-' + dependency + '-auto-' + version + '.min';
+					libraries['promise-auto'] = 'promise-auto-' + version + '.min';
 					//noinspection JSUnresolvedFunction
-					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.map', install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.min.js.map', copy_options, (error) => {
+					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.min.map', install_directory + polyfills_directory + 'promise-auto-' + version + '.min.js.map', copy_options, (error) => {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
 							// noinspection JSValidateTypes
 							replace({
-								files: install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.min.js.map',
+								files: install_directory + polyfills_directory + 'promise-auto-' + version + '.min.js.map',
 								from: '"file":"es6-promise.auto.min.js"}',
-								to: '"file":"' + 'polyfill-' + dependency + '-auto-' + version + '.min.js"}'
+								to: '"file":"' + 'promise-auto-' + version + '.min.js"}'
 							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
 								} else {
 									//noinspection JSUnresolvedFunction
-									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.js', install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.js', copy_options, (error) => {
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.js', install_directory + polyfills_directory + 'promise-auto-' + version + '.js', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
 											//noinspection JSUnresolvedFunction
-											fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.map', install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.js.map', copy_options, (error) => {
+											fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.auto.map', install_directory + polyfills_directory + 'promise-auto-' + version + '.js.map', copy_options, (error) => {
 												if (error) {
 													log.error('Error occurred:', error);
 												} else {
 													// noinspection JSValidateTypes
 													replace({
-														files: install_directory + polyfills_directory + 'polyfill-' + dependency + '-auto-' + version + '.js.map',
+														files: install_directory + polyfills_directory + 'promise-auto-' + version + '.js.map',
 														from: '"file":"es6-promise.auto.js"}',
-														to: '"file":"' + 'polyfill-' + dependency + '-auto-' + version + '.js"}'
+														to: '"file":"' + 'promise-auto-' + version + '.js"}'
 													}, (error) => {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
 															//noinspection JSUnresolvedFunction
-															fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.min.js', copy_options, (error) => {
+															fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.js', install_directory + polyfills_directory + 'promise-' + version + '.min.js', copy_options, (error) => {
 																if (error) {
 																	log.error('Error occurred:', error);
 																} else {
-																	libraries['polyfill-' + dependency] = 'polyfill-' + dependency + '-' + version + '.min';
+																	libraries['promise'] = 'promise-' + version + '.min';
 																	//noinspection JSUnresolvedFunction
-																	fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.map', install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.min.js.map', copy_options, (error) => {
+																	fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.min.map', install_directory + polyfills_directory + 'promise-' + version + '.min.js.map', copy_options, (error) => {
 																		if (error) {
 																			log.error('Error occurred:', error);
 																		} else {
 																			// noinspection JSValidateTypes
 																			replace({
-																				files: install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.min.js.map',
+																				files: install_directory + polyfills_directory + 'promise-' + version + '.min.js.map',
 																				from: '"file":"es6-promise.min.js"}',
-																				to: '"file":"' + 'polyfill-' + dependency + '-' + version + '.min.js"}'
+																				to: '"file":"' + 'promise-' + version + '.min.js"}'
 																			}, (error) => {
 																				if (error) {
 																					log.error('Error occurred:', error);
 																				} else {
 																					//noinspection JSUnresolvedFunction
-																					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.js', copy_options, (error) => {
+																					fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.js', install_directory + polyfills_directory + 'promise-' + version + '.js', copy_options, (error) => {
 																						if (error) {
 																							log.error('Error occurred:', error);
 																						} else {
 																							//noinspection JSUnresolvedFunction
-																							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.map', install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.js.map', copy_options, (error) => {
+																							fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.map', install_directory + polyfills_directory + 'promise-' + version + '.js.map', copy_options, (error) => {
 																								if (error) {
 																									log.error('Error occurred:', error);
 																								} else {
 																									// noinspection JSValidateTypes
 																									replace({
-																										files: install_directory + polyfills_directory + 'polyfill-' + dependency + '-' + version + '.js.map',
+																										files: install_directory + polyfills_directory + 'promise-' + version + '.js.map',
 																										from: '"file":"es6-promise.js"}',
-																										to: '"file":"' + 'polyfill-' + dependency + '-' + version + '.js"}'
+																										to: '"file":"' + 'promise-' + version + '.js"}'
 																									}, (error) => {
 																										if (error) {
 																											log.error('Error occurred:', error);
@@ -1968,6 +1968,28 @@ function install(install_directory, dependency, version) {
 						if (error) {
 							log.error('Error occurred:', error);
 						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
+		case 'ie11-custom-properties':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/ie11CustomProperties.js', install_directory + libraries_directory + 'css-vars-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + 'css-vars-' + version + '.js',
+						from: ["'use strict';", /\b(let|const)\s+/gi],
+						to: ['', 'var ']
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							libraries[dependency] = 'css-vars-' + version;
 							log.log(dependency + ' version ' + version + ' installed!');
 						}
 					});
@@ -3337,13 +3359,13 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'pepjs':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/pep.js', install_directory + polyfills_directory + 'polyfill-es6-pointer-events-' + version + '.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/pep.js', install_directory + polyfills_directory + 'pointer-events-' + version + '.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
 					// noinspection JSValidateTypes
 					replace({
-						files: install_directory + polyfills_directory + 'polyfill-es6-pointer-events-' + version + '.js',
+						files: install_directory + polyfills_directory + 'pointer-events-' + version + '.js',
 						from: /const /g,
 						to: 'var '
 					}, (error) => {
@@ -3945,11 +3967,11 @@ function install(install_directory, dependency, version) {
 			break;
 		case 'whatwg-fetch':
 			//noinspection JSUnresolvedFunction
-			fs.copy(nodemodules_directory + dependency + '/dist/fetch.umd.js', install_directory + polyfills_directory + 'polyfill-es6-fetch-' + version + '.js', copy_options, (error) => {
+			fs.copy(nodemodules_directory + dependency + '/dist/fetch.umd.js', install_directory + polyfills_directory + 'fetch-' + version + '.js', copy_options, (error) => {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
-					libraries['polyfill-es6-fetch'] = 'polyfill-es6-fetch-' + version;
+					libraries['fetch'] = 'fetch-' + version;
 					log.log(dependency + ' version ' + version + ' installed!');
 				}
 			});

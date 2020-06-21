@@ -22,9 +22,9 @@
 
 	if (typeof $sys !== 'undefined') {
 		if (!$sys.feature['ES6'] && !$sys.feature['WEBCOMPONENTS_V1']) {
-			$sys.api.import($sys.lib['polyfill-es7-babel-polyfill'][0], function() {
+			$sys.api.import($sys.lib['babel-polyfill'][0], function() {
 				$sys.api.import($sys.lib['babel-standalone'][0], function() {
-					$sys.api.import($sys.lib['polyfill-es6-web-components'][0], function() {
+					$sys.api.import($sys.lib['webcomponents'][0], function() {
 						$sys.api.import($sys.lib['hybrids'][0], function() {
 							$sys.api.hybrids = hybrids;
 							start();
@@ -33,7 +33,7 @@
 				});
 			});
 		} else if (!$sys.feature['WEBCOMPONENTS_V1']) {
-			$sys.api.import($sys.lib['polyfill-es6-web-components'][0], function() {
+			$sys.api.import($sys.lib['webcomponents'][0], function() {
 				$sys.api.import($sys.lib['hybrids'][0], function() {
 					$sys.api.hybrids = hybrids;
 					start();

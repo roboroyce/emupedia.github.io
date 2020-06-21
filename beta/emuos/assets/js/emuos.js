@@ -99,15 +99,15 @@
 		self.$body.find('.emuos-boot').first().remove();
 
 		if ($sys.browser.isIE) {
-			self.$html.addClass('browser-ie');
-		} else if ($sys.browser.isEdge) {
-			self.$html.addClass('browser-edge');
-		} else if ($sys.browser.isChrome || $sys.browser.isOperaBlink) {
-			self.$html.addClass('browser-chrome');
+			self.$html.addClass('browser-trident');
+		} else if ($sys.browser.isEdgeHTML) {
+			self.$html.addClass('browser-edgehtml');
+		} else if ($sys.browser.isChrome || $sys.browser.isOperaBlink || $sys.browser.isEdgeBlink || $sys.browser.isChromium) {
+			self.$html.addClass('browser-blink');
 		} else if ($sys.browser.isSafari || $sys.browser.isOperaPresto) {
 			self.$html.addClass('browser-webkit');
 		} else if ($sys.browser.isFirefox || $sys.browser.isPaleMoon || $sys.browser.isKMeleon || $sys.browser.isNetscape) {
-			self.$html.addClass('browser-firefox');
+			self.$html.addClass('browser-gecko');
 		} else {
 			self.$html.addClass('browser-other');
 		}
