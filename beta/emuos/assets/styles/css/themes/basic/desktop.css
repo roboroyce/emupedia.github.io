@@ -13,6 +13,10 @@
 	overflow-y: auto;
 }
 
+.emuos-desktop:focus {
+	outline: none;
+}
+
 .emuos-desktop.ui-widget-content {
 	border: none;
 }
