@@ -5,20 +5,19 @@ baseurl: ""
 url: "https://emupedia.net"
 markdown: kramdown
 exclude:
+  - .github/**
+  - beta/emuos/**/*.md
+  - beta/emuos/**/*.markdown
   - .editorconfig
   - .gitignore
   - .gitpod.yml
-  - apple-touch-icon.png
   - CNAME
   - Dockerfile
-  - favicon.ico
   - favicon-xmas.ico
   - LICENSE
   - package.json
   - package-lock.json
   - README.md
-  - beta/emuos/**/*.md
-  - beta/emuos/**/*.markdown
 whitelist:
   - jekyll-watch
   - jekyll-textile-converter
