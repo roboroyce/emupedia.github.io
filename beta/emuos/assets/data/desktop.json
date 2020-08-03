@@ -508,5 +508,14 @@
 		"width": 900,
 		"height": 610,
 		"shortcut": true
+	} , {
+		"name": "Fluid Paint",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/fluid-paint",
+		"link": "/emupedia-app-fluid-paint/",
+		"credits": "Website: <a href=\"http://david.li/paint/\" target=\"_blank\">david.li/paint</a><br /><br />Author: <a href=\"https://github.com/dli\" target=\"_blank\">github.com/dli</a><br />Repository: <a href=\"https://github.com/dli/paint\" target=\"_blank\">github.com/dli/paint</a><br />License: <a href=\"https://github.com/dli/paint/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
+		"width": 900,
+		"height": 610,
+		"shortcut": true
 	}]
 }

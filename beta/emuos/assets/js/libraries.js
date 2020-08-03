@@ -8,20 +8,20 @@
 
 	global['$sys']['lib'] = {
 		'babel-polyfill': [
-				'libraries/babel-polyfill-7.10.1.min',
-				'/beta/emuos/assets/js/libraries/babel-polyfill-7.10.1.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/babel-polyfill-7.10.1.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/babel-polyfill-7.10.1.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/babel-polyfill-7.10.1.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/babel-polyfill-7.10.1.min'
+				'libraries/babel-polyfill-7.10.4.min',
+				'/beta/emuos/assets/js/libraries/babel-polyfill-7.10.4.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/babel-polyfill-7.10.4.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/babel-polyfill-7.10.4.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/babel-polyfill-7.10.4.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/babel-polyfill-7.10.4.min'
 		],
 		'babel-standalone': [
-				'libraries/babel-standalone-7.10.3.min',
-				'/beta/emuos/assets/js/libraries/babel-standalone-7.10.3.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/babel-standalone-7.10.3.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/babel-standalone-7.10.3.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/babel-standalone-7.10.3.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/babel-standalone-7.10.3.min'
+				'libraries/babel-standalone-7.11.0.min',
+				'/beta/emuos/assets/js/libraries/babel-standalone-7.11.0.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/babel-standalone-7.11.0.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/babel-standalone-7.11.0.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/babel-standalone-7.11.0.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/babel-standalone-7.11.0.min'
 		],
 		'bootstrap': [
 				'libraries/bootstrap-4.5.0.min',
@@ -56,12 +56,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/clippy-0.0.3'
 		],
 		'custom-elements': [
-				'libraries/custom-elements-1.4.1.min',
-				'/beta/emuos/assets/js/libraries/custom-elements-1.4.1.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/custom-elements-1.4.1.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/custom-elements-1.4.1.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/custom-elements-1.4.1.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/custom-elements-1.4.1.min'
+				'libraries/custom-elements-1.4.2.min',
+				'/beta/emuos/assets/js/libraries/custom-elements-1.4.2.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/custom-elements-1.4.2.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/custom-elements-1.4.2.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/custom-elements-1.4.2.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/custom-elements-1.4.2.min'
 		],
 		'custom-event': [
 				'libraries/custom-event-1.0.7',
@@ -232,20 +232,20 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/datatables-select-bootstrap4-1.3.1.min'
 		],
 		'dropbox': [
-				'libraries/dropbox-5.1.0.min',
-				'/beta/emuos/assets/js/libraries/dropbox-5.1.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/dropbox-5.1.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/dropbox-5.1.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/dropbox-5.1.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/dropbox-5.1.0.min'
+				'libraries/dropbox-5.2.1.min',
+				'/beta/emuos/assets/js/libraries/dropbox-5.2.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/dropbox-5.2.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/dropbox-5.2.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/dropbox-5.2.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/dropbox-5.2.1.min'
 		],
 		'dropbox-team': [
-				'libraries/dropbox-team-5.1.0.min',
-				'/beta/emuos/assets/js/libraries/dropbox-team-5.1.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/dropbox-team-5.1.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/dropbox-team-5.1.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/dropbox-team-5.1.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/dropbox-team-5.1.0.min'
+				'libraries/dropbox-team-5.2.1.min',
+				'/beta/emuos/assets/js/libraries/dropbox-team-5.2.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/dropbox-team-5.2.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/dropbox-team-5.2.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/dropbox-team-5.2.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/dropbox-team-5.2.1.min'
 		],
 		'emularity': [
 				'libraries/emularity',
@@ -264,12 +264,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/esheep-0.7.2.min'
 		],
 		'fetch': [
-				'libraries/fetch-3.0.0',
-				'/beta/emuos/assets/js/libraries/fetch-3.0.0',
-				'//emupedia.net/beta/emuos/assets/js/libraries/fetch-3.0.0',
-				'//emupedia.org/beta/emuos/assets/js/libraries/fetch-3.0.0',
-				'//emuos.net/beta/emuos/assets/js/libraries/fetch-3.0.0',
-				'//emuos.org/beta/emuos/assets/js/libraries/fetch-3.0.0'
+				'libraries/fetch-3.2.0',
+				'/beta/emuos/assets/js/libraries/fetch-3.2.0',
+				'//emupedia.net/beta/emuos/assets/js/libraries/fetch-3.2.0',
+				'//emupedia.org/beta/emuos/assets/js/libraries/fetch-3.2.0',
+				'//emuos.net/beta/emuos/assets/js/libraries/fetch-3.2.0',
+				'//emuos.org/beta/emuos/assets/js/libraries/fetch-3.2.0'
 		],
 		'fingerprint': [
 				'libraries/fingerprint-0.5.3',
@@ -320,12 +320,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/howler-spatial-2.2.0.min'
 		],
 		'html-imports': [
-				'libraries/html-imports-1.2.4.min',
-				'/beta/emuos/assets/js/libraries/html-imports-1.2.4.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/html-imports-1.2.4.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/html-imports-1.2.4.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/html-imports-1.2.4.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/html-imports-1.2.4.min'
+				'libraries/html-imports-1.2.5.min',
+				'/beta/emuos/assets/js/libraries/html-imports-1.2.5.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/html-imports-1.2.5.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/html-imports-1.2.5.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/html-imports-1.2.5.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/html-imports-1.2.5.min'
 		],
 		'hybrids': [
 				'libraries/hybrids-4.2.1.min',
@@ -336,20 +336,20 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/hybrids-4.2.1.min'
 		],
 		'i18next': [
-				'libraries/i18next-19.5.1.min',
-				'/beta/emuos/assets/js/libraries/i18next-19.5.1.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/i18next-19.5.1.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/i18next-19.5.1.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/i18next-19.5.1.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/i18next-19.5.1.min'
+				'libraries/i18next-19.6.3.min',
+				'/beta/emuos/assets/js/libraries/i18next-19.6.3.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/i18next-19.6.3.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/i18next-19.6.3.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/i18next-19.6.3.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/i18next-19.6.3.min'
 		],
 		'ie11-custom-properties': [
-				'libraries/css-vars-4.0.1',
-				'/beta/emuos/assets/js/libraries/css-vars-4.0.1',
-				'//emupedia.net/beta/emuos/assets/js/libraries/css-vars-4.0.1',
-				'//emupedia.org/beta/emuos/assets/js/libraries/css-vars-4.0.1',
-				'//emuos.net/beta/emuos/assets/js/libraries/css-vars-4.0.1',
-				'//emuos.org/beta/emuos/assets/js/libraries/css-vars-4.0.1'
+				'libraries/css-vars-4.1.0',
+				'/beta/emuos/assets/js/libraries/css-vars-4.1.0',
+				'//emupedia.net/beta/emuos/assets/js/libraries/css-vars-4.1.0',
+				'//emupedia.org/beta/emuos/assets/js/libraries/css-vars-4.1.0',
+				'//emuos.net/beta/emuos/assets/js/libraries/css-vars-4.1.0',
+				'//emuos.org/beta/emuos/assets/js/libraries/css-vars-4.1.0'
 		],
 		'jquery': [
 				'libraries/jquery-3.5.1.min',
@@ -384,12 +384,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/jquery-i18next-1.2.1.min'
 		],
 		'jquery-migrate': [
-				'libraries/jquery-migrate-3.3.0.min',
-				'/beta/emuos/assets/js/libraries/jquery-migrate-3.3.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/jquery-migrate-3.3.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/jquery-migrate-3.3.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/jquery-migrate-3.3.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/jquery-migrate-3.3.0.min'
+				'libraries/jquery-migrate-3.3.1.min',
+				'/beta/emuos/assets/js/libraries/jquery-migrate-3.3.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/jquery-migrate-3.3.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/jquery-migrate-3.3.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/jquery-migrate-3.3.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/jquery-migrate-3.3.1.min'
 		],
 		'jquery-mousewheel': [
 				'libraries/jquery-mousewheel-3.1.13',
@@ -440,12 +440,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/jsonpath-1.0.2.min'
 		],
 		'jsrsasign-all': [
-				'libraries/jsrsasign-all-8.0.18.min',
-				'/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.18.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.18.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.18.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.18.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.18.min'
+				'libraries/jsrsasign-all-8.0.21.min',
+				'/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.21.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.21.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.21.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.21.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/jsrsasign-all-8.0.21.min'
 		],
 		'jszip': [
 				'libraries/jszip-3.5.0.min',
@@ -456,12 +456,12 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/jszip-3.5.0.min'
 		],
 		'less': [
-				'libraries/less-3.11.3.min',
-				'/beta/emuos/assets/js/libraries/less-3.11.3.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/less-3.11.3.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/less-3.11.3.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/less-3.11.3.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/less-3.11.3.min'
+				'libraries/less-3.12.2.min',
+				'/beta/emuos/assets/js/libraries/less-3.12.2.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/less-3.12.2.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/less-3.12.2.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/less-3.12.2.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/less-3.12.2.min'
 		],
 		'lightslider': [
 				'libraries/lightslider-1.1.6.min',
@@ -472,20 +472,20 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/lightslider-1.1.6.min'
 		],
 		'localforage': [
-				'libraries/localforage-1.7.4.min',
-				'/beta/emuos/assets/js/libraries/localforage-1.7.4.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/localforage-1.7.4.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/localforage-1.7.4.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/localforage-1.7.4.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/localforage-1.7.4.min'
+				'libraries/localforage-1.9.0.min',
+				'/beta/emuos/assets/js/libraries/localforage-1.9.0.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/localforage-1.9.0.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/localforage-1.9.0.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/localforage-1.9.0.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/localforage-1.9.0.min'
 		],
 		'localforage-nopromise': [
-				'libraries/localforage-nopromise-1.7.4.min',
-				'/beta/emuos/assets/js/libraries/localforage-nopromise-1.7.4.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/localforage-nopromise-1.7.4.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/localforage-nopromise-1.7.4.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/localforage-nopromise-1.7.4.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/localforage-nopromise-1.7.4.min'
+				'libraries/localforage-nopromise-1.9.0.min',
+				'/beta/emuos/assets/js/libraries/localforage-nopromise-1.9.0.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/localforage-nopromise-1.9.0.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/localforage-nopromise-1.9.0.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/localforage-nopromise-1.9.0.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/localforage-nopromise-1.9.0.min'
 		],
 		'moment': [
 				'libraries/moment-2.27.0.min',
@@ -520,20 +520,20 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/octokat-0.10.0'
 		],
 		'pdfmake': [
-				'libraries/pdfmake-0.1.65.min',
-				'/beta/emuos/assets/js/libraries/pdfmake-0.1.65.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/pdfmake-0.1.65.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/pdfmake-0.1.65.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/pdfmake-0.1.65.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/pdfmake-0.1.65.min'
+				'libraries/pdfmake-0.1.68.min',
+				'/beta/emuos/assets/js/libraries/pdfmake-0.1.68.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/pdfmake-0.1.68.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/pdfmake-0.1.68.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/pdfmake-0.1.68.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/pdfmake-0.1.68.min'
 		],
 		'pdfmake-fonts': [
-				'libraries/pdfmake-fonts-0.1.65',
-				'/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.65',
-				'//emupedia.net/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.65',
-				'//emupedia.org/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.65',
-				'//emuos.net/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.65',
-				'//emuos.org/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.65'
+				'libraries/pdfmake-fonts-0.1.68',
+				'/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.68',
+				'//emupedia.net/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.68',
+				'//emupedia.org/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.68',
+				'//emuos.net/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.68',
+				'//emuos.org/beta/emuos/assets/js/libraries/pdfmake-fonts-0.1.68'
 		],
 		'perfect-scrollbar': [
 				'libraries/perfect-scrollbar-1.5.0.min',
@@ -544,20 +544,20 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/perfect-scrollbar-1.5.0.min'
 		],
 		'phaser': [
-				'libraries/phaser-3.23.0.min',
-				'/beta/emuos/assets/js/libraries/phaser-3.23.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/phaser-3.23.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/phaser-3.23.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/phaser-3.23.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/phaser-3.23.0.min'
+				'libraries/phaser-3.24.1.min',
+				'/beta/emuos/assets/js/libraries/phaser-3.24.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/phaser-3.24.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/phaser-3.24.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/phaser-3.24.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/phaser-3.24.1.min'
 		],
 		'phaser-arcade-physics': [
-				'libraries/phaser-arcade-physics-3.23.0.min',
-				'/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.23.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.23.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.23.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.23.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.23.0.min'
+				'libraries/phaser-arcade-physics-3.24.1.min',
+				'/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.24.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.24.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.24.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.24.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.24.1.min'
 		],
 		'popper': [
 				'libraries/popper-1.16.1.min',
@@ -640,28 +640,28 @@
 				'//emuos.org/beta/emuos/assets/js/libraries/simplestorage-0.2.1.min'
 		],
 		'twemoji': [
-				'libraries/twemoji-13.0.0.min',
-				'/beta/emuos/assets/js/libraries/twemoji-13.0.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/twemoji-13.0.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/twemoji-13.0.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/twemoji-13.0.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/twemoji-13.0.0.min'
+				'libraries/twemoji-13.0.1.min',
+				'/beta/emuos/assets/js/libraries/twemoji-13.0.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/twemoji-13.0.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/twemoji-13.0.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/twemoji-13.0.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/twemoji-13.0.1.min'
 		],
 		'webcomponents': [
-				'libraries/webcomponents-2.4.3.min',
-				'/beta/emuos/assets/js/libraries/webcomponents-2.4.3.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/webcomponents-2.4.3.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/webcomponents-2.4.3.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/webcomponents-2.4.3.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/webcomponents-2.4.3.min'
+				'libraries/webcomponents-2.4.4.min',
+				'/beta/emuos/assets/js/libraries/webcomponents-2.4.4.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/webcomponents-2.4.4.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/webcomponents-2.4.4.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/webcomponents-2.4.4.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/webcomponents-2.4.4.min'
 		],
 		'xterm': [
-				'libraries/xterm-4.7.0.min',
-				'/beta/emuos/assets/js/libraries/xterm-4.7.0.min',
-				'//emupedia.net/beta/emuos/assets/js/libraries/xterm-4.7.0.min',
-				'//emupedia.org/beta/emuos/assets/js/libraries/xterm-4.7.0.min',
-				'//emuos.net/beta/emuos/assets/js/libraries/xterm-4.7.0.min',
-				'//emuos.org/beta/emuos/assets/js/libraries/xterm-4.7.0.min'
+				'libraries/xterm-4.8.1.min',
+				'/beta/emuos/assets/js/libraries/xterm-4.8.1.min',
+				'//emupedia.net/beta/emuos/assets/js/libraries/xterm-4.8.1.min',
+				'//emupedia.org/beta/emuos/assets/js/libraries/xterm-4.8.1.min',
+				'//emuos.net/beta/emuos/assets/js/libraries/xterm-4.8.1.min',
+				'//emuos.org/beta/emuos/assets/js/libraries/xterm-4.8.1.min'
 		],
 		'desktop': [
 				'desktop',
