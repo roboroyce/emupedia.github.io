@@ -216,12 +216,13 @@
 		"height": 480
 	} , {
 		"name": "ASCIICKER",
-		"title": "Under Development",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/asciicker",
-		"link": "/emupedia-demo-asciicker/",
-		"credits": "Website: <a href=\"http://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
+		"link": "https://asciicker.com/",
+		"credits": "Website: <a href=\"https://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"shortcut": true
 	} , {
 		"name": "ASCII PATROL",
 		"icon": "assets/images/icons/desktop/ascii-patrol",
