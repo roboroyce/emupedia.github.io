@@ -225,11 +225,13 @@
 		"shortcut": true
 	} , {
 		"name": "ASCII PATROL",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/ascii-patrol",
-		"link": "/emupedia-game-ascii-patrol/",
+		"link": "https://ascii-patrol.com/area54/ascii-patrol-html5.html",
 		"credits": "Website: <a href=\"https://ascii-patrol.com/\" target=\"_blank\">ascii-patrol.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br />Repository: <a href=\"https://github.com/msokalski/ascii-patrol\" target=\"_blank\">github.com/msokalski/ascii-patrol</a><br />License: <a href=\"https://github.com/msokalski/ascii-patrol/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"shortcut": true
 	} , {
 		"name": "3D Spatial Audio",
 		"icon": "assets/images/icons/desktop/joystick",
