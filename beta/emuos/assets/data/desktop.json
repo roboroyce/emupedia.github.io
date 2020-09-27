@@ -3,21 +3,23 @@
 		"version": "1.0"
 	},
 	"icons": [{
-		"name": "EmuOS v2.0",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/emupedia",
-		"link": "/beta/emuos/boot.html",
-		"width": 824,
-		"height": 624
-	} , {
-		"name": "EmuOS on GitHub",
+		"name": "Emupedia on GitHub",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/github",
 		"link": "https://github.com/Emupedia/emupedia.github.io/",
 		"target": "_blank",
 		"shortcut": true
 	} , {
+		"name": "EmuArchive",
+		"title": "Under Development",
+		"icon": "assets/images/icons/desktop/emuarchive",
+		"link": "/emuarchive/",
+		"width": 900,
+		"height": 480,
+		"singleinstance": true
+	} , {
 		"name": "EmuChat",
+		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuchat",
 		"link": "/emupedia-app-emuchat/",
 		"width": 900,
