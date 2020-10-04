@@ -524,5 +524,13 @@
 		"width": 900,
 		"height": 610,
 		"shortcut": true
+	} , {
+		"name": "Happy Tree Friends",
+		"icon": "assets/images/icons/desktop/happy-tree-friends",
+		"link": "/emupedia-media-htf/",
+		"width": 900,
+		"height": 480,
+		"shortcut": true,
+		"runonce": true
 	}]
 }
