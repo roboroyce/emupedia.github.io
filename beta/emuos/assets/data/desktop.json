@@ -531,6 +531,6 @@
 		"width": 900,
 		"height": 480,
 		"shortcut": true,
-		"runonce": true
+		"singleinstance": true
 	}]
 }
