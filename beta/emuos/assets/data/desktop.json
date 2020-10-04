@@ -526,6 +526,7 @@
 		"shortcut": true
 	} , {
 		"name": "Happy Tree Friends",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/happy-tree-friends",
 		"link": "/emupedia-media-htf/",
 		"width": 900,
