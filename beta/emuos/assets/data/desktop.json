@@ -13,7 +13,7 @@
 		"name": "EmuArchive",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuarchive",
-		"link": "/emuarchive/",
+		"link": "https://archive.emupedia.net/",
 		"width": 900,
 		"height": 480,
 		"singleinstance": true
