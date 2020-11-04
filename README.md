@@ -73,6 +73,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+This list it not always up to date
+
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
@@ -87,6 +89,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## ⚙ <sub>Apps used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
@@ -108,6 +112,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 🕹️ <sub>Games used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
@@ -148,6 +154,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
+This list it not always up to date
+
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                                 |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                    |
@@ -163,6 +171,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 ## 📚 <sub>Libraries used</sub>
 <details>
 <summary>Click to reveal</summary>
+
+This list it not always up to date
 
 ---
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
