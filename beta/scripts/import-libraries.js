@@ -1522,40 +1522,7 @@ function install(install_directory, dependency, version) {
 														if (error) {
 															log.error('Error occurred:', error);
 														} else {
-															//noinspection JSUnresolvedFunction
-															fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.min.js', install_directory + libraries_directory + dependency + '-team-' + version + '.min.js', copy_options, (error) => {
-																if (error) {
-																	log.error('Error occurred:', error);
-																} else {
-																	libraries[dependency+ '-team'] = dependency + '-team-' + version + '.min';
-																	//noinspection JSUnresolvedFunction
-																	fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js', install_directory + libraries_directory + dependency + '-team-' + version + '.js', copy_options, (error) => {
-																		if (error) {
-																			log.error('Error occurred:', error);
-																		} else {
-																			//noinspection JSUnresolvedFunction
-																			fs.copy(nodemodules_directory + dependency + '/dist/DropboxTeam-sdk.js.map', install_directory + libraries_directory + dependency + '-team-' + version + '.js.map', copy_options, (error) => {
-																				if (error) {
-																					log.error('Error occurred:', error);
-																				} else {
-																					// noinspection JSValidateTypes
-																					replace({
-																						files: install_directory + libraries_directory + dependency + '-team-' + version + '.js.map',
-																						from: '"file":"DropboxTeam-sdk.js"',
-																						to: '"file":"' + dependency + '-team-' + version + '.js"}'
-																					}, (error) => {
-																						if (error) {
-																							log.error('Error occurred:', error);
-																						} else {
-																							log.log(dependency + ' version ' + version + ' installed!');
-																						}
-																					});
-																				}
-																			});
-																		}
-																	});
-																}
-															});
+															log.log(dependency + ' version ' + version + ' installed!');
 														}
 													});
 												}
@@ -3559,6 +3526,24 @@ function install(install_directory, dependency, version) {
 					log.error('Error occurred:', error);
 				} else {
 					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case 'seedrandom':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/' + dependency + '.min.js', install_directory + libraries_directory + dependency + '-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries[dependency] = dependency + '-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
 				}
 			});
 			break;
