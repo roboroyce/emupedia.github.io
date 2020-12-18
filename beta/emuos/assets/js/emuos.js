@@ -662,7 +662,7 @@
 
 		if (typeof self.options.network.start === 'function') {
 			window['NETWORK_CONNECTION'] = self.options.network.start({
-				servers: ['wss://ws.emupedia.net', 'wss://ws.emuos.net', 'wss://ws.emuos.org'],
+				servers: ['wss://ws.emupedia.net/ws/', 'wss://ws.emuos.net/ws/', 'wss://ws.emuos.org/ws/'],
 				server: ~window.location.hostname.indexOf('emuos.org') ? 2 : (~window.location.hostname.indexOf('emuos.net') ? 1 : 0),
 				mode: 0
 			});
@@ -799,6 +799,7 @@
 		});
 
 		Router.config({mode: 'hash', root: root});
+		// noinspection JSIgnoredPromiseFromCall
 		Router.navigate('/');
 		Router.add(/(.*)/, function(route) {
 			for (var j in self.options.icons) {
@@ -822,6 +823,7 @@
 			hash = hash.slice(1);
 
 			if (hash !== '') {
+				// noinspection JSIgnoredPromiseFromCall
 				Router.navigate(hash);
 			}
 		}
@@ -852,7 +854,9 @@
 				var net = window['NETWORK_CONNECTION'];
 
 				if (typeof net !== 'undefined') {
+					// noinspection JSUnresolvedVariable
 					if (typeof net.register_iframe === 'function') {
+						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
 						net.register_iframe(title);
 						net.badge = 0;
 
@@ -987,7 +991,7 @@
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
 		var timestamp	= Math.floor(Date.now() / 1000);
 
-		// noinspection HtmlDeprecatedAttribute
+		// noinspection HtmlDeprecatedAttribute,JSUnresolvedVariable,JSUnresolvedFunction
 		var win = $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '-' + timestamp + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowFullscreen="true" allowTransparency="true" allow="autoplay; fullscreen" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
 
 		self.$body.append(win);
@@ -999,7 +1003,9 @@
 				var net = window['NETWORK_CONNECTION'];
 
 				if (typeof net !== 'undefined') {
+					// noinspection JSUnresolvedVariable
 					if (typeof net.register_iframe === 'function') {
+						// noinspection JSUnresolvedFunction
 						net.register_iframe(title + '-' + timestamp);
 						net.badge = 0;
 						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
