@@ -863,7 +863,7 @@
 						net.show = function() {
 							if (typeof window.u_network !== 'undefined') {
 								if (typeof window.u_network.emit_event === 'function') {
-									window.u_network.emit_event('chat.show');
+									window.u_network.emit_event('chat.show', {});
 								}
 							}
 
@@ -876,7 +876,7 @@
 						net.hide = function() {
 							if (typeof window.u_network !== 'undefined') {
 								if (typeof window.u_network.emit_event === 'function') {
-									window.u_network.emit_event('chat.hide');
+									window.u_network.emit_event('chat.hide', {});
 								}
 							}
 
@@ -891,13 +891,13 @@
 
 								if (typeof window.u_network !== 'undefined') {
 									if (typeof window.u_network.emit_event === 'function') {
-										window.u_network.emit_event('chat.show');
+										window.u_network.emit_event('chat.show', {});
 									}
 								}
 							} else {
 								if (typeof window.u_network !== 'undefined') {
 									if (typeof window.u_network.emit_event === 'function') {
-										window.u_network.emit_event('chat.hide');
+										window.u_network.emit_event('chat.hide', {});
 									}
 								}
 							}
@@ -1044,7 +1044,7 @@
 
 			if (typeof window.u_network !== 'undefined') {
 				if (typeof window.u_network.emit_event === 'function') {
-					window.u_network.emit_event('chat.show');
+					window.u_network.emit_event('chat.show', {});
 				}
 			}
 		});
