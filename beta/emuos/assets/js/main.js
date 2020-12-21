@@ -1,8 +1,8 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗\n' +
-				'╠═ ║║║║ ║║ ║╚═╗\n' +
-				'╚═╝╩ ╩╚═╝╚═╝╚═╝');
+	/*console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗\n' +
+				  '╠═ ║║║║ ║║ ║╚═╗\n' +
+				  '╚═╝╩ ╩╚═╝╚═╝╚═╝');*/
 
 	global.GoogleAnalyticsObject = '__ga__';
 	global.__ga__ = function() {
