@@ -1,49 +1,5 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	global.GoogleAnalyticsObject = '__ga__';
-	global.__ga__ = function() {
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-
-			// noinspection JSUnresolvedVariable
-			if (arg.constructor === Object && arg.hitCallback) {
-				arg.hitCallback();
-			}
-		}
-	};
-	global.__ga__.q = [['create', 'UA-47896346-6', 'auto']];
-	global.__ga__.l = Date.now();
-
-	// noinspection JSUnusedLocalSymbols,DuplicatedCode
-	define('optional', [], {
-		load: function(name, req, onload, config) {
-			var onLoadSuccess = function(moduleInstance) {
-				onload(moduleInstance);
-			};
-
-			var onLoadFailure = function(err) {
-				var failedId = err.requireModules && err.requireModules[0];
-				global.console.warn('Could not load optional module: ' + failedId);
-
-				requirejs.undef(failedId);
-
-				// noinspection JSRedundantSwitchStatement
-				switch (failedId) {
-					default:
-						define(failedId, [], function(){return {};});
-						break;
-				}
-
-				req([failedId], onLoadSuccess);
-			};
-
-			req([name], onLoadSuccess, onLoadFailure);
-		},
-		normalize: function (name, normalize) {
-			return normalize(name);
-		}
-	});
-
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: {
@@ -76,6 +32,7 @@
 		'network'
 	], function($, network) {
 		$(function() {
+			// noinspection DuplicatedCode
 			window['NETWORK_CONNECTION'] = network.start({
 				servers: ['wss://ws.emupedia.net/ws/', 'wss://ws.emupedia.org/ws/', 'wss://ws.emuos.net/ws/', 'wss://ws.emuos.org/ws/'],
 				server: ~window.location.hostname.indexOf('emupedia.net') ? 0 : (~window.location.hostname.indexOf('emupedia.org') ? 1 : (~window.location.hostname.indexOf('emuos.net') ? 2 : (~window.location.hostname.indexOf('emuos.org') ? 3 : 0))),
@@ -98,9 +55,7 @@
 						}
 					}
 				});
-
 			}, 1000);
-
 		});
 	});
 }(this));
