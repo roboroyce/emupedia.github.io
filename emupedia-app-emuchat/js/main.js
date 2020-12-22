@@ -82,18 +82,25 @@
 				mode: 0
 			});
 
-			// noinspection DuplicatedCode
-			$(document).find('iframe').first().off('load').on('load', function() {
-				var net = window['NETWORK_CONNECTION'];
+			setTimeout(function() {
+				// noinspection HtmlDeprecatedAttribute
+				$('body').append('<iframe id="emuchat" width="100%" height="100%" src="https://cojmar.github.io/n_chat/" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>');
 
-				if (typeof net !== 'undefined') {
-					// noinspection JSUnresolvedVariable
-					if (typeof net.register_iframe === 'function') {
-						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
-						net.register_iframe('emuchat');
+				// noinspection DuplicatedCode
+				$(document).find('iframe').first().off('load').on('load', function() {
+					var net = window['NETWORK_CONNECTION'];
+
+					if (typeof net !== 'undefined') {
+						// noinspection JSUnresolvedVariable
+						if (typeof net.register_iframe === 'function') {
+							// noinspection JSUnresolvedVariable,JSUnresolvedFunction
+							net.register_iframe('emuchat');
+						}
 					}
-				}
-			});
+				});
+
+			}, 1000);
+
 		});
 	});
 }(this));
