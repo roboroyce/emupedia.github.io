@@ -36,6 +36,15 @@
 		"shortcut": true,
 		"singleinstance": true
 	} , {
+		"name": "Santa Tracker",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/santa",
+		"link": "https://santatracker.google.com/",
+		"credits": "Website: <a href=\"https://santatracker.google.com/\" target=\"_blank\">santatracker.google.com</a>",
+		"width": 900,
+		"height": 480,
+		"shortcut": true
+	} , {
 		"name": "Windows 93",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/windows93",
