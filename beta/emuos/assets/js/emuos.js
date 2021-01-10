@@ -113,6 +113,8 @@
 		}
 
 		var start = '';
+		var domains = ['emupedia.net', 'emupedia.org', 'emuos.net', 'emuos.org'];
+		var frontend = ~domains.indexOf(window.location.hostname) ? 'https://emuchat.' + domains[domains.indexOf(window.location.hostname)] + '/' : 'https://emuchat.emupedia.net/';
 
 		if (typeof self.options.start !== 'undefined') {
 			start = '<ul data-menu-lang="*" data-menu-type="start">';
@@ -274,6 +276,33 @@
 			}).off('dblclick').on('dblclick', function() {
 				// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 				if (typeof $(this).data('link') !== 'undefined') {
+					if ($(this).data('name') === 'EmuChat') {
+						if (typeof $(this).data('singleinstance') !== 'undefined') {
+							// noinspection DuplicatedCode
+							if ($(this).data('singleinstance') && self.$body.find('[id^="' + $(this).data('name') + '"]').length === 0) {
+								// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+								self.iframe({
+									title: $(this).data('name'),
+									credits: $(this).data('credits'),
+									icon: $(this).data('icon'),
+									src: frontend,
+									width: $(this).data('width'),
+									height: $(this).data('height')
+								});
+							}
+						} else {
+							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
+							self.iframe({
+								title: $(this).data('name'),
+								icon: $(this).data('icon'),
+								src: frontend,
+								width: $(this).data('width'),
+								height: $(this).data('height'),
+								credits: $(this).data('credits')
+							});
+						}
+					}
+
 					if (typeof ga === 'function') {
 						ga('send', {
 							hitType: 'pageview',
@@ -283,6 +312,7 @@
 					}
 
 					if (typeof $(this).data('singleinstance') !== 'undefined') {
+						// noinspection DuplicatedCode
 						if ($(this).data('singleinstance') && self.$body.find('[id^="' + $(this).data('name') + '"]').length === 0) {
 							// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 							self.iframe({
@@ -676,7 +706,7 @@
 			height: 350,
 			right: '0px',
 			bottom: '28px',
-			content: '<iframe id="Chat" width="100%" height="100%" src="https://emuchat.emupedia.net/" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+			content: '<iframe id="Chat" width="100%" height="100%" src="' + frontend + '" frameborder="0" allowFullscreen="allowFullscreen" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
 		});
 
 		self.$html.contextmenu({
