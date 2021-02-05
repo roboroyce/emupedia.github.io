@@ -1,6 +1,6 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
 (function(global) {
-	global['DROPBOX_TOKEN'] = atob('OXdheVAzQmJnb29BQUFBQUFBQUFBVWRFeFN5S01HYkZ0OEoxNTBIT254N01KUXNadW0xQ1NoSXJTV3U4V0ZRWQ==');
+	global['DROPBOX_TOKEN'] = atob('c2wuQXF2MUh5T0xTbjFlNmZYTG8wWG5Qb09hb0dzNGNJSDkxX3pmV21vMnVtMlk0WDBXSWtobm5UMXBmTTZvNFBKT0h2cFpsTlVJUk1xejRyeXljSDE2QTlIcnBzODNGYk9uSFpCZnlnMlhZc2dCbV9WMVFEbzVCbUgwU3VfRklYYU5tcEcxZUNr');
 
 	var externallyFramed;
 
