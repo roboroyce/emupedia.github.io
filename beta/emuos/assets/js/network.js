@@ -95,6 +95,7 @@
 				'rooms.list',
 				'server.help',
 				'su',
+				'server.msg',
 				'chat.show',
 				'chat.hide',
 				'present',
