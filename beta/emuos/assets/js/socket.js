@@ -288,7 +288,7 @@ function _typeof(obj) {
 		};
 
 		return u_socket;
-	}());
+	})();
 
 	var network = new u_socket();
 
