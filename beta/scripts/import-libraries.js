@@ -941,6 +941,57 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'bson':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.browser.umd.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries[dependency] = dependency + '-' + version;
+					// noinspection JSValidateTypes
+					replace({
+						files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+						from: '//# sourceMappingURL=bson.browser.umd.js.map',
+						to: '//# sourceMappingURL='+ dependency + '-' + version + '.js.map'
+					}, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							// noinspection JSValidateTypes
+							replace({
+								files: install_directory + libraries_directory + dependency + '-' + version + '.js',
+								from: 'exports.default = BSON;',
+								to: 'exports.default = BSON; window.BSON = BSON;'
+							}, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/dist/' + dependency + '.browser.umd.js.map', install_directory + libraries_directory + dependency + '-' + version + '.js.map', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											// noinspection JSValidateTypes
+											replace({
+												files: install_directory + libraries_directory + dependency + '-' + version + '.js.map',
+												from: '"file":"bson.browser.umd.js"',
+												to: '"file":"'+ dependency + '-' + version + '.js.map"'
+											}, (error) => {
+												if (error) {
+													log.error('Error occurred:', error);
+												} else {
+													log.log(dependency + ' version ' + version + ' installed!');
+												}
+											});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'chart.js':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/Chart.min.js', install_directory + libraries_directory + 'chart-' + version + '.min.js', copy_options, (error) => {

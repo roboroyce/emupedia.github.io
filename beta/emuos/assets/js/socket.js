@@ -75,7 +75,7 @@ function _typeof(obj) {
 		_proto.do_merge = function do_merge(data1, data2) {
 			var ret = false;
 
-			if (_typeof(data1) !== 'object' || _typeof(data2) !== 'object') {
+			if (typeof data1 !== 'object' || typeof data2 !== 'object') {
 				data1 = data2;
 				return true;
 			}
@@ -85,10 +85,7 @@ function _typeof(obj) {
 					data1[n] = data2[n];
 					if (!ret) ret = true;
 				} else {
-					if (
-						_typeof(data1[n]) === 'object' &&
-						_typeof(data2[n]) === 'object'
-					) {
+					if (typeof data1[n] === 'object' && typeof data2[n] === 'object') {
 						var ret2 = this.do_merge(data1[n], data2[n]);
 						if (!ret) ret = ret2;
 					} else {
@@ -112,7 +109,10 @@ function _typeof(obj) {
 		};
 
 		_proto.getBaseUrl = function getBaseUrl() {
-			if (!run_mode.main) return false;
+			if (typeof run_mode !== 'undefined') {
+				if (!run_mode.main) return false;
+			}
+
 			if (typeof window === 'undefined') return 'localhost';
 			return window.location.href.split('://')[1].split('/')[0];
 		};
@@ -129,12 +129,7 @@ function _typeof(obj) {
 					break;
 
 				case 'room.user_join':
-					if (
-						data.user &&
-						this.room &&
-						data.room &&
-						this.room.room === data.room
-					) {
+					if (data.user && this.room && data.room && this.room.room === data.room) {
 						if (data.user === this.room.me) return false;
 						this.room.users[data.user] = data.data;
 					}
@@ -142,12 +137,7 @@ function _typeof(obj) {
 					break;
 
 				case 'room.user_leave':
-					if (
-						data.user &&
-						this.room &&
-						data.room &&
-						this.room.room === data.room
-					) {
+					if (data.user && this.room && data.room && this.room.room === data.room) {
 						if (this.room.users[data.user]) delete this.room.users[data.user];
 					}
 
@@ -156,8 +146,9 @@ function _typeof(obj) {
 				case 'room.user_data':
 					if (data.user && this.room && this.room.users[data.user]) {
 						this.do_merge(this.room.users[data.user].data, data.data);
-						if (data.user === this.room.me && this.me)
+						if (data.user === this.room.me && this.me) {
 							this.do_merge(this.me.data, data.data);
+						}
 					}
 
 					break;
@@ -243,6 +234,7 @@ function _typeof(obj) {
 			}
 
 			this.ws = new WebSocket(this.server);
+			if (typeof BSON !== 'undefined') this.ws.binaryType = "arraybuffer";
 
 			this.ws.onopen = function() {
 				_this4.connected = true;
@@ -269,7 +261,7 @@ function _typeof(obj) {
 				var data;
 
 				try {
-					data = JSON.parse(message.data);
+					data = _this4.ws.binaryType && _this4.ws.binaryType === 'arraybuffer' ? BSON.deserialize(message.data) : JSON.parse(message.data);
 				} catch (error) {
 					data = message.data;
 				}
@@ -284,7 +276,7 @@ function _typeof(obj) {
 			if (data.cmd === 'connect') return this.connect(data.data);
 			if (data.cmd === 'disconnect') return this.disconnect();
 			if (!this.connected) return this;
-			this.socket.send(JSON.stringify(data));
+			this.socket.send(this.ws.binaryType && this.ws.binaryType === 'arraybuffer' ? BSON.serialize(data) : JSON.stringify(data));
 			return this;
 		};
 
@@ -296,7 +288,7 @@ function _typeof(obj) {
 		};
 
 		return u_socket;
-	})();
+	} ();
 
 	var network = new u_socket();
 
