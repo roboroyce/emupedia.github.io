@@ -111,6 +111,9 @@
 			octokat: {
 				deps: ['promise-auto', 'fetch']
 			},
+			socket: {
+				deps: ['bson']
+			},
 			taskbar: {
 				deps: ['jquery-ui']
 			},
