@@ -79,7 +79,7 @@
 		"width": 900,
 		"height": 480
 	} , {
-		"name": "Minesweeper Classic",
+		"name": "Minesweeper",
 		"icon": "assets/images/icons/desktop/minesweeper",
 		"link": "/emupedia-game-minesweeper/",
 		"credits": "Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
@@ -119,33 +119,6 @@
 		"icon": "assets/images/icons/desktop/microsoft-bubble",
 		"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
-		"width": 960,
-		"height": 540,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Jewel",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-jewel",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
-		"width": 960,
-		"height": 540,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Sudoku",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-sudoku",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftsudoku/20200821T185824_1.3.33_milestones_2020_milestone_2020_013_sprint_003_d2570bc_msn/default.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
-		"width": 960,
-		"height": 540,
-		"shortcut": true
-	} , {
-		"name": "Microsoft Jigsaw",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-jigsaw",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftjigsaw/20200812T130936_1.3.37_milestones_2020_milestone_2020_004_sprint_001_b90aedf_msn/default.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
 		"width": 960,
 		"height": 540,
 		"shortcut": true
