@@ -87,15 +87,6 @@
 		"width": 502,
 		"height": 343
 	} , {
-		"name": "Microsoft Minesweeper",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/microsoft-minesweeper",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftminesweeper/20200812T131003_1.3.22_milestones_2020_milestone_2020_005_sprint_001_1e48112_msn/default.html?hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
-		"width": 960,
-		"height": 540,
-		"shortcut": true
-	} , {
 		"name": "Microsoft Solitaire Collection",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/microsoft-solitaire",
@@ -135,8 +126,8 @@
 		"name": "Microsoft Jewel",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/microsoft-jewel",
-		"link": "https://cdn.zone.msn.com/assets/games/microsoftbubbleshooter/20210125T150916.534Z_1_c01b8274_V2.2.1/msngdk_simulator/testgame/index.html?gdk=true&hostingEnvironment=zone",
-		"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
+		"link": "https://cdn.zone.msn.com/assets/games/microsoftjewel/20200921T100924_1.0.22_milestones_2020_milestone_2020_001_sprint_001_62951b5_msn/default.html?hostingEnvironment=zone",
+		"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
 		"width": 960,
 		"height": 540,
 		"shortcut": true
