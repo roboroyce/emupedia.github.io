@@ -739,6 +739,7 @@
 			select: function(e, ui) {
 				switch (ui.cmd) {
 					case 'refresh':
+						// noinspection JSUnresolvedFunction
 						window.location.reload();
 						break;
 					case 'basic':
