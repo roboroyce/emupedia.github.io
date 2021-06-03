@@ -245,6 +245,7 @@
 		}
 	})();
 	$sys.feature.URL_BLOB								= $sys.feature.URL_PARSER && 'revokeObjectURL' in URL && 'createObjectURL' in URL;
+	// noinspection JSVoidFunctionReturnValueUsed
 	$sys.feature.DATA_URL								= (function() {
 		function testlimit() {
 			// noinspection JSCheckFunctionSignatures
@@ -328,6 +329,7 @@
 	// noinspection JSUnresolvedVariable
 	$sys.feature.PERFORMANCE							= !!global.performance ? true : !!global.webkitPerformance || !!global.mozPerformance || !!global.msPerformance || !!global.oPerformance;
 	$sys.feature.TIMERS									= $sys.feature.ANIMATION_FRAME && $sys.feature.PERFORMANCE;
+	$sys.feature.CLIPBOARD								= !!global.navigator.clipboard;
 	$sys.feature.CUSTOM_ELEMENTS_V0						= 'registerElement' in global.document;
 	$sys.feature.CUSTOM_ELEMENTS_V1						= 'customElements' in global;
 	$sys.feature.CUSTOM_ELEMENTS						= $sys.feature.CUSTOM_ELEMENTS_V0 || $sys.feature.CUSTOM_ELEMENTS_V1;
@@ -812,6 +814,9 @@
 			Feature: 'TIMERS',
 			Value: $sys.feature.TIMERS ? 'TRUE' : 'FALSE'
 		} , {
+			Feature: 'CLIPBOARD',
+			Value: $sys.feature.CLIPBOARD ? 'TRUE' : 'FALSE'
+		} , {
 			Feature: 'WEBCOMPONENTS',
 			Value: $sys.feature.WEBCOMPONENTS ? 'TRUE' : 'FALSE'
 		} , {
@@ -1105,6 +1110,7 @@
 
 		xhr.onreadystatechange = function(e) {
 			if (xhr.readyState === 4) { // The request is complete
+				// noinspection JSUnresolvedVariable
 				if (xhr.status === 200 || // Response OK
 					xhr.status === 304 || // Not Modified
 					xhr.status === 308 || // Permanent Redirect
