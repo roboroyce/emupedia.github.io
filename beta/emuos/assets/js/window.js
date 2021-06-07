@@ -1325,6 +1325,7 @@
 			var o = this.options;
 
 			if (o.newtabUrl !== '') {
+				this.destroy();
 				window.open(o.newtabUrl, '_blank');
 			}
 
@@ -1866,7 +1867,11 @@
 						// on top, that could be active modal
 						// noinspection JSUnresolvedFunction
 						$elem.add($modal).each(function() {
-							$(this).children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window')._setConnectedButtonState();
+							var $el = $(this).children('.' + self.classes.windowContent).data(self._cnst.dataPrefix + 'window');
+
+							if ($el)  {
+								$el._setConnectedButtonState();
+							}
 						});
 					} else {
 						move = true;
