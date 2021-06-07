@@ -16,7 +16,6 @@
 		"link": "https://archive.emupedia.net/",
 		"width": 900,
 		"height": 480,
-		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "EmuChat",
@@ -25,7 +24,6 @@
 		"link": "https://emuchat.emupedia.net/",
 		"width": 900,
 		"height": 480,
-		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "Discord",
