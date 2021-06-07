@@ -64,6 +64,12 @@
 	right: calc(20px * 4 + .3em * 5);
 }
 
+.emuos-window.ui-dialog .ui-dialog-titlebar > .ui-button[data-button-order="5"] {
+	right: -webkit-calc(20px * 5 + .3em * 5);
+	right: -moz-calc(20px * 5 + .3em * 5);
+	right: calc(20px * 5 + .3em * 5);
+}
+
 .emuos-window.ui-draggable.ui-draggable-disabled .ui-dialog-titlebar {
 	cursor: auto;
 }

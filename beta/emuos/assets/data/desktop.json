@@ -16,6 +16,7 @@
 		"link": "https://archive.emupedia.net/",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "EmuChat",
@@ -24,6 +25,7 @@
 		"link": "https://emuchat.emupedia.net/",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "Discord",
@@ -43,6 +45,7 @@
 		"credits": "Website: <a href=\"https://santatracker.google.com/\" target=\"_blank\">santatracker.google.com</a>",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Windows 93",
@@ -52,6 +55,7 @@
 		"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"http://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
 		"width": 960,
 		"height": 734,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "98.js",
@@ -62,6 +66,7 @@
 		"link": "https://98.js.org/",
 		"width": 960,
 		"height": 713,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Visual Studio Code",
@@ -70,7 +75,8 @@
 		"link": "/emupedia-app-vscode/",
 		"credits": "Website: <a href=\"https://code.visualstudio.com/\" target=\"_blank\">code.visualstudio.com</a><br /><br />Author: <a href=\"https://github.com/Microsoft\" target=\"_blank\">github.com/Microsoft</a><br />Repository: <a href=\"https://github.com/Microsoft/vscode\" target=\"_blank\">github.com/Microsoft/vscode</a><br />License: <a href=\"https://github.com/microsoft/vscode/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a>",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Sandbox",
 		"title": "Under Development",
@@ -83,6 +89,7 @@
 		"icon": "assets/images/icons/desktop/minesweeper",
 		"link": "/emupedia-game-minesweeper/",
 		"credits": "Author: <a href=\"https://github.com/ziebelje\" target=\"_blank\">github.com/ziebelje</a><br />Repository: <a href=\"https://github.com/ziebelje/minesweeper\" target=\"_blank\">github.com/ziebelje/minesweeper</a><br /><br />All other assets<hr />Copyright Microsoft",
+		"newtab": true,
 		"disclaimer": true,
 		"width": 502,
 		"height": 343
@@ -104,6 +111,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/mssolitairecollection/default.htm\" target=\"_blank\">zone.msn.com/en/mssolitairecollection</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Mahjong",
@@ -113,6 +121,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msmahjong/default.htm\" target=\"_blank\">zone.msn.com/en/msmahjong</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Ultimate Word Games",
@@ -122,6 +131,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msultimateword/default.htm\" target=\"_blank\">zone.msn.com/en/msultimateword</a>",
 		"width": 960,
 		"height": 552,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Bubble",
@@ -131,6 +141,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msbubble/default.htm\" target=\"_blank\">zone.msn.com/en/msbubble</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Jewel",
@@ -170,6 +181,7 @@
 		"credits": "Website: <a href=\"https://orteil.dashnet.org/cookieclicker/\" target=\"_blank\">orteil.dashnet.org/cookieclicker</a><br /><br />Author(s): <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Orteil</a> &amp; <a href=\"https://orteil.dashnet.org/\" target=\"_blank\">Opti</a>",
 		"width": 1090,
 		"height": 600,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Flappy Bird",
@@ -180,6 +192,7 @@
 		"disclaimer": true,
 		"width": 432,
 		"height": 600,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Geometry Dash",
@@ -190,6 +203,7 @@
 		"disclaimer": true,
 		"width": 480,
 		"height": 392,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "agar.io",
@@ -200,6 +214,7 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "lennar.icu",
@@ -210,6 +225,7 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "skribbl.io",
@@ -219,6 +235,7 @@
 		"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright skribbl.io",
 		"width": 900,
 		"height": 600,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Raptor: Call of the Shadows",
@@ -237,6 +254,7 @@
 		"credits": "Website: <a href=\"https://cojmar.github.io/nvolley/\" target=\"_blank\">cojmar.github.io/nvolley</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nvolley\" target=\"_blank\">github.com/cojmar/nvolley</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Arcade_Volleyball\" target=\"_blank\">Arcade Volleyball</a>",
 		"width": 640,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Pikachu Volleyball",
@@ -246,7 +264,8 @@
 		"credits": "Author: <a href=\"https://github.com/gorisanson\" target=\"_blank\">github.com/gorisanson</a><br />Repository: <a href=\"https://github.com/gorisanson/pikachu-volleyball\" target=\"_blank\">github.com/gorisanson/pikachu-volleyball</a><br /><br />All other assets<hr />Copyright SACHI SOFT / SAWAYAKAN Programmers and Satoshi Takenouchi",
 		"disclaimer_abandoned": true,
 		"width": 432,
-		"height": 304
+		"height": 304,
+		"newtab": true
 	} , {
 		"name": "Wings 2.0",
 		"title": "Under Development",
@@ -254,7 +273,8 @@
 		"link": "/emupedia-game-wings2/",
 		"credits": "Author: <a href=\"https://github.com/ZaDarkSide\" target=\"_blank\">github.com/ZaDarkSide</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Worms Armageddon",
 		"title": "Under Development",
@@ -263,21 +283,24 @@
 		"credits": "Author: Ciarán McCann<br /><br />All other assets<hr />Copyright Team17",
 		"disclaimer_abandoned": true,
 		"width": 900,
-		"height": 600
+		"height": 600,
+		"newtab": true
 	} , {
 		"name": "Biolab Disaster",
 		"icon": "assets/images/icons/desktop/biolab-disaster",
 		"link": "/emupedia-game-biolab-disaster/",
 		"credits": "Website: <a href=\"https://playbiolab.com\" target=\"_blank\">playbiolab.com</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 720,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Super Blob Blaster",
 		"icon": "assets/images/icons/desktop/super-blob-blaster",
 		"link": "/emupedia-game-super-blob-blaster/",
 		"credits": "Website: <a href=\"https://phoboslab.org/twopointfive/\" target=\"_blank\">phoboslab.org/twopointfive</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br />Repository: <a href=\"https://github.com/phoboslab/twopointfive\" target=\"_blank\">github.com/phoboslab/twopointfive</a><br />License: <a href=\"https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
 		"width": 720,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Pac-Man",
 		"title": "External Website",
@@ -287,6 +310,7 @@
 		"disclaimer_abandoned": true,
 		"width": 1025,
 		"height": 715,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "PONG",
@@ -297,6 +321,7 @@
 		"disclaimer_abandoned": true,
 		"width": 720,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Tetris",
@@ -307,6 +332,7 @@
 		"disclaimer_abandoned": true,
 		"width": 720,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Clippy",
@@ -321,7 +347,8 @@
 		"credits": "Website: <a href=\"http://basicallydan.github.io/skifree.js/\" target=\"_blank\">basicallydan.github.io/skifree.js</a><br /><br />Author: <a href=\"https://github.com/basicallydan\" target=\"_blank\">github.com/basicallydan</a><br />Repository: <a href=\"https://github.com/basicallydan/skifree.js\" target=\"_blank\">github.com/basicallydan/skifree.js</a><br />License: <a href=\"https://github.com/basicallydan/skifree.js/blob/master/license.md\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"http://ski.ihoc.net/\" target=\"_blank\">ski.ihoc.net</a><br /><br />Author: <a href=\"http://ski.ihoc.net/\" target=\"_blank\">Chris Pirih</a><br /><br />All other assets<hr />Copyright Microsoft",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "ASCIICKER",
 		"title": "External Website",
@@ -330,6 +357,7 @@
 		"credits": "Website: <a href=\"https://asciicker.com/\" target=\"_blank\">asciicker.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 640,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "ASCII PATROL",
@@ -339,6 +367,7 @@
 		"credits": "Website: <a href=\"https://ascii-patrol.com/\" target=\"_blank\">ascii-patrol.com</a><br /><br />Author: <a href=\"https://github.com/msokalski\" target=\"_blank\">github.com/msokalski</a><br />Repository: <a href=\"https://github.com/msokalski/ascii-patrol\" target=\"_blank\">github.com/msokalski/ascii-patrol</a><br />License: <a href=\"https://github.com/msokalski/ascii-patrol/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "3D Spatial Audio",
@@ -346,14 +375,16 @@
 		"link": "/emupedia-demo-3d-spatial-audio/",
 		"credits": "Website: <a href=\"https://howlerjs.com/#spatial\" target=\"_blank\">howlerjs.com/#spatial</a><br /><br />Author: <a href=\"https://github.com/goldfire\" target=\"_blank\">github.com/goldfire</a><br />Repository: <a href=\"https://github.com/goldfire/howler.js/tree/master/examples/3d\" target=\"_blank\">github.com/goldfire/howler.js</a><br />License: <a href=\"https://github.com/goldfire/howler.js/blob/master/LICENSE.md\" target=\"_blank\">MIT</a>",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Voxel Space",
 		"icon": "assets/images/icons/desktop/joystick",
 		"link": "/emupedia-demo-voxel-space/",
 		"credits": "Website: <a href=\"https://s-macke.github.io/VoxelSpace/VoxelSpace.html\" target=\"_blank\">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href=\"https://github.com/s-macke\" target=\"_blank\">github.com/s-macke</a><br />Repository: <a href=\"https://github.com/s-macke/VoxelSpace\" target=\"_blank\">github.com/s-macke/VoxelSpace</a><br />License: <a href=\"https://github.com/s-macke/VoxelSpace/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "8-bit Palette Color Cycling",
 		"title": "External Website",
@@ -362,6 +393,7 @@
 		"credits": "Website: <a href=\"http://effectgames.com/demos/canvascycle/\" target=\"_blank\">effectgames.com/demos/canvascycle</a><br /><br />YouTube: <a href=\"https://www.youtube.com/watch?v=aMcJ1Jvtef0\" target=\"_blank\">youtube.com/watch?v=aMcJ1Jvtef0</a><br /><br />Author: <a href=\"https://github.com/jhuckaby\" target=\"_blank\">github.com/jhuckaby</a><br />Source Code: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">effectgames.com</a><br />License: <a href=\"http://effectgames.com/effect/article-Old_School_Color_Cycling_with_HTML5.html#_section_1_6\" target=\"_blank\">LGPLv3</a><br /><br />All other assets<hr />Copyright <a href=\"http://www.markferrari.com/\" target=\"_blank\">Mark J. Ferrari</a>",
 		"width": 900,
 		"height": 550,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "RomCenter",
@@ -370,7 +402,8 @@
 		"link": "/emupedia-app-romcenter/",
 		"credits": "HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href=\"https://www.romcenter.com\" target=\"_blank\">romcenter.com</a><br /><br />Author: Eric Bole-Feysot",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "DOSBox",
 		"title": "Under Development",
@@ -378,7 +411,8 @@
 		"link": "/emupedia-app-dosbox/",
 		"credits": "JS-DOS<hr />Website: <a href=\"https://js-dos.com/\" target=\"_blank\">js-dos.com</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/js-dos\" target=\"_blank\">github.com/caiiiycuk/js-dos</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Emularity<hr />Author: <a href=\"https://github.com/db48x\" target=\"_blank\">github.com/db48x</a><br />Repository: <a href=\"https://github.com/db48x/emularity\" target=\"_blank\">github.com/db48x/emularity</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/dreamlayers\" target=\"_blank\">github.com/dreamlayers</a><br />Repository: <a href=\"https://github.com/dreamlayers/em-dosbox\" target=\"_blank\">github.com/dreamlayers/em-dosbox</a><br />License: <a href=\"https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://dosbox.com/\" target=\"_blank\">dosbox.com</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">sourceforge.net/projects/dosbox</a><br />Repository: <a href=\"https://sourceforge.net/p/dosbox/code-0/HEAD/tree\" target=\"_blank\">sourceforge.net/p/dosbox</a><br />License: <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">GPL-2.0</a>",
 		"width": 640,
-		"height": 422
+		"height": 422,
+		"newtab": true
 	} , {
 		"name": "Street Fighter Alpha",
 		"alternate_name": "Street Fighter Alpha: Warriors' Dreams",
@@ -388,7 +422,8 @@
 		"credits": "Website: <a href=\"https://gamedev8.github.io/js-sfa/default.htm\" target=\"_blank\">gamedev8.github.io/js-sfa</a><br /><br />Author: <a href=\"https://github.com/gamedev8\" target=\"_blank\">github.com/gamedev8</a><br />Repository: <a href=\"https://github.com/gamedev8/js-sfa\" target=\"_blank\">github.com/gamedev8/js-sfa</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Capcom",
 		"disclaimer_abandoned": true,
 		"width": 1068,
-		"height": 576
+		"height": 576,
+		"newtab": true
 	} , {
 		"name": "Wolfenstein 3D",
 		"icon": "assets/images/icons/desktop/wolfenstein-3d",
@@ -403,7 +438,8 @@
 				"width": 960,
 				"height": 600
 			}
-		}
+		},
+		"newtab": true
 	} , {
 		"name": "Doom 1",
 		"icon": "assets/images/icons/desktop/doom1",
@@ -416,7 +452,8 @@
 			"webassembly": {
 				"link": "/emupedia-game-doom1/"
 			}
-		}
+		},
+		"newtab": true
 	} , {
 		"name": "Doom 2: Hell on Earth",
 		"icon": "assets/images/icons/desktop/doom2",
@@ -429,7 +466,8 @@
 			"webassembly": {
 				"link": "/emupedia-game-doom2/"
 			}
-		}
+		},
+		"newtab": true
 	} , {
 		"name": "Doom 3",
 		"icon": "assets/images/icons/desktop/doom3",
@@ -437,7 +475,8 @@
 		"credits": "Website: <a href=\"http://www.continuation-labs.com/projects/d3wasm/\" target=\"_blank\">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href=\"https://github.com/gabrielcuvillier\" target=\"_blank\">github.com/gabrielcuvillier</a><br />Repository: <a href=\"https://github.com/gabrielcuvillier/d3wasm\" target=\"_blank\">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href=\"https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM-3\" target=\"_blank\">github.com/id-Software/DOOM-3</a><br />License: <a href=\"https://github.com/id-Software/DOOM-3/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)",
 		"disclaimer": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Quake 1",
 		"icon": "assets/images/icons/desktop/quake1",
@@ -445,7 +484,8 @@
 		"credits": "Author: <a href=\"https://github.com/triang3l\" target=\"_blank\">github.com/triang3l</a><br />Repository: <a href=\"https://github.com/triang3l/webquake\" target=\"_blank\">github.com/triang3l/webquake</a><br />License: <a href=\"https://github.com/triang3l/webquake/blob/master/GNU.md\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake\" target=\"_blank\">github.com/id-Software/Quake</a><br />License: <a href=\"https://github.com/id-Software/Quake/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Quake 2",
 		"icon": "assets/images/icons/desktop/quake2",
@@ -453,7 +493,8 @@
 		"credits": "Website: <a href=\"http://quake2playn.appspot.com/\" target=\"_blank\">quake2playn.appspot.com</a><br /><br />Author: <a href=\"https://github.com/stefanhaustein\" target=\"_blank\">github.com/stefanhaustein</a><br />Repository: <a href=\"https://github.com/stefanhaustein/quake2-playn-port\" target=\"_blank\">github.com/stefanhaustein/quake2-playn-port</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />GWT Java Port<hr />Author(s): <a href=\"https://sourceforge.net/projects/jake2\" target=\"_blank\">sourceforge.net/projects/jake2</a><br />Repository: <a href=\"https://sourceforge.net/p/jake2/git/ci/master/tree/\" target=\"_blank\">https://sourceforge.net/p/jake2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/Quake-2\" target=\"_blank\">github.com/id-Software/Quake-2</a><br />License: <a href=\"https://github.com/id-Software/Quake-2/blob/master/gnu.txt\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright Bethesda Softworks (formerly id Software)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Quake 3 Arena",
 		"icon": "assets/images/icons/desktop/quake3",
@@ -466,7 +507,8 @@
 			"webassembly": {
 				"link": "/emupedia-game-quake3/"
 			}
-		}
+		},
+		"newtab": true
 	} , {
 		"name": "Hexen 2",
 		"title": "Under Development",
@@ -475,7 +517,8 @@
 		"credits": "Website: <a href=\"http://triptohell.info/\" target=\"_blank\">triptohell.info</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/fteqw/\" target=\"_blank\">sourceforge.net/projects/fteqw</a><br />Repository: <a href=\"https://sourceforge.net/p/fteqw/code/HEAD/tree/\" target=\"_blank\">sourceforge.net/projects/fteqw/code</a><br />License: GPL-2.0<br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Raven Software)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Half-Life 1",
 		"title": "Under Development",
@@ -484,7 +527,8 @@
 		"credits": "Author(s): <a href=\"https://github.com/FWGS\" target=\"_blank\">github.com/FWGS</a><br />Repository: <a href=\"https://github.com/FWGS/xash3d\" target=\"_blank\">github.com/FWGS/xash3d</a><br />License: <a href=\"https://github.com/FWGS/xash3d/blob/master/COPYING\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Valve Software (formerly Sierra Studios)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Diablo 1",
 		"title": "Under Development",
@@ -493,7 +537,8 @@
 		"credits": "Website: <a href=\"https://d07riv.github.io/diabloweb/\" target=\"_blank\">d07riv.github.io/diabloweb</a><br /><br />Author: <a href=\"https://github.com/d07RiV\" target=\"_blank\">github.com/d07RiV</a><br />Repository: <a href=\"https://github.com/d07RiV/diabloweb\" target=\"_blank\">github.com/d07RiV/diabloweb</a><br /><br />Original Project<hr />Author(s): <a href=\"https://github.com/diasurgical/devilution#credits\" target=\"_blank\">github.com/diasurgical/devilution#credits</a><br />Repository: <a href=\"https://github.com/diasurgical/devilution\" target=\"_blank\">github.com/diasurgical/devilution</a><br />License: <a href=\"https://github.com/diasurgical/devilution/blob/master/LICENSE\" target=\"_blank\">Public domain</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Blizzard Entertainment)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Dark Reign: The Future of War",
 		"title": "Under Development",
@@ -502,7 +547,8 @@
 		"credits": "Website: <a href=\"http://qmegas.info/dark-reign-html5/\" target=\"_blank\">qmegas.info/dark-reign-html5</a><br /><br />Author: <a href=\"https://github.com/qmegas\" target=\"_blank\">github.com/qmegas</a><br />Repository: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version\" target=\"_blank\">github.com/qmegas/Dark-Reign---HTML5-Version</a><br />License: <a href=\"https://github.com/qmegas/Dark-Reign---HTML5-Version/blob/master/README.md#license\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Activision Blizzard (formerly Activision) and<br />N3V Games (formerly Auran Development)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Command and Conquer",
 		"title": "Under Development",
@@ -511,7 +557,8 @@
 		"credits": "Website: <a href=\"https://www.adityaravishankar.com/projects/games/command-and-conquer/\" target=\"_blank\">adityaravishankar.com/projects/games/command-and-conquer</a><br /><br />Author: <a href=\"https://github.com/adityaravishankar\" target=\"_blank\">github.com/adityaravishankar</a><br />Repository: <a href=\"https://github.com/adityaravishankar/command-and-conquer\" target=\"_blank\">github.com/adityaravishankar/command-and-conquer</a><br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 535
+		"height": 535,
+		"newtab": true
 	} , {
 		"name": "Command and Conquer: Red Alert 2",
 		"title": "Under Development",
@@ -520,7 +567,8 @@
 		"credits": "Website: <a href=\"https://ra2html5.surge.sh/\" target=\"_blank\">ra2html5.surge.sh</a><br /><br />Author: Võ Thành Đạt<br /><br />All other assets<hr />Copyright Electronic Arts (formerly Westwood Studios)",
 		"disclaimer": true,
 		"width": 900,
-		"height": 550
+		"height": 550,
+		"newtab": true
 	} , {
 		"name": "Tomb Raider",
 		"title": "Under Development",
@@ -529,7 +577,8 @@
 		"credits": "Website: <a href=\"http://xproger.info/projects/OpenLara/\" target=\"_blank\">xproger.info/projects/OpenLara</a><br /><br />Author: <a href=\"https://github.com/XProger\" target=\"_blank\">github.com/XProger</a><br />Repository: <a href=\"https://github.com/XProger/OpenLara\" target=\"_blank\">github.com/XProger/OpenLara</a><br />License: <a href=\"https://github.com/XProger/OpenLara/blob/master/LICENSE\" target=\"_blank\">BSD-2-Clause</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Square Enix (formerly Eidos Interactive)",
 		"disclaimer_abandoned": true,
 		"width": 900,
-		"height": 550
+		"height": 550,
+		"newtab": true
 	} , {
 		"name": "Transport Tycoon Deluxe",
 		"title": "Under Development",
@@ -538,7 +587,8 @@
 		"credits": "Website: <a href=\"https://milek7.pl/openttd-wasm/\" target=\"_blank\">milek7.pl/openttd-wasm</a><br /><br />Original Project<hr />Website: <a href=\"https://www.openttd.org/\" target=\"_blank\">openttd.org</a><br /><br />Author: <a href=\"https://github.com/OpenTTD\" target=\"_blank\">github.com/OpenTTD</a><br />Repository: <a href=\"https://github.com/OpenTTD/OpenTTD\" target=\"_blank\">github.com/OpenTTD/OpenTTD</a><br />License: <a href=\"https://github.com/OpenTTD/OpenTTD/blob/master/COPYING.md\" target=\"_blank\">GPL-2.0</a><br /><br />All other assets<hr />Copyright MicroProse",
 		"disclaimer_abandoned": true,
 		"width": 900,
-		"height": 550
+		"height": 550,
+		"newtab": true
 	} , {
 		"name": "X-COM: UFO Defense",
 		"title": "Under Development",
@@ -547,7 +597,8 @@
 		"credits": "Website: <a href=\"https://epicport.com/en/xcom/\" target=\"_blank\">epicport.com/en/xcom</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/epicport\" target=\"_blank\">github.com/caiiiycuk/epicport</a><br />License: <a href=\"https://github.com/caiiiycuk/epicport/blob/master/LICENSE\" target=\"_blank\">GPL-2.0</a><br /><br />Additional license: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />Original Project<hr />Website: <a href=\"https://openxcom.org/\" target=\"_blank\">openxcom.org</a><br /><br />Author: <a href=\"https://github.com/OpenXcom\" target=\"_blank\">github.com/OpenXcom</a><br />Repository: <a href=\"https://github.com/OpenXcom/OpenXcom/\" target=\"_blank\">github.com/OpenXcom/OpenXcom</a><br />License: <a href=\"https://github.com/OpenXcom/OpenXcom/blob/master/LICENSE.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright MicroProse",
 		"disclaimer_abandoned": true,
 		"width": 960,
-		"height": 600
+		"height": 600,
+		"newtab": true
 	} , {
 		"name": "Unreal Tournament",
 		"title": "Under Development",
@@ -556,7 +607,8 @@
 		"credits": "Website: <a href=\"https://icculus.org/ut99-emscripten/\" target=\"_blank\">icculus.org/ut99-emscripten</a><br /><br />Author: <a href=\"https://icculus.org\" target=\"_blank\">icculus</a><br /><br />All other assets<hr />Copyright Epic Games (formerly Epic MegaGames)",
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Minecraft",
 		"title": "Under Development",
@@ -565,7 +617,8 @@
 		"credits": "Website: <a href=\"https://classic.minecraft.net/\" target=\"_blank\">classic.minecraft.net</a><br /><br />Author: <a href=\"https://github.com/andyhall\" target=\"_blank\">github.com/andyhall</a><br />Repository: <a href=\"https://github.com/andyhall/noa\" target=\"_blank\">github.com/andyhall/noa</a><br />License: <a href=\"https://github.com/andyhall/noa/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
 		"disclaimer": true,
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Winamp",
 		"icon": "assets/images/icons/desktop/winamp-classic",

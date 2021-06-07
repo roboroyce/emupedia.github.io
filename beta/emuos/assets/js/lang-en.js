@@ -14,6 +14,7 @@
 			fullscreen: 'Fullscreen',
 			help: 'About',
 			helpTitle: 'About :title',
+			newtab: 'Open in New Tab',
 			close: 'Close',
 			confirmCloseTitle: 'Confirm closing of “:title”',
 			confirmCloseNo: 'No',

@@ -201,6 +201,12 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
+			if (typeof icon_options['newtab'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.data('newtab', icon_options['newtab']);
+			}
+
+			// noinspection JSUnfilteredForInLoop
 			if (typeof icon_options['credits'] !== 'undefined') {
 				// noinspection JSUnfilteredForInLoop
 				$icon.data('credits', icon_options['credits']);
@@ -286,6 +292,7 @@
 									credits: $(this).data('credits'),
 									icon: $(this).data('icon'),
 									src: frontend,
+									newtab: $(this).data('newtab'),
 									width: $(this).data('width'),
 									height: $(this).data('height')
 								});
@@ -296,6 +303,7 @@
 								title: $(this).data('name'),
 								icon: $(this).data('icon'),
 								src: frontend,
+								newtab: $(this).data('newtab'),
 								width: $(this).data('width'),
 								height: $(this).data('height'),
 								credits: $(this).data('credits')
@@ -320,6 +328,7 @@
 								credits: $(this).data('credits'),
 								icon: $(this).data('icon'),
 								src: $(this).data('link'),
+								newtab: $(this).data('newtab'),
 								width: $(this).data('width'),
 								height: $(this).data('height')
 							});
@@ -343,6 +352,7 @@
 							title: $(this).data('name'),
 							icon: $(this).data('icon'),
 							src: $(this).data('link'),
+							newtab: $(this).data('newtab'),
 							width: $(this).data('width'),
 							height: $(this).data('height'),
 							credits: $(this).data('credits')
@@ -1044,6 +1054,7 @@
 		var width		= typeof options.width		!== 'undefined' ? options.width		: 640;
 		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
+		var newtab		= typeof options.newtab !== 'undefined';
 		var timestamp	= Math.floor(Date.now() / 1000);
 
 		// noinspection HtmlDeprecatedAttribute,JSUnresolvedVariable,JSUnresolvedFunction
@@ -1083,6 +1094,8 @@
 		// noinspection JSValidateTypes
 		win.window({
 			help: credits,
+			newtab: newtab,
+			newtabUrl: src,
 			fullscreen: true,
 			embeddedContent: true,
 			// group: title,

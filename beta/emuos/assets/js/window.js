@@ -38,6 +38,8 @@
 			height: 'auto',
 			help: false,
 			fullscreen: false,
+			newtab: false,
+			newtabUrl: '',
 			hide: false,
 			icons: {
 				help: 'ui-icon-help',
@@ -47,7 +49,8 @@
 				main: null,
 				maximize: 'ui-icon-arrow-4-diag',
 				minimize: 'ui-icon-minusthick',
-				restore: 'ui-icon-newwin'
+				restore: 'ui-icon-newwin',
+				newtab: 'ui-icon-extlink'
 			},
 			maxHeight: null,
 			maximizable: true,
@@ -117,13 +120,14 @@
 			dimensions: ['width', 'height']
 		},
 
-		_titlebarButtons: ['help', 'fullscreen', 'close', 'minimize', 'maximize'],
+		_titlebarButtons: ['help', 'fullscreen', 'newtab', 'close', 'minimize', 'maximize'],
 
 		_unsupportedOptions: ['autoOpen', 'closeText', 'hide'],
 
 		classes: {
 			buttonHelp: 'emuos-window-button-help',
 			buttonFullscreen: 'emuos-window-button-fullscreen',
+			buttonNewtab: 'emuos-window-button-newtab',
 			buttonMinimize: 'emuos-window-button-minimize',
 			buttonMaximize: 'emuos-window-button-maximize-restore',
 			windowMaximized: 'emuos-window-maximized',
@@ -288,8 +292,8 @@
 			this._title();
 
 			this._validateTaskbar({
-									  initial: true
-								  });
+				initial: true
+			});
 
 			this._debugUnsupportedOptions();
 			this._resetUnsupportedOptions();
@@ -1317,6 +1321,16 @@
 			return false;
 		},
 
+		_openUrl: function() {
+			var o = this.options;
+
+			if (o.newtabUrl !== '') {
+				window.open(o.newtabUrl, '_blank');
+			}
+
+			return false;
+		},
+
 		// open confirm close window
 		_openConfirmClose: function() {
 			var self = this, o = this.options;
@@ -1592,10 +1606,11 @@
 
 			this.$elem = this.uiDialog.closest('.' + this.classes.uiDialog);
 
-			this._createButton('help');
 			this._createButton('fullscreen');
-			this._createButton('maximize');
+			this._createButton('help');
+			this._createButton('newtab');
 			this._createButton('minimize');
+			this._createButton('maximize');
 
 			// implement double click on titlebar for toggling maximized state
 			this.uiDialogTitlebar.on('dblclick.' + this._cache.uep, function(event) {
@@ -1640,7 +1655,7 @@
 			this.$elem.find('.' + this.classes['button' + B]).remove();
 
 			// don't create minimize/maximize buttons if window is not minimizable/maximizable
-			if (b === 'help' && !this.options.help || b === 'fullscreen' && !this.options.fullscreen || b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
+			if (b === 'help' && !this.options.help || b === 'fullscreen' && !this.options.fullscreen || b === 'newtab' && !this.options.newtab || b === 'maximize' && !this.options.maximizable || b === 'minimize' && !this.options.minimizable) {
 				this._enumerateTitlebarButtons();
 
 				return;
@@ -1651,6 +1666,10 @@
 					// trigger action
 					if (b === 'help') {
 						self._openHelp();
+					}
+
+					if (b === 'newtab') {
+						self._openUrl();
 					}
 
 					if (b === 'fullscreen') {
@@ -2260,6 +2279,7 @@
 			var exit = document.exitFullscreen || document.exitFullScreen || document.webkitExitFullscreen || document.webkitExitFullScreen || document.webkitCancelFullscreen || document.webkitCancelFullScreen || document.mozCancelFullscreen || document.mozCancelFullScreen || document.mozExitFullscreen || document.mozExitFullScreen || document.msExitFullscreen || document.msExitFullScreen;
 
 			if (exit) {
+				// noinspection JSIgnoredPromiseFromCall
 				exit.call(document);
 
 				setTimeout(function() {
@@ -3058,7 +3078,7 @@
 		_roundObj: function(obj) {
 			if (typeof obj === 'object') {
 				$.each(obj, function(index, elem) {
-					// noinspection JSCheckFunctionSignatures
+					// noinspection JSCheckFunctionSignatures,JSUnresolvedFunction
 					if (!isNaN(parseInt(elem), 10)) {
 						obj[index] = Math.round(parseFloat(elem));
 					}

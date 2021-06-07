@@ -1,4 +1,4 @@
-// noinspection ThisExpressionReferencesGlobalObjectJS
+// noinspection ThisExpressionReferencesGlobalObjectJS,JSAnnotator
 (function(global) {
 	// Error Handling
 	global.onerror = function(message, url, lineNumber) {
@@ -530,7 +530,7 @@
 	$sys.feature.ES6_ARRAY								= !!(Array.prototype && Array.prototype.copyWithin && Array.prototype.fill && Array.prototype.find && Array.prototype.findIndex && Array.prototype.keys && Array.prototype.entries && Array.prototype.values && Array.from && Array.of);
 	$sys.feature.ES6_FUNCTION							= (function() {
 		try {
-			eval('()=>{}');
+			eval('() => {}');
 		} catch (e) {
 			return false;
 		}
