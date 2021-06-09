@@ -951,7 +951,7 @@ function install(install_directory, dependency, version) {
 					// noinspection JSValidateTypes
 					replace({
 						files: install_directory + libraries_directory + dependency + '-' + version + '.js',
-						from: '//# sourceMappingURL=bson.browser.umd.js.map',
+						from: '//# sourceMappingURL=bson.js.map',
 						to: '//# sourceMappingURL='+ dependency + '-' + version + '.js.map'
 					}, (error) => {
 						if (error) {
@@ -960,8 +960,8 @@ function install(install_directory, dependency, version) {
 							// noinspection JSValidateTypes
 							replace({
 								files: install_directory + libraries_directory + dependency + '-' + version + '.js',
-								from: 'exports.default = BSON;',
-								to: 'exports.default = BSON; window.BSON = BSON;'
+								from: /exports\.default = BSON;\n/gi,
+								to: 'exports.default = BSON; window.BSON = BSON;\n'
 							}, (error) => {
 								if (error) {
 									log.error('Error occurred:', error);
@@ -1818,7 +1818,6 @@ function install(install_directory, dependency, version) {
 													});
 												}
 											});
-
 										}
 									});
 								}
@@ -3976,7 +3975,6 @@ function install(install_directory, dependency, version) {
 											});
 										}
 									});
-
 								}
 							});
 						}
@@ -4110,7 +4108,6 @@ function install(install_directory, dependency, version) {
 											log.log(dependency + ' version ' + version + ' installed!');
 										}
 									});
-
 								}
 							});
 						}

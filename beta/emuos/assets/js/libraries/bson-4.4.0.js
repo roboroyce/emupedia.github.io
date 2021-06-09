@@ -6335,7 +6335,7 @@
 	    if (value === undefined)
 	        return null;
 	    if (value instanceof Date || utils.isDate(value)) {
-	        var dateNum = value.getTime(),
+	        var dateNum = value.getTime(), 
 	        // is it in year range 1970-9999?
 	        inRange = dateNum > -1 && dateNum < 253402318800000;
 	        if (options.legacy) {
@@ -6491,7 +6491,7 @@
 	     * console.log(EJSON.stringify(doc));
 	     * ```
 	     */
-	    function stringify(value,
+	    function stringify(value, 
 	    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 	    replacer, space, options) {
 	        if (space != null && typeof space === 'object') {
@@ -6824,7 +6824,7 @@
 	}
 	exports.calculateObjectSize = calculateObjectSize;
 	/** @internal */
-	function calculateElement(name,
+	function calculateElement(name, 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	value, serializeFunctions, isArray, ignoreUndefined) {
 	    if (serializeFunctions === void 0) { serializeFunctions = false; }
@@ -8879,7 +8879,7 @@
 	    deserializeStream: deserializeStream
 	};
 	exports.default = BSON; window.BSON = BSON;
-	//# sourceMappingURL=bson.js.map
+	//# sourceMappingURL=bson-4.4.0.js.map
 	});
 
 	var bson$1 = unwrapExports(bson);
@@ -9001,4 +9001,4 @@
 	Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-//# sourceMappingURL=bson-4.4.0.js.map
+//# sourceMappingURL=bson.browser.umd.js.map
