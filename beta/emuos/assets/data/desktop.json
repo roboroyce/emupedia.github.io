@@ -368,6 +368,16 @@
 		"newtab": true,
 		"shortcut": true
 	} , {
+		"name": "Zelda",
+		"title": "Under Development",
+		"icon": "assets/images/icons/desktop/zelda",
+		"link": "/emupedia-game-zelda/",
+		"credits": "Website: <a href=\"https://www.zelda30tribute.com/\" target=\"_blank\">zelda30tribute.com</a><br /><br />Author: <a href=\"https://github.com/scottlininger\" target=\"_blank\">github.com/scottlininger</a><br />Repository: <a href=\"https://github.com/scottlininger/zelda30tribute\" target=\"_blank\">github.com/scottlininger/zelda30tribute</a><br />License: <a href=\"https://github.com/scottlininger/zelda30tribute/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
+		"disclaimer_abandoned": true,
+		"width": 900,
+		"height": 480,
+		"newtab": true
+	} , {
 		"name": "3D Spatial Audio",
 		"icon": "assets/images/icons/desktop/joystick",
 		"link": "/emupedia-demo-3d-spatial-audio/",
