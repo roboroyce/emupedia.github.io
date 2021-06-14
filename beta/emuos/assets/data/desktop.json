@@ -16,6 +16,7 @@
 		"link": "https://archive.emupedia.net/",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "EmuChat",
@@ -24,6 +25,7 @@
 		"link": "https://emuchat.emupedia.net/",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"singleinstance": true
 	} , {
 		"name": "Discord",
@@ -33,6 +35,7 @@
 		"credits": "Website: <a href=\"https://widgetbot.io\" target=\"_blank\">widgetbot.io</a>",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true,
 		"singleinstance": true
 	} , {
@@ -81,7 +84,8 @@
 		"icon": "assets/images/icons/desktop/sandbox",
 		"link": "/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"newtab": true
 	} , {
 		"name": "Minesweeper Classic",
 		"icon": "assets/images/icons/desktop/minesweeper",
@@ -100,6 +104,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msminesweeper/default.htm\" target=\"_blank\">zone.msn.com/en/msminesweeper</a>",
 		"width": 960,
 		"height": 747,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Solitaire Collection",
@@ -150,6 +155,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/msjewel/default.htm\" target=\"_blank\">zone.msn.com/en/msjewel</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Sudoku",
@@ -160,6 +166,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/sudoku/default.htm\" target=\"_blank\">zone.msn.com/en/sudoku</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Microsoft Jigsaw",
@@ -170,6 +177,7 @@
 		"credits": "Website: <a href=\"https://zone.msn.com/en/jigsaw/default.htm\" target=\"_blank\">zone.msn.com/en/jigsaw</a>",
 		"width": 960,
 		"height": 540,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Cookie Clicker",
@@ -241,6 +249,7 @@
 		"icon": "assets/images/icons/desktop/raptor",
 		"link": "/emupedia-game-raptor/",
 		"credits": "Author: <a href=\"https://github.com/robgietema\" target=\"_blank\">github.com/robgietema</a><br />Repository: <a href=\"https://github.com/robgietema/raptor\" target=\"_blank\">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software",
+		"newtab": true,
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 400
@@ -663,6 +672,7 @@
 		"credits": "Website: <a href=\"https://cojmar.github.io/nsvg\" target=\"_blank\">cojmar.github.io/nsvg</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/nsvg\" target=\"_blank\">github.com/cojmar/nsvg</a><br /><br />Inspired from<hr />Website: <a href=\"https://editor.method.ac/\" target=\"_blank\">editor.method.ac</a><br /><br />Author: <a href=\"https://github.com/methodofaction\" target=\"_blank\">github.com/methodofaction</a><br />Repository: <a href=\"https://github.com/methodofaction/Method-Draw\" target=\"_blank\">github.com/methodofaction/Method-Draw</a><br />License: <a href=\"https://github.com/methodofaction/Method-Draw/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/SVG-Edit\" target=\"_blank\">github.com/SVG-Edit</a><br />Repository: <a href=\"https://github.com/SVG-Edit/svgedit\" target=\"_blank\">github.com/SVG-Edit/svgedit</a><br />License: <a href=\"https://github.com/SVG-Edit/svgedit/blob/master/LICENSE-MIT.txt\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Photopea",
@@ -672,6 +682,7 @@
 		"credits": "Website: <a href=\"https://photopea.com/\" target=\"_blank\">photopea.com</a><br /><br />Author: <a href=\"https://github.com/photopea\" target=\"_blank\">github.com/photopea</a><br />Repository: <a href=\"https://github.com/photopea/photopea\" target=\"_blank\">github.com/photopea/photopea</a>",
 		"width": 900,
 		"height": 610,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Fluid Paint",
@@ -681,6 +692,7 @@
 		"credits": "Website: <a href=\"http://david.li/paint/\" target=\"_blank\">david.li/paint</a><br /><br />Author: <a href=\"https://github.com/dli\" target=\"_blank\">github.com/dli</a><br />Repository: <a href=\"https://github.com/dli/paint\" target=\"_blank\">github.com/dli/paint</a><br />License: <a href=\"https://github.com/dli/paint/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 610,
+		"newtab": true,
 		"shortcut": true
 	} , {
 		"name": "Happy Tree Friends",
@@ -689,6 +701,7 @@
 		"link": "/emupedia-media-htf/",
 		"width": 900,
 		"height": 480,
+		"newtab": true,
 		"shortcut": true,
 		"singleinstance": true
 	}]
