@@ -637,6 +637,16 @@
 		"height": 480,
 		"newtab": true
 	} , {
+		"name": "Minecraft Multiplayer",
+		"title": "Under Development",
+		"icon": "assets/images/icons/desktop/minecraft-classic",
+		"link": "https://lennar.icu/mine/play.html",
+		"credits": "Website: <a href=\"https://www.classicube.net/\" target=\"_blank\">classicube.net</a><br /><br />Author: <a href=\"https://github.com/UnknownShadow200\" target=\"_blank\">github.com/UnknownShadow200</a><br />Repository: <a href=\"https://github.com/UnknownShadow200/ClassiCube\" target=\"_blank\">github.com/UnknownShadow200/ClassiCube</a><br />License: <a href=\"https://github.com/UnknownShadow200/ClassiCube/blob/master/license.txt\" target=\"_blank\">Custom</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
+		"disclaimer": true,
+		"width": 900,
+		"height": 480,
+		"newtab": true
+	} , {
 		"name": "Winamp",
 		"icon": "assets/images/icons/desktop/winamp-classic",
 		"link": "/emupedia-app-winamp/",
