@@ -627,7 +627,7 @@
 		"height": 480,
 		"newtab": true
 	} , {
-		"name": "Minecraft",
+		"name": "Minecraft Singleplayer",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/minecraft-classic",
 		"link": "/emupedia-game-minecraft-classic/",
@@ -635,7 +635,8 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"shortcut": true
 	} , {
 		"name": "Minecraft Multiplayer",
 		"title": "Under Development",
@@ -645,7 +646,8 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"shortcut": true
 	} , {
 		"name": "Winamp",
 		"icon": "assets/images/icons/desktop/winamp-classic",
