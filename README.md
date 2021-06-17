@@ -34,13 +34,6 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 * <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emuos.org/beta/emuos/](https://emuos.org/beta/emuos/)
 
 <details>
-<summary>Mirrors</summary>
-
-* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 1 [https://emuos.redirectme.net/beta/emuos/](https://emuos.redirectme.net/beta/emuos/)
-* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 2 [https://emu.bounceme.net/beta/emuos/](https://emu.bounceme.net/beta/emuos/)
-* <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> Mirror 3 [https://emu.webhop.me/beta/emuos/](https://emu.webhop.me/beta/emuos/)
-
-</details>
 
 ## 🌍 <sub>Browser support</sub>
 <details>
