@@ -313,7 +313,7 @@
 				client.preload.auth_info = data;
 
 				// noinspection JSUnresolvedVariable
-				if (data.login && !simplestorage.get('uid')) {
+				if (data.login) {
 					simplestorage.set('uid', data.login);
 				}
 			});
