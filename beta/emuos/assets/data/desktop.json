@@ -59,6 +59,16 @@
 		"newtab": true,
 		"shortcut": true
 	} , {
+		"name": "Windows 96",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/windows96",
+		"link": "https://windows96.net",
+		"credits": "Website: <a href=\"https://windows96.net\" target=\"_blank\">windows96.net</a><br /><br />Author(s): <a href=\"http://sys36.net/\" target=\"_blank\">ctrlz &amp; ziad87</a>",
+		"width": 960,
+		"height": 734,
+		"newtab": true,
+		"shortcut": true
+	} , {
 		"name": "98.js",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/98.js",
