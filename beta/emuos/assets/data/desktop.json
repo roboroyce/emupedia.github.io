@@ -17,7 +17,8 @@
 		"width": 900,
 		"height": 480,
 		"newtab": true,
-		"singleinstance": true
+		"singleinstance": true,
+		"share": true
 	} , {
 		"name": "EmuChat",
 		"title": "Under Development",
@@ -26,7 +27,8 @@
 		"width": 900,
 		"height": 480,
 		"newtab": true,
-		"singleinstance": true
+		"singleinstance": true,
+		"share": true
 	} , {
 		"name": "Discord",
 		"title": "External Website",
@@ -57,7 +59,8 @@
 		"width": 960,
 		"height": 734,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Windows 96",
 		"title": "External Website",
@@ -67,7 +70,8 @@
 		"width": 960,
 		"height": 734,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "98.js",
 		"title": "External Website",
@@ -78,7 +82,8 @@
 		"width": 960,
 		"height": 713,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Visual Studio Code",
 		"title": "Under Development",
@@ -87,7 +92,8 @@
 		"credits": "Website: <a href=\"https://code.visualstudio.com/\" target=\"_blank\">code.visualstudio.com</a><br /><br />Author: <a href=\"https://github.com/Microsoft\" target=\"_blank\">github.com/Microsoft</a><br />Repository: <a href=\"https://github.com/Microsoft/vscode\" target=\"_blank\">github.com/Microsoft/vscode</a><br />License: <a href=\"https://github.com/microsoft/vscode/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Sandbox",
 		"title": "Under Development",
@@ -95,7 +101,8 @@
 		"link": "/emupedia-app-sandbox/?repo=Emupedia/emupedia-app-sandbox/contents/examples?ref=master&baseurl=/emupedia-app-romcenter/&capsule=%3Cbody%3E&capsule=%3C/body%3E",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Minesweeper Classic",
 		"icon": "assets/images/icons/desktop/minesweeper",
@@ -104,7 +111,8 @@
 		"newtab": true,
 		"disclaimer": true,
 		"width": 502,
-		"height": 343
+		"height": 343,
+		"share": true
 	} , {
 		"name": "Microsoft Minesweeper",
 		"title": "External Website",
@@ -198,7 +206,8 @@
 		"width": 1090,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Flappy Bird",
 		"title": "External Website",
@@ -209,7 +218,8 @@
 		"width": 432,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
@@ -220,7 +230,8 @@
 		"width": 480,
 		"height": 392,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "agar.io",
 		"title": "External Website",
@@ -231,7 +242,8 @@
 		"width": 900,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "lennar.icu",
 		"title": "External Website",
@@ -242,7 +254,8 @@
 		"width": 900,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "diep.io",
 		"title": "External Website",
@@ -253,7 +266,8 @@
 		"width": 900,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "skribbl.io",
 		"title": "External Website",
@@ -263,7 +277,8 @@
 		"width": 900,
 		"height": 600,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Raptor: Call of the Shadows",
 		"title": "Under Development",
@@ -273,7 +288,8 @@
 		"newtab": true,
 		"disclaimer_abandoned": true,
 		"width": 640,
-		"height": 400
+		"height": 400,
+		"share": true
 	} , {
 		"name": "NVolley",
 		"title": "External Website",
@@ -283,7 +299,8 @@
 		"width": 640,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Pikachu Volleyball",
 		"title": "Under Development",
@@ -293,7 +310,8 @@
 		"disclaimer_abandoned": true,
 		"width": 432,
 		"height": 304,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Wings 2.0",
 		"title": "Under Development",
@@ -302,7 +320,8 @@
 		"credits": "Author: <a href=\"https://github.com/ZaDarkSide\" target=\"_blank\">github.com/ZaDarkSide</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Worms Armageddon",
 		"title": "Under Development",
@@ -312,7 +331,8 @@
 		"disclaimer_abandoned": true,
 		"width": 900,
 		"height": 600,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Biolab Disaster",
 		"icon": "assets/images/icons/desktop/biolab-disaster",
@@ -320,7 +340,8 @@
 		"credits": "Website: <a href=\"https://playbiolab.com\" target=\"_blank\">playbiolab.com</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D",
 		"width": 720,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Super Blob Blaster",
 		"icon": "assets/images/icons/desktop/super-blob-blaster",
@@ -328,7 +349,8 @@
 		"credits": "Website: <a href=\"https://phoboslab.org/twopointfive/\" target=\"_blank\">phoboslab.org/twopointfive</a><br /><br />Author: <a href=\"https://github.com/phoboslab\" target=\"_blank\">github.com/phoboslab</a><br />Repository: <a href=\"https://github.com/phoboslab/twopointfive\" target=\"_blank\">github.com/phoboslab/twopointfive</a><br />License: <a href=\"https://github.com/phoboslab/TwoPointFive/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
 		"width": 720,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Pac-Man",
 		"title": "External Website",
@@ -339,7 +361,8 @@
 		"width": 1025,
 		"height": 715,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "PONG",
 		"title": "External Website",
@@ -350,7 +373,8 @@
 		"width": 720,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Tetris",
 		"title": "External Website",
@@ -361,7 +385,8 @@
 		"width": 720,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Clippy",
 		"icon": "assets/images/icons/desktop/clippy"
@@ -376,7 +401,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "ASCIICKER",
 		"title": "External Website",
@@ -386,7 +412,8 @@
 		"width": 640,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "ASCII PATROL",
 		"title": "External Website",
@@ -406,7 +433,8 @@
 		"disclaimer_abandoned": true,
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "3D Spatial Audio",
 		"icon": "assets/images/icons/desktop/joystick",
@@ -414,7 +442,8 @@
 		"credits": "Website: <a href=\"https://howlerjs.com/#spatial\" target=\"_blank\">howlerjs.com/#spatial</a><br /><br />Author: <a href=\"https://github.com/goldfire\" target=\"_blank\">github.com/goldfire</a><br />Repository: <a href=\"https://github.com/goldfire/howler.js/tree/master/examples/3d\" target=\"_blank\">github.com/goldfire/howler.js</a><br />License: <a href=\"https://github.com/goldfire/howler.js/blob/master/LICENSE.md\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Voxel Space",
 		"icon": "assets/images/icons/desktop/joystick",
@@ -422,7 +451,8 @@
 		"credits": "Website: <a href=\"https://s-macke.github.io/VoxelSpace/VoxelSpace.html\" target=\"_blank\">s-macke.github.io/VoxelSpace</a><br /><br />Author: <a href=\"https://github.com/s-macke\" target=\"_blank\">github.com/s-macke</a><br />Repository: <a href=\"https://github.com/s-macke/VoxelSpace\" target=\"_blank\">github.com/s-macke/VoxelSpace</a><br />License: <a href=\"https://github.com/s-macke/VoxelSpace/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright THQ Nordic (formerly NovaLogic)",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "8-bit Palette Color Cycling",
 		"title": "External Website",
@@ -432,7 +462,8 @@
 		"width": 900,
 		"height": 550,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "RomCenter",
 		"title": "Under Development",
@@ -441,7 +472,8 @@
 		"credits": "HTML5 Port<hr />Author: Emupedia<br /><br />Original project<hr />Website: <a href=\"https://www.romcenter.com\" target=\"_blank\">romcenter.com</a><br /><br />Author: Eric Bole-Feysot",
 		"width": 900,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "DOSBox",
 		"title": "Under Development",
@@ -450,7 +482,8 @@
 		"credits": "JS-DOS<hr />Website: <a href=\"https://js-dos.com/\" target=\"_blank\">js-dos.com</a><br /><br />Author: <a href=\"https://github.com/caiiiycuk\" target=\"_blank\">github.com/caiiiycuk</a><br />Repository: <a href=\"https://github.com/caiiiycuk/js-dos\" target=\"_blank\">github.com/caiiiycuk/js-dos</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Emularity<hr />Author: <a href=\"https://github.com/db48x\" target=\"_blank\">github.com/db48x</a><br />Repository: <a href=\"https://github.com/db48x/emularity\" target=\"_blank\">github.com/db48x/emularity</a><br />License: <a href=\"https://github.com/db48x/emularity/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />HTML5 Port<hr />Author: <a href=\"https://github.com/dreamlayers\" target=\"_blank\">github.com/dreamlayers</a><br />Repository: <a href=\"https://github.com/dreamlayers/em-dosbox\" target=\"_blank\">github.com/dreamlayers/em-dosbox</a><br />License: <a href=\"https://github.com/dreamlayers/em-dosbox/blob/em-dosbox-svn-sdl2/COPYING\" target=\"_blank\">GPL-2.0</a><br /><br />Original Project<hr />Website: <a href=\"https://dosbox.com/\" target=\"_blank\">dosbox.com</a><br /><br />Author(s): <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">sourceforge.net/projects/dosbox</a><br />Repository: <a href=\"https://sourceforge.net/p/dosbox/code-0/HEAD/tree\" target=\"_blank\">sourceforge.net/p/dosbox</a><br />License: <a href=\"https://sourceforge.net/projects/dosbox\" target=\"_blank\">GPL-2.0</a>",
 		"width": 640,
 		"height": 422,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Street Fighter Alpha",
 		"alternate_name": "Street Fighter Alpha: Warriors' Dreams",
@@ -461,7 +494,8 @@
 		"disclaimer_abandoned": true,
 		"width": 1068,
 		"height": 576,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Wolfenstein 3D",
 		"icon": "assets/images/icons/desktop/wolfenstein-3d",
@@ -477,7 +511,8 @@
 				"height": 600
 			}
 		},
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Doom 1",
 		"icon": "assets/images/icons/desktop/doom1",
@@ -491,7 +526,8 @@
 				"link": "/emupedia-game-doom1/"
 			}
 		},
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Doom 2: Hell on Earth",
 		"icon": "assets/images/icons/desktop/doom2",
@@ -505,7 +541,8 @@
 				"link": "/emupedia-game-doom2/"
 			}
 		},
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Doom 3",
 		"icon": "assets/images/icons/desktop/doom3",
@@ -514,7 +551,8 @@
 		"disclaimer": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Quake 1",
 		"icon": "assets/images/icons/desktop/quake1",
@@ -523,7 +561,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Quake 2",
 		"icon": "assets/images/icons/desktop/quake2",
@@ -532,7 +571,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Quake 3 Arena",
 		"icon": "assets/images/icons/desktop/quake3",
@@ -546,7 +586,8 @@
 				"link": "/emupedia-game-quake3/"
 			}
 		},
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Hexen 2",
 		"title": "Under Development",
@@ -556,7 +597,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Half-Life 1",
 		"title": "Under Development",
@@ -566,7 +608,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Diablo 1",
 		"title": "Under Development",
@@ -577,7 +620,8 @@
 		"width": 640,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Dark Reign: The Future of War",
 		"title": "Under Development",
@@ -587,7 +631,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Command and Conquer",
 		"title": "Under Development",
@@ -597,7 +642,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 535,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Command and Conquer: Red Alert 2",
 		"title": "Under Development",
@@ -607,7 +653,8 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 550,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Tomb Raider",
 		"title": "Under Development",
@@ -617,7 +664,8 @@
 		"disclaimer_abandoned": true,
 		"width": 900,
 		"height": 550,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Transport Tycoon Deluxe",
 		"title": "Under Development",
@@ -627,7 +675,8 @@
 		"disclaimer_abandoned": true,
 		"width": 900,
 		"height": 550,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "X-COM: UFO Defense",
 		"title": "Under Development",
@@ -637,7 +686,8 @@
 		"disclaimer_abandoned": true,
 		"width": 960,
 		"height": 600,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Unreal Tournament",
 		"title": "Under Development",
@@ -647,7 +697,8 @@
 		"disclaimer_abandoned": true,
 		"width": 640,
 		"height": 480,
-		"newtab": true
+		"newtab": true,
+		"share": true
 	} , {
 		"name": "Minecraft Singleplayer",
 		"title": "Under Development",
@@ -658,7 +709,8 @@
 		"width": 900,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Minecraft Multiplayer",
 		"title": "Under Development",
@@ -669,7 +721,8 @@
 		"width": 900,
 		"height": 550,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Winamp",
 		"icon": "assets/images/icons/desktop/winamp-classic",
@@ -680,7 +733,8 @@
 		"height": 354,
 		"top": "calc(50% - 165.5px)",
 		"left": "calc(50% - 174px)",
-		"widget": false
+		"widget": false,
+		"share": true
 	} , {
 		"name": "Notepad",
 		"icon": "assets/images/icons/desktop/notepad",
@@ -689,7 +743,8 @@
 		"disclaimer": true,
 		"width": 900,
 		"height": 480,
-		"runonce": true
+		"runonce": true,
+		"share": true
 	} , {
 		"name": "Paint",
 		"icon": "assets/images/icons/desktop/paint",
@@ -697,7 +752,8 @@
 		"credits": "Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/jspaint\" target=\"_blank\">github.com/1j01/jspaint</a><br /><br />License: \uD83D\uDE01 Permission granted from the author(s) \uD83D\uDC4D<br /><br />All other assets<hr />Copyright Microsoft",
 		"disclaimer": true,
 		"width": 900,
-		"height": 480
+		"height": 480,
+		"share": true
 	} , {
 		"name": "Nsvg",
 		"title": "External Website",
@@ -707,7 +763,8 @@
 		"width": 900,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Photopea",
 		"title": "External Website",
@@ -717,7 +774,8 @@
 		"width": 900,
 		"height": 610,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Fluid Paint",
 		"title": "External Website",
@@ -727,7 +785,8 @@
 		"width": 900,
 		"height": 610,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"share": true
 	} , {
 		"name": "Happy Tree Friends",
 		"title": "External Website",
@@ -737,6 +796,7 @@
 		"height": 480,
 		"newtab": true,
 		"shortcut": true,
-		"singleinstance": true
+		"singleinstance": true,
+		"share": true
 	}]
 }

@@ -154,9 +154,16 @@
 
 			if (typeof icon_options['credits'] !== 'undefined') {
 				if (typeof icon_options['link'] !== 'undefined') {
-					if (!~icon_options['link'].indexOf('http')) {
-						var share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'].slice(1, -1);
-						icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a><br /><br />' + icon_options['credits'];
+					var share_link = '';
+
+					if (icon_options['share'] === true) {
+						if (~icon_options['link'].indexOf('http')) {
+							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'];
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'] + '</a><br /><br />' + icon_options['credits'];
+						} else {
+							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'].slice(1, -1);
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a><br /><br />' + icon_options['credits'];
+						}
 					}
 				}
 
@@ -842,14 +849,24 @@
 		Router.config({mode: 'hash', root: root});
 		// noinspection JSIgnoredPromiseFromCall
 		Router.navigate('/');
+
 		Router.add(/(.*)/, function(route) {
 			for (var j in self.options.icons) {
 				// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 				var icon_options = self.options.icons[j];
 
 				if (typeof icon_options['link'] !== 'undefined') {
+					var icon_link = '';
+
 					if (!~icon_options['link'].indexOf('http')) {
-						var icon_link = icon_options['link'].slice(1, -1);
+						icon_link = icon_options['link'].slice(1, -1);
+
+						if (route === icon_link) {
+							self.$desktop.find('a.emuos-desktop-icon span:contains("' + icon_options['name'] + '")').first().trigger('dblclick');
+							break;
+						}
+					} else {
+						icon_link = icon_options['link'].substr(-1) === '/' ? icon_options['link'].slice(0, -1) : icon_options['link'];
 
 						if (route === icon_link) {
 							self.$desktop.find('a.emuos-desktop-icon span:contains("' + icon_options['name'] + '")').first().trigger('dblclick');
