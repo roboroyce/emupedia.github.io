@@ -3,15 +3,15 @@
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: {
-			bson: '../../beta/emuos/assets/js/libraries/bson-4.4.0',
-			'jquery': '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
+			bson: '../../beta/emuos/assets/js/libraries/bson-4.5.1',
+			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
 			'jquery-ajax-retry': '../../beta/emuos/assets/js/libraries/jquery-ajax-retry-0.2.8.min',
 			network: '../../beta/emuos/assets/js/network',
 			socket: '../../beta/emuos/assets/js/socket',
 			simplestorage: '../../beta/emuos/assets/js/libraries/simplestorage-0.2.1.min'
 		},
 		shim: {
-			'jquery': {
+			jquery: {
 				exports: 'jQuery'
 			},
 			network: {
