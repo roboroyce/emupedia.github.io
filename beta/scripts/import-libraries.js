@@ -1151,7 +1151,39 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
-		case 'datatables.net-editor-free':
+		case 'datatables.net-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/dataTables.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-bootstrap5'] = 'datatables-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/dataTables.bootstrap5.js', install_directory + libraries_directory + 'datatables-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/dataTables.bootstrap5.min.css', install_directory + css_directory + 'datatables-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/dataTables.bootstrap5.css', install_directory + css_directory + 'datatables-bootstrap5-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'datatables.net-alteditor-updated':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/src/dataTables.altEditor.free.min.js', install_directory + libraries_directory + 'datatables-editor-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
@@ -1279,6 +1311,38 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'datatables.net-buttons-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/buttons.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-buttons-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-buttons-bootstrap5'] = 'datatables-buttons-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/buttons.bootstrap5.js', install_directory + libraries_directory + 'datatables-buttons-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/buttons.bootstrap5.min.css', install_directory + css_directory + 'datatables-buttons-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/buttons.bootstrap5.css', install_directory + css_directory + 'datatables-buttons-bootstrap5-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'datatables.net-colreorder':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/js/dataTables.colReorder.min.js', install_directory + libraries_directory + 'datatables-colreorder-' + version + '.min.js', copy_options, (error) => {
@@ -1316,6 +1380,38 @@ function install(install_directory, dependency, version) {
 								} else {
 									//noinspection JSUnresolvedFunction
 									fs.copy(nodemodules_directory + dependency + '/css/colReorder.bootstrap4.css', install_directory + css_directory + 'datatables-colreorder-bootstrap4-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'datatables.net-colreorder-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/colReorder.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-colreorder-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-colreorder-bootstrap5'] = 'datatables-colreorder-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/colReorder.bootstrap5.js', install_directory + libraries_directory + 'datatables-colreorder-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/colReorder.bootstrap5.min.css', install_directory + css_directory + 'datatables-colreorder-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/colReorder.bootstrap5.css', install_directory + css_directory + 'datatables-colreorder-bootstrap5-' + version + '.css', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
@@ -1379,6 +1475,38 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'datatables.net-fixedcolumns-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/fixedColumns.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-fixedcolumns-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-fixedcolumns-bootstrap5'] = 'datatables-fixedcolumns-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/fixedColumns.bootstrap5.js', install_directory + libraries_directory + 'datatables-fixedcolumns-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/fixedColumns.bootstrap5.min.css', install_directory + css_directory + 'datatables-fixedcolumns-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/fixedColumns.bootstrap5.css', install_directory + css_directory + 'datatables-fixedcolumns-bootstrap5-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'datatables.net-fixedheader':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/js/dataTables.fixedHeader.min.js', install_directory + libraries_directory + 'datatables-fixedheader-' + version + '.min.js', copy_options, (error) => {
@@ -1416,6 +1544,38 @@ function install(install_directory, dependency, version) {
 								} else {
 									//noinspection JSUnresolvedFunction
 									fs.copy(nodemodules_directory + dependency + '/css/fixedHeader.bootstrap4.css', install_directory + css_directory + 'datatables-fixedheader-bootstrap4-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'datatables.net-fixedheader-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/fixedHeader.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-fixedheader-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-fixedheader-bootstrap5'] = 'datatables-fixedheader-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/fixedHeader.bootstrap5.js', install_directory + libraries_directory + 'datatables-fixedheader-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/fixedHeader.bootstrap5.min.css', install_directory + css_directory + 'datatables-fixedheader-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/fixedHeader.bootstrap5.css', install_directory + css_directory + 'datatables-fixedheader-bootstrap5-' + version + '.css', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
@@ -1479,6 +1639,38 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'datatables.net-responsive-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/responsive.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-responsive-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-responsive-bootstrap5'] = 'datatables-responsive-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/responsive.bootstrap5.js', install_directory + libraries_directory + 'datatables-responsive-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/responsive.bootstrap5.min.css', install_directory + css_directory + 'datatables-responsive-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/responsive.bootstrap5.css', install_directory + css_directory + 'datatables-responsive-bootstrap5-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
 		case 'datatables.net-select':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/js/dataTables.select.min.js', install_directory + libraries_directory + 'datatables-select-' + version + '.min.js', copy_options, (error) => {
@@ -1516,6 +1708,38 @@ function install(install_directory, dependency, version) {
 								} else {
 									//noinspection JSUnresolvedFunction
 									fs.copy(nodemodules_directory + dependency + '/css/select.bootstrap4.css', install_directory + css_directory + 'datatables-select-bootstrap4-' + version + '.css', copy_options, (error) => {
+										if (error) {
+											log.error('Error occurred:', error);
+										} else {
+											log.log(dependency + ' version ' + version + ' installed!');
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+			});
+			break;
+		case 'datatables.net-select-bs5':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/js/select.bootstrap5.min.js', install_directory + libraries_directory + 'datatables-select-bootstrap5-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries['datatables-select-bootstrap5'] = 'datatables-select-bootstrap5-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/js/select.bootstrap5.js', install_directory + libraries_directory + 'datatables-select-bootstrap5-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							//noinspection JSUnresolvedFunction
+							fs.copy(nodemodules_directory + dependency + '/css/select.bootstrap5.min.css', install_directory + css_directory + 'datatables-select-bootstrap5-' + version + '.min.css', copy_options, (error) => {
+								if (error) {
+									log.error('Error occurred:', error);
+								} else {
+									//noinspection JSUnresolvedFunction
+									fs.copy(nodemodules_directory + dependency + '/css/select.bootstrap5.css', install_directory + css_directory + 'datatables-select-bootstrap5-' + version + '.css', copy_options, (error) => {
 										if (error) {
 											log.error('Error occurred:', error);
 										} else {
@@ -1750,6 +1974,23 @@ function install(install_directory, dependency, version) {
 				} else {
 					libraries['fingerprint'] = 'fingerprint-' + version;
 					log.log(dependency + ' version ' + version + ' installed!');
+				}
+			});
+			break;
+		case '@fingerprintjs/fingerprintjs':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/fp.umd.min.js', install_directory + libraries_directory + 'fingerprint-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					fs.copy(nodemodules_directory + dependency + '/dist/fp.umd.js', install_directory + libraries_directory + 'fingerprint-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							libraries['fingerprint'] = 'fingerprint-' + version;
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
 				}
 			});
 			break;
@@ -3454,6 +3695,7 @@ function install(install_directory, dependency, version) {
 			});
 			break;
 		case 'popper.js':
+		case '@popperjs/core':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/dist/umd/popper.min.js', install_directory + libraries_directory + 'popper-' + version + '.min.js', copy_options, (error) => {
 				if (error) {
