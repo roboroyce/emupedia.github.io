@@ -104,6 +104,16 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "Space Cadet Pinball",
+		"icon": "assets/images/icons/desktop/space-cadet-pinball",
+		"link": "/emupedia-game-space-cadet-pinball/",
+		"credits": "Website: <a href=\"https://alula.github.io/SpaceCadetPinball/\" target=\"_blank\">alula.github.io/SpaceCadetPinball</a><br />Author: <a href=\"https://github.com/alula\" target=\"_blank\">github.com/alula</a><br />Repository: <a href=\"https://github.com/alula/SpaceCadetPinball\" target=\"_blank\">github.com/alula/SpaceCadetPinball</a><br /><br />Original project<hr />Author: <a href=\"https://github.com/k4zmu2a\" target=\"_blank\">github.com/k4zmu2a</a><br />Repository: <a href=\"https://github.com/k4zmu2a/SpaceCadetPinball\" target=\"_blank\">github.com/k4zmu2a/SpaceCadetPinball</a><br /><br />All other assets part of Full Tilt! Pinball<hr />Copyright Microsoft & Electronic Arts (formerly Maxis)",
+		"newtab": true,
+		"disclaimer": true,
+		"width": 640,
+		"height": 480,
+		"share": true
+	} , {
 		"name": "Minesweeper Classic",
 		"icon": "assets/images/icons/desktop/minesweeper",
 		"link": "/emupedia-game-minesweeper/",
