@@ -88,11 +88,12 @@
 		"name": "Visual Studio Code",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/visual-studio-code",
-		"link": "/emupedia-app-vscode/",
+		"link": "https://vscode.dev",
 		"credits": "Website: <a href=\"https://code.visualstudio.com/\" target=\"_blank\">code.visualstudio.com</a><br /><br />Author: <a href=\"https://github.com/Microsoft\" target=\"_blank\">github.com/Microsoft</a><br />Repository: <a href=\"https://github.com/Microsoft/vscode\" target=\"_blank\">github.com/Microsoft/vscode</a><br />License: <a href=\"https://github.com/microsoft/vscode/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a>",
 		"width": 900,
 		"height": 480,
 		"newtab": true,
+		"shortcut": true,
 		"share": true
 	} , {
 		"name": "Sandbox",
