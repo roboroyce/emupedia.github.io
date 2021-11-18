@@ -809,5 +809,12 @@
 		"shortcut": true,
 		"singleinstance": true,
 		"share": true
+	} , {
+		"name": "Quarashi",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/quarashi",
+		"link": "https://quarashi.network/",
+		"target": "_blank",
+		"shortcut": true
 	}]
 }
