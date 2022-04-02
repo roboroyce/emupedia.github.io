@@ -967,7 +967,7 @@
 							net.toggle();
 						});
 
-						self.$body.on('keydown', function (e) {
+						self.$window.on('keydown', function (e) {
 							// noinspection JSRedundantSwitchStatement
 							switch (e.keyCode) {
 								case 192:
