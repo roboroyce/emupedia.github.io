@@ -3,7 +3,7 @@
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: {
-			bson: '../../beta/emuos/assets/js/libraries/bson-4.5.1',
+			bson: '../../beta/emuos/assets/js/libraries/bson-4.5.2',
 			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
 			'jquery-ajax-retry': '../../beta/emuos/assets/js/libraries/jquery-ajax-retry-0.2.8.min',
 			network: '../../beta/emuos/assets/js/network',
