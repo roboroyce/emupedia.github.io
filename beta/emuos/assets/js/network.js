@@ -126,7 +126,7 @@
 
 					self.buffer = [];
 				} else if (e.originalEvent.data.cmd === 'chat.toggle') {
-					var $chat = $('body').find('iframe[id="Chat"]').parent()
+					var $chat = $('body').find('iframe[id="Chat"]').parent();
 
 					$chat.slideToggle(300, function () {
 						if ($chat.is(':hidden')) {
