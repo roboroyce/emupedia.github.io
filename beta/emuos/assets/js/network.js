@@ -87,6 +87,7 @@
 				'connect',
 				'disconnect',
 				'auth.info',
+				'my.info',
 				'room.info',
 				'room.user_info',
 				'room.user_join',
@@ -128,6 +129,7 @@
 				} else if (e.originalEvent.data.cmd === 'chat.toggle') {
 					var $chat = $('body').find('iframe[id="Chat"]').parent();
 
+					// noinspection JSValidateTypes
 					$chat.slideToggle(300, function () {
 						if ($chat.is(':hidden')) {
 							if (typeof window.u_network !== 'undefined') {
@@ -218,7 +220,7 @@
 					timeout: ajax_retry_timeout,
 					statusCodes: [402, 403, 404, 405, 406, 407, 408, 410, 411, 412, 413, 414, 415, 416, 417, 501, 503, 504, 505]
 				});
-			}
+			};
 
 			var country = '';
 
@@ -332,7 +334,7 @@
 				client.preload.auth_info = data;
 
 				// noinspection JSUnresolvedVariable
-				if (data.login) {
+				if (data.login && !simplestorage.get('uid')) {
 					simplestorage.set('uid', data.login);
 				}
 			});
