@@ -505,9 +505,109 @@
 			parent: '.emuos-taskbar-windows-containment'
 		});
 
+		function getEaster(year) {
+
+			year = parseInt(year);
+
+			var f = Math.floor;
+			var jDay = 0;
+			var jMonth = 0;
+			var oDay = 0;
+			var oMonth = 0;
+			var wDay = 0;
+			var wMonth = 0;
+
+			function EasterJulian() {
+				var g = 0;
+				var i = 0;
+				var j = 0;
+				var p = 0;
+
+				g = year % 19;
+				i = (19 * g + 15) % 30;
+				j = (year + f(year / 4) + i) % 7;
+				p = i - j;
+
+				jMonth = 3 + f((p + 40) / 44);
+				jDay = p + 28 - 31 * f(jMonth / 4);
+			}
+
+			function EasterGregorian() {
+				var g = 0;
+				var c = 0;
+				var h = 0;
+				var i = 0;
+				var j = 0;
+				var p = 0;
+
+				g = year % 19;
+				c = f(year / 100);
+				h = (c - f(c / 4) - f(8 * c + 13 / 25) + 19 * g + 15) % 30;
+				i = h - f(h / 28) * (1 - f(h / 28) * f(29 / h + 1) * f(21 - g / 11));
+				j = (year + f(year / 4) + i + 2 - c + f(c / 4)) % 7;
+				p = i - j;
+
+				wMonth = 3 + f((p + 40) / 44);
+				wDay = p + 28 - 31 * f(wMonth / 4);
+			}
+
+			function EasterOrthodox () {
+				var extra = 0;
+				var tmp = 0;
+
+				oDay = 0;
+				oMonth = 0;
+
+				if ((year > 1582) && (year <= 4099)) {
+					extra = 10;
+
+					if (year > 1600) {
+						tmp = f(year / 100) - 16;
+						extra = extra + tmp - f(tmp / 4);
+					}
+
+					oDay = jDay + extra;
+					oMonth = jMonth;
+
+					if ((oMonth === 3) && (oDay > 31)) {
+						oMonth = 4;
+						oDay = oDay - 31;
+					}
+
+					if ((oMonth === 4) && (oDay > 30)) {
+						oMonth = 5;
+						oDay = oDay - 30;
+					}
+				}
+			}
+
+			EasterJulian()
+			EasterGregorian()
+			EasterOrthodox()
+
+			return {
+				julian: {
+					month: jMonth || -1,
+					day: jDay || -1
+				},
+				gregorian: {
+					month: wMonth || -1,
+					day: wDay || -1
+				},
+				orthodox: {
+					month: oMonth || -1,
+					day: oDay || -1
+				}
+			}
+		}
+
 		if (typeof moment === 'function') {
 			if (moment().month() === 1 && moment().date() === 14) {
 				self.$html.addClass('emuos-valentines');
+			}
+
+			if (moment().month() === getEaster(moment().year()).gregorian.month && moment().date() === getEaster(moment().year()).gregorian.day || moment().month() === getEaster(moment().year()).orthodox.month && moment().date() === getEaster(moment().year()).orthodox.day) {
+				self.$html.addClass('emuos-easter');
 			}
 
 			if (moment().month() === 11) {
