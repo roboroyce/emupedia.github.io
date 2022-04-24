@@ -606,7 +606,7 @@
 				self.$html.addClass('emuos-valentines');
 			}
 
-			if (moment().month() === getEaster(moment().year()).gregorian.month && moment().date() === getEaster(moment().year()).gregorian.day || moment().month() === getEaster(moment().year()).orthodox.month && moment().date() === getEaster(moment().year()).orthodox.day) {
+			if ((moment().month() + 1 === getEaster(moment().year()).gregorian.month && moment().date() === getEaster(moment().year()).gregorian.day) || (moment().month() + 1 === getEaster(moment().year()).orthodox.month && moment().date() === getEaster(moment().year()).orthodox.day)) {
 				self.$html.addClass('emuos-easter');
 			}
 
