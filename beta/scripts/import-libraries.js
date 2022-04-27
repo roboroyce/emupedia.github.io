@@ -4381,10 +4381,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						const paths = [
 							'',
 							'/beta/emuos/',
-							'//emupedia.net/beta/emuos/',
-							'//emupedia.org/beta/emuos/',
-							'//emuos.net/beta/emuos/',
-							'//emuos.org/beta/emuos/'
+							'//$location$/beta/emuos/'
 						]
 
 						libraries['emularity'] = 'emularity';
@@ -4420,6 +4417,8 @@ for (let i = 0; i < dependencies.length; i++) {
 							}
 						});
 
+						libraries['socket'] = '//ws.$location$/server/app/u_socket_es5';
+						libraries['network'] = '//ws.$location$/server/app/network_iframe';
 						libraries['ga'] = '//www.google-analytics.com/analytics';
 
 						// noinspection JSUnresolvedFunction
@@ -4430,14 +4429,11 @@ for (let i = 0; i < dependencies.length; i++) {
 		global['$sys'] = {};
 	}
 
-	var location = ~window.location.hostname.indexOf('emupedia.net') ? 'emupedia.net' : (~window.location.hostname.indexOf('emupedia.org') ? 'emupedia.org' : (~window.location.hostname.indexOf('emuos.net') ? 'emuos.net' : (~window.location.hostname.indexOf('emuos.org') ? 'emuos.org' : '')))
+	var location = ~window.location.hostname.indexOf('emupedia.net') ? 'emupedia.net' : (~window.location.hostname.indexOf('emupedia.org') ? 'emupedia.org' : (~window.location.hostname.indexOf('emuos.net') ? 'emuos.net' : (~window.location.hostname.indexOf('emuos.org') ? 'emuos.org' : 'emupedia.net')))
 
 	// region Libraries
 
-	global['$sys']['lib'] = ${JSON.stringify(libraries, null, 8).split('"').join("'").split('    ').join('\t')};
-
-	global['$sys']['lib']['socket'] = ['//ws.' + location + '/server/app/u_socket_es5'];
-	global['$sys']['lib']['network'] = ['//ws.' + location + '/server/app/network_iframe'];
+	global['$sys']['lib'] = ${JSON.stringify(libraries, null, 8).split('"').join("'").split('    ').join('\t').replaceAll('$location$', "' + location + '")};
 
 	// endregion
 }(this));`, function (error) {
