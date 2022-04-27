@@ -4389,8 +4389,8 @@ for (let i = 0; i < dependencies.length; i++) {
 
 						libraries['emularity'] = 'emularity';
 
-						Object.keys(libraries).sort().forEach((key) => {
-							ordered[key] = paths.map((path) => {
+						Object.keys(libraries).sort().forEach(key => {
+							ordered[key] = paths.map(path => {
 								if (path === '') {
 									return path + libraries_directory.replace('assets/js/', '') + libraries[key]
 								}
@@ -4407,20 +4407,19 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['router'] = 'router';
 						libraries['filesystem'] = 'filesystem';
 						libraries['lang-en'] = 'lang-en';
-						libraries['network'] = 'network';
+						// libraries['network'] = 'network';
 						libraries['taskbar'] = 'taskbar';
 						libraries['window'] = 'window';
-						libraries['socket'] = 'socket';
+						// libraries['socket'] = 'socket';
 
-						Object.keys(libraries).forEach((key) => {
+						Object.keys(libraries).forEach(key => {
 							if (!Array.isArray(libraries[key])) {
-								libraries[key] = paths.map((path) => {
+								libraries[key] = paths.map(path => {
 									return (path !== '' ? path + 'assets/js/' : path) + libraries[key];
 								});
 							}
 						});
 
-						//libraries['socket'] = ['//ws.emupedia.net/app/u_socket_es5', '//ws.emuos.net/app/u_socket_es5', '//ws.emuos.org/app/u_socket_es5'];
 						libraries['ga'] = '//www.google-analytics.com/analytics';
 
 						// noinspection JSUnresolvedFunction
@@ -4431,9 +4430,14 @@ for (let i = 0; i < dependencies.length; i++) {
 		global['$sys'] = {};
 	}
 
+	var location = ~window.location.hostname.indexOf('emupedia.net') ? 'emupedia.net' : (~window.location.hostname.indexOf('emupedia.org') ? 'emupedia.org' : (~window.location.hostname.indexOf('emuos.net') ? 'emuos.net' : (~window.location.hostname.indexOf('emuos.org') ? 'emuos.org' : '')))
+
 	// region Libraries
 
 	global['$sys']['lib'] = ${JSON.stringify(libraries, null, 8).split('"').join("'").split('    ').join('\t')};
+
+	global['$sys']['lib']['socket'] = ['//ws.' + location + '/server/app/u_socket_es5'];
+	global['$sys']['lib']['network'] = ['//ws.' + location + '/server/app/network_iframe'];
 
 	// endregion
 }(this));`, function (error) {

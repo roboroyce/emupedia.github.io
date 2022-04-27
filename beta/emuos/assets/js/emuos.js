@@ -602,7 +602,7 @@
 		}
 
 		if (typeof moment === 'function') {
-			if (moment().month() === 1 && moment().date() === 14) {
+			if (moment().month() + 1 === 2 && moment().date() === 14) {
 				self.$html.addClass('emuos-valentines');
 			}
 
@@ -610,7 +610,7 @@
 				self.$html.addClass('emuos-easter');
 			}
 
-			if (moment().month() === 11) {
+			if (moment().month() + 1 === 12) {
 				var xmas = '';
 				var newyear = '';
 
@@ -658,6 +658,7 @@
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❅</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">❆</div></div>';
+
 				if (moment().date() >= 23 && moment().date() <= 25) {
 					xmas +=		'<div class="snowflakes"><div class="snowflake">🎄</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">🎅</div></div>' +
@@ -669,6 +670,7 @@
 								'<div class="snowflakes"><div class="snowflake">🎁</div></div>' +
 								'<div class="snowflakes"><div class="snowflake">⛄</div></div>';
 				}
+
 				xmas +=		'</div>';
 
 				self.$desktop.prepend(xmas);
