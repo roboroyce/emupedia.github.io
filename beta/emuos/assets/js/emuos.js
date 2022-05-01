@@ -1221,9 +1221,11 @@
 			$el.get(0).focus();
 			$el.get(0).contentWindow.focus();
 
-			if (typeof window.u_network !== 'undefined') {
-				if (typeof window.u_network.emit_event === 'function') {
-					window.u_network.emit_event('chat.show', {});
+			if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+				// noinspection JSUnresolvedVariable
+				if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+					// noinspection JSUnresolvedFunction
+					window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
 				}
 			}
 		});
