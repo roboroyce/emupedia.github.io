@@ -165,6 +165,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					libraries['@coreui/coreui'] = 'coreui-' + version + '.min';
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/dist/js/coreui.js', install_directory + libraries_directory + 'coreui-' + version + '.js', copy_options, (error) => {
 						if (error) {
@@ -3385,6 +3386,24 @@ function install(install_directory, dependency, version) {
 				}
 			});
 			break;
+		case 'nosleep.js':
+			//noinspection JSUnresolvedFunction
+			fs.copy(nodemodules_directory + dependency + '/dist/NoSleep.min.js', install_directory + libraries_directory + 'nosleep-' + version + '.min.js', copy_options, (error) => {
+				if (error) {
+					log.error('Error occurred:', error);
+				} else {
+					libraries[dependency] = 'nosleep-' + version + '.min';
+					//noinspection JSUnresolvedFunction
+					fs.copy(nodemodules_directory + dependency + '/dist/NoSleep.js', install_directory + libraries_directory + 'nosleep-' + version + '.js', copy_options, (error) => {
+						if (error) {
+							log.error('Error occurred:', error);
+						} else {
+							log.log(dependency + ' version ' + version + ' installed!');
+						}
+					});
+				}
+			});
+			break;
 		case 'normalize.css':
 			//noinspection JSUnresolvedFunction
 			fs.copy(nodemodules_directory + dependency + '/' + dependency, install_directory + css_directory + 'normalize-' + version + '.css', copy_options, (error) => {
@@ -4387,13 +4406,7 @@ for (let i = 0; i < dependencies.length; i++) {
 						libraries['emularity'] = 'emularity';
 
 						Object.keys(libraries).sort().forEach(key => {
-							ordered[key] = paths.map(path => {
-								if (path === '') {
-									return path + libraries_directory.replace('assets/js/', '') + libraries[key]
-								}
-
-								return path + libraries_directory + libraries[key];
-							});
+							ordered[key] = paths.map(path => path === '' ? path + libraries_directory.replace('assets/js/', '') + libraries[key] : path + libraries_directory + libraries[key]);
 						});
 
 						libraries = ordered;
@@ -4411,9 +4424,7 @@ for (let i = 0; i < dependencies.length; i++) {
 
 						Object.keys(libraries).forEach(key => {
 							if (!Array.isArray(libraries[key])) {
-								libraries[key] = paths.map(path => {
-									return (path !== '' ? path + 'assets/js/' : path) + libraries[key];
-								});
+								libraries[key] = paths.map(path => (path !== '' ? path + 'assets/js/' : path) + libraries[key]);
 							}
 						});
 
@@ -4433,7 +4444,7 @@ for (let i = 0; i < dependencies.length; i++) {
 
 	// region Libraries
 
-	global['$sys']['lib'] = ${JSON.stringify(libraries, null, 8).split('"').join("'").split('    ').join('\t').replaceAll('$location$', "' + location + '")};
+	global['$sys']['lib'] = ${JSON.stringify(libraries, null, 4).split('"').join("'").split('    ').join('\t').replaceAll('$location$', "' + location + '")};
 
 	// endregion
 }(this));`, function (error) {

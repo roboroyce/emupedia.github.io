@@ -1,4 +1,5 @@
 // noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedLocalSymbols,DuplicatedCode
+
 (function(global) {
 	/*console.log('╔═╗╔╦╗╦ ╦╔═╗╔═╗\n' +
 				  '╠═ ║║║║ ║║ ║╚═╗\n' +
@@ -72,7 +73,7 @@
 				deps: ['jquery-ajax-retry', 'jsrsasign-all', 'octokat']
 			},
 			fingerprint: {
-				exports: 'Fingerprint'
+				exports: 'FingerprintJS'
 			},
 			ga: {
 				exports: '__ga__'
