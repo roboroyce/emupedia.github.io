@@ -175,9 +175,9 @@
 				'//' + location + '/beta/emuos/assets/js/libraries/fetch-3.6.2'
 		],
 		'fingerprint': [
-				'libraries/fingerprint-3.3.0',
-				'/beta/emuos/assets/js/libraries/fingerprint-3.3.0',
-				'//' + location + '/beta/emuos/assets/js/libraries/fingerprint-3.3.0'
+				'libraries/fingerprint-3.3.3',
+				'/beta/emuos/assets/js/libraries/fingerprint-3.3.3',
+				'//' + location + '/beta/emuos/assets/js/libraries/fingerprint-3.3.3'
 		],
 		'firebug-lite': [
 				'libraries/firebug-lite-1.5.3',
