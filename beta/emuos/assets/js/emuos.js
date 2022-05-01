@@ -518,9 +518,13 @@
 			var wMonth = 0;
 
 			function EasterJulian() {
+				// noinspection JSUnusedAssignment
 				var g = 0;
+				// noinspection JSUnusedAssignment
 				var i = 0;
+				// noinspection JSUnusedAssignment
 				var j = 0;
+				// noinspection JSUnusedAssignment
 				var p = 0;
 
 				g = year % 19;
@@ -533,11 +537,17 @@
 			}
 
 			function EasterGregorian() {
+				// noinspection JSUnusedAssignment
 				var g = 0;
+				// noinspection JSUnusedAssignment
 				var c = 0;
+				// noinspection JSUnusedAssignment
 				var h = 0;
+				// noinspection JSUnusedAssignment
 				var i = 0;
+				// noinspection JSUnusedAssignment
 				var j = 0;
+				// noinspection JSUnusedAssignment
 				var p = 0;
 
 				g = year % 19;
@@ -1021,9 +1031,11 @@
 						net.badge = 0;
 
 						net.show = function() {
-							if (typeof window.u_network !== 'undefined') {
-								if (typeof window.u_network.emit_event === 'function') {
-									window.u_network.emit_event('chat.show', {});
+							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+								// noinspection JSUnresolvedVariable
+								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+									// noinspection JSUnresolvedFunction
+									window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
 								}
 							}
 
@@ -1034,9 +1046,11 @@
 						};
 
 						net.hide = function() {
-							if (typeof window.u_network !== 'undefined') {
-								if (typeof window.u_network.emit_event === 'function') {
-									window.u_network.emit_event('chat.hide', {});
+							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+								// noinspection JSUnresolvedVariable
+								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+									// noinspection JSUnresolvedFunction
+									window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
 								}
 							}
 
@@ -1049,15 +1063,19 @@
 								var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
 								$icon.attr('class', 'icon badge');
 
-								if (typeof window.u_network !== 'undefined') {
-									if (typeof window.u_network.emit_event === 'function') {
-										window.u_network.emit_event('chat.show', {});
+								if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+									// noinspection JSUnresolvedVariable
+									if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+										// noinspection JSUnresolvedFunction
+										window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
 									}
 								}
 							} else {
-								if (typeof window.u_network !== 'undefined') {
-									if (typeof window.u_network.emit_event === 'function') {
-										window.u_network.emit_event('chat.hide', {});
+								if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+									// noinspection JSUnresolvedVariable
+									if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+										// noinspection JSUnresolvedFunction
+										window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
 									}
 								}
 							}
