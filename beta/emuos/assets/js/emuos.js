@@ -1087,11 +1087,12 @@
 							net.toggle();
 						});
 
-						self.$window.on('keydown', function (e) {
+						self.$window.off('keydown').on('keydown', function (e) {
 							// noinspection JSRedundantSwitchStatement
 							switch (e.keyCode) {
 								case 192:
 									net.toggle();
+									e.preventDefault();
 									return false;
 							}
 						});
@@ -1192,8 +1193,7 @@
 		var width		= typeof options.width		!== 'undefined' ? options.width		: 640;
 		var height		= typeof options.height		!== 'undefined' ? options.height	: 400;
 		var credits		= typeof options.credits	!== 'undefined' ? options.credits	: '';
-		var newtab		= typeof options.newtab !== 'undefined';
-		var timestamp	= Math.floor(Date.now() / 1000);
+		var newtab		= typeof options.newtab		!== 'undefined';
 
 		// noinspection HtmlDeprecatedAttribute,JSUnresolvedVariable,JSUnresolvedFunction
 		var win = $('<div class="iframe" data-title="'+ title +'"><iframe id="' + title + '" src="' + src + '" onload="this.focus();this.contentWindow.focus();" frameborder="0" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe></div>');
