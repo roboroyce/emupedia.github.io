@@ -1125,6 +1125,7 @@
 			}
 		});
 
+		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',
@@ -1209,7 +1210,7 @@
 					// noinspection JSUnresolvedVariable
 					if (typeof net.register_iframe === 'function') {
 						// noinspection JSUnresolvedFunction
-						net.register_iframe(title + '-' + timestamp);
+						net.register_iframe(title);
 						net.badge = 0;
 						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
 						$icon.attr('class', 'icon badge');
@@ -1251,6 +1252,7 @@
 			}
 		});
 
+		// noinspection DuplicatedCode
 		$('.emuos-window').contextmenu({
 			autoTrigger: false,
 			delegate: '.emuos-window-icon',
