@@ -4142,6 +4142,7 @@ function install(install_directory, dependency, version) {
 				if (error) {
 					log.error('Error occurred:', error);
 				} else {
+					libraries[dependency] = dependency + '-' + version + '.min';
 					//noinspection JSUnresolvedFunction
 					fs.copy(nodemodules_directory + dependency + '/' + dependency + '.js', install_directory + libraries_directory + dependency + '-' + version + '.js', copy_options, (error) => {
 						if (error) {
