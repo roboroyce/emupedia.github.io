@@ -15,14 +15,14 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/babel-polyfill-7.12.1.min'
 	],
 	'babel-standalone': [
-		'libraries/babel-standalone-7.15.7.min',
-		'/beta/emuos/assets/js/libraries/babel-standalone-7.15.7.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/babel-standalone-7.15.7.min'
+		'libraries/babel-standalone-7.18.4.min',
+		'/beta/emuos/assets/js/libraries/babel-standalone-7.18.4.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/babel-standalone-7.18.4.min'
 	],
 	'bootstrap': [
-		'libraries/bootstrap-5.1.1.min',
-		'/beta/emuos/assets/js/libraries/bootstrap-5.1.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/bootstrap-5.1.1.min'
+		'libraries/bootstrap-5.1.3.min',
+		'/beta/emuos/assets/js/libraries/bootstrap-5.1.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/bootstrap-5.1.3.min'
 	],
 	'browserfs': [
 		'libraries/browserfs-1.4.3.min',
@@ -30,9 +30,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/browserfs-1.4.3.min'
 	],
 	'bson': [
-		'libraries/bson-4.5.2',
-		'/beta/emuos/assets/js/libraries/bson-4.5.2',
-		'//' + location + '/beta/emuos/assets/js/libraries/bson-4.5.2'
+		'libraries/bson-4.6.4',
+		'/beta/emuos/assets/js/libraries/bson-4.6.4',
+		'//' + location + '/beta/emuos/assets/js/libraries/bson-4.6.4'
 	],
 	'buzz': [
 		'libraries/buzz-1.2.1.min',
@@ -55,54 +55,54 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/custom-event-1.0.7'
 	],
 	'datatables': [
-		'libraries/datatables-1.11.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-1.11.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-1.11.3.min'
+		'libraries/datatables-1.12.1.min',
+		'/beta/emuos/assets/js/libraries/datatables-1.12.1.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-1.12.1.min'
 	],
 	'datatables-bootstrap5': [
-		'libraries/datatables-bootstrap5-1.11.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-bootstrap5-1.11.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-bootstrap5-1.11.3.min'
+		'libraries/datatables-bootstrap5-1.12.1.min',
+		'/beta/emuos/assets/js/libraries/datatables-bootstrap5-1.12.1.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-bootstrap5-1.12.1.min'
 	],
 	'datatables-buttons': [
-		'libraries/datatables-buttons-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-2.0.1.min'
+		'libraries/datatables-buttons-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-2.2.3.min'
 	],
 	'datatables-buttons-bootstrap5': [
-		'libraries/datatables-buttons-bootstrap5-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-bootstrap5-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-bootstrap5-2.0.1.min'
+		'libraries/datatables-buttons-bootstrap5-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-bootstrap5-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-bootstrap5-2.2.3.min'
 	],
 	'datatables-buttons-colvis': [
-		'libraries/datatables-buttons-colvis-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-colvis-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-colvis-2.0.1.min'
+		'libraries/datatables-buttons-colvis-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-colvis-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-colvis-2.2.3.min'
 	],
 	'datatables-buttons-flash': [
-		'libraries/datatables-buttons-flash-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-flash-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-flash-2.0.1.min'
+		'libraries/datatables-buttons-flash-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-flash-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-flash-2.2.3.min'
 	],
 	'datatables-buttons-html5': [
-		'libraries/datatables-buttons-html5-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-html5-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-html5-2.0.1.min'
+		'libraries/datatables-buttons-html5-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-html5-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-html5-2.2.3.min'
 	],
 	'datatables-buttons-print': [
-		'libraries/datatables-buttons-print-2.0.1.min',
-		'/beta/emuos/assets/js/libraries/datatables-buttons-print-2.0.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-print-2.0.1.min'
+		'libraries/datatables-buttons-print-2.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-buttons-print-2.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-buttons-print-2.2.3.min'
 	],
 	'datatables-colreorder': [
-		'libraries/datatables-colreorder-1.5.4.min',
-		'/beta/emuos/assets/js/libraries/datatables-colreorder-1.5.4.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-colreorder-1.5.4.min'
+		'libraries/datatables-colreorder-1.5.6.min',
+		'/beta/emuos/assets/js/libraries/datatables-colreorder-1.5.6.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-colreorder-1.5.6.min'
 	],
 	'datatables-colreorder-bootstrap5': [
-		'libraries/datatables-colreorder-bootstrap5-1.5.4.min',
-		'/beta/emuos/assets/js/libraries/datatables-colreorder-bootstrap5-1.5.4.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-colreorder-bootstrap5-1.5.4.min'
+		'libraries/datatables-colreorder-bootstrap5-1.5.6.min',
+		'/beta/emuos/assets/js/libraries/datatables-colreorder-bootstrap5-1.5.6.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-colreorder-bootstrap5-1.5.6.min'
 	],
 	'datatables-editor': [
 		'libraries/datatables-editor-2.0.0.min',
@@ -110,49 +110,49 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/datatables-editor-2.0.0.min'
 	],
 	'datatables-ellipsis': [
-		'libraries/datatables-ellipsis-1.10.24',
-		'/beta/emuos/assets/js/libraries/datatables-ellipsis-1.10.24',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-ellipsis-1.10.24'
+		'libraries/datatables-ellipsis-1.11.5',
+		'/beta/emuos/assets/js/libraries/datatables-ellipsis-1.11.5',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-ellipsis-1.11.5'
 	],
 	'datatables-fixedcolumns': [
-		'libraries/datatables-fixedcolumns-4.0.0.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedcolumns-4.0.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedcolumns-4.0.0.min'
+		'libraries/datatables-fixedcolumns-4.1.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedcolumns-4.1.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedcolumns-4.1.0.min'
 	],
 	'datatables-fixedcolumns-bootstrap5': [
-		'libraries/datatables-fixedcolumns-bootstrap5-4.0.0.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedcolumns-bootstrap5-4.0.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedcolumns-bootstrap5-4.0.0.min'
+		'libraries/datatables-fixedcolumns-bootstrap5-4.1.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedcolumns-bootstrap5-4.1.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedcolumns-bootstrap5-4.1.0.min'
 	],
 	'datatables-fixedheader': [
-		'libraries/datatables-fixedheader-3.2.0.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.0.min'
+		'libraries/datatables-fixedheader-3.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.3.min'
 	],
 	'datatables-fixedheader-bootstrap5': [
-		'libraries/datatables-fixedheader-bootstrap5-3.2.0.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.0.min'
+		'libraries/datatables-fixedheader-bootstrap5-3.2.3.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.3.min'
 	],
 	'datatables-responsive': [
-		'libraries/datatables-responsive-2.2.9.min',
-		'/beta/emuos/assets/js/libraries/datatables-responsive-2.2.9.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-responsive-2.2.9.min'
+		'libraries/datatables-responsive-2.3.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-responsive-2.3.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-responsive-2.3.0.min'
 	],
 	'datatables-responsive-bootstrap5': [
-		'libraries/datatables-responsive-bootstrap5-2.2.9.min',
-		'/beta/emuos/assets/js/libraries/datatables-responsive-bootstrap5-2.2.9.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-responsive-bootstrap5-2.2.9.min'
+		'libraries/datatables-responsive-bootstrap5-2.3.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-responsive-bootstrap5-2.3.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-responsive-bootstrap5-2.3.0.min'
 	],
 	'datatables-select': [
-		'libraries/datatables-select-1.3.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-select-1.3.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-select-1.3.3.min'
+		'libraries/datatables-select-1.4.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-select-1.4.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-select-1.4.0.min'
 	],
 	'datatables-select-bootstrap5': [
-		'libraries/datatables-select-bootstrap5-1.3.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-select-bootstrap5-1.3.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-select-bootstrap5-1.3.3.min'
+		'libraries/datatables-select-bootstrap5-1.4.0.min',
+		'/beta/emuos/assets/js/libraries/datatables-select-bootstrap5-1.4.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-select-bootstrap5-1.4.0.min'
 	],
 	'dropbox': [
 		'libraries/dropbox-10.11.0.min',
@@ -215,9 +215,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/hybrids-4.3.4.min'
 	],
 	'i18next': [
-		'libraries/i18next-21.2.0.min',
-		'/beta/emuos/assets/js/libraries/i18next-21.2.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/i18next-21.2.0.min'
+		'libraries/i18next-21.8.7.min',
+		'/beta/emuos/assets/js/libraries/i18next-21.8.7.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/i18next-21.8.7.min'
 	],
 	'ie11-custom-properties': [
 		'libraries/css-vars-4.1.0',
@@ -280,19 +280,19 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/jsonpath-1.1.1.min'
 	],
 	'jsrsasign-all': [
-		'libraries/jsrsasign-all-10.4.1.min',
-		'/beta/emuos/assets/js/libraries/jsrsasign-all-10.4.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/jsrsasign-all-10.4.1.min'
+		'libraries/jsrsasign-all-10.5.23.min',
+		'/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.23.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.23.min'
 	],
 	'jszip': [
-		'libraries/jszip-3.7.1.min',
-		'/beta/emuos/assets/js/libraries/jszip-3.7.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/jszip-3.7.1.min'
+		'libraries/jszip-3.10.0.min',
+		'/beta/emuos/assets/js/libraries/jszip-3.10.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/jszip-3.10.0.min'
 	],
 	'less': [
-		'libraries/less-4.1.1.min',
-		'/beta/emuos/assets/js/libraries/less-4.1.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/less-4.1.1.min'
+		'libraries/less-4.1.2.min',
+		'/beta/emuos/assets/js/libraries/less-4.1.2.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/less-4.1.2.min'
 	],
 	'lightslider': [
 		'libraries/lightslider-1.1.6.min',
@@ -310,9 +310,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/localforage-nopromise-1.10.0.min'
 	],
 	'moment': [
-		'libraries/moment-2.29.1.min',
-		'/beta/emuos/assets/js/libraries/moment-2.29.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/moment-2.29.1.min'
+		'libraries/moment-2.29.3.min',
+		'/beta/emuos/assets/js/libraries/moment-2.29.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/moment-2.29.3.min'
 	],
 	'moment-holiday': [
 		'libraries/moment-holiday-1.5.1.min',
@@ -320,9 +320,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/moment-holiday-1.5.1.min'
 	],
 	'moment-timezone': [
-		'libraries/moment-timezone-0.5.33.min',
-		'/beta/emuos/assets/js/libraries/moment-timezone-0.5.33.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/moment-timezone-0.5.33.min'
+		'libraries/moment-timezone-0.5.34.min',
+		'/beta/emuos/assets/js/libraries/moment-timezone-0.5.34.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/moment-timezone-0.5.34.min'
 	],
 	'nosleep.js': [
 		'libraries/nosleep-0.12.0.min',
@@ -345,9 +345,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/pdfmake-fonts-0.2.2'
 	],
 	'perfect-scrollbar': [
-		'libraries/perfect-scrollbar-1.5.2.min',
-		'/beta/emuos/assets/js/libraries/perfect-scrollbar-1.5.2.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/perfect-scrollbar-1.5.2.min'
+		'libraries/perfect-scrollbar-1.5.5.min',
+		'/beta/emuos/assets/js/libraries/perfect-scrollbar-1.5.5.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/perfect-scrollbar-1.5.5.min'
 	],
 	'phaser': [
 		'libraries/phaser-3.55.2.min',
@@ -360,9 +360,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/phaser-arcade-physics-3.55.2.min'
 	],
 	'popper': [
-		'libraries/popper-2.10.2.min',
-		'/beta/emuos/assets/js/libraries/popper-2.10.2.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/popper-2.10.2.min'
+		'libraries/popper-2.11.5.min',
+		'/beta/emuos/assets/js/libraries/popper-2.11.5.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/popper-2.11.5.min'
 	],
 	'promise': [
 		'libraries/promise-4.2.8.min',
@@ -420,9 +420,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/toastr-2.1.4.min'
 	],
 	'twemoji': [
-		'libraries/twemoji-13.1.0.min',
-		'/beta/emuos/assets/js/libraries/twemoji-13.1.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/twemoji-13.1.0.min'
+		'libraries/twemoji-14.0.2.min',
+		'/beta/emuos/assets/js/libraries/twemoji-14.0.2.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/twemoji-14.0.2.min'
 	],
 	'webcomponents': [
 		'libraries/webcomponents-2.6.0.min',
@@ -430,9 +430,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/webcomponents-2.6.0.min'
 	],
 	'xterm': [
-		'libraries/xterm-4.14.1.min',
-		'/beta/emuos/assets/js/libraries/xterm-4.14.1.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/xterm-4.14.1.min'
+		'libraries/xterm-4.18.0.min',
+		'/beta/emuos/assets/js/libraries/xterm-4.18.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/xterm-4.18.0.min'
 	],
 	'desktop': [
 		'desktop',
