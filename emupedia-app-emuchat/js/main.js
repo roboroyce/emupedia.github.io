@@ -5,7 +5,7 @@
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: {
-			bson: '../../beta/emuos/assets/js/libraries/bson-4.5.2',
+			bson: '../../beta/emuos/assets/js/libraries/bson-4.6.4',
 			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
 			'jquery-ajax-retry': '../../beta/emuos/assets/js/libraries/jquery-ajax-retry-0.2.8.min',
 			network: '//ws.' + location + '/server/app/network_iframe',

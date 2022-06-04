@@ -115,6 +115,7 @@
 		var start = '';
 		var domains = ['emupedia.net', 'emupedia.org', 'emuos.net', 'emuos.org'];
 		var frontend = ~domains.indexOf(window.location.hostname) ? 'https://emuchat.' + domains[domains.indexOf(window.location.hostname)] + '/' : 'https://emuchat.emupedia.net/';
+		var chat = null;
 
 		if (typeof self.options.start !== 'undefined') {
 			start = '<ul data-menu-lang="*" data-menu-type="start">';
@@ -827,15 +828,49 @@
 			});
 		}
 
-		// noinspection HtmlDeprecatedAttribute,HtmlUnknownTarget
-		self.widget({
-			title: 'Chat',
-			hidden: true,
-			width: 640,
-			height: 350,
-			right: '0px',
-			bottom: '28px',
-			content: '<iframe id="Chat" width="100%" height="100%" src="' + frontend + '" frameborder="0" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+		self.$window.one('keydown', function (e) {
+			// noinspection JSRedundantSwitchStatement
+			switch (e.keyCode) {
+				case 192:
+					if (!chat) {
+						// noinspection HtmlDeprecatedAttribute,HtmlUnknownTarget
+						chat = self.widget({
+							title: 'Chat',
+							hidden: true,
+							width: 640,
+							height: 350,
+							right: '0px',
+							bottom: '28px',
+							content: '<iframe id="Chat" width="100%" height="100%" src="' + frontend + '" frameborder="0" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+						});
+
+						chat.find('iframe').one('load', function() {
+							chat.slideDown(300);
+						});
+
+						e.preventDefault();
+						return false;
+					}
+			}
+		});
+
+		self.$taskbar.taskbar('option', 'buttons.chat').$element.one('click', function() {
+			if (!chat) {
+				// noinspection HtmlDeprecatedAttribute,HtmlUnknownTarget
+				chat = self.widget({
+					title: 'Chat',
+					hidden: true,
+					width: 640,
+					height: 350,
+					right: '0px',
+					bottom: '28px',
+					content: '<iframe id="Chat" width="100%" height="100%" src="' + frontend + '" frameborder="0" allowTransparency="true" allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write" sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>'
+				});
+
+				chat.find('iframe').one('load', function() {
+					chat.slideDown(300);
+				});
+			}
 		});
 
 		self.$html.contextmenu({
