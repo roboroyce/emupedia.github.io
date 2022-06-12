@@ -1118,7 +1118,7 @@
 							widget.slideToggle(300);
 						};
 
-						self.$taskbar.taskbar('option', 'buttons.chat').$element.on('click', function() {
+						self.$taskbar.taskbar('option', 'buttons.chat').$element.off('click').on('click', function() {
 							net.toggle();
 						});
 
