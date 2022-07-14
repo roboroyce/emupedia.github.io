@@ -6,6 +6,7 @@
 	requirejs.config({
 		paths: {
 			bson: '../../beta/emuos/assets/js/libraries/bson-4.6.4',
+			fingerprint: '../../beta/emuos/assets/js/libraries/fingerprint-3.3.3.min',
 			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
 			'jquery-ajax-retry': '../../beta/emuos/assets/js/libraries/jquery-ajax-retry-0.2.8.min',
 			network: '//ws.' + location + '/server/app/network_iframe',
