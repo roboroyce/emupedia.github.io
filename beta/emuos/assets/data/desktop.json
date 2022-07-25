@@ -520,6 +520,17 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "Prince Of Persia 1",
+		"icon": "assets/images/icons/desktop/prince-of-persia1",
+		"link": "/emupedia-game-prince/",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://princejs.com\" target=\"_blank\">princejs.com</a> / <a href=\"https://ultrabolido.github.io/PrinceJS/\" target=\"_blank\">ultrabolido.github.io/PrinceJS</a><br /><br />Authors: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a> / <a href=\"https://github.com/ultrabolido\" target=\"_blank\">github.com/ultrabolido</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/jmechner\" target=\"_blank\">github.com/jmechner</a><br />Repository: <a href=\"https://github.com/jmechner/Prince-of-Persia-Apple-II\" target=\"_blank\">github.com/jmechner/Prince-of-Persia-Apple-II</a><br /><br />All other assets<hr />Copyright Ubisoft (formerly Broderbund Software)",
+		"disclaimer_abandoned": true,
+		"width": 640,
+		"height": 400,
+		"newtab": true,
+		"share": true,
+		"shortcut": true
+	} , {
 		"name": "Wolfenstein 3D",
 		"icon": "assets/images/icons/desktop/wolfenstein-3d",
 		"link": "/emupedia-game-wolfenstein-3d/",
