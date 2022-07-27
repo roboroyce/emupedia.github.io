@@ -502,6 +502,16 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "Lemmings 1",
+		"icon": "assets/images/icons/desktop/lemmings1",
+		"link": "/emupedia-game-lemmings1/",
+		"credits": "HTML5 Port<hr />Websites: <a href=\"https://lemmingsjs.oklemenz.de\" target=\"_blank\">lemmingsjs.oklemenz.de</a> <a href=\"https://oklemenz.github.io/LemmingsJS\" target=\"_blank\">oklemenz.github.io/LemmingsJS</a><br />Author: <a href=\"https://github.com/oklemenz\" target=\"_blank\">github.com/oklemenz</a><br />Repository: <a href=\"https://github.com/oklemenz/LemmingsJS\" target=\"_blank\">github.com/oklemenz/LemmingsJS</a><br /><br />Original Project<hr />Website: <a href=\"https://www.brutaldeluxe.fr/products/apple2gs/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/products/apple2gs/lemmings.html</a><br />Source Code: <a href=\"https://www.brutaldeluxe.fr/sourcecode/lemmings.html\" target=\"_blank\">brutaldeluxe.fr/sourcecode/lemmings.html</a><br /><br />All other assets<hr />Copyright Sony Computer Entertainment (formerly Psygnosis)",
+		"disclaimer_abandoned": true,
+		"width": 800,
+		"height": 480,
+		"newtab": true,
+		"share": true
+	} , {
 		"name": "Prince Of Persia 1",
 		"icon": "assets/images/icons/desktop/prince-of-persia1",
 		"link": "/emupedia-game-prince/",
