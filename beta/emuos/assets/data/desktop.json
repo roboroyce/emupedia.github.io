@@ -293,7 +293,6 @@
 		"share": true
 	} , {
 		"name": "Raptor: Call of the Shadows",
-		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/raptor",
 		"link": "/emupedia-game-raptor/",
 		"credits": "HTML5 Port<hr />Author: <a href=\"https://github.com/robgietema\" target=\"_blank\">github.com/robgietema</a><br />Repository: <a href=\"https://github.com/robgietema/raptor\" target=\"_blank\">github.com/robgietema/raptor</a><br /><br />All other assets<hr />Copyright Apogee Software",
@@ -561,6 +560,7 @@
 		"share": true
 	} , {
 		"name": "Doom 3",
+		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/doom3",
 		"link": "/emupedia-game-doom3/",
 		"credits": "Emscripten Port<hr />Website: <a href=\"https://www.continuation-labs.com/projects/d3wasm/\" target=\"_blank\">continuation-labs.com/projects/d3wasm</a><br /><br />Author: <a href=\"https://github.com/gabrielcuvillier\" target=\"_blank\">github.com/gabrielcuvillier</a><br />Repository: <a href=\"https://github.com/gabrielcuvillier/d3wasm\" target=\"_blank\">github.com/gabrielcuvillier/d3wasm</a><br />License: <a href=\"https://github.com/gabrielcuvillier/d3wasm/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />Original Project<hr />Author: <a href=\"https://github.com/id-Software\" target=\"_blank\">github.com/id-Software</a><br />Repository: <a href=\"https://github.com/id-Software/DOOM-3\" target=\"_blank\">github.com/id-Software/DOOM-3</a><br />License: <a href=\"https://github.com/id-Software/DOOM-3/blob/master/COPYING.txt\" target=\"_blank\">GPL-3.0</a><br /><br />All other assets<hr />Copyright Microsoft (formerly ZeniMax Media, Bethesda Softworks, id Software)",
