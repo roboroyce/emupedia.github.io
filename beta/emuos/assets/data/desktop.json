@@ -434,14 +434,28 @@
 		"newtab": true,
 		"shortcut": true
 	} , {
+		"name": "Mario",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/mario",
+		"link": "/emupedia-game-mario/",
+		"credits": "HTML5 Port<hr />Websites: <a href=\"https://www.supermariobros.io/full-screen-mario/mario.html\" target=\"_blank\">supermariobros.io/full-screen-mario/mario.html</a> <a href=\"https://fullscreenmario.com\" target=\"_blank\">fullscreenmario.com</a><br /><br />Author: <a href=\"https://github.com/JoshuaKGoldberg\" target=\"_blank\">github.com/JoshuaKGoldberg</a><br />Repository: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario\" target=\"_blank\">github.com/FullScreenShenanigans/FullScreenMario</a><br />License: <a href=\"https://github.com/FullScreenShenanigans/FullScreenMario/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
+		"disclaimer_abandoned": true,
+		"width": 900,
+		"height": 576,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Zelda",
+		"title": "External Website",
 		"icon": "assets/images/icons/desktop/zelda",
 		"link": "/emupedia-game-zelda/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://www.zelda30tribute.com/\" target=\"_blank\">zelda30tribute.com</a><br /><br />Author: <a href=\"https://github.com/scottlininger\" target=\"_blank\">github.com/scottlininger</a><br />Repository: <a href=\"https://github.com/scottlininger/zelda30tribute\" target=\"_blank\">github.com/scottlininger/zelda30tribute</a><br />License: <a href=\"https://github.com/scottlininger/zelda30tribute/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://www.zelda30tribute.com\" target=\"_blank\">zelda30tribute.com</a><br /><br />Author: <a href=\"https://github.com/scottlininger\" target=\"_blank\">github.com/scottlininger</a><br />Repository: <a href=\"https://github.com/scottlininger/zelda30tribute\" target=\"_blank\">github.com/scottlininger/zelda30tribute</a><br />License: <a href=\"https://github.com/scottlininger/zelda30tribute/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Nintendo",
 		"disclaimer_abandoned": true,
 		"width": 900,
 		"height": 480,
 		"newtab": true,
+		"shortcut": true,
 		"share": true
 	} , {
 		"name": "3D Spatial Audio",
