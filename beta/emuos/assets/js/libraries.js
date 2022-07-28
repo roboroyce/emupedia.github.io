@@ -15,14 +15,14 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/babel-polyfill-7.12.1.min'
 	],
 	'babel-standalone': [
-		'libraries/babel-standalone-7.18.4.min',
-		'/beta/emuos/assets/js/libraries/babel-standalone-7.18.4.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/babel-standalone-7.18.4.min'
+		'libraries/babel-standalone-7.18.9.min',
+		'/beta/emuos/assets/js/libraries/babel-standalone-7.18.9.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/babel-standalone-7.18.9.min'
 	],
 	'bootstrap': [
-		'libraries/bootstrap-5.1.3.min',
-		'/beta/emuos/assets/js/libraries/bootstrap-5.1.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/bootstrap-5.1.3.min'
+		'libraries/bootstrap-5.2.0.min',
+		'/beta/emuos/assets/js/libraries/bootstrap-5.2.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/bootstrap-5.2.0.min'
 	],
 	'browserfs': [
 		'libraries/browserfs-1.4.3.min',
@@ -30,9 +30,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/browserfs-1.4.3.min'
 	],
 	'bson': [
-		'libraries/bson-4.6.4',
-		'/beta/emuos/assets/js/libraries/bson-4.6.4',
-		'//' + location + '/beta/emuos/assets/js/libraries/bson-4.6.4'
+		'libraries/bson-4.6.5',
+		'/beta/emuos/assets/js/libraries/bson-4.6.5',
+		'//' + location + '/beta/emuos/assets/js/libraries/bson-4.6.5'
 	],
 	'buzz': [
 		'libraries/buzz-1.2.1.min',
@@ -125,14 +125,14 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedcolumns-bootstrap5-4.1.0.min'
 	],
 	'datatables-fixedheader': [
-		'libraries/datatables-fixedheader-3.2.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.3.min'
+		'libraries/datatables-fixedheader-3.2.4.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.4.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-3.2.4.min'
 	],
 	'datatables-fixedheader-bootstrap5': [
-		'libraries/datatables-fixedheader-bootstrap5-3.2.3.min',
-		'/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.3.min'
+		'libraries/datatables-fixedheader-bootstrap5-3.2.4.min',
+		'/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.4.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/datatables-fixedheader-bootstrap5-3.2.4.min'
 	],
 	'datatables-responsive': [
 		'libraries/datatables-responsive-2.3.0.min',
@@ -155,9 +155,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/datatables-select-bootstrap5-1.4.0.min'
 	],
 	'dropbox': [
-		'libraries/dropbox-10.11.0.min',
-		'/beta/emuos/assets/js/libraries/dropbox-10.11.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/dropbox-10.11.0.min'
+		'libraries/dropbox-10.32.0.min',
+		'/beta/emuos/assets/js/libraries/dropbox-10.32.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/dropbox-10.32.0.min'
 	],
 	'emularity': [
 		'libraries/emularity',
@@ -215,9 +215,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/hybrids-4.3.4.min'
 	],
 	'i18next': [
-		'libraries/i18next-21.8.7.min',
-		'/beta/emuos/assets/js/libraries/i18next-21.8.7.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/i18next-21.8.7.min'
+		'libraries/i18next-21.8.14.min',
+		'/beta/emuos/assets/js/libraries/i18next-21.8.14.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/i18next-21.8.14.min'
 	],
 	'ie11-custom-properties': [
 		'libraries/css-vars-4.1.0',
@@ -245,9 +245,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/jquery-i18next-1.2.1.min'
 	],
 	'jquery-migrate': [
-		'libraries/jquery-migrate-3.3.2.min',
-		'/beta/emuos/assets/js/libraries/jquery-migrate-3.3.2.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/jquery-migrate-3.3.2.min'
+		'libraries/jquery-migrate-3.4.0.min',
+		'/beta/emuos/assets/js/libraries/jquery-migrate-3.4.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/jquery-migrate-3.4.0.min'
 	],
 	'jquery-mousewheel': [
 		'libraries/jquery-mousewheel-3.1.13',
@@ -280,9 +280,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/jsonpath-1.1.1.min'
 	],
 	'jsrsasign-all': [
-		'libraries/jsrsasign-all-10.5.23.min',
-		'/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.23.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.23.min'
+		'libraries/jsrsasign-all-10.5.26.min',
+		'/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.26.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/jsrsasign-all-10.5.26.min'
 	],
 	'jszip': [
 		'libraries/jszip-3.10.0.min',
@@ -290,9 +290,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/jszip-3.10.0.min'
 	],
 	'less': [
-		'libraries/less-4.1.2.min',
-		'/beta/emuos/assets/js/libraries/less-4.1.2.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/less-4.1.2.min'
+		'libraries/less-4.1.3.min',
+		'/beta/emuos/assets/js/libraries/less-4.1.3.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/less-4.1.3.min'
 	],
 	'lightslider': [
 		'libraries/lightslider-1.1.6.min',
@@ -310,9 +310,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/localforage-nopromise-1.10.0.min'
 	],
 	'moment': [
-		'libraries/moment-2.29.3.min',
-		'/beta/emuos/assets/js/libraries/moment-2.29.3.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/moment-2.29.3.min'
+		'libraries/moment-2.29.4.min',
+		'/beta/emuos/assets/js/libraries/moment-2.29.4.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/moment-2.29.4.min'
 	],
 	'moment-holiday': [
 		'libraries/moment-holiday-1.5.1.min',
@@ -335,14 +335,14 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/octokat-0.10.0'
 	],
 	'pdfmake': [
-		'libraries/pdfmake-0.2.2.min',
-		'/beta/emuos/assets/js/libraries/pdfmake-0.2.2.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/pdfmake-0.2.2.min'
+		'libraries/pdfmake-0.2.5.min',
+		'/beta/emuos/assets/js/libraries/pdfmake-0.2.5.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/pdfmake-0.2.5.min'
 	],
 	'pdfmake-fonts': [
-		'libraries/pdfmake-fonts-0.2.2',
-		'/beta/emuos/assets/js/libraries/pdfmake-fonts-0.2.2',
-		'//' + location + '/beta/emuos/assets/js/libraries/pdfmake-fonts-0.2.2'
+		'libraries/pdfmake-fonts-0.2.5',
+		'/beta/emuos/assets/js/libraries/pdfmake-fonts-0.2.5',
+		'//' + location + '/beta/emuos/assets/js/libraries/pdfmake-fonts-0.2.5'
 	],
 	'perfect-scrollbar': [
 		'libraries/perfect-scrollbar-1.5.5.min',
@@ -430,9 +430,9 @@
 		'//' + location + '/beta/emuos/assets/js/libraries/webcomponents-2.6.0.min'
 	],
 	'xterm': [
-		'libraries/xterm-4.18.0.min',
-		'/beta/emuos/assets/js/libraries/xterm-4.18.0.min',
-		'//' + location + '/beta/emuos/assets/js/libraries/xterm-4.18.0.min'
+		'libraries/xterm-4.19.0.min',
+		'/beta/emuos/assets/js/libraries/xterm-4.19.0.min',
+		'//' + location + '/beta/emuos/assets/js/libraries/xterm-4.19.0.min'
 	],
 	'desktop': [
 		'desktop',
