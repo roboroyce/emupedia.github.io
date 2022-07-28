@@ -849,15 +849,6 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "PixelCraft",
-		"icon": "assets/images/icons/desktop/pixelcraft",
-		"link": "/emupedia-app-pixelcraft/",
-		"credits": "Websites: <a href=\"https://pixelcraft.web.app/\" target=\"_blank\">pixelcraft.web.app</a> <a href=\"https://rgab1508.github.io/PixelCraft\" target=\"_blank\">rgab1508.github.io/PixelCraft</a><br /><br />Author: <a href=\"https://github.com/rgab1508\" target=\"_blank\">github.com/rgab1508</a><br />Repository: <a href=\"https://github.com/rgab1508/PixelCraft\" target=\"_blank\">github.com/rgab1508/PixelCraft</a><br />License: <a href=\"https://github.com/rgab1508/PixelCraft/blob/master/LICENSE\" target=\"_blank\">MIT</a>",
-		"width": 900,
-		"height": 610,
-		"newtab": true,
-		"share": true
-	} , {
 		"name": "Happy Tree Friends",
 		"icon": "assets/images/icons/desktop/happy-tree-friends",
 		"link": "/emupedia-media-htf/",
