@@ -256,7 +256,7 @@
 		"height": 547,
 		"newtab": true,
 		"shortcut": true,
-		"share": false
+		"share": true
 	} , {
 		"name": "Jetpack Joyride",
 		"title": "External Website",
@@ -268,7 +268,7 @@
 		"height": 547,
 		"newtab": true,
 		"shortcut": true,
-		"share": false
+		"share": true
 	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
