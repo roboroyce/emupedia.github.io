@@ -208,6 +208,17 @@
 		"newtab": true,
 		"shortcut": true
 	} , {
+		"name": "Friday Night Funkin'",
+		"icon": "assets/images/icons/desktop/friday-night-funkin",
+		"link": "/emupedia-game-friday-night-funkin/",
+		"link_alternate": "https://v6p9d9t4.ssl.hwcdn.net/html/2876359-359162/",
+		"credits": "Website: <a href=\"https://www.newgrounds.com/portal/view/770371\" target=\"_blank\">newgrounds.com/portal/view/770371</a><br /><br />Author(s): <a href=\"https://github.com/ninjamuffin99\" target=\"_blank\">github.com/ninjamuffin99</a><br />Repository: <a href=\"https://github.com/ninjamuffin99/Funkin\" target=\"_blank\">github.com/ninjamuffin99/Funkin</a>",
+		"width": 1090,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": false
+	} , {
 		"name": "Cookie Clicker",
 		"icon": "assets/images/icons/desktop/cookie-clicker",
 		"link": "/emupedia-game-cookie-clicker/",
@@ -230,6 +241,7 @@
 		"name": "Jetpack Joyride",
 		"icon": "assets/images/icons/desktop/jetpack-joyride",
 		"link": "https://html5.gamedistribution.com/rvvASMiM/17d66951b54e4979b0f24d14cc7423b6/",
+		"link_alternate": "/emupedia-game-jetpack-joyride/",
 		"credits": "Website: <a href=\"https://www.halfbrick.com/games/jetpack-joyride\" target=\"_blank\">halfbrick.com/games/jetpack-joyride</a>",
 		"width": 900,
 		"height": 547,
