@@ -212,12 +212,13 @@
 		"icon": "assets/images/icons/desktop/friday-night-funkin",
 		"link": "/emupedia-game-friday-night-funkin/",
 		"link_alternate": "https://v6p9d9t4.ssl.hwcdn.net/html/2876359-359162/",
+		"link_alternate2": "https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r88.zip/",
 		"credits": "Website: <a href=\"https://www.newgrounds.com/portal/view/770371\" target=\"_blank\">newgrounds.com/portal/view/770371</a><br /><br />Author(s): <a href=\"https://github.com/ninjamuffin99\" target=\"_blank\">github.com/ninjamuffin99</a><br />Repository: <a href=\"https://github.com/ninjamuffin99/Funkin\" target=\"_blank\">github.com/ninjamuffin99/Funkin</a>",
 		"width": 1090,
 		"height": 600,
 		"newtab": true,
 		"shortcut": true,
-		"share": false
+		"share": true
 	} , {
 		"name": "Cookie Clicker",
 		"icon": "assets/images/icons/desktop/cookie-clicker",
