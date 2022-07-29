@@ -250,6 +250,17 @@
 		"shortcut": true,
 		"share": false
 	} , {
+		"name": "Fruit Ninja",
+		"icon": "assets/images/icons/desktop/fruit-ninja",
+		"link": "https://html5.gamedistribution.com/rvvASMiM/2e0f4c7c23b041768bf7869a1ed89669/",
+		"link_alternate": "/emupedia-game-fruit-ninja/",
+		"credits": "Website: <a href=\"https://www.halfbrick.com/games/fruit-ninja\" target=\"_blank\">halfbrick.com/games/fruit-ninja</a>",
+		"width": 900,
+		"height": 547,
+		"newtab": true,
+		"shortcut": true,
+		"share": false
+	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/geometry-dash",
