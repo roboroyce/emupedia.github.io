@@ -238,7 +238,7 @@
 		"icon": "assets/images/icons/desktop/flappy-bird",
 		"link": "/emupedia-game-flappy-bird/",
 		"link_alternate": "https://playcanv.as/p/2OlkUaxF/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://playcanv.as/p/2OlkUaxF/\" target=\"_blank\">playcanvas.com</a><br /><br />Original project<hr />Website: <a href=\"https://www.dotgears.com/apps/app_flappy.html\" target=\"_blank\">dotgears.com</a><br />Copyright: .GEARS",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://playcanv.as/p/2OlkUaxF/\" target=\"_blank\">playcanvas.com</a><br /><br />Original project<hr />Website: <a href=\"https://dotgears.com/games/flappybird\" target=\"_blank\">dotgears.com/games/flappybird</a><br />Copyright: .GEARS",
 		"disclaimer": true,
 		"width": 432,
 		"height": 600,
@@ -254,6 +254,18 @@
 		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
 		"width": 484,
 		"height": 734,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "Cut the Rope: Time Travel",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope-time-travel",
+		"link": "/emupedia-game-cut-the-rope-time-travel/",
+		"link_alternate": "https://www.gamepix.com/play/cut-the-rope-time-travel",
+		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+		"width": 1024,
+		"height": 576,
 		"newtab": true,
 		"shortcut": true,
 		"share": true
