@@ -252,6 +252,18 @@
 		"link": "/emupedia-game-cut-the-rope/",
 		"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
 		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+		"width": 1024,
+		"height": 576,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "Cut the Rope (Mobile Version)",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope",
+		"link": "/emupedia-game-cut-the-rope/wasm/",
+		"link_alternate": "https://play.gamepix.com/cut-the-rope/embed",
+		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
 		"width": 484,
 		"height": 734,
 		"newtab": true,
