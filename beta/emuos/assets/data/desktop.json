@@ -319,10 +319,23 @@
 		"share": true
 	} , {
 		"name": "Cut the Rope 2 Mobile Version",
+		"name_alternate": "Cut the Rope 2: Om Nom's Quest",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/cut-the-rope2",
 		"link": "/emupedia-game-cut-the-rope2/",
 		"link_alternate": "https://play.gamepix.com/cut-the-rope-2/embed",
+		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+		"width": 557,
+		"height": 734,
+		"newtab": true,
+		"shortcut": true,
+		"share": true,
+	} , {
+		"name": "Cut the Rope Magic Mobile Version",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope-magic",
+		"link": "/emupedia-game-cut-the-rope-magic/",
+		"link_alternate": "https://play.gamepix.com/cut-the-rope-magic/embed",
 		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
 		"width": 557,
 		"height": 734,
