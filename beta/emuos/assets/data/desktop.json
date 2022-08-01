@@ -258,6 +258,30 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Cut the Rope: Holiday Gift",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope-holiday-gift",
+		"link": "/emupedia-game-cut-the-rope-holiday-gift/",
+		"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
+		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+		"width": 1024,
+		"height": 576,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "Cut the Rope: Time Travel",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/cut-the-rope-time-travel",
+		"link": "/emupedia-game-cut-the-rope-time-travel/",
+		"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
+		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
+		"width": 1024,
+		"height": 576,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Cut the Rope HD",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/cut-the-rope-hd",
@@ -294,19 +318,7 @@
 		"shortcut": true,
 		"share": true
 	} , {
-		"name": "Cut the Rope: Time Travel",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/cut-the-rope-time-travel",
-		"link": "/emupedia-game-cut-the-rope-time-travel/",
-		"link_alternate": "https://play.gamepix.com/cut-the-rope-time-travel/embed",
-		"credits": "Website: <a href=\"https://cuttherope.net/\" target=\"_blank\">cuttherope.net</a>",
-		"width": 1024,
-		"height": 576,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
-		"name": "Cut the Rope 2",
+		"name": "Cut the Rope 2 Mobile Version",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/cut-the-rope2",
 		"link": "/emupedia-game-cut-the-rope2/",
