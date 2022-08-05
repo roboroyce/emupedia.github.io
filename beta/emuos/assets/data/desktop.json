@@ -339,6 +339,17 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Pudding Monsters Mobile Version",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/pudding-monsters",
+		"link": "/emupedia-game-pudding-monsters/",
+		"credits": "Website: <a href=\"https://play.gamepix.com/pudding-monsters/embed\" target=\"_blank\">gamepix.com</a><hr />Original Website: <a href=\"http://www.puddingmonsters.com/\" target=\"_blank\">puddingmonsters.com</a>",
+		"width": 557,
+		"height": 796,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Fruit Ninja",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/fruit-ninja",
