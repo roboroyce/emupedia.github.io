@@ -226,8 +226,8 @@
 		"icon": "assets/images/icons/desktop/2048",
 		"link": "/emupedia-game-2048/",
 		"credits": "Website: <a href=\"https://play2048.co/\" target=\"_blank\">play2048.co</a><br /><br />Author(s): <a href=\"https://github.com/gabrielecirulli\" target=\"_blank\">github.com/gabrielecirulli</a><br />Repository: <a href=\"https://github.com/gabrielecirulli/2048\" target=\"_blank\">github.com/gabrielecirulli/2048</a><br />License: <a href=\"https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />Original project<hr />Website: <a href=\"https://asherv.com/threes/\" target=\"_blank\">asherv.com/threes</a>",
-		"width": 580,
-		"height": 800,
+		"width": 836,
+		"height": 470,
 		"newtab": true,
 		"shortcut": true,
 		"share": true
