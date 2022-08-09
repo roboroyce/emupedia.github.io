@@ -172,6 +172,10 @@
 	background-color: #fff;
 }
 
+.theme-windows-3 .emuos-window .emuos-window-content.emuos-window-type-help a {
+	color: #00bf34;
+}
+
 .theme-windows-3 .emuos-window .emuos-window-content hr {
 	border-top-color: #9a9a9a;
 	border-bottom-color: #eee;

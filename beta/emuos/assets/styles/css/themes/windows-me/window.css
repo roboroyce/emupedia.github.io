@@ -167,6 +167,18 @@
 	padding: 10px;
 }
 
+.theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a {
+	color: #0000ee;
+}
+
+.theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a:visited {
+	color: #551a8b;
+}
+
+.theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a:active {
+	color: #ee0000;
+}
+
 .theme-windows-me .emuos-window .emuos-window-content hr {
 	border-top-color: #9a9a9a;
 	border-bottom-color: #eee;
