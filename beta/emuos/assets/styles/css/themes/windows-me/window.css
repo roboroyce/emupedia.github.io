@@ -169,14 +169,17 @@
 
 .theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a {
 	color: #0000ee;
+	/*color: #0066cc;*/
 }
 
 .theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a:visited {
-	color: #551a8b;
+	/*color: #551a8b;*/
+	color: #800080;
 }
 
 .theme-windows-me .emuos-window .emuos-window-content.emuos-window-type-help a:active {
-	color: #ee0000;
+	/*color: #ee0000;*/
+	color: #ff001c;
 }
 
 .theme-windows-me .emuos-window .emuos-window-content hr {
