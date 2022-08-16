@@ -38,7 +38,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <summary>Click to reveal</summary>
 
 ---
-[![* application support may vary](https://emupedia.net/images/ie-notice.svg)](#-browser-support)
+[![* application support may vary](https://emupedia.net/images/app-support-may-vary.svg)](#-browser-support)
 
 | Logo                                                                                                                                                                                    | Company               | Name              | Rendering Engine | Version         |
 | :---:                                                                                                                                                                                   | :---                  | :---              | :---             | :---:           |
