@@ -26,7 +26,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/discord-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
 
 ## 👀 <sub>View a Live Demo</sub>
-[![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/beta/emuos/assets/images/icons/under-development.svg)](#-view-a-live-demo)
+[![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/images/under-development.svg)](#-view-a-live-demo)
 
 * <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emupedia.net/beta/emuos/](https://emupedia.net/beta/emuos/)
 * <sub><img loading="lazy" width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/logos/emupedia/emupedia-logo.svg" /></sub> [https://emupedia.org/beta/emuos/](https://emupedia.org/beta/emuos/)
@@ -38,6 +38,8 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <summary>Click to reveal</summary>
 
 ---
+[![* application support may vary](https://emupedia.net/images/ie-notice.svg)](#-browser-support)
+
 | Logo                                                                                                                                                                                    | Company               | Name              | Rendering Engine | Version         |
 | :---:                                                                                                                                                                                   | :---                  | :---              | :---             | :---:           |
 | <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11.svg" alt="Internet Explorer" /> | Microsoft             | Internet Explorer | Trident          | <sup>*</sup>11+ |
@@ -54,9 +56,6 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 | <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari.png" alt="Safari" />                                                    | Apple                 | Safari            | WebKit           | 8+              |
 | <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/brave/brave.svg" alt="Brave" />                                                       | Brave Software        | Brave             | Blink            | 1+              |
 | <img loading="lazy" width="24" height="24" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi.svg" alt="Vivaldi" />                                                 | Vivaldi Technologies  | Vivaldi           | Blink            | 1+              |
-
-[![* application support may vary](https://emupedia.net/beta/emuos/assets/images/icons/ie-notice.svg)](#-browser-support)
-
 ---
 </details>
 
@@ -64,9 +63,9 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 <details>
 <summary>Click to reveal</summary>
 
-This list it not always up to date
-
 ---
+[![This list it not always up to date.](https://emupedia.net/images/not-up-to-date.svg)](#-emulators-used)
+
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | MAME                        | [mamedev.org](https://www.mamedev.org)                                                                                            | [github.com/mamedev/mame](https://github.com/mamedev/mame)                                                                                            | [GPL-2.0](https://github.com/mamedev/mame/blob/master/LICENSE.md)                                     |
@@ -77,13 +76,13 @@ This list it not always up to date
 ---
 </details>
 
-## ⚙ <sub>Apps used</sub>
+## ⚙ <sub>Applications used</sub>
 <details>
 <summary>Click to reveal</summary>
 
-This list it not always up to date
-
 ---
+[![This list it not always up to date.](https://emupedia.net/images/not-up-to-date.svg)](#-applications-used)
+
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | Butterchurn                 | [butterchurnviz.com](https://butterchurnviz.com)                                                                                  | [github.com/jberg/butterchurn](https://github.com/jberg/butterchurn)                                                                                  | [MIT](https://github.com/jberg/butterchurn/blob/master/LICENSE)                                       |
@@ -104,9 +103,9 @@ This list it not always up to date
 <details>
 <summary>Click to reveal</summary>
 
-This list it not always up to date
-
 ---
+[![This list it not always up to date.](https://emupedia.net/images/not-up-to-date.svg)](#-games-used)
+
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                               |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                  |
 | ascii-patrol                | [ascii-patrol.com/area54/ascii-patrol-html5.html](https://ascii-patrol.com/area54/ascii-patrol-html5.html)                        | [github.com/msokalski/ascii-patrol](https://github.com/msokalski/ascii-patrol)                                                                        | [GPL-3.0](https://github.com/msokalski/ascii-patrol/blob/master/LICENSE)                              |
@@ -153,9 +152,9 @@ This list it not always up to date
 <details>
 <summary>Click to reveal</summary>
 
-This list it not always up to date
-
 ---
+[![This list it not always up to date.](https://emupedia.net/images/not-up-to-date.svg)](#-demos-used)
+
 | Name                        | Website                                                                                                                           | Repository                                                                                                                                            | License                                                                                                 |
 | :---                        | :---                                                                                                                              | :---                                                                                                                                                  | :---                                                                                                    |
 | 3D Spatial Audio            | [howlerjs.com/#spatial](https://howlerjs.com/#spatial)                                                                            | [github.com/goldfire/howler.js](https://github.com/goldfire/howler.js/tree/master/examples/3d)                                                        | [MIT](https://github.com/goldfire/howler.js/blob/master/LICENSE.md)                                     |
@@ -171,9 +170,9 @@ This list it not always up to date
 <details>
 <summary>Click to reveal</summary>
 
-This list it not always up to date
-
 ---
+[![This list it not always up to date.](https://emupedia.net/images/not-up-to-date.svg)](#-libraries-used)
+
 | Name                        | Website                                                                                                                           | Repository                                                                                                   | License                                                                                       |
 | :---                        | :---                                                                                                                              | :---                                                                                                         | :---                                                                                          |
 | **Frontend**                |                                                                                                                                   |                                                                                                              |                                                                                               |
