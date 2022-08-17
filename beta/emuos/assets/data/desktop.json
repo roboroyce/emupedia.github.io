@@ -124,6 +124,16 @@
 		"height": 343,
 		"share": true
 	} , {
+		"name": "Solitaire Classic",
+		"icon": "assets/images/icons/desktop/solitaire",
+		"link": "/emupedia-game-solitaire/",
+		"credits": "Enhancements<hr />Website: <a href=\"https://98.js.org/programs/js-solitaire/\" target=\"_blank\">98.js.org/programs/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/1j01\" target=\"_blank\">github.com/1j01</a><br />Repository: <a href=\"https://github.com/1j01/98/tree/master/programs/js-solitaire\" target=\"_blank\">github.com/1j01/98/tree/master/programs/js-solitaire</a><br /><br />HTML5 Port<hr />Website: <a href=\"https://radovanjanjic.com/js-solitaire/\" target=\"_blank\">radovanjanjic.com/js-solitaire</a><br /><br />Author: <a href=\"https://github.com/rjanjic\" target=\"_blank\">github.com/rjanjic</a><br />Repository: <a href=\"https://github.com/rjanjic/js-solitaire\" target=\"_blank\">github.com/rjanjic/js-solitaire</a><br /><br />All other assets<hr />Copyright Microsoft",
+		"newtab": true,
+		"disclaimer": true,
+		"width": 960,
+		"height": 540,
+		"share": true
+	} , {
 		"name": "Microsoft Minesweeper",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/microsoft-minesweeper",
