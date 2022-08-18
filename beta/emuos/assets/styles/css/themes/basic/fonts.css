@@ -26,12 +26,13 @@
 
 @font-face {
 	font-family: 'FIXEDSYS';
-	src: url(../../../../fixedsys.eot);
-	src: url(../../../../fixedsys.eot?#iefix) format('embedded-opentype'),
-	url(../../../../fixedsys.woff2) format('woff2'),
-	url(../../../../fixedsys.woff) format('woff'),
-	url(../../../../fixedsys.ttf) format('truetype'),
-	url(../../../../fixedsys.svg#fixedsys) format('svg');
+	src: url(../../../../fonts/fixedsys.eot);
+	src: local('FIXEDSYS'),
+	url(../../../../fonts/fixedsys.eot?#iefix) format('embedded-opentype'),
+	url(../../../../fonts/fixedsys.woff2) format('woff2'),
+	url(../../../../fonts/fixedsys.woff) format('woff'),
+	url(../../../../fonts/fixedsys.ttf) format('truetype'),
+	url(../../../../fonts/fixedsys.svg#fixedsys) format('svg');
 	font-display: swap;
 	font-weight: normal;
 	font-style: normal;
