@@ -192,6 +192,7 @@
 				right: 0;
 				bottom: 28px;
 				color: #fff;
+				font-size: 13px;
 				text-align: right;
 				white-space: pre;
 				pointer-events: none;
@@ -1157,16 +1158,16 @@
 					if (typeof obj !== 'undefined') {
 						if (typeof obj.pushed_at !== 'undefined') {
 							if (obj.pushed_at !== null && obj.pushed_at !== '') {
-								return new Date(obj.pushed_at).toString();
+								return new Date(parseInt(obj.pushed_at)).toLocaleString();
 							}
 						}
 					}
 				} catch (e) {}
 
-				return new Date(0).toString();
+				return new Date(0).toLocaleString();
 			}();
 
-			document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.version.substring(0, 6) + '\u000D\u000ADate ' + $sys.date);
+			document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.version.substring(0, 7) + '\u000D\u000ADate ' + $sys.date);
 		</script>
 		<script type="text/javascript" src="assets/js/libraries.js"></script>
 		<script type="text/javascript" src="assets/js/defines.js"></script>
