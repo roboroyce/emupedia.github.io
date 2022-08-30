@@ -464,7 +464,7 @@
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/skribbl.io",
 		"link": "https://skribbl.io/",
-		"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright skribbl.io",
+		"credits": "Website: <a href=\"https://skribbl.io/\" target=\"_blank\">skribbl.io</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright skribbl.io",
 		"width": 900,
 		"height": 600,
 		"newtab": true,
@@ -556,7 +556,7 @@
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/pong",
 		"link": "https://turbowarp.org/embed.html?autoplay#444984831",
-		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright Atari, SA",
+		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/2718643/\" target=\"_blank\">scratch.mit.edu/projects/2718643</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/dixiklo\" target=\"_blank\">scratch.mit.edu/users/dixiklo</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Atari, SA",
 		"disclaimer_abandoned": true,
 		"width": 720,
 		"height": 480,
@@ -568,7 +568,7 @@
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/tetris",
 		"link": "https://turbowarp.org/embed.html?autoplay#31651654",
-		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by SMax<br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
+		"credits": "Website: <a href=\"https://scratch.mit.edu/projects/31651654/\" target=\"_blank\">scratch.mit.edu/projects/31651654</a><br /><br />Author: <a href=\"https://scratch.mit.edu/users/smelly_hobbit/\" target=\"_blank\">scratch.mit.edu/users/smelly_hobbit</a><br /><br />Suggested to be added by <b>SMax</b><br /><br />All other assets<hr />Copyright Nintendo Company, Ltd. and The Tetris Company, LLC",
 		"disclaimer_abandoned": true,
 		"width": 720,
 		"height": 480,
@@ -590,6 +590,16 @@
 		"width": 640,
 		"height": 480,
 		"newtab": true,
+		"share": true
+	} , {
+		"name": "Yume Nikki",
+		"icon": "assets/images/icons/desktop/yume-nikki",
+		"link": "/emupedia-game-yume-nikki/",
+		"credits": "Emscripten Port<hr />Website: <a href=\"https://paracks342.github.io/yumenikki/\" target=\"_blank\">paracks342.github.io/yumenikki</a><br />Author: <a href=\"https://github.com/Paracks342\" target=\"_blank\">github.com/paracks342</a><br />Repository: <a href=\"https://github.com/Paracks342/yumenikki\" target=\"_blank\">github.com/Paracks342/yumenikki</a><br /><br />Suggested to be added by <b>eagle</b><br /><br />Game Engine<hr />Author: <a href=\"https://github.com/EasyRPG\" target=\"_blank\">github.com/EasyRPG</a><br />Repository: <a href=\"https://github.com/EasyRPG/Player\" target=\"_blank\">github.com/EasyRPG/Player</a><br /><br />All other assets<hr />Copyright kikiyama",
+		"newtab": true,
+		"disclaimer": true,
+		"width": 960,
+		"height": 720,
 		"share": true
 	} , {
 		"name": "ASCIICKER",
