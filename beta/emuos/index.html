@@ -1152,7 +1152,7 @@
 
 			$sys.date = function() {
 				try {
-					var obj = JSON.parse('{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}')
+					var obj = JSON.parse('{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}');
 
 					if (typeof obj !== 'undefined') {
 						if (typeof obj.pushed_at !== 'undefined') {
