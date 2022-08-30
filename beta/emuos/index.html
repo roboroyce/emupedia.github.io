@@ -185,6 +185,18 @@
 				overflow: hidden;
 			}
 
+			body:after {
+				position: absolute;
+				content: attr(build);
+				right: 0;
+				bottom: 28px;
+				color: #fff;
+				text-align: right;
+				white-space: pre;
+				pointer-events: none;
+				z-index: 9999;
+			}
+
 			.emuos body {
 				background-color: #333;
 				color: #fff;
@@ -1134,7 +1146,7 @@
 		<script type="text/javascript" src="assets/js/libraries/fetch-3.6.2.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/css-vars-4.1.0.js"></script>
 		<script type="text/javascript" src="assets/js/system.js"></script>
-		<script type="text/javascript">$sys.version = '{{ site.github.build_revision }}';</script>
+		<script type="text/javascript">$sys.version = '{{ site.github.build_revision }}'; document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.version);</script>
 		<script type="text/javascript" src="assets/js/libraries.js"></script>
 		<script type="text/javascript" src="assets/js/defines.js"></script>
 
