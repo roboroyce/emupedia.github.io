@@ -1158,7 +1158,7 @@
 					if (typeof obj !== 'undefined') {
 						if (typeof obj.pushed_at !== 'undefined') {
 							if (obj.pushed_at !== null && obj.pushed_at !== '') {
-								return new Date(parseInt(obj.pushed_at)).toLocaleString();
+								return new Date(obj.pushed_at).toLocaleString();
 							}
 						}
 					}
