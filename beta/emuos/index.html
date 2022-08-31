@@ -300,6 +300,52 @@
 				overflow: hidden;
 			}
 
+			.emuos noscript .emuos-boot-container {
+				width: 100%;
+				height: 100%;
+
+				border: none;
+				border-collapse: collapse;
+				border-spacing: 0;
+
+				/*background-color: #000;*/
+				color: #a8a8a8;
+
+				text-shadow: 0 0 3px #c8c8c8;
+
+				font-family: 'DOSVGA', monospace;
+				font-size: 16px;
+				line-height: 16px;
+
+				text-rendering: optimizeLegibility;
+				-webkit-text-size-adjust: none;
+				text-size-adjust: none;
+				-webkit-font-smoothing: none;
+				-moz-osx-font-smoothing: grayscale;
+				font-smooth: never;
+
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
+				/*white-space: pre-wrap;*/
+			}
+
+			.emuos noscript .emuos-boot-container .emuos-boot-screen {
+				display: block;
+				width: 800px;
+
+				margin: 0 auto;
+				padding: 10px;
+				background-color: #121010;
+				border: 2px solid #666;
+
+				overflow: hidden;
+			}
+
 			.emuos.post .emuos-boot .emuos-boot-container {
 				display: block;
 
@@ -309,7 +355,7 @@
 			}
 
 			/*noinspection CssUnusedSymbol*/
-			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen {
+			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen, .emuos noscript .emuos-boot-container .emuos-boot-screen {
 				position: relative;
 			}
 
@@ -326,8 +372,20 @@
 				color: #a8a8a8;
 				white-space: pre-wrap;
 
-				font-smooth: never;
+				text-rendering: optimizeLegibility;
+				-webkit-text-size-adjust: none;
+				text-size-adjust: none;
 				-webkit-font-smoothing: none;
+				-moz-osx-font-smoothing: grayscale;
+				font-smooth: never;
+
+				-webkit-tap-highlight-color: transparent;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+
 				cursor: default;
 
 				/*-webkit-animation: typewriter-end-hide 3200ms steps(38) 1s 1 normal both;*/
@@ -337,7 +395,8 @@
 				/*animation: typewriter-end-show 600ms steps(38) 5s 1 normal both;*/
 			}
 
-			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen div#emuos-boot-screen-text {
+			/*noinspection CssUnusedSymbol*/
+			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen div.emuos-boot-screen-text {
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -346,7 +405,7 @@
 			}
 
 			/*noinspection CssUnusedSymbol*/
-			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen::after {
+			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen::after, .emuos noscript .emuos-boot-container .emuos-boot-screen .emuos-boot-screen-text::after {
 				content: '';
 				display: block;
 				position: absolute;
@@ -394,12 +453,16 @@
 			}
 
 			/*noinspection CssUnusedSymbol*/
-			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen span.cursor {
+			.emuos.post .emuos-boot .emuos-boot-container .emuos-boot-screen span.cursor, .emuos noscript .emuos-boot-container .emuos-boot-screen span.cursor {
 				display: inline-block;
 				border-bottom: 2px solid rgba(168, 168, 168, 1);
 				height: 12px;
 
+				-moz-animation: blinkTextCursor 500ms infinite normal;
+				-khtml-animation: blinkTextCursor 500ms infinite normal;
 				-webkit-animation: blinkTextCursor 500ms infinite normal;
+				-ms-animation: blinkTextCursor 500ms infinite normal;
+				-o-animation: blinkTextCursor 500ms infinite normal;
 				animation: blinkTextCursor 500ms infinite normal;
 			}
 
@@ -698,6 +761,30 @@
 
 			/* region boot */
 
+			@-moz-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
+			@-khtml-keyframes boot {
+				0% {
+					background-position: 0 50%
+				}
+				50% {
+					background-position: 100% 50%
+				}
+				100% {
+					background-position: 0 50%
+				}
+			}
+
 			@-webkit-keyframes boot {
 				0% {
 					background-position: 0 50%
@@ -710,7 +797,7 @@
 				}
 			}
 
-			@-moz-keyframes boot {
+			@-ms-keyframes boot {
 				0% {
 					background-position: 0 50%
 				}
@@ -1023,6 +1110,44 @@
 				}
 			}
 
+			/* region blinkTextCursor */
+
+			@-moz-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-webkit-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-ms-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			@-o-keyframes blinkTextCursor {
+				0% {
+					border-color: rgba(168, 168, 168, 1);
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
 			@keyframes blinkTextCursor {
 				0% {
 					border-color: rgba(168, 168, 168, 1);
@@ -1031,6 +1156,8 @@
 					border-color: transparent;
 				}
 			}
+
+			/* endregion */
 
 			/* endregion */
 
@@ -1138,8 +1265,8 @@
 		<div class="emuos-boot">
 			<div class="emuos-boot-container">
 				<div class="emuos-boot-screen">
-					<div id="emuos-boot-screen-bg"><img style="float: left; margin-right: 5px;" alt="" src="assets/images/themes/bios/award-logo.png" /><img class="epa" style="float: right;" alt="" src="assets/images/themes/bios/epa-logo.png" /><span>Award Modular BIOS v4.51PG, An Energy Star Ally</span><br /><span>Copyright (C) 1984-97, Award Software, Inc.</span><br /><br />#4010A0-0105<br /><br />PENTIUM PRO-S CPU at 200MHz<br />Memory Test :  <span class="memory">   640K</span> O<span class="cursor">K</span><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><span>Press <span class="white">DEL</span> to enter SETUP</span><br /><span>12/10/97-i440FX-PI-P6NP5C-00</span></div>
-					<div id="emuos-boot-screen-text"></div>
+					<div id="emuos-boot-screen-bg" class="emuos-boot-screen-bg"><img style="float: left; margin-right: 5px;" alt="" src="assets/images/themes/bios/award-logo.png" /><img class="epa" style="float: right;" alt="" src="assets/images/themes/bios/epa-logo.png" /><span>Award Modular BIOS v4.51PG, An Energy Star Ally</span><br /><span>Copyright (C) 1984-97, Award Software, Inc.</span><br /><br />#4010A0-0105<br /><br />PENTIUM PRO-S CPU at 200MHz<br />Memory Test :  <span class="memory">   640K</span> O<span class="cursor">K</span><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><span>Press <span class="white">DEL</span> to enter SETUP</span><br /><span>12/10/97-i440FX-PI-P6NP5C-00</span></div>
+					<div id="emuos-boot-screen-text" class="emuos-boot-screen-text"></div>
 				</div>
 			</div>
 		</div>
@@ -1148,12 +1275,29 @@
 		<script type="text/javascript" src="assets/js/libraries/fetch-3.6.2.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/css-vars-4.1.0.js"></script>
 		<script type="text/javascript" src="assets/js/system.js"></script>
+		<script type="text/javascript" src="assets/js/libraries.js"></script>
+		<script type="text/javascript" src="assets/js/defines.js"></script>
 		<script type="text/javascript">
-			$sys.version = '{{ site.github.build_revision }}';
+			if (typeof $sys === 'undefined') {
+				$sys = {};
+			}
 
-			$sys.date = function() {
+			$sys.version = '{{ site.github.build_revision }}';
+			$sys.date = '{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}';
+
+			$sys.get_version = function() {
+				if (typeof $sys.version !== 'undefined') {
+					if ($sys.version !== null && $sys.version !== '' && $sys.version !== '{{ site.github.build_revision }}') {
+						return $sys.version.substring(0, 7);
+					}
+				}
+
+				return 0
+			}
+
+			$sys.get_date = function() {
 				try {
-					var obj = JSON.parse('{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}');
+					var obj = JSON.parse($sys.date);
 
 					if (typeof obj !== 'undefined') {
 						if (typeof obj.pushed_at !== 'undefined') {
@@ -1165,12 +1309,10 @@
 				} catch (e) {}
 
 				return new Date(0).toLocaleString();
-			}();
+			};
 
-			document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.version.substring(0, 7) + '\u000D\u000ADate ' + $sys.date);
+			document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.get_version() + '\u000D\u000ADate ' + $sys.get_date());
 		</script>
-		<script type="text/javascript" src="assets/js/libraries.js"></script>
-		<script type="text/javascript" src="assets/js/defines.js"></script>
 
 		<audio src="assets/sounds/post.mp3"></audio>
 
@@ -1328,7 +1470,8 @@
 						'<br />',
 						'Verifying DMI Pool Data ............<br />',
 						'Boot from CD :<br />',
-						'DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span><br />',
+						// 'DISK BOOT FAILURE, INSERT SYSTEM DISK AND PRESS ENTER<span class="cursor">&nbsp;</span><br />',
+						'Starting Windows...<span class="cursor">&nbsp;</span><br />',
 						'<br />',
 						'<br />',
 						'<br />',
@@ -1400,6 +1543,54 @@
 			})(this);
 		</script>
 
-		<noscript>Your browser does not support JavaScript!</noscript>
+		<noscript>
+			<table class="emuos-boot-container">
+				<tr>
+					<td>
+						<div class="emuos-boot-screen">
+							<div class="emuos-boot-screen-text">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Award Software, Inc.<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Configurations<br />
+								╔══════════════════════════════════════════════════════════════════════════════════════════════════╗<br />
+								║ CPU Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: PENTIUM PRO-S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base Memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;640K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Co-Processor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Installed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extended Memory&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;15368K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ CPU Clock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 200Mhz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cache Memory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;1024K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║──────────────────────────────────────────────────────────────────────────────────────────────────║<br />
+								║ Diskette Drive&nbsp;&nbsp;&nbsp;A : 1.44M, 3.5in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: EGA/VGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Diskette Drive&nbsp;&nbsp;&nbsp;B : 1.2M, 5.25in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serial Port(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 3F8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Pri. Master&nbsp;&nbsp;&nbsp;Disk : LBA ,Mode 4,&nbsp;&nbsp;2112MB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parallel Port(s)&nbsp;&nbsp;&nbsp;: 378&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Pri. Slave&nbsp;&nbsp;&nbsp;&nbsp;Disk : CDROM, Mode 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDRAM at Row(s)&nbsp;&nbsp;&nbsp;&nbsp;: 2 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Sec. Master&nbsp;&nbsp;&nbsp;Disk : None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								║ Sec. Slave&nbsp;&nbsp;&nbsp;&nbsp;Disk : None&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br />
+								╚══════════════════════════════════════════════════════════════════════════════════════════════════╝<br />
+								<br />
+								<br />
+								PCI device listing ...<br />
+								Bus No. Device No. Func No. Vendor ID&nbsp;&nbsp;&nbsp;&nbsp;Device ID&nbsp;&nbsp;&nbsp;Device Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IRQ<br />
+								────────────────────────────────────────────────────────────────────────────────────────────────────<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5327&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I/O(X)&nbsp;APIC&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NA<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5337&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDE&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0571&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDE&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;303B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;1.0/1.1&nbsp;UHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB&nbsp;2.0&nbsp;EHCI&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+								&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Network&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br />
+								&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10DE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br />
+								&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10DE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0BE3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimedia&nbsp;Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br />
+								&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3288&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimedia&nbsp;Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+								&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serial&nbsp;Bus&nbsp;Cntrlr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11<br />
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACPI Controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9<br />
+								<br />
+								Verifying DMI Pool Data ............<br />
+								Boot from CD :<br />
+								DISK BOOT FAILURE, YOUR BROWSER IS TOO OLD OR IT DOES NOT SUPPORT JAVASCRIPT<span class="cursor">&nbsp;</span>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</noscript>
 	</body>
 </html>
