@@ -118,6 +118,9 @@
 			taskbar: {
 				deps: ['jquery-ui']
 			},
+			toastr: {
+				deps: ['jquery']
+			},
 			twemoji: {
 				exports: 'twemoji'
 			},

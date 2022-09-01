@@ -1,7 +1,7 @@
 // noinspection DuplicatedCode
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
-		define(['jquery', 'router', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
+		define(['jquery', 'router', 'toastr', 'optional!simplestorage', 'optional!moment-timezone', 'optional!ga', 'optional!octokat', 'optional!esheep', 'optional!clippy'], factory);
 	} else { // noinspection DuplicatedCode
 		if (typeof module === 'object' && module.exports) {
 			module.exports = function(root, jQuery) {
@@ -21,20 +21,45 @@
 			factory(jQuery);
 		}
 	}
-} (function ($, Router, simplestorage, moment, ga, Octokat, eSheep, clippy) {
+} (function ($, Router, toastr, simplestorage, moment, ga, Octokat, eSheep, clippy) {
 	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 	var hash = location.hash.toString();
 	var resizeTimeout = null;
+	var versionCheckInterval = null;
 	var $window = $(window);
 
-	$.fn.hasScrollBar = function() {
-		var el = this.get(0);
+	if (typeof $.fn.getSelector === 'undefined') {
+		$.fn.getSelector = function() {
+			if ($(this).attr('id')) {
+				return '#' + $(this).attr('id');
+			}
 
-		if (el) {
-			return el.scrollHeight > this.height();
+			if ($(this).prop('tagName').toLowerCase() === 'body') {
+				return 'body';
+			}
+
+			var myOwn = $(this).attr('class');
+
+			if (!myOwn) {
+				myOwn = '>' + $(this).prop('tagName');
+			} else {
+				myOwn = '.' + myOwn.split(' ').join('.');
+			}
+
+			return $(this).parent().getSelector() + ' ' + myOwn;
 		}
+	}
 
-		return false;
+	if (typeof $.fn.hasScrollBar === 'undefined') {
+		$.fn.hasScrollBar = function() {
+			var el = this.get(0);
+
+			if (el) {
+				return el.scrollHeight > this.height();
+			}
+
+			return false;
+		}
 	}
 
 	$window.off('resize').on('resize', function() {
@@ -51,6 +76,47 @@
 	setTimeout(function() {
 		$window.trigger('resize');
 	}, 100);
+
+	toastr.target = '.emuos-taskbar-windows-containment';
+	toastr.options.escapeHtml = true;
+	toastr.options.closeButton = true;
+	toastr.options.preventDuplicates = true;
+	toastr.options.newestOnTop = true;
+	toastr.options.timeOut = 0;
+	toastr.options.extendedTimeOut = 0;
+	toastr.options.showMethod = 'slideDown';
+
+	// noinspection JSUnusedAssignment
+	clearInterval(versionCheckInterval);
+	// noinspection JSUnusedAssignment
+	versionCheckInterval = setInterval(function() {
+		$sys.api.fetch('https://api.github.com/repos/Emupedia/emupedia.github.io/commits/master', function(data) {
+			try {
+				// noinspection JSUnresolvedVariable
+				data = JSON.parse(data.target.response);
+			} catch(error) {
+				console.log(error)
+			}
+
+			// noinspection JSUnresolvedVariable
+			if (typeof data.sha !== 'undefined' && typeof $sys.version !== 'undefined') {
+				// noinspection JSUnresolvedVariable
+				if (data.sha !== null && $sys.version !== null) {
+					// noinspection JSUnresolvedVariable
+					if (data.sha !== '' && $sys.version !== '' && $sys.version !== '{{ site.github.build_revision }}') {
+						// noinspection JSUnresolvedVariable
+						if (data.sha !== $sys.version) {
+							toastr.options.onclick = function() {
+								location.reload();
+							};
+							toastr.info('New update available, click here to reload');
+							toastr.options.onclick = function() {};
+						}
+					}
+				}
+			}
+		});
+	}, 15 * 60 * 1000);
 
 	var EmuOS = function (options) {
 		var self = this;

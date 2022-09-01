@@ -1037,7 +1037,7 @@
 
 	// noinspection DuplicatedCode
 	$sys.api.fetch = function(opts, onsuccess, onerror, onprogress) {
-		opts = typeof opts === 'string' ? {url: opts} : opts;
+		opts = typeof opts === 'string' ? { url: opts } : opts;
 
 		// noinspection ES6ConvertVarToLetConst
 		var data = opts.data;
@@ -1086,12 +1086,15 @@
 			// noinspection JSValidateTypes
 			xhr.withCredentials = 'true';
 		}
+
 		if (onerror && 'onerror' in xhr) {
 			xhr.onerror = onerror;
 		}
+
 		if (onprogress && xhr.upload && 'onprogress' in xhr.upload) {
 			if (data) {
 				xhr.upload.onprogress = function(e) {
+					// noinspection JSDeprecatedSymbols
 					onprogress.call(xhr, e, event.loaded / event.total);
 				};
 			} else {
@@ -1127,28 +1130,11 @@
 					xhr.status === 308 || // Permanent Redirect
 					xhr.status === 0 && root.client.cordova // Cordova quirk
 				) {
-					if (onsuccess) {
-						// noinspection ES6ConvertVarToLetConst
-						var res;
-
-						if (format === 'xml') {
-							// noinspection JSUnresolvedVariable
-							res = e.target.responseXML;
-						} else if (format === 'text') {
-							// noinspection JSUnresolvedVariable
-							res = e.target.responseText;
-						} else if (format === 'json') {
-							try {
-								// noinspection JSUnresolvedVariable
-								res = JSON.parse(e.target.response);
-							} catch(err) {
-								onerror && onerror.call(xhr, e);
-							}
-						}
-						onsuccess.call(xhr, e, res);
+					if (typeof onsuccess === 'function') {
+						onsuccess(e);
 					}
 				} else {
-					onerror && onerror.call(xhr, e);
+					onerror && onerror(e);
 				}
 			}
 		};
