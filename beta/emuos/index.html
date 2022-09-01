@@ -186,10 +186,15 @@
 				overflow: hidden;
 			}
 
-			body:after {
+			.emuos body {
+				background-color: #333;
+				color: #fff;
+			}
+
+			.emuos body::after {
 				position: absolute;
 				content: attr(build);
-				right: 0;
+				right: 20px;
 				bottom: 28px;
 				color: #fff;
 				font-size: 13px;
@@ -199,9 +204,12 @@
 				z-index: 1;
 			}
 
-			.emuos body {
-				background-color: #333;
-				color: #fff;
+			.emuos.startup body::after {
+				display: none;
+			}
+
+			.emuos.post body::after {
+				display: none;
 			}
 
 			/* region Startup */
