@@ -25,23 +25,32 @@
 	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 	var hash = location.hash.toString();
 	var resizeTimeout = null;
+	var $window = $(window);
 
 	$.fn.hasScrollBar = function() {
-		return this.get(0).scrollHeight > this.height();
+		var el = this.get(0);
+
+		if (el) {
+			return el.scrollHeight > this.height();
+		}
+
+		return false;
 	}
 
-	$(window).off('resize').on('resize', function() {
+	$window.off('resize').on('resize', function() {
 		clearTimeout(resizeTimeout);
 		resizeTimeout = setTimeout(function() {
-			// console.log('window.resize()');
-
 			if ($('.desktop.emuos-desktop ').first().hasScrollBar()) {
 				$('html').addClass('has-scrollbar');
 			} else {
 				$('html').removeClass('has-scrollbar');
 			}
 		}, 100);
-	}).trigger('resize');
+	})
+
+	setTimeout(function() {
+		$window.trigger('resize');
+	}, 100);
 
 	var EmuOS = function (options) {
 		var self = this;
