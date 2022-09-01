@@ -368,7 +368,7 @@ yx-axis
 	.mCSB_scrollTools .mCSB_buttonDown,
 	.mCSB_scrollTools .mCSB_buttonLeft,
 	.mCSB_scrollTools .mCSB_buttonRight{
-		background-image: url(../../../images/libraries/jquery-customscrollbar-3.1.5/mCSB_buttons.png); /* css sprites */
+		background-image: url(../../../images/libraries/jquery-customscrollbar-3.1.5/../../../images/libraries/jquery-customscrollbar-3.1.5/mCSB_buttons.png); /* css sprites */
 		background-repeat: no-repeat;
 		opacity: 0.4; filter: "alpha(opacity=40)"; -ms-filter: "alpha(opacity=40)"; 
 	}

@@ -24,6 +24,24 @@
 } (function ($, Router, simplestorage, moment, ga, Octokat, eSheep, clippy) {
 	var root = location.hostname === 'localhost' ? 'https://emupedia.net' : '';
 	var hash = location.hash.toString();
+	var resizeTimeout = null;
+
+	$.fn.hasScrollBar = function() {
+		return this.get(0).scrollHeight > this.height();
+	}
+
+	$(window).off('resize').on('resize', function() {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(function() {
+			// console.log('window.resize()');
+
+			if ($('.desktop.emuos-desktop ').first().hasScrollBar()) {
+				$('html').addClass('has-scrollbar');
+			} else {
+				$('html').removeClass('has-scrollbar');
+			}
+		}, 100);
+	}).trigger('resize');
 
 	var EmuOS = function (options) {
 		var self = this;
@@ -133,6 +151,33 @@
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
 
+		function copyToClipboard(text) {
+			if ('clipboard' in navigator) {
+				// noinspection JSIgnoredPromiseFromCall
+				navigator.clipboard.writeText(text);
+			} else {
+				var element = document.createElement('input');
+
+				element.type = 'text';
+				element.disabled = true;
+
+				element.style.setProperty('position', 'fixed');
+				element.style.setProperty('z-index', '-100');
+				element.style.setProperty('pointer-events', 'none');
+				element.style.setProperty('opacity', '0');
+
+				element.value = text;
+
+				document.body.appendChild(element);
+
+				element.click();
+				element.select();
+				document.execCommand('copy');
+
+				document.body.removeChild(element);
+			}
+		}
+
 		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 			var icon_options = self.options.icons[j];
@@ -157,13 +202,19 @@
 				if (typeof icon_options['link'] !== 'undefined') {
 					var share_link = '';
 
+					var copy_link = '<button type="button" class="ui-button ui-widget ui-corner-all" title="Copy to Clipboard">' +
+										'<span class="ui-icon ui-icon-copy"></span>' +
+									'</button>';
+
+					copy_link = '';
+
 					if (icon_options['share'] === true) {
 						if (~icon_options['link'].indexOf('http')) {
 							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'];
-							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'] + '</a><br /><br />' + icon_options['credits'];
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'] + '</a>' + copy_link +  '<br /><br />' + icon_options['credits'];
 						} else {
 							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'].slice(1, -1);
-							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a><br /><br />' + icon_options['credits'];
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a>' + copy_link +  '<br /><br />' + icon_options['credits'];
 						}
 					}
 				}

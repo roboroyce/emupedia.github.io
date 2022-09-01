@@ -3415,7 +3415,7 @@ function install(install_directory, dependency, version) {
 			});
 			break;
 		case 'octokat':
-			// TODO
+			// TODO: find npm package and implement it
 			libraries[dependency] = dependency + '-' + version;
 			break;
 		case 'open-sans-fontface':

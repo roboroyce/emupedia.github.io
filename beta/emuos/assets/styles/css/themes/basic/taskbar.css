@@ -46,8 +46,9 @@
 
 .emuos-taskbar-windows-containment,
 .emuos-taskbar-window-copy {
+	position: absolute;
+	/*position: fixed;*/
 	z-index: -10000;
-	position: fixed;
 }
 
 .emuos-taskbar.emuos-taskbar-empty {

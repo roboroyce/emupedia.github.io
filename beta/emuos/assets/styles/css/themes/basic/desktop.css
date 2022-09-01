@@ -44,6 +44,7 @@
 	text-align: center;
 	text-shadow: #000 1px 1px 1px;
 	text-decoration: none;
+	z-index: 1;
 }
 
 /*noinspection CssOverwrittenProperties*/
