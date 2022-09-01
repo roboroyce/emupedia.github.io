@@ -51,9 +51,7 @@
 		}, 100);
 	})
 
-	setTimeout(function() {
-		$window.trigger('resize');
-	}, 100);
+	$window.trigger('resize');
 
 	toastr.target = '.emuos-taskbar-windows-containment';
 	toastr.options.escapeHtml = true;
