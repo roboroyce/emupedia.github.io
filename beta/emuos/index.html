@@ -1281,6 +1281,8 @@
 			</table>
 		</div>
 
+		<audio src="assets/sounds/post.mp3"></audio>
+
 		<script type="text/javascript" src="assets/js/libraries/babel-polyfill-7.12.1.min.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/fetch-3.6.2.js"></script>
 		<script type="text/javascript" src="assets/js/libraries/css-vars-4.1.0.js"></script>
@@ -1289,44 +1291,21 @@
 		<script type="text/javascript" src="assets/js/defines.js"></script>
 		<script type="text/javascript">
 			if (typeof $sys === 'undefined') {
-				$sys = {};
+				$sys = {
+					api: {
+						get_version: function () {
+							return 0;
+						},
+						get_date: function () {
+							return new Date(0).toLocaleString();
+						}
+					}
+				};
 			}
 
 			$sys.version = '{{ site.github.build_revision }}';
 			$sys.date = '{{ site.github.public_repositories | where:"id", 52881539 | first | jsonify }}';
 
-			$sys.get_version = function() {
-				if (typeof $sys.version !== 'undefined') {
-					if ($sys.version !== null && $sys.version !== '' && $sys.version !== '{{ site.github.build_revision }}') {
-						return $sys.version.substring(0, 7);
-					}
-				}
-
-				return 0
-			}
-
-			$sys.get_date = function() {
-				try {
-					var obj = JSON.parse($sys.date);
-
-					if (typeof obj !== 'undefined') {
-						if (typeof obj.pushed_at !== 'undefined') {
-							if (obj.pushed_at !== null && obj.pushed_at !== '') {
-								return new Date(obj.pushed_at).toLocaleString();
-							}
-						}
-					}
-				} catch (e) {}
-
-				return new Date(0).toLocaleString();
-			};
-
-			document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.get_version() + '\u000D\u000ADate ' + $sys.get_date());
-		</script>
-
-		<audio src="assets/sounds/post.mp3"></audio>
-
-		<script type="text/javascript">
 			// noinspection ThisExpressionReferencesGlobalObjectJS
 			(function(global) {
 				global.$sys.setTheme = function(theme) {
@@ -1518,6 +1497,8 @@
 				}
 
 				(function start() {
+					document.body.setAttribute('build', 'EmuOS v1.0 Beta\u000D\u000ABuild ' + $sys.api.get_version() + '\u000D\u000ADate ' + $sys.api.get_date());
+
 					var htmlElement = global.document.getElementsByTagName('html')[0];
 
 					if (typeof global.localStorage !== 'undefined') {

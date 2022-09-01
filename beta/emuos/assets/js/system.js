@@ -1198,6 +1198,35 @@
 		}
 	};
 
+	$sys.api.get_version = function() {
+		if (typeof $sys.version !== 'undefined') {
+			if ($sys.version !== null && $sys.version !== '' && $sys.version !== '{{ site.github.build_revision }}') {
+				return $sys.version.substring(0, 7);
+			}
+		}
+
+		return 0
+	}
+
+	$sys.api.get_date = function() {
+		try {
+			var obj = JSON.parse($sys.date);
+
+			if (typeof obj !== 'undefined') {
+				// noinspection JSUnresolvedVariable
+				if (typeof obj.pushed_at !== 'undefined') {
+					// noinspection JSUnresolvedVariable
+					if (obj.pushed_at !== null && obj.pushed_at !== '') {
+						// noinspection JSUnresolvedVariable
+						return new Date(obj.pushed_at).toLocaleString();
+					}
+				}
+			}
+		} catch (e) {}
+
+		return new Date(0).toLocaleString();
+	};
+
 	// endregion
 
 	$sys.api.banner();
