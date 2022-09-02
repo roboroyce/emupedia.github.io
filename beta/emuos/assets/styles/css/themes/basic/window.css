@@ -12,7 +12,7 @@
 	box-sizing: content-box;
 }
 
-.emuos-window.ui-dialog .ui-dialog-titlebar-close,
+.emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close,
 .emuos-window.ui-dialog .emuos-window-button {
 	width: 20px;
 	outline: none;

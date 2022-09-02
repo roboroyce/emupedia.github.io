@@ -94,6 +94,139 @@
 		});
 	}, 15 * 60 * 1000);
 
+	function copyToClipboard(text) {
+		if ('clipboard' in navigator) {
+			// noinspection JSIgnoredPromiseFromCall
+			navigator.clipboard.writeText(text);
+		} else {
+			var element = document.createElement('input');
+
+			element.type = 'text';
+			element.disabled = true;
+
+			element.style.setProperty('position', 'fixed');
+			element.style.setProperty('z-index', '-100');
+			element.style.setProperty('pointer-events', 'none');
+			element.style.setProperty('opacity', '0');
+
+			element.value = text;
+
+			document.body.appendChild(element);
+
+			element.click();
+			element.select();
+			document.execCommand('copy');
+
+			document.body.removeChild(element);
+		}
+	}
+
+	function getEaster(year) {
+
+		year = parseInt(year);
+
+		var f = Math.floor;
+		var jDay = 0;
+		var jMonth = 0;
+		var oDay = 0;
+		var oMonth = 0;
+		var wDay = 0;
+		var wMonth = 0;
+
+		function EasterJulian() {
+			// noinspection JSUnusedAssignment
+			var g = 0;
+			// noinspection JSUnusedAssignment
+			var i = 0;
+			// noinspection JSUnusedAssignment
+			var j = 0;
+			// noinspection JSUnusedAssignment
+			var p = 0;
+
+			g = year % 19;
+			i = (19 * g + 15) % 30;
+			j = (year + f(year / 4) + i) % 7;
+			p = i - j;
+
+			jMonth = 3 + f((p + 40) / 44);
+			jDay = p + 28 - 31 * f(jMonth / 4);
+		}
+
+		function EasterGregorian() {
+			// noinspection JSUnusedAssignment
+			var g = 0;
+			// noinspection JSUnusedAssignment
+			var c = 0;
+			// noinspection JSUnusedAssignment
+			var h = 0;
+			// noinspection JSUnusedAssignment
+			var i = 0;
+			// noinspection JSUnusedAssignment
+			var j = 0;
+			// noinspection JSUnusedAssignment
+			var p = 0;
+
+			g = year % 19;
+			c = f(year / 100);
+			h = (c - f(c / 4) - f(8 * c + 13 / 25) + 19 * g + 15) % 30;
+			i = h - f(h / 28) * (1 - f(h / 28) * f(29 / h + 1) * f(21 - g / 11));
+			j = (year + f(year / 4) + i + 2 - c + f(c / 4)) % 7;
+			p = i - j;
+
+			wMonth = 3 + f((p + 40) / 44);
+			wDay = p + 28 - 31 * f(wMonth / 4);
+		}
+
+		function EasterOrthodox () {
+			var extra = 0;
+			var tmp = 0;
+
+			oDay = 0;
+			oMonth = 0;
+
+			if ((year > 1582) && (year <= 4099)) {
+				extra = 10;
+
+				if (year > 1600) {
+					tmp = f(year / 100) - 16;
+					extra = extra + tmp - f(tmp / 4);
+				}
+
+				oDay = jDay + extra;
+				oMonth = jMonth;
+
+				if ((oMonth === 3) && (oDay > 31)) {
+					oMonth = 4;
+					oDay = oDay - 31;
+				}
+
+				if ((oMonth === 4) && (oDay > 30)) {
+					oMonth = 5;
+					oDay = oDay - 30;
+				}
+			}
+		}
+
+		EasterJulian()
+		EasterGregorian()
+		EasterOrthodox()
+
+		return {
+			julian: {
+				month: jMonth || -1,
+				day: jDay || -1
+			},
+			gregorian: {
+				month: wMonth || -1,
+				day: wDay || -1
+			},
+			orthodox: {
+				month: oMonth || -1,
+				day: oDay || -1
+			}
+		}
+	}
+
 	var EmuOS = function (options) {
 		var self = this;
 
@@ -202,33 +335,6 @@
 		self.$desktop = $('.desktop').first();
 		self.$taskbar = $('.taskbar').first();
 
-		function copyToClipboard(text) {
-			if ('clipboard' in navigator) {
-				// noinspection JSIgnoredPromiseFromCall
-				navigator.clipboard.writeText(text);
-			} else {
-				var element = document.createElement('input');
-
-				element.type = 'text';
-				element.disabled = true;
-
-				element.style.setProperty('position', 'fixed');
-				element.style.setProperty('z-index', '-100');
-				element.style.setProperty('pointer-events', 'none');
-				element.style.setProperty('opacity', '0');
-
-				element.value = text;
-
-				document.body.appendChild(element);
-
-				element.click();
-				element.select();
-				document.execCommand('copy');
-
-				document.body.removeChild(element);
-			}
-		}
-
 		for (var j in self.options.icons) {
 			// noinspection JSUnfilteredForInLoop,JSDuplicatedDeclaration
 			var icon_options = self.options.icons[j];
@@ -253,11 +359,9 @@
 				if (typeof icon_options['link'] !== 'undefined') {
 					var share_link = '';
 
-					var copy_link = '<button type="button" class="ui-button ui-widget ui-corner-all" title="Copy to Clipboard">' +
-										'<span class="ui-icon ui-icon-copy"></span>' +
+					var copy_link = '<button type="button" class="ui-button ui-button-icon-only ui-widget ui-corner-all" title="Copy to Clipboard">' +
+										'<span class="ui-button-icon ui-icon ui-icon-copy"></span>' +
 									'</button>';
-
-					copy_link = '';
 
 					if (icon_options['share'] === true) {
 						if (~icon_options['link'].indexOf('http')) {
@@ -607,112 +711,6 @@
 			iconClass: '.icon',
 			parent: '.emuos-taskbar-windows-containment'
 		});
-
-		function getEaster(year) {
-
-			year = parseInt(year);
-
-			var f = Math.floor;
-			var jDay = 0;
-			var jMonth = 0;
-			var oDay = 0;
-			var oMonth = 0;
-			var wDay = 0;
-			var wMonth = 0;
-
-			function EasterJulian() {
-				// noinspection JSUnusedAssignment
-				var g = 0;
-				// noinspection JSUnusedAssignment
-				var i = 0;
-				// noinspection JSUnusedAssignment
-				var j = 0;
-				// noinspection JSUnusedAssignment
-				var p = 0;
-
-				g = year % 19;
-				i = (19 * g + 15) % 30;
-				j = (year + f(year / 4) + i) % 7;
-				p = i - j;
-
-				jMonth = 3 + f((p + 40) / 44);
-				jDay = p + 28 - 31 * f(jMonth / 4);
-			}
-
-			function EasterGregorian() {
-				// noinspection JSUnusedAssignment
-				var g = 0;
-				// noinspection JSUnusedAssignment
-				var c = 0;
-				// noinspection JSUnusedAssignment
-				var h = 0;
-				// noinspection JSUnusedAssignment
-				var i = 0;
-				// noinspection JSUnusedAssignment
-				var j = 0;
-				// noinspection JSUnusedAssignment
-				var p = 0;
-
-				g = year % 19;
-				c = f(year / 100);
-				h = (c - f(c / 4) - f(8 * c + 13 / 25) + 19 * g + 15) % 30;
-				i = h - f(h / 28) * (1 - f(h / 28) * f(29 / h + 1) * f(21 - g / 11));
-				j = (year + f(year / 4) + i + 2 - c + f(c / 4)) % 7;
-				p = i - j;
-
-				wMonth = 3 + f((p + 40) / 44);
-				wDay = p + 28 - 31 * f(wMonth / 4);
-			}
-
-			function EasterOrthodox () {
-				var extra = 0;
-				var tmp = 0;
-
-				oDay = 0;
-				oMonth = 0;
-
-				if ((year > 1582) && (year <= 4099)) {
-					extra = 10;
-
-					if (year > 1600) {
-						tmp = f(year / 100) - 16;
-						extra = extra + tmp - f(tmp / 4);
-					}
-
-					oDay = jDay + extra;
-					oMonth = jMonth;
-
-					if ((oMonth === 3) && (oDay > 31)) {
-						oMonth = 4;
-						oDay = oDay - 31;
-					}
-
-					if ((oMonth === 4) && (oDay > 30)) {
-						oMonth = 5;
-						oDay = oDay - 30;
-					}
-				}
-			}
-
-			EasterJulian()
-			EasterGregorian()
-			EasterOrthodox()
-
-			return {
-				julian: {
-					month: jMonth || -1,
-					day: jDay || -1
-				},
-				gregorian: {
-					month: wMonth || -1,
-					day: wDay || -1
-				},
-				orthodox: {
-					month: oMonth || -1,
-					day: oDay || -1
-				}
-			}
-		}
 
 		if (typeof moment === 'function') {
 			if (moment().month() + 1 === 2 && moment().date() === 14) {

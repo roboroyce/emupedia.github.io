@@ -14,12 +14,7 @@
 	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #dfdfdf, inset -2px -2px 0 #808080, inset 2px 2px 0 #fff;
 }
 
-/*noinspection CssReplaceWithShorthandSafely,DuplicatedCode*/
-.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only {
-	top: 12px;
-	width: 16px;
-	height: 14px;
-
+.theme-windows-98 .emuos-window.ui-dialog .ui-button {
 	background-color: #c0c0c0;
 
 	border: none;
@@ -31,6 +26,19 @@
 	-moz-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
 	-webkit-box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
 	box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, inset -2px -2px 0 #808080, inset 2px 2px 0 #dfdfdf;
+}
+
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon {
+	width: 16px;
+	height: 14px;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only {
+	width: 16px;
+	height: 14px;
+
+	padding: 0;
 }
 
 .theme-windows-98 .emuos-window.ui-dialog .ui-button-icon-only:active,
@@ -45,77 +53,76 @@
 	box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #000, inset -2px -2px 0 #dfdfdf, inset 2px 2px 0 #808080;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar-close {
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-button-icon-only {
+	top: 12px;
+}
+
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
 	right: 2px !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-maximize-restore {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore {
 	right: 20px !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-minimize {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize {
 	right: 36px !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-newtab {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-newtab {
 	right: 56px !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-fullscreen {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-fullscreen {
 	right: 72px !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-help {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-help {
 	right: 88px !important;
 }
 
-/*noinspection CssOverwrittenProperties*/
-.theme-windows-98 .emuos-window.ui-dialog .ui-button-icon {
-	width: 16px;
-	height: 14px;
-}
-
-.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar-close .ui-icon-closethick {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close .ui-icon-closethick {
 	background-image: url(../../../../images/themes/icons/windows-9x/close.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-maximize-restore .ui-icon-newwin {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-icon-newwin {
 	background-image: url(../../../../images/themes/icons/windows-9x/maximize.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-maximize-restore .ui-icon-arrow-4-diag {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-maximize-restore .ui-icon-arrow-4-diag {
 	background-image: url(../../../../images/themes/icons/windows-9x/restore.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-minimize .ui-icon-minusthick {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-minimize .ui-icon-minusthick {
 	background-image: url(../../../../images/themes/icons/windows-9x/minimize.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-help .ui-icon-help {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-help .ui-icon-help {
 	background-image: url(../../../../images/themes/icons/windows-9x/help.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-fullscreen .ui-icon-arrow-4-diag {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-fullscreen .ui-icon-arrow-4-diag {
 	background-image: url(../../../../images/themes/icons/windows-9x/fullscreen.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
 }
 
 /*noinspection CssOverwrittenProperties*/
-.theme-windows-98 .emuos-window.ui-dialog .emuos-window-button-newtab .ui-icon-extlink {
+.theme-windows-98 .emuos-window.ui-dialog .ui-dialog-titlebar .emuos-window-button-newtab .ui-icon-extlink {
 	background-image: url(../../../../images/themes/icons/windows-9x/newtab.gif) !important;
 	background-position: 1px 2px !important;
 	background-repeat: no-repeat !important;
