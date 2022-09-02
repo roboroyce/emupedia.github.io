@@ -5,9 +5,9 @@
 	// noinspection JSFileReferences
 	requirejs.config({
 		paths: {
-			bson: '../../beta/emuos/assets/js/libraries/bson-4.6.5',
-			fingerprint: '../../beta/emuos/assets/js/libraries/fingerprint-3.3.3.min',
-			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.0.min',
+			bson: '../../beta/emuos/assets/js/libraries/bson-4.7.0',
+			fingerprint: '../../beta/emuos/assets/js/libraries/fingerprint-3.3.5.min',
+			jquery: '../../beta/emuos/assets/js/libraries/jquery-3.6.1.min',
 			'jquery-ajax-retry': '../../beta/emuos/assets/js/libraries/jquery-ajax-retry-0.2.8.min',
 			network: '//ws.' + location + '/server/app/network_iframe',
 			socket: '//ws.' + location + '/server/app/u_socket_es5',

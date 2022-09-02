@@ -94,7 +94,7 @@
 		});
 	}, 15 * 60 * 1000);
 
-	function copyToClipboard(text) {
+	function copyToClipboard(text, el) {
 		if ('clipboard' in navigator) {
 			// noinspection JSIgnoredPromiseFromCall
 			navigator.clipboard.writeText(text);
@@ -119,7 +119,19 @@
 
 			document.body.removeChild(element);
 		}
+
+		if (el) {
+			var message = $('<span>Copied to Clipboard!</span>')
+
+			$(el).after(message)
+
+			message.fadeOut(1000, function() {
+				$(this).remove();
+			});
+		}
 	}
+
+	window.copyToClipboard = copyToClipboard;
 
 	function getEaster(year) {
 
@@ -358,18 +370,17 @@
 			if (typeof icon_options['credits'] !== 'undefined') {
 				if (typeof icon_options['link'] !== 'undefined') {
 					var share_link = '';
-
-					var copy_link = '<button type="button" class="ui-button ui-button-icon-only ui-widget ui-corner-all" title="Copy to Clipboard">' +
-										'<span class="ui-button-icon ui-icon ui-icon-copy"></span>' +
-									'</button>';
+					var copy_link = '';
 
 					if (icon_options['share'] === true) {
 						if (~icon_options['link'].indexOf('http')) {
 							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'];
-							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'] + '</a>' + copy_link +  '<br /><br />' + icon_options['credits'];
+							copy_link = '<button type="button" onclick="copyToClipboard(\'' + share_link + '\', this)" class="ui-button ui-button-icon-only ui-widget ui-corner-all" title="Copy to Clipboard"><span class="ui-button-icon ui-icon ui-icon-copy"></span></button>';
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'] + '</a> ' + copy_link +  '<br /><br />' + icon_options['credits'];
 						} else {
 							share_link = location.origin.toString() + location.pathname.toString() + '#/' + icon_options['link'].slice(1, -1);
-							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a>' + copy_link +  '<br /><br />' + icon_options['credits'];
+							copy_link = '<button type="button" onclick="copyToClipboard(\'' + share_link + '\', this)" class="ui-button ui-button-icon-only ui-widget ui-corner-all" title="Copy to Clipboard"><span class="ui-button-icon ui-icon ui-icon-copy"></span></button>';
+							icon_options['credits'] = 'Share Link: <a href="' + share_link + '" target="_blank">' + icon_options['link'].slice(1, -1) + '</a> ' + copy_link +  '<br /><br />' + icon_options['credits'];
 						}
 					}
 				}
