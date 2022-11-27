@@ -10,7 +10,7 @@
 		"target": "_blank",
 		"shortcut": true
 	} , {
-		"name": "EmuArchive",
+		"name": "EmuArchive (Work In Progress)",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuarchive",
 		"link": "https://archive.emupedia.net/",
@@ -54,8 +54,8 @@
 		"name": "Windows 93",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/windows93",
-		"link": "https://v1.windows93.net",
-		"credits": "Website: <a href=\"https://windows93.net\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.net/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
+		"link": "https://v1.windows93.xyz",
+		"credits": "Website: <a href=\"https://windows93.xyz\" target=\"_blank\">windows93.net</a><br /><br />Author(s): <a href=\"http://jankenpopp.com\" target=\"_blank\">Jankenpopp</a> &amp; <a href=\"https://zombect.ro\" target=\"_blank\">Zombectro</a><br />License: <a href=\"https://www.windows93.xyz/#!/c/TOS.html\" target=\"_blank\">CC BY-NC 4.0</a>",
 		"width": 960,
 		"height": 734,
 		"newtab": true,
@@ -453,6 +453,16 @@
 		"name": "diep.io",
 		"icon": "assets/images/icons/desktop/diep.io",
 		"link": "/emupedia-game-diep.io/",
+		"credits": "Website: <a href=\"https://arras.io/\" target=\"_blank\">arras.io</a><br />Author: <a href=\"https://momentumstudios.games/\" target=\"_blank\">Momentum Studios</a><br />Repository: <a href=\"https://github.com/nepphhh/arrasio\" target=\"_blank\">github.com/nepphhh/arrasio</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br /><br />All other assets<hr />Copyright M28 Games",
+		"disclaimer": true,
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"share": true
+	} , {
+		"name": "arras.io",
+		"icon": "assets/images/icons/desktop/diep.io",
+		"link": "/emupedia-game-arras.io/",
 		"credits": "Website: <a href=\"https://arras.io/\" target=\"_blank\">arras.io</a><br />Author: <a href=\"https://momentumstudios.games/\" target=\"_blank\">Momentum Studios</a><br />Repository: <a href=\"https://github.com/nepphhh/arrasio\" target=\"_blank\">github.com/nepphhh/arrasio</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br /><br />All other assets<hr />Copyright M28 Games",
 		"disclaimer": true,
 		"width": 900,
