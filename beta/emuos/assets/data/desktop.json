@@ -470,6 +470,26 @@
 		"newtab": true,
 		"share": true
 	} , {
+		"name": "florr.io",
+		"icon": "assets/images/icons/desktop/florr.io",
+		"link": "https://static.florr.io/old/",
+		"credits": "Website: <a href=\"https://static.florr.io/old/\" target=\"_blank\">static.florr.io/old</a><br />Author: Matheus Valadares",
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
+		"name": "florr.io v2.0",
+		"icon": "assets/images/icons/desktop/florr.io",
+		"link": "https://florr.io/",
+		"credits": "Website: <a href=\"https://florr.io/\" target=\"_blank\">florr.io</a><br />Author: Matheus Valadares",
+		"width": 900,
+		"height": 600,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "skribbl.io",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/skribbl.io",
