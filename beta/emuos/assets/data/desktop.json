@@ -48,7 +48,7 @@
 		"height": 630,
 		"newtab": true,
 		"shortcut": true,
-		"singleinstance": true,
+		"singleinstance": true
 	} , {
 		"name": "TikTok",
 		"title": "External Website",
