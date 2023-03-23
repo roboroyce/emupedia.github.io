@@ -68,7 +68,8 @@
 		"width": 900,
 		"height": 480,
 		"newtab": true,
-		"shortcut": true
+		"shortcut": true,
+		"xmas": true
 	} , {
 		"name": "Windows 93",
 		"title": "External Website",

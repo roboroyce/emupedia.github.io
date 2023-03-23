@@ -498,7 +498,17 @@
 			}
 
 			// noinspection JSUnfilteredForInLoop
-			self.$desktop.append($icon);
+			if (typeof icon_options['xmas'] !== 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				$icon.attr('data-xmas', icon_options['xmas'] ? 'true' : 'false').data('xmas', icon_options['xmas']);
+			}
+
+			if (typeof icon_options['xmas'] === 'undefined') {
+				// noinspection JSUnfilteredForInLoop
+				self.$desktop.append($icon);
+			} else if (moment().month() + 1 === 12 && moment().date() >= 23 && moment().date() <= 25 && $icon.attr('data-xmas') === 'true') {
+				self.$desktop.append($icon);
+			}
 
 			$icon.off('click').on('click', function(e) {
 				if (typeof $(this).data('target') === 'undefined') {
