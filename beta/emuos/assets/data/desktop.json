@@ -30,13 +30,32 @@
 		"singleinstance": true,
 		"share": true
 	} , {
+		"name": "YouTube",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/youtube",
+		"link": "https://sharpie.nggyu.tk/service/hvtrs8%2F-wuw%2Cymuvu%60e%2Ccmm-",
+		"width": 1020,
+		"height": 630,
+		"newtab": true,
+		"shortcut": true,
+		"singleinstance": true
+	} , {
 		"name": "Discord",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/discord",
-		"link": "https://e.widgetbot.io/channels/510149138491506688/822995900225683477/",
-		"credits": "Website: <a href=\"https://widgetbot.io\" target=\"_blank\">widgetbot.io</a>",
-		"width": 900,
-		"height": 480,
+		"link": "https://sharpie.nggyu.tk/service/hvtrs8%2F-dksaopd%2Ccmm-lmgkn",
+		"width": 1020,
+		"height": 630,
+		"newtab": true,
+		"shortcut": true,
+		"singleinstance": true,
+	} , {
+		"name": "TikTok",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/tiktok",
+		"link": "https://sharpie.nggyu.tk/service/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fdopymu",
+		"width": 1020,
+		"height": 630,
 		"newtab": true,
 		"shortcut": true,
 		"singleinstance": true
