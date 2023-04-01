@@ -30,20 +30,20 @@
 		"singleinstance": true,
 		"share": true
 	} , {
-		"name": "YouTube",
+		"name": "Discord",
 		"title": "External Website",
-		"icon": "assets/images/icons/desktop/youtube",
-		"link": "https://explorer.emupedia.net/?url=https://youtube.com",
+		"icon": "assets/images/icons/desktop/discord",
+		"link": "https://explorer.emupedia.net/?url=https://discord.com/login",
 		"width": 1020,
 		"height": 630,
 		"newtab": true,
 		"shortcut": true,
 		"singleinstance": true
 	} , {
-		"name": "Discord",
+		"name": "YouTube",
 		"title": "External Website",
-		"icon": "assets/images/icons/desktop/discord",
-		"link": "https://explorer.emupedia.net/?url=https://discord.com/login",
+		"icon": "assets/images/icons/desktop/youtube",
+		"link": "https://explorer.emupedia.net/?url=https://youtube.com",
 		"width": 1020,
 		"height": 630,
 		"newtab": true,
@@ -474,16 +474,6 @@
 		"icon": "assets/images/icons/desktop/diep.io",
 		"link": "/emupedia-game-diep.io/",
 		"credits": "Website: <a href=\"https://diepcustom.herokuapp.com/\" target=\"_blank\">diepcustom.herokuapp.com</a><br />Author: <a href=\"https://github.com/ABCxFF\" target=\"_blank\">ABCxFF</a><br />Repository: <a href=\"https://github.com/ABCxFF/diepcustom\" target=\"_blank\">github.com/ABCxFF/diepcustom</a><br />License: <a href=\"https://github.com/ABCxFF/diepcustom/blob/main/LICENSE\" target=\"_blank\">AGPL-3.0</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
-		"disclaimer": true,
-		"width": 900,
-		"height": 600,
-		"newtab": true,
-		"share": true
-	} , {
-		"name": "arras.io",
-		"icon": "assets/images/icons/desktop/arras.io",
-		"link": "/emupedia-game-arras.io/",
-		"credits": "Website: <a href=\"https://arras.io/\" target=\"_blank\">arras.io</a><br />Author: <a href=\"https://momentumstudios.games/\" target=\"_blank\">Momentum Studios</a><br />Repository: <a href=\"https://github.com/nepphhh/arrasio\" target=\"_blank\">github.com/nepphhh/arrasio</a><br />License: <a href=\"https://github.com/nepphhh/arrasio/blob/master/LICENSE\" target=\"_blank\">GPL-3.0</a><br /><br />Original project<hr />Website: <a href=\"https://diep.io\" target=\"_blank\">diep.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
