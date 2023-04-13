@@ -1001,18 +1001,6 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "Minecraft Multiplayer",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/minecraft-classic",
-		"link": "/emupedia-game-minecraft-multiplayer/",
-		"credits": "HTML5 Port<hr />Website: <a href=\"https://prismarine.js.org/\" target=\"_blank\">prismarine.js.org</a><br /><br />Author: <a href=\"https://github.com/PrismarineJS\" target=\"_blank\">github.com/PrismarineJS</a><br />Repository: <a href=\"https://github.com/PrismarineJS/prismarine-web-client\" target=\"_blank\">github.com/PrismarineJS/prismarine-web-client</a><br />License: <a href=\"https://github.com/PrismarineJS/prismarine-web-client/blob/master/LICENSE\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
-		"disclaimer": true,
-		"width": 900,
-		"height": 550,
-		"newtab": true,
-		"shortcut": true,
-		"share": true
-	} , {
 		"name": "Winamp",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/winamp-classic",
