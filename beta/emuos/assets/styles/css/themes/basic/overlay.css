@@ -29,8 +29,8 @@
 .emuos-desktop-icon i.icon.ribbon:after {
 	display: block;
 	content: '';
-	width: 48px;
-	height: 48px;
+	width: 47px;
+	height: 47px;
 	position: absolute;
 	left: -8px;
 	top: -8px;
@@ -46,20 +46,31 @@
 	visibility: hidden;
 }
 
-/*.emuos-desktop-icon i.icon.ribbon.new:after {
-	background-image: url(../images/icons/ribbon/new.png);
+.emuos-desktop-icon i.icon.ribbon.new:after {
+	background-image: url(../../../../images/icons/ribbon/new.png);
+	background-size: 48px 48px;
+	left: 1px;
+	top: 3px;
 	opacity: 1;
 	visibility: visible;
-}*/
+}
 
 .emuos-desktop-icon i.icon.ribbon.beta:after {
 	background-image: url(../../../../images/icons/ribbon/beta.png);
+	background-size: 48px 48px;
+	left: 1px;
+	top: 3px;
 	opacity: 1;
 	visibility: visible;
 }
 
 .emuos-desktop-icon i.icon.ribbon.prototype:after {
+	width: 64px;
+	height: 64px;
 	background-image: url(../../../../images/icons/ribbon/prototype.png);
+	background-size: 65px 65px;
+	left: 1px;
+	top: 3px;
 	opacity: 1;
 	visibility: visible;
 }
