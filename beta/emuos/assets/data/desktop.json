@@ -33,7 +33,7 @@
 		"name": "EmuChat v2 Alpha",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuchat",
-		"link": "https://cojmar.github.io/emuchat2/",
+		"link": "https://ws.emupedia.net:3001/",
 		"width": 900,
 		"height": 480,
 		"prototype": true,
