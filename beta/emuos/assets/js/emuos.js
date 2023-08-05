@@ -520,7 +520,7 @@
 					if ($(this).data('name') === 'EmuChat') {
 						if (typeof $(this).data('singleinstance') !== 'undefined') {
 							// noinspection DuplicatedCode
-							if ($(this).data('singleinstance') && self.$body.find('[id^="' + $(this).data('name') + '"]').length === 0) {
+							if ($(this).data('singleinstance') && self.$body.find('[id="' + $(this).data('name') + '"]').length === 0) {
 								// noinspection JSUnfilteredForInLoop,JSReferencingMutableVariableFromClosure
 								self.iframe({
 									title: $(this).data('name'),
