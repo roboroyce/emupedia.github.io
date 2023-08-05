@@ -11,7 +11,7 @@
 	font-size: 13px;
 	font-weight: normal;
 	text-shadow: none;
-	z-index: 1;
+	/*z-index: 1;*/
 }
 
 .theme-windows-3 .emuos-desktop-icon span {
