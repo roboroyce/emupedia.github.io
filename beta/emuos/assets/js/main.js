@@ -142,10 +142,10 @@
 		'jquery',
 		'json!../data/desktop.json',
 		'filesystem',
-		'network',
+		// 'network',
 		'emuos',
 		'optional!ga'
-	], function($, desktop, FileSystem, Network, EmuOS, ga) {
+	], function($, desktop, FileSystem, /*Network,*/ EmuOS, ga) {
 		$(function() {
 			if (typeof ga === 'function') {
 				ga('send', {
@@ -158,7 +158,7 @@
 			// noinspection JSUnusedLocalSymbols
 			new EmuOS({
 				filesystem: FileSystem,
-				network: Network,
+				// network: Network,
 				theme: 'theme-windows-me',
 				icons: desktop.icons
 			});
