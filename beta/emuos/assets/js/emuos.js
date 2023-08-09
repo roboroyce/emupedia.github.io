@@ -92,7 +92,7 @@
 				}
 			}
 		});
-	}, 15 * 60 * 1000);
+	}, 5 * 60 * 1000);
 
 	function copyToClipboard(text, el) {
 		if ('clipboard' in navigator) {
