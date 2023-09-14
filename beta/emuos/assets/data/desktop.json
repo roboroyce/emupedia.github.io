@@ -532,6 +532,17 @@
 		"height": 400,
 		"share": true
 	} , {
+		"name": "Colossal Cave Adventure",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/ccave",
+		"link": "https://cojmar.github.io/adventure/",
+		"credits": "HTML5 Port<hr />Website: <a href=\"https://cojmar.github.io/adventure/\" target=\"_blank\">cojmar.github.io/adventure</a><br /><br />Author: <a href=\"https://github.com/cojmar\" target=\"_blank\">https://github.com/cojmar</a><br />Repository: <a href=\"https://github.com/cojmar/adventure\" target=\"_blank\">github.com/cojmar/adventure</a><br /><br />Inspired from<hr /><a href=\"https://en.wikipedia.org/wiki/Colossal_Cave_Adventure\" target=\"_blank\">Colossal Cave Adventure</a>",
+		"width": 640,
+		"height": 480,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "NVolley",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/nvolley",
