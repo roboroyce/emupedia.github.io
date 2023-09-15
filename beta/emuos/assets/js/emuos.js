@@ -949,7 +949,7 @@
 						server: ~window.location.hostname.indexOf('emupedia.net') ? 0 : (~window.location.hostname.indexOf('emupedia.org') ? 1 : (~window.location.hostname.indexOf('emuos.net') ? 2 : (~window.location.hostname.indexOf('emuos.org') ? 3 : 0))),
 						mode: 0
 					});
-				}, 3000);
+				});
 			}
 		}
 
