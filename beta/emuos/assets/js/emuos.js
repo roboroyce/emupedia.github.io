@@ -1181,16 +1181,48 @@
 
 		widget.find('iframe').off('load').on('load', function() {
 			if (title === 'Chat') {
-				var net = window['NETWORK_CONNECTION'];
+				var net = {};
 
-				if (typeof net !== 'undefined') {
-					// noinspection JSUnresolvedVariable
-					if (typeof net.register_iframe === 'function') {
-						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
-						net.register_iframe(title);
+				net.badge = 0;
+
+				net.show = function() {
+					if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+						if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+							// noinspection JSUnresolvedVariable
+							if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+								// noinspection JSUnresolvedFunction
+								window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
+							}
+						}
+					}
+
+					widget.slideDown(300);
+					net.badge = 0;
+					var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+					$icon.attr('class', 'icon badge');
+				};
+
+				net.hide = function() {
+					if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+						if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+							// noinspection JSUnresolvedVariable
+							if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+								// noinspection JSUnresolvedFunction
+								window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
+							}
+						}
+					}
+
+					widget.slideUp(300);
+				};
+
+				net.toggle = function() {
+					if (widget.is(':hidden')) {
 						net.badge = 0;
+						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+						$icon.attr('class', 'icon badge');
 
-						net.show = function() {
+						if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
 							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
 								// noinspection JSUnresolvedVariable
 								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
@@ -1198,14 +1230,9 @@
 									window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
 								}
 							}
-
-							widget.slideDown(300);
-							net.badge = 0;
-							var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-							$icon.attr('class', 'icon badge');
-						};
-
-						net.hide = function() {
+						}
+					} else {
+						if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
 							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
 								// noinspection JSUnresolvedVariable
 								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
@@ -1213,52 +1240,34 @@
 									window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
 								}
 							}
+						}
+					}
 
-							widget.slideUp(300);
-						};
+					widget.slideToggle(300);
+				};
 
-						net.toggle = function() {
-							if (widget.is(':hidden')) {
-								net.badge = 0;
-								var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-								$icon.attr('class', 'icon badge');
+				self.$taskbar.taskbar('option', 'buttons.chat').$element.off('click').on('click', function() {
+					net.toggle();
+				});
 
-								if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
-									// noinspection JSUnresolvedVariable
-									if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
-										// noinspection JSUnresolvedFunction
-										window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
-									}
-								}
-							} else {
-								if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
-									// noinspection JSUnresolvedVariable
-									if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
-										// noinspection JSUnresolvedFunction
-										window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
-									}
-								}
-							}
-
-							widget.slideToggle(300);
-						};
-
-						self.$taskbar.taskbar('option', 'buttons.chat').$element.off('click').on('click', function() {
+				self.$window.off('keydown').on('keydown', function (e) {
+					// noinspection JSRedundantSwitchStatement
+					switch (e.keyCode) {
+						case 192:
 							net.toggle();
-						});
+							e.preventDefault();
+							return false;
+					}
+				});
 
-						self.$window.off('keydown').on('keydown', function (e) {
-							// noinspection JSRedundantSwitchStatement
-							switch (e.keyCode) {
-								case 192:
-									net.toggle();
-									e.preventDefault();
-									return false;
-							}
-						});
+				var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
+				$icon.attr('class', 'icon badge');
 
-						var $icon = self.$body.find('.emuos-desktop-icon span:contains("EmuChat")').siblings('i.icon').first();
-						$icon.attr('class', 'icon badge');
+				if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+					// noinspection JSUnresolvedVariable
+					if (typeof window['NETWORK_CONNECTION'].register_iframe === 'function') {
+						// noinspection JSUnresolvedVariable,JSUnresolvedFunction
+						window['NETWORK_CONNECTION'].register_iframe(title);
 					}
 				}
 			}
