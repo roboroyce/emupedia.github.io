@@ -742,6 +742,10 @@
 				self.$html.addClass('emuos-easter');
 			}
 
+			if (moment().month() + 1 === 10 && moment().date() >= 29) {
+				self.$html.addClass('emuos-halloween');
+			}
+
 			if (moment().month() + 1 === 12) {
 				var xmas = '';
 				var newyear = '';
