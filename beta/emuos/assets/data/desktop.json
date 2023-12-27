@@ -437,6 +437,17 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Spelunky Classic",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/spelunky-classic",
+		"link": "/emupedia-game-spelunky-classic/",
+		"credits": "Website: <a href=\"https://spelunkyworld.com/original.html\" target=\"_blank\">spelunkyworld.com/original.html</a>",
+		"width": 900,
+		"height": 547,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/geometry-dash",
