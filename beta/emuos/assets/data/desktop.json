@@ -448,6 +448,17 @@
 		"shortcut": true,
 		"share": true
 	} , {
+		"name": "Jazz Jackrabbit 2",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/jazz2",
+		"link": "/emupedia-game-jazz2/",
+		"credits": "Website: <a href=\"https://deat.tk/jazz2/\" target=\"_blank\">deat.tk/jazz2</a>",
+		"width": 900,
+		"height": 547,
+		"newtab": true,
+		"shortcut": true,
+		"share": true
+	} , {
 		"name": "Geometry Dash",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/geometry-dash",
