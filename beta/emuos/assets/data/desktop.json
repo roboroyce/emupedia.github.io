@@ -493,11 +493,11 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "lennar.icu",
+		"name": "bublz.us",
 		"title": "External Website",
-		"icon": "assets/images/icons/desktop/lennar",
-		"link": "https://lennar.icu/",
-		"credits": "Website: <a href=\"https://lennar.icu/\" target=\"_blank\">lennar.icu</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
+		"icon": "assets/images/icons/desktop/bublz",
+		"link": "https://bublz.us/",
+		"credits": "Website: <a href=\"https://bublz.us/\" target=\"_blank\">bublz.us</a><br />Author: <a href=\"https://github.com/Faris90\" target=\"_blank\">github.com/Faris90</a><br /><br />Original project<hr />Website: <a href=\"https://agar.io\" target=\"_blank\">agar.io</a><br />Author: <a href=\"https://m28.studio/\" target=\"_blank\">M28 Games</a><br /><br />All other assets<hr />Copyright Miniclip and M28 Games",
 		"disclaimer": true,
 		"width": 900,
 		"height": 600,
