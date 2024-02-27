@@ -28,7 +28,7 @@ whitelist:
   - jekyll-mentions
   - jekyll-sitemap
   - jemoji
-gems:
+plugins:
   - jekyll-watch
   - jekyll-textile-converter
   - jekyll-sass-converter
