@@ -2,7 +2,7 @@ title: Emupedia
 email: ""
 description: ""
 baseurl: ""
-url: "https://emupedia.net"
+url: "https://emupedia.net/"
 markdown: kramdown
 exclude:
   - .github/**
