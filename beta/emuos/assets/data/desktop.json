@@ -10,16 +10,6 @@
 		"target": "_blank",
 		"shortcut": true
 	} , {
-		"name": "EmuArchive (Work In Progress)",
-		"title": "Under Development",
-		"icon": "assets/images/icons/desktop/emuarchive",
-		"link": "https://archive.emupedia.net/",
-		"width": 900,
-		"height": 480,
-		"newtab": true,
-		"singleinstance": true,
-		"share": true
-	} , {
 		"name": "EmuChat",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/emuchat",
@@ -29,36 +19,6 @@
 		"newtab": true,
 		"singleinstance": true,
 		"share": true
-	} , {
-		"name": "Discord",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/discord",
-		"link": "https://explorer.emupedia.net/?url=https://discord.com/login",
-		"width": 1020,
-		"height": 630,
-		"newtab": true,
-		"shortcut": true,
-		"singleinstance": true
-	} , {
-		"name": "YouTube",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/youtube",
-		"link": "https://explorer.emupedia.net/?url=https://youtube.com",
-		"width": 1020,
-		"height": 630,
-		"newtab": true,
-		"shortcut": true,
-		"singleinstance": true
-	} , {
-		"name": "TikTok",
-		"title": "External Website",
-		"icon": "assets/images/icons/desktop/tiktok",
-		"link": "https://explorer.emupedia.net/?url=https://www.tiktok.com/en/",
-		"width": 1020,
-		"height": 630,
-		"newtab": true,
-		"shortcut": true,
-		"singleinstance": true
 	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
