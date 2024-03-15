@@ -985,11 +985,22 @@
 		"newtab": true,
 		"share": true
 	} , {
-		"name": "Minecraft Singleplayer",
+		"name": "Minecraft Classic",
 		"title": "Under Development",
 		"icon": "assets/images/icons/desktop/minecraft-classic",
 		"link": "/emupedia-game-minecraft-classic/",
 		"credits": "HTML5 Port<hr />Website: <a href=\"https://classic.minecraft.net/\" target=\"_blank\">classic.minecraft.net</a><br /><br />Author: <a href=\"https://github.com/andyhall\" target=\"_blank\">github.com/andyhall</a><br />Repository: <a href=\"https://github.com/andyhall/noa\" target=\"_blank\">github.com/andyhall/noa</a><br />License: <a href=\"https://github.com/andyhall/noa/blob/master/LICENSE.txt\" target=\"_blank\">MIT</a><br /><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
+		"disclaimer": true,
+		"width": 900,
+		"height": 480,
+		"newtab": true,
+		"share": true
+	} , {
+		"name": "Minecraft 1.8.8",
+		"title": "Under Development",
+		"icon": "assets/images/icons/desktop/minecraft-classic",
+		"link": "https://eaglercraft.com/mc/1.8.8/",
+		"credits": "TEAVM Port<hr />Website: <a href=\"https://eaglercraft.com/\" target=\"_blank\">eaglercraft.com</a><br /><br />Author: <a href=\"https://github.com/lax1dude\" target=\"_blank\">github.com/lax1dude</a><br />All other assets<hr />Copyright Microsoft (formerly Mojang)",
 		"disclaimer": true,
 		"width": 900,
 		"height": 480,
