@@ -738,6 +738,18 @@
 				self.$html.addClass('emuos-valentines');
 			}
 
+			if (moment().month() + 1 === 4 && moment().date() === 1) {
+				self.$html.addClass('emuos-april1st');
+
+				self.iframe({
+					title: 'FBI FBI FBI THIS WEBSITE HAS BEEN SIZED FBI FBI FBI',
+					icon: 'test',
+					src: 'april1st.html',
+					width: 1000,
+					height: 700
+				});
+			}
+
 			if ((moment().month() + 1 === getEaster(moment().year()).gregorian.month && moment().date() === getEaster(moment().year()).gregorian.day) || (moment().month() + 1 === getEaster(moment().year()).orthodox.month && moment().date() === getEaster(moment().year()).orthodox.day)) {
 				self.$html.addClass('emuos-easter');
 			}
@@ -1191,11 +1203,11 @@
 
 				net.show = function() {
 					if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
-						if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+						if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
 							// noinspection JSUnresolvedVariable
-							if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+							if (typeof window['NETWORK_CONNECTION']['socket']['emit_event'] === 'function') {
 								// noinspection JSUnresolvedFunction
-								window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
+								window['NETWORK_CONNECTION']['socket']['emit_event']('chat.show', {});
 							}
 						}
 					}
@@ -1208,11 +1220,11 @@
 
 				net.hide = function() {
 					if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
-						if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+						if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
 							// noinspection JSUnresolvedVariable
-							if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+							if (typeof window['NETWORK_CONNECTION']['socket']['emit_event'] === 'function') {
 								// noinspection JSUnresolvedFunction
-								window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
+								window['NETWORK_CONNECTION']['socket']['emit_event']('chat.hide', {});
 							}
 						}
 					}
@@ -1227,21 +1239,21 @@
 						$icon.attr('class', 'icon badge');
 
 						if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
-							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+							if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
 								// noinspection JSUnresolvedVariable
-								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+								if (typeof window['NETWORK_CONNECTION']['socket']['emit_event'] === 'function') {
 									// noinspection JSUnresolvedFunction
-									window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
+									window['NETWORK_CONNECTION']['socket']['emit_event']('chat.show', {});
 								}
 							}
 						}
 					} else {
 						if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
-							if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
+							if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
 								// noinspection JSUnresolvedVariable
-								if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
+								if (typeof window['NETWORK_CONNECTION']['socket']['emit_event'] === 'function') {
 									// noinspection JSUnresolvedFunction
-									window['NETWORK_CONNECTION'].socket.emit_event('chat.hide', {});
+									window['NETWORK_CONNECTION']['socket']['emit_event']('chat.hide', {});
 								}
 							}
 						}
@@ -1395,11 +1407,13 @@
 			$el.get(0).focus();
 			$el.get(0).contentWindow.focus();
 
-			if (typeof window['NETWORK_CONNECTION'].socket !== 'undefined') {
-				// noinspection JSUnresolvedVariable
-				if (typeof window['NETWORK_CONNECTION'].socket.emit_event === 'function') {
-					// noinspection JSUnresolvedFunction
-					window['NETWORK_CONNECTION'].socket.emit_event('chat.show', {});
+			if (typeof window['NETWORK_CONNECTION'] !== 'undefined') {
+				if (typeof window['NETWORK_CONNECTION']['socket'] !== 'undefined') {
+					// noinspection JSUnresolvedVariable
+					if (typeof window['NETWORK_CONNECTION']['socket']['emit_event'] === 'function') {
+						// noinspection JSUnresolvedFunction
+						window['NETWORK_CONNECTION']['socket']['emit_event']('chat.show', {});
+					}
 				}
 			}
 		});
