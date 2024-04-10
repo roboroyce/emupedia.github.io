@@ -20,6 +20,36 @@
 		"singleinstance": true,
 		"share": true
 	} , {
+		"name": "Discord",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/discord",
+		"link": "https://browser.rammerhead.org/d476b626824945bca8713b4801722e07/_rhsc4NyD://xKOSPJK.yFJ/FGOFw",
+		"width": 1020,
+		"height": 630,
+		"newtab": true,
+		"shortcut": true,
+		"singleinstance": true
+	} , {
+		"name": "YouTube",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/youtube",
+		"link": "https://browser.rammerhead.org/8fd15c93a3b74d5fa901f229bb96f868/_rhswqMTl://u2g.fVjjfTl.lbj/?sA2QAMb8YNxX=-",
+		"width": 1020,
+		"height": 630,
+		"newtab": true,
+		"shortcut": true,
+		"singleinstance": true
+	} , {
+		"name": "TikTok",
+		"title": "External Website",
+		"icon": "assets/images/icons/desktop/tiktok",
+		"link": "https://browser.rammerhead.org/a96679cfd8d14248a712a5b613bb6988/_rhsA3TYG://j85.8TInj7.TnL/7H~dUXL",
+		"width": 1020,
+		"height": 630,
+		"newtab": true,
+		"shortcut": true,
+		"singleinstance": true
+	} , {
 		"name": "Santa Tracker",
 		"title": "External Website",
 		"icon": "assets/images/icons/desktop/santa",
