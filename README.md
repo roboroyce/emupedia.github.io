@@ -23,7 +23,7 @@ Similar organizations that do [digital preservation](https://en.wikipedia.org/wi
 
 ## 💬 <sub>Join us on Discord</sub>
 
-<sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/discord-48.png" /></sub> [Discord](https://discord.gg/wXtGQ4p)
+<sub><img width="18" height="18" alt="" src="https://emupedia.net/beta/emuos/assets/images/icons/desktop/discord-48.png" /></sub> [Discord](https://discord.gg/emupedia-510149138491506688)
 
 ## 👀 <sub>View a Live Demo</sub>
 [![This is currently under active development, and you must understand that some features are not finished.](https://emupedia.net/images/under-development.svg)](#-view-a-live-demo)
